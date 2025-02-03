@@ -7,7 +7,6 @@ export default function Home() {
   const [searchString, setSearchString] = useState('')
   const [showToast, setShowToast] = useState(false)
   const [placeholderText, setPlaceholderText] = useState('テキストを入力してください')
-  const placeholderRef = useRef<HTMLTextAreaElement>(null)
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const animationStartedRef = useRef(false)
 
