@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
           <h1 className="text-white text-2xl font-bold text-center">Boring Tools</h1>
           <ul className="mt-4">
             <li>
-              <a href="/character-counter" className="text-white hover:underline">Character Counter</a>
+              <Link href="/character-counter" className="text-white hover:underline">Character Counter</Link>
             </li>
           </ul>
         </div>
