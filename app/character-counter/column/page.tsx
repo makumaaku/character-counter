@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 async function getColumnData() {
   const columnsDirectory = path.join(process.cwd(), 'app', 'character-counter', 'columns');
@@ -24,12 +26,7 @@ export default async function ColumnList() {
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
-      <header className="bg-purple-500 text-white flex justify-between items-center p-4">
-        <h1 className="text-2xl font-bold">Boring.</h1>
-        <h2 className="text-xl">Column List</h2>
-        <div className="w-[76px]"></div>
-      </header>
-
+      <Header />
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">Column List</h2>
@@ -44,13 +41,7 @@ export default async function ColumnList() {
           ))}
         </ul>
       </main>
-
-      <footer className="bg-gray-900 text-center py-6 mt-10">
-        <div className="w-12 h-12 bg-black rounded-full mx-auto flex items-center justify-center">
-          <span className="text-white font-bold">Boring.</span>
-        </div>
-        <p className="text-gray-400 mt-2">&copy; Boring Inc</p>
-      </footer>
+      <Footer />
     </div>
   )
 }

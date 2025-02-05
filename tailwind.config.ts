@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+import colors from 'tailwindcss/colors'; // import colors from tailwindcss/colors
+
 export default {
   darkMode: 'class',
   content: [
@@ -11,8 +13,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#242438", // ダークグレー
+        foreground: "#FFFFFF", // 白
+        primary: "#A15EF7", // 紫
+        secondary: "#3B3B54", // ダークブルーグレー
+        gray: colors.gray, // デフォルトの gray スケールを保持
       },
     },
   },

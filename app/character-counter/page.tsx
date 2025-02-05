@@ -1,5 +1,7 @@
 'use client'
 
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { useState, useEffect, useRef } from 'react'
 
 export default function Home() {
@@ -67,11 +69,7 @@ export default function Home() {
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
-      <header className="bg-purple-500 text-white flex justify-between items-center p-4">
-        <h1 className="text-2xl font-bold">Boring.</h1>
-        <h2 className="text-xl">Character Count</h2>
-        <div className="w-[76px]"></div>
-      </header>
+    <Header />
 
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
@@ -299,12 +297,7 @@ SNS posting, essays, ad copy creation, etc. Perfect for all kinds of situations,
         </div>
       )}
 
-      <footer className="bg-gray-900 text-center py-6 mt-10">
-        <div className="w-12 h-12 bg-black rounded-full mx-auto flex items-center justify-center">
-          <span className="text-white font-bold">Boring.</span>
-        </div>
-        <p className="text-gray-400 mt-2">&copy; Boring Inc</p>
-      </footer>
+    <Footer />
     </div>
   )
 }
