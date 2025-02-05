@@ -14,6 +14,9 @@ export default function Home() {
             <li>
               <Link href="/character-counter" className="text-white hover:underline">Character Counter</Link>
             </li>
+            <li>
+              <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
+            </li>
           </ul>
         </div>
       </div>
