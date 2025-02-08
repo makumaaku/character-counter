@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Boring Tools",
-  description: "Boringなツール集",
+  title: {
+    template: '%s | Boring Tools',
+    default: 'Boring Tools',
+  },
+  description: "A collection of simple and useful tools",
   icons: {
     icon: [
       {
