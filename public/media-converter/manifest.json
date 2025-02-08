@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "メディアコンバーター",
+  "version": "1.0",
+  "description": "あらゆるメディアをMP3に変換します。",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
