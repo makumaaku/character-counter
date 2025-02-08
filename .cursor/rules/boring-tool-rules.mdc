@@ -1,0 +1,130 @@
+---
+description: 
+globs: 
+---
+Description: フロントエンドにおけるベストプラクティス  
+Globs: app/**, packages/**
+
+---
+# フロントエンド コーディングルール
+
+以下は、boring-tool プロジェクトにおけるフロントエンド開発のベストプラクティスです。
+
+本プロジェクトでは、**AI を活用してソースコードを自動生成しやすい仕組み** と、**サービスが増加しても高速かつ同一の仕組みで横展開できる** 設計を重視しています。Next.js の App Router を採用したモノレポ構成により、各サービスの追加・保守が容易に行えることを目指します。
+
+## 1. ディレクトリ構成
+- **app/**: Next.js アプリケーションのコードを管理するディレクトリ。
+  - 各サービスはサブディレクトリ（例: `character-counter`, `qr-code-generator`）として構成する。  
+    → サービスの追加は横展開が容易で、同一の仕組みを利用して高速に展開できる。
+- **packages/ui/**: 複数ツール間で再利用する共通の UI コンポーネント（例: `Button`, `Header`, `Footer`）を配置する。
+- その他、`packages/common/`, `packages/tailwindconfig/`, `packages/eslint-config-custom/`, `packages/tsconfig/` など、共通パッケージ群により一貫した設定と処理を提供する。
+具体的な構成は以下。
+```
+boring-tool/                          // モノレポのルートディレクトリ
+├─ app/                               // Next.js アプリ（App Router を採用）
+│  ├─ layout.tsx                      // グローバルレイアウト（ヘッダー・フッターなど共通UI）
+│  ├─ page.tsx                        // トップページ（ホームページ）
+│  ├─ columns/                        // ホームページ専用の共通コラム（必要に応じて）
+│  │   └─ [slug].mdx                  // マークダウン／MDX 形式の記事
+│  ├─ character-counter/              // 「文字数カウンター」ツール用ルート
+│  │   ├─ page.tsx                    // 文字数カウンターのメイン画面
+│  │   ├─ components/                 // このツール専用の UI コンポーネント群
+│  │   │   ├─ CounterInput.tsx       
+│  │   │   └─ CounterDisplay.tsx
+│  │   └─ columns/                    // 文字数カウンター専用のコラム記事
+│  │       └─ [slug].mdx
+│  └─ qr-code-generator/              // 「QRコード生成」ツール用ルート
+│      ├─ page.tsx                    // QRコード生成のメイン画面
+│      ├─ components/                 // このツール専用の UI コンポーネント群
+│      │   ├─ QRCodeForm.tsx
+│      │   └─ QRCodeDisplay.tsx
+│      └─ columns/                    // QRコード生成専用のコラム記事
+│          └─ [slug].mdx
+├─ packages/                          // 複数ツール間で共有する共通パッケージ群
+│  ├─ ui/                             // 各ツールで再利用する共通 UI コンポーネント
+│  │   ├─ Button.tsx
+│  │   ├─ Header.tsx
+│  │   └─ Footer.tsx
+│  ├─ common/                         // Firebase Auth や Stripe などの共通処理・フック
+│  │   ├─ firebaseAuth.ts
+│  │   └─ stripe.ts
+│  ├─ tailwindconfig/                 // 共通 Tailwind CSS の設定ファイル群
+│  │   └─ index.js
+│  ├─ eslint-config-custom/           // 共通 ESLint 設定
+│  │   └─ index.js
+│  └─ tsconfig/                       // 共通 tsconfig 設定（パスエイリアス等）
+│      └─ base.json
+├─ package.json                       // ワークスペース設定など（Yarn Workspaces 等）
+├─ tsconfig.json                      // ルートの TypeScript 設定（各パッケージを含む設定）
+└─ turbo.json                         // Turborepo の設定（ビルド高速化用）
+
+```
+
+## 2. 命名規則
+- React コンポーネント名は **PascalCase** を使用する。
+- ファイル名およびディレクトリ名は **kebab-case** を使用する。
+
+## 3. SEO 対策
+- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang="en">` を設定する。
+- 各ページ (`page.tsx`) では `next/head` を利用し、以下の SEO メタタグを設定する：
+  - `title` （ページタイトル）
+  - `meta name="description"` （ページの説明文）
+  - `meta property="og:title"`（Open Graph 用タイトル）
+  - `meta property="og:description"`（Open Graph 用説明文）
+  - `meta property="og:url"`（ページの URL）
+  - `meta property="og:type"`（コンテンツタイプ）
+  - `link rel="canonical"`（正規 URL の指定）
+
+### 3.1 JSON-LD による構造化データの追加
+- 検索エンジン向けに JSON-LD 形式の構造化データを、`<script type="application/ld+json">` タグで `<head>` 内に追加する。  
+- `Schema.org` に準拠した構造化データを用い、以下の情報を含める：
+  - `@context`: `"https://schema.org"`
+  - `@type`: `"WebPage"` または `"Article"`
+  - `name`: サイト名
+  - `description`: ページの概要
+  - `url`: 正規 URL
+  - `author`: サイト運営者情報（適用可能な場合）
+
+#### JSON-LD の実装例  
+```tsx
+import Head from 'next/head';
+
+export default function SEO() {
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Character Counter - YourSite",
+    "description": "A free online character counter tool for writers.",
+    "url": "https://www.yoursite.com/character-counter"
+  };
+
+  return (
+    <Head>
+      <title>Character Counter - YourSite</title>
+      <meta name="description" content="A free online character counter tool for writers." />
+      <link rel="canonical" href="https://www.yoursite.com/character-counter" />
+      <script type="application/ld+json">
+        {JSON.stringify(jsonLdData)}
+      </script>
+    </Head>
+  );
+}
+```
+
+
+## 4. コーディングスタイルと品質管理
+- 全コードは TypeScript を使用し、厳格な型チェックを実施する。
+- ESLint（packages/eslint-config-custom）のルールに従い、Prettier を利用してコードフォーマットを統一する。
+- 適切なコメントとドキュメントを追加し、コードの意図を明確にする。
+- AI でのコード生成 を意識して、命名規則やディレクトリ構成を一貫させることで、生成されるコードが自動化ツールや他サービスへの横展開に容易に適応できるようにする。
+
+
+## 5. テスト
+- ユニットテストは Jest および React Testing Library を使用して実装する。
+- 主要なコンポーネントおよびビジネスロジックには、必ずテストコードを追加する。
+
+## 6. その他共通
+- コンテンツは必ず英語で記述する。
+
+
+
