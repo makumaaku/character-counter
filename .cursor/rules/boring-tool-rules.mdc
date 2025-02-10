@@ -1,9 +1,7 @@
 ---
-description: 
-globs: 
+description: フロントエンドにおけるベストプラクティス  
+globs: app/**, packages/**
 ---
-Description: フロントエンドにおけるベストプラクティス  
-Globs: app/**, packages/**
 
 ---
 # フロントエンド コーディングルール
@@ -17,7 +15,7 @@ Globs: app/**, packages/**
   - 各サービスはサブディレクトリ（例: `character-counter`, `qr-code-generator`）として構成する。  
     → サービスの追加は横展開が容易で、同一の仕組みを利用して高速に展開できる。
 - **packages/ui/**: 複数ツール間で再利用する共通の UI コンポーネント（例: `Button`, `Header`, `Footer`）を配置する。
-- その他、`packages/common/`, `packages/tailwindconfig/`, `packages/eslint-config-custom/`, `packages/tsconfig/` など、共通パッケージ群により一貫した設定と処理を提供する。
+- その他、`packages/common/` など、共通パッケージ群により一貫した設定と処理を提供する。
 具体的な構成は以下。
 ```
 boring-tool/                          // モノレポのルートディレクトリ
@@ -48,16 +46,10 @@ boring-tool/                          // モノレポのルートディレクト
 │  ├─ common/                         // Firebase Auth や Stripe などの共通処理・フック
 │  │   ├─ firebaseAuth.ts
 │  │   └─ stripe.ts
-│  ├─ tailwindconfig/                 // 共通 Tailwind CSS の設定ファイル群
-│  │   └─ index.js
-│  ├─ eslint-config-custom/           // 共通 ESLint 設定
-│  │   └─ index.js
-│  └─ tsconfig/                       // 共通 tsconfig 設定（パスエイリアス等）
-│      └─ base.json
 ├─ package.json                       // ワークスペース設定など（Yarn Workspaces 等）
 ├─ tsconfig.json                      // ルートの TypeScript 設定（各パッケージを含む設定）
+├─ tailwind.config.ts                 // tailwindCSSの設定など
 └─ turbo.json                         // Turborepo の設定（ビルド高速化用）
-
 ```
 
 ## 2. 命名規則
