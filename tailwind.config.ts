@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+import typography from '@tailwindcss/typography';
 import colors from 'tailwindcss/colors'; // import colors from tailwindcss/colors
 
 export default {
@@ -21,5 +22,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    typography,
+  ],
 } satisfies Config;

@@ -3,21 +3,30 @@ import path from 'path';
 import Link from 'next/link';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import matter from 'gray-matter';
 
-async function getColumnData() {
+interface ColumnData {
+  title: string;
+  slug: string;
+}
+
+async function getColumnData(): Promise<ColumnData[]> {
   const columnsDirectory = path.join(process.cwd(), 'app', 'character-counter', 'columns');
   const filenames = fs.readdirSync(columnsDirectory);
   const columnSlugs = filenames.filter((file) => file.endsWith('.mdx'));
 
-  const columnData = [];
-  for (const file of columnSlugs) {
+  const columnData = columnSlugs.map((file) => {
     const filePath = path.join(columnsDirectory, file);
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    const titleMatch = fileContent.match(/^#\s+(.*)/m); // MDXファイルの先頭行の # タイトル を抽出
-    const title = titleMatch ? titleMatch[1] : file.replace('.mdx', ''); // タイトルがない場合はファイル名をslugとする
+    const { data } = matter(fileContent);
     const slug = file.replace('.mdx', '');
-    columnData.push({ title, slug });
-  }
+
+    return {
+      title: data.title || slug, // フロントマターからタイトルを取得、なければslugを使用
+      slug,
+    };
+  });
+
   return columnData;
 }
 
@@ -25,12 +34,9 @@ export default async function ColumnList() {
   const columnData = await getColumnData();
 
   return (
-    <div className="bg-gray-800 text-gray-100 font-sans">
-      <Header />
-      <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
-        <div className="bg-gray-700 p-6 rounded-lg text-center">
-          <h2 className="text-xl mb-4">Column List</h2>
-        </div>
+    <div className="bg-gray-800 text-gray-100 min-h-screen flex flex-col">
+      <Header title="Character Counter Column" />
+      <main className="flex-grow max-w-4xl w-full mx-auto px-4 py-10">
         <ul>
           {columnData.map(({ title, slug }) => (
             <li key={slug} className="bg-gray-700 p-6 rounded-lg mt-6">

@@ -8,6 +8,7 @@ const navigationItems = [
   { name: 'Use Cases', path: '/character-counter/usecase' },
   { name: 'Plans', path: '/character-counter/plan' },
   { name: 'FAQ', path: '/character-counter/faq' },
+  { name: 'Column', path: '/character-counter/column' },
 //   { name: 'Contact', path: '/character-counter/contact' },
 //   { name: 'About Us', path: '/character-counter/profile' },
 //   { name: 'Privacy Policy', path: '/character-counter/privacy' },
