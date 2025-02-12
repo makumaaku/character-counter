@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import Sidebar from './components/Sidebar'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Character Counter',
@@ -12,11 +14,15 @@ export default function CharacterCounterLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1">
-        {children}
-      </main>
+    <div className="flex flex-col min-h-screen bg-gray-800">
+      <Header title="Character Counter" />
+      <div className="flex flex-1">
+        <Sidebar />
+        <main className="flex-1">
+          {children}
+        </main>
+      </div>
+      <Footer />
     </div>
   )
 } 

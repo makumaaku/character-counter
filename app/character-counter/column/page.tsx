@@ -1,8 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import matter from 'gray-matter';
 
 interface ColumnData {
@@ -11,21 +9,21 @@ interface ColumnData {
 }
 
 async function getColumnData(): Promise<ColumnData[]> {
-  const columnsDirectory = path.join(process.cwd(), 'app', 'character-counter', 'columns');
-  const filenames = fs.readdirSync(columnsDirectory);
-  const columnSlugs = filenames.filter((file) => file.endsWith('.mdx'));
+  const columnsDirectory = path.join(process.cwd(), 'app/character-counter/columns');
+  const fileNames = fs.readdirSync(columnsDirectory);
 
-  const columnData = columnSlugs.map((file) => {
-    const filePath = path.join(columnsDirectory, file);
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContent);
-    const slug = file.replace('.mdx', '');
-
-    return {
-      title: data.title || slug, // フロントマターからタイトルを取得、なければslugを使用
-      slug,
-    };
-  });
+  const columnData = fileNames
+    .filter(fileName => fileName.endsWith('.mdx'))
+    .map(fileName => {
+      const fullPath = path.join(columnsDirectory, fileName);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data } = matter(fileContents);
+      
+      return {
+        title: data.title,
+        slug: fileName.replace(/\.mdx$/, ''),
+      };
+    });
 
   return columnData;
 }
@@ -35,7 +33,6 @@ export default async function ColumnList() {
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen flex flex-col">
-      <Header title="Character Counter Column" />
       <main className="flex-grow max-w-4xl w-full mx-auto px-4 py-10">
         <ul>
           {columnData.map(({ title, slug }) => (
@@ -47,7 +44,6 @@ export default async function ColumnList() {
           ))}
         </ul>
       </main>
-      <Footer />
     </div>
   )
 }

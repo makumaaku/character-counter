@@ -1,7 +1,5 @@
 'use client'
 
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
 import { useState, useEffect, useRef } from 'react'
 
 export default function Home() {
@@ -69,8 +67,6 @@ export default function Home() {
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
-    <Header />
-
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">Character Count</h2>
@@ -167,38 +163,6 @@ SNS posting, essays, ad copy creation, etc. Perfect for all kinds of situations,
           </ul>
 
           <h3 className="text-lg mb-2 font-bold">Voices of users</h3>
-          <ul className="list-disc pl-5 mb-4">
-            <li>
-              <p className="font-bold">Mr. Tanaka, Writer</p>
-              <p className="ml-5">&ldquo;This character counting tool is simple but high-performance, and has dramatically improved my work efficiency. I appreciate that it can count words (word count) in English text.&rdquo;</p>
-            </li>
-            <li>
-              <p className="font-bold">Mr. Kawaguchi, SNS Manager</p>
-              <p className="ml-5">&ldquo;The real-time counting function is convenient. I find it very useful for checking the number of characters while revising article content, and for checking text for SNS posts with character limits!&rdquo;</p>
-            </li>
-            <li>
-              <p className="font-bold">Mr. Yamamoto, Web Marketer</p>
-              <p className="ml-5">&ldquo;The function to see the number of occurrences of a specified character is very useful and I use it regularly! I use it to check how many times SEO keywords appear on competitor pages.&rdquo;</p>
-            </li>
-          </ul>
-
-          <h3 className="text-lg mb-2 font-bold">Service features and benefits</h3>
-          <ul className="list-disc pl-5 mb-4">
-            <li>Easy and simple operation
-              <p className="ml-5">Simply enter text to count characters, lines, and bytes in real time and display accurate results.</p>
-            </li>
-            <li>High-performance calculation engine
-              <p className="ml-5">Supports complex sentences and multiple languages. In addition to character count, it can also count line count, word count (English only), and byte count (multi-byte compatible) at the same time.</p>
-            </li>
-            <li>Free version available
-              <p className="ml-5">In addition to being free and easy to use, the pro plan also supports high-end features.</p>
-            </li>
-            <li>Dark mode support
-              <p className="ml-5">Equipped with an eye-friendly dark mode function. Comfortable to use even at night or for long hours of work.</p>
-            </li>
-          </ul>
-
-          <h3 className="text-lg mb-2 font-bold">FAQ</h3>
           <div className="space-y-4">
             <div>
               <h4 className="font-bold">Q1. What is a character counting app?</h4>
@@ -296,8 +260,6 @@ SNS posting, essays, ad copy creation, etc. Perfect for all kinds of situations,
           Copied!
         </div>
       )}
-
-    <Footer />
     </div>
   )
 }
