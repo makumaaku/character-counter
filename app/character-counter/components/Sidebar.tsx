@@ -12,7 +12,7 @@ const navigationItems = [
   
 //   { name: 'Contact', path: '/character-counter/contact' },
 //   { name: 'About Us', path: '/character-counter/profile' },
-//   { name: 'Privacy Policy', path: '/character-counter/privacy' },
+  { name: 'Privacy Policy', path: '/character-counter/privacy' },
 ];
 
 export default function Sidebar() {
