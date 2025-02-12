@@ -21,9 +21,6 @@ export default function Sidebar() {
   return (
     <nav className="w-64 border-r border-gray-700 bg-gray-800 text-gray-100">
       <div className="py-4 px-2">
-        <Link href="/character-counter" className="block mb-4 px-2">
-          <h2 className="text-lg font-bold hover:text-gray-300 transition-colors">Character Counter</h2>
-        </Link>
         <ul className="space-y-1">
           {navigationItems.map((item) => (
             <li key={item.path}>
