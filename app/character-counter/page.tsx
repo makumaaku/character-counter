@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 
 export default function Home() {
   const [text, setText] = useState('')
@@ -73,34 +74,31 @@ export default function Home() {
           <p className="text-4xl font-bold">{charCount}</p>
         </div>
 
-        <textarea
-          className="w-full mt-6 bg-gray-900 text-gray-100 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-          placeholder={placeholderText}
-          rows={6}
-          value={text}
-          onChange={handleChange}
-        />
         <div className="relative">
+          <textarea
+            className="w-full mt-6 bg-gray-900 text-gray-100 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            placeholder={placeholderText}
+            rows={6}
+            value={text}
+            onChange={handleChange}
+          />
           <button
             onClick={handleCopy}
-            className="absolute -top-12 right-4 bg-purple-500 text-white p-2 rounded-full shadow-lg hover:bg-purple-600 transition-colors"
+            className="absolute bottom-4 right-4 text-white hover:text-gray-300 transition-colors"
             title="Copy text"
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" 
-              />
-            </svg>
+            <Image 
+              src="/copy_icon_white.png" 
+              alt="Copy text"
+              width={20}
+              height={20}
+            />
           </button>
+          {showToast && (
+            <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+              Copied!
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-3 gap-4 mt-6">
@@ -270,12 +268,6 @@ SNS posting, essays, ad copy creation, etc. Perfect for all kinds of situations,
           </svg>
         </button>
       </div> */}
-
-      {showToast && (
-        <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50">
-          Copied!
-        </div>
-      )}
     </div>
   )
 }
