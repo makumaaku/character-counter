@@ -29,18 +29,18 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={onClose}
         />
       )}
       
       {/* Sidebar */}
       <nav
-        className={`fixed lg:static inset-y-0 left-0 w-64 transform ${
+        className={`fixed inset-y-0 left-0 w-64 transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 transition-transform duration-300 ease-in-out border-r border-gray-700 bg-gray-800 text-gray-100 z-50`}
+        } transition-transform duration-300 ease-in-out border-r border-gray-700 bg-gray-800 text-gray-100 z-50`}
       >
-        <div className="flex justify-between items-center p-4 lg:hidden">
+        <div className="flex justify-between items-center p-4">
           <h2 className="text-xl font-bold">Menu</h2>
           <button
             onClick={onClose}

@@ -15,10 +15,10 @@ export default function CharacterCounterLayout({
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title="Character Counter">
+      <Header>
         <button
           onClick={() => setIsSidebarOpen(true)}
-          className="lg:hidden p-2 text-white"
+          className="p-2 text-white"
           aria-label="Open Menu"
         >
           <Bars3Icon className="h-6 w-6" />

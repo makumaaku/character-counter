@@ -43,11 +43,11 @@ export async function generateMetadata({ params }: ColumnPageProps): Promise<Met
   const { title, description, keywords } = await getColumn(resolvedParams.slug);
 
   return {
-    title: `${title} | Character Counter Blog`,
+    title: title,
     description: description || `Read our article about ${title.toLowerCase()}. Learn more about text analysis and character counting.`,
     keywords: keywords || 'character counter, text analysis, content writing',
     openGraph: {
-      title: `${title} | Character Counter Blog`,
+      title: title,
       description: description || `Read our article about ${title.toLowerCase()}. Learn more about text analysis and character counting.`,
       url: `https://boring-tool.com/character-counter/column/${resolvedParams.slug}`,
       type: 'article'
