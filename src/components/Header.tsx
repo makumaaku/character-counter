@@ -12,11 +12,11 @@ const Header: React.FC<HeaderProps> = ({ title = 'Character Counter', children }
       <div className="flex items-center gap-2">
         {children}
         <Link href="/character-counter" className="hidden lg:block">
-          <h1 className="text-2xl font-bold">Boring.</h1>
+          <div className="text-2xl font-bold">Boring.</div>
         </Link>
       </div>
       <Link href="/character-counter">
-        <h2 className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</h2>
+        <h1 className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</h1>
       </Link>
       <div className="w-[76px]"></div>
     </header>
