@@ -26,14 +26,19 @@ export const metadata: Metadata = {
         sizes: "any",
       },
       {
-        url: "/icon.png",
+        url: "/boring-icon-192.png",
         type: "image/png",
         sizes: "192x192",
+      },
+      {
+        url: "/boring-icon-512.png",
+        type: "image/png",
+        sizes: "512x512",
       },
     ],
     apple: [
       {
-        url: "/apple-icon.png",
+        url: "/boring-icon-180.png",
         sizes: "180x180",
         type: "image/png",
       },
