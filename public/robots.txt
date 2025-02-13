@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://boring-tool.com
+
+# Sitemaps
+Sitemap: https://boring-tool.com/sitemap.xml
