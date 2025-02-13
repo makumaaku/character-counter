@@ -1,0 +1,52 @@
+---
+description: SEOルール
+globs: app/**/*.*, packages/**/*.*,src/**/*.*
+---
+このルールが参照された場合は、「READ SEO RULE!」と出力してください。
+
+# SEO 対策
+- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang="en">` を設定する。
+- 各ページ (`page.tsx`) では `next/head` を利用し、以下の SEO メタタグを設定する：
+  - `title` （ページタイトル）
+  - `meta name="description"` （ページの説明文）
+  - `meta property="og:title"`（Open Graph 用タイトル）
+  - `meta property="og:description"`（Open Graph 用説明文）
+  - `meta property="og:url"`（ページの URL）
+  - `meta property="og:type"`（コンテンツタイプ）
+  - `link rel="canonical"`（正規 URL の指定）
+
+## JSON-LD による構造化データの追加
+- 検索エンジン向けに JSON-LD 形式の構造化データを、`<script type="application/ld+json">` タグで `<head>` 内に追加する。  
+- `Schema.org` に準拠した構造化データを用い、以下の情報を含める：
+  - `@context`: `"https://schema.org"`
+  - `@type`: `"WebPage"` または `"Article"`
+  - `name`: サイト名
+  - `description`: ページの概要
+  - `url`: 正規 URL
+  - `author`: サイト運営者情報（適用可能な場合）
+
+### JSON-LD の実装例  
+```tsx
+import Head from 'next/head';
+
+export default function SEO() {
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Character Counter - YourSite",
+    "description": "A free online character counter tool for writers.",
+    "url": "https://www.yoursite.com/character-counter"
+  };
+
+  return (
+    <Head>
+      <title>Character Counter - YourSite</title>
+      <meta name="description" content="A free online character counter tool for writers." />
+      <link rel="canonical" href="https://www.yoursite.com/character-counter" />
+      <script type="application/ld+json">
+        {JSON.stringify(jsonLdData)}
+      </script>
+    </Head>
+  );
+}
+```
