@@ -3,15 +3,18 @@ import Link from 'next/link';
 
 interface HeaderProps {
   title?: string;
+  children?: React.ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({ title = 'Character Counter' }) => {
+const Header: React.FC<HeaderProps> = ({ title = 'Character Counter', children }) => {
   return (
     <header className="bg-primary text-white flex justify-between items-center p-4">
-      <Link href="/character-counter" className="hidden lg:block">
-        <h1 className="text-2xl font-bold">Boring.</h1>
-      </Link>
-      <div className="lg:hidden w-[76px]"></div>
+      <div className="flex items-center gap-2">
+        {children}
+        <Link href="/character-counter" className="hidden lg:block">
+          <h1 className="text-2xl font-bold">Boring.</h1>
+        </Link>
+      </div>
       <Link href="/character-counter">
         <h2 className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</h2>
       </Link>
