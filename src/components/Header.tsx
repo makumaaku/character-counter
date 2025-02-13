@@ -8,9 +8,10 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title = 'Character Counter' }) => {
   return (
     <header className="bg-primary text-white flex justify-between items-center p-4">
-      <Link href="/character-counter">
+      <Link href="/character-counter" className="hidden lg:block">
         <h1 className="text-2xl font-bold">Boring.</h1>
       </Link>
+      <div className="lg:hidden w-[76px]"></div>
       <Link href="/character-counter">
         <h2 className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</h2>
       </Link>
