@@ -1,53 +1,69 @@
+import { translate } from '@/lib/i18n/server';
 import { Metadata } from 'next';
 
- const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Features & Usage - Character Counter Tool | Free Online Text Counter",
-  "description": "Learn how to use our free character counter tool. Count characters, words, lines instantly. Perfect for social media posts, content writing, and SEO optimization.",
-  "url": "https://boring-tool.com/character-counter/function",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  },
-  "mainEntity": {
-    "@type": "HowTo",
-    "name": "How to Use Character Counter Tool",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "name": "Enter Text",
-        "text": "Copy & paste text into the input area or type and edit directly."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Real-time Results",
-        "text": "As you type, various counts are displayed in real-time, allowing you to check them instantly."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Utilize Results",
-        "text": "Results can be copied using the copy button. Use the displayed numbers as a reference for social media posts, advertising copy, academic papers, and more."
-      }
-    ]
-  }
-};
+type Props = {
+  params: { lang: string }
+}
 
-export const metadata: Metadata = {
-  title: 'Features & Usage - Character Counter Tool | Free Online Text Counter',
-  description: 'Learn how to use our free character counter tool. Count characters, words, lines instantly. Perfect for social media posts, content writing, and SEO optimization.',
-  openGraph: {
-    title: 'Features & Usage - Character Counter Tool | Free Online Text Counter',
-    description: 'Learn how to use our free character counter tool. Count characters, words, lines instantly. Perfect for social media posts, content writing, and SEO optimization.',
-    url: 'https://boring-tool.com/character-counter/function',
-    type: 'article',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/function'
-  },
-  keywords: 'character counter features, text counter usage, word count tool, character count tutorial, online text counter',
-  other: {
-    'application/ld+json': JSON.stringify(jsonLdData)
-  }
-}; 
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": t('characterCounter.function.meta.title'),
+    "description": t('characterCounter.function.meta.description'),
+    "url": `https://boring-tool.com/${lang}/character-counter/function`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Boring Tool",
+      "url": "https://boring-tool.com"
+    },
+    "mainEntity": {
+      "@type": "HowTo",
+      "name": t('characterCounter.function.meta.howTo.title'),
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": t('characterCounter.function.howToUse.step1.title'),
+          "text": t('characterCounter.function.howToUse.step1.text')
+        },
+        {
+          "@type": "HowToStep",
+          "name": t('characterCounter.function.howToUse.step2.title'),
+          "text": t('characterCounter.function.howToUse.step2.text')
+        },
+        {
+          "@type": "HowToStep",
+          "name": t('characterCounter.function.howToUse.step3.title'),
+          "text": t('characterCounter.function.howToUse.step3.text')
+        }
+      ]
+    }
+  };
+
+  return {
+    title: t('characterCounter.function.meta.title'),
+    description: t('characterCounter.function.meta.description'),
+    openGraph: {
+      title: t('characterCounter.function.meta.title'),
+      description: t('characterCounter.function.meta.description'),
+      url: `https://boring-tool.com/${lang}/character-counter/function`,
+      type: 'article',
+    },
+    alternates: {
+      canonical: `https://boring-tool.com/${lang}/character-counter/function`,
+      languages: {
+        'en': 'https://boring-tool.com/en/character-counter/function',
+        'ja': 'https://boring-tool.com/ja/character-counter/function',
+      }
+    },
+    keywords: t('characterCounter.function.meta.keywords'),
+    other: {
+      'application/ld+json': JSON.stringify(jsonLdData)
+    }
+  };
+} 
