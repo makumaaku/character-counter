@@ -573,8 +573,36 @@
     "description": "Free collection of word generation tools",
     "tools": {
       "wordGenerator": {
+        "meta": {
+          "title": "Word Generator - Boring Tool",
+          "description": "Free online tool to generate random words based on various criteria and patterns.",
+          "keywords": "word generator, random words, word creation, text generator"
+        },
         "title": "Word Generator",
-        "description": "Generate random words based on various criteria and patterns."
+        "description": "Generate random words based on various criteria and patterns",
+        "form": {
+          "length": {
+            "label": "Word Length",
+            "min": "Minimum",
+            "max": "Maximum"
+          },
+          "pattern": {
+            "label": "Pattern",
+            "placeholder": "e.g., CV*CV (C=consonant, V=vowel, *=any)"
+          },
+          "count": {
+            "label": "Count",
+            "placeholder": "Enter number of words to generate"
+          },
+          "generate": "Generate",
+          "clear": "Clear"
+        },
+        "result": {
+          "title": "Generated Words",
+          "empty": "Fill in the form above to generate words",
+          "copy": "Copy Results",
+          "copied": "Copied!"
+        }
       },
       "nameGenerator": {
         "title": "Name Generator",
@@ -593,8 +621,35 @@
         "description": "Generate random sentences with customizable structure."
       },
       "wordCardGenerator": {
+        "meta": {
+          "title": "Word Card Generator - Boring Tool",
+          "description": "Free online tool to easily create flashcards and word cards for learning and memorization.",
+          "keywords": "word card generator, flashcards, memory cards, learning tools"
+        },
         "title": "Word Card Generator",
-        "description": "Create flashcards and word cards for learning and memorization."
+        "description": "Create flashcards and word cards for learning and memorization",
+        "form": {
+          "word": {
+            "label": "Word",
+            "placeholder": "Enter word"
+          },
+          "meaning": {
+            "label": "Meaning",
+            "placeholder": "Enter word meaning or description"
+          },
+          "example": {
+            "label": "Example",
+            "placeholder": "Enter usage example (optional)"
+          },
+          "generate": "Generate Card",
+          "clear": "Clear"
+        },
+        "result": {
+          "title": "Generated Card",
+          "empty": "Fill in the form above to generate a card",
+          "download": "Download Card",
+          "print": "Print"
+        }
       }
     },
     "about": {

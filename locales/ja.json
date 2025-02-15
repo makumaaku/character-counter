@@ -622,6 +622,69 @@
       }
     }
   },
+  "wordGenerator": {
+    "meta": {
+      "title": "ワード生成 - ボーリングツール",
+      "description": "様々な条件やパターンに基づいてランダムな単語を生成する無料のオンラインツール。",
+      "keywords": "ワード生成, ランダム単語, 単語生成, テキスト生成"
+    },
+    "title": "ワード生成",
+    "description": "様々な条件やパターンに基づいてランダムな単語を生成",
+    "form": {
+      "length": {
+        "label": "単語の長さ",
+        "min": "最小",
+        "max": "最大"
+      },
+      "pattern": {
+        "label": "パターン",
+        "placeholder": "例: CV*CV (C=子音, V=母音, *=任意の文字)"
+      },
+      "count": {
+        "label": "生成数",
+        "placeholder": "生成する単語の数を入力"
+      },
+      "generate": "生成する",
+      "clear": "クリア"
+    },
+    "result": {
+      "title": "生成結果",
+      "empty": "単語を生成するには上のフォームを入力してください",
+      "copy": "結果をコピー",
+      "copied": "コピーしました！"
+    }
+  },
+  "wordCardGenerator": {
+    "meta": {
+      "title": "単語カード生成 - ボーリングツール",
+      "description": "学習と暗記のためのフラッシュカードと単語カードを簡単に作成できる無料のオンラインツール。",
+      "keywords": "単語カード生成, フラッシュカード, 暗記カード, 学習ツール"
+    },
+    "title": "単語カード生成",
+    "description": "学習と暗記のためのフラッシュカードと単語カードを作成",
+    "form": {
+      "word": {
+        "label": "単語",
+        "placeholder": "単語を入力"
+      },
+      "meaning": {
+        "label": "意味",
+        "placeholder": "単語の意味や説明を入力"
+      },
+      "example": {
+        "label": "例文",
+        "placeholder": "使用例を入力（任意）"
+      },
+      "generate": "カードを生成",
+      "clear": "クリア"
+    },
+    "result": {
+      "title": "生成されたカード",
+      "empty": "カードを生成するには上のフォームを入力してください",
+      "download": "カードをダウンロード",
+      "print": "印刷"
+    }
+  },
   "common": {
     "meta": {
       "siteName": "ボーリングツール",

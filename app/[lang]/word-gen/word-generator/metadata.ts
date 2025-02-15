@@ -1,50 +1,44 @@
+import { translate } from '@/lib/i18n/server';
 import { Metadata } from 'next';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Random Word Generator - Boring Tool',
-  description: 'Generate random words instantly with our free online word generator tool. Perfect for brainstorming, creative writing, and language learning.',
-  url: 'https://boring-tool.com/word-gen/word-generator',
-  applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Any',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD'
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'Boring Tool',
-    url: 'https://boring-tool.com'
-  },
-  featureList: [
-    'Generate 1-100 random words',
-    'Instant word generation',
-    'Copy to clipboard functionality',
-    'Customizable word count',
-    'Dark mode support',
-    'Free to use',
-    'No registration required'
-  ],
-  isAccessibleForFree: true,
-  browserRequirements: 'Requires a modern web browser with JavaScript enabled'
+type Props = {
+  params: { lang: string };
 };
 
-export const metadata: Metadata = {
-  title: 'Random Word Generator - Boring Tool',
-  description: 'Generate random words instantly with our free online word generator tool. Perfect for brainstorming, creative writing, and language learning. Create unique words with customizable patterns.',
-  openGraph: {
-    title: 'Random Word Generator - Boring Tool',
-    description: 'Generate random words instantly with our free online word generator tool. Perfect for brainstorming, creative writing, and language learning. Create unique words with customizable patterns.',
-    url: 'https://boring-tool.com/word-gen/word-generator',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/word-gen/word-generator'
-  },
-  keywords: 'word generator, random words, creative writing, brainstorming, vocabulary building, language learning, writing tool',
-  other: {
-    'application/ld+json': JSON.stringify(jsonLd)
-  }
-}; 
+export async function generateMetadata({ params: { lang } }: Props): Promise<Metadata> {
+  return {
+    title: translate(lang, 'wordGenerator.meta.title'),
+    description: translate(lang, 'wordGenerator.meta.description'),
+    openGraph: {
+      title: translate(lang, 'wordGenerator.meta.title'),
+      description: translate(lang, 'wordGenerator.meta.description'),
+      url: 'https://boring-tool.com/word-gen/word-generator',
+      type: 'website',
+    },
+    alternates: {
+      canonical: 'https://boring-tool.com/word-gen/word-generator'
+    },
+    keywords: translate(lang, 'wordGenerator.meta.keywords'),
+    other: {
+      script: [JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: translate(lang, 'wordGenerator.meta.title'),
+        description: translate(lang, 'wordGenerator.meta.description'),
+        url: 'https://boring-tool.com/word-gen/word-generator',
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'Any',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: translate(lang, 'common.meta.siteName'),
+          url: 'https://boring-tool.com'
+        }
+      })]
+    }
+  };
+} 
