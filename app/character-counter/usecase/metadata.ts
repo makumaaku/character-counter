@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
+ const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Use Cases - Character Counter Tool | Text Analysis Examples",
@@ -54,5 +54,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/character-counter/usecase'
   },
-  keywords: 'character counter examples, text analysis use cases, social media character limits, SEO content writing, academic writing tool'
+  keywords: 'character counter examples, text analysis use cases, social media character limits, SEO content writing, academic writing tool',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLdData)
+  }
 }; 

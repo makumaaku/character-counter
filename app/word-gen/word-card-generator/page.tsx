@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import wordsData from '../../../public/words/card-words.json'
-import Script from 'next/script'
 
 type Word = {
   word: string
@@ -10,25 +9,6 @@ type Word = {
   category: string
 }
 
-const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Word Card Generator - Boring Tool",
-  "description": "Create flashcards and word cards instantly with our free online word card generator. Perfect for language learning, vocabulary practice, and educational purposes.",
-  "url": "https://boring-tool.com/word-gen/word-card-generator",
-  "applicationCategory": "EducationalApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  }
-};
 
 export default function WordCardGenerator() {
   const [wordCount, setWordCount] = useState(10)
@@ -53,11 +33,6 @@ export default function WordCardGenerator() {
 
   return (
     <>
-      <Script
-        id="word-card-generator-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
       <div className="min-h-screen bg-gray-900 text-white p-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8">Word Card Generator</h1>

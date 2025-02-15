@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import Script from 'next/script'
-import { jsonLdData } from './metadata'
 
 export default function Home() {
   const [text, setText] = useState('')
@@ -70,11 +68,6 @@ export default function Home() {
 
   return (
     <>
-      <Script
-        id="character-counter-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
       <div className="bg-gray-800 text-gray-100 font-sans">
         <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
           <div className="bg-gray-700 p-6 rounded-lg text-center">

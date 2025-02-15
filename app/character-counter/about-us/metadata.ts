@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
+export const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About Us - Character Counter Tool | Our Story & Mission",
@@ -37,5 +37,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/character-counter/about-us'
   },
-  keywords: 'character counter about, text analysis team, boring tool company, online tools developer, text counter mission'
+  keywords: 'character counter about, text analysis team, boring tool company, online tools developer, text counter mission',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLd)
+  }
 }; 

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
+ const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Features & Usage - Character Counter Tool | Free Online Text Counter",
@@ -46,5 +46,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/character-counter/function'
   },
-  keywords: 'character counter features, text counter usage, word count tool, character count tutorial, online text counter'
+  keywords: 'character counter features, text counter usage, word count tool, character count tutorial, online text counter',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLdData)
+  }
 }; 

@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Script from 'next/script';
-import { jsonLdData } from './metadata';
 
 type SentenceType = 'simple' | 'literary' | 'joke';
 
@@ -38,11 +36,6 @@ export default function SentenceGenerator() {
 
   return (
     <>
-      <Script
-        id="sentence-generator-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
       <div className="text-gray-100 font-sans">
         <main className="max-w-4xl mx-auto">
           <h1 className="text-2xl font-bold p-6 text-center">Random Sentence Generator</h1>

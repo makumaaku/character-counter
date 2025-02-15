@@ -2,9 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Script from 'next/script'
-import { jsonLdData } from './metadata'
-
 // Character sets for password generation
 const UPPERCASE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const LOWERCASE_CHARS = 'abcdefghijklmnopqrstuvwxyz'
@@ -53,11 +50,6 @@ export default function PasswordGenerator() {
 
   return (
     <>
-      <Script
-        id="password-generator-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
       <div className="bg-gray-800 text-gray-100 font-sans">
         <main className="max-w-4xl mx-auto px-4 pb-24">
           <h1 className="text-3xl font-bold text-center py-8">Random Password Generator</h1>

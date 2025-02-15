@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
+ const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "name": "FAQ - Character Counter Tool | Frequently Asked Questions",
@@ -59,5 +59,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/character-counter/faq'
   },
-  keywords: 'character counter faq, text counter questions, word count help, character count tutorial, text analysis guide'
+  keywords: 'character counter faq, text counter questions, word count help, character count tutorial, text analysis guide',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLdData)
+  }
 }; 

@@ -33,6 +33,7 @@ TOP画面のURLは`https://boring-tool.com/`です。
 
 ### 静的なページの場合
 静的なページでは、メタデータとJSON-LDを直接`metadata.ts`内で定義します。
+以下は例なので、各画面の文脈によって内容は変更してください。
 
 ```typescript
 import { Metadata } from 'next';

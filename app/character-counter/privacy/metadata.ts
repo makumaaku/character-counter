@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
+ const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Privacy Policy - Character Counter Tool",
@@ -30,5 +30,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/character-counter/privacy'
   },
-  keywords: 'privacy policy, data security, character counter privacy, text analysis privacy, data protection'
+  keywords: 'privacy policy, data security, character counter privacy, text analysis privacy, data protection',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLdData)
+  }
 }; 

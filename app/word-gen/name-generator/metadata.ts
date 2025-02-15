@@ -1,46 +1,47 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Random Name Generator - Boring Tool",
-  "description": "Generate random full names with our free online name generator tool. Perfect for writers, game developers, and creative projects.",
-  "url": "https://boring-tool.com/word-gen/name-generator",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Random Name Generator - Boring Tool',
+  description: 'Free online random name generator tool. Generate unique names for characters, stories, games, and testing. Easy to use and no registration required.',
+  url: 'https://boring-tool.com/word-gen/name-generator',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD'
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
+  publisher: {
+    '@type': 'Organization',
+    name: 'Boring Tool',
+    url: 'https://boring-tool.com'
   },
-  "featureList": [
-    "Random name generation",
-    "Male and female names",
-    "Realistic full names",
-    "Copy to clipboard functionality",
-    "Dark mode support",
-    "Free to use",
-    "No registration required"
+  featureList: [
+    'Random name generation',
+    'Male and female names',
+    'Real first and last names',
+    'Free to use',
+    'No registration required'
   ],
-  "isAccessibleForFree": true,
-  "browserRequirements": "Requires a modern web browser with JavaScript enabled"
+  isAccessibleForFree: true
 };
 
 export const metadata: Metadata = {
   title: 'Random Name Generator - Boring Tool',
-  description: 'Generate random full names with our free online name generator tool. Perfect for writers, game developers, and creative projects. Create unique character names instantly.',
+  description: 'Free online random name generator tool. Generate unique names for characters, stories, games, and testing. Easy to use and no registration required.',
   openGraph: {
     title: 'Random Name Generator - Boring Tool',
-    description: 'Generate random full names with our free online name generator tool. Perfect for writers, game developers, and creative projects. Create unique character names instantly.',
+    description: 'Free online random name generator tool. Generate unique names for characters, stories, games, and testing. Easy to use and no registration required.',
     url: 'https://boring-tool.com/word-gen/name-generator',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://boring-tool.com/word-gen/name-generator'
+    canonical: 'https://boring-tool.com/word-gen/name-generator',
+  },
+  keywords: 'name generator, random name, character names, story names, game names, test data',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLd)
   }
-} 
+}; 

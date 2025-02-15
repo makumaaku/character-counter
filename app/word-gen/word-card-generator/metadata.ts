@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-export const jsonLdData = {
+ const jsonLdData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Word Card Generator - Boring Tool",
@@ -43,5 +43,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/word-gen/word-card-generator'
   },
-  keywords: 'word cards, vocabulary learning, language teaching, ESL, EFL, education, learning tool, word generator, flashcards'
+  keywords: 'word cards, vocabulary learning, language teaching, ESL, EFL, education, learning tool, word generator, flashcards',
+  other: {
+    'application/ld+json': JSON.stringify(jsonLdData)
+  }
 } 

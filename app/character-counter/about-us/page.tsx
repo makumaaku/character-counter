@@ -1,16 +1,5 @@
-'use client';
-
-import Script from 'next/script';
-import { jsonLdData } from './metadata';
-
 export default function AboutUsPage() {
   return (
-    <>
-      <Script
-        id="character-counter-about-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">
           <h1 className="text-2xl font-bold mb-8">About Us</h1>
@@ -96,6 +85,5 @@ export default function AboutUsPage() {
           </div>
         </div>
       </div>
-    </>
   );
 } 
