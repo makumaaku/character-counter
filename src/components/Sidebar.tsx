@@ -4,24 +4,18 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
+export interface NavigationItem {
+  name: string;
+  path: string;
+}
+
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  navigationItems: NavigationItem[];
 }
 
-const navigationItems = [
-    { name: 'Column', path: '/character-counter/column' },
-  { name: 'Features & Usage', path: '/character-counter/function' },
-  { name: 'Use Cases', path: '/character-counter/usecase' },
-  { name: 'Plans', path: '/character-counter/plan' },
-  { name: 'FAQ', path: '/character-counter/faq' },
-  
-//   { name: 'Contact', path: '/character-counter/contact' },
-  { name: 'About Us', path: '/character-counter/profile' },
-  { name: 'Privacy Policy', path: '/character-counter/privacy' },
-];
-
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, navigationItems }: SidebarProps) {
   const pathname = usePathname();
 
   return (

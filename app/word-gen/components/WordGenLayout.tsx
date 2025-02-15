@@ -5,9 +5,9 @@ import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { characterCounterNavigation } from '../config/navigation';
+import { wordGenNavigation } from '../config/navigation';
 
-export default function CharacterCounterLayout({
+export default function WordGenLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ export default function CharacterCounterLayout({
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title="Character Counter" homeLink="/character-counter">
+      <Header title="Word Generator" homeLink="/word-gen">
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"
@@ -29,7 +29,7 @@ export default function CharacterCounterLayout({
         <Sidebar 
           isOpen={isSidebarOpen} 
           onClose={() => setIsSidebarOpen(false)} 
-          navigationItems={characterCounterNavigation}
+          navigationItems={wordGenNavigation}
         />
         <main className="flex-1 px-4 lg:px-8">
           {children}
