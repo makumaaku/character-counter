@@ -60,7 +60,70 @@
     },
     "faq": {
       "title": "Frequently Asked Questions",
-      "description": "Find answers to common questions"
+      "general": {
+        "title": "General Questions",
+        "q1": {
+          "question": "Q1. What is a character counting app?",
+          "answer": "A: A character counting app is a tool that instantly calculates the number of characters in entered text and displays accurate results. This prevents manual counting errors and enables efficient text creation and editing."
+        },
+        "q2": {
+          "question": "Q2. What scenarios can it be used in?",
+          "intro": "A: Main usage scenarios are:",
+          "uses": {
+            "1": "Writing/blog posting",
+            "2": "SNS posting",
+            "3": "SEO optimization",
+            "4": "Ad copy creation"
+          },
+          "answer": "Main usage scenarios include: Writing/blog posting, SNS posting, SEO optimization, and Ad copy creation."
+        }
+      },
+      "technical": {
+        "title": "Technical Questions",
+        "q3": {
+          "question": "Q3. How are full-width and half-width characters counted?",
+          "answer": "A: Both full-width and half-width characters are properly recognized and counted accurately. Special symbols and line breaks are also counted."
+        },
+        "q4": {
+          "question": "Q4. Is it compatible with multiple languages?",
+          "answer": "A: Yes, the app supports multiple languages including Japanese and English, with proper handling of characters and symbols for each language."
+        }
+      },
+      "features": {
+        "title": "Features & Usage",
+        "q5": {
+          "question": "Q5. What features are included?",
+          "intro": "A: Our character counter includes:",
+          "features": {
+            "1": "Real-time character counting",
+            "2": "Line counting",
+            "3": "Word counting",
+            "4": "Byte counting",
+            "5": "String search functionality",
+            "6": "Dark mode support"
+          }
+        },
+        "q6": {
+          "question": "Q6. Is registration required?",
+          "answer": "A: No, our basic features are available without registration. However, some premium features may require a user account."
+        }
+      },
+      "privacy": {
+        "title": "Privacy & Security",
+        "q7": {
+          "question": "Q7. Is my text data secure?",
+          "answer": "A: Yes, all text processing is done locally in your browser. We do not store or transmit your text data to any servers."
+        },
+        "q8": {
+          "question": "Q8. Do you collect any user data?",
+          "answer": "A: We only collect anonymous usage statistics to improve our service. No personal data or text content is collected."
+        }
+      },
+      "meta": {
+        "title": "FAQ - Character Counter Tool | Frequently Asked Questions",
+        "description": "Find answers to frequently asked questions about our character counter tool. Learn about features, usage, and troubleshooting tips.",
+        "keywords": "character counter faq, text counter questions, word count help, character count tutorial, text analysis guide"
+      }
     },
     "aboutUs": {
       "title": "About Us",
