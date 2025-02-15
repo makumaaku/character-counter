@@ -548,6 +548,19 @@
       "title": "QRコード生成 - ボーリングツール",
       "description": "無料のオンラインQRコード生成ツールで簡単にQRコードを作成できます。",
       "keywords": "QRコード生成, QRコードメーカー, QRコード作成"
+    },
+    "title": "QRコード生成",
+    "description": "テキストやURLからQRコードを簡単に生成",
+    "placeholder": "QRコードに変換するテキストを入力してください",
+    "emptyState": "テキストを入力するとQRコードが表示されます",
+    "sidebar": {
+      "function": "機能",
+      "usecase": "活用事例",
+      "faq": "よくある質問",
+      "aboutUs": "私たちについて",
+      "contact": "お問い合わせ",
+      "privacy": "プライバシーポリシー",
+      "plan": "料金プラン"
     }
   },
   "wordGen": {

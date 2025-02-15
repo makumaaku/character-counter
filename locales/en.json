@@ -479,6 +479,19 @@
       "title": "QR Code Generator - Boring Tools",
       "description": "Generate QR codes easily with our free online QR code generator tool.",
       "keywords": "qr code generator, qr code maker, create qr code"
+    },
+    "title": "QR Code Generator",
+    "description": "Easily generate QR codes from text or URLs",
+    "placeholder": "Enter text to convert to QR code",
+    "emptyState": "QR code will appear when you enter text",
+    "sidebar": {
+      "function": "Functions",
+      "usecase": "Use Cases",
+      "faq": "FAQ",
+      "aboutUs": "About Us",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "plan": "Plans"
     }
   },
   "wordGen": {
