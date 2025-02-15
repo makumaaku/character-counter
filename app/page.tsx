@@ -39,6 +39,9 @@ export default function Home() {
               <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
             </li>
             <li>
+              <Link href="/word-card-generator" className="text-white hover:underline">Random Word Card Generator</Link>
+            </li>
+            <li>
               <Link href="/name-generator" className="text-white hover:underline">Random Name Generator</Link>
             </li>
           </ul>
