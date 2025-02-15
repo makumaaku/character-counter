@@ -1,10 +1,10 @@
 import { NavigationItem } from '@/components/Sidebar';
 
 export const wordGenNavigation: NavigationItem[] = [
-  { name: 'Word Generator', path: '/word-gen/word-generator' },
-  { name: 'Word Card Generator', path: '/word-gen/word-card-generator' },
-  { name: 'Story Generator', path: '/word-gen/story-generator' },
-  { name: 'Sentence Generator', path: '/word-gen/sentence-generator' },
-  { name: 'Name Generator', path: '/word-gen/name-generator' },
-  { name: 'Password Generator', path: '/word-gen/password-generator' },
+  { name: 'home.tools.wordGenerator', path: '/word-gen/word-generator', translationKey: true },
+  { name: 'home.tools.wordCardGenerator', path: '/word-gen/word-card-generator', translationKey: true },
+  { name: 'home.tools.storyGenerator', path: '/word-gen/story-generator', translationKey: true },
+  { name: 'home.tools.sentenceGenerator', path: '/word-gen/sentence-generator', translationKey: true },
+  { name: 'home.tools.nameGenerator', path: '/word-gen/name-generator', translationKey: true },
+  { name: 'home.tools.passwordGenerator', path: '/word-gen/password-generator', translationKey: true },
 ]; 

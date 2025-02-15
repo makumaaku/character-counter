@@ -3,19 +3,22 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { translate } from '@/lib/i18n/client';
 
 export interface NavigationItem {
   name: string;
   path: string;
+  translationKey?: boolean;
 }
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
   navigationItems: NavigationItem[];
+  lang?: string;
 }
 
-export default function Sidebar({ isOpen, onClose, navigationItems }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en' }: SidebarProps) {
   const pathname = usePathname();
 
   return (
@@ -35,7 +38,7 @@ export default function Sidebar({ isOpen, onClose, navigationItems }: SidebarPro
         } transition-transform duration-300 ease-in-out border-r border-gray-700 bg-gray-800 text-gray-100 z-50`}
       >
         <div className="flex justify-between items-center p-4">
-          <h2 className="text-xl font-bold">Menu</h2>
+          <h2 className="text-xl font-bold">{translate(lang, 'common.menu')}</h2>
           <button
             onClick={onClose}
             className="p-2 rounded-md hover:bg-gray-700"
@@ -56,7 +59,7 @@ export default function Sidebar({ isOpen, onClose, navigationItems }: SidebarPro
                       : 'hover:bg-gray-700'
                   }`}
                 >
-                  {item.name}
+                  {item.translationKey ? translate(lang, item.name) : item.name}
                 </Link>
               </li>
             ))}
