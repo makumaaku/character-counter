@@ -6,6 +6,7 @@ import { translate } from '@/lib/i18n/client';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
+import Footer from '@/components/Footer';
 
 type Props = {
   children: React.ReactNode;
@@ -49,6 +50,7 @@ export default function CharacterCounterLayout({ children }: Props) {
           {children}
         </main>
       </div>
+      <Footer />
     </div>
   );
 } 
