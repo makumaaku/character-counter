@@ -11,59 +11,59 @@ export async function generateMetadata(
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
 
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
+ const jsonLdData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
     "name": t('characterCounter.function.meta.title'),
     "description": t('characterCounter.function.meta.description'),
     "url": `https://boring-tool.com/${lang}/character-counter/function`,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Boring Tool",
-      "url": "https://boring-tool.com"
-    },
-    "mainEntity": {
-      "@type": "HowTo",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Boring Tool",
+    "url": "https://boring-tool.com"
+  },
+  "mainEntity": {
+    "@type": "HowTo",
       "name": t('characterCounter.function.meta.howTo.title'),
-      "step": [
-        {
-          "@type": "HowToStep",
+    "step": [
+      {
+        "@type": "HowToStep",
           "name": t('characterCounter.function.howToUse.step1.title'),
           "text": t('characterCounter.function.howToUse.step1.text')
-        },
-        {
-          "@type": "HowToStep",
+      },
+      {
+        "@type": "HowToStep",
           "name": t('characterCounter.function.howToUse.step2.title'),
           "text": t('characterCounter.function.howToUse.step2.text')
-        },
-        {
-          "@type": "HowToStep",
+      },
+      {
+        "@type": "HowToStep",
           "name": t('characterCounter.function.howToUse.step3.title'),
           "text": t('characterCounter.function.howToUse.step3.text')
-        }
-      ]
-    }
-  };
+      }
+    ]
+  }
+};
 
   return {
     title: t('characterCounter.function.meta.title'),
     description: t('characterCounter.function.meta.description'),
-    openGraph: {
+  openGraph: {
       title: t('characterCounter.function.meta.title'),
       description: t('characterCounter.function.meta.description'),
       url: `https://boring-tool.com/${lang}/character-counter/function`,
-      type: 'article',
-    },
-    alternates: {
+    type: 'article',
+  },
+  alternates: {
       canonical: `https://boring-tool.com/${lang}/character-counter/function`,
       languages: {
         'en': 'https://boring-tool.com/en/character-counter/function',
         'ja': 'https://boring-tool.com/ja/character-counter/function',
       }
-    },
+  },
     keywords: t('characterCounter.function.meta.keywords'),
-    other: {
-      'application/ld+json': JSON.stringify(jsonLdData)
-    }
-  };
+  other: {
+    'application/ld+json': JSON.stringify(jsonLdData)
+  }
+}; 
 } 

@@ -25,6 +25,7 @@ export default function CharacterCounterLayout({ children }: Props) {
     { name: t('characterCounter.sidebar.contact'), path: `/${lang}/character-counter/contact` },
     { name: t('characterCounter.sidebar.privacy'), path: `/${lang}/character-counter/privacy` },
     { name: t('characterCounter.sidebar.plan'), path: `/${lang}/character-counter/plan` },
+    { name: t('characterCounter.sidebar.column'), path: `/${lang}/character-counter/column` },
   ];
 
   return (

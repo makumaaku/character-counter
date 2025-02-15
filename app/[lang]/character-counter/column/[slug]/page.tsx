@@ -4,6 +4,7 @@ import path from 'path';
 import { Metadata } from 'next';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import { translate } from '@/lib/i18n/server';
 
 const components = {
   h1: ({ children }: { children: React.ReactNode }) => (
@@ -51,8 +52,9 @@ const components = {
   ),
 };
 
-async function getColumn(slug: string) {
-  const columnsDirectory = path.join(process.cwd(), 'app/character-counter/columns');
+async function getColumn(slug: string, lang: string) {
+  console.log(lang)
+  const columnsDirectory = path.join(process.cwd(), `app/[lang]/character-counter/columns`);
   const filePath = path.join(columnsDirectory, `${slug}.mdx`);
 
   try {
@@ -73,60 +75,63 @@ async function getColumn(slug: string) {
 }
 
 interface ColumnPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; lang: string }>;
 }
 
 export async function generateMetadata({ params }: ColumnPageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const { title, description, keywords } = await getColumn(resolvedParams.slug);
+  const { title, description, keywords } = await getColumn(resolvedParams.slug, resolvedParams.lang);
+  const t = (key: string) => translate(resolvedParams.lang, key);
+
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description || t(`characterCounter.column.article.defaultDescription.${title.toLowerCase()}`),
+    "url": `https://boring-tool.com/${resolvedParams.lang}/character-counter/column/${resolvedParams.slug}`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Boring Tool",
+      "url": "https://boring-tool.com"
+    },
+    "inLanguage": resolvedParams.lang
+  };
 
   return {
     title: title,
-    description: description || `Read our article about ${title.toLowerCase()}. Learn more about text analysis and character counting.`,
-    keywords: keywords || 'character counter, text analysis, content writing',
+    description: description || t(`characterCounter.column.article.defaultDescription.${title.toLowerCase()}`),
+    keywords: keywords || t('characterCounter.column.article.defaultKeywords'),
     openGraph: {
       title: title,
-      description: description || `Read our article about ${title.toLowerCase()}. Learn more about text analysis and character counting.`,
-      url: `https://boring-tool.com/character-counter/column/${resolvedParams.slug}`,
+      description: description || t(`characterCounter.column.article.defaultDescription.${title.toLowerCase()}`),
+      url: `https://boring-tool.com/${resolvedParams.lang}/character-counter/column/${resolvedParams.slug}`,
       type: 'article'
     },
     alternates: {
-      canonical: `https://boring-tool.com/character-counter/column/${resolvedParams.slug}`
+      canonical: `https://boring-tool.com/${resolvedParams.lang}/character-counter/column/${resolvedParams.slug}`,
+      languages: {
+        'en': `https://boring-tool.com/en/character-counter/column/${resolvedParams.slug}`,
+        'ja': `https://boring-tool.com/ja/character-counter/column/${resolvedParams.slug}`,
+      }
+    },
+    other: {
+      'application/ld+json': JSON.stringify(jsonLdData)
     }
   };
 }
 
 export default async function ColumnPage({ params }: ColumnPageProps) {
   const resolvedParams = await params;
-  const { content, title } = await getColumn(resolvedParams.slug);
+  const { content, title } = await getColumn(resolvedParams.slug, resolvedParams.lang);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": title,
-            "description": `Read our article about ${title.toLowerCase()}. Learn more about text analysis and character counting.`,
-            "url": `https://boring-tool.com/character-counter/column/${resolvedParams.slug}`,
-            "publisher": {
-              "@type": "Organization",
-              "name": "Character Counter Tool",
-              "url": "https://boring-tool.com"
-            }
-          })
-        }}
-      />
-      <div className="text-gray-100">
-        <main className="max-w-4xl w-full mx-auto px-4 py-10">
-          <article className="bg-gray-700 p-8 rounded-lg">
-            <h1 className="text-3xl font-bold mb-8 text-center">{title}</h1>
-            <MDXRemote source={content} components={components} />
-          </article>
-        </main>
-      </div>
-    </>
+    <div className="text-gray-100">
+      <main className="max-w-4xl w-full mx-auto px-4 py-10">
+        <article className="bg-gray-700 p-8 rounded-lg">
+          <h1 className="text-3xl font-bold mb-8 text-center">{title}</h1>
+          <MDXRemote source={content} components={components} />
+        </article>
+      </main>
+    </div>
   );
 }
