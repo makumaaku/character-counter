@@ -1,0 +1,914 @@
+{
+  "home": {
+    "title": "Boring Tools",
+    "description": "A collection of useful tools for everyday tasks",
+    "tools": {
+      "characterCounter": "Character Counter",
+      "qrGeneration": "QR Generation",
+      "wordGeneration": "Word Generation Tools",
+      "wordGenerator": "Random Word Generator",
+      "wordCardGenerator": "Random Word Card Generator",
+      "sentenceGenerator": "Random Sentence Generator",
+      "nameGenerator": "Random Name Generator",
+      "passwordGenerator": "Random Password Generator",
+      "storyGenerator": "Random Story Generator"
+    },
+    "meta": {
+      "title": "Boring Tools - Simple and Useful Tools for Everyone",
+      "description": "A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.",
+      "siteName": "Boring Tools",
+      "publisher": "Boring Tool",
+      "logoAlt": "Boring Tools Logo",
+      "keywords": "character counter, qr code generator, name generator, tools, utilities, web tools"
+    }
+  },
+  "characterCounter": {
+    "meta": {
+      "title": "Character Counter | easy to use , free to use",
+      "description": "Free online character counter tool. Count characters, words, and lines in your text instantly.",
+      "keywords": "character counter, word counter, text counter, online counter"
+    },
+    "title": "Character Counter",
+    "description": "Count characters, words, and lines in your text",
+    "placeholder": "Enter text",
+    "charCount": "Character Count",
+    "lineCount": "Line Count",
+    "wordCount": "Word Count",
+    "byteCount": "Byte Count",
+    "searchString": "Search String",
+    "enterSearchString": "Enter search string",
+    "occurrences": "Occurrences",
+    "searchResultPreview": "Search Result Preview",
+    "copyText": "Copy text",
+    "copied": "Copied!",
+    "sidebar": {
+      "function": "Functions",
+      "usecase": "Use Cases",
+      "faq": "FAQ",
+      "aboutUs": "About Us",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "plan": "Plans",
+      "column": "Articles"
+    },
+    "function": {
+      "title": "Features & Usage",
+      "keyFeatures": {
+        "title": "Key Features",
+        "darkMode": {
+          "title": "① Dark Mode Toggle",
+          "description": "Switch between dark mode and light mode. Choose the display mode that's most comfortable for your eyes."
+        },
+        "charCount": {
+          "title": "② Character Count",
+          "description": "Counts the number of characters in the input box."
+        },
+        "inputBox": {
+          "title": "③ Input Box",
+          "description": "Enter or paste the text you want to analyze in this box."
+        },
+        "lineCount": {
+          "title": "④ Line Count",
+          "description": "Counts the number of line breaks in your text."
+        },
+        "wordCount": {
+          "title": "⑤ Word Count",
+          "description": "Counts words in space-separated text, perfect for English and other space-delimited languages."
+        },
+        "byteCount": {
+          "title": "⑥ Byte Count (Multibyte Support)",
+          "description": "Counts the number of bytes, with full support for multibyte characters like Japanese text."
+        },
+        "copyButton": {
+          "title": "⑦ Copy Button",
+          "description": "Copy the current text in the input box with one click. Perfect for quickly transferring edited text."
+        },
+        "stringSearch": {
+          "title": "⑧ String Search & Occurrence Counter",
+          "description": "Count how many times a specific string appears in your text. Useful for SEO keyword density analysis."
+        }
+      },
+      "howToUse": {
+        "title": "How to Use - Simple Steps",
+        "step1": {
+          "title": "1. Enter Text",
+          "description": "Copy & paste text into the input area or type and edit directly.<br />Note: Simply typing will instantly count the number of characters, lines, words (English only), and bytes (multibyte compatible).",
+          "text": "Copy & paste text into the input area or type and edit directly."
+        },
+        "step2": {
+          "title": "2. Real-time Results",
+          "description": "As you type, various counts are displayed in real-time, allowing you to check them instantly.",
+          "text": "As you type, various counts are displayed in real-time, allowing you to check them instantly."
+        },
+        "step3": {
+          "title": "3. Utilize Results",
+          "description": "Results can be copied using the copy button.<br />Use the displayed numbers as a reference for social media posts, advertising copy, academic papers, and more.",
+          "text": "Results can be copied using the copy button. Use the displayed numbers as a reference for social media posts, advertising copy, academic papers, and more."
+        }
+      },
+      "meta": {
+        "title": "Features & Usage - Character Counter Tool | Free Online Text Counter",
+        "description": "Learn how to use our free character counter tool. Count characters, words, lines instantly. Perfect for social media posts, content writing, and SEO optimization.",
+        "keywords": "character counter features, text counter usage, word count tool, character count tutorial, online text counter",
+        "howTo": {
+          "title": "How to Use Character Counter Tool"
+        }
+      }
+    },
+    "usecase": {
+      "title": "Use Cases",
+      "subtitle": "How People Use Our Character Counter",
+      "description": "Our character counter tool is utilized in various scenarios. Here are some specific examples!",
+      "cases": {
+        "writing": {
+          "title": "1. Writing and Blog Posting",
+          "efficientArticle": {
+            "title": "Efficient Article Creation",
+            "description": "When creating blog posts or newsletters, you can monitor character count in real-time to ensure you stay within specified limits. This enables article creation that meets deadlines and posting guidelines."
+          },
+          "structure": {
+            "title": "Structure Optimization",
+            "description": "Used for balancing paragraph lengths for readability and SEO purposes. Helps create appropriate heading and body text lengths while maintaining awareness of overall content volume."
+          }
+        },
+        "social": {
+          "title": "2. Social Media and Ad Copy Creation",
+          "limits": {
+            "title": "Character Limit Compliance",
+            "description": "Social media platforms like Twitter and Facebook have character limits for posts. You can verify if your text meets these requirements before posting, avoiding the risk of important messages being cut off."
+          },
+          "adCopy": {
+            "title": "Effective Ad Copy Creation",
+            "description": "Ad copy and promotional messages require simple yet impactful expressions. Using the character counter makes it easier to adjust messages for maximum impact within limited character spaces."
+          }
+        },
+        "seo": {
+          "title": "3. SEO Optimization",
+          "content": {
+            "title": "Maintaining Optimal Content Volume",
+            "description": "The character counter helps adjust article volume and keyword placement for SEO purposes. Maintaining recommended character counts helps improve overall article quality for search engines."
+          },
+          "structure": {
+            "title": "Structured Content Creation",
+            "description": "To aim for high search result rankings, it's important to manage heading and body text lengths appropriately and create readable structures. Using the app to track section lengths helps achieve effective internal structure."
+          }
+        },
+        "marketing": {
+          "title": "4. Copywriting and Marketing Strategy",
+          "brand": {
+            "title": "Brand Message Optimization",
+            "description": "In advertising campaigns and promotional activities, catchphrase length is crucial. The character counter allows precise adjustments to create impactful copy even with limited characters."
+          },
+          "documents": {
+            "title": "Document and Presentation Preparation",
+            "description": "When creating marketing materials or presentations that need concise information, the character counter helps eliminate excess information and create documents with clear key points."
+          }
+        }
+      },
+      "conclusion": "Through these use cases, our character counter tool contributes to improving efficiency in various fields including writing, social media posting, SEO optimization, and marketing. By adapting usage to each scenario, you can achieve more effective information communication.",
+      "testimonials": {
+        "title": "User Testimonials",
+        "users": {
+          "1": {
+            "name": "Mr. Tanaka, Writer",
+            "quote": "This character counting tool is simple yet powerful and has dramatically improved my work efficiency. I especially appreciate that it can count words in English text."
+          },
+          "2": {
+            "name": "Mr. Kawaguchi, Social Media Manager",
+            "quote": "The real-time counting feature is incredibly convenient. It's invaluable for checking character counts while revising article content and verifying text for social media posts with character limits!"
+          },
+          "3": {
+            "name": "Mr. Yamamoto, Web Marketer",
+            "quote": "The feature to see how many times a specified string appears is very useful, and I use it regularly! I use it to check the frequency of SEO keywords on competitor pages."
+          }
+        }
+      },
+      "meta": {
+        "title": "Use Cases - Character Counter Tool | Real-World Applications",
+        "description": "Discover how our character counter tool is used in various scenarios, from content writing to social media management and SEO optimization.",
+        "keywords": "character counter examples, text counter usage, word count applications, content writing tool, SEO optimization",
+        "article": {
+          "headline": "Character Counter Tool Use Cases",
+          "description": "Learn how professionals use our character counter tool for content creation, social media, SEO, and marketing.",
+          "body": "Our character counter tool is used by professionals across various fields to improve their content creation workflow and ensure effective communication."
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "general": {
+        "title": "General Questions",
+        "q1": {
+          "question": "Q1. What is a character counting app?",
+          "answer": "A: A character counting app is a tool that instantly calculates the number of characters in entered text and displays accurate results. This prevents manual counting errors and enables efficient text creation and editing."
+        },
+        "q2": {
+          "question": "Q2. What scenarios can it be used in?",
+          "intro": "A: Main usage scenarios are:",
+          "uses": {
+            "1": "Writing/blog posting",
+            "2": "SNS posting",
+            "3": "SEO optimization",
+            "4": "Ad copy creation"
+          },
+          "answer": "Main usage scenarios include: Writing/blog posting, SNS posting, SEO optimization, and Ad copy creation."
+        }
+      },
+      "technical": {
+        "title": "Technical Questions",
+        "q3": {
+          "question": "Q3. How are full-width and half-width characters counted?",
+          "answer": "A: Both full-width and half-width characters are properly recognized and counted accurately. Special symbols and line breaks are also counted."
+        },
+        "q4": {
+          "question": "Q4. Is it compatible with multiple languages?",
+          "answer": "A: Yes, the app supports multiple languages including Japanese and English, with proper handling of characters and symbols for each language."
+        }
+      },
+      "features": {
+        "title": "Features & Usage",
+        "q5": {
+          "question": "Q5. What features are included?",
+          "intro": "A: Our character counter includes:",
+          "features": {
+            "1": "Real-time character counting",
+            "2": "Line counting",
+            "3": "Word counting",
+            "4": "Byte counting",
+            "5": "String search functionality",
+            "6": "Dark mode support"
+          }
+        },
+        "q6": {
+          "question": "Q6. Is registration required?",
+          "answer": "A: No, our basic features are available without registration. However, some premium features may require a user account."
+        }
+      },
+      "privacy": {
+        "title": "Privacy & Security",
+        "q7": {
+          "question": "Q7. Is my text data secure?",
+          "answer": "A: Yes, all text processing is done locally in your browser. We do not store or transmit your text data to any servers."
+        },
+        "q8": {
+          "question": "Q8. Do you collect any user data?",
+          "answer": "A: We only collect anonymous usage statistics to improve our service. No personal data or text content is collected."
+        }
+      },
+      "meta": {
+        "title": "FAQ - Character Counter Tool | Frequently Asked Questions",
+        "description": "Find answers to frequently asked questions about our character counter tool. Learn about features, usage, and troubleshooting tips.",
+        "keywords": "character counter faq, text counter questions, word count help, character count tutorial, text analysis guide"
+      }
+    },
+    "aboutUs": {
+      "title": "About Us",
+      "ourStory": {
+        "title": "Our Story",
+        "content": "At Boring Tool, we believe in creating simple yet powerful tools that make everyday tasks easier. Founded in 2023, our mission is to provide free, efficient, and user-friendly online tools that help people work smarter, not harder."
+      },
+      "ourMission": {
+        "title": "Our Mission",
+        "intro": "We are committed to:",
+        "points": {
+          "1": "Creating simple, efficient tools that solve real problems",
+          "2": "Maintaining high standards of privacy and security",
+          "3": "Providing free access to essential features",
+          "4": "Continuously improving based on user feedback"
+        }
+      },
+      "tool": {
+        "title": "Character Counter Tool",
+        "description": "Our character counter tool exemplifies our commitment to simplicity and efficiency. Built with modern technology, it provides instant, accurate results while maintaining user privacy and data security. Key features include:",
+        "features": {
+          "1": "Real-time character counting",
+          "2": "Multi-language support",
+          "3": "Privacy-focused design",
+          "4": "Free access to essential features",
+          "5": "Dark mode support"
+        }
+      },
+      "values": {
+        "title": "Our Values",
+        "simplicity": {
+          "title": "Simplicity",
+          "content": "We believe in creating tools that are intuitive and easy to use, without unnecessary complexity."
+        },
+        "privacy": {
+          "title": "Privacy",
+          "content": "We prioritize user privacy and data security in all our tools and services."
+        },
+        "accessibility": {
+          "title": "Accessibility",
+          "content": "Our tools are designed to be accessible to everyone, regardless of technical expertise."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "content": "We continuously improve our tools based on user feedback and technological advancements."
+        }
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "We value your feedback and suggestions. Feel free to reach out to us at:",
+        "email": "Email",
+        "twitter": "Twitter",
+        "github": "GitHub"
+      },
+      "meta": {
+        "title": "About Us - Character Counter Tool | Our Story & Mission",
+        "description": "Learn about the team behind the Character Counter Tool. Discover our mission to provide simple, efficient, and free text analysis tools for everyone.",
+        "keywords": "character counter about, text analysis team, boring tool company, online tools developer, text counter mission",
+        "publisher": {
+          "description": "We create simple, efficient, and free online tools to help people with their daily tasks."
+        },
+        "article": {
+          "headline": "About Boring Tool's Character Counter",
+          "description": "Our character counter tool is designed to be simple, efficient, and free for everyone. We focus on providing accurate text analysis with real-time results.",
+          "body": "At Boring Tool, we believe in creating simple yet powerful tools that make everyday tasks easier. Our character counter is built with modern technology to provide instant, accurate results while maintaining user privacy and data security."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "introduction": "This privacy policy explains how Boring Inc. ('we', 'us', or 'our') collects, uses, and shares information when you use our online character counter ('Service'). By accessing or using the Service, you agree to the terms of this privacy policy.",
+      "collection": {
+        "title": "1. Information We Collect",
+        "text": {
+          "title": "1.1 User-Provided Text",
+          "description": "Text entered or pasted into the character counter is not stored or recorded. The text is temporarily processed on the server (or in the browser, depending on implementation) to count characters, then immediately discarded.<br /><br />The entered text is not used for any other purpose."
+        },
+        "log": {
+          "title": "1.2 Log Data",
+          "intro": "Like most online services, we may automatically collect the following information when you access our Service:",
+          "items": {
+            "1": "IP addresses",
+            "2": "Browser type and version",
+            "3": "Pages viewed and access times"
+          },
+          "purpose": "This information ('Log Data') is used for service maintenance, improvement, and troubleshooting."
+        },
+        "cookies": {
+          "title": "1.3 Cookies and Similar Technologies",
+          "description": "We may use cookies or similar tracking technologies to improve user experience and analyze site traffic.<br /><br />Cookies do not provide personally identifiable information. You can disable cookies in your browser settings, but this may affect some Service functionality."
+        }
+      },
+      "usage": {
+        "title": "2. How We Use Information",
+        "intro": "Collected information is used for the following purposes:",
+        "purposes": {
+          "1": "Service Provision & Maintenance – e.g., character counting and ensuring smooth functionality",
+          "2": "Improvement & Customization – Understanding usage patterns and improving site interface and features",
+          "3": "Analytics – Tracking service performance and usage trends"
+        },
+        "note": "We never sell, rent, or lease your data (including text) to third parties."
+      },
+      "sharing": {
+        "title": "3. Information Sharing",
+        "intro": "We never share entered text with third parties. However, Log Data may be shared in the following cases:",
+        "cases": {
+          "1": "Service Providers: Trusted third parties who assist with website hosting, analytics, and security",
+          "2": "Legal or Regulatory Reasons: When required by law, court order, or to protect our rights and property"
+        }
+      },
+      "retention": {
+        "title": "4. Data Retention",
+        "description": "We do not retain text entered into the character counter.<br /><br />Log Data may be stored on secure servers or cloud services for the period necessary to fulfill the purposes outlined in this policy."
+      },
+      "children": {
+        "title": "5. Children's Privacy",
+        "description": "Our character counter is not intended for individuals under 13. We do not knowingly collect personal information from children under 13. If you discover information that may have been collected from a child, please contact us and we will delete it."
+      },
+      "security": {
+        "title": "6. Security Measures",
+        "description": "We implement reasonable measures to protect collected information from unauthorized access, alteration, and destruction. However, no data transmission or storage method is 100% secure, and we cannot guarantee absolute security."
+      },
+      "changes": {
+        "title": "7. Privacy Policy Changes",
+        "description": "This privacy policy may be updated periodically. When changes occur, we will update the 'Effective Date' on this page. Your continued use of the Service after changes indicates acceptance of the revised policy."
+      },
+      "contact": {
+        "title": "8. Contact Us",
+        "description": "If you have questions or concerns about this privacy policy or our practices, please contact us at:<br /><br />Email: support@boring-tool.com"
+      },
+      "meta": {
+        "title": "Privacy Policy - Character Counter Tool | Data Protection",
+        "description": "Learn how we handle your data when using our character counter tool. Privacy and data security are our top priorities.",
+        "keywords": "privacy policy, data security, character counter privacy, text analysis privacy, data protection",
+        "article": {
+          "headline": "Character Counter Tool Privacy Policy",
+          "description": "Learn about our privacy protection and data handling practices when using the character counter tool.",
+          "body": "Our character counter tool processes all text locally in your browser. We never store, collect, or transmit your text data. Your privacy and data security are our top priorities."
+        }
+      }
+    },
+    "plan": {
+      "title": "Plans",
+      "description": "You can use all basic features of our character counter app with free registration. For advanced features, consider upgrading to our premium version.",
+      "pricing": {
+        "title": "Pricing",
+        "free": "Free Version: $0",
+        "monthly": "Monthly Plan: $4.80",
+        "annual": "Annual Plan: $39.80 (31% OFF compared to monthly plan!)"
+      },
+      "comparison": {
+        "title": "Free vs Premium Comparison",
+        "feature": "Feature",
+        "free": "Free",
+        "premium": "Premium",
+        "features": {
+          "charCount": "Character Count",
+          "counts": "Line, Word & Byte Count",
+          "search": "String Search",
+          "darkMode": "Dark Mode",
+          "ads": "Advertisements",
+          "export": "Word & PDF Export",
+          "api": "API Integration"
+        },
+        "yes": "Yes",
+        "no": "No"
+      },
+      "premiumFeatures": {
+        "title": "Premium Features",
+        "basic": {
+          "title": "Basic Features",
+          "description": "All basic features available in the free version are of course available in the premium version:",
+          "features": {
+            "1": "Real-time counting of characters, lines, words, and bytes",
+            "2": "String search functionality",
+            "3": "Dark mode toggle"
+          }
+        },
+        "adFree": {
+          "title": "Ad-Free Experience",
+          "description": "Advertisements are removed, providing a more comfortable user experience."
+        },
+        "export": {
+          "title": "Word & PDF Export",
+          "description": "Export counting results and input text together to Word or PDF files."
+        },
+        "api": {
+          "title": "API Integration",
+          "description": "All features of our service are available via API. Please contact us through the inquiry form for API usage."
+        }
+      },
+      "subscriptions": {
+        "title": "Monthly and Annual Plans",
+        "monthly": {
+          "title": "Monthly Plan",
+          "description": "Pay monthly with no long-term commitment. Perfect for trying out premium features."
+        },
+        "annual": {
+          "title": "Annual Plan",
+          "description": "More economical pricing structure, recommended for long-term usage."
+        },
+        "note": "For detailed pricing and plan information, please check our dedicated pricing page."
+      },
+      "meta": {
+        "title": "Plans & Pricing - Character Counter Tool | Free & Premium Features",
+        "description": "Explore our character counter tool plans and pricing. Choose between free and premium features to enhance your text analysis experience.",
+        "keywords": "character counter pricing, text analysis plans, free text counter, online tool pricing, character count features",
+        "product": {
+          "description": "A comprehensive text analysis tool with character counting, word counting, and more features",
+          "offers": {
+            "free": {
+              "name": "Free Plan",
+              "description": "Basic features with advertisements"
+            },
+            "monthly": {
+              "name": "Monthly Premium Plan",
+              "description": "All features with monthly billing"
+            },
+            "annual": {
+              "name": "Annual Premium Plan",
+              "description": "All features with annual billing (31% discount)"
+            }
+          }
+        }
+      }
+    },
+    "column": {
+      "title": "Articles",
+      "description": "Read our latest articles about text analysis"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "We value your feedback and are here to help with any questions or concerns you may have about our character counter tool.",
+      "form": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "your.email@example.com"
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "Select a subject",
+          "options": {
+            "general": "General Inquiry",
+            "technical": "Technical Support",
+            "billing": "Billing Question",
+            "feature": "Feature Request",
+            "other": "Other"
+          }
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Please describe your question or concern"
+        },
+        "submit": "Send Message"
+      },
+      "otherWays": {
+        "title": "Other Ways to Reach Us",
+        "email": "Email",
+        "businessHours": "Business Hours",
+        "businessHoursValue": "Monday - Friday, 9:00 AM - 6:00 PM (GMT)",
+        "responseTime": "We typically respond to all inquiries within 24 business hours."
+      },
+      "meta": {
+        "title": "Contact Us - Character Counter Tool | Support & Inquiries",
+        "description": "Get in touch with our support team for any questions about our character counter tool. We are here to help with your text analysis needs.",
+        "keywords": "character counter contact, text counter support, word count help, contact form, customer service",
+        "jsonLd": {
+          "name": "Contact Character Counter Support",
+          "description": "Contact page for Character Counter Tool support and inquiries",
+          "organization": {
+            "name": "Character Counter Tool",
+            "email": "support@character-counter.com",
+            "availableLanguage": ["English", "Japanese"],
+            "hoursAvailable": "Mo-Fr 09:00-18:00"
+          }
+        }
+      }
+    }
+  },
+  "qrGeneration": {
+    "meta": {
+      "title": "QR Code Generator - Boring Tools",
+      "description": "Generate QR codes easily with our free online QR code generator tool.",
+      "keywords": "qr code generator, qr code maker, create qr code"
+    },
+    "title": "QR Code Generator",
+    "description": "Easily generate QR codes from text or URLs",
+    "placeholder": "Enter text to convert to QR code",
+    "emptyState": "QR code will appear when you enter text",
+    "sidebar": {
+      "function": "Functions",
+      "usecase": "Use Cases",
+      "faq": "FAQ",
+      "aboutUs": "About Us",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "plan": "Plans"
+    }
+  },
+  "wordGen": {
+    "meta": {
+      "title": "Word Generation Tools - Boring Tool",
+      "description": "Collection of free word generation tools including name generator, password generator, story generator, and more. Simple and easy to use tools for all your word generation needs.",
+      "keywords": "word generator, name generator, password generator, story generator, sentence generator, word card generator"
+    },
+    "title": "Word Generation Tools",
+    "description": "Free collection of word generation tools",
+    "tools": {
+      "wordGenerator": {
+        "meta": {
+          "title": "Word Generator - Boring Tool",
+          "description": "Free online tool to generate random words based on various criteria and patterns.",
+          "keywords": "word generator, random words, word creation, text generator"
+        },
+        "title": "Word Generator",
+        "description": "Generate random words based on various criteria and patterns",
+        "form": {
+          "length": {
+            "label": "Word Length",
+            "min": "Minimum",
+            "max": "Maximum"
+          },
+          "pattern": {
+            "label": "Pattern",
+            "placeholder": "e.g., CV*CV (C=consonant, V=vowel, *=any)"
+          },
+          "count": {
+            "label": "Count",
+            "placeholder": "Enter number of words to generate"
+          },
+          "generate": "Generate",
+          "clear": "Clear"
+        },
+        "result": {
+          "title": "Generated Words",
+          "empty": "Fill in the form above to generate words",
+          "copy": "Copy Results",
+          "copied": "Copied!"
+        }
+      },
+      "nameGenerator": {
+        "meta": {
+          "title": "Name Generator - Boring Tool",
+          "description": "Generate unique and creative names for characters, businesses, or projects with our free online name generator.",
+          "keywords": "name generator, random names, character names, business names, project names"
+        },
+        "title": "Name Generator",
+        "description": "Create unique and creative names for characters, businesses, or projects",
+        "form": {
+          "count": {
+            "label": "Number of names"
+          },
+          "generate": "Generate Names",
+          "copy": "Copy"
+        },
+        "result": {
+          "title": "Generated Names",
+          "empty": "Generated names will appear here",
+          "copyTitle": "Copy to clipboard",
+          "copied": "Copied!"
+        },
+        "about": {
+          "title": "About Name Generator",
+          "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
+        },
+        "useCases": {
+          "title": "Use Cases",
+          "creative": {
+            "title": "Creative Writing",
+            "description": "Generate character names for stories, novels, and creative writing projects."
+          },
+          "gaming": {
+            "title": "Gaming",
+            "description": "Create unique character names for role-playing games and video games."
+          },
+          "testing": {
+            "title": "Testing",
+            "description": "Generate test user names for software testing and development."
+          }
+        },
+        "faq": {
+          "title": "Frequently Asked Questions",
+          "q1": {
+            "question": "How are the names generated?",
+            "answer": "Names are generated using a combination of common name patterns and creative elements to ensure uniqueness and usability."
+          },
+          "q2": {
+            "question": "Can I use these names commercially?",
+            "answer": "Yes, all generated names are free to use for any purpose, including commercial use."
+          },
+          "q3": {
+            "question": "How many names can I generate?",
+            "answer": "You can generate up to 100 names at once, and there's no limit to how many times you can use the generator."
+          }
+        }
+      },
+      "passwordGenerator": {
+        "title": "Password Generator",
+        "description": "Generate secure and customizable passwords."
+      },
+      "storyGenerator": {
+        "title": "Story Generator",
+        "description": "Create random story prompts and plot ideas."
+      },
+      "sentenceGenerator": {
+        "title": "Random Sentence Generator",
+        "description": "Generate random sentences with customizable structure",
+        "keywords": "sentence generator, random sentence, writing tool, creative writing, content creation",
+        "meta": {
+          "title": "Random Sentence Generator - Boring Tool",
+          "description": "Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation."
+        }
+      },
+      "wordCardGenerator": {
+        "meta": {
+          "title": "Word Card Generator - Boring Tool",
+          "description": "Free online tool to easily create flashcards and word cards for learning and memorization.",
+          "keywords": "word card generator, flashcards, memory cards, learning tools"
+        },
+        "title": "Word Card Generator",
+        "description": "Create flashcards and word cards for learning and memorization",
+        "form": {
+          "count": {
+            "label": "Number of cards"
+          },
+          "generate": "Generate Cards"
+        },
+        "result": {
+          "title": "Generated Cards",
+          "empty": "Fill in the form above to generate cards",
+          "copy": "Copy Results",
+          "copied": "Copied!"
+        },
+        "card": {
+          "length": "Length",
+          "category": "Category"
+        },
+        "howTo": {
+          "title": "How to Use",
+          "description": "The Word Card Generator tool allows you to easily create flashcards for learning and memorization. Simply select the number of cards you want to generate and click the 'Generate Cards' button."
+        },
+        "useCases": {
+          "title": "Use Cases",
+          "vocabulary": "Vocabulary Learning",
+          "teaching": "Teaching & Instruction",
+          "games": "Learning Games",
+          "writing": "Writing Practice",
+          "esl": "ESL Learning"
+        }
+      }
+    },
+    "about": {
+      "title": "About Our Word Generation Tools",
+      "description": "Our collection of word generation tools is designed to help you create various types of text content quickly and easily. Whether you need random words, unique names, secure passwords, or creative writing prompts, we have the right tool for you.",
+      "features": {
+        "title": "Features of Our Tools:",
+        "list": [
+          "Simple and intuitive interfaces",
+          "Customizable generation options",
+          "Instant results",
+          "Free to use",
+          "No registration required"
+        ]
+      },
+      "useCases": {
+        "title": "Common Use Cases:",
+        "list": [
+          "Creative writing and storytelling",
+          "Game development and worldbuilding",
+          "Password management and security",
+          "Language learning and education",
+          "Content creation and brainstorming"
+        ]
+      }
+    }
+  },
+  "sentenceGenerator": {
+    "form": {
+      "count": {
+        "label": "Number of sentences"
+      },
+      "generate": "Generate Sentences",
+      "copy": "Copy"
+    },
+    "result": {
+      "empty": "Generated sentences will appear here",
+      "copyTitle": "Copy to clipboard",
+      "copied": "Copied!"
+    },
+    "about": {
+      "title": "About Sentence Generator",
+      "description": "Generate random sentences instantly with our free online tool. Perfect for creative writing, language learning, and content creation."
+    },
+    "features": {
+      "title": "Features",
+      "random": "Random sentence generation",
+      "customizable": "Customizable sentence count",
+      "instant": "Instant results",
+      "copy": "Easy copy functionality"
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "writing": "Creative writing practice",
+      "learning": "Language learning",
+      "testing": "Testing and placeholder text",
+      "inspiration": "Writing inspiration"
+    }
+  },
+  "storyGenerator": {
+    "form": {
+      "generate": "Generate Story"
+    },
+    "result": {
+      "empty": "Click the generate button to create a story",
+      "copyTitle": "Copy to clipboard",
+      "copyAlt": "Copy icon",
+      "copied": "Copied!"
+    },
+    "about": {
+      "title": "About Story Generator",
+      "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration."
+    },
+    "howTo": {
+      "title": "How to Use",
+      "generate": {
+        "title": "Generate a Story",
+        "description": "Click the 'Generate Story' button to create a unique story with random characters and events."
+      },
+      "review": {
+        "title": "Review and Edit",
+        "description": "Read through the generated story and use it as inspiration for your own creative writing."
+      },
+      "share": {
+        "title": "Share Your Story",
+        "description": "Copy the story to share it with others or save it for later use."
+      }
+    },
+    "features": {
+      "title": "Features",
+      "instant": "Instant story generation",
+      "unique": "Unique storylines every time",
+      "creative": "Creative character combinations",
+      "memorable": "Memorable plot twists",
+      "interface": "User-friendly interface",
+      "copy": "Easy copy and share functionality"
+    }
+  },
+  "common": {
+    "meta": {
+      "siteName": "Boring Tools",
+      "publisher": "Boring Tool",
+      "logoAlt": "Boring Tools Logo"
+    },
+    "menu": "Menu"
+  },
+  "nameGenerator": {
+    "meta": {
+      "title": "Name Generator - Boring Tool",
+      "description": "Generate unique and creative names for characters, businesses, or projects with our free online name generator.",
+      "keywords": "name generator, random names, character names, business names, project names"
+    },
+    "title": "Name Generator",
+    "description": "Create unique and creative names for characters, businesses, or projects",
+    "form": {
+      "count": {
+        "label": "Number of names"
+      },
+      "generate": "Generate Names",
+      "copy": "Copy"
+    },
+    "result": {
+      "title": "Generated Names",
+      "empty": "Generated names will appear here",
+      "copyTitle": "Copy to clipboard",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "about": {
+      "title": "About Name Generator",
+      "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "creative": {
+        "title": "Creative Writing",
+        "description": "Generate character names for stories, novels, and creative writing projects."
+      },
+      "gaming": {
+        "title": "Gaming",
+        "description": "Create unique character names for role-playing games and video games."
+      },
+      "testing": {
+        "title": "Testing",
+        "description": "Generate test user names for software testing and development."
+      }
+    }
+  },
+  "passwordGenerator": {
+    "meta": {
+      "title": "Random Password Generator - Boring Tool",
+      "description": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts.",
+      "keywords": "password generator, random password, secure password, strong password"
+    },
+    "title": "Random Password Generator",
+    "generatedPassword": "Generated Password",
+    "copyButton": "Copy password",
+    "copied": "Copied!",
+    "passwordLength": "Password Length",
+    "characterTypes": {
+      "uppercase": "Include Uppercase (A-Z)",
+      "lowercase": "Include Lowercase (a-z)",
+      "numbers": "Include Numbers (0-9)",
+      "symbols": "Include Symbols (!@#$, etc.)"
+    },
+    "generateButton": "Generate New Password",
+    "description": {
+      "title": "Free & Secure Random Password Generator Tool",
+      "intro": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts, with customizable options for length and character types.",
+      "features": {
+        "title": "Key Features",
+        "list": [
+          "Customizable password length (4-128 characters)",
+          "Choose character types (uppercase, lowercase, numbers, symbols)",
+          "One-click copy functionality",
+          "Secure random password generation"
+        ]
+      },
+      "howToUse": {
+        "title": "How to Use",
+        "list": [
+          "Set desired password length using the slider",
+          "Select character types to include",
+          "Click \"Generate New Password\" to create a password",
+          "Click the copy icon to copy the password to clipboard"
+        ]
+      },
+      "securityTips": {
+        "title": "Password Security Tips",
+        "list": [
+          "Use a minimum of 12 characters for strong security",
+          "Include a mix of character types",
+          "Generate unique passwords for each account",
+          "Never share your passwords with others"
+        ]
+      }
+    }
+  }
+} 

@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <span className="text-white font-bold">Boring.</span>
         </div>
       </Link>
-      <p className="text-gray-400 mt-2">&copy; Boring Inc</p>
+      <p className="text-gray-400 mt-2">&copy; Boring Inc.</p>
     </footer>
   );
 };
