@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Plans & Pricing - Character Counter Tool | Free & Premium Features',
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
 export default function PlanPage() {
   return (
     <>
-      <script
+      <Script
+        id="plan-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

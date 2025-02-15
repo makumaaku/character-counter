@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Script from 'next/script'
 
 // JSON-LD for SEO
 const jsonLd = {
@@ -105,7 +106,8 @@ export default function WordGenTools() {
         </div>
       </main>
 
-      <script
+      <Script
+        id="word-gen-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

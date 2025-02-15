@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Contact Us - Character Counter Tool | Support & Inquiries',
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <script
+      <Script
+        id="contact-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

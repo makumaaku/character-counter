@@ -10,7 +10,7 @@ TOP画面のURLは`https://boring-tool.com/`です。
 
 # SEO 対策
 - グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang="en">` を設定する。
-- 各ページ (`page.tsx`) では `next/head` を利用し、以下の SEO メタタグを設定する：
+- 各ページ (`page.tsx`) では以下の SEO メタタグを設定する：
   - `title` （ページタイトル）
   - `meta name="description"` （ページの説明文）
   - `meta property="og:title"`（Open Graph 用タイトル）
@@ -20,7 +20,7 @@ TOP画面のURLは`https://boring-tool.com/`です。
   - `link rel="canonical"`（正規 URL の指定）
 
 ## JSON-LD による構造化データの追加
-- 検索エンジン向けに JSON-LD 形式の構造化データを、`<script type="application/ld+json">` タグで `<head>` 内に追加する。  
+- 検索エンジン向けに JSON-LD 形式の構造化データを、Next.jsの `Script` コンポーネントを使用して追加する。
 - `Schema.org` に準拠した構造化データを用い、以下の情報を含める：
   - `@context`: `"https://schema.org"`
   - `@type`: `"WebPage"` または `"Article"`
@@ -31,9 +31,24 @@ TOP画面のURLは`https://boring-tool.com/`です。
 
 ### JSON-LD の実装例  
 ```tsx
-import Head from 'next/head';
+import { Metadata } from 'next';
+import Script from 'next/script';
 
-export default function SEO() {
+export const metadata: Metadata = {
+  title: "Character Counter - YourSite",
+  description: "A free online character counter tool for writers.",
+  openGraph: {
+    title: "Character Counter - YourSite",
+    description: "A free online character counter tool for writers.",
+    url: "https://boring-tool.com/character-counter",
+    type: "website"
+  },
+  alternates: {
+    canonical: "https://boring-tool.com/character-counter"
+  }
+};
+
+export default function Page() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -43,17 +58,17 @@ export default function SEO() {
   };
 
   return (
-    <Head>
-      <title>Character Counter - YourSite</title>
-      <meta name="description" content="A free online character counter tool for writers." />
-      <link rel="canonical" href="https://www.yoursite.com/character-counter" />
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLdData)}
-      </script>
-    </Head>
+    <>
+      <Script
+        id="page-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+      />
+      {/* Page content */}
+    </>
   );
 }
 ```
 
 ## h1タグについて
-page.tsxにはh1タグのタイトルを必ず1つ付けてください。
+。

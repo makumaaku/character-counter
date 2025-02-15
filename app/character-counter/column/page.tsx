@@ -3,6 +3,7 @@ import path from 'path';
 import Link from 'next/link';
 import matter from 'gray-matter';
 import { Metadata } from 'next';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Character Counter Blog - Tips & Guides | Text Analysis Articles',
@@ -49,7 +50,8 @@ export default async function ColumnList() {
 
   return (
     <>
-      <script
+      <Script
+        id="column-list-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

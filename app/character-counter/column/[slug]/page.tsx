@@ -3,6 +3,7 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import fs from 'fs';
 import path from 'path';
 import { Metadata } from 'next';
+import Script from 'next/script'
 
 interface FrontMatter {
   title: string;
@@ -64,7 +65,8 @@ export default async function ColumnPage({ params }: ColumnPageProps) {
 
   return (
     <>
-      <script
+      <Script
+        id="column-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

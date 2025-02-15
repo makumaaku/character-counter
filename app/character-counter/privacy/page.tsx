@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy - Character Counter Tool | Data Protection',
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <script
+      <Script
+        id="privacy-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
