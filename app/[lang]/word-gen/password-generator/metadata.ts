@@ -1,3 +1,4 @@
+import { translate } from '@/lib/i18n/server';
 import { Metadata } from 'next';
 
 const jsonLd = {
@@ -32,20 +33,32 @@ const jsonLd = {
   browserRequirements: 'Requires a modern web browser with JavaScript enabled'
 };
 
-export const metadata: Metadata = {
-  title: 'Secure Password Generator - Boring Tool',
-  description: 'Generate strong, secure, and customizable passwords instantly with our free online password generator. Perfect for creating unique passwords for your accounts and applications.',
-  openGraph: {
-    title: 'Secure Password Generator - Boring Tool',
-    description: 'Generate strong, secure, and customizable passwords instantly with our free online password generator. Perfect for creating unique passwords for your accounts and applications.',
-    url: 'https://boring-tool.com/word-gen/password-generator',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/word-gen/password-generator'
-  },
-  keywords: 'password generator, secure password, strong password, random password, password security, password tool',
-  other: {
-    'application/ld+json': JSON.stringify(jsonLd)
-  }
-}; 
+export async function generateMetadata(
+  { params }: { params: { lang: string } }
+): Promise<Metadata> {
+  const title = translate(params.lang, 'passwordGenerator.meta.title');
+  const description = translate(params.lang, 'passwordGenerator.meta.description');
+  const keywords = translate(params.lang, 'passwordGenerator.meta.keywords');
+
+  return {
+    title,
+    description,
+    keywords,
+    openGraph: {
+      title,
+      description,
+      url: `https://boring-tool.com/${params.lang}/word-gen/password-generator`,
+      type: 'website',
+    },
+    alternates: {
+      canonical: `https://boring-tool.com/${params.lang}/word-gen/password-generator`,
+      languages: {
+        'en': 'https://boring-tool.com/en/word-gen/password-generator',
+        'ja': 'https://boring-tool.com/ja/word-gen/password-generator',
+      },
+    },
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
+} 

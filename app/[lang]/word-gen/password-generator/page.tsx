@@ -2,13 +2,21 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { translate } from '@/lib/i18n/server'
+
 // Character sets for password generation
 const UPPERCASE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const LOWERCASE_CHARS = 'abcdefghijklmnopqrstuvwxyz'
 const NUMBER_CHARS = '0123456789'
 const SYMBOL_CHARS = '!@#$%^&*()_-+=<>?/{}[]~|'
 
-export default function PasswordGenerator() {
+// Feature list indices
+const FEATURES_COUNT = 4
+const HOWTO_STEPS_COUNT = 4
+const SECURITY_TIPS_COUNT = 4
+
+export default function PasswordGenerator({ params }: { params: { lang: string } }) {
+  const t = (key: string) => translate(params.lang, key)
   const [password, setPassword] = useState('')
   const [length, setLength] = useState(12)
   const [useUppercase, setUseUppercase] = useState(true)
@@ -52,9 +60,9 @@ export default function PasswordGenerator() {
     <>
       <div className="bg-gray-800 text-gray-100 font-sans">
         <main className="max-w-4xl mx-auto px-4 pb-24">
-          <h1 className="text-3xl font-bold text-center py-8">Random Password Generator</h1>
+          <h1 className="text-3xl font-bold text-center py-8">{t('passwordGenerator.title')}</h1>
           <div className="bg-gray-700 p-6 rounded-lg text-center">
-            <h2 className="text-xl mb-4">Generated Password</h2>
+            <h2 className="text-xl mb-4">{t('passwordGenerator.generatedPassword')}</h2>
             <div className="relative">
               <p className="text-2xl font-bold font-mono bg-gray-900 p-4 rounded-lg break-all">
                 {password}
@@ -62,18 +70,18 @@ export default function PasswordGenerator() {
               <button
                 onClick={handleCopy}
                 className="absolute top-1/2 right-4 -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
-                title="Copy password"
+                title={t('passwordGenerator.copyButton')}
               >
                 <Image 
                   src="/copy_icon_white.png" 
-                  alt="Copy password"
+                  alt={t('passwordGenerator.copyButton')}
                   width={20}
                   height={20}
                 />
               </button>
               {showToast && (
                 <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-                  Copied!
+                  {t('passwordGenerator.copied')}
                 </div>
               )}
             </div>
@@ -81,7 +89,7 @@ export default function PasswordGenerator() {
 
           <div className="mt-6 bg-gray-700 p-6 rounded-lg">
             <div className="mb-6">
-              <label className="block text-lg mb-2">Password Length: {length}</label>
+              <label className="block text-lg mb-2">{t('passwordGenerator.passwordLength')}: {length}</label>
               <input
                 type="range"
                 min="4"
@@ -100,7 +108,7 @@ export default function PasswordGenerator() {
                   onChange={(e) => setUseUppercase(e.target.checked)}
                   className="w-4 h-4 bg-gray-900 rounded accent-purple-600"
                 />
-                <span>Include Uppercase (A-Z)</span>
+                <span>{t('passwordGenerator.characterTypes.uppercase')}</span>
               </label>
               <label className="flex items-center space-x-2">
                 <input
@@ -109,7 +117,7 @@ export default function PasswordGenerator() {
                   onChange={(e) => setUseLowercase(e.target.checked)}
                   className="w-4 h-4 bg-gray-900 rounded accent-purple-600"
                 />
-                <span>Include Lowercase (a-z)</span>
+                <span>{t('passwordGenerator.characterTypes.lowercase')}</span>
               </label>
               <label className="flex items-center space-x-2">
                 <input
@@ -118,7 +126,7 @@ export default function PasswordGenerator() {
                   onChange={(e) => setUseNumbers(e.target.checked)}
                   className="w-4 h-4 bg-gray-900 rounded accent-purple-600"
                 />
-                <span>Include Numbers (0-9)</span>
+                <span>{t('passwordGenerator.characterTypes.numbers')}</span>
               </label>
               <label className="flex items-center space-x-2">
                 <input
@@ -127,7 +135,7 @@ export default function PasswordGenerator() {
                   onChange={(e) => setUseSymbols(e.target.checked)}
                   className="w-4 h-4 bg-gray-900 rounded accent-purple-600"
                 />
-                <span>Include Symbols (!@#$, etc.)</span>
+                <span>{t('passwordGenerator.characterTypes.symbols')}</span>
               </label>
             </div>
 
@@ -135,38 +143,35 @@ export default function PasswordGenerator() {
               onClick={generatePassword}
               className="w-full mt-6 bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors"
             >
-              Generate New Password
+              {t('passwordGenerator.generateButton')}
             </button>
           </div>
 
           <div className="bg-gray-700 p-6 rounded-lg mt-6">
-            <h2 className="text-xl mb-4 text-center">Free & Secure Random Password Generator Tool</h2>
+            <h2 className="text-xl mb-4 text-center">{t('passwordGenerator.description.title')}</h2>
             <p className="mb-4">
-              Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts, with customizable options for length and character types.
+              {t('passwordGenerator.description.intro')}
             </p>
             
-            <h3 className="text-lg mb-2 font-bold">Key Features</h3>
+            <h3 className="text-lg mb-2 font-bold">{t('passwordGenerator.description.features.title')}</h3>
             <ul className="list-disc pl-5 mb-4">
-              <li>Customizable password length (4-128 characters)</li>
-              <li>Choose character types (uppercase, lowercase, numbers, symbols)</li>
-              <li>One-click copy functionality</li>
-              <li>Secure random password generation</li>
+              {Array.from({ length: FEATURES_COUNT }, (_, i) => (
+                <li key={i}>{t(`passwordGenerator.description.features.list.${i}`)}</li>
+              ))}
             </ul>
 
-            <h3 className="text-lg mb-2 font-bold">How to Use</h3>
+            <h3 className="text-lg mb-2 font-bold">{t('passwordGenerator.description.howToUse.title')}</h3>
             <ul className="list-disc pl-5 mb-4">
-              <li>Set desired password length using the slider</li>
-              <li>Select character types to include</li>
-              <li>Click &quot;Generate New Password&quot; to create a password</li>
-              <li>Click the copy icon to copy the password to clipboard</li>
+              {Array.from({ length: HOWTO_STEPS_COUNT }, (_, i) => (
+                <li key={i}>{t(`passwordGenerator.description.howToUse.list.${i}`)}</li>
+              ))}
             </ul>
 
-            <h3 className="text-lg mb-2 font-bold">Password Security Tips</h3>
+            <h3 className="text-lg mb-2 font-bold">{t('passwordGenerator.description.securityTips.title')}</h3>
             <ul className="list-disc pl-5">
-              <li>Use a minimum of 12 characters for strong security</li>
-              <li>Include a mix of character types</li>
-              <li>Generate unique passwords for each account</li>
-              <li>Never share your passwords with others</li>
+              {Array.from({ length: SECURITY_TIPS_COUNT }, (_, i) => (
+                <li key={i}>{t(`passwordGenerator.description.securityTips.list.${i}`)}</li>
+              ))}
             </ul>
           </div>
         </main>
