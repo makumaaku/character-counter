@@ -772,6 +772,45 @@
       "inspiration": "Writing inspiration"
     }
   },
+  "storyGenerator": {
+    "form": {
+      "generate": "Generate Story"
+    },
+    "result": {
+      "empty": "Click the generate button to create a story",
+      "copyTitle": "Copy to clipboard",
+      "copyAlt": "Copy icon",
+      "copied": "Copied!"
+    },
+    "about": {
+      "title": "About Story Generator",
+      "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration."
+    },
+    "howTo": {
+      "title": "How to Use",
+      "generate": {
+        "title": "Generate a Story",
+        "description": "Click the 'Generate Story' button to create a unique story with random characters and events."
+      },
+      "review": {
+        "title": "Review and Edit",
+        "description": "Read through the generated story and use it as inspiration for your own creative writing."
+      },
+      "share": {
+        "title": "Share Your Story",
+        "description": "Copy the story to share it with others or save it for later use."
+      }
+    },
+    "features": {
+      "title": "Features",
+      "instant": "Instant story generation",
+      "unique": "Unique storylines every time",
+      "creative": "Creative character combinations",
+      "memorable": "Memorable plot twists",
+      "interface": "User-friendly interface",
+      "copy": "Easy copy and share functionality"
+    }
+  },
   "common": {
     "meta": {
       "siteName": "Boring Tools",
