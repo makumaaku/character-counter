@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import words from '../../../public/words/words.json'
+import words from '../../../../public/words/words.json'
 import Image from "next/image";
 
 export default function WordGenerator() {
