@@ -39,22 +39,25 @@ export default function Home() {
               <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
             </li>
             <li>
-              <Link href="/word-generator" className="text-white hover:underline">Random Word Generator</Link>
+              <Link href="/word-gen" className="text-white hover:underline font-bold">Word Generation Tools</Link>
             </li>
             <li>
-              <Link href="/word-card-generator" className="text-white hover:underline">Random Word Card Generator</Link>
+              <Link href="/word-gen/word-generator" className="text-white hover:underline ml-4">Random Word Generator</Link>
             </li>
             <li>
-              <Link href="/sentence-generator" className="text-white hover:underline">Random Sentence Generator</Link>
+              <Link href="/word-gen/word-card-generator" className="text-white hover:underline ml-4">Random Word Card Generator</Link>
             </li>
             <li>
-              <Link href="/name-generator" className="text-white hover:underline">Random Name Generator</Link>
+              <Link href="/word-gen/sentence-generator" className="text-white hover:underline ml-4">Random Sentence Generator</Link>
             </li>
             <li>
-              <Link href="/password-generator" className="text-white hover:underline">Random Password Generator</Link>
+              <Link href="/word-gen/name-generator" className="text-white hover:underline ml-4">Random Name Generator</Link>
             </li>
             <li>
-              <Link href="/story-generator" className="text-white hover:underline">Random Story Generator</Link>
+              <Link href="/word-gen/password-generator" className="text-white hover:underline ml-4">Random Password Generator</Link>
+            </li>
+            <li>
+              <Link href="/word-gen/story-generator" className="text-white hover:underline ml-4">Random Story Generator</Link>
             </li>
           </ul>
         </div>
