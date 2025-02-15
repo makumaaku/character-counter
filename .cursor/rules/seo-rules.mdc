@@ -10,7 +10,7 @@ TOP画面のURLは`https://boring-tool.com/`です。
 
 # SEO 対策
 - グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang="en">` を設定する。
-- 各ページ (`page.tsx`) では以下の SEO メタタグを設定する：
+- 各ページのメタデータは `metadata.ts` に定義する：
   - `title` （ページタイトル）
   - `meta name="description"` （ページの説明文）
   - `meta property="og:title"`（Open Graph 用タイトル）
@@ -20,43 +20,73 @@ TOP画面のURLは`https://boring-tool.com/`です。
   - `link rel="canonical"`（正規 URL の指定）
 
 ## JSON-LD による構造化データの追加
-- 検索エンジン向けに JSON-LD 形式の構造化データを、Next.jsの `Script` コンポーネントを使用して追加する。
+- 検索エンジン向けに JSON-LD 形式の構造化データを、`metadata.ts`に定義し、ページコンポーネントで Next.jsの `Script` コンポーネントを使用して追加する。
 - `Schema.org` に準拠した構造化データを用い、以下の情報を含める：
   - `@context`: `"https://schema.org"`
-  - `@type`: `"WebPage"` または `"Article"`
+  - `@type`: `"WebPage"` または `"Article"`, `"WebApplication"`など適切なタイプ
   - `name`: サイト名
   - `description`: ページの概要
   - `url`: 正規 URL
-  - `author`: サイト運営者情報（適用可能な場合）
+  - `publisher`: サイト運営者情報
 
-### JSON-LD の実装例  
-```tsx
+### metadata.ts の実装例
+```typescript
 import { Metadata } from 'next';
-import Script from 'next/script';
 
+// JSON-LD データの定義
+export const jsonLdData = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Character Counter - Boring Tool",
+  "description": "A free online character counter tool for writers.",
+  "url": "https://boring-tool.com/character-counter",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Boring Tool",
+    "url": "https://boring-tool.com"
+  },
+  "featureList": [
+    "Real-time character counting",
+    "Word counting",
+    "Line counting",
+    "Free to use",
+    "No registration required"
+  ],
+  "isAccessibleForFree": true
+};
+
+// メタデータの定義
 export const metadata: Metadata = {
-  title: "Character Counter - YourSite",
+  title: "Character Counter - Boring Tool",
   description: "A free online character counter tool for writers.",
   openGraph: {
-    title: "Character Counter - YourSite",
+    title: "Character Counter - Boring Tool",
     description: "A free online character counter tool for writers.",
     url: "https://boring-tool.com/character-counter",
     type: "website"
   },
   alternates: {
     canonical: "https://boring-tool.com/character-counter"
-  }
+  },
+  keywords: "character counter, word counter, text analysis, writing tool"
 };
+```
+
+### page.tsx での JSON-LD の実装例
+```tsx
+'use client';
+
+import Script from 'next/script';
+import { jsonLdData } from './metadata';
 
 export default function Page() {
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Character Counter - YourSite",
-    "description": "A free online character counter tool for writers.",
-    "url": "https://www.yoursite.com/character-counter"
-  };
-
   return (
     <>
       <Script
@@ -71,4 +101,4 @@ export default function Page() {
 ```
 
 ## h1タグについて
-。
+

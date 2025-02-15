@@ -4,37 +4,7 @@ import { useState } from "react";
 import words from '../../../public/words/words.json'
 import Image from "next/image";
 import Script from 'next/script';
-
-const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Random Word Generator - Boring Tool",
-  "description": "Generate random words instantly with our free online word generator tool. Perfect for brainstorming, creative writing, and language learning.",
-  "url": "https://boring-tool.com/word-gen/word-generator",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  },
-  "featureList": [
-    "Generate 1-100 random words",
-    "Instant word generation",
-    "Copy to clipboard functionality",
-    "Customizable word count",
-    "Dark mode support",
-    "Free to use",
-    "No registration required"
-  ],
-  "isAccessibleForFree": true,
-  "browserRequirements": "Requires a modern web browser with JavaScript enabled"
-};
+import { jsonLdData } from './metadata';
 
 export default function WordGenerator() {
   const [generatedWords, setGeneratedWords] = useState<string>("");
