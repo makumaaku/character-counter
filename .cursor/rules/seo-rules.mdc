@@ -8,9 +8,6 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 TOP画面のURLは`https://boring-tool.com/`です。
 ドメインは`boring-tool.com`です。
 
-# 使用パッケージ
-next-seoを使用します。
-
 # SEO 対策
 - グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang="en">` を設定する。
 - 各ページ (`page.tsx`) では `next/head` を利用し、以下の SEO メタタグを設定する：
@@ -57,3 +54,6 @@ export default function SEO() {
   );
 }
 ```
+
+## h1タグについて
+page.tsxにはh1タグのタイトルを必ず1つ付けてください。

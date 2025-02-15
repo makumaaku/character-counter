@@ -4,12 +4,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Boring Tools - Simple and Useful Tools for Everyone',
-  description: 'A collection of simple and useful tools including character counter, QR code generator, and more to help with your everyday tasks.',
+  description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
   openGraph: {
     type: 'website',
     url: 'https://boring-tool.com/',
     title: 'Boring Tools - Simple and Useful Tools for Everyone',
-    description: 'A collection of simple and useful tools including character counter, QR code generator, and more to help with your everyday tasks.',
+    description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
     images: [
       {
         url: 'https://boring-tool.com/boring_logo.png',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  keywords: 'character counter, qr code generator, tools, utilities, web tools',
+  keywords: 'character counter, qr code generator, name generator, tools, utilities, web tools',
 };
 
 export default function Home() {
@@ -37,6 +37,24 @@ export default function Home() {
             </li>
             <li>
               <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
+            </li>
+            <li>
+              <Link href="/word-generator" className="text-white hover:underline">Random Word Generator</Link>
+            </li>
+            <li>
+              <Link href="/word-card-generator" className="text-white hover:underline">Random Word Card Generator</Link>
+            </li>
+            <li>
+              <Link href="/sentence-generator" className="text-white hover:underline">Random Sentence Generator</Link>
+            </li>
+            <li>
+              <Link href="/name-generator" className="text-white hover:underline">Random Name Generator</Link>
+            </li>
+            <li>
+              <Link href="/password-generator" className="text-white hover:underline">Random Password Generator</Link>
+            </li>
+            <li>
+              <Link href="/story-generator" className="text-white hover:underline">Random Story Generator</Link>
             </li>
           </ul>
         </div>
