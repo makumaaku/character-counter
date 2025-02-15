@@ -4,12 +4,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Boring Tools - Simple and Useful Tools for Everyone',
-  description: 'A collection of simple and useful tools including character counter, QR code generator, and more to help with your everyday tasks.',
+  description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
   openGraph: {
     type: 'website',
     url: 'https://boring-tool.com/',
     title: 'Boring Tools - Simple and Useful Tools for Everyone',
-    description: 'A collection of simple and useful tools including character counter, QR code generator, and more to help with your everyday tasks.',
+    description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
     images: [
       {
         url: 'https://boring-tool.com/boring_logo.png',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  keywords: 'character counter, qr code generator, tools, utilities, web tools',
+  keywords: 'character counter, qr code generator, name generator, tools, utilities, web tools',
 };
 
 export default function Home() {
@@ -37,6 +37,9 @@ export default function Home() {
             </li>
             <li>
               <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
+            </li>
+            <li>
+              <Link href="/name-generator" className="text-white hover:underline">Random Name Generator</Link>
             </li>
           </ul>
         </div>
