@@ -1,44 +1,60 @@
+import { translate } from '@/lib/i18n/server';
 import { Metadata } from 'next';
 
-export const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "About Us - Character Counter Tool | Our Story & Mission",
-  "description": "Learn about the team behind the Character Counter Tool. Discover our mission to provide simple, efficient, and free text analysis tools for everyone.",
-  "url": "https://boring-tool.com/character-counter/about-us",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com",
-    "description": "We create simple, efficient, and free online tools to help people with their daily tasks.",
-    "foundingDate": "2023",
-    "sameAs": [
-      "https://github.com/boring-inc",
-      "https://twitter.com/boring_tool"
-    ]
-  },
-  "mainEntity": {
-    "@type": "Article",
-    "headline": "About Boring Tool's Character Counter",
-    "description": "Our character counter tool is designed to be simple, efficient, and free for everyone. We focus on providing accurate text analysis with real-time results.",
-    "articleBody": "At Boring Tool, we believe in creating simple yet powerful tools that make everyday tasks easier. Our character counter is built with modern technology to provide instant, accurate results while maintaining user privacy and data security."
-  }
-};
+type Props = {
+  params: { lang: string }
+}
 
-export const metadata: Metadata = {
-  title: 'About Us - Character Counter Tool | Our Story & Mission',
-  description: 'Learn about the team behind the Character Counter Tool. Discover our mission to provide simple, efficient, and free text analysis tools for everyone.',
-  openGraph: {
-    title: 'About Us - Character Counter Tool | Our Story & Mission',
-    description: 'Learn about the team behind the Character Counter Tool. Discover our mission to provide simple, efficient, and free text analysis tools for everyone.',
-    url: 'https://boring-tool.com/character-counter/about-us',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/about-us'
-  },
-  keywords: 'character counter about, text analysis team, boring tool company, online tools developer, text counter mission',
-  other: {
-    'application/ld+json': JSON.stringify(jsonLd)
-  }
-}; 
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": t('characterCounter.aboutUs.meta.title'),
+    "description": t('characterCounter.aboutUs.meta.description'),
+    "url": `https://boring-tool.com/${lang}/character-counter/about-us`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Boring Tool",
+      "url": "https://boring-tool.com",
+      "description": t('characterCounter.aboutUs.meta.publisher.description'),
+      "foundingDate": "2023",
+      "sameAs": [
+        "https://github.com/boring-inc",
+        "https://twitter.com/boring_tool"
+      ]
+    },
+    "mainEntity": {
+      "@type": "Article",
+      "headline": t('characterCounter.aboutUs.meta.article.headline'),
+      "description": t('characterCounter.aboutUs.meta.article.description'),
+      "articleBody": t('characterCounter.aboutUs.meta.article.body')
+    }
+  };
+
+  return {
+    title: t('characterCounter.aboutUs.meta.title'),
+    description: t('characterCounter.aboutUs.meta.description'),
+    openGraph: {
+      title: t('characterCounter.aboutUs.meta.title'),
+      description: t('characterCounter.aboutUs.meta.description'),
+      url: `https://boring-tool.com/${lang}/character-counter/about-us`,
+      type: 'website',
+    },
+    alternates: {
+      canonical: `https://boring-tool.com/${lang}/character-counter/about-us`,
+      languages: {
+        'en': 'https://boring-tool.com/en/character-counter/about-us',
+        'ja': 'https://boring-tool.com/ja/character-counter/about-us',
+      }
+    },
+    keywords: t('characterCounter.aboutUs.meta.keywords'),
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
+} 

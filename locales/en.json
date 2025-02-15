@@ -64,11 +64,70 @@
     },
     "aboutUs": {
       "title": "About Us",
-      "description": "Learn more about our team and mission"
-    },
-    "contact": {
-      "title": "Contact Us",
-      "description": "Get in touch with our support team"
+      "ourStory": {
+        "title": "Our Story",
+        "content": "At Boring Tool, we believe in creating simple yet powerful tools that make everyday tasks easier. Founded in 2023, our mission is to provide free, efficient, and user-friendly online tools that help people work smarter, not harder."
+      },
+      "ourMission": {
+        "title": "Our Mission",
+        "intro": "We are committed to:",
+        "points": {
+          "1": "Creating simple, efficient tools that solve real problems",
+          "2": "Maintaining high standards of privacy and security",
+          "3": "Providing free access to essential features",
+          "4": "Continuously improving based on user feedback"
+        }
+      },
+      "tool": {
+        "title": "Character Counter Tool",
+        "description": "Our character counter tool exemplifies our commitment to simplicity and efficiency. Built with modern technology, it provides instant, accurate results while maintaining user privacy and data security. Key features include:",
+        "features": {
+          "1": "Real-time character counting",
+          "2": "Multi-language support",
+          "3": "Privacy-focused design",
+          "4": "Free access to essential features",
+          "5": "Dark mode support"
+        }
+      },
+      "values": {
+        "title": "Our Values",
+        "simplicity": {
+          "title": "Simplicity",
+          "content": "We believe in creating tools that are intuitive and easy to use, without unnecessary complexity."
+        },
+        "privacy": {
+          "title": "Privacy",
+          "content": "We prioritize user privacy and data security in all our tools and services."
+        },
+        "accessibility": {
+          "title": "Accessibility",
+          "content": "Our tools are designed to be accessible to everyone, regardless of technical expertise."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "content": "We continuously improve our tools based on user feedback and technological advancements."
+        }
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "We value your feedback and suggestions. Feel free to reach out to us at:",
+        "email": "Email",
+        "twitter": "Twitter",
+        "github": "GitHub"
+      },
+      "meta": {
+        "title": "About Us - Character Counter Tool | Our Story & Mission",
+        "description": "Learn about the team behind the Character Counter Tool. Discover our mission to provide simple, efficient, and free text analysis tools for everyone.",
+        "keywords": "character counter about, text analysis team, boring tool company, online tools developer, text counter mission",
+        "publisher": {
+          "description": "We create simple, efficient, and free online tools to help people with their daily tasks."
+        },
+        "article": {
+          "headline": "About Boring Tool's Character Counter",
+          "description": "Our character counter tool is designed to be simple, efficient, and free for everyone. We focus on providing accurate text analysis with real-time results.",
+          "body": "At Boring Tool, we believe in creating simple yet powerful tools that make everyday tasks easier. Our character counter is built with modern technology to provide instant, accurate results while maintaining user privacy and data security."
+        }
+      }
     },
     "privacy": {
       "title": "Privacy Policy",
