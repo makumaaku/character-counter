@@ -6,6 +6,7 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  transpilePackages: ['next-mdx-remote'],
 };
 
 const withMDX = createMDX({
