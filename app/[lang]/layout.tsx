@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "../globals.css";
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +37,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-TTDR9MSV"
@@ -49,9 +46,6 @@ export default async function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <div className="mb-8">
-          <LanguageSwitcher />
-        </div>
         {children}
       </body>
     </html>

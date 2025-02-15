@@ -27,6 +27,60 @@
       "title": "文字数カウンター - ボーリングツール",
       "description": "無料のオンライン文字数カウンターツール。テキストの文字数、単語数、行数を瞬時にカウントします。",
       "keywords": "文字数カウンター, 文字カウント, テキストカウンター, オンラインカウンター"
+    },
+    "title": "文字数カウンター",
+    "description": "テキストの文字数、単語数、行数をカウント",
+    "placeholder": "テキストを入力",
+    "charCount": "文字数",
+    "lineCount": "行数",
+    "wordCount": "単語数",
+    "byteCount": "バイト数",
+    "searchString": "文字列検索",
+    "enterSearchString": "検索する文字列を入力",
+    "occurrences": "出現回数",
+    "searchResultPreview": "検索結果プレビュー",
+    "copyText": "テキストをコピー",
+    "copied": "コピーしました！",
+    "sidebar": {
+      "function": "機能",
+      "usecase": "活用事例",
+      "faq": "よくある質問",
+      "aboutUs": "私たちについて",
+      "contact": "お問い合わせ",
+      "privacy": "プライバシーポリシー",
+      "plan": "料金プラン"
+    },
+    "function": {
+      "title": "機能",
+      "description": "文字数カウンターの全機能をご紹介"
+    },
+    "usecase": {
+      "title": "活用事例",
+      "description": "文字数カウンターの活用方法をご紹介"
+    },
+    "faq": {
+      "title": "よくある質問",
+      "description": "よくある質問への回答"
+    },
+    "aboutUs": {
+      "title": "私たちについて",
+      "description": "チームと使命について"
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "description": "サポートチームへのお問い合わせ"
+    },
+    "privacy": {
+      "title": "プライバシーポリシー",
+      "description": "プライバシーポリシーをご確認ください"
+    },
+    "plan": {
+      "title": "料金プラン",
+      "description": "最適なプランをお選びください"
+    },
+    "column": {
+      "title": "記事一覧",
+      "description": "テキスト分析に関する記事をご紹介"
     }
   },
   "qrGeneration": {
