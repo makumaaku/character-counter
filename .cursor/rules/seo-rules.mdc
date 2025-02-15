@@ -29,76 +29,135 @@ TOP画面のURLは`https://boring-tool.com/`です。
   - `url`: 正規 URL
   - `publisher`: サイト運営者情報
 
-### metadata.ts の実装例
+## メタデータの実装パターン
+
+### 静的なページの場合
+静的なページでは、メタデータとJSON-LDを直接`metadata.ts`内で定義します。
+
 ```typescript
 import { Metadata } from 'next';
 
-// JSON-LD データの定義
-export const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Character Counter - Boring Tool",
-  "description": "A free online character counter tool for writers.",
-  "url": "https://boring-tool.com/character-counter",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  },
-  "featureList": [
-    "Real-time character counting",
-    "Word counting",
-    "Line counting",
-    "Free to use",
-    "No registration required"
-  ],
-  "isAccessibleForFree": true
-};
-
-// メタデータの定義
 export const metadata: Metadata = {
-  title: "Character Counter - Boring Tool",
-  description: "A free online character counter tool for writers.",
+  title: 'Random Name Generator - Boring Tool',
+  description: 'Free online random name generator tool.',
   openGraph: {
-    title: "Character Counter - Boring Tool",
-    description: "A free online character counter tool for writers.",
-    url: "https://boring-tool.com/character-counter",
-    type: "website"
+    title: 'Random Name Generator - Boring Tool',
+    description: 'Free online random name generator tool.',
+    url: 'https://boring-tool.com/word-gen/name-generator',
+    type: 'website',
   },
   alternates: {
-    canonical: "https://boring-tool.com/character-counter"
+    canonical: 'https://boring-tool.com/word-gen/name-generator',
   },
-  keywords: "character counter, word counter, text analysis, writing tool"
+  keywords: 'name generator, random name, character names',
+  // JSON-LDをother.scriptプロパティで定義
+  other: {
+    script: [JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'Random Name Generator - Boring Tool',
+      description: 'Free online random name generator tool.',
+      url: 'https://boring-tool.com/word-gen/name-generator',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Boring Tool',
+        url: 'https://boring-tool.com'
+      },
+      featureList: [
+        'Random name generation',
+        'Free to use',
+        'No registration required'
+      ],
+      isAccessibleForFree: true
+    })]
+  }
 };
 ```
 
-### page.tsx での JSON-LD の実装例
+### 動的なページの場合
+動的なページでは、`generateMetadata`関数を使用してメタデータとJSON-LDを生成します。
+
+```typescript
+// metadata.ts
+import { Metadata } from 'next';
+
+// JSON-LD データの型定義
+type JsonLd = {
+  '@context': 'https://schema.org';
+  '@type': string;
+  name: string;
+  description: string;
+  url: string;
+  // ... 他のJSON-LDプロパティ
+};
+
+// メタデータ生成関数
+export async function generateMetadata(
+  { params, searchParams }: {
+    params: { slug?: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+  }
+): Promise<Metadata> {
+  // 必要なデータをフェッチ
+  const data = await fetchPageData(params.slug);
+
+  // JSON-LD データの生成
+  const jsonLd: JsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: `${data.title} - Boring Tool`,
+    description: data.description,
+    url: `https://boring-tool.com/${data.slug}`,
+    // ... 他のJSON-LDプロパティ
+  };
+
+  return {
+    title: `${data.title} - Boring Tool`,
+    description: data.description,
+    openGraph: {
+      title: `${data.title} - Boring Tool`,
+      description: data.description,
+      url: `https://boring-tool.com/${data.slug}`,
+      type: 'website',
+    },
+    alternates: {
+      canonical: `https://boring-tool.com/${data.slug}`,
+    },
+    keywords: data.keywords,
+    // JSON-LDをother.scriptプロパティで定義
+    other: {
+      script: [JSON.stringify(jsonLd)]
+    }
+  };
+}
+```
+
 ```tsx
-'use client';
-
-import Script from 'next/script';
-import { jsonLdData } from './metadata';
-
-export default function Page() {
+// page.tsx
+export default async function Page({ params, searchParams }) {
+  // generateMetadataで生成されたメタデータとJSON-LDが自動的に適用されます
   return (
-    <>
-      <Script
-        id="page-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
+    <div>
       {/* Page content */}
-    </>
+    </div>
   );
 }
 ```
 
+この実装パターンの利点：
+- メタデータとJSON-LDを同じ場所で一元管理できる
+- 動的なデータに基づいてメタデータを生成できる
+- ページコンポーネントでの追加のスクリプト実装が不要
+- サーバーサイドでメタデータが生成されるため、SEOに最適
+
 ## h1タグについて
+共通の [Header.tsx](mdc:src/components/Header.tsx) に配置しています。
+page.tsxのタイトルはh2タグで実装してください。
 
