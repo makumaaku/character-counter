@@ -1,5 +1,10 @@
 import { Metadata } from 'next'
 import Script from 'next/script'
+import { translate } from '@/lib/i18n/server'
+
+type Props = {
+  params: Promise<{ lang: string }>
+}
 
 export const metadata: Metadata = {
   title: 'Contact Us - Character Counter Tool | Support & Inquiries',
@@ -16,86 +21,100 @@ export const metadata: Metadata = {
   }
 }
 
-export default function ContactPage() {
+export default async function ContactPage(props: Props) {
+  const params = await props.params;
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": t('characterCounter.contact.meta.jsonLd.name'),
+    "description": t('characterCounter.contact.meta.jsonLd.description'),
+    "url": `https://boring-tool.com/${lang}/character-counter/contact`,
+    "mainEntity": {
+      "@type": "Organization",
+      "name": t('characterCounter.contact.meta.jsonLd.organization.name'),
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "",
+        "contactType": "customer support",
+        "email": t('characterCounter.contact.meta.jsonLd.organization.email'),
+        "availableLanguage": t('characterCounter.contact.meta.jsonLd.organization.availableLanguage'),
+        "hoursAvailable": t('characterCounter.contact.meta.jsonLd.organization.hoursAvailable')
+      }
+    }
+  };
+
   return (
     <>
       <Script
         id="contact-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ContactPage",
-            "name": "Contact Character Counter Support",
-            "description": "Contact page for Character Counter Tool support and inquiries",
-            "url": "https://boring-tool.com/character-counter/contact",
-            "mainEntity": {
-              "@type": "Organization",
-              "name": "Character Counter Tool",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "",
-                "contactType": "customer support",
-                "email": "support@character-counter.com",
-                "availableLanguage": ["English"],
-                "hoursAvailable": "Mo-Fr 09:00-18:00"
-              }
-            }
-          })
+          __html: JSON.stringify(jsonLdData)
         }}
       />
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">
-          <h1 className="text-2xl font-bold mb-8">Contact Us</h1>
+          <h1 className="text-2xl font-bold mb-8">{t('characterCounter.contact.title')}</h1>
 
           <div className="bg-gray-700 rounded-lg p-6">
             <p className="text-gray-300 mb-8">
-              We value your feedback and are here to help with any questions or concerns you may have about our character counter tool.
+              {t('characterCounter.contact.description')}
             </p>
 
             <form className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  {t('characterCounter.contact.form.name.label')}
+                </label>
                 <input
                   type="text"
                   id="name"
                   className="w-full px-4 py-2 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Your name"
+                  placeholder={t('characterCounter.contact.form.name.placeholder')}
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  {t('characterCounter.contact.form.email.label')}
+                </label>
                 <input
                   type="email"
                   id="email"
                   className="w-full px-4 py-2 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="your.email@example.com"
+                  placeholder={t('characterCounter.contact.form.email.placeholder')}
                 />
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
+                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  {t('characterCounter.contact.form.subject.label')}
+                </label>
                 <select
                   id="subject"
                   className="w-full px-4 py-2 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
-                  <option value="">Select a subject</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="billing">Billing Question</option>
-                  <option value="feature">Feature Request</option>
-                  <option value="other">Other</option>
+                  <option value="">{t('characterCounter.contact.form.subject.placeholder')}</option>
+                  <option value="general">{t('characterCounter.contact.form.subject.options.general')}</option>
+                  <option value="technical">{t('characterCounter.contact.form.subject.options.technical')}</option>
+                  <option value="billing">{t('characterCounter.contact.form.subject.options.billing')}</option>
+                  <option value="feature">{t('characterCounter.contact.form.subject.options.feature')}</option>
+                  <option value="other">{t('characterCounter.contact.form.subject.options.other')}</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  {t('characterCounter.contact.form.message.label')}
+                </label>
                 <textarea
                   id="message"
                   rows={6}
                   className="w-full px-4 py-2 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Please describe your question or concern"
+                  placeholder={t('characterCounter.contact.form.message.placeholder')}
                 ></textarea>
               </div>
 
@@ -103,21 +122,21 @@ export default function ContactPage() {
                 type="submit"
                 className="w-full px-6 py-3 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors"
               >
-                Send Message
+                {t('characterCounter.contact.form.submit')}
               </button>
             </form>
 
             <div className="mt-8 pt-8 border-t border-gray-600">
-              <h2 className="text-xl font-bold mb-4">Other Ways to Reach Us</h2>
+              <h2 className="text-xl font-bold mb-4">{t('characterCounter.contact.otherWays.title')}</h2>
               <div className="space-y-4 text-gray-300">
                 <p>
-                  <span className="font-semibold">Email:</span> support@character-counter.com
+                  <span className="font-semibold">{t('characterCounter.contact.otherWays.email')}:</span> support@character-counter.com
                 </p>
                 <p>
-                  <span className="font-semibold">Business Hours:</span> Monday - Friday, 9:00 AM - 6:00 PM (GMT)
+                  <span className="font-semibold">{t('characterCounter.contact.otherWays.businessHours')}:</span> {t('characterCounter.contact.otherWays.businessHoursValue')}
                 </p>
                 <p>
-                  We typically respond to all inquiries within 24 business hours.
+                  {t('characterCounter.contact.otherWays.responseTime')}
                 </p>
               </div>
             </div>

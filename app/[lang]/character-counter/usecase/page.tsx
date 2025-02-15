@@ -1,89 +1,99 @@
-export default function UseCasePage() {
+import { translate } from '@/lib/i18n/server';
+
+type Props = {
+  params: Promise<{ lang: string }>
+}
+
+export default async function UseCasePage(props: Props) {
+  const params = await props.params;
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
   return (
     <>
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">
-          <h1 className="text-2xl font-bold mb-8">Use Cases</h1>
+          <h1 className="text-2xl font-bold mb-8">{t('characterCounter.usecase.title')}</h1>
           
           <div className="bg-gray-700 rounded-lg p-6 mb-8">
-            <h2 className="text-xl font-bold mb-6">How People Use Our Character Counter</h2>
-            <p className="text-gray-300 mb-8">Our character counter tool is utilized in various scenarios. Here are some specific examples!</p>
+            <h2 className="text-xl font-bold mb-6">{t('characterCounter.usecase.subtitle')}</h2>
+            <p className="text-gray-300 mb-8">{t('characterCounter.usecase.description')}</p>
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-bold mb-4">1. Writing and Blog Posting</h3>
+                <h3 className="text-lg font-bold mb-4">{t('characterCounter.usecase.cases.writing.title')}</h3>
                 <div className="space-y-4 pl-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Efficient Article Creation</h4>
-                    <p className="text-gray-300">When creating blog posts or newsletters, you can monitor character count in real-time to ensure you stay within specified limits. This enables article creation that meets deadlines and posting guidelines.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.writing.efficientArticle.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.writing.efficientArticle.description')}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-2">Structure Optimization</h4>
-                    <p className="text-gray-300">Used for balancing paragraph lengths for readability and SEO purposes. Helps create appropriate heading and body text lengths while maintaining awareness of overall content volume.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.writing.structure.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.writing.structure.description')}</p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4">2. Social Media and Ad Copy Creation</h3>
+                <h3 className="text-lg font-bold mb-4">{t('characterCounter.usecase.cases.social.title')}</h3>
                 <div className="space-y-4 pl-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Character Limit Compliance</h4>
-                    <p className="text-gray-300">Social media platforms like Twitter and Facebook have character limits for posts. You can verify if your text meets these requirements before posting, avoiding the risk of important messages being cut off.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.social.limits.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.social.limits.description')}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-2">Effective Ad Copy Creation</h4>
-                    <p className="text-gray-300">Ad copy and promotional messages require simple yet impactful expressions. Using the character counter makes it easier to adjust messages for maximum impact within limited character spaces.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.social.adCopy.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.social.adCopy.description')}</p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4">3. SEO Optimization</h3>
+                <h3 className="text-lg font-bold mb-4">{t('characterCounter.usecase.cases.seo.title')}</h3>
                 <div className="space-y-4 pl-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Maintaining Optimal Content Volume</h4>
-                    <p className="text-gray-300">The character counter helps adjust article volume and keyword placement for SEO purposes. Maintaining recommended character counts helps improve overall article quality for search engines.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.seo.content.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.seo.content.description')}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-2">Structured Content Creation</h4>
-                    <p className="text-gray-300">To aim for high search result rankings, it&apos;s important to manage heading and body text lengths appropriately and create readable structures. Using the app to track section lengths helps achieve effective internal structure.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.seo.structure.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.seo.structure.description')}</p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4">4. Copywriting and Marketing Strategy</h3>
+                <h3 className="text-lg font-bold mb-4">{t('characterCounter.usecase.cases.marketing.title')}</h3>
                 <div className="space-y-4 pl-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Brand Message Optimization</h4>
-                    <p className="text-gray-300">In advertising campaigns and promotional activities, catchphrase length is crucial. The character counter allows precise adjustments to create impactful copy even with limited characters.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.marketing.brand.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.marketing.brand.description')}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-2">Document and Presentation Preparation</h4>
-                    <p className="text-gray-300">When creating marketing materials or presentations that need concise information, the character counter helps eliminate excess information and create documents with clear key points.</p>
+                    <h4 className="font-semibold mb-2">{t('characterCounter.usecase.cases.marketing.documents.title')}</h4>
+                    <p className="text-gray-300">{t('characterCounter.usecase.cases.marketing.documents.description')}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <p className="text-gray-300 mt-8">Through these use cases, our character counter tool contributes to improving efficiency in various fields including writing, social media posting, SEO optimization, and marketing. By adapting usage to each scenario, you can achieve more effective information communication.</p>
+            <p className="text-gray-300 mt-8">{t('characterCounter.usecase.conclusion')}</p>
           </div>
 
           <div className="bg-gray-700 rounded-lg p-6">
-            <h2 className="text-xl font-bold mb-6">User Testimonials</h2>
+            <h2 className="text-xl font-bold mb-6">{t('characterCounter.usecase.testimonials.title')}</h2>
             <div className="space-y-6">
               <div>
-                <h3 className="font-semibold mb-2">Mr. Tanaka, Writer</h3>
-                <p className="text-gray-300 pl-4">&ldquo;This character counting tool is simple yet powerful and has dramatically improved my work efficiency. I especially appreciate that it can count words in English text.&rdquo;</p>
+                <h3 className="font-semibold mb-2">{t('characterCounter.usecase.testimonials.users.1.name')}</h3>
+                <p className="text-gray-300 pl-4">&ldquo;{t('characterCounter.usecase.testimonials.users.1.quote')}&rdquo;</p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Mr. Kawaguchi, Social Media Manager</h3>
-                <p className="text-gray-300 pl-4">&ldquo;The real-time counting feature is incredibly convenient. It&apos;s invaluable for checking character counts while revising article content and verifying text for social media posts with character limits!&rdquo;</p>
+                <h3 className="font-semibold mb-2">{t('characterCounter.usecase.testimonials.users.2.name')}</h3>
+                <p className="text-gray-300 pl-4">&ldquo;{t('characterCounter.usecase.testimonials.users.2.quote')}&rdquo;</p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Mr. Yamamoto, Web Marketer</h3>
-                <p className="text-gray-300 pl-4">&ldquo;The feature to see how many times a specified string appears is very useful, and I use it regularly! I use it to check the frequency of SEO keywords on competitor pages.&rdquo;</p>
+                <h3 className="font-semibold mb-2">{t('characterCounter.usecase.testimonials.users.3.name')}</h3>
+                <p className="text-gray-300 pl-4">&ldquo;{t('characterCounter.usecase.testimonials.users.3.quote')}&rdquo;</p>
               </div>
             </div>
           </div>

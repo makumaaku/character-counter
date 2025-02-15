@@ -116,7 +116,82 @@
     },
     "usecase": {
       "title": "Use Cases",
-      "description": "Learn how others are using our character counter"
+      "subtitle": "How People Use Our Character Counter",
+      "description": "Our character counter tool is utilized in various scenarios. Here are some specific examples!",
+      "cases": {
+        "writing": {
+          "title": "1. Writing and Blog Posting",
+          "efficientArticle": {
+            "title": "Efficient Article Creation",
+            "description": "When creating blog posts or newsletters, you can monitor character count in real-time to ensure you stay within specified limits. This enables article creation that meets deadlines and posting guidelines."
+          },
+          "structure": {
+            "title": "Structure Optimization",
+            "description": "Used for balancing paragraph lengths for readability and SEO purposes. Helps create appropriate heading and body text lengths while maintaining awareness of overall content volume."
+          }
+        },
+        "social": {
+          "title": "2. Social Media and Ad Copy Creation",
+          "limits": {
+            "title": "Character Limit Compliance",
+            "description": "Social media platforms like Twitter and Facebook have character limits for posts. You can verify if your text meets these requirements before posting, avoiding the risk of important messages being cut off."
+          },
+          "adCopy": {
+            "title": "Effective Ad Copy Creation",
+            "description": "Ad copy and promotional messages require simple yet impactful expressions. Using the character counter makes it easier to adjust messages for maximum impact within limited character spaces."
+          }
+        },
+        "seo": {
+          "title": "3. SEO Optimization",
+          "content": {
+            "title": "Maintaining Optimal Content Volume",
+            "description": "The character counter helps adjust article volume and keyword placement for SEO purposes. Maintaining recommended character counts helps improve overall article quality for search engines."
+          },
+          "structure": {
+            "title": "Structured Content Creation",
+            "description": "To aim for high search result rankings, it's important to manage heading and body text lengths appropriately and create readable structures. Using the app to track section lengths helps achieve effective internal structure."
+          }
+        },
+        "marketing": {
+          "title": "4. Copywriting and Marketing Strategy",
+          "brand": {
+            "title": "Brand Message Optimization",
+            "description": "In advertising campaigns and promotional activities, catchphrase length is crucial. The character counter allows precise adjustments to create impactful copy even with limited characters."
+          },
+          "documents": {
+            "title": "Document and Presentation Preparation",
+            "description": "When creating marketing materials or presentations that need concise information, the character counter helps eliminate excess information and create documents with clear key points."
+          }
+        }
+      },
+      "conclusion": "Through these use cases, our character counter tool contributes to improving efficiency in various fields including writing, social media posting, SEO optimization, and marketing. By adapting usage to each scenario, you can achieve more effective information communication.",
+      "testimonials": {
+        "title": "User Testimonials",
+        "users": {
+          "1": {
+            "name": "Mr. Tanaka, Writer",
+            "quote": "This character counting tool is simple yet powerful and has dramatically improved my work efficiency. I especially appreciate that it can count words in English text."
+          },
+          "2": {
+            "name": "Mr. Kawaguchi, Social Media Manager",
+            "quote": "The real-time counting feature is incredibly convenient. It's invaluable for checking character counts while revising article content and verifying text for social media posts with character limits!"
+          },
+          "3": {
+            "name": "Mr. Yamamoto, Web Marketer",
+            "quote": "The feature to see how many times a specified string appears is very useful, and I use it regularly! I use it to check the frequency of SEO keywords on competitor pages."
+          }
+        }
+      },
+      "meta": {
+        "title": "Use Cases - Character Counter Tool | Real-World Applications",
+        "description": "Discover how our character counter tool is used in various scenarios, from content writing to social media management and SEO optimization.",
+        "keywords": "character counter examples, text counter usage, word count applications, content writing tool, SEO optimization",
+        "article": {
+          "headline": "Character Counter Tool Use Cases",
+          "description": "Learn how professionals use our character counter tool for content creation, social media, SEO, and marketing.",
+          "body": "Our character counter tool is used by professionals across various fields to improve their content creation workflow and ensure effective communication."
+        }
+      }
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -344,6 +419,58 @@
     "column": {
       "title": "Articles",
       "description": "Read our latest articles about text analysis"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "We value your feedback and are here to help with any questions or concerns you may have about our character counter tool.",
+      "form": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "your.email@example.com"
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "Select a subject",
+          "options": {
+            "general": "General Inquiry",
+            "technical": "Technical Support",
+            "billing": "Billing Question",
+            "feature": "Feature Request",
+            "other": "Other"
+          }
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Please describe your question or concern"
+        },
+        "submit": "Send Message"
+      },
+      "otherWays": {
+        "title": "Other Ways to Reach Us",
+        "email": "Email",
+        "businessHours": "Business Hours",
+        "businessHoursValue": "Monday - Friday, 9:00 AM - 6:00 PM (GMT)",
+        "responseTime": "We typically respond to all inquiries within 24 business hours."
+      },
+      "meta": {
+        "title": "Contact Us - Character Counter Tool | Support & Inquiries",
+        "description": "Get in touch with our support team for any questions about our character counter tool. We are here to help with your text analysis needs.",
+        "keywords": "character counter contact, text counter support, word count help, contact form, customer service",
+        "jsonLd": {
+          "name": "Contact Character Counter Support",
+          "description": "Contact page for Character Counter Tool support and inquiries",
+          "organization": {
+            "name": "Character Counter Tool",
+            "email": "support@character-counter.com",
+            "availableLanguage": ["English", "Japanese"],
+            "hoursAvailable": "Mo-Fr 09:00-18:00"
+          }
+        }
+      }
     }
   },
   "qrGeneration": {
