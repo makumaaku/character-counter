@@ -1,158 +1,102 @@
-import { Metadata } from 'next'
-import Script from 'next/script'
+'use client';
 
-export const metadata: Metadata = {
-  title: 'FAQ - Character Counter Tool | Common Questions & Answers',
-  description: 'Find answers to frequently asked questions about our character counter tool. Learn about features, usage, and troubleshooting tips.',
-  keywords: 'character counter FAQ, text counter help, word count questions, character count support, text analysis FAQ',
-  openGraph: {
-    title: 'FAQ - Character Counter Tool | Common Questions & Answers',
-    description: 'Find answers to frequently asked questions about our character counter tool. Learn about features, usage, and troubleshooting tips.',
-    url: 'https://boring-tool.com/character-counter/faq',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/faq'
-  }
-}
+import Script from 'next/script';
+import { jsonLdData } from './metadata';
 
-export default function FaqPage() {
+export default function FAQPage() {
   return (
     <>
       <Script
-        id="faq-jsonld"
+        id="character-counter-faq-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is a character counter app?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "A character counter app is a tool that instantly calculates and displays the exact number of characters in entered text. This prevents manual counting errors and enables efficient text creation and editing."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "In what scenarios can it be used?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Main usage scenarios include: Writing & Blog Posting (maintaining character count guidelines), Social Media Posts (verifying optimal length for platforms with character limits), and SEO Optimization (managing article volume and structure)."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How are full-width and half-width characters counted?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Both full-width and half-width characters are properly recognized and counted accurately. The app can also count special symbols and line breaks."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is it compatible with multiple languages?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, our character counter app supports multiple languages including English and other languages. It is designed for international use, accurately handling characters and symbols specific to each language."
-                }
-              }
-            ]
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">
-          <h1 className="text-2xl font-bold mb-8">FAQ</h1>
+          <h1 className="text-2xl font-bold mb-8">Frequently Asked Questions</h1>
 
           <div className="bg-gray-700 rounded-lg p-6 space-y-8">
             <div>
-              <h2 className="text-xl font-bold mb-2">Q1. What is a character counter app?</h2>
-              <p className="text-gray-300">
-                A character counter app is a tool that instantly calculates and displays the exact number of characters in entered text. 
-                This prevents manual counting errors and enables efficient text creation and editing.
-              </p>
+              <h2 className="text-xl font-bold mb-4">General Questions</h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q1. What is a character counting app?</h3>
+                  <p className="text-gray-300 pl-4">
+                    A: A character counting app is a tool that instantly calculates the number of characters in entered text and displays accurate results. This prevents manual counting errors and enables efficient text creation and editing.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q2. What scenarios can it be used in?</h3>
+                  <p className="text-gray-300 pl-4">A: Main usage scenarios are:</p>
+                  <ul className="list-disc pl-10 text-gray-300">
+                    <li>Writing/blog posting</li>
+                    <li>SNS posting</li>
+                    <li>SEO optimization</li>
+                    <li>Ad copy creation</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold mb-2">Q2. In what scenarios can it be used?</h2>
-              <p className="text-gray-300">A: Main usage scenarios include:</p>
-              <ul className="list-disc pl-6 mt-2 text-gray-300">
-                <li>
-                  <span className="font-semibold">Writing & Blog Posting:</span> Used to maintain specified character count guidelines when creating articles.
-                </li>
-                <li>
-                  <span className="font-semibold">Social Media Posts:</span> Verify optimal length for platforms with character limits like Twitter and advertising copy.
-                </li>
-                <li>
-                  <span className="font-semibold">SEO Optimization:</span> Manage article volume and structure to optimize for search engines.
-                </li>
-              </ul>
+              <h2 className="text-xl font-bold mb-4">Technical Questions</h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q3. How are full-width and half-width characters counted?</h3>
+                  <p className="text-gray-300 pl-4">
+                    A: Both full-width and half-width characters are properly recognized and counted accurately. Special symbols and line breaks are also counted.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q4. Is it compatible with multiple languages?</h3>
+                  <p className="text-gray-300 pl-4">
+                    A: Yes, the app supports multiple languages including Japanese and English, with proper handling of characters and symbols for each language.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold mb-2">Q3. How are full-width and half-width characters counted?</h2>
-              <p className="text-gray-300">
-                While specifications may vary by app, generally, both full-width and half-width characters are properly recognized and counted accurately. 
-                Many apps can also count special symbols and line breaks. We recommend checking the specifications before use.
-              </p>
+              <h2 className="text-xl font-bold mb-4">Features & Usage</h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q5. What features are included?</h3>
+                  <p className="text-gray-300 pl-4">A: Our character counter includes:</p>
+                  <ul className="list-disc pl-10 text-gray-300">
+                    <li>Real-time character counting</li>
+                    <li>Line counting</li>
+                    <li>Word counting</li>
+                    <li>Byte counting</li>
+                    <li>String search functionality</li>
+                    <li>Dark mode support</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q6. Is registration required?</h3>
+                  <p className="text-gray-300 pl-4">
+                    A: No, our basic features are available without registration. However, some premium features may require a user account.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold mb-2">Q4. Is it compatible with multiple languages?</h2>
-              <p className="text-gray-300">
-                Many character counter apps support not only English but also other languages. They are designed for international use, 
-                accurately handling characters and symbols specific to each language.
-              </p>
+              <h2 className="text-xl font-bold mb-4">Privacy & Security</h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q7. Is my text data secure?</h3>
+                  <p className="text-gray-300 pl-4">
+                    A: Yes, all text processing is done locally in your browser. We do not store or transmit your text data to any servers.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Q8. Do you collect any user data?</h3>
+                  <p className="text-gray-300 pl-4">
+                    A: We only collect anonymous usage statistics to improve our service. No personal data or text content is collected.
+                  </p>
+                </div>
+              </div>
             </div>
-
-            <div>
-              <h2 className="text-xl font-bold mb-2">Q5. What&apos;s the difference between free and premium versions?</h2>
-              <p className="text-gray-300">While it varies by app, typical differences include:</p>
-              <ul className="list-disc pl-6 mt-2 text-gray-300">
-                <li>
-                  <span className="font-semibold">Free Version:</span> Basic character counting features available. Often limited to simple functions.
-                </li>
-                <li>
-                  <span className="font-semibold">Premium Version:</span> Additional features typically include advanced statistics (word count, line count, space and symbol counting), 
-                  customization options, tool integration capabilities, and ad-free experience.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-bold mb-2">Q6. Is integration with other tools possible?</h2>
-              <p className="text-gray-300">
-                Some character counter apps include integration features with editors and CMS, further improving work efficiency. 
-                Please check the official website or help pages for detailed integration methods and compatible tools.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-bold mb-2">Q7. How about support and updates?</h2>
-              <p className="text-gray-300">
-                Contact forms and chat support are available on the official website or in-app support pages for questions beyond the FAQ. 
-                Regular updates for feature improvements and security measures ensure a reliable usage environment.
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-bold mb-2">Q8. What precautions should I take when using the app?</h2>
-              <p className="text-gray-300">Please check the following points before use:</p>
-              <ul className="list-disc pl-6 mt-2 text-gray-300">
-                <li>Character counting rules (handling of full-width and half-width characters)</li>
-                <li>Supported languages and symbols</li>
-                <li>Feature differences and pricing between free and premium versions</li>
-                <li>Privacy policy and data handling</li>
-              </ul>
-            </div>
-
-            <p className="text-gray-300 mt-8">
-              In addition to the above FAQ, we welcome questions and feedback from users at any time. 
-              If you have any questions, please feel free to contact our support desk.
-            </p>
           </div>
         </div>
       </div>

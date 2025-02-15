@@ -1,59 +1,16 @@
-import { Metadata } from 'next'
-import Script from 'next/script'
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Plans & Pricing - Character Counter Tool | Free & Premium Features',
-  description: 'Explore our character counter tool plans. From free basic features to premium capabilities, find the perfect plan for your text analysis needs.',
-  keywords: 'character counter plans, text counter pricing, word count tool premium, character count subscription, free text counter',
-  openGraph: {
-    title: 'Plans & Pricing - Character Counter Tool | Free & Premium Features',
-    description: 'Explore our character counter tool plans. From free basic features to premium capabilities, find the perfect plan for your text analysis needs.',
-    url: 'https://boring-tool.com/character-counter/plan',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/plan'
-  }
-}
+import Script from 'next/script'
+import { jsonLdData } from './metadata'
+
 
 export default function PlanPage() {
   return (
     <>
       <Script
-        id="plan-jsonld"
+        id="character-counter-plan-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": "Character Counter Tool",
-            "description": "Professional text analysis tool with character, word, and line counting capabilities",
-            "url": "https://boring-tool.com/character-counter",
-            "offers": [
-              {
-                "@type": "Offer",
-                "name": "Free Plan",
-                "price": "0",
-                "priceCurrency": "USD",
-                "description": "Basic features including character count, line count, word count, and string search"
-              },
-              {
-                "@type": "Offer",
-                "name": "Monthly Premium Plan",
-                "price": "4.80",
-                "priceCurrency": "USD",
-                "description": "All features including ad-free experience, exports, and API access"
-              },
-              {
-                "@type": "Offer",
-                "name": "Annual Premium Plan",
-                "price": "39.80",
-                "priceCurrency": "USD",
-                "description": "All premium features at a discounted annual rate"
-              }
-            ]
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">

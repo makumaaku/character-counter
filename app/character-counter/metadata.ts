@@ -27,7 +27,9 @@ export const jsonLdData = {
     "Copy to clipboard",
     "Dark mode support",
     "Free to use",
-    "No registration required"
+    "No registration required",
+    "Multi-language support",
+    "Full-width and half-width character support"
   ],
   "isAccessibleForFree": true,
   "browserRequirements": "Requires a modern web browser with JavaScript enabled"
@@ -45,5 +47,5 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://boring-tool.com/character-counter'
   },
-  keywords: 'character counter, word counter, line counter, text analysis, SNS tool, writing tool, byte counter'
+  keywords: 'character counter, word counter, line counter, text analysis, SNS tool, writing tool, byte counter, text editor, online tool'
 }; 

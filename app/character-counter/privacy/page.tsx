@@ -1,43 +1,15 @@
-import { Metadata } from 'next'
-import Script from 'next/script'
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy - Character Counter Tool | Data Protection',
-  description: 'Read our privacy policy to understand how we protect your data when using our character counter tool. Learn about our commitment to user privacy and data security.',
-  keywords: 'character counter privacy, text counter security, word count tool privacy policy, data protection, user privacy',
-  openGraph: {
-    title: 'Privacy Policy - Character Counter Tool | Data Protection',
-    description: 'Read our privacy policy to understand how we protect your data when using our character counter tool. Learn about our commitment to user privacy and data security.',
-    url: 'https://boring-tool.com/character-counter/privacy',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/privacy'
-  }
-}
+import Script from 'next/script'
+import { jsonLdData } from './metadata'
 
 export default function PrivacyPage() {
   return (
     <>
       <Script
-        id="privacy-jsonld"
+        id="character-counter-privacy-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Privacy Policy - Character Counter Tool",
-            "description": "Privacy policy and data protection information for the Character Counter Tool.",
-            "url": "https://boring-tool.com/character-counter/privacy",
-            "mainEntity": {
-              "@type": "WebContent",
-              "about": {
-                "@type": "Thing",
-                "name": "Privacy Policy"
-              }
-            }
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">
