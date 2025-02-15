@@ -12,65 +12,72 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 
 ## 1. ディレクトリ構成
 - **app/**: Next.js アプリケーションのコードを管理するディレクトリ。
-  - 各サービスはサブディレクトリ（例: `character-counter`, `qr-code-generator`）として構成する。  
+  - 各サービスはサブディレクトリ（例: `character-counter`, `word-gen`, `qr-generation`）として構成する。  
     → サービスの追加は横展開が容易で、同一の仕組みを利用して高速に展開できる。
-- **packages/ui/**: 複数ツール間で再利用する共通の UI コンポーネント（例: `Button`, `Header`, `Footer`）を配置する。
-- その他、`packages/common/` など、共通パッケージ群により一貫した設定と処理を提供する。
+- **packages/**: 複数ツール間で共有する共通パッケージ群
+  - **ui/**: 複数ツール間で再利用する共通の UI コンポーネント
+  - **common/**: 共通のユーティリティや設定
+  - **eslint-config-custom/**: カスタムESLint設定
+  - **tailwindconfig/**: 共通のTailwind CSS設定
+  - **tsconfig/**: 共通のTypeScript設定
+
 具体的な構成は以下。
 ```
 boring-tool/                          // モノレポのルートディレクトリ
 ├─ app/                               // Next.js アプリ（App Router を採用）
 │  ├─ layout.tsx                      // グローバルレイアウト（ヘッダー・フッターなど共通UI）
 │  ├─ page.tsx                        // トップページ（ホームページ）
-│  ├─ columns/                        // ホームページ専用の共通コラム（必要に応じて）
-│  │   └─ [slug].mdx                  // マークダウン／MDX 形式の記事
+│  ├─ globals.css                     // グローバルスタイル
+│  ├─ mdx-components.tsx              // MDXコンポーネント設定
 │  ├─ character-counter/              // 「文字数カウンター」ツール用ルート
 │  │   ├─ page.tsx                    // 文字数カウンターのメイン画面
-│  │   ├─ components/                 // このツール専用の UI コンポーネント群
-│  │   │   ├─ CounterInput.tsx       
-│  │   │   └─ CounterDisplay.tsx
-│  │   └─ columns/                    // 文字数カウンター専用のコラム記事
-│  │       └─ [slug].mdx
-│  └─ qr-code-generator/              // 「QRコード生成」ツール用ルート
-│      ├─ page.tsx                    // QRコード生成のメイン画面
-│      ├─ components/                 // このツール専用の UI コンポーネント群
-│      │   ├─ QRCodeForm.tsx
-│      │   └─ QRCodeDisplay.tsx
-│      └─ columns/                    // QRコード生成専用のコラム記事
-│          └─ [slug].mdx
+│  │   ├─ layout.tsx                  // ツール固有のレイアウト
+│  │   ├─ column/                     // 文字数カウンター専用のコラム記事
+│  │   │   ├─ page.tsx               // コラム一覧ページ
+│  │   │   ├─ metadata.ts            // コラムのメタデータ
+│  │   │   └─ [slug]/                // 個別コラムページ
+│  │   │       ├─ page.tsx
+│  │   │       └─ metadata.ts
+│  ├─ word-gen/                       // 「ワード生成」ツール用ルート
+│  └─ qr-generation/                  // 「QRコード生成」ツール用ルート
 ├─ packages/                          // 複数ツール間で共有する共通パッケージ群
 │  ├─ ui/                             // 各ツールで再利用する共通 UI コンポーネント
-│  │   ├─ Button.tsx
-│  │   ├─ Header.tsx
-│  │   └─ Footer.tsx
-│  ├─ common/                         // Firebase Auth や Stripe などの共通処理・フック
-│  │   ├─ firebaseAuth.ts
-│  │   └─ stripe.ts
-├─ package.json                       // ワークスペース設定など（Yarn Workspaces 等）
-├─ tsconfig.json                      // ルートの TypeScript 設定（各パッケージを含む設定）
-├─ tailwind.config.ts                 // tailwindCSSの設定など
-└─ turbo.json                         // Turborepo の設定（ビルド高速化用）
+│  ├─ common/                         // 共通のユーティリティや設定
+│  ├─ eslint-config-custom/          // カスタムESLint設定
+│  ├─ tailwindconfig/                 // 共通のTailwind CSS設定
+│  └─ tsconfig/                       // 共通のTypeScript設定
+├─ public/                            // 静的ファイル（画像、アイコンなど）
+├─ package.json                       // プロジェクト設定
+├─ tsconfig.json                      // TypeScript設定
+├─ tailwind.config.ts                 // Tailwind CSS設定
+├─ next.config.mjs                    // Next.js設定
+├─ next-sitemap.config.cjs           // サイトマップ生成設定
+└─ postcss.config.mjs                // PostCSS設定
 ```
 
 ## 2. 命名規則
 - React コンポーネント名は **PascalCase** を使用する。
 - ファイル名およびディレクトリ名は **kebab-case** を使用する。
-
-
+- メタデータファイルは `metadata.ts` として統一する。
 
 ## 3. コーディングスタイルと品質管理
 - 全コードは TypeScript を使用し、厳格な型チェックを実施する。
 - ESLint（packages/eslint-config-custom）のルールに従い、Prettier を利用してコードフォーマットを統一する。
 - 適切なコメントとドキュメントを追加し、コードの意図を明確にする。
-- AI でのコード生成 を意識して、命名規則やディレクトリ構成を一貫させることで、生成されるコードが自動化ツールや他サービスへの横展開に容易に適応できるようにする。
+- AI でのコード生成を意識して、命名規則やディレクトリ構成を一貫させることで、生成されるコードが自動化ツールや他サービスへの横展開に容易に適応できるようにする。
 
+## 4. SEOとパフォーマンス
+- 各ツールおよびコラムページには適切なメタデータを設定する。
+- サイトマップを自動生成し、SEO対策を行う。
+- 画像最適化やコード分割など、パフォーマンス最適化を実施する。
 
-## 4. テスト
-- ユニットテストは Jest および React Testing Library を使用して実装する。
-- 主要なコンポーネントおよびビジネスロジックには、必ずテストコードを追加する。
+## 5. コンテンツ管理
+- コラム記事は各ツールのサブディレクトリ内で管理する。
+- MDXを使用してコンテンツを作成し、必要に応じてカスタムコンポーネントを組み込む。
 
-## 5. その他共通
+## 6. その他共通
 - コンテンツは必ず英語で記述する。
+- 共通のコンポーネントやユーティリティは packages ディレクトリで管理し、再利用を促進する。
 
 
 
