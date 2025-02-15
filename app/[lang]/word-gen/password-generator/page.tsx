@@ -5,39 +5,42 @@ const FEATURES_COUNT = 4
 const HOWTO_STEPS_COUNT = 4
 const SECURITY_TIPS_COUNT = 4
 
-export default async function PasswordGeneratorPage({ params }: { params: { lang: string } }) {
+export default async function PasswordGeneratorPage({ params }: { params: Promise<{ lang: string }> }) {
+  const pram = await params;
+  const lang = pram.lang;
+
   const translations = {
-    title: translate(params.lang, 'passwordGenerator.meta.title'),
-    generatedPassword: translate(params.lang, 'passwordGenerator.generatedPassword'),
-    copyButton: translate(params.lang, 'passwordGenerator.copyButton'),
-    copied: translate(params.lang, 'passwordGenerator.copied'),
-    passwordLength: translate(params.lang, 'passwordGenerator.passwordLength'),
+    title: translate(lang, 'passwordGenerator.meta.title'),
+    generatedPassword: translate(lang, 'passwordGenerator.generatedPassword'),
+    copyButton: translate(lang, 'passwordGenerator.copyButton'),
+    copied: translate(lang, 'passwordGenerator.copied'),
+    passwordLength: translate(lang, 'passwordGenerator.passwordLength'),
     characterTypes: {
-      uppercase: translate(params.lang, 'passwordGenerator.characterTypes.uppercase'),
-      lowercase: translate(params.lang, 'passwordGenerator.characterTypes.lowercase'),
-      numbers: translate(params.lang, 'passwordGenerator.characterTypes.numbers'),
-      symbols: translate(params.lang, 'passwordGenerator.characterTypes.symbols'),
+      uppercase: translate(lang, 'passwordGenerator.characterTypes.uppercase'),
+      lowercase: translate(lang, 'passwordGenerator.characterTypes.lowercase'),
+      numbers: translate(lang, 'passwordGenerator.characterTypes.numbers'),
+      symbols: translate(lang, 'passwordGenerator.characterTypes.symbols'),
     },
-    generateButton: translate(params.lang, 'passwordGenerator.generateButton'),
+    generateButton: translate(lang, 'passwordGenerator.generateButton'),
     description: {
-      title: translate(params.lang, 'passwordGenerator.description.title'),
-      intro: translate(params.lang, 'passwordGenerator.description.intro'),
+      title: translate(lang, 'passwordGenerator.description.title'),
+      intro: translate(lang, 'passwordGenerator.description.intro'),
       features: {
-        title: translate(params.lang, 'passwordGenerator.description.features.title'),
+        title: translate(lang, 'passwordGenerator.description.features.title'),
         list: Array.from({ length: FEATURES_COUNT }, (_, i) => 
-          translate(params.lang, `passwordGenerator.description.features.list.${i}`)
+          translate(lang, `passwordGenerator.description.features.list.${i}`)
         ),
       },
       howToUse: {
-        title: translate(params.lang, 'passwordGenerator.description.howToUse.title'),
+        title: translate(lang, 'passwordGenerator.description.howToUse.title'),
         list: Array.from({ length: HOWTO_STEPS_COUNT }, (_, i) => 
-          translate(params.lang, `passwordGenerator.description.howToUse.list.${i}`)
+          translate(lang, `passwordGenerator.description.howToUse.list.${i}`)
         ),
       },
       securityTips: {
-        title: translate(params.lang, 'passwordGenerator.description.securityTips.title'),
+        title: translate(lang, 'passwordGenerator.description.securityTips.title'),
         list: Array.from({ length: SECURITY_TIPS_COUNT }, (_, i) => 
-          translate(params.lang, `passwordGenerator.description.securityTips.list.${i}`)
+          translate(lang, `passwordGenerator.description.securityTips.list.${i}`)
         ),
       },
     },

@@ -2,10 +2,12 @@ import Link from 'next/link'
 import { translate } from '@/lib/i18n/server'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
-export default function WordGenTools({ params: { lang } }: Props) {
+export default async function WordGenTools({ params }: Props) {
+  const { lang } = await params
+  
   const tools = [
     {
       title: translate(lang, 'wordGen.tools.wordGenerator.title'),
