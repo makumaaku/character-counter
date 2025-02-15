@@ -1,0 +1,17 @@
+{
+  "home": {
+    "title": "ボーリングツール",
+    "description": "日常的なタスクに役立つツール集",
+    "tools": {
+      "characterCounter": "文字数カウンター",
+      "qrGeneration": "QRコード生成",
+      "wordGeneration": "ワード生成ツール",
+      "wordGenerator": "ランダムワード生成",
+      "wordCardGenerator": "ランダム単語カード生成",
+      "sentenceGenerator": "ランダム文章生成",
+      "nameGenerator": "ランダム名前生成",
+      "passwordGenerator": "ランダムパスワード生成",
+      "storyGenerator": "ランダムストーリー生成"
+    }
+  }
+} 

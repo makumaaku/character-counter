@@ -1,0 +1,17 @@
+{
+  "home": {
+    "title": "Boring Tools",
+    "description": "A collection of useful tools for everyday tasks",
+    "tools": {
+      "characterCounter": "Character Counter",
+      "qrGeneration": "QR Generation",
+      "wordGeneration": "Word Generation Tools",
+      "wordGenerator": "Random Word Generator",
+      "wordCardGenerator": "Random Word Card Generator",
+      "sentenceGenerator": "Random Sentence Generator",
+      "nameGenerator": "Random Name Generator",
+      "passwordGenerator": "Random Password Generator",
+      "storyGenerator": "Random Story Generator"
+    }
+  }
+} 
