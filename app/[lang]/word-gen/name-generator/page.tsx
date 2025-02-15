@@ -2,10 +2,12 @@ import { translate } from '@/lib/i18n/server'
 import NameGeneratorClient from './components/NameGeneratorClient'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
-export default function NameGenerator({ params: { lang } }: Props) {
+export default async function NameGenerator({ params }: Props) {
+  const { lang } = await params;
+  
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
