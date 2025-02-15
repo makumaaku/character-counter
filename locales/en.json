@@ -623,6 +623,7 @@
           "title": "Generated Names",
           "empty": "Generated names will appear here",
           "copyTitle": "Copy to clipboard",
+          "copy": "Copy",
           "copied": "Copied!"
         },
         "about": {
@@ -661,20 +662,139 @@
         }
       },
       "passwordGenerator": {
-        "title": "Password Generator",
-        "description": "Generate secure and customizable passwords."
-      },
-      "storyGenerator": {
-        "title": "Story Generator",
-        "description": "Create random story prompts and plot ideas."
+        "meta": {
+          "title": "Random Password Generator - Boring Tool",
+          "description": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts.",
+          "keywords": "password generator, random password, secure password, strong password"
+        },
+        "title": "Random Password Generator",
+        "description": "Generate secure and customizable passwords",
+        "generatedPassword": "Generated Password",
+        "copyButton": "Copy password",
+        "copied": "Copied!",
+        "passwordLength": "Password Length",
+        "characterTypes": {
+          "uppercase": "Include Uppercase (A-Z)",
+          "lowercase": "Include Lowercase (a-z)",
+          "numbers": "Include Numbers (0-9)",
+          "symbols": "Include Symbols (!@#$, etc.)"
+        },
+        "generateButton": "Generate New Password",
+        "description": {
+          "title": "Free & Secure Random Password Generator Tool",
+          "intro": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts, with customizable options for length and character types.",
+          "features": {
+            "title": "Key Features",
+            "list": [
+              "Customizable password length (4-128 characters)",
+              "Choose character types (uppercase, lowercase, numbers, symbols)",
+              "One-click copy functionality",
+              "Secure random password generation"
+            ]
+          },
+          "howToUse": {
+            "title": "How to Use",
+            "list": [
+              "Set desired password length using the slider",
+              "Select character types to include",
+              "Click \"Generate New Password\" to create a password",
+              "Click the copy icon to copy the password to clipboard"
+            ]
+          },
+          "securityTips": {
+            "title": "Password Security Tips",
+            "list": [
+              "Use a minimum of 12 characters for strong security",
+              "Include a mix of character types",
+              "Generate unique passwords for each account",
+              "Never share your passwords with others"
+            ]
+          }
+        }
       },
       "sentenceGenerator": {
-        "title": "Random Sentence Generator",
-        "description": "Generate random sentences with customizable structure",
-        "keywords": "sentence generator, random sentence, writing tool, creative writing, content creation",
         "meta": {
           "title": "Random Sentence Generator - Boring Tool",
-          "description": "Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation."
+          "description": "Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation.",
+          "keywords": "sentence generator, random sentence, writing tool, creative writing, content creation"
+        },
+        "title": "Random Sentence Generator",
+        "description": "Generate random sentences with customizable structure",
+        "form": {
+          "count": {
+            "label": "Number of sentences"
+          },
+          "generate": "Generate Sentences",
+          "copy": "Copy"
+        },
+        "result": {
+          "empty": "Generated sentences will appear here",
+          "copyTitle": "Copy to clipboard",
+          "copied": "Copied!"
+        },
+        "about": {
+          "title": "About Sentence Generator",
+          "description": "Generate random sentences instantly with our free online tool. Perfect for creative writing, language learning, and content creation."
+        },
+        "features": {
+          "title": "Features",
+          "random": "Random sentence generation",
+          "customizable": "Customizable sentence count",
+          "instant": "Instant results",
+          "copy": "Easy copy functionality"
+        },
+        "useCases": {
+          "title": "Use Cases",
+          "writing": "Creative writing practice",
+          "learning": "Language learning",
+          "testing": "Testing and placeholder text",
+          "inspiration": "Writing inspiration"
+        }
+      },
+      "storyGenerator": {
+        "meta": {
+          "title": "Story Generator - Boring Tool",
+          "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration.",
+          "keywords": "story generator, random story, creative writing, story ideas, plot generator"
+        },
+        "title": "Story Generator",
+        "description": "Create random story prompts and plot ideas",
+        "form": {
+          "generate": "Generate Story"
+        },
+        "result": {
+          "empty": "Click the generate button to create a story",
+          "copyTitle": "Copy to clipboard",
+          "copyAlt": "Copy icon",
+          "copied": "Copied!"
+        },
+        "about": {
+          "title": "About Story Generator",
+          "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration."
+        },
+        "howTo": {
+          "title": "How to Use",
+          "generate": {
+            "title": "Generate a Story",
+            "description": "Click the 'Generate Story' button to create a unique story with random characters and events."
+          },
+          "review": {
+            "title": "Review and Edit",
+            "description": "Read through the generated story and use it as inspiration for your own creative writing."
+          },
+          "share": {
+            "title": "Share Your Story",
+            "description": "Copy the story to share it with others or save it for later use."
+          }
+        },
+        "features": {
+          "title": "Features",
+          "instant": "Instant story generation",
+          "unique": "Unique storylines every time",
+          "creative": "Creative character combinations",
+          "memorable": "Memorable plot twists",
+          "interface": "User-friendly interface",
+          "copy": "Easy copy and share functionality"
         }
       },
       "wordCardGenerator": {
@@ -740,77 +860,6 @@
       }
     }
   },
-  "sentenceGenerator": {
-    "form": {
-      "count": {
-        "label": "Number of sentences"
-      },
-      "generate": "Generate Sentences",
-      "copy": "Copy"
-    },
-    "result": {
-      "empty": "Generated sentences will appear here",
-      "copyTitle": "Copy to clipboard",
-      "copied": "Copied!"
-    },
-    "about": {
-      "title": "About Sentence Generator",
-      "description": "Generate random sentences instantly with our free online tool. Perfect for creative writing, language learning, and content creation."
-    },
-    "features": {
-      "title": "Features",
-      "random": "Random sentence generation",
-      "customizable": "Customizable sentence count",
-      "instant": "Instant results",
-      "copy": "Easy copy functionality"
-    },
-    "useCases": {
-      "title": "Use Cases",
-      "writing": "Creative writing practice",
-      "learning": "Language learning",
-      "testing": "Testing and placeholder text",
-      "inspiration": "Writing inspiration"
-    }
-  },
-  "storyGenerator": {
-    "form": {
-      "generate": "Generate Story"
-    },
-    "result": {
-      "empty": "Click the generate button to create a story",
-      "copyTitle": "Copy to clipboard",
-      "copyAlt": "Copy icon",
-      "copied": "Copied!"
-    },
-    "about": {
-      "title": "About Story Generator",
-      "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration."
-    },
-    "howTo": {
-      "title": "How to Use",
-      "generate": {
-        "title": "Generate a Story",
-        "description": "Click the 'Generate Story' button to create a unique story with random characters and events."
-      },
-      "review": {
-        "title": "Review and Edit",
-        "description": "Read through the generated story and use it as inspiration for your own creative writing."
-      },
-      "share": {
-        "title": "Share Your Story",
-        "description": "Copy the story to share it with others or save it for later use."
-      }
-    },
-    "features": {
-      "title": "Features",
-      "instant": "Instant story generation",
-      "unique": "Unique storylines every time",
-      "creative": "Creative character combinations",
-      "memorable": "Memorable plot twists",
-      "interface": "User-friendly interface",
-      "copy": "Easy copy and share functionality"
-    }
-  },
   "common": {
     "meta": {
       "siteName": "Boring Tools",
@@ -818,97 +867,5 @@
       "logoAlt": "Boring Tools Logo"
     },
     "menu": "Menu"
-  },
-  "nameGenerator": {
-    "meta": {
-      "title": "Name Generator - Boring Tool",
-      "description": "Generate unique and creative names for characters, businesses, or projects with our free online name generator.",
-      "keywords": "name generator, random names, character names, business names, project names"
-    },
-    "title": "Name Generator",
-    "description": "Create unique and creative names for characters, businesses, or projects",
-    "form": {
-      "count": {
-        "label": "Number of names"
-      },
-      "generate": "Generate Names",
-      "copy": "Copy"
-    },
-    "result": {
-      "title": "Generated Names",
-      "empty": "Generated names will appear here",
-      "copyTitle": "Copy to clipboard",
-      "copy": "Copy",
-      "copied": "Copied!"
-    },
-    "about": {
-      "title": "About Name Generator",
-      "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
-    },
-    "useCases": {
-      "title": "Use Cases",
-      "creative": {
-        "title": "Creative Writing",
-        "description": "Generate character names for stories, novels, and creative writing projects."
-      },
-      "gaming": {
-        "title": "Gaming",
-        "description": "Create unique character names for role-playing games and video games."
-      },
-      "testing": {
-        "title": "Testing",
-        "description": "Generate test user names for software testing and development."
-      }
-    }
-  },
-  "passwordGenerator": {
-    "meta": {
-      "title": "Random Password Generator - Boring Tool",
-      "description": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts.",
-      "keywords": "password generator, random password, secure password, strong password"
-    },
-    "title": "Random Password Generator",
-    "generatedPassword": "Generated Password",
-    "copyButton": "Copy password",
-    "copied": "Copied!",
-    "passwordLength": "Password Length",
-    "characterTypes": {
-      "uppercase": "Include Uppercase (A-Z)",
-      "lowercase": "Include Lowercase (a-z)",
-      "numbers": "Include Numbers (0-9)",
-      "symbols": "Include Symbols (!@#$, etc.)"
-    },
-    "generateButton": "Generate New Password",
-    "description": {
-      "title": "Free & Secure Random Password Generator Tool",
-      "intro": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts, with customizable options for length and character types.",
-      "features": {
-        "title": "Key Features",
-        "list": [
-          "Customizable password length (4-128 characters)",
-          "Choose character types (uppercase, lowercase, numbers, symbols)",
-          "One-click copy functionality",
-          "Secure random password generation"
-        ]
-      },
-      "howToUse": {
-        "title": "How to Use",
-        "list": [
-          "Set desired password length using the slider",
-          "Select character types to include",
-          "Click \"Generate New Password\" to create a password",
-          "Click the copy icon to copy the password to clipboard"
-        ]
-      },
-      "securityTips": {
-        "title": "Password Security Tips",
-        "list": [
-          "Use a minimum of 12 characters for strong security",
-          "Include a mix of character types",
-          "Generate unique passwords for each account",
-          "Never share your passwords with others"
-        ]
-      }
-    }
   }
 } 
