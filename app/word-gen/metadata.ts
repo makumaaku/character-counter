@@ -9,4 +9,7 @@ export const metadata: Metadata = {
     url: 'https://boring-tool.com/word-gen',
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://boring-tool.com/word-gen'
+  }
 } 

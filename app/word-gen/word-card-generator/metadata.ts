@@ -1,59 +1,16 @@
 import { Metadata } from 'next'
 
-const title = 'Word Card Generator - Free Online Learning Tool | Boring Tool'
-const description = 'Generate word cards instantly with our free online tool. Perfect for vocabulary learning, language teaching, ESL/EFL education, and creative writing. Simple, interactive, and user-friendly.'
-const url = 'https://boring-tool.com/word-card-generator'
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: title,
-  description,
-  url,
-  author: {
-    '@type': 'Organization',
-    name: 'Boring Tool',
-    url: 'https://boring-tool.com'
-  },
-  isAccessibleForFree: true,
-  keywords: [
-    'word cards',
-    'vocabulary learning',
-    'language teaching',
-    'ESL',
-    'EFL',
-    'education',
-    'learning tool',
-    'word generator',
-    'flashcards'
-  ]
-}
-
 export const metadata: Metadata = {
-  title,
-  description,
-  keywords: jsonLd.keywords.join(', '),
+  title: 'Word Card Generator - Boring Tool',
+  description: 'Create flashcards and word cards instantly with our free online word card generator. Perfect for language learning, vocabulary practice, and educational purposes.',
   openGraph: {
-    title,
-    description,
-    url,
+    title: 'Word Card Generator - Boring Tool',
+    description: 'Create flashcards and word cards instantly with our free online word card generator. Perfect for language learning, vocabulary practice, and educational purposes.',
+    url: 'https://boring-tool.com/word-gen/word-card-generator',
     type: 'website',
-    siteName: 'Boring Tool',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
   },
   alternates: {
-    canonical: url,
+    canonical: 'https://boring-tool.com/word-gen/word-card-generator'
   },
-  verification: {
-    other: {
-      'structured-data': [JSON.stringify(jsonLd)],
-    },
-  },
-}
-
-export const jsonLdScript = `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` 
+  keywords: 'word cards, vocabulary learning, language teaching, ESL, EFL, education, learning tool, word generator, flashcards'
+} 

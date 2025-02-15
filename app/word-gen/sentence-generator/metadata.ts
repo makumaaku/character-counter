@@ -1,21 +1,16 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Random Sentence Generator - Boring Tools',
-  description: 'Generate random sentences for creative writing, content creation, or just for fun. Choose from simple, literary, or joke sentences.',
+  title: 'Sentence Generator - Boring Tool',
+  description: 'Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation.',
   openGraph: {
+    title: 'Sentence Generator - Boring Tool',
+    description: 'Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation.',
+    url: 'https://boring-tool.com/word-gen/sentence-generator',
     type: 'website',
-    url: 'https://boring-tool.com/sentence-generator',
-    title: 'Random Sentence Generator - Boring Tools',
-    description: 'Generate random sentences for creative writing, content creation, or just for fun. Choose from simple, literary, or joke sentences.',
-    images: [
-      {
-        url: 'https://boring-tool.com/boring_logo.png',
-        width: 286,
-        height: 286,
-        alt: 'Boring Tools Logo',
-      },
-    ],
   },
   keywords: 'sentence generator, random sentence, writing tool, creative writing, content creation',
+  alternates: {
+    canonical: 'https://boring-tool.com/word-gen/sentence-generator'
+  }
 }; 
