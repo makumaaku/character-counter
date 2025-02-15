@@ -56,7 +56,7 @@ export default function PasswordGenerator() {
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
-      <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
+      <main className="max-w-4xl mx-auto px-4 pb-24">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">Generated Password</h2>
           <div className="relative">
