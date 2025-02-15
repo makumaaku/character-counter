@@ -1,5 +1,29 @@
 import { translate } from '@/lib/i18n/server'
 import WordGeneratorClient from './components/WordGeneratorClient'
+import { Metadata } from 'next'
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ lang: string }> }
+): Promise<Metadata> {
+  const { lang } = await params
+  
+  const title =  translate(lang, 'wordGen.tools.wordGenerator.meta.title')
+  const description = translate(lang, 'wordGen.tools.wordGenerator.meta.description')
+  const keywords =  translate(lang, 'wordGen.tools.wordGenerator.meta.keywords')
+
+  return {
+    title,
+    description,
+    keywords,
+    alternates: {
+      canonical: `https://boring-tool.com/${lang}/word-gen/word-generator`,
+      languages: {
+        en: 'https://boring-tool.com/en/word-gen/word-generator',
+        ja: 'https://boring-tool.com/ja/word-gen/word-generator',
+      },
+    },
+  }
+}
 
 export default async function WordGenerator({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
