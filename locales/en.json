@@ -818,5 +818,47 @@
       "logoAlt": "Boring Tools Logo"
     },
     "menu": "Menu"
+  },
+  "nameGenerator": {
+    "meta": {
+      "title": "Name Generator - Boring Tool",
+      "description": "Generate unique and creative names for characters, businesses, or projects with our free online name generator.",
+      "keywords": "name generator, random names, character names, business names, project names"
+    },
+    "title": "Name Generator",
+    "description": "Create unique and creative names for characters, businesses, or projects",
+    "form": {
+      "count": {
+        "label": "Number of names"
+      },
+      "generate": "Generate Names",
+      "copy": "Copy"
+    },
+    "result": {
+      "title": "Generated Names",
+      "empty": "Generated names will appear here",
+      "copyTitle": "Copy to clipboard",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "about": {
+      "title": "About Name Generator",
+      "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "creative": {
+        "title": "Creative Writing",
+        "description": "Generate character names for stories, novels, and creative writing projects."
+      },
+      "gaming": {
+        "title": "Gaming",
+        "description": "Create unique character names for role-playing games and video games."
+      },
+      "testing": {
+        "title": "Testing",
+        "description": "Generate test user names for software testing and development."
+      }
+    }
   }
 } 
