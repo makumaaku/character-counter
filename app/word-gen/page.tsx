@@ -1,19 +1,6 @@
 import Link from 'next/link'
 import Script from 'next/script'
-
-// JSON-LD for SEO
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Word Generation Tools - Boring Tool",
-  "description": "Collection of free word generation tools including name generator, password generator, story generator, and more.",
-  "url": "https://boring-tool.com/word-gen",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  }
-}
+import { jsonLdData } from './metadata'
 
 export default function WordGenTools() {
   const tools = [
@@ -60,7 +47,7 @@ export default function WordGenTools() {
       <Script
         id="word-gen-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
       <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
         <main className="max-w-4xl mx-auto px-4 py-10">

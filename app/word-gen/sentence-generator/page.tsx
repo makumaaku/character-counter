@@ -3,28 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Script from 'next/script';
+import { jsonLdData } from './metadata';
 
 type SentenceType = 'simple' | 'literary' | 'joke';
-
-const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Sentence Generator - Boring Tool",
-  "description": "Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation.",
-  "url": "https://boring-tool.com/word-gen/sentence-generator",
-  "applicationCategory": "EducationalApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  }
-};
 
 export default function SentenceGenerator() {
   const [sentence, setSentence] = useState<string>('');

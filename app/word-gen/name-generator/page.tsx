@@ -3,26 +3,7 @@
 import { useState } from 'react';
 import Script from 'next/script';
 import { Button } from './components/Button';
-
-const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Random Name Generator - Boring Tool",
-  "description": "Generate random full names with our free online name generator tool. Perfect for writers, game developers, and creative projects.",
-  "url": "https://boring-tool.com/word-gen/name-generator",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  }
-};
+import { jsonLdData } from './metadata';
 
 export default function NameGenerator() {
   const [generatedName, setGeneratedName] = useState<string>('');

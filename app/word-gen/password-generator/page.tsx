@@ -3,32 +3,13 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Script from 'next/script'
+import { jsonLdData } from './metadata'
 
 // Character sets for password generation
 const UPPERCASE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const LOWERCASE_CHARS = 'abcdefghijklmnopqrstuvwxyz'
 const NUMBER_CHARS = '0123456789'
 const SYMBOL_CHARS = '!@#$%^&*()_-+=<>?/{}[]~|'
-
-const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Secure Password Generator - Boring Tool",
-  "description": "Generate strong, secure, and customizable passwords instantly with our free online password generator. Perfect for creating unique passwords for your accounts and applications.",
-  "url": "https://boring-tool.com/word-gen/password-generator",
-  "applicationCategory": "SecurityApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  }
-};
 
 export default function PasswordGenerator() {
   const [password, setPassword] = useState('')
