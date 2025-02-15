@@ -1,46 +1,80 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from './Button';
+import { translate } from '@/lib/i18n/client';
 
-export default function NameGeneratorClient() {
-  const [generatedName, setGeneratedName] = useState<string>('');
+type Props = {
+  lang: string;
+};
 
-  const generateRandomFullName = async () => {
+export default function NameGeneratorClient({ lang }: Props) {
+  const [generatedNames, setGeneratedNames] = useState<string[]>([]);
+  const [nameCount, setNameCount] = useState(10);
+  const [copied, setCopied] = useState(false);
+
+  const generateNames = () => {
+    // Name generation logic here
+    const names = ['John Smith', 'Jane Doe', 'Bob Johnson']; // Placeholder
+    setGeneratedNames(names);
+  };
+
+  const copyToClipboard = async () => {
     try {
-      const response = await fetch('/words/name.json');
-      const data = await response.json();
-      
-      const isMale = Math.random() < 0.5;
-      const firstNames = isMale ? data.male_first_names : data.female_first_names;
-      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-      const lastName = data.last_names[Math.floor(Math.random() * data.last_names.length)];
-      
-      setGeneratedName(`${firstName} ${lastName}`);
+      await navigator.clipboard.writeText(generatedNames.join('\n'));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (error) {
-      console.error('Error generating name:', error);
-      setGeneratedName('Error generating name. Please try again.');
+      console.error('Failed to copy:', error);
     }
   };
 
   return (
-    <>
-      <div className="text-center mb-6">
-        <Button
-          onClick={generateRandomFullName}
-          className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+    <div>
+      <div className="mb-6">
+        <label htmlFor="nameCount" className="block text-sm font-medium mb-2">
+          {translate(lang, 'nameGenerator.form.count.label')}
+        </label>
+        <input
+          type="number"
+          id="nameCount"
+          min="1"
+          max="100"
+          value={nameCount}
+          onChange={(e) => setNameCount(Math.min(100, Math.max(1, parseInt(e.target.value) || 1)))}
+          className="bg-gray-800 text-white px-3 py-2 rounded w-32 mr-4"
+        />
+        <button
+          onClick={generateNames}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition-colors"
         >
-          Generate Random Name
-        </Button>
+          {translate(lang, 'nameGenerator.form.generate')}
+        </button>
       </div>
-      
-      {generatedName && (
-        <div className="mt-6 p-4 bg-gray-900 rounded-lg">
-          <h2 className="text-2xl font-semibold text-center text-gray-100">
-            {generatedName}
-          </h2>
+
+      <div className="mt-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">{translate(lang, 'nameGenerator.result.title')}</h2>
+          {generatedNames.length > 0 && (
+            <button
+              onClick={copyToClipboard}
+              className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
+            >
+              {copied ? translate(lang, 'nameGenerator.result.copied') : translate(lang, 'nameGenerator.result.copy')}
+            </button>
+          )}
         </div>
-      )}
-    </>
+        {generatedNames.length > 0 ? (
+          <div className="bg-gray-800 p-4 rounded">
+            {generatedNames.map((name, index) => (
+              <span key={index} className="inline-block bg-gray-700 text-white px-3 py-1 rounded m-1">
+                {name}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-400">{translate(lang, 'nameGenerator.result.empty')}</p>
+        )}
+      </div>
+    </div>
   );
 } 

@@ -605,8 +605,60 @@
         }
       },
       "nameGenerator": {
+        "meta": {
+          "title": "Name Generator - Boring Tool",
+          "description": "Generate unique and creative names for characters, businesses, or projects with our free online name generator.",
+          "keywords": "name generator, random names, character names, business names, project names"
+        },
         "title": "Name Generator",
-        "description": "Create unique and creative names for characters, businesses, or projects."
+        "description": "Create unique and creative names for characters, businesses, or projects",
+        "form": {
+          "count": {
+            "label": "Number of names"
+          },
+          "generate": "Generate Names",
+          "copy": "Copy"
+        },
+        "result": {
+          "title": "Generated Names",
+          "empty": "Generated names will appear here",
+          "copyTitle": "Copy to clipboard",
+          "copied": "Copied!"
+        },
+        "about": {
+          "title": "About Name Generator",
+          "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
+        },
+        "useCases": {
+          "title": "Use Cases",
+          "creative": {
+            "title": "Creative Writing",
+            "description": "Generate character names for stories, novels, and creative writing projects."
+          },
+          "gaming": {
+            "title": "Gaming",
+            "description": "Create unique character names for role-playing games and video games."
+          },
+          "testing": {
+            "title": "Testing",
+            "description": "Generate test user names for software testing and development."
+          }
+        },
+        "faq": {
+          "title": "Frequently Asked Questions",
+          "q1": {
+            "question": "How are the names generated?",
+            "answer": "Names are generated using a combination of common name patterns and creative elements to ensure uniqueness and usability."
+          },
+          "q2": {
+            "question": "Can I use these names commercially?",
+            "answer": "Yes, all generated names are free to use for any purpose, including commercial use."
+          },
+          "q3": {
+            "question": "How many names can I generate?",
+            "answer": "You can generate up to 100 names at once, and there's no limit to how many times you can use the generator."
+          }
+        }
       },
       "passwordGenerator": {
         "title": "Password Generator",
@@ -617,8 +669,13 @@
         "description": "Create random story prompts and plot ideas."
       },
       "sentenceGenerator": {
-        "title": "Sentence Generator",
-        "description": "Generate random sentences with customizable structure."
+        "title": "Random Sentence Generator",
+        "description": "Generate random sentences with customizable structure",
+        "keywords": "sentence generator, random sentence, writing tool, creative writing, content creation",
+        "meta": {
+          "title": "Random Sentence Generator - Boring Tool",
+          "description": "Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation."
+        }
       },
       "wordCardGenerator": {
         "meta": {
@@ -629,26 +686,32 @@
         "title": "Word Card Generator",
         "description": "Create flashcards and word cards for learning and memorization",
         "form": {
-          "word": {
-            "label": "Word",
-            "placeholder": "Enter word"
+          "count": {
+            "label": "Number of cards"
           },
-          "meaning": {
-            "label": "Meaning",
-            "placeholder": "Enter word meaning or description"
-          },
-          "example": {
-            "label": "Example",
-            "placeholder": "Enter usage example (optional)"
-          },
-          "generate": "Generate Card",
-          "clear": "Clear"
+          "generate": "Generate Cards"
         },
         "result": {
-          "title": "Generated Card",
-          "empty": "Fill in the form above to generate a card",
-          "download": "Download Card",
-          "print": "Print"
+          "title": "Generated Cards",
+          "empty": "Fill in the form above to generate cards",
+          "copy": "Copy Results",
+          "copied": "Copied!"
+        },
+        "card": {
+          "length": "Length",
+          "category": "Category"
+        },
+        "howTo": {
+          "title": "How to Use",
+          "description": "The Word Card Generator tool allows you to easily create flashcards for learning and memorization. Simply select the number of cards you want to generate and click the 'Generate Cards' button."
+        },
+        "useCases": {
+          "title": "Use Cases",
+          "vocabulary": "Vocabulary Learning",
+          "teaching": "Teaching & Instruction",
+          "games": "Learning Games",
+          "writing": "Writing Practice",
+          "esl": "ESL Learning"
         }
       }
     },
@@ -675,6 +738,38 @@
           "Content creation and brainstorming"
         ]
       }
+    }
+  },
+  "sentenceGenerator": {
+    "form": {
+      "count": {
+        "label": "Number of sentences"
+      },
+      "generate": "Generate Sentences",
+      "copy": "Copy"
+    },
+    "result": {
+      "empty": "Generated sentences will appear here",
+      "copyTitle": "Copy to clipboard",
+      "copied": "Copied!"
+    },
+    "about": {
+      "title": "About Sentence Generator",
+      "description": "Generate random sentences instantly with our free online tool. Perfect for creative writing, language learning, and content creation."
+    },
+    "features": {
+      "title": "Features",
+      "random": "Random sentence generation",
+      "customizable": "Customizable sentence count",
+      "instant": "Instant results",
+      "copy": "Easy copy functionality"
+    },
+    "useCases": {
+      "title": "Use Cases",
+      "writing": "Creative writing practice",
+      "learning": "Language learning",
+      "testing": "Testing and placeholder text",
+      "inspiration": "Writing inspiration"
     }
   },
   "common": {

@@ -1,49 +1,61 @@
-import NameGeneratorClient from './components/NameGeneratorClient';
+import { translate } from '@/lib/i18n/server'
+import NameGeneratorClient from './components/NameGeneratorClient'
 
+type Props = {
+  params: { lang: string }
+}
 
-export default function NameGenerator() {
+export default function NameGenerator({ params: { lang } }: Props) {
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
-          <h1 className="text-xl mb-4">Random Name Generator</h1>
-          <NameGeneratorClient />
+          <h1 className="text-4xl font-bold mb-4">{translate(lang, 'wordGen.tools.nameGenerator.title')}</h1>
+          <p className="text-xl text-gray-300 mb-6">
+            {translate(lang, 'wordGen.tools.nameGenerator.description')}
+          </p>
+          <NameGeneratorClient lang={lang} />
         </div>
 
         <div className="bg-gray-700 p-6 rounded-lg mt-6">
-          <h2 className="text-xl mb-4 text-center">Easy & Simple! High-performance name generator tool (free)</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center">{translate(lang, 'nameGenerator.about.title')}</h2>
           <p className="mb-4">
-            Our free and easy-to-use tool instantly generates random names! Perfect for:
+            {translate(lang, 'nameGenerator.about.description')}
           </p>
-          <ul className="list-disc pl-5 mb-4">
-            <li>Creative writing and character development
-              <p className="ml-5">Generate unique character names for your stories, novels, or creative projects.</p>
+          
+          <h3 className="text-xl font-bold mb-4">{translate(lang, 'nameGenerator.useCases.title')}</h3>
+          <ul className="list-disc pl-5 mb-6">
+            <li>
+              {translate(lang, 'nameGenerator.useCases.creative.title')}
+              <p className="ml-5">{translate(lang, 'nameGenerator.useCases.creative.description')}</p>
             </li>
-            <li>Game development and role-playing games
-              <p className="ml-5">Create character names for your games, RPG sessions, or virtual worlds.</p>
+            <li>
+              {translate(lang, 'nameGenerator.useCases.gaming.title')}
+              <p className="ml-5">{translate(lang, 'nameGenerator.useCases.gaming.description')}</p>
             </li>
-            <li>Testing and placeholder data
-              <p className="ml-5">Generate realistic test data for your applications or databases.</p>
+            <li>
+              {translate(lang, 'nameGenerator.useCases.testing.title')}
+              <p className="ml-5">{translate(lang, 'nameGenerator.useCases.testing.description')}</p>
             </li>
           </ul>
 
-          <h3 className="text-lg mb-2 font-bold">Frequently Asked Questions</h3>
+          <h3 className="text-xl font-bold mb-4">{translate(lang, 'nameGenerator.faq.title')}</h3>
           <div className="space-y-4">
             <div>
-              <h4 className="font-bold">Q1. How does the name generator work?</h4>
-              <p className="ml-5">A: The generator combines randomly selected first names (both male and female) with last names from our extensive database to create unique, realistic full names.</p>
+              <h4 className="font-bold">{translate(lang, 'nameGenerator.faq.q1.question')}</h4>
+              <p className="ml-5">{translate(lang, 'nameGenerator.faq.q1.answer')}</p>
             </div>
             <div>
-              <h4 className="font-bold">Q2. Are the generated names realistic?</h4>
-              <p className="ml-5">A: Yes, all names in our database are real names, ensuring that the generated combinations sound natural and authentic.</p>
+              <h4 className="font-bold">{translate(lang, 'nameGenerator.faq.q2.question')}</h4>
+              <p className="ml-5">{translate(lang, 'nameGenerator.faq.q2.answer')}</p>
             </div>
             <div>
-              <h4 className="font-bold">Q3. Can I use these names in my projects?</h4>
-              <p className="ml-5">A: Yes, the generated names are free to use in your creative projects, games, or applications.</p>
+              <h4 className="font-bold">{translate(lang, 'nameGenerator.faq.q3.question')}</h4>
+              <p className="ml-5">{translate(lang, 'nameGenerator.faq.q3.answer')}</p>
             </div>
           </div>
         </div>
       </main>
     </div>
-  );
+  )
 } 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import Script from 'next/script'
+import { translate } from '@/lib/i18n/client'
 
 interface StoryData {
   characters: string[]
@@ -10,31 +10,14 @@ interface StoryData {
   endings: string[]
 }
 
-const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Story Generator - Boring Tool",
-  "description": "Generate creative story ideas and plot prompts instantly with our free online story generator. Perfect for writers, students, and creative professionals.",
-  "url": "https://boring-tool.com/word-gen/story-generator",
-  "applicationCategory": "CreativeApplication",
-  "operatingSystem": "Any",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  }
-};
+type Props = {
+  params: { lang: string }
+}
 
-export default function Home() {
+export default function StoryGenerator({ params: { lang } }: Props) {
   const [storyData, setStoryData] = useState<StoryData | null>(null)
   const [story, setStory] = useState('')
   const [showToast, setShowToast] = useState(false)
-  const placeholderText = 'Your story will appear here...'
 
   useEffect(() => {
     fetch('/words/story.json')
@@ -71,83 +54,80 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Script
-        id="story-generator-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-      />
-      <div className="bg-gray-800 text-gray-100 font-sans">
-        <main className="max-w-4xl mx-auto px-4 pb-24">
-          <div className="bg-gray-700 p-6 rounded-lg text-center">
-            <h1 className="text-2xl font-bold mb-4">Random Story Generator</h1>
-            <p className="text-gray-300 mb-6">Generate unique and creative stories with our free online story generator tool.</p>
-            
+    <div className="bg-gray-800 text-gray-100 font-sans">
+      <main className="max-w-4xl mx-auto px-4 pb-24">
+        <div className="bg-gray-700 p-6 rounded-lg text-center">
+          <h1 className="text-4xl font-bold mb-4">{translate(lang, 'wordGen.tools.storyGenerator.title')}</h1>
+          <p className="text-xl text-gray-300 mb-6">
+            {translate(lang, 'wordGen.tools.storyGenerator.description')}
+          </p>
+          
+          <button
+            onClick={generateStory}
+            className="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-colors"
+          >
+            {translate(lang, 'storyGenerator.form.generate')}
+          </button>
+        </div>
+
+        <div className="relative mt-6">
+          <div
+            className="w-full bg-gray-900 text-gray-100 p-6 rounded-lg min-h-[200px] whitespace-pre-line"
+          >
+            {story || translate(lang, 'storyGenerator.result.empty')}
+          </div>
+          {story && (
             <button
-              onClick={generateStory}
-              className="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-colors"
+              onClick={handleCopy}
+              className="absolute bottom-4 right-4 text-white hover:text-gray-300 transition-colors"
+              title={translate(lang, 'storyGenerator.result.copyTitle')}
             >
-              Generate Story
+              <Image 
+                src="/copy_icon_white.png" 
+                alt={translate(lang, 'storyGenerator.result.copyAlt')}
+                width={20}
+                height={20}
+              />
             </button>
-          </div>
-
-          <div className="relative mt-6">
-            <div
-              className="w-full bg-gray-900 text-gray-100 p-6 rounded-lg min-h-[200px] whitespace-pre-line"
-            >
-              {story || placeholderText}
+          )}
+          {showToast && (
+            <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+              {translate(lang, 'storyGenerator.result.copied')}
             </div>
-            {story && (
-              <button
-                onClick={handleCopy}
-                className="absolute bottom-4 right-4 text-white hover:text-gray-300 transition-colors"
-                title="Copy text"
-              >
-                <Image 
-                  src="/copy_icon_white.png" 
-                  alt="Copy text"
-                  width={20}
-                  height={20}
-                />
-              </button>
-            )}
-            {showToast && (
-              <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-                Copied!
-              </div>
-            )}
-          </div>
+          )}
+        </div>
 
-          <div className="bg-gray-700 p-6 rounded-lg mt-6">
-            <h2 className="text-xl mb-4 text-center">Easy & Simple! High-performance story generator tool (free)</h2>
-            <p className="mb-4">Our free and easy-to-use tool instantly generates unique and creative stories!
-Perfect for writers, storytellers, and creative minds looking for inspiration.</p>
-            
-            <h3 className="text-lg mb-2 font-bold">How to use</h3>
-            <ul className="list-disc pl-5 mb-4">
-              <li>Click Generate
-                <p className="ml-5">Click the &quot;Generate Story&quot; button to create a new unique story.</p>
-              </li>
-              <li>Review your story
-                <p className="ml-5">Each story consists of a character, an event, and an ending, creating a complete narrative.</p>
-              </li>
-              <li>Copy and share
-                <p className="ml-5">Use the copy button to save your story and share it with others.</p>
-              </li>
-            </ul>
+        <div className="bg-gray-700 p-6 rounded-lg mt-6">
+          <h2 className="text-2xl font-bold mb-4 text-center">{translate(lang, 'storyGenerator.about.title')}</h2>
+          <p className="mb-4">{translate(lang, 'storyGenerator.about.description')}</p>
+          
+          <h3 className="text-xl font-bold mb-4">{translate(lang, 'storyGenerator.howTo.title')}</h3>
+          <ul className="list-disc pl-5 mb-6">
+            <li>
+              {translate(lang, 'storyGenerator.howTo.generate.title')}
+              <p className="ml-5">{translate(lang, 'storyGenerator.howTo.generate.description')}</p>
+            </li>
+            <li>
+              {translate(lang, 'storyGenerator.howTo.review.title')}
+              <p className="ml-5">{translate(lang, 'storyGenerator.howTo.review.description')}</p>
+            </li>
+            <li>
+              {translate(lang, 'storyGenerator.howTo.share.title')}
+              <p className="ml-5">{translate(lang, 'storyGenerator.howTo.share.description')}</p>
+            </li>
+          </ul>
 
-            <h3 className="text-lg mb-2 font-bold">Features</h3>
-            <ul className="list-disc pl-5">
-              <li>Instant story generation</li>
-              <li>Unique character combinations</li>
-              <li>Creative plot twists</li>
-              <li>Memorable endings</li>
-              <li>Easy to use interface</li>
-              <li>Copy functionality</li>
-            </ul>
-          </div>
-        </main>
-      </div>
-    </>
+          <h3 className="text-xl font-bold mb-4">{translate(lang, 'storyGenerator.features.title')}</h3>
+          <ul className="list-disc pl-5">
+            <li>{translate(lang, 'storyGenerator.features.instant')}</li>
+            <li>{translate(lang, 'storyGenerator.features.unique')}</li>
+            <li>{translate(lang, 'storyGenerator.features.creative')}</li>
+            <li>{translate(lang, 'storyGenerator.features.memorable')}</li>
+            <li>{translate(lang, 'storyGenerator.features.interface')}</li>
+            <li>{translate(lang, 'storyGenerator.features.copy')}</li>
+          </ul>
+        </div>
+      </main>
+    </div>
   )
 } 
