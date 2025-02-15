@@ -57,6 +57,7 @@ export default function PasswordGenerator() {
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto px-4 pb-24">
+        <h1 className="text-3xl font-bold text-center py-8">Random Password Generator</h1>
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">Generated Password</h2>
           <div className="relative">
@@ -144,9 +145,9 @@ export default function PasswordGenerator() {
         </div>
 
         <div className="bg-gray-700 p-6 rounded-lg mt-6">
-          <h2 className="text-xl mb-4 text-center">Free & Secure Password Generator Tool</h2>
+          <h2 className="text-xl mb-4 text-center">Free & Secure Random Password Generator Tool</h2>
           <p className="mb-4">
-            Generate strong, secure passwords instantly with our free password generator tool. Perfect for creating unique passwords for your accounts, with customizable options for length and character types.
+            Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts, with customizable options for length and character types.
           </p>
           
           <h3 className="text-lg mb-2 font-bold">Key Features</h3>

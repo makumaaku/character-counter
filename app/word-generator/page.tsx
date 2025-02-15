@@ -37,7 +37,8 @@ export default function WordGenerator() {
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
-      <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
+      <main className="max-w-4xl mx-auto px-4 pb-24">
+        <h1 className="text-3xl font-bold text-center py-6">Random Word Generator</h1>
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">Word Count</h2>
           <p className="text-4xl font-bold">{wordCount}</p>

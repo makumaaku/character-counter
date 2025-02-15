@@ -32,9 +32,7 @@ export default function Home() {
     const endPick = storyData.endings[getRandomIndex(storyData.endings.length)]
 
     const generatedStory = 
-      `CHARACTER:\n${charPick}\n\n` +
-      `EVENT:\n${charPick} ${eventPick}.\n\n` +
-      `END:\nFinally, ${charPick} ${endPick}.`
+      `${charPick}.\n\n${charPick} ${eventPick}.\n\n${charPick} ${endPick}.`
 
     setStory(generatedStory)
   }

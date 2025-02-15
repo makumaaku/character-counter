@@ -51,7 +51,7 @@ export default function Home() {
               <Link href="/name-generator" className="text-white hover:underline">Random Name Generator</Link>
             </li>
             <li>
-              <Link href="/password-generator" className="text-white hover:underline">Password Generator</Link>
+              <Link href="/password-generator" className="text-white hover:underline">Random Password Generator</Link>
             </li>
             <li>
               <Link href="/story-generator" className="text-white hover:underline">Random Story Generator</Link>
