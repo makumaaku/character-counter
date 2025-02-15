@@ -2,19 +2,32 @@ import enMessages from '../../../locales/en.json';
 import jaMessages from '../../../locales/ja.json';
 import { Language } from './types';
 
-export type Messages = typeof enMessages;
+export type MessageValue = string | string[] | { [key: string]: MessageValue };
+export type Messages = Record<string, MessageValue>;
 
-const messages: Record<Language, Messages> = {
-  en: enMessages,
-  ja: jaMessages,
-};
+// 言語ごとのメッセージを動的に管理するマップ
+const messages = new Map<Language, Messages>();
+
+// デフォルトメッセージを設定
+messages.set('en', enMessages);
+messages.set('ja', jaMessages);
+
+// 新しい言語のメッセージを追加するためのヘルパー関数
+export function registerMessages(locale: Language, messageData: Messages): void {
+  messages.set(locale, messageData);
+}
 
 export function getLanguageFromPath(pathname: string): Language {
-  return pathname.startsWith('/ja') ? 'ja' : 'en';
+  // パスから言語を抽出
+  const match = pathname.match(/^\/([a-z]{2})/);
+  if (match && messages.has(match[1] as Language)) {
+    return match[1] as Language;
+  }
+  return 'en'; // デフォルト言語
 }
 
 export function getMessages(locale: Language = 'en'): Messages {
-  return messages[locale] || messages.en;
+  return messages.get(locale) || messages.get('en')!;
 }
 
 export function translate(lang: string, key: string): string {
@@ -28,4 +41,9 @@ export function translate(lang: string, key: string): string {
   }
 
   return typeof value === 'string' ? value : key;
+}
+
+// 利用可能な言語一覧を取得
+export function getAvailableLanguages(): Language[] {
+  return Array.from(messages.keys());
 }
