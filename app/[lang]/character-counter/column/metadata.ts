@@ -1,40 +1,56 @@
+import { translate } from '@/lib/i18n/server';
 import { Metadata } from 'next';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Blog',
-  name: 'Character Counter Blog',
-  description: 'Articles about text analysis, character counting tips, and content creation best practices',
-  url: 'https://boring-tool.com/character-counter/column',
-  publisher: {
-    '@type': 'Organization',
-    name: 'Boring Tool',
-    url: 'https://boring-tool.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://boring-tool.com/boring_logo.png',
-      width: 286,
-      height: 286
-    }
-  },
-  inLanguage: 'en',
-  isAccessibleForFree: true
-};
+type Props = {
+  params: { lang: string }
+}
 
-export const metadata: Metadata = {
-  title: 'Character Counter Blog - Tips & Guides | Text Analysis Articles',
-  description: 'Read our collection of articles about text analysis, character counting tips, and best practices for content creation. Learn how to optimize your writing with our guides.',
-  keywords: 'character counter blog, text analysis tips, content writing guide, word count articles, writing optimization',
-  openGraph: {
-    title: 'Character Counter Blog - Tips & Guides | Text Analysis Articles',
-    description: 'Read our collection of articles about text analysis, character counting tips, and best practices for content creation. Learn how to optimize your writing with our guides.',
-    url: 'https://boring-tool.com/character-counter/column',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/column'
-  },
-  other: {
-    'application/ld+json': JSON.stringify(jsonLd)
-  }
-}; 
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: t('characterCounter.column.meta.jsonLd.name'),
+    description: t('characterCounter.column.meta.jsonLd.description'),
+    url: `https://boring-tool.com/${lang}/character-counter/column`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Boring Tool',
+      url: 'https://boring-tool.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://boring-tool.com/boring_logo.png',
+        width: 286,
+        height: 286
+      }
+    },
+    inLanguage: lang,
+    isAccessibleForFree: true
+  };
+
+  return {
+    title: t('characterCounter.column.meta.title'),
+    description: t('characterCounter.column.meta.description'),
+    keywords: t('characterCounter.column.meta.keywords'),
+    openGraph: {
+      title: t('characterCounter.column.meta.title'),
+      description: t('characterCounter.column.meta.description'),
+      url: `https://boring-tool.com/${lang}/character-counter/column`,
+      type: 'website',
+    },
+    alternates: {
+      canonical: `https://boring-tool.com/${lang}/character-counter/column`,
+      languages: {
+        'en': 'https://boring-tool.com/en/character-counter/column',
+        'ja': 'https://boring-tool.com/ja/character-counter/column',
+      }
+    },
+    other: {
+      'application/ld+json': JSON.stringify(jsonLdData)
+    }
+  };
+} 

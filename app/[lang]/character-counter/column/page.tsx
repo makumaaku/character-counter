@@ -2,15 +2,19 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import matter from 'gray-matter';
-import { metadata } from './metadata';
+import { translate } from '@/lib/i18n/server';
+
+type Props = {
+  params: Promise<{ lang: string }>
+}
 
 interface ColumnData {
   title: string;
   slug: string;
 }
 
-async function getColumnData(): Promise<ColumnData[]> {
-  const columnsDirectory = path.join(process.cwd(), 'app/character-counter/columns');
+async function getColumnData(lang: string): Promise<ColumnData[]> {
+  const columnsDirectory = path.join(process.cwd(), `app/character-counter/columns/${lang}`);
   const fileNames = fs.readdirSync(columnsDirectory);
 
   const columnData = fileNames
@@ -29,18 +33,22 @@ async function getColumnData(): Promise<ColumnData[]> {
   return columnData;
 }
 
-export { metadata };
-
-export default async function ColumnList() {
-  const columnData = await getColumnData();
+export default async function ColumnList(props: Props) {
+  const params = await props.params;
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+  const columnData = await getColumnData(lang);
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen flex flex-col">
       <main className="flex-grow max-w-4xl w-full mx-auto px-4 py-10">
+        <h1 className="text-2xl font-bold mb-8">{t('characterCounter.column.title')}</h1>
+        <p className="text-gray-300 mb-8">{t('characterCounter.column.description')}</p>
+        
         <ul>
           {columnData.map(({ title, slug }) => (
             <li key={slug} className="bg-gray-700 p-6 rounded-lg mt-6">
-              <Link href={`/character-counter/column/${slug}`} className="block text-xl font-bold text-center">
+              <Link href={`/${lang}/character-counter/column/${slug}`} className="block text-xl font-bold text-center">
                 {title}
               </Link>
             </li>
