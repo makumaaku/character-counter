@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 
 // Character sets for password generation
@@ -48,11 +48,6 @@ export default function PasswordGenerator() {
       console.error('Failed to copy:', error)
     }
   }
-
-  // Generate password on initial load
-  useEffect(() => {
-    generatePassword()
-  }, [])
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
