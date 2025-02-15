@@ -45,6 +45,9 @@ export default function Home() {
               <Link href="/word-card-generator" className="text-white hover:underline">Random Word Card Generator</Link>
             </li>
             <li>
+              <Link href="/sentence-generator" className="text-white hover:underline">Random Sentence Generator</Link>
+            </li>
+            <li>
               <Link href="/name-generator" className="text-white hover:underline">Random Name Generator</Link>
             </li>
             <li>
