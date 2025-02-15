@@ -12,6 +12,42 @@
       "nameGenerator": "Random Name Generator",
       "passwordGenerator": "Random Password Generator",
       "storyGenerator": "Random Story Generator"
+    },
+    "meta": {
+      "title": "Boring Tools - Simple and Useful Tools for Everyone",
+      "description": "A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.",
+      "siteName": "Boring Tools",
+      "publisher": "Boring Tool",
+      "logoAlt": "Boring Tools Logo",
+      "keywords": "character counter, qr code generator, name generator, tools, utilities, web tools"
+    }
+  },
+  "characterCounter": {
+    "meta": {
+      "title": "Character Counter - Boring Tools",
+      "description": "Free online character counter tool. Count characters, words, and lines in your text instantly.",
+      "keywords": "character counter, word counter, text counter, online counter"
+    }
+  },
+  "qrGeneration": {
+    "meta": {
+      "title": "QR Code Generator - Boring Tools",
+      "description": "Generate QR codes easily with our free online QR code generator tool.",
+      "keywords": "qr code generator, qr code maker, create qr code"
+    }
+  },
+  "wordGen": {
+    "meta": {
+      "title": "Word Generation Tools - Boring Tools",
+      "description": "Collection of word generation tools including random word generator, name generator, and more.",
+      "keywords": "word generator, name generator, random generator"
+    }
+  },
+  "common": {
+    "meta": {
+      "siteName": "Boring Tools",
+      "publisher": "Boring Tool",
+      "logoAlt": "Boring Tools Logo"
     }
   }
 } 

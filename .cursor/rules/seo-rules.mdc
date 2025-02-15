@@ -9,7 +9,7 @@ TOP画面のURLは`https://boring-tool.com/`です。
 ドメインは`boring-tool.com`です。
 
 # SEO 対策
-- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang="en">` を設定する。
+- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定する。
 - 各ページのメタデータは `metadata.ts` に定義する：
   - `title` （ページタイトル）
   - `meta name="description"` （ページの説明文）
@@ -18,6 +18,95 @@ TOP画面のURLは`https://boring-tool.com/`です。
   - `meta property="og:url"`（ページの URL）
   - `meta property="og:type"`（コンテンツタイプ）
   - `link rel="canonical"`（正規 URL の指定）
+
+## 多言語対応のメタデータ実装
+多言語対応のメタデータは、以下のルールに従って実装します：
+
+### 1. メタデータの構造
+- 各ページのメタデータは、画面ごとに `[page].meta` の形式で管理
+- 共通のメタデータは `common.meta` で管理
+```json
+{
+  "common": {
+    "meta": {
+      "siteName": "サイト名",
+      "publisher": "発行者",
+      "logoAlt": "ロゴの代替テキスト"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "ページタイトル",
+      "description": "ページの説明",
+      "keywords": "キーワード"
+    }
+  }
+}
+```
+
+### 2. generateMetadata関数の実装
+```typescript
+export async function generateMetadata(
+  props: Props,
+  page: string = 'home'
+): Promise<Metadata> {
+  const params = await props.params;
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
+  // 共通のメタデータを取得
+  const commonMeta = {
+    siteName: t('common.meta.siteName'),
+    publisher: t('common.meta.publisher'),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  // ページ固有のメタデータを取得
+  const title = t(`${page}.meta.title`);
+  const description = t(`${page}.meta.description`);
+  const keywords = t(`${page}.meta.keywords`);
+
+  return {
+    title,
+    description,
+    // ... 他のメタデータ
+  };
+}
+```
+
+### 3. 言語別URLの設定
+- canonical URLは現在の言語バージョンのURLを指定
+- alternatesで他の言語バージョンのURLを指定
+```typescript
+alternates: {
+  canonical: `https://boring-tool.com/${lang}`,
+  languages: {
+    'en': 'https://boring-tool.com/en',
+    'ja': 'https://boring-tool.com/ja',
+  },
+}
+```
+
+### 4. OpenGraphの言語設定
+- `locale`に現在の言語を設定
+- `alternateLocale`に他の言語を設定
+```typescript
+openGraph: {
+  locale: lang,
+  alternateLocale: [lang === 'en' ? 'ja' : 'en'],
+}
+```
+
+### 5. JSON-LDの多言語対応
+- JSON-LDの`name`、`description`などのテキストも多言語対応
+- URLも言語に応じて適切に設定
+```typescript
+const getJsonLd = (lang: string, page: string) => ({
+  name: t(`${page}.meta.title`),
+  description: t(`${page}.meta.description`),
+  url: `https://boring-tool.com/${lang}`,
+});
+```
 
 ## JSON-LD による構造化データの追加
 - 検索エンジン向けに JSON-LD 形式の構造化データを、`metadata.ts`に定義し、ページコンポーネントで Next.jsの `Script` コンポーネントを使用して追加する。
@@ -140,25 +229,7 @@ export async function generateMetadata(
 }
 ```
 
-```tsx
-// page.tsx
-export default async function Page({ params, searchParams }) {
-  // generateMetadataで生成されたメタデータとJSON-LDが自動的に適用されます
-  return (
-    <div>
-      {/* Page content */}
-    </div>
-  );
-}
-```
-
-この実装パターンの利点：
-- メタデータとJSON-LDを同じ場所で一元管理できる
-- 動的なデータに基づいてメタデータを生成できる
-- ページコンポーネントでの追加のスクリプト実装が不要
-- サーバーサイドでメタデータが生成されるため、SEOに最適
-
 ## h1タグについて
-共通の [Header.tsx](mdc:src/components/Header.tsx) に配置しています。
-page.tsxのタイトルはh2タグで実装してください。
+h1タグは、ページの主要な見出しを示すために使用されます。SEOには直接関係しませんが、ユーザーエクスペリエンスに影響を与える重要な要素です。
 
+```

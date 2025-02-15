@@ -1,71 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { translate } from '@/lib/i18n/server';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Boring Tools',
-  description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
-  url: 'https://boring-tool.com',
-  potentialAction: {
-    '@type': 'SearchAction',
-    'target': 'https://boring-tool.com/search?q={search_term_string}',
-    'query-input': 'required name=search_term_string'
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'Boring Tool',
-    url: 'https://boring-tool.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://boring-tool.com/boring_logo.png',
-      width: 286,
-      height: 286
-    }
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD'
-  },
-  applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Any',
-  isAccessibleForFree: true
-};
+type Props = {
+  params: Promise<{ lang: string }>
+}
 
-export const metadata: Metadata = {
-  title: 'Boring Tools - Simple and Useful Tools for Everyone',
-  description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
-  openGraph: {
-    type: 'website',
-    url: 'https://boring-tool.com/',
-    title: 'Boring Tools - Simple and Useful Tools for Everyone',
-    description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
-    images: [
-      {
-        url: 'https://boring-tool.com/boring_logo.png',
-        width: 286,
-        height: 286,
-        alt: 'Boring Tools Logo',
-      },
-    ],
-  },
-  keywords: 'character counter, qr code generator, name generator, tools, utilities, web tools',
-  alternates: {
-    canonical: 'https://boring-tool.com'
-  },
-  other: {
-    'application/ld+json': JSON.stringify(jsonLd)
-  }
-};
-
-export default function Home({
-  params: { lang }
-}: {
-  params: { lang: string }
-}) {
+export default async function Home(props: Props) {
+  const params = await props.params;
+  const lang = params.lang;
   const t = (key: string) => translate(lang, key);
 
   return (

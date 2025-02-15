@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "../globals.css";
@@ -14,43 +13,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: 'Boring Tools',
-  description: "A collection of simple and useful tools",
-  icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-      {
-        url: "/boring-icon-192.png",
-        type: "image/png",
-        sizes: "192x192",
-      },
-      {
-        url: "/boring-icon-512.png",
-        type: "image/png",
-        sizes: "512x512",
-      },
-    ],
-    apple: [
-      {
-        url: "/boring-icon-180.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
-    ],
-  },
-};
-
-export default function RootLayout({
-  children,
-  params: { lang },
-}: {
+type Props = {
   children: React.ReactNode;
-  params: { lang: string };
-}) {
+  params: Promise<{ lang: string }>;
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: Props) {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+
   return (
     <html lang={lang} className="dark">
       <head>
