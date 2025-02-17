@@ -43,9 +43,7 @@ export default async function ColumnList(props: Props) {
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen flex flex-col">
       <main className="flex-grow max-w-4xl w-full mx-auto px-4 py-10">
-        <h1 className="text-2xl font-bold mb-8">{t('characterCounter.column.title')}</h1>
-        <p className="text-gray-300 mb-8">{t('characterCounter.column.description')}</p>
-        
+        <h1 className="text-2xl font-bold mb-8">{t('characterCounter.column.title')}</h1>        
         <ul>
           {columnData.map(({ title, slug }) => (
             <li key={slug} className="bg-gray-700 p-6 rounded-lg mt-6">

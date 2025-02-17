@@ -54,7 +54,7 @@ const components = {
 
 async function getColumn(slug: string, lang: string) {
   console.log(lang)
-  const columnsDirectory = path.join(process.cwd(), `app/[lang]/character-counter/columns`);
+  const columnsDirectory = path.join(process.cwd(), 'assets/mdx/character-counter');
   const filePath = path.join(columnsDirectory, `${slug}.mdx`);
 
   try {
