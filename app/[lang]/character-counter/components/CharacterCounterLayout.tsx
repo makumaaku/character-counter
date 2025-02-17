@@ -45,6 +45,7 @@ export default function CharacterCounterLayout({ children }: Props) {
           isOpen={isSidebarOpen} 
           onClose={() => setIsSidebarOpen(false)} 
           navigationItems={navigationItems}
+          lang={lang}
         />
         <main className="flex-1 px-4 lg:px-8">
           {children}

@@ -21,6 +21,13 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en' }: SidebarProps) {
   const pathname = usePathname();
 
+  // 現在のパスと言語を考慮したアクティブ状態の判定
+  const isActiveLink = (itemPath: string) => {
+    // 言語パスを除いた現在のパスを取得
+    const currentPathWithoutLang = pathname.replace(/^\/[a-z]{2}/, '');
+    return currentPathWithoutLang === itemPath;
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -54,7 +61,7 @@ export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en' 
                   href={`/${lang}${item.path}`}
                   onClick={onClose}
                   className={`block px-4 py-2 rounded-md transition-colors ${
-                    pathname === `/${item.path}`
+                    isActiveLink(item.path)
                       ? 'bg-gray-700 text-white'
                       : 'hover:bg-gray-700'
                   }`}
