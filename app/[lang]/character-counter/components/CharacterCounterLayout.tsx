@@ -19,14 +19,14 @@ export default function CharacterCounterLayout({ children }: Props) {
   const t = (key: string) => translate(lang, key);
 
   const navigationItems = [
-    { name: t('characterCounter.sidebar.function'), path: `/${lang}/character-counter/function` },
-    { name: t('characterCounter.sidebar.usecase'), path: `/${lang}/character-counter/usecase` },
-    { name: t('characterCounter.sidebar.faq'), path: `/${lang}/character-counter/faq` },
-    { name: t('characterCounter.sidebar.aboutUs'), path: `/${lang}/character-counter/about-us` },
-    { name: t('characterCounter.sidebar.contact'), path: `/${lang}/character-counter/contact` },
-    { name: t('characterCounter.sidebar.privacy'), path: `/${lang}/character-counter/privacy` },
-    { name: t('characterCounter.sidebar.plan'), path: `/${lang}/character-counter/plan` },
-    { name: t('characterCounter.sidebar.column'), path: `/${lang}/character-counter/column` },
+    { name: t('characterCounter.sidebar.function'), path: `/character-counter/function` },
+    { name: t('characterCounter.sidebar.usecase'), path: `/character-counter/usecase` },
+    { name: t('characterCounter.sidebar.faq'), path: `/character-counter/faq` },
+    { name: t('characterCounter.sidebar.aboutUs'), path: `/character-counter/about-us` },
+    { name: t('characterCounter.sidebar.contact'), path: `/character-counter/contact` },
+    { name: t('characterCounter.sidebar.privacy'), path: `/character-counter/privacy` },
+    { name: t('characterCounter.sidebar.plan'), path: `/character-counter/plan` },
+    { name: t('characterCounter.sidebar.column'), path: `/character-counter/column` },
   ];
 
   return (

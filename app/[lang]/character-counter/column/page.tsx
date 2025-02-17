@@ -15,7 +15,7 @@ interface ColumnData {
 
 async function getColumnData(lang: string): Promise<ColumnData[]> {
   console.log(lang)
-  const columnsDirectory = path.join(process.cwd(), `app/[lang]/character-counter/columns`);
+  const columnsDirectory = path.join(process.cwd(), `assets/mdx/character-counter`);
   const fileNames = fs.readdirSync(columnsDirectory);
 
   const columnData = fileNames

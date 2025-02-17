@@ -54,7 +54,7 @@ export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en' 
                   href={`/${lang}${item.path}`}
                   onClick={onClose}
                   className={`block px-4 py-2 rounded-md transition-colors ${
-                    pathname === `/${lang}${item.path}`
+                    pathname === `/${item.path}`
                       ? 'bg-gray-700 text-white'
                       : 'hover:bg-gray-700'
                   }`}
