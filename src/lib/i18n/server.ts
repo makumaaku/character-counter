@@ -1,5 +1,5 @@
-import enMessages from '../../../locales/en.json';
-import jaMessages from '../../../locales/ja.json';
+import enMessages from '../../../assets/locales/en.json';
+import jaMessages from '../../../assets/locales/ja.json';
 import { Language } from './types';
 
 export type MessageValue = string | string[] | { [key: string]: MessageValue };

@@ -1,5 +1,5 @@
-import en from '../../../locales/en.json';
-import ja from '../../../locales/ja.json';
+import en from '../../../assets/locales/en.json';
+import ja from '../../../assets/locales/ja.json';
 import { type Language } from './types';
 
 type TranslationMessages = {
