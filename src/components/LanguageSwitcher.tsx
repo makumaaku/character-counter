@@ -29,16 +29,34 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <select
-      value={currentLanguage}
-      onChange={(e) => handleLanguageChange(e.target.value as Language)}
-      className="p-2 rounded border border-gray-300"
-    >
-      {Object.entries(LANGUAGES).map(([lang, label]) => (
-        <option key={lang} value={lang}>
-          {label}
-        </option>
-      ))}
-    </select>
+    <div className="relative">
+      <select
+        value={currentLanguage}
+        onChange={(e) => handleLanguageChange(e.target.value as Language)}
+        className="appearance-none bg-transparent text-white hover:text-gray-200 transition-colors cursor-pointer pr-6 pl-2 py-1 border-2 border-white/20 rounded hover:border-white/40 focus:border-white/60 focus:outline-none"
+      >
+        {Object.entries(LANGUAGES).map(([lang, label]) => (
+          <option key={lang} value={lang} className="bg-primary text-white">
+            {label}
+          </option>
+        ))}
+      </select>
+      <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <svg
+          className="w-4 h-4 text-white/70"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </div>
+    </div>
   );
 } 
