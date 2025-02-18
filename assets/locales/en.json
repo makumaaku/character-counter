@@ -814,7 +814,6 @@
       "keywords": "password generator, random password, secure password, strong password"
     },
     "title": "Random Password Generator",
-    "description": "Generate secure and customizable passwords",
     "generatedPassword": "Generated Password",
     "copyButton": "Copy password",
     "copied": "Copied!",
@@ -825,7 +824,38 @@
       "numbers": "Include Numbers (0-9)",
       "symbols": "Include Symbols (!@#$, etc.)"
     },
-    "generateButton": "Generate New Password"
+    "generateButton": "Generate New Password",
+    "description": {
+      "title": "Free & Secure Random Password Generator",
+      "intro": "A free password generator tool that instantly creates secure and strong passwords. Customize length and character types to create unique passwords for each account.",
+      "features": {
+        "title": "Key Features",
+        "list": [
+          "Customizable password length (4-128 characters)",
+          "Character type selection (uppercase, lowercase, numbers, symbols)",
+          "One-click copy functionality",
+          "Secure random password generation"
+        ]
+      },
+      "howToUse": {
+        "title": "How to Use",
+        "list": [
+          "Set password length using the slider",
+          "Select character types to include",
+          "Click 'Generate New Password' to create a password",
+          "Click the copy icon to copy password to clipboard"
+        ]
+      },
+      "securityTips": {
+        "title": "Password Security Tips",
+        "list": [
+          "Use at least 12 characters for strong security",
+          "Combine multiple character types",
+          "Generate different passwords for each account",
+          "Never share your passwords with others"
+        ]
+      }
+    }
   },
   "common": {
     "meta": {
