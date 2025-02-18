@@ -7,9 +7,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { lang } = await params
   
-  const title =  translate(lang, 'wordGen.tools.wordGenerator.meta.title')
-  const description = translate(lang, 'wordGen.tools.wordGenerator.meta.description')
-  const keywords =  translate(lang, 'wordGen.tools.wordGenerator.meta.keywords')
+  const title =  translate(lang, 'wordGenerator.meta.title')
+  const description = translate(lang, 'wordGenerator.meta.description')
+  const keywords =  translate(lang, 'wordGenerator.meta.keywords')
 
   return {
     title,
@@ -46,21 +46,21 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     resultCopy,
     resultCopied,
   ] = await Promise.all([
-    translate(lang, 'wordGen.tools.wordGenerator.title'),
-    translate(lang, 'wordGen.tools.wordGenerator.description'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.length.label'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.length.min'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.length.max'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.pattern.label'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.pattern.placeholder'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.count.label'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.count.placeholder'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.generate'),
-    translate(lang, 'wordGen.tools.wordGenerator.form.clear'),
-    translate(lang, 'wordGen.tools.wordGenerator.result.title'),
-    translate(lang, 'wordGen.tools.wordGenerator.result.empty'),
-    translate(lang, 'wordGen.tools.wordGenerator.result.copy'),
-    translate(lang, 'wordGen.tools.wordGenerator.result.copied'),
+    translate(lang, 'wordGenerator.title'),
+    translate(lang, 'wordGenerator.description'),
+    translate(lang, 'wordGenerator.form.length.label'),
+    translate(lang, 'wordGenerator.form.length.min'),
+    translate(lang, 'wordGenerator.form.length.max'),
+    translate(lang, 'wordGenerator.form.pattern.label'),
+    translate(lang, 'wordGenerator.form.pattern.placeholder'),
+    translate(lang, 'wordGenerator.form.count.label'),
+    translate(lang, 'wordGenerator.form.count.placeholder'),
+    translate(lang, 'wordGenerator.form.generate'),
+    translate(lang, 'wordGenerator.form.clear'),
+    translate(lang, 'wordGenerator.result.title'),
+    translate(lang, 'wordGenerator.result.empty'),
+    translate(lang, 'wordGenerator.result.copy'),
+    translate(lang, 'wordGenerator.result.copied'),
   ])
 
   const translations = {
