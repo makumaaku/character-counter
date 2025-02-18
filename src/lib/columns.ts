@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export async function readColumn(slug: string) {
-  const columnsDirectory = path.join(process.cwd(), 'app', 'character-counter', 'columns');
+  const columnsDirectory = path.join(process.cwd(), 'assets', 'mdx', 'character-counter');
   const filePath = path.join(columnsDirectory, `${slug}.mdx`);
 
   try {

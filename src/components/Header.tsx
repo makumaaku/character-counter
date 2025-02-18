@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface HeaderProps {
   title: string;
@@ -16,7 +17,9 @@ const Header: React.FC<HeaderProps> = ({ title, homeLink, children }) => {
       <Link href={homeLink}>
         <h1 className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</h1>
       </Link>
-      <div className="w-[76px]"></div>
+      <div className="w-[76px] flex items-center justify-end">
+        <LanguageSwitcher />
+      </div>
     </header>
   );
 };
