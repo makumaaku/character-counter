@@ -1,70 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Boring Tools',
-  description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
-  url: 'https://boring-tool.com',
-  potentialAction: {
-    '@type': 'SearchAction',
-    'target': 'https://boring-tool.com/search?q={search_term_string}',
-    'query-input': 'required name=search_term_string'
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'Boring Tool',
-    url: 'https://boring-tool.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://boring-tool.com/boring_logo.png',
-      width: 286,
-      height: 286
-    }
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD'
-  },
-  applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Any',
-  isAccessibleForFree: true
-};
-
-export const metadata: Metadata = {
-  title: 'Boring Tools - Simple and Useful Tools for Everyone',
-  description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
-  openGraph: {
-    type: 'website',
-    url: 'https://boring-tool.com/',
-    title: 'Boring Tools - Simple and Useful Tools for Everyone',
-    description: 'A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.',
-    images: [
-      {
-        url: 'https://boring-tool.com/boring_logo.png',
-        width: 286,
-        height: 286,
-        alt: 'Boring Tools Logo',
-      },
-    ],
-  },
-  keywords: 'character counter, qr code generator, name generator, tools, utilities, web tools',
-  alternates: {
-    canonical: 'https://boring-tool.com'
-  },
-  other: {
-    'application/ld+json': JSON.stringify(jsonLd)
-  }
-};
 
 export default function Home() {
   return (
     <div className="bg-[url('/hp_bg.jpg')] bg-cover bg-center h-screen relative">
       <div className="absolute top-0 left-0 p-4">
-        <Image src="/boring_logo.png" alt="Boring Logo" width={286} height={286} />
+        <Image 
+          src="/boring_logo.png" 
+          alt="Boring Logo" 
+          width={286} 
+          height={286}
+          className="w-[20vw] max-w-[286px]" 
+        />
       </div>
       <div className="flex flex-col items-center justify-center h-full">
         <div className="mt-10">

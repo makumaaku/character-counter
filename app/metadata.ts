@@ -13,16 +13,11 @@ const getJsonLd = (lang: string, page: string) => {
     '@type': 'WebSite',
     name: t(`${page}.meta.title`),
     description: t(`${page}.meta.description`),
-    url: `https://boring-tool.com/${lang}`,
-    potentialAction: {
-      '@type': 'SearchAction',
-      'target': `https://boring-tool.com/${lang}/search?q={search_term_string}`,
-      'query-input': 'required name=search_term_string'
-    },
+    url: 'https://boring-tool.com',
     publisher: {
       '@type': 'Organization',
       name: commonMeta.publisher,
-      url: `https://boring-tool.com/${lang}`,
+      url: 'https://boring-tool.com',
       logo: {
         '@type': 'ImageObject',
         url: 'https://boring-tool.com/boring_logo.png',
@@ -72,11 +67,9 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      url: `https://boring-tool.com/${lang}`,
+      url: `https://boring-tool.com`,
       type: 'website',
       siteName: commonMeta.siteName,
-      locale: lang,
-      alternateLocale: [lang === 'en' ? 'ja' : 'en'],
       images: [
         {
           url: 'https://boring-tool.com/boring_logo.png',
@@ -85,13 +78,6 @@ export async function generateMetadata(
           alt: commonMeta.logoAlt,
         },
       ],
-    },
-    alternates: {
-      canonical: `https://boring-tool.com/${lang}`,
-      languages: {
-        'en': 'https://boring-tool.com/en',
-        'ja': 'https://boring-tool.com/ja',
-      },
     },
     keywords,
     other: {
