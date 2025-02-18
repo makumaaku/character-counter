@@ -13,15 +13,15 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 ## 実装ルール
 
 ### 1. 画面遷移時の注意事項
-- すべてのページは`/[lang]/`配下に配置する
-- 画面遷移時は必ず`/[lang]/`パスを含めること
-- `next/link`を使用する場合は、以下のように言語パラメータを含める
+- トップページ以外のすべてのページは`/[lang]/`配下に配置する
+- 画面遷移時はlang情報を必ず`/[lang]/`パスを含めること
+- `next/link`を使用する場合は、lang情報がある場合には、以下のように言語パラメータを含める
 ```tsx
 <Link href={`/${lang}/about`}>About</Link>
 ```
 
 ### 2. テキストの追加方法
-- すべてのテキストは`locales/`ディレクトリ内の言語ファイルで管理
+- すべてのテキストは`assets/locales/`ディレクトリ内の言語ファイルで管理
   - 英語：`locales/en.json`
   - 日本語：`locales/ja.json`
 - 新規テキスト追加時は必ず両方の言語ファイルに追加すること
@@ -63,7 +63,7 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 ```typescript
 export type Language = 'en' | 'ja' | 'new_lang';
 ```
-2. `locales/`に新しい言語ファイルを作成（例：`fr.json`）
+2. `assets/locales/`に新しい言語ファイルを作成（例：`fr.json`）
 3. `src/lib/i18n/server.ts`の`messages`オブジェクトに新しい言語を追加
 4. すべての既存テキストを新しい言語に翻訳
 5. 言語切り替えコンポーネントに新しい言語を追加
@@ -87,3 +87,16 @@ export type Language = 'en' | 'ja' | 'new_lang';
 - 言語ファイルは必要な時のみ読み込む（動的インポート推奨）
 - キャッシュ戦略を適切に設定
 - 不要な再レンダリングを防ぐため、翻訳の使用は適切なスコープで行う
+
+### 7. Tips
+- langは非同期で取得してください。
+```ts
+type Props = {
+  params: Promise<{ lang: string }>
+}
+```
+- 言語情報の取得は [server.ts](mdc:src/lib/i18n/server.ts) のgetLanguageFromParamsを使用してください。
+
+
+
+
