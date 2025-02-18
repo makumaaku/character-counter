@@ -57,9 +57,9 @@ export default function StoryGeneratorClient({ lang }: Props) {
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto px-4 pb-24">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
-          <h1 className="text-4xl font-bold mb-4">{translate(lang, 'wordGen.tools.storyGenerator.title')}</h1>
+          <h1 className="text-4xl font-bold mb-4">{translate(lang, 'storyGenerator.title')}</h1>
           <p className="text-xl text-gray-300 mb-6">
-            {translate(lang, 'wordGen.tools.storyGenerator.description')}
+            {translate(lang, 'storyGenerator.description')}
           </p>
           
           <button
