@@ -11,7 +11,8 @@
       "sentenceGenerator": "Random Sentence Generator",
       "nameGenerator": "Random Name Generator",
       "passwordGenerator": "Random Password Generator",
-      "storyGenerator": "Random Story Generator"
+      "storyGenerator": "Random Story Generator",
+      "linkStatusChecker": "Link Status Checker"
     },
     "meta": {
       "title": "Boring Tools - Simple and Useful Tools for Everyone",
@@ -864,5 +865,30 @@
       "logoAlt": "Boring Tools Logo"
     },
     "menu": "Menu"
+  },
+  "link-status-checker": {
+    "meta": {
+      "title": "SEO Link Status Checker - Boring Tool",
+      "description": "Check the HTTP status of all links on your website. Find broken links and improve your SEO."
+    },
+    "title": "SEO Link Status Checker",
+    "description": "Enter a URL to check its links and status.",
+    "form": {
+      "url": {
+        "label": "URL",
+        "placeholder": "Enter website URL"
+      },
+      "button": {
+        "check": "Check",
+        "checking": "Checking..."
+      }
+    },
+    "results": {
+      "title": "Links",
+      "status": "Status"
+    },
+    "errors": {
+      "general": "An error occurred"
+    }
   }
 } 

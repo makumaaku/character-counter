@@ -97,6 +97,9 @@ export default function Home() {
             <li>
               <Link href="/word-gen/story-generator" className="text-white hover:underline ml-4">Random Story Generator</Link>
             </li>
+            <li>
+              <Link href="/link-status-checker" className="text-white hover:underline">Link Status Checker</Link>
+            </li>
           </ul>
         </div>
       </div>

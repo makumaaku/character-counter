@@ -11,7 +11,8 @@
       "sentenceGenerator": "ランダム文章生成",
       "nameGenerator": "ランダム名前生成",
       "passwordGenerator": "ランダムパスワード生成",
-      "storyGenerator": "ランダムストーリー生成"
+      "storyGenerator": "ランダムストーリー生成",
+      "linkStatusChecker": "リンクステータスチェッカー"
     },
     "meta": {
       "title": "ボーリングツール - シンプルで便利なツール集",
@@ -856,5 +857,30 @@
       "logoAlt": "ボーリングツールのロゴ"
     },
     "menu": "メニュー"
+  },
+  "link-status-checker": {
+    "meta": {
+      "title": "SEOリンクステータスチェッカー - Boring Tool",
+      "description": "ウェブサイト上のすべてのリンクのHTTPステータスをチェック。リンク切れを見つけてSEOを改善。"
+    },
+    "title": "SEOリンクステータスチェッカー",
+    "description": "URLを入力すると、リンクの状態を検知します",
+    "form": {
+      "url": {
+        "label": "URL",
+        "placeholder": "ウェブサイトのURLを入力"
+      },
+      "button": {
+        "check": "チェック",
+        "checking": "チェック中..."
+      }
+    },
+    "results": {
+      "title": "リンク一覧",
+      "status": "ステータス"
+    },
+    "errors": {
+      "general": "エラーが発生しました"
+    }
   }
 } 
