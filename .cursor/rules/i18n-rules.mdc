@@ -15,10 +15,12 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 ### 1. 画面遷移時の注意事項
 - トップページ以外のすべてのページは`/[lang]/`配下に配置する
 - 画面遷移時はlang情報を必ず`/[lang]/`パスを含めること
+- [ja.json](mdc:assets/locales/ja.json), [en.json](mdc:assets/locales/en.json) など、各言語の文字列管理jsonファイルのkeyは階層構造を含め、すべてのファイルで完全一致させてください。
 - `next/link`を使用する場合は、lang情報がある場合には、以下のように言語パラメータを含める
 ```tsx
 <Link href={`/${lang}/about`}>About</Link>
 ```
+
 
 ### 2. テキストの追加方法
 - すべてのテキストは`assets/locales/`ディレクトリ内の言語ファイルで管理
