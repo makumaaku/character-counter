@@ -120,6 +120,34 @@ const getJsonLd = (lang: string, page: string) => ({
 
 ## メタデータの実装パターン
 
+### グローバル定数の利用
+サイト全体で共通して使用するメタデータは、`src/constants/constants.ts`から取得します。
+以下の情報は`SITE_CONFIG`から取得してください：
+- `baseURL`: サイトのベースURL
+- `siteName`: サイト名（i18nキー）
+- `publisher`: 発行者名（i18nキー）
+- `logo`: ロゴ画像の情報
+  - `url`: ロゴ画像のパス
+  - `width`: 画像の幅
+  - `height`: 画像の高さ
+- `icons`: 各種アイコンのパス
+  - `favicon`: ファビコン
+  - `icon192`: PWA用192x192アイコン
+  - `icon512`: PWA用512x512アイコン
+  - `appleIcon`: Apple用アイコン
+
+```typescript
+import { SITE_CONFIG } from '@/constants/constants';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.baseURL),
+  title: t(SITE_CONFIG.siteName),
+  publisher: t(SITE_CONFIG.publisher),
+  icons: SITE_CONFIG.icons,
+  // ... 他のメタデータ
+};
+```
+
 ### 静的なページの場合
 静的なページでは、メタデータとJSON-LDを直接`metadata.ts`内で定義します。
 以下は例なので、各画面の文脈によって内容は変更してください。
@@ -231,5 +259,3 @@ export async function generateMetadata(
 
 ## h1タグについて
 h1タグは、ページの主要な見出しを示すために使用されます。SEOには直接関係しませんが、ユーザーエクスペリエンスに影響を与える重要な要素です。
-
-```

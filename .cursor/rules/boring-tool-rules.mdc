@@ -20,6 +20,9 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
   - **eslint-config-custom/**: カスタムESLint設定
   - **tailwindconfig/**: 共通のTailwind CSS設定
   - **tsconfig/**: 共通のTypeScript設定
+- **src/**: ソースコードのルートディレクトリ
+  - **constants/**: アプリケーション全体で使用する定数を管理
+  - **[other directories]**: 他のソースコードディレクトリ
 
 具体的な構成は以下。
 ```
@@ -28,18 +31,18 @@ boring-tool/                          // モノレポのルートディレクト
 │  ├─ layout.tsx                      // グローバルレイアウト（ヘッダー・フッターなど共通UI）
 │  ├─ page.tsx                        // トップページ（ホームページ）
 │  ├─ globals.css                     // グローバルスタイル
-│  ├─ mdx-components.tsx              // MDXコンポーネント設定
-│  ├─ character-counter/              // 「文字数カウンター」ツール用ルート
-│  │   ├─ page.tsx                    // 文字数カウンターのメイン画面
-│  │   ├─ layout.tsx                  // ツール固有のレイアウト
-│  │   ├─ column/                     // 文字数カウンター専用のコラム記事
-│  │   │   ├─ page.tsx               // コラム一覧ページ
-│  │   │   ├─ metadata.ts            // コラムのメタデータ
-│  │   │   └─ [slug]/                // 個別コラムページ
-│  │   │       ├─ page.tsx
-│  │   │       └─ metadata.ts
-│  ├─ word-gen/                       // 「ワード生成」ツール用ルート
-│  └─ qr-generation/                  // 「QRコード生成」ツール用ルート
+│  ├─ [lang]/                       // 多言語対応のダイナミックルート
+│  │  ├─ layout.tsx                   // 言語固有のレイアウト
+│  │  ├─ page.tsx                     // 言語固有のトップページ
+│  │  ├─ character-counter/           // 「文字数カウンター」ツール用ルート
+│  │  │   ├─ page.tsx                 // 文字数カウンターのメイン画面
+│  │  │   ├─ layout.tsx               // ツール固有のレイアウト
+│  │  │   ├─ metadata.ts              // メタデータ
+│  │  ├─ word-gen/                    // 「ワード生成」ツール用ルート
+│  │  └─ qr-generation/               // 「QRコード生成」ツール用ルート
+├─ src/                               // ソースコードのルートディレクトリ
+├─ assets/                            // アセットファイル
+├─ locales/                           // 多言語対応の翻訳ファイル
 ├─ packages/                          // 複数ツール間で共有する共通パッケージ群
 │  ├─ ui/                             // 各ツールで再利用する共通 UI コンポーネント
 │  ├─ common/                         // 共通のユーティリティや設定
@@ -78,6 +81,7 @@ boring-tool/                          // モノレポのルートディレクト
 ## 6. その他共通
 - コンテンツは必ず英語で記述する。
 - 共通のコンポーネントやユーティリティは packages ディレクトリで管理し、再利用を促進する。
+- アセットファイルは `assets` ディレクトリで一元管理する。
 
 
 

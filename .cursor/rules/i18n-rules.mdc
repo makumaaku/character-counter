@@ -99,6 +99,9 @@ type Props = {
 ```
 - 言語情報の取得は [server.ts](mdc:src/lib/i18n/server.ts) のgetLanguageFromParamsを使用してください。
 
+### 8. 例外
+[page.tsx](mdc:app/page.tsx) のみは多言語対応は不要です。
+
 
 
 

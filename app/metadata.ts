@@ -1,11 +1,12 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
 import type { Metadata } from "next";
 
 const getJsonLd = (lang: string, page: string) => {
   const t = (key: string) => translate(lang, key);
   const commonMeta = {
-    siteName: t('common.meta.siteName'),
-    publisher: t('common.meta.publisher'),
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
   };
 
   return {
@@ -13,16 +14,16 @@ const getJsonLd = (lang: string, page: string) => {
     '@type': 'WebSite',
     name: t(`${page}.meta.title`),
     description: t(`${page}.meta.description`),
-    url: 'https://boring-tool.com',
+    url: SITE_CONFIG.baseURL,
     publisher: {
       '@type': 'Organization',
       name: commonMeta.publisher,
-      url: 'https://boring-tool.com',
+      url: SITE_CONFIG.baseURL,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://boring-tool.com/boring_logo.png',
-        width: 286,
-        height: 286
+        url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        width: SITE_CONFIG.logo.width,
+        height: SITE_CONFIG.logo.height
       }
     },
     offers: {
@@ -50,9 +51,9 @@ export async function generateMetadata(
 
   // 共通のメタデータを取得
   const commonMeta = {
-    siteName: t('common.meta.siteName'),
-    publisher: t('common.meta.publisher'),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t(SITE_CONFIG.logoAlt),
   };
 
   // ページ固有のメタデータを取得
@@ -63,18 +64,18 @@ export async function generateMetadata(
   return {
     title,
     description,
-    metadataBase: new URL('https://boring-tool.com'),
+    metadataBase: new URL(SITE_CONFIG.baseURL),
     openGraph: {
       title,
       description,
-      url: `https://boring-tool.com`,
+      url: SITE_CONFIG.baseURL,
       type: 'website',
       siteName: commonMeta.siteName,
       images: [
         {
-          url: 'https://boring-tool.com/boring_logo.png',
-          width: 286,
-          height: 286,
+          url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+          width: SITE_CONFIG.logo.width,
+          height: SITE_CONFIG.logo.height,
           alt: commonMeta.logoAlt,
         },
       ],
@@ -86,23 +87,23 @@ export async function generateMetadata(
     icons: {
       icon: [
         {
-          url: "/favicon.ico",
+          url: SITE_CONFIG.icons.favicon,
           sizes: "any",
         },
         {
-          url: "/boring-icon-192.png",
+          url: SITE_CONFIG.icons.icon192,
           type: "image/png",
           sizes: "192x192",
         },
         {
-          url: "/boring-icon-512.png",
+          url: SITE_CONFIG.icons.icon512,
           type: "image/png",
           sizes: "512x512",
         },
       ],
       apple: [
         {
-          url: "/boring-icon-180.png",
+          url: SITE_CONFIG.icons.appleIcon,
           sizes: "180x180",
           type: "image/png",
         },

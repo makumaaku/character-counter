@@ -24,21 +24,25 @@ export async function generateMetadata(
   const description = t('characterCounter.meta.description');
   const keywords = t('characterCounter.meta.keywords');
 
+  // Define base URL
+  const baseUrl = 'https://boring-tool.com';
+  const pagePath = '/character-counter';
+
   return {
     title,
     description,
-    metadataBase: new URL('https://boring-tool.com'),
+    metadataBase: new URL(baseUrl),
     openGraph: {
       title,
       description,
-      url: `https://boring-tool.com/${lang}/character-counter`,
+      url: `${baseUrl}/${lang}${pagePath}`,
       type: 'website',
       siteName: commonMeta.siteName,
       locale: lang,
       alternateLocale: [lang === 'en' ? 'ja' : 'en'],
       images: [
         {
-          url: 'https://boring-tool.com/boring_logo.png',
+          url: `${baseUrl}/boring_logo.png`,
           width: 286,
           height: 286,
           alt: commonMeta.logoAlt,
@@ -46,10 +50,11 @@ export async function generateMetadata(
       ],
     },
     alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter`,
+      canonical: `${baseUrl}/${lang}${pagePath}`,
       languages: {
-        'en': 'https://boring-tool.com/en/character-counter',
-        'ja': 'https://boring-tool.com/ja/character-counter',
+        'en': `${baseUrl}/en${pagePath}`,
+        'ja': `${baseUrl}/ja${pagePath}`,
+        'x-default': `${baseUrl}/en${pagePath}`
       },
     },
     keywords,
@@ -59,7 +64,7 @@ export async function generateMetadata(
         '@type': 'WebApplication',
         name: title,
         description,
-        url: `https://boring-tool.com/${lang}/character-counter`,
+        url: `${baseUrl}/${lang}${pagePath}`,
         applicationCategory: 'UtilityApplication',
         operatingSystem: 'Any',
         offers: {
@@ -70,7 +75,7 @@ export async function generateMetadata(
         publisher: {
           '@type': 'Organization',
           name: commonMeta.publisher,
-          url: `https://boring-tool.com/${lang}`,
+          url: baseUrl,
         },
         isAccessibleForFree: true
       })
