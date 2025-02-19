@@ -4,13 +4,13 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const lang = params.lang;
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
   const commonMeta = {
@@ -40,7 +40,7 @@ export async function generateMetadata(
     "dateModified": "2024-02-18"
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
