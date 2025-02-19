@@ -291,7 +291,7 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = await getCommonMetadata(
+  const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
