@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
 import { Metadata } from 'next';
 
@@ -10,6 +11,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
+  const baseUrl = SITE_CONFIG.baseURL;
 
   const jsonLdData = {
     "@context": "https://schema.org",
@@ -17,28 +19,44 @@ export async function generateMetadata(
     "headline": t('characterCounter.usecase.meta.article.headline'),
     "description": t('characterCounter.usecase.meta.article.description'),
     "articleBody": t('characterCounter.usecase.meta.article.body'),
-    "url": `https://boring-tool.com/${lang}/character-counter/usecase`,
+    "url": `${baseUrl}${lang}/character-counter/usecase`,
     "publisher": {
       "@type": "Organization",
-      "name": "Boring Tool",
-      "url": "https://boring-tool.com"
-    }
+      "name": t('common.meta.siteName'),
+      "url": baseUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": SITE_CONFIG.logo.url,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${baseUrl}${lang}/character-counter/usecase`
+    },
+    "inLanguage": lang
   };
 
   return {
+    metadataBase: new URL(baseUrl),
     title: t('characterCounter.usecase.meta.title'),
     description: t('characterCounter.usecase.meta.description'),
     openGraph: {
       title: t('characterCounter.usecase.meta.title'),
       description: t('characterCounter.usecase.meta.description'),
-      url: `https://boring-tool.com/${lang}/character-counter/usecase`,
+      url: `${baseUrl}${lang}/character-counter/usecase`,
       type: 'article',
+      locale: lang,
+      alternateLocale: [lang === 'en' ? 'ja' : 'en'],
+      siteName: t('common.meta.siteName')
     },
     alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter/usecase`,
+      canonical: `${baseUrl}${lang}/character-counter/usecase`,
       languages: {
-        'en': 'https://boring-tool.com/en/character-counter/usecase',
-        'ja': 'https://boring-tool.com/ja/character-counter/usecase',
+        'en': `${baseUrl}en/character-counter/usecase`,
+        'ja': `${baseUrl}ja/character-counter/usecase`,
+        'x-default': `${baseUrl}en/character-counter/usecase`
       }
     },
     keywords: t('characterCounter.usecase.meta.keywords'),
