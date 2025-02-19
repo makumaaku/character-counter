@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
 import type { Metadata } from "next";
 
@@ -24,9 +25,10 @@ export async function generateMetadata(
   const description = t('characterCounter.meta.description');
   const keywords = t('characterCounter.meta.keywords');
 
-  // Define base URL
-  const baseUrl = 'https://boring-tool.com';
+  // Define base URL from SITE_CONFIG
+  const baseUrl = SITE_CONFIG.baseURL;
   const pagePath = '/character-counter';
+  const currentUrl = `${baseUrl}/${lang}${pagePath}`;
 
   return {
     title,
@@ -35,22 +37,22 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${lang}${pagePath}`,
+      url: currentUrl,
       type: 'website',
       siteName: commonMeta.siteName,
       locale: lang,
       alternateLocale: [lang === 'en' ? 'ja' : 'en'],
       images: [
         {
-          url: `${baseUrl}/boring_logo.png`,
-          width: 286,
-          height: 286,
+          url: `${baseUrl}${SITE_CONFIG.logo.url}`,
+          width: SITE_CONFIG.logo.width,
+          height: SITE_CONFIG.logo.height,
           alt: commonMeta.logoAlt,
         },
       ],
     },
     alternates: {
-      canonical: `${baseUrl}/${lang}${pagePath}`,
+      canonical: currentUrl,
       languages: {
         'en': `${baseUrl}/en${pagePath}`,
         'ja': `${baseUrl}/ja${pagePath}`,
@@ -58,13 +60,32 @@ export async function generateMetadata(
       },
     },
     keywords,
+    icons: {
+      icon: SITE_CONFIG.icons.icon192,
+      shortcut: SITE_CONFIG.icons.favicon,
+      apple: SITE_CONFIG.icons.appleIcon,
+      other: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '192x192',
+          url: SITE_CONFIG.icons.icon192
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '512x512',
+          url: SITE_CONFIG.icons.icon512
+        }
+      ]
+    },
     other: {
       'application/ld+json': JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
         name: title,
         description,
-        url: `${baseUrl}/${lang}${pagePath}`,
+        url: currentUrl,
         applicationCategory: 'UtilityApplication',
         operatingSystem: 'Any',
         offers: {

@@ -77,12 +77,14 @@ export async function generateMetadata(
 ### 3. 言語別URLの設定
 - canonical URLは現在の言語バージョンのURLを指定
 - alternatesで他の言語バージョンのURLを指定
+- `x-default`は必ずデフォルト言語（英語）のURLを指定する
 ```typescript
 alternates: {
   canonical: `https://boring-tool.com/${lang}`,
   languages: {
     'en': 'https://boring-tool.com/en',
     'ja': 'https://boring-tool.com/ja',
+    'x-default': 'https://boring-tool.com/en'  // デフォルト言語（英語）のURLを指定
   },
 }
 ```
