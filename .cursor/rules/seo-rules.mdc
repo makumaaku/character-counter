@@ -26,6 +26,30 @@ export const SITE_CONFIG = {
 };
 ```
 
+また、共通のメタデータ設定は`src/lib/metadata.ts`の`getCommonMetadata`関数から取得します：
+```typescript
+export const getCommonMetadata = async (
+  lang: string,
+  commonMeta: {
+    siteName: string;
+    publisher: string;
+    logoAlt: string;
+  },
+  pageMeta: {
+    title: string;
+    description: string;
+    keywords: string;
+    url: string;
+  }
+): Promise<Metadata>
+```
+
+この関数は以下の共通設定を提供します：
+- metadataBase（サイトのベースURL）
+- OpenGraph設定（タイトル、説明、画像など）
+- 代替言語設定（canonical URL、言語切り替えなど）
+- アイコン設定（favicon、アプリアイコンなど）
+
 # SEO 対策
 - グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定する。
 - 各ページのメタデータは `metadata.ts` に定義する：
@@ -165,146 +189,123 @@ const getJsonLd = (lang: string, page: string) => ({
 以下は例なので、各画面の文脈によって内容は変更してください。
 
 ```typescript
-import { Metadata } from 'next';
 import { SITE_CONFIG } from '@/constants/constants';
-
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_CONFIG.baseURL),
-  title: `Random Name Generator - ${t(SITE_CONFIG.siteName)}`,
-  description: 'Free online random name generator tool.',
-  openGraph: {
-    title: `Random Name Generator - ${t(SITE_CONFIG.siteName)}`,
-    description: 'Free online random name generator tool.',
-    url: `${SITE_CONFIG.baseURL}/word-gen/name-generator`,
-    type: 'website',
-    images: [{
-      url: SITE_CONFIG.logo.url,
-      width: SITE_CONFIG.logo.width,
-      height: SITE_CONFIG.logo.height,
-      alt: t(SITE_CONFIG.logo.alt)
-    }]
-  },
-  alternates: {
-    canonical: `${SITE_CONFIG.baseURL}/word-gen/name-generator`,
-  },
-  keywords: 'name generator, random name, character names',
-  icons: SITE_CONFIG.icons,
-  // JSON-LDをother.scriptプロパティで定義
-  other: {
-    script: [JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: `Random Name Generator - ${t(SITE_CONFIG.siteName)}`,
-      description: 'Free online random name generator tool.',
-      url: `${SITE_CONFIG.baseURL}/word-gen/name-generator`,
-      applicationCategory: 'UtilityApplication',
-      operatingSystem: 'Any',
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD'
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: t(SITE_CONFIG.siteName),
-        url: SITE_CONFIG.baseURL,
-        logo: {
-          '@type': 'ImageObject',
-          url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
-          width: SITE_CONFIG.logo.width,
-          height: SITE_CONFIG.logo.height
-        }
-      },
-      featureList: [
-        'Random name generation',
-        'Free to use',
-        'No registration required'
-      ],
-      isAccessibleForFree: true
-    })]
-  }
-};
-```
-
-### 動的なページの場合
-動的なページでは、`generateMetadata`関数を使用してメタデータとJSON-LDを生成します。
-
-```typescript
-// metadata.ts
+import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import { SITE_CONFIG } from '@/constants/constants';
 
-// JSON-LD データの型定義
-type JsonLd = {
-  '@context': 'https://schema.org';
-  '@type': string;
-  name: string;
-  description: string;
-  url: string;
-  publisher: {
-    '@type': 'Organization';
-    name: string;
-    logo: {
-      '@type': 'ImageObject';
-      url: string;
-      width: number;
-      height: number;
-    };
-  };
-};
+type Props = {
+  params: Promise<{ lang: string }>
+}
 
-// メタデータ生成関数
 export async function generateMetadata(
-  { params, searchParams }: {
-    params: { slug?: string };
-    searchParams: { [key: string]: string | string[] | undefined };
-  }
+  { params }: Props
 ): Promise<Metadata> {
-  const data = await fetchPageData(params.slug);
-  const lang = params.lang || 'en';
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
-  // JSON-LD データの生成
-  const jsonLd: JsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: `${data.title} - ${t(SITE_CONFIG.siteName)}`,
-    description: data.description,
-    url: `${SITE_CONFIG.baseURL}/${data.slug}`,
-    publisher: {
-      '@type': 'Organization',
-      name: t(SITE_CONFIG.siteName),
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
-        width: SITE_CONFIG.logo.width,
-        height: SITE_CONFIG.logo.height
+  // 共通のメタデータ情報を設定
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  // ページ固有のJSON-LDを定義
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": t('page.meta.title'),
+    "description": t('page.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/path-to-page`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
       }
     }
   };
 
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: t('page.meta.title'),
+      description: t('page.meta.description'),
+      keywords: t('page.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/path-to-page`,
+    }
+  );
+
   return {
-    metadataBase: new URL(SITE_CONFIG.baseURL),
-    title: `${data.title} - ${t(SITE_CONFIG.siteName)}`,
-    description: data.description,
-    openGraph: {
-      title: `${data.title} - ${t(SITE_CONFIG.siteName)}`,
-      description: data.description,
-      url: `${SITE_CONFIG.baseURL}/${data.slug}`,
-      type: 'website',
-      images: [{
-        url: SITE_CONFIG.logo.url,
-        width: SITE_CONFIG.logo.width,
-        height: SITE_CONFIG.logo.height,
-        alt: t(SITE_CONFIG.logo.alt)
-      }]
-    },
-    alternates: {
-      canonical: `${SITE_CONFIG.baseURL}/${data.slug}`,
-    },
-    icons: SITE_CONFIG.icons,
+    ...metadata,
     other: {
-      script: [JSON.stringify(jsonLd)]
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
+}
+```
+
+### 動的なページの場合
+動的なページでは、`generateMetadata`関数を使用してメタデータとJSON-LDを生成します。基本的な実装パターンは静的ページと同じですが、動的なデータを含める必要がある場合は、そのデータを取得してから`getCommonMetadata`を呼び出します。
+
+```typescript
+export async function generateMetadata(
+  { params, searchParams }: {
+    params: { slug?: string; lang: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+  }
+): Promise<Metadata> {
+  const data = await fetchPageData(params.slug);
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  // 動的なデータを含むJSON-LDを生成
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": `${data.title} - ${commonMeta.siteName}`,
+    "description": data.description,
+    "url": `${SITE_CONFIG.baseURL}/${lang}/${data.slug}`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
+      }
+    }
+  };
+
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: `${data.title} - ${commonMeta.siteName}`,
+      description: data.description,
+      keywords: data.keywords,
+      url: `${SITE_CONFIG.baseURL}/${lang}/${data.slug}`,
+    }
+  );
+
+  return {
+    ...metadata,
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 }
