@@ -28,7 +28,7 @@ export const SITE_CONFIG = {
 
 また、共通のメタデータ設定は`src/lib/metadata.ts`の`getCommonMetadata`関数から取得します：
 ```typescript
-export const getCommonMetadata = async (
+export const getCommonMetadata = (
   lang: string,
   commonMeta: {
     siteName: string;
@@ -41,7 +41,7 @@ export const getCommonMetadata = async (
     keywords: string;
     url: string;
   }
-): Promise<Metadata>
+): Metadata
 ```
 
 この関数は以下の共通設定を提供します：
@@ -231,7 +231,7 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = await getCommonMetadata(
+  const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {

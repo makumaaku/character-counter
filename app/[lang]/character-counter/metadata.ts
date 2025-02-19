@@ -1,105 +1,73 @@
 import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
-import type { Metadata } from "next";
+import { getCommonMetadata } from '@/lib/metadata';
+import { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata(
-  props: Props
+  { params }: Props
 ): Promise<Metadata> {
-  const params = await props.params;
-  const lang = params.lang;
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
-  // 共通のメタデータを取得
   const commonMeta = {
-    siteName: t('common.meta.siteName'),
-    publisher: t('common.meta.publisher'),
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
     logoAlt: t('common.meta.logoAlt'),
   };
 
-  // ページ固有のメタデータを取得
-  const title = t('characterCounter.meta.title');
-  const description = t('characterCounter.meta.description');
-  const keywords = t('characterCounter.meta.keywords');
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": t('characterCounter.meta.title'),
+    "description": t('characterCounter.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
+      }
+    },
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Character counting",
+      "Word counting",
+      "Line counting",
+      "Real-time counting",
+      "Free to use",
+      "No registration required"
+    ],
+    "isAccessibleForFree": true
+  };
 
-  // Define base URL from SITE_CONFIG
-  const baseUrl = SITE_CONFIG.baseURL;
-  const pagePath = '/character-counter';
-  const currentUrl = `${baseUrl}/${lang}${pagePath}`;
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: t('characterCounter.meta.title'),
+      description: t('characterCounter.meta.description'),
+      keywords: t('characterCounter.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter`,
+    }
+  );
 
   return {
-    title,
-    description,
-    metadataBase: new URL(baseUrl),
-    openGraph: {
-      title,
-      description,
-      url: currentUrl,
-      type: 'website',
-      siteName: commonMeta.siteName,
-      locale: lang,
-      alternateLocale: [lang === 'en' ? 'ja' : 'en'],
-      images: [
-        {
-          url: `${baseUrl}${SITE_CONFIG.logo.url}`,
-          width: SITE_CONFIG.logo.width,
-          height: SITE_CONFIG.logo.height,
-          alt: commonMeta.logoAlt,
-        },
-      ],
-    },
-    alternates: {
-      canonical: currentUrl,
-      languages: {
-        'en': `${baseUrl}/en${pagePath}`,
-        'ja': `${baseUrl}/ja${pagePath}`,
-        'x-default': `${baseUrl}/en${pagePath}`
-      },
-    },
-    keywords,
-    icons: {
-      icon: SITE_CONFIG.icons.icon192,
-      shortcut: SITE_CONFIG.icons.favicon,
-      apple: SITE_CONFIG.icons.appleIcon,
-      other: [
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '192x192',
-          url: SITE_CONFIG.icons.icon192
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '512x512',
-          url: SITE_CONFIG.icons.icon512
-        }
-      ]
-    },
+    ...metadata,
     other: {
-      'application/ld+json': JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: title,
-        description,
-        url: currentUrl,
-        applicationCategory: 'UtilityApplication',
-        operatingSystem: 'Any',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD'
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: commonMeta.publisher,
-          url: baseUrl,
-        },
-        isAccessibleForFree: true
-      })
+      'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 } 

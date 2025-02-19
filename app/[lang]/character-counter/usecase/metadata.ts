@@ -1,67 +1,65 @@
 import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const lang = params.lang;
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
-  const baseUrl = SITE_CONFIG.baseURL;
 
-  const jsonLdData = {
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": t('characterCounter.usecase.meta.article.headline'),
     "description": t('characterCounter.usecase.meta.article.description'),
     "articleBody": t('characterCounter.usecase.meta.article.body'),
-    "url": `${baseUrl}${lang}/character-counter/usecase`,
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/usecase`,
     "publisher": {
       "@type": "Organization",
-      "name": t('common.meta.siteName'),
-      "url": baseUrl,
+      "name": commonMeta.siteName,
       "logo": {
         "@type": "ImageObject",
-        "url": SITE_CONFIG.logo.url,
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
         "width": SITE_CONFIG.logo.width,
         "height": SITE_CONFIG.logo.height
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${baseUrl}${lang}/character-counter/usecase`
+      "@id": `${SITE_CONFIG.baseURL}/${lang}/character-counter/usecase`
     },
-    "inLanguage": lang
+    "inLanguage": lang,
+    "datePublished": "2024-02-18",
+    "dateModified": "2024-02-18"
   };
 
-  return {
-    metadataBase: new URL(baseUrl),
-    title: t('characterCounter.usecase.meta.title'),
-    description: t('characterCounter.usecase.meta.description'),
-    openGraph: {
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
       title: t('characterCounter.usecase.meta.title'),
       description: t('characterCounter.usecase.meta.description'),
-      url: `${baseUrl}${lang}/character-counter/usecase`,
-      type: 'article',
-      locale: lang,
-      alternateLocale: [lang === 'en' ? 'ja' : 'en'],
-      siteName: t('common.meta.siteName')
-    },
-    alternates: {
-      canonical: `${baseUrl}${lang}/character-counter/usecase`,
-      languages: {
-        'en': `${baseUrl}en/character-counter/usecase`,
-        'ja': `${baseUrl}ja/character-counter/usecase`,
-        'x-default': `${baseUrl}en/character-counter/usecase`
-      }
-    },
-    keywords: t('characterCounter.usecase.meta.keywords'),
+      keywords: t('characterCounter.usecase.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/usecase`,
+    }
+  );
+
+  return {
+    ...metadata,
     other: {
-      'application/ld+json': JSON.stringify(jsonLdData)
+      'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 } 

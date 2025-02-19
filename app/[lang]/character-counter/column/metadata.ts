@@ -1,56 +1,65 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const lang = params.lang;
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
-  const jsonLdData = {
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    name: t('characterCounter.column.meta.jsonLd.name'),
-    description: t('characterCounter.column.meta.jsonLd.description'),
-    url: `https://boring-tool.com/${lang}/character-counter/column`,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Boring Tool',
-      url: 'https://boring-tool.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://boring-tool.com/boring_logo.png',
-        width: 286,
-        height: 286
-      }
-    },
-    inLanguage: lang,
-    isAccessibleForFree: true
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
   };
 
-  return {
-    title: t('characterCounter.column.meta.title'),
-    description: t('characterCounter.column.meta.description'),
-    keywords: t('characterCounter.column.meta.keywords'),
-    openGraph: {
-      title: t('characterCounter.column.meta.title'),
-      description: t('characterCounter.column.meta.description'),
-      url: `https://boring-tool.com/${lang}/character-counter/column`,
-      type: 'website',
-    },
-    alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter/column`,
-      languages: {
-        'en': 'https://boring-tool.com/en/character-counter/column',
-        'ja': 'https://boring-tool.com/ja/character-counter/column',
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": t('characterCounter.column.meta.title'),
+    "description": t('characterCounter.column.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/column`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
       }
     },
+    "inLanguage": lang,
+    "datePublished": "2024-02-18",
+    "dateModified": "2024-02-18",
+    "author": {
+      "@type": "Organization",
+      "name": commonMeta.publisher,
+      "url": SITE_CONFIG.baseURL
+    }
+  };
+
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: t('characterCounter.column.meta.title'),
+      description: t('characterCounter.column.meta.description'),
+      keywords: t('characterCounter.column.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/column`,
+    }
+  );
+
+  return {
+    ...metadata,
     other: {
-      'application/ld+json': JSON.stringify(jsonLdData)
+      'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 } 
