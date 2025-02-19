@@ -1,4 +1,6 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
@@ -11,51 +13,48 @@ export async function generateMetadata(
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
 
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": t('characterCounter.privacy.meta.title'),
-    "description": t('characterCounter.privacy.meta.description'),
-    "url": `https://boring-tool.com/${lang}/character-counter/privacy`,
-    "publisher": {
-      "@type": "Organization",
-      "name": "Boring Tool",
-      "url": "https://boring-tool.com"
-    },
-    "mainEntity": {
-      "@type": "Article",
-      "headline": t('characterCounter.privacy.meta.article.headline'),
-      "description": t('characterCounter.privacy.meta.article.description'),
-      "articleBody": t('characterCounter.privacy.meta.article.body'),
-      "datePublished": "2024-02-15",
-      "dateModified": "2024-02-15",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Boring Tool",
-        "url": "https://boring-tool.com"
-      }
-    }
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
   };
 
-  return {
-    title: t('characterCounter.privacy.meta.title'),
-    description: t('characterCounter.privacy.meta.description'),
-    openGraph: {
-      title: t('characterCounter.privacy.meta.title'),
-      description: t('characterCounter.privacy.meta.description'),
-      url: `https://boring-tool.com/${lang}/character-counter/privacy`,
-      type: 'article',
-    },
-    alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter/privacy`,
-      languages: {
-        'en': 'https://boring-tool.com/en/character-counter/privacy',
-        'ja': 'https://boring-tool.com/ja/character-counter/privacy',
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "PrivacyPolicy",
+    "name": t('characterCounter.privacy.meta.title'),
+    "description": t('characterCounter.privacy.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/privacy`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
       }
     },
-    keywords: t('characterCounter.privacy.meta.keywords'),
+    "inLanguage": lang,
+    "datePublished": "2024-02-18",
+    "dateModified": "2024-02-18"
+  };
+
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: t('characterCounter.privacy.meta.title'),
+      description: t('characterCounter.privacy.meta.description'),
+      keywords: t('characterCounter.privacy.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/privacy`,
+    }
+  );
+
+  return {
+    ...metadata,
     other: {
-      'application/ld+json': JSON.stringify(jsonLdData)
+      'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 } 

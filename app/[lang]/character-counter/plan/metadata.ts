@@ -1,4 +1,6 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
@@ -11,66 +13,67 @@ export async function generateMetadata(
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
 
-  const jsonLdData = {
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": "Product",
     "name": t('characterCounter.plan.meta.title'),
     "description": t('characterCounter.plan.meta.description'),
-    "url": `https://boring-tool.com/${lang}/character-counter/plan`,
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/plan`,
     "publisher": {
       "@type": "Organization",
-      "name": "Boring Tool",
-      "url": "https://boring-tool.com"
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
+      }
     },
-    "mainEntity": {
-      "@type": "Product",
-      "name": "Character Counter Premium",
-      "description": t('characterCounter.plan.meta.product.description'),
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
       "offers": [
         {
           "@type": "Offer",
-          "name": t('characterCounter.plan.meta.product.offers.free.name'),
+          "name": t('characterCounter.plan.free.title'),
+          "description": t('characterCounter.plan.free.description'),
           "price": "0",
           "priceCurrency": "USD",
-          "description": t('characterCounter.plan.meta.product.offers.free.description')
+          "availability": "https://schema.org/InStock"
         },
         {
           "@type": "Offer",
-          "name": t('characterCounter.plan.meta.product.offers.monthly.name'),
-          "price": "4.80",
+          "name": t('characterCounter.plan.pro.title'),
+          "description": t('characterCounter.plan.pro.description'),
+          "price": "9.99",
           "priceCurrency": "USD",
-          "description": t('characterCounter.plan.meta.product.offers.monthly.description')
-        },
-        {
-          "@type": "Offer",
-          "name": t('characterCounter.plan.meta.product.offers.annual.name'),
-          "price": "39.80",
-          "priceCurrency": "USD",
-          "description": t('characterCounter.plan.meta.product.offers.annual.description')
+          "availability": "https://schema.org/InStock"
         }
       ]
     }
   };
 
-  return {
-    title: t('characterCounter.plan.meta.title'),
-    description: t('characterCounter.plan.meta.description'),
-    openGraph: {
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
       title: t('characterCounter.plan.meta.title'),
       description: t('characterCounter.plan.meta.description'),
-      url: `https://boring-tool.com/${lang}/character-counter/plan`,
-      type: 'article',
-    },
-    alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter/plan`,
-      languages: {
-        'en': 'https://boring-tool.com/en/character-counter/plan',
-        'ja': 'https://boring-tool.com/ja/character-counter/plan',
-      }
-    },
-    keywords: t('characterCounter.plan.meta.keywords'),
+      keywords: t('characterCounter.plan.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/plan`,
+    }
+  );
+
+  return {
+    ...metadata,
     other: {
-      'application/ld+json': JSON.stringify(jsonLdData)
+      'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 } 

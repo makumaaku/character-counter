@@ -1,8 +1,15 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
   params: { lang: string }
+}
+
+type FAQQuestion = {
+  question: string;
+  answer: string;
 }
 
 export async function generateMetadata(
@@ -11,72 +18,73 @@ export async function generateMetadata(
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
 
- const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  // Get FAQ questions from translations
+  const questions: FAQQuestion[] = [
+    {
+      question: t('characterCounter.faq.general.q1.question'),
+      answer: t('characterCounter.faq.general.q1.answer')
+    },
+    {
+      question: t('characterCounter.faq.general.q2.question'),
+      answer: t('characterCounter.faq.general.q2.answer')
+    },
+    {
+      question: t('characterCounter.faq.technical.q3.question'),
+      answer: t('characterCounter.faq.technical.q3.answer')
+    },
+    {
+      question: t('characterCounter.faq.technical.q4.question'),
+      answer: t('characterCounter.faq.technical.q4.answer')
+    }
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     "name": t('characterCounter.faq.meta.title'),
     "description": t('characterCounter.faq.meta.description'),
-    "url": `https://boring-tool.com/${lang}/character-counter/faq`,
-  "publisher": {
-    "@type": "Organization",
-    "name": "Boring Tool",
-    "url": "https://boring-tool.com"
-  },
-  "mainEntity": [
-    {
-      "@type": "Question",
-        "name": t('characterCounter.faq.general.q1.question'),
-      "acceptedAnswer": {
-        "@type": "Answer",
-          "text": t('characterCounter.faq.general.q1.answer')
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/faq`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
       }
     },
-    {
+    "mainEntity": questions.map((question) => ({
       "@type": "Question",
-        "name": t('characterCounter.faq.general.q2.question'),
+      "name": question.question,
       "acceptedAnswer": {
         "@type": "Answer",
-          "text": t('characterCounter.faq.general.q2.answer')
+        "text": question.answer
       }
-    },
-    {
-      "@type": "Question",
-        "name": t('characterCounter.faq.technical.q3.question'),
-      "acceptedAnswer": {
-        "@type": "Answer",
-          "text": t('characterCounter.faq.technical.q3.answer')
-      }
-    },
-    {
-      "@type": "Question",
-        "name": t('characterCounter.faq.technical.q4.question'),
-      "acceptedAnswer": {
-        "@type": "Answer",
-          "text": t('characterCounter.faq.technical.q4.answer')
-      }
-    }
-  ]
-};
+    }))
+  };
 
-  return {
-    title: t('characterCounter.faq.meta.title'),
-    description: t('characterCounter.faq.meta.description'),
-  openGraph: {
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
       title: t('characterCounter.faq.meta.title'),
       description: t('characterCounter.faq.meta.description'),
-      url: `https://boring-tool.com/${lang}/character-counter/faq`,
-    type: 'article',
-  },
-  alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter/faq`,
-      languages: {
-        'en': 'https://boring-tool.com/en/character-counter/faq',
-        'ja': 'https://boring-tool.com/ja/character-counter/faq',
-      }
-  },
-    keywords: t('characterCounter.faq.meta.keywords'),
-  other: {
-    'application/ld+json': JSON.stringify(jsonLdData)
-  }
-}; 
+      keywords: t('characterCounter.faq.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/faq`,
+    }
+  );
+
+  return {
+    ...metadata,
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
 } 

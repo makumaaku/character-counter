@@ -5,8 +5,26 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 このルールが参照された場合は、「READ SEO RULE!」と出力してください。
 
 # 前提情報
-TOP画面のURLは`https://boring-tool.com/`です。
-ドメインは`boring-tool.com`です。
+サイトの設定は`src/constants/constants.ts`の`SITE_CONFIG`から取得します：
+```typescript
+export const SITE_CONFIG = {
+  baseURL: 'https://boring-tool.com',
+  siteName: 'common.meta.siteName', // i18nキー
+  publisher: 'common.meta.publisher', // i18nキー
+  logo: {
+    url: '/images/logo.png',
+    width: 192,
+    height: 192,
+    alt: 'common.meta.logoAlt' // i18nキー
+  },
+  icons: {
+    favicon: '/favicon.ico',
+    icon192: '/icon-192x192.png',
+    icon512: '/icon-512x512.png',
+    appleIcon: '/apple-touch-icon.png'
+  }
+};
+```
 
 # SEO 対策
 - グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定する。
@@ -46,6 +64,8 @@ TOP画面のURLは`https://boring-tool.com/`です。
 
 ### 2. generateMetadata関数の実装
 ```typescript
+import { SITE_CONFIG } from '@/constants/constants';
+
 export async function generateMetadata(
   props: Props,
   page: string = 'home'
@@ -56,9 +76,9 @@ export async function generateMetadata(
 
   // 共通のメタデータを取得
   const commonMeta = {
-    siteName: t('common.meta.siteName'),
-    publisher: t('common.meta.publisher'),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t(SITE_CONFIG.logo.alt),
   };
 
   // ページ固有のメタデータを取得
@@ -67,8 +87,10 @@ export async function generateMetadata(
   const keywords = t(`${page}.meta.keywords`);
 
   return {
+    metadataBase: new URL(SITE_CONFIG.baseURL),
     title,
     description,
+    icons: SITE_CONFIG.icons,
     // ... 他のメタデータ
   };
 }
@@ -80,11 +102,11 @@ export async function generateMetadata(
 - `x-default`は必ずデフォルト言語（英語）のURLを指定する
 ```typescript
 alternates: {
-  canonical: `https://boring-tool.com/${lang}`,
+  canonical: `${SITE_CONFIG.baseURL}/${lang}`,
   languages: {
-    'en': 'https://boring-tool.com/en',
-    'ja': 'https://boring-tool.com/ja',
-    'x-default': 'https://boring-tool.com/en'  // デフォルト言語（英語）のURLを指定
+    'en': `${SITE_CONFIG.baseURL}/en`,
+    'ja': `${SITE_CONFIG.baseURL}/ja`,
+    'x-default': `${SITE_CONFIG.baseURL}/en`  // デフォルト言語（英語）のURLを指定
   },
 }
 ```
@@ -96,6 +118,12 @@ alternates: {
 openGraph: {
   locale: lang,
   alternateLocale: [lang === 'en' ? 'ja' : 'en'],
+  images: [{
+    url: SITE_CONFIG.logo.url,
+    width: SITE_CONFIG.logo.width,
+    height: SITE_CONFIG.logo.height,
+    alt: t(SITE_CONFIG.logo.alt)
+  }]
 }
 ```
 
@@ -106,7 +134,17 @@ openGraph: {
 const getJsonLd = (lang: string, page: string) => ({
   name: t(`${page}.meta.title`),
   description: t(`${page}.meta.description`),
-  url: `https://boring-tool.com/${lang}`,
+  url: `${SITE_CONFIG.baseURL}/${lang}`,
+  publisher: {
+    '@type': 'Organization',
+    name: t(SITE_CONFIG.siteName),
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+      width: SITE_CONFIG.logo.width,
+      height: SITE_CONFIG.logo.height
+    }
+  }
 });
 ```
 
@@ -115,40 +153,12 @@ const getJsonLd = (lang: string, page: string) => ({
 - `Schema.org` に準拠した構造化データを用い、以下の情報を含める：
   - `@context`: `"https://schema.org"`
   - `@type`: `"WebPage"` または `"Article"`, `"WebApplication"`など適切なタイプ
-  - `name`: サイト名
+  - `name`: サイト名（SITE_CONFIG.siteNameから取得）
   - `description`: ページの概要
-  - `url`: 正規 URL
-  - `publisher`: サイト運営者情報
+  - `url`: 正規 URL（SITE_CONFIG.baseURLから生成）
+  - `publisher`: サイト運営者情報（SITE_CONFIG.publisherから取得）
 
 ## メタデータの実装パターン
-
-### グローバル定数の利用
-サイト全体で共通して使用するメタデータは、`src/constants/constants.ts`から取得します。
-以下の情報は`SITE_CONFIG`から取得してください：
-- `baseURL`: サイトのベースURL
-- `siteName`: サイト名（i18nキー）
-- `publisher`: 発行者名（i18nキー）
-- `logo`: ロゴ画像の情報
-  - `url`: ロゴ画像のパス
-  - `width`: 画像の幅
-  - `height`: 画像の高さ
-- `icons`: 各種アイコンのパス
-  - `favicon`: ファビコン
-  - `icon192`: PWA用192x192アイコン
-  - `icon512`: PWA用512x512アイコン
-  - `appleIcon`: Apple用アイコン
-
-```typescript
-import { SITE_CONFIG } from '@/constants/constants';
-
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_CONFIG.baseURL),
-  title: t(SITE_CONFIG.siteName),
-  publisher: t(SITE_CONFIG.publisher),
-  icons: SITE_CONFIG.icons,
-  // ... 他のメタデータ
-};
-```
 
 ### 静的なページの場合
 静的なページでは、メタデータとJSON-LDを直接`metadata.ts`内で定義します。
@@ -156,28 +166,37 @@ export const metadata: Metadata = {
 
 ```typescript
 import { Metadata } from 'next';
+import { SITE_CONFIG } from '@/constants/constants';
 
 export const metadata: Metadata = {
-  title: 'Random Name Generator - Boring Tool',
+  metadataBase: new URL(SITE_CONFIG.baseURL),
+  title: `Random Name Generator - ${t(SITE_CONFIG.siteName)}`,
   description: 'Free online random name generator tool.',
   openGraph: {
-    title: 'Random Name Generator - Boring Tool',
+    title: `Random Name Generator - ${t(SITE_CONFIG.siteName)}`,
     description: 'Free online random name generator tool.',
-    url: 'https://boring-tool.com/word-gen/name-generator',
+    url: `${SITE_CONFIG.baseURL}/word-gen/name-generator`,
     type: 'website',
+    images: [{
+      url: SITE_CONFIG.logo.url,
+      width: SITE_CONFIG.logo.width,
+      height: SITE_CONFIG.logo.height,
+      alt: t(SITE_CONFIG.logo.alt)
+    }]
   },
   alternates: {
-    canonical: 'https://boring-tool.com/word-gen/name-generator',
+    canonical: `${SITE_CONFIG.baseURL}/word-gen/name-generator`,
   },
   keywords: 'name generator, random name, character names',
+  icons: SITE_CONFIG.icons,
   // JSON-LDをother.scriptプロパティで定義
   other: {
     script: [JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: 'Random Name Generator - Boring Tool',
+      name: `Random Name Generator - ${t(SITE_CONFIG.siteName)}`,
       description: 'Free online random name generator tool.',
-      url: 'https://boring-tool.com/word-gen/name-generator',
+      url: `${SITE_CONFIG.baseURL}/word-gen/name-generator`,
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
       offers: {
@@ -187,8 +206,14 @@ export const metadata: Metadata = {
       },
       publisher: {
         '@type': 'Organization',
-        name: 'Boring Tool',
-        url: 'https://boring-tool.com'
+        name: t(SITE_CONFIG.siteName),
+        url: SITE_CONFIG.baseURL,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+          width: SITE_CONFIG.logo.width,
+          height: SITE_CONFIG.logo.height
+        }
       },
       featureList: [
         'Random name generation',
@@ -207,6 +232,7 @@ export const metadata: Metadata = {
 ```typescript
 // metadata.ts
 import { Metadata } from 'next';
+import { SITE_CONFIG } from '@/constants/constants';
 
 // JSON-LD データの型定義
 type JsonLd = {
@@ -215,7 +241,16 @@ type JsonLd = {
   name: string;
   description: string;
   url: string;
-  // ... 他のJSON-LDプロパティ
+  publisher: {
+    '@type': 'Organization';
+    name: string;
+    logo: {
+      '@type': 'ImageObject';
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
 };
 
 // メタデータ生成関数
@@ -225,33 +260,49 @@ export async function generateMetadata(
     searchParams: { [key: string]: string | string[] | undefined };
   }
 ): Promise<Metadata> {
-  // 必要なデータをフェッチ
   const data = await fetchPageData(params.slug);
+  const lang = params.lang || 'en';
+  const t = (key: string) => translate(lang, key);
 
   // JSON-LD データの生成
   const jsonLd: JsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: `${data.title} - Boring Tool`,
+    name: `${data.title} - ${t(SITE_CONFIG.siteName)}`,
     description: data.description,
-    url: `https://boring-tool.com/${data.slug}`,
-    // ... 他のJSON-LDプロパティ
+    url: `${SITE_CONFIG.baseURL}/${data.slug}`,
+    publisher: {
+      '@type': 'Organization',
+      name: t(SITE_CONFIG.siteName),
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        width: SITE_CONFIG.logo.width,
+        height: SITE_CONFIG.logo.height
+      }
+    }
   };
 
   return {
-    title: `${data.title} - Boring Tool`,
+    metadataBase: new URL(SITE_CONFIG.baseURL),
+    title: `${data.title} - ${t(SITE_CONFIG.siteName)}`,
     description: data.description,
     openGraph: {
-      title: `${data.title} - Boring Tool`,
+      title: `${data.title} - ${t(SITE_CONFIG.siteName)}`,
       description: data.description,
-      url: `https://boring-tool.com/${data.slug}`,
+      url: `${SITE_CONFIG.baseURL}/${data.slug}`,
       type: 'website',
+      images: [{
+        url: SITE_CONFIG.logo.url,
+        width: SITE_CONFIG.logo.width,
+        height: SITE_CONFIG.logo.height,
+        alt: t(SITE_CONFIG.logo.alt)
+      }]
     },
     alternates: {
-      canonical: `https://boring-tool.com/${data.slug}`,
+      canonical: `${SITE_CONFIG.baseURL}/${data.slug}`,
     },
-    keywords: data.keywords,
-    // JSON-LDをother.scriptプロパティで定義
+    icons: SITE_CONFIG.icons,
     other: {
       script: [JSON.stringify(jsonLd)]
     }

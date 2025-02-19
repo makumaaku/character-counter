@@ -1,4 +1,6 @@
+import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
@@ -11,22 +13,45 @@ export async function generateMetadata(
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
 
-  return {
-    title: t('characterCounter.contact.meta.title'),
-    description: t('characterCounter.contact.meta.description'),
-    openGraph: {
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": t('characterCounter.contact.meta.title'),
+    "description": t('characterCounter.contact.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/contact`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
+      }
+    }
+  };
+
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
       title: t('characterCounter.contact.meta.title'),
       description: t('characterCounter.contact.meta.description'),
-      url: `https://boring-tool.com/${lang}/character-counter/contact`,
-      type: 'website',
-    },
-    alternates: {
-      canonical: `https://boring-tool.com/${lang}/character-counter/contact`,
-      languages: {
-        'en': 'https://boring-tool.com/en/character-counter/contact',
-        'ja': 'https://boring-tool.com/ja/character-counter/contact',
-      }
-    },
-    keywords: t('characterCounter.contact.meta.keywords')
+      keywords: t('characterCounter.contact.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/contact`,
+    }
+  );
+
+  return {
+    ...metadata,
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
   };
 } 
