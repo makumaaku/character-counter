@@ -4,7 +4,8 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata(
@@ -62,4 +63,16 @@ export async function generateMetadata(
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
+}
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <>
+      {children}
+    </>
+  );
 } 
