@@ -4,7 +4,29 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}
+
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  inLanguage: string;
+  datePublished: string;
+  dateModified: string;
 }
 
 export async function generateMetadata(
@@ -19,7 +41,7 @@ export async function generateMetadata(
     logoAlt: t('common.meta.logoAlt'),
   };
 
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "PrivacyPolicy",
     "name": t('characterCounter.privacy.meta.title'),
@@ -40,7 +62,7 @@ export async function generateMetadata(
     "dateModified": "2024-02-18"
   };
 
-  const metadata = await getCommonMetadata(
+  const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
@@ -57,4 +79,16 @@ export async function generateMetadata(
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
+}
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <>
+      {children}
+    </>
+  );
 } 

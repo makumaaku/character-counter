@@ -4,7 +4,34 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}
+
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+    description: string;
+    foundingDate: string;
+  };
+  mainEntity: {
+    "@type": "Article";
+    headline: string;
+    description: string;
+    articleBody: string;
+  };
 }
 
 export async function generateMetadata(
@@ -19,7 +46,7 @@ export async function generateMetadata(
     logoAlt: t('common.meta.logoAlt'),
   };
 
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "name": t('characterCounter.aboutUs.meta.title'),
@@ -36,10 +63,6 @@ export async function generateMetadata(
       },
       "description": t('characterCounter.aboutUs.meta.publisher.description'),
       "foundingDate": "2023",
-      "sameAs": [
-        "https://github.com/boring-inc",
-        "https://twitter.com/boring_tool"
-      ]
     },
     "mainEntity": {
       "@type": "Article",
@@ -49,7 +72,7 @@ export async function generateMetadata(
     }
   };
 
-  const metadata = await getCommonMetadata(
+  const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
@@ -66,4 +89,16 @@ export async function generateMetadata(
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
+}
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <>
+      {children}
+    </>
+  );
 } 

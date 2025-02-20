@@ -4,12 +4,39 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }
 
 type FAQQuestion = {
   question: string;
   answer: string;
+}
+
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  mainEntity: Array<{
+    "@type": "Question";
+    name: string;
+    acceptedAnswer: {
+      "@type": "Answer";
+      text: string;
+    };
+  }>;
 }
 
 export async function generateMetadata(
@@ -44,7 +71,7 @@ export async function generateMetadata(
     }
   ];
 
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "name": t('characterCounter.faq.meta.title'),
@@ -70,7 +97,7 @@ export async function generateMetadata(
     }))
   };
 
-  const metadata = await getCommonMetadata(
+  const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
@@ -87,4 +114,16 @@ export async function generateMetadata(
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
+}
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <>
+      {children}
+    </>
+  );
 } 
