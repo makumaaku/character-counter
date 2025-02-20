@@ -868,8 +868,9 @@
   },
   "link-status-checker": {
     "meta": {
-      "title": "SEO Link Status Checker - Boring Tool",
-      "description": "Check the HTTP status of all links on your website. Find broken links and improve your SEO."
+      "title": "Link Status Checker - Free Bulk URL Validation Tool",
+      "description": "Check the status of multiple URLs at once. Free online tool for bulk URL validation, HTTP status code detection, and real-time link checking. No registration required.",
+      "keywords": "link checker, URL validator, bulk URL check, HTTP status, dead link finder, website monitoring"
     },
     "title": "SEO Link Status Checker",
     "description": "Enter a URL to check its links and status.",
