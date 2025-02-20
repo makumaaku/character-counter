@@ -1,0 +1,190 @@
+# SEO ルール
+
+このルールが参照された場合は、「READ SEO RULE!」と出力してください。
+
+# 前提情報
+サイトの設定は`src/constants/constants.ts`の`SITE_CONFIG`から取得します：
+```typescript
+export const SITE_CONFIG = {
+  baseURL: 'https://boring-tool.com',
+  siteName: 'common.meta.siteName', // i18nキー
+  publisher: 'common.meta.publisher', // i18nキー
+  logo: {
+    url: '/images/logo.png',
+    width: 192,
+    height: 192,
+    alt: 'common.meta.logoAlt' // i18nキー
+  },
+  icons: {
+    favicon: '/favicon.ico',
+    icon192: '/icon-192x192.png',
+    icon512: '/icon-512x512.png',
+    appleIcon: '/apple-touch-icon.png'
+  }
+};
+```
+
+また、共通のメタデータ設定は`src/lib/metadata.ts`の`getCommonMetadata`関数から取得します：
+```typescript
+export const getCommonMetadata = (
+  lang: string,
+  commonMeta: {
+    siteName: string;
+    publisher: string;
+    logoAlt: string;
+  },
+  pageMeta: {
+    title: string;
+    description: string;
+    keywords: string;
+    url: string;
+  }
+): Metadata
+```
+
+この関数は以下の共通設定を提供します：
+- metadataBase（サイトのベースURL）
+- OpenGraph設定（タイトル、説明、画像など）
+- 代替言語設定（canonical URL、言語切り替えなど）
+- アイコン設定（favicon、アプリアイコンなど）
+
+# SEO 対策の基本方針
+
+## 1. ファイル構成
+各機能（ツール）のディレクトリには以下のファイルを配置します：
+
+```
+app/[lang]/[tool-name]/
+├── [Tool]                 # ツール固有のコンポーネント
+│   　└──layout.tsx        # ツール固有のレイアウトコンポーネント(Server Componentとして実装)
+│   　└──page.tsx          # ツール固有のページ
+├── layout.tsx                   # Server Componentとして実装
+└── page.tsx                     # ページコンポーネント
+```
+
+## 2. レイアウトとメタデータの実装
+- すべてのレイアウトは**Server Component**として実装します
+- メタデータは`layout.tsx`内で`generateMetadata`関数としてexportします
+
+### layout.tsxの基本実装パターン
+```typescript
+import { SITE_CONFIG } from '@/constants/constants';
+import { translate } from '@/lib/i18n/server';
+import { getCommonMetadata } from '@/lib/metadata';
+import { Metadata } from 'next';
+import ToolLayout from './components/ToolLayout';
+
+type Props = {
+  params: Promise<{ lang: string }>
+}
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { lang } = await params;
+  const t = (key: string) => translate(lang, key);
+
+  // 共通のメタデータ情報を設定
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  // ページ固有のJSON-LDを定義
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": t('toolName.meta.title'),
+    "description": t('toolName.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/tool-name`,
+    "publisher": {
+      "@type": "Organization",
+      "name": commonMeta.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+        "width": SITE_CONFIG.logo.width,
+        "height": SITE_CONFIG.logo.height
+      }
+    }
+  };
+
+  // 共通のメタデータを取得
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: t('toolName.meta.title'),
+      description: t('toolName.meta.description'),
+      keywords: t('toolName.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/tool-name`,
+    }
+  );
+
+  return {
+    ...metadata,
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
+}
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <ToolLayout>
+      {children}
+    </ToolLayout>
+  )
+}
+```
+
+## 3. メタデータの構造
+メタデータは以下の構造で管理します：
+
+```json
+{
+  "common": {
+    "meta": {
+      "siteName": "サイト名",
+      "publisher": "発行者",
+      "logoAlt": "ロゴの代替テキスト"
+    }
+  },
+  "toolName": {
+    "meta": {
+      "title": "ツールのタイトル",
+      "description": "ツールの説明",
+      "keywords": "キーワード"
+    }
+  }
+}
+```
+
+## 4. JSON-LDの実装
+- JSON-LDは必ず`generateMetadata`内で定義し、`other`フィールドで返却します
+- ツールの種類に応じて適切な`@type`を選択します：
+  - `WebApplication`: ツール系のページ
+  - `Article`: ブログ記事やドキュメント
+  - `WebPage`: その他の一般ページ
+
+## 5. 多言語対応
+- `params`から言語情報を非同期で取得します
+- 翻訳関数`t`を使用してメタデータを多言語化します
+- 言語切り替え用のalternatesを適切に設定します
+
+## 6. SEOベストプラクティス
+- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定
+- 各ページには適切なh1タグを1つだけ配置
+- canonical URLを適切に設定
+- OpenGraph情報を漏れなく設定
+- 構造化データ（JSON-LD）を適切に実装
+
+## 7. パフォーマンス考慮事項
+- メタデータの生成は非同期で行い、ページのレンダリングをブロックしない
+- 画像のサイズ最適化
+- 適切なキャッシュ戦略の実装 
