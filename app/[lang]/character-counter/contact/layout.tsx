@@ -24,6 +24,12 @@ type JsonLdType = {
       height: number;
     };
   };
+  mainEntity: {
+    "@type": "ContactPoint";
+    contactType: string;
+    availableLanguage: string[];
+    email: string;
+  };
 }
 
 export async function generateMetadata(
@@ -53,6 +59,12 @@ export async function generateMetadata(
         "width": SITE_CONFIG.logo.width,
         "height": SITE_CONFIG.logo.height
       }
+    },
+    "mainEntity": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": ["en", "ja"],
+      "email": "support@boring-tool.com"
     }
   };
 

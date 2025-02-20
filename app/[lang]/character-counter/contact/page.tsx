@@ -1,60 +1,15 @@
-import { Metadata } from 'next'
-import Script from 'next/script'
 import { translate } from '@/lib/i18n/server'
 
 type Props = {
   params: Promise<{ lang: string }>
 }
 
-export const metadata: Metadata = {
-  title: 'Contact Us - Character Counter Tool | Support & Inquiries',
-  description: 'Get in touch with our support team for any questions about our character counter tool. We are here to help with your text analysis needs.',
-  keywords: 'character counter contact, text counter support, word count help, contact form, customer service',
-  openGraph: {
-    title: 'Contact Us - Character Counter Tool | Support & Inquiries',
-    description: 'Get in touch with our support team for any questions about our character counter tool. We are here to help with your text analysis needs.',
-    url: 'https://boring-tool.com/character-counter/contact',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://boring-tool.com/character-counter/contact'
-  }
-}
-
 export default async function ContactPage(props: Props) {
   const params = await props.params;
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
-
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": t('characterCounter.contact.meta.jsonLd.name'),
-    "description": t('characterCounter.contact.meta.jsonLd.description'),
-    "url": `https://boring-tool.com/${lang}/character-counter/contact`,
-    "mainEntity": {
-      "@type": "Organization",
-      "name": t('characterCounter.contact.meta.jsonLd.organization.name'),
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "",
-        "contactType": "customer support",
-        "email": t('characterCounter.contact.meta.jsonLd.organization.email'),
-        "availableLanguage": t('characterCounter.contact.meta.jsonLd.organization.availableLanguage'),
-        "hoursAvailable": t('characterCounter.contact.meta.jsonLd.organization.hoursAvailable')
-      }
-    }
-  };
-
   return (
     <>
-      <Script
-        id="contact-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLdData)
-        }}
-      />
       <div className="bg-gray-800 text-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto p-6">
           <h1 className="text-2xl font-bold mb-8">{t('characterCounter.contact.title')}</h1>
