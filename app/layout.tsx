@@ -21,12 +21,11 @@ type Props = {
 
 export async function generateMetadata(
   props: Props,
-  page: string = 'home'
 ): Promise<Metadata> {
   const params = await props.params;
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
-
+ 
   // 共通のメタデータを取得
   const commonMeta = {
     siteName: t(SITE_CONFIG.siteName),
@@ -34,6 +33,7 @@ export async function generateMetadata(
     logoAlt: t(SITE_CONFIG.logoAlt),
   };
 
+  const page = 'home';
   // ページ固有のメタデータを取得
   const title = t(`${page}.meta.title`);
   const description = t(`${page}.meta.description`);
