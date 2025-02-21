@@ -1,20 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 export default function Home() {
   return (
-    <div className="bg-[url('/hp_bg.jpg')] bg-cover bg-center h-screen relative">
-      <div className="absolute top-0 left-0 p-4">
+    <div className="relative h-screen">
+      <Image
+        src="/hp_bg.jpg"
+        alt="Background"
+        fill
+        className="object-cover -z-10"
+        priority
+      />
+      <div className="absolute top-0 left-0 p-4 z-10">
         <Image 
           src="/boring_logo.png" 
           alt="Boring Logo" 
           width={286} 
           height={286}
           className="w-[20vw] max-w-[286px]" 
+          priority
         />
       </div>
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center h-full z-10">
         <div className="mt-10">
           <h1 className="text-white text-2xl font-bold text-center">Boring Tools</h1>
           <ul className="mt-4">
