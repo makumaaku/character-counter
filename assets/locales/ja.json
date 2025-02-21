@@ -572,6 +572,32 @@
     },
     "title": "ワード生成ツール",
     "description": "無料のワード生成ツールコレクション",
+    "tools": {
+      "wordGenerator": {
+        "title": "ワード生成",
+        "description": "様々な条件やパターンに基づいてランダムな単語を生成します。"
+      },
+      "nameGenerator": {
+        "title": "名前生成",
+        "description": "キャラクター、ビジネス、プロジェクトのためのユニークな名前を生成します。"
+      },
+      "passwordGenerator": {
+        "title": "パスワード生成",
+        "description": "安全で強力なランダムパスワードを生成します。"
+      },
+      "storyGenerator": {
+        "title": "ストーリー生成",
+        "description": "ユニークで魅力的な物語を自動生成します。"
+      },
+      "sentenceGenerator": {
+        "title": "文章生成",
+        "description": "カスタマイズ可能な構造でランダムな文章を生成します。"
+      },
+      "wordCardGenerator": {
+        "title": "単語カード生成",
+        "description": "学習と暗記のためのフラッシュカードを作成します。"
+      }
+    },
     "about": {
       "title": "ワード生成ツールについて",
       "description": "私たちのワード生成ツールコレクションは、様々な種類のテキストコンテンツを素早く簡単に作成するために設計されています。ランダムな単語、ユニークな名前、安全なパスワード、創造的な文章のプロンプトなど、あなたに必要なツールを提供します。",

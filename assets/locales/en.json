@@ -567,11 +567,37 @@
   "wordGen": {
     "meta": {
       "title": "Word Generation Tools - Boring Tool",
-      "description": "Collection of free word generation tools including name generator, password generator, story generator, and more. Simple and easy to use tools for all your word generation needs.",
-      "keywords": "word generator, name generator, password generator, story generator, sentence generator, word card generator"
+      "description": "Free word generation tool collection including name generator, password generator, story generator, and more. A simple and easy-to-use tool for all your word generation needs.",
+      "keywords": "word generation, name generator, password generator, story generator, sentence generator, word card generator"
     },
     "title": "Word Generation Tools",
-    "description": "Free collection of word generation tools",
+    "description": "Free word generation tool collection",
+    "tools": {
+      "wordGenerator": {
+        "title": "Word Generator",
+        "description": "Generate random words based on various conditions and patterns."
+      },
+      "nameGenerator": {
+        "title": "Name Generator",
+        "description": "Generate unique names for characters, businesses, and projects."
+      },
+      "passwordGenerator": {
+        "title": "Password Generator",
+        "description": "Generate secure and strong random passwords."
+      },
+      "storyGenerator": {
+        "title": "Story Generator",
+        "description": "Automatically generate unique and engaging stories."
+      },
+      "sentenceGenerator": {
+        "title": "Sentence Generator",
+        "description": "Generate random sentences with customizable structures."
+      },
+      "wordCardGenerator": {
+        "title": "Word Card Generator",
+        "description": "Create flashcards for learning and memorization."
+      }
+    },
     "about": {
       "title": "About Our Word Generation Tools",
       "description": "Our collection of word generation tools is designed to help you create various types of text content quickly and easily. Whether you need random words, unique names, secure passwords, or creative writing prompts, we have the right tool for you.",
