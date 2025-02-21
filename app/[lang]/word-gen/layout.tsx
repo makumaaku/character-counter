@@ -1,9 +1,8 @@
 import { translate } from '@/lib/i18n/client';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import WordGenLayout from './components/WordGenLayout';
 
 type Props = {
   children: React.ReactNode;
@@ -158,17 +157,10 @@ export async function generateMetadata(
   };
 }
 
-export default async function WordGenLayout({ children, params }: Props) {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
-
+export default async function Layout({ children }: Props) {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('wordGen.title')} homeLink={`/${lang}/word-gen`} />
-      <main className="flex-1 px-4 lg:px-8">
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <WordGenLayout>
+      {children}
+    </WordGenLayout>
   );
 } 
