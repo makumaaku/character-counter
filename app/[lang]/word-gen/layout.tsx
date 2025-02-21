@@ -143,14 +143,6 @@ export async function generateMetadata(
 
   return {
     ...metadata,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseURL}/${lang}/word-gen`,
-      languages: {
-        'en': `${SITE_CONFIG.baseURL}/en/word-gen`,
-        'ja': `${SITE_CONFIG.baseURL}/ja/word-gen`,
-        'x-default': `${SITE_CONFIG.baseURL}/en/word-gen`
-      }
-    },
     other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
