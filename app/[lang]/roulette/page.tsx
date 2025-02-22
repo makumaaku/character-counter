@@ -50,8 +50,6 @@ export default function RoulettePage() {
     // 現在の回転角度から選ばれた項目を計算
     const segmentAngle = (Math.PI * 2) / items.length;
     // 矢印は右側（0度）にあるので、その位置を基準に計算
-    // 回転は時計回りなので、正の方向に回転する
-    // 現在の回転角度を正規化（0から2πの範囲に収める）
     let normalizedRotation = currentRotation % (Math.PI * 2);
     if (normalizedRotation < 0) {
       normalizedRotation += Math.PI * 2;
@@ -59,9 +57,7 @@ export default function RoulettePage() {
     
     // 矢印の位置（0度）からの角度で選択されたインデックスを計算
     const selectedIndex = Math.floor(normalizedRotation / segmentAngle);
-    // インデックスを反転させて、時計回りの順序に合わせる
-    const reversedIndex = (items.length - selectedIndex) % items.length;
-    const selectedItem = items[reversedIndex];
+    const selectedItem = items[selectedIndex];
     
     setResult(selectedItem);
   }, [items, currentRotation]);

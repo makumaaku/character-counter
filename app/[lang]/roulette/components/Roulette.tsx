@@ -3,6 +3,18 @@ import { useFrame } from '@react-three/fiber';
 import { Mesh, DoubleSide, MathUtils } from 'three';
 import { Text } from '@react-three/drei';
 
+// より鮮やかな色のパレットを定義
+const VIBRANT_COLORS = [
+  '#FF1E1E', // 赤
+  '#FF8C1A', // オレンジ
+  '#FFD700', // 黄色
+  '#32CD32', // ライムグリーン
+  '#1E90FF', // ドジャーブルー
+  '#9932CC', // ダークオーキッド
+  '#FF1493', // ディープピンク
+  '#00CED1', // ダークターコイズ
+];
+
 export interface RouletteProps {
   items: string[];
   isSpinning: boolean;
@@ -18,10 +30,15 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const dampingFactor = useRef(0.99);
   const isSpinningRef = useRef(isSpinning);
 
+  // ルーレットのサイズ設定
+  const WHEEL_RADIUS = 3;
+  const TEXT_RADIUS = WHEEL_RADIUS * 0.6;
+  const CENTER_RADIUS = WHEEL_RADIUS * 0.15;
+  const ARROW_POSITION = WHEEL_RADIUS + 0.3;
+
   useEffect(() => {
     isSpinningRef.current = isSpinning;
     if (isSpinning) {
-      // ランダムな回転数を16-24回転に増加
       const rotations = 16 + Math.random() * 8;
       targetRotation.current = currentRotation.current + rotations * Math.PI * 2;
       spinSpeed.current = Math.PI * 4;
@@ -32,40 +49,23 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   useFrame((_, delta) => {
     if (!wheelRef.current || !isSpinningRef.current) return;
 
-    // イージング関数を使用してなめらかな減速を実現
     const distanceToTarget = targetRotation.current - currentRotation.current;
-    
-    // 回転速度が十分小さいか、目標位置までの距離が十分小さい場合に停止
     const shouldStop = spinSpeed.current < 0.01 || distanceToTarget < 0.1;
 
     if (!shouldStop) {
-      // 現在の速度を維持しながら、目標に近づくにつれて減速
       spinSpeed.current *= dampingFactor.current;
       
-      // 減速係数を徐々に小さくして、終盤でよりスムーズに
       if (distanceToTarget < Math.PI * 2) {
         dampingFactor.current = MathUtils.lerp(dampingFactor.current, 0.97, 0.005);
       }
 
-      // 回転を更新
       const rotation = spinSpeed.current * delta;
       currentRotation.current += rotation;
       wheelRef.current.rotation.z = currentRotation.current;
-      
-      // 親コンポーネントに回転角度を通知（時計回りの回転に合わせて角度を反転）
-      onRotationUpdate(-currentRotation.current);
+      onRotationUpdate(-currentRotation.current); // 回転方向を反転
     } else {
-      // 最終位置に到達したら停止
       isSpinningRef.current = false;
-      
-      // 最終位置を設定
-      currentRotation.current = targetRotation.current;
-      if (wheelRef.current) {
-        wheelRef.current.rotation.z = currentRotation.current;
-      }
-      
-      // 最終的な回転角度を通知
-      onRotationUpdate(-currentRotation.current);
+      onRotationUpdate(-currentRotation.current); // 回転方向を反転
       onSpinComplete();
     }
   });
@@ -74,32 +74,43 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
 
   return (
     <group>
+      {/* 環境光を明るく、ポイントライトを追加 */}
+      <ambientLight intensity={1.2} />
+      <pointLight position={[0, 0, 5]} intensity={0.8} />
+      <pointLight position={[5, 5, 5]} intensity={0.3} />
+
       <mesh ref={wheelRef} rotation={[0, 0, 0]}>
         {items.map((item, index) => {
           const angle = segmentAngle * index;
-          const color = `hsl(${(360 / items.length) * index}, 70%, 60%)`;
+          const color = VIBRANT_COLORS[index % VIBRANT_COLORS.length];
 
           return (
             <group key={index}>
               {/* セグメント */}
               <mesh rotation={[0, 0, angle]}>
-                <circleGeometry args={[2, 32, 0, segmentAngle]} />
-                <meshStandardMaterial color={color} side={DoubleSide} />
+                <circleGeometry args={[WHEEL_RADIUS, 32, 0, segmentAngle]} />
+                <meshStandardMaterial 
+                  color={color} 
+                  side={DoubleSide}
+                  roughness={0.3}
+                  metalness={0.1}
+                />
               </mesh>
               
               {/* テキスト */}
               <Text
                 position={[
-                  1.2 * Math.cos(angle + segmentAngle / 2),
-                  1.2 * Math.sin(angle + segmentAngle / 2),
+                  TEXT_RADIUS * Math.cos(angle + segmentAngle / 2),
+                  TEXT_RADIUS * Math.sin(angle + segmentAngle / 2),
                   0.01
                 ]}
                 rotation={[0, 0, angle + segmentAngle / 2]}
-                fontSize={0.2}
-                color="white"
+                fontSize={0.3}
+                color="black"
                 anchorX="center"
                 anchorY="middle"
-                maxWidth={1}
+                maxWidth={WHEEL_RADIUS * 0.8}
+                font={undefined}
               >
                 {item}
               </Text>
@@ -109,15 +120,23 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
 
         {/* 中心の円 */}
         <mesh position={[0, 0, 0.02]}>
-          <circleGeometry args={[0.3, 32]} />
-          <meshStandardMaterial color="#333333" />
+          <circleGeometry args={[CENTER_RADIUS, 32]} />
+          <meshStandardMaterial 
+            color="#1a1a1a"
+            roughness={0.2}
+            metalness={0.8}
+          />
         </mesh>
       </mesh>
       
       {/* 矢印 */}
-      <mesh position={[2.2, 0, 0.1]}>
-        <coneGeometry args={[0.2, 0.4, 32]} />
-        <meshStandardMaterial color="red" />
+      <mesh position={[ARROW_POSITION, 0, 0.1]} rotation={[0, 0, Math.PI / 2]}>
+        <coneGeometry args={[0.3, 0.6, 32]} />
+        <meshStandardMaterial 
+          color="#FF1E1E"
+          roughness={0.3}
+          metalness={0.2}
+        />
       </mesh>
     </group>
   );
