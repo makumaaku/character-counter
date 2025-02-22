@@ -48,34 +48,49 @@ export const getCommonMetadata = (
 - 代替言語設定（canonical URL、言語切り替えなど）
 - アイコン設定（favicon、アプリアイコンなど）
 
-# SEO 対策の基本方針
+# SEO 対策
+- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定する。
+- 各ページのメタデータは `layout.tsx` に定義する：
+  - `title` （ページタイトル）
+  - `meta name="description"` （ページの説明文）
+  - `meta property="og:title"`（Open Graph 用タイトル）
+  - `meta property="og:description"`（Open Graph 用説明文）
+  - `meta property="og:url"`（ページの URL）
+  - `meta property="og:type"`（コンテンツタイプ）
+  - `link rel="canonical"`（正規 URL の指定）
 
-## 1. ファイル構成
-各機能（ツール）のディレクトリには以下のファイルを配置します：
+## 多言語対応のメタデータ実装
+多言語対応のメタデータは、以下のルールに従って実装します：
 
+### 1. メタデータの構造
+- 各ページのメタデータは、画面ごとに `[page].meta` の形式で管理
+- 共通のメタデータは `common.meta` で管理
+```json
+{
+  "common": {
+    "meta": {
+      "siteName": "サイト名",
+      "publisher": "発行者",
+      "logoAlt": "ロゴの代替テキスト"
+    }
+  },
+  "[page]": {
+    "meta": {
+      "title": "ページタイトル",
+      "description": "ページの説明",
+      "keywords": "キーワード"
+    }
+  }
+}
 ```
-app/[lang]/[tool-name]/
-├── [Tool]                 # ツール固有のコンポーネント
-│   　└──layout.tsx        # ツール固有のレイアウトコンポーネント(Server Componentとして実装)
-│   　└──page.tsx          # ツール固有のページ
-├── layout.tsx                   # Server Componentとして実装
-└── page.tsx                     # ページコンポーネント
-```
 
-## 2. レイアウトとメタデータの実装
-- すべてのレイアウトは**Server Component**として実装します
-- メタデータは`layout.tsx`内で`generateMetadata`関数としてexportします
+### 2. generateMetadata関数の実装
+各ページの`layout.tsx`で以下のパターンに従ってメタデータを実装します：
 
-### layout.tsxの基本実装パターン
 ```typescript
-import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
-import { getCommonMetadata } from '@/lib/metadata';
-import { Metadata } from 'next';
-import ToolLayout from './components/ToolLayout';
-
 type Props = {
-  params: Promise<{ lang: string }>
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata(
@@ -84,41 +99,197 @@ export async function generateMetadata(
   const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
-  // 共通のメタデータ情報を設定
   const commonMeta = {
     siteName: t(SITE_CONFIG.siteName),
     publisher: t(SITE_CONFIG.publisher),
     logoAlt: t('common.meta.logoAlt'),
   };
 
-  // ページ固有のJSON-LDを定義
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": t('toolName.meta.title'),
-    "description": t('toolName.meta.description'),
-    "url": `${SITE_CONFIG.baseURL}/${lang}/tool-name`,
-    "publisher": {
-      "@type": "Organization",
-      "name": commonMeta.siteName,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
-        "width": SITE_CONFIG.logo.width,
-        "height": SITE_CONFIG.logo.height
-      }
-    }
-  };
-
-  // 共通のメタデータを取得
   const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('toolName.meta.title'),
-      description: t('toolName.meta.description'),
-      keywords: t('toolName.meta.keywords'),
-      url: `${SITE_CONFIG.baseURL}/${lang}/tool-name`,
+      title: t('[page].meta.title'),
+      description: t('[page].meta.description'),
+      keywords: t('[page].meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/[page]`,
+    }
+  );
+
+  return {
+    ...metadata,
+    alternates: {
+      canonical: `${SITE_CONFIG.baseURL}/${lang}/[page]`,
+      languages: {
+        'en': `${SITE_CONFIG.baseURL}/en/[page]`,
+        'ja': `${SITE_CONFIG.baseURL}/ja/[page]`,
+        'x-default': `${SITE_CONFIG.baseURL}/en/[page]`
+      }
+    },
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
+}
+```
+
+## JSON-LD による構造化データの実装
+JSON-LDの実装は、ページの種類に応じて適切な型を選択します。以下は主要な実装パターンです：
+
+### 1. WebApplicationタイプの実装
+ツール系のページでは、`WebApplication`タイプを使用します：
+
+```typescript
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  featureList: string[];
+  isAccessibleForFree: boolean;
+  browserRequirements: string;
+  hasPart?: {
+    "@type": string;
+    name: string;
+    description: string;
+    url: string;
+  }[];
+}
+
+const jsonLd: JsonLdType = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": t('[page].meta.title'),
+  "description": t('[page].meta.description'),
+  "url": `${SITE_CONFIG.baseURL}/${lang}/[page]`,
+  "publisher": {
+    "@type": "Organization",
+    "name": commonMeta.siteName,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+      "width": SITE_CONFIG.logo.width,
+      "height": SITE_CONFIG.logo.height
+    }
+  },
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    // ツールの機能一覧
+  ],
+  "isAccessibleForFree": true,
+  "browserRequirements": "Requires a modern web browser with JavaScript enabled"
+};
+```
+
+### 2. WebPageタイプの実装
+一般的なコンテンツページでは、`WebPage`タイプを使用します：
+
+```typescript
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+}
+
+const jsonLd: JsonLdType = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": t('[page].meta.title'),
+  "description": t('[page].meta.description'),
+  "url": `${SITE_CONFIG.baseURL}/${lang}/[page]`,
+  "publisher": {
+    "@type": "Organization",
+    "name": commonMeta.siteName,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
+      "width": SITE_CONFIG.logo.width,
+      "height": SITE_CONFIG.logo.height
+    }
+  }
+};
+```
+
+### 3. サブページを持つツールの実装
+複数の機能を持つツールでは、`hasPart`プロパティを使用して各機能を記述します：
+
+```typescript
+const jsonLd: JsonLdType = {
+  // ... 基本的なWebApplicationの設定 ...
+  "hasPart": [
+    {
+      "@type": "WebApplication",
+      "name": t('subFeature1.meta.title'),
+      "description": t('subFeature1.meta.description'),
+      "url": `${SITE_CONFIG.baseURL}/${lang}/[page]/sub-feature-1`
+    },
+    // ... 他のサブ機能 ...
+  ]
+};
+```
+
+## メタデータの実装パターン
+
+### 1. 基本パターン
+すべてのページで共通して使用する基本的な実装パターンです：
+
+```typescript
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { lang } = await params;
+  const t = (key: string) => translate(lang, key);
+
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: t('[page].meta.title'),
+      description: t('[page].meta.description'),
+      keywords: t('[page].meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/[page]`,
     }
   );
 
@@ -129,62 +300,62 @@ export async function generateMetadata(
     }
   };
 }
+```
 
-export default function Layout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <ToolLayout>
-      {children}
-    </ToolLayout>
-  )
+### 2. 動的コンテンツのパターン
+動的なコンテンツを含むページでは、データ取得後にメタデータを生成します：
+
+```typescript
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { lang } = await params;
+  const t = (key: string) => translate(lang, key);
+  const data = await fetchPageData(); // データ取得
+
+  const commonMeta = {
+    siteName: t(SITE_CONFIG.siteName),
+    publisher: t(SITE_CONFIG.publisher),
+    logoAlt: t('common.meta.logoAlt'),
+  };
+
+  const metadata = getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title: `${data.title} - ${commonMeta.siteName}`,
+      description: data.description,
+      keywords: data.keywords,
+      url: `${SITE_CONFIG.baseURL}/${lang}/${data.slug}`,
+    }
+  );
+
+  return {
+    ...metadata,
+    other: {
+      'application/ld+json': JSON.stringify({
+        ...jsonLd,
+        name: data.title,
+        description: data.description
+      })
+    }
+  };
 }
 ```
 
-## 3. メタデータの構造
-メタデータは以下の構造で管理します：
+## 注意事項
+1. メタデータの一貫性
+   - すべてのページで必要なメタデータが漏れなく実装されていることを確認
+   - 多言語対応が適切に行われていることを確認
 
-```json
-{
-  "common": {
-    "meta": {
-      "siteName": "サイト名",
-      "publisher": "発行者",
-      "logoAlt": "ロゴの代替テキスト"
-    }
-  },
-  "toolName": {
-    "meta": {
-      "title": "ツールのタイトル",
-      "description": "ツールの説明",
-      "keywords": "キーワード"
-    }
-  }
-}
-```
+2. JSON-LDの型安全性
+   - 型定義を使用してJSON-LDの構造を保証
+   - 必須フィールドが漏れないように注意
 
-## 4. JSON-LDの実装
-- JSON-LDは必ず`generateMetadata`内で定義し、`other`フィールドで返却します
-- ツールの種類に応じて適切な`@type`を選択します：
-  - `WebApplication`: ツール系のページ
-  - `Article`: ブログ記事やドキュメント
-  - `WebPage`: その他の一般ページ
+3. パフォーマンス
+   - メタデータの生成は可能な限り静的に行う
+   - 動的なデータが必要な場合は適切にキャッシュを活用
 
-## 5. 多言語対応
-- `params`から言語情報を非同期で取得します
-- 翻訳関数`t`を使用してメタデータを多言語化します
-- 言語切り替え用のalternatesを適切に設定します
-
-## 6. SEOベストプラクティス
-- グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定
-- 各ページには適切なh1タグを1つだけ配置
-- canonical URLを適切に設定
-- OpenGraph情報を漏れなく設定
-- 構造化データ（JSON-LD）を適切に実装
-
-## 7. パフォーマンス考慮事項
-- メタデータの生成は非同期で行い、ページのレンダリングをブロックしない
-- 画像のサイズ最適化
-- 適切なキャッシュ戦略の実装 
+4. 検証
+   - Google Search ConsoleやSchema.org Validation Toolで定期的に検証
+   - 各言語版で適切にメタデータが生成されていることを確認
