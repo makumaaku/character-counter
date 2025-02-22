@@ -3,9 +3,9 @@ import { NextResponse } from 'next/server';
 
 export async function GET(
   request: Request,
-  { params }: { params: { lang: string } }
+  { params }: { params: Promise<{ lang: string }> }
 ) {
-  const { lang } = params;
+  const { lang } = await params;
 
   const messages = {
     countryData: {
