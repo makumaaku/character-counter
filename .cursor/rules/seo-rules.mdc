@@ -52,7 +52,7 @@ export const getCommonMetadata = (
 
 # SEO 対策
 - グローバルレイアウト (`app/layout.tsx`) では必ず `<html lang={lang}` を設定する。
-- 各ページのメタデータは `metadata.ts` に定義する：
+- 各ページのメタデータは `layout.tsx` に定義する：
   - `title` （ページタイトル）
   - `meta name="description"` （ページの説明文）
   - `meta property="og:title"`（Open Graph 用タイトル）
@@ -173,7 +173,7 @@ const getJsonLd = (lang: string, page: string) => ({
 ```
 
 ## JSON-LD による構造化データの追加
-- 検索エンジン向けに JSON-LD 形式の構造化データを、`metadata.ts`に定義し、ページコンポーネントで Next.jsの `Script` コンポーネントを使用して追加する。
+- 検索エンジン向けに JSON-LD 形式の構造化データを、`layout.tsx`に定義し、ページコンポーネントで Next.jsの `Script` コンポーネントを使用して追加する。
 - `Schema.org` に準拠した構造化データを用い、以下の情報を含める：
   - `@context`: `"https://schema.org"`
   - `@type`: `"WebPage"` または `"Article"`, `"WebApplication"`など適切なタイプ
@@ -185,7 +185,7 @@ const getJsonLd = (lang: string, page: string) => ({
 ## メタデータの実装パターン
 
 ### 静的なページの場合
-静的なページでは、メタデータとJSON-LDを直接`metadata.ts`内で定義します。
+静的なページでは、メタデータとJSON-LDを直接`layout.tsx`内で定義します。
 以下は例なので、各画面の文脈によって内容は変更してください。
 
 ```typescript

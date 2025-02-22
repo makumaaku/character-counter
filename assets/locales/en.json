@@ -20,6 +20,7 @@
       "nameGenerator": "Random Name Generator",
       "passwordGenerator": "Random Password Generator",
       "storyGenerator": "Random Story Generator",
+      "numberQuiz": "Number Quiz Game",
       "linkStatusChecker": "Link Status Checker"
     },
     "meta": {
@@ -1265,6 +1266,31 @@
     },
     "errors": {
       "general": "An error occurred"
+    }
+  },
+  "numberQuiz": {
+    "meta": {
+      "title": "Sudoku - Number Quiz Game",
+      "description": "Challenge yourself with our Sudoku puzzle game. Choose from multiple difficulty levels and improve your logical thinking skills.",
+      "keywords": "sudoku, number puzzle, brain training, logic game"
+    },
+    "game": {
+      "title": "Sudoku",
+      "difficulty": {
+        "label": "Difficulty",
+        "easy": "Easy",
+        "normal": "Normal",
+        "hard": "Hard"
+      },
+      "buttons": {
+        "newGame": "New Game",
+        "checkSolution": "Check Solution"
+      },
+      "messages": {
+        "correct": "Correct! Well done!",
+        "incorrect": "Incorrect. Keep trying!",
+        "complete": "Congratulations! You've solved the puzzle!"
+      }
     }
   }
 } 
