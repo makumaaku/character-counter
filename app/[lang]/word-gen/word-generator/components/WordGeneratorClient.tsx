@@ -37,6 +37,73 @@ type Props = {
       copy: string
       copied: string
     }
+    about: {
+      catchphrase: string
+      introduction: string
+      features: {
+        title: string
+        oneClick: {
+          title: string
+          description: string
+        }
+        database: {
+          title: string
+          description: string
+        }
+        design: {
+          title: string
+          description: string
+        }
+      }
+      useCases: {
+        title: string
+        scenes: {
+          title: string
+          writer: string
+          designer: string
+          brainstorming: string
+        }
+        testimonials: {
+          title: string
+          writer: {
+            name: string
+            quote: string
+          }
+          designer: {
+            name: string
+            quote: string
+          }
+        }
+      }
+      technical: {
+        title: string
+        algorithm: {
+          title: string
+          description: string
+        }
+        database: {
+          title: string
+          description: string
+        }
+        performance: {
+          title: string
+          description: string
+        }
+      }
+      faq: {
+        title: string
+        questions: {
+          [key: string]: {
+            question: string
+            answer: string
+          }
+        }
+      }
+      conclusion: {
+        title: string
+        description: string
+      }
+    }
   }
 }
 
@@ -214,6 +281,104 @@ export default function WordGeneratorClient({ translations }: Props) {
           ) : (
             <p className="text-gray-400">{translations.result.empty}</p>
           )}
+        </div>
+
+        {/* About Section */}
+        <div className="mt-16 space-y-12">
+          {/* Introduction */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4">{translations.about.catchphrase}</h2>
+            <p className="text-lg text-gray-300">{translations.about.introduction}</p>
+          </div>
+
+          {/* Features */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translations.about.features.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translations.about.features.oneClick.title}</h3>
+                <p className="text-gray-300">{translations.about.features.oneClick.description}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translations.about.features.database.title}</h3>
+                <p className="text-gray-300">{translations.about.features.database.description}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translations.about.features.design.title}</h3>
+                <p className="text-gray-300">{translations.about.features.design.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Use Cases */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translations.about.useCases.title}</h2>
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4">{translations.about.useCases.scenes.title}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <p className="text-gray-300">{translations.about.useCases.scenes.writer}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <p className="text-gray-300">{translations.about.useCases.scenes.designer}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <p className="text-gray-300">{translations.about.useCases.scenes.brainstorming}</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">{translations.about.useCases.testimonials.title}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <p className="text-lg font-medium mb-2">{translations.about.useCases.testimonials.writer.name}</p>
+                  <p className="text-gray-300 italic">{translations.about.useCases.testimonials.writer.quote}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <p className="text-lg font-medium mb-2">{translations.about.useCases.testimonials.designer.name}</p>
+                  <p className="text-gray-300 italic">{translations.about.useCases.testimonials.designer.quote}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Background */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translations.about.technical.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translations.about.technical.algorithm.title}</h3>
+                <p className="text-gray-300">{translations.about.technical.algorithm.description}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translations.about.technical.database.title}</h3>
+                <p className="text-gray-300">{translations.about.technical.database.description}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translations.about.technical.performance.title}</h3>
+                <p className="text-gray-300">{translations.about.technical.performance.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translations.about.faq.title}</h2>
+            <div className="space-y-6">
+              {Object.entries(translations.about.faq.questions).map(([key, question]) => (
+                <div key={key} className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{question.question}</h3>
+                  <p className="text-gray-300">{question.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Conclusion */}
+          <div className="bg-gray-700 rounded-lg p-8 text-center">
+            <h2 className="text-2xl font-bold mb-4">{translations.about.conclusion.title}</h2>
+            <p className="text-lg text-gray-300">{translations.about.conclusion.description}</p>
+          </div>
         </div>
       </div>
     </div>
