@@ -227,92 +227,89 @@ export default function PasswordGeneratorClient({ translations }: { translations
             </button>
           </div>
 
-          {/* Introduction Section */}
-          <div className="bg-gray-700 p-6 rounded-lg mb-6">
-            <h2 className="text-2xl font-bold mb-4 text-center">{translations.catchphrase}</h2>
-            <p className="mb-6">{translations.intro}</p>
-          </div>
+          {/* About Section */}
+          <div className="mt-16 space-y-12">
+            {/* Introduction */}
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4">{translations.catchphrase}</h2>
+              <p className="text-lg text-gray-300">{translations.intro}</p>
+            </div>
 
-          {/* Features Section */}
-          <div className="bg-gray-700 p-6 rounded-lg mb-6">
-            <h2 className="text-2xl font-bold mb-6">{translations.features.title}</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.features.easyOperation.title}</h3>
-                <p>{translations.features.easyOperation.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.features.customization.title}</h3>
-                <p>{translations.features.customization.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.features.security.title}</h3>
-                <p>{translations.features.security.description}</p>
+            {/* Features */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.features.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.features.easyOperation.title}</h3>
+                  <p className="text-gray-300">{translations.features.easyOperation.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.features.customization.title}</h3>
+                  <p className="text-gray-300">{translations.features.customization.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.features.security.title}</h3>
+                  <p className="text-gray-300">{translations.features.security.description}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Use Cases Section */}
-          <div className="bg-gray-700 p-6 rounded-lg mb-6">
-            <h2 className="text-2xl font-bold mb-6">{translations.useCases.title}</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.useCases.onlineAccounts.title}</h3>
-                <p>{translations.useCases.onlineAccounts.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.useCases.corporate.title}</h3>
-                <p>{translations.useCases.corporate.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.useCases.privacy.title}</h3>
-                <p>{translations.useCases.privacy.description}</p>
+            {/* Use Cases */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.useCases.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{translations.useCases.onlineAccounts.title}</h3>
+                  <p className="text-gray-300">{translations.useCases.onlineAccounts.description}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{translations.useCases.corporate.title}</h3>
+                  <p className="text-gray-300">{translations.useCases.corporate.description}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{translations.useCases.privacy.title}</h3>
+                  <p className="text-gray-300">{translations.useCases.privacy.description}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Technical Section */}
-          <div className="bg-gray-700 p-6 rounded-lg mb-6">
-            <h2 className="text-2xl font-bold mb-6">{translations.technical.title}</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.technical.algorithm.title}</h3>
-                <p>{translations.technical.algorithm.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.technical.performance.title}</h3>
-                <p>{translations.technical.performance.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.technical.privacy.title}</h3>
-                <p>{translations.technical.privacy.description}</p>
+            {/* Technical Background */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.technical.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.technical.algorithm.title}</h3>
+                  <p className="text-gray-300">{translations.technical.algorithm.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.technical.performance.title}</h3>
+                  <p className="text-gray-300">{translations.technical.performance.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.technical.privacy.title}</h3>
+                  <p className="text-gray-300">{translations.technical.privacy.description}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* FAQ Section */}
-          <div className="bg-gray-700 p-6 rounded-lg mb-6">
-            <h2 className="text-2xl font-bold mb-6">{translations.faq.title}</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.faq.questions.security.question}</h3>
-                <p>{translations.faq.questions.security.answer}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.faq.questions.customization.question}</h3>
-                <p>{translations.faq.questions.customization.answer}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{translations.faq.questions.commercial.question}</h3>
-                <p>{translations.faq.questions.commercial.answer}</p>
+            {/* FAQ */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.faq.title}</h2>
+              <div className="space-y-6">
+                {Object.entries(translations.faq.questions).map(([key, question]) => (
+                  <div key={key} className="bg-gray-600 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold mb-3">{question.question}</h3>
+                    <p className="text-gray-300">{question.answer}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Conclusion Section */}
-          <div className="bg-gray-700 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">{translations.conclusion.title}</h2>
-            <p>{translations.conclusion.description}</p>
+            {/* Conclusion */}
+            <div className="bg-gray-700 rounded-lg p-8 text-center">
+              <h2 className="text-2xl font-bold mb-4">{translations.conclusion.title}</h2>
+              <p className="text-lg text-gray-300">{translations.conclusion.description}</p>
+            </div>
           </div>
         </main>
       </div>
