@@ -15,47 +15,58 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const spinSpeed = useRef(0);
   const targetRotation = useRef(0);
   const currentRotation = useRef(0);
-  const dampingFactor = useRef(0.99); // 減速係数を0.98から0.99に変更してより緩やかな減速に
+  const dampingFactor = useRef(0.99);
+  const isSpinningRef = useRef(isSpinning);
 
   useEffect(() => {
+    isSpinningRef.current = isSpinning;
     if (isSpinning) {
-      // ランダムな回転数を16-24回転に増加（以前は8-12回転）
+      // ランダムな回転数を16-24回転に増加
       const rotations = 16 + Math.random() * 8;
       targetRotation.current = currentRotation.current + rotations * Math.PI * 2;
-      spinSpeed.current = Math.PI * 4; // 初期回転速度を2倍に増加（2πから4π）
-      dampingFactor.current = 0.99; // 減速係数をリセット
+      spinSpeed.current = Math.PI * 4;
+      dampingFactor.current = 0.99;
     }
   }, [isSpinning]);
 
   useFrame((_, delta) => {
-    if (!wheelRef.current) return;
+    if (!wheelRef.current || !isSpinningRef.current) return;
 
-    if (isSpinning) {
-      // イージング関数を使用してなめらかな減速を実現
-      const distanceToTarget = targetRotation.current - currentRotation.current;
+    // イージング関数を使用してなめらかな減速を実現
+    const distanceToTarget = targetRotation.current - currentRotation.current;
+    
+    // 回転速度が十分小さいか、目標位置までの距離が十分小さい場合に停止
+    const shouldStop = spinSpeed.current < 0.01 || distanceToTarget < 0.1;
+
+    if (!shouldStop) {
+      // 現在の速度を維持しながら、目標に近づくにつれて減速
+      spinSpeed.current *= dampingFactor.current;
       
-      if (distanceToTarget > 0.01) {
-        // 現在の速度を維持しながら、目標に近づくにつれて減速
-        spinSpeed.current *= dampingFactor.current;
-        
-        // 減速係数を徐々に小さくして、終盤でよりスムーズに
-        if (distanceToTarget < Math.PI * 2) {
-          // 終盤の減速も緩やかに調整
-          dampingFactor.current = MathUtils.lerp(dampingFactor.current, 0.97, 0.005);
-        }
-
-        // 回転を更新
-        const rotation = spinSpeed.current * delta;
-        currentRotation.current += rotation;
-        wheelRef.current.rotation.z = currentRotation.current;
-        
-        // 親コンポーネントに回転角度を通知
-        // 時計回りの回転に合わせて角度を反転
-        onRotationUpdate(-currentRotation.current);
-      } else {
-        // 最終位置に到達したら停止
-        onSpinComplete();
+      // 減速係数を徐々に小さくして、終盤でよりスムーズに
+      if (distanceToTarget < Math.PI * 2) {
+        dampingFactor.current = MathUtils.lerp(dampingFactor.current, 0.97, 0.005);
       }
+
+      // 回転を更新
+      const rotation = spinSpeed.current * delta;
+      currentRotation.current += rotation;
+      wheelRef.current.rotation.z = currentRotation.current;
+      
+      // 親コンポーネントに回転角度を通知（時計回りの回転に合わせて角度を反転）
+      onRotationUpdate(-currentRotation.current);
+    } else {
+      // 最終位置に到達したら停止
+      isSpinningRef.current = false;
+      
+      // 最終位置を設定
+      currentRotation.current = targetRotation.current;
+      if (wheelRef.current) {
+        wheelRef.current.rotation.z = currentRotation.current;
+      }
+      
+      // 最終的な回転角度を通知
+      onRotationUpdate(-currentRotation.current);
+      onSpinComplete();
     }
   });
 
