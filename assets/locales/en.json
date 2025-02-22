@@ -1109,6 +1109,8 @@
       "keywords": "password generation, random password, secure password, strong password"
     },
     "title": "Random Password Generator",
+    "catchphrase": "Secure passwords at your fingertips! Enhance your security with our random password generator tool",
+    "intro": "Random Password Generator is a tool that creates strong and unpredictable passwords. Perfect for enhancing the security of online accounts and systems while protecting user privacy.",
     "generatedPassword": "Generated Password",
     "copyButton": "Copy password",
     "copied": "Copied!",

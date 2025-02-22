@@ -12,6 +12,7 @@ const SYMBOL_CHARS = '!@#$%^&*()_-+=<>?/{}[]~|'
 type Translations = {
   title: string
   catchphrase: string
+  intro: string
   description: string
   features: {
     title: string
@@ -229,7 +230,7 @@ export default function PasswordGeneratorClient({ translations }: { translations
           {/* Introduction Section */}
           <div className="bg-gray-700 p-6 rounded-lg mb-6">
             <h2 className="text-2xl font-bold mb-4 text-center">{translations.catchphrase}</h2>
-            <p className="mb-6">{translations.description}</p>
+            <p className="mb-6">{translations.intro}</p>
           </div>
 
           {/* Features Section */}

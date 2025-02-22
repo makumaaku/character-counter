@@ -7,8 +7,9 @@ export default async function PasswordGeneratorPage({ params }: { params: Promis
 
   const translations = {
     title: translate(lang, 'passwordGenerator.title'),
-    catchphrase: translate(lang, 'passwordGenerator.catchphrase'),
     description: translate(lang, 'passwordGenerator.description'),
+    catchphrase: translate(lang, 'passwordGenerator.catchphrase'),
+    intro: translate(lang, 'passwordGenerator.intro'),
     features: {
       title: translate(lang, 'passwordGenerator.features.title'),
       easyOperation: {
