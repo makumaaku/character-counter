@@ -1,0 +1,24 @@
+{
+  "roulette": {
+    "meta": {
+      "title": "Web Roulette - Free Online Random Wheel Spinner",
+      "description": "Free online roulette wheel spinner. Create custom lists and spin the wheel to make random decisions. Perfect for games, decision making, and team building.",
+      "keywords": "roulette wheel, random picker, decision maker, wheel spinner, random selector"
+    },
+    "ui": {
+      "title": "Web Roulette",
+      "spin": "Spin",
+      "spinning": "Spinning...",
+      "editList": "Edit List",
+      "reset": "Reset",
+      "save": "Save",
+      "cancel": "Cancel",
+      "placeholder": "Enter items (one per line)",
+      "shortcuts": {
+        "space": "Space",
+        "e": "E",
+        "r": "R"
+      }
+    }
+  }
+} 
