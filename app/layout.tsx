@@ -118,15 +118,16 @@ export async function generateMetadata(
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }>) {
+  const resolvedParams = await params;
   return (
-    <html lang={params.lang} className="dark">
+    <html lang={resolvedParams.lang} className="dark">
       <head>
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
