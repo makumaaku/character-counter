@@ -20,6 +20,7 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 ```tsx
 <Link href={`/${lang}/about`}>About</Link>
 ```
+- 指示がない限りはjsonファイルの既存のkeyを削除しないでください。
 
 
 ### 2. テキストの追加方法
@@ -98,9 +99,6 @@ type Props = {
 }
 ```
 - 言語情報の取得は [server.ts](mdc:src/lib/i18n/server.ts) のgetLanguageFromParamsを使用してください。
-
-### 8. 例外
-[page.tsx](mdc:app/page.tsx) のみは多言語対応は不要です。
 
 
 

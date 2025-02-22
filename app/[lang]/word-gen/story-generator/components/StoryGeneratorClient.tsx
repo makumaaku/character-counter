@@ -97,35 +97,107 @@ export default function StoryGeneratorClient({ lang }: Props) {
           )}
         </div>
 
-        <div className="bg-gray-700 p-6 rounded-lg mt-6">
-          <h2 className="text-2xl font-bold mb-4 text-center">{translate(lang, 'storyGenerator.about.title')}</h2>
-          <p className="mb-4">{translate(lang, 'storyGenerator.about.description')}</p>
-          
-          <h3 className="text-xl font-bold mb-4">{translate(lang, 'storyGenerator.howTo.title')}</h3>
-          <ul className="list-disc pl-5 mb-6">
-            <li>
-              {translate(lang, 'storyGenerator.howTo.generate.title')}
-              <p className="ml-5">{translate(lang, 'storyGenerator.howTo.generate.description')}</p>
-            </li>
-            <li>
-              {translate(lang, 'storyGenerator.howTo.review.title')}
-              <p className="ml-5">{translate(lang, 'storyGenerator.howTo.review.description')}</p>
-            </li>
-            <li>
-              {translate(lang, 'storyGenerator.howTo.share.title')}
-              <p className="ml-5">{translate(lang, 'storyGenerator.howTo.share.description')}</p>
-            </li>
-          </ul>
+        {/* About Section */}
+        <div className="mt-16 space-y-12">
+          {/* Introduction */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4">{translate(lang, 'storyGenerator.catchphrase')}</h2>
+            <p className="text-lg text-gray-300">{translate(lang, 'storyGenerator.intro')}</p>
+          </div>
 
-          <h3 className="text-xl font-bold mb-4">{translate(lang, 'storyGenerator.features.title')}</h3>
-          <ul className="list-disc pl-5">
-            <li>{translate(lang, 'storyGenerator.features.instant')}</li>
-            <li>{translate(lang, 'storyGenerator.features.unique')}</li>
-            <li>{translate(lang, 'storyGenerator.features.creative')}</li>
-            <li>{translate(lang, 'storyGenerator.features.memorable')}</li>
-            <li>{translate(lang, 'storyGenerator.features.interface')}</li>
-            <li>{translate(lang, 'storyGenerator.features.copy')}</li>
-          </ul>
+          {/* Features */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translate(lang, 'storyGenerator.features.title')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.features.oneClick.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.features.oneClick.description')}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.features.patterns.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.features.patterns.description')}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.features.customization.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.features.customization.description')}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Use Cases */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translate(lang, 'storyGenerator.useCases.title')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.useCases.novel.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.useCases.novel.description')}</p>
+              </div>
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.useCases.game.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.useCases.game.description')}</p>
+              </div>
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.useCases.workshop.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.useCases.workshop.description')}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Background */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translate(lang, 'storyGenerator.technical.title')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.technical.algorithm.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.technical.algorithm.description')}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.technical.database.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.technical.database.description')}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">{translate(lang, 'storyGenerator.technical.performance.title')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.technical.performance.description')}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ */}
+          <div className="bg-gray-700 rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">{translate(lang, 'storyGenerator.faq.title')}</h2>
+            <div className="space-y-6">
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">
+                  {translate(lang, 'storyGenerator.faq.questions.random.question')}
+                </h3>
+                <p className="text-gray-300">
+                  {translate(lang, 'storyGenerator.faq.questions.random.answer')}
+                </p>
+              </div>
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">
+                  {translate(lang, 'storyGenerator.faq.questions.commercial.question')}
+                </h3>
+                <p className="text-gray-300">
+                  {translate(lang, 'storyGenerator.faq.questions.commercial.answer')}
+                </p>
+              </div>
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">
+                  {translate(lang, 'storyGenerator.faq.questions.customize.question')}
+                </h3>
+                <p className="text-gray-300">
+                  {translate(lang, 'storyGenerator.faq.questions.customize.answer')}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Conclusion */}
+          <div className="bg-gray-700 rounded-lg p-8 text-center">
+            <h2 className="text-2xl font-bold mb-4">{translate(lang, 'storyGenerator.conclusion.title')}</h2>
+            <p className="text-lg text-gray-300">{translate(lang, 'storyGenerator.conclusion.description')}</p>
+          </div>
         </div>
       </main>
     </div>

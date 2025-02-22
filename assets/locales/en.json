@@ -1,4 +1,12 @@
 {
+  "common": {
+    "menu": "Menu",
+    "meta": {
+      "siteName": "Boring Tools",
+      "publisher": "Boring Inc.",
+      "logoAlt": "Boring Tools Logo"
+    }
+  },
   "home": {
     "title": "Boring Tools",
     "description": "A collection of useful tools for everyday tasks",
@@ -630,9 +638,9 @@
   },
   "wordGenerator": {
     "meta": {
-      "title": "Word Generator - Boring Tool",
-      "description": "Free online tool to generate random words based on various criteria and patterns.",
-      "keywords": "word generator, random words, word creation, text generator"
+      "title": "Random Word Generator - Spark Your Creativity!",
+      "description": "Our Random Word Generator is designed to stimulate your creativity and support your daily ideation needs. With just one click, it provides diverse words useful for blog titles, catchphrases, social media posts, and brainstorming sessions. The intuitive and user-friendly design makes it accessible for everyone, even first-time users.",
+      "keywords": "word generation, random words, word creation, text generator"
     },
     "title": "Word Generator",
     "description": "Generate random words based on various criteria and patterns",
@@ -658,10 +666,89 @@
       "empty": "Fill in the form above to generate words",
       "copy": "Copy Results",
       "copied": "Copied!"
+    },
+    "about": {
+      "catchphrase": "Discover Your Next Great Idea with Random Words!",
+      "introduction": "Our Random Word Generator is designed to stimulate your creativity and support your daily ideation needs. With just one click, it provides diverse words useful for blog titles, catchphrases, social media posts, and brainstorming sessions. The intuitive and user-friendly design makes it accessible for everyone, even first-time users.",
+      "features": {
+        "title": "Features and Characteristics",
+        "oneClick": {
+          "title": "Instant Word Generation with One Click",
+          "description": "This tool features a simple interface where new words appear instantly with just a button click. The intuitive operation requires no special knowledge or setup, making it readily available whenever inspiration strikes."
+        },
+        "database": {
+          "title": "Rich Word Database",
+          "description": "Our database covers numerous genres and categories. From everyday words to technical terms, and even unexpected words that spark creative thinking, we offer a wide range of options. This diversity makes the tool valuable for writers, designers, marketers, and professionals across various fields."
+        },
+        "design": {
+          "title": "Intuitive and User-Friendly Design",
+          "description": "The simple yet sophisticated design allows users to focus immediately on their intended operations. With responsive design optimized for smartphones and tablets, you can comfortably use the tool from any device."
+        }
+      },
+      "useCases": {
+        "title": "Use Cases and User Stories",
+        "scenes": {
+          "title": "Diverse Applications",
+          "writer": "Writer's Ideation: When stuck while writing, use it as a keyword source for new inspiration. It's helpful in various situations, from blog titles and catchphrases to story concept development.",
+          "designer": "Designer's Creative Thinking: Use it as a starting point to find fresh perspectives and new themes in logo design and project concept development.",
+          "brainstorming": "Brainstorming: In team ideation meetings, randomly generated words can spark discussions and promote unexpected idea combinations and innovations."
+        },
+        "testimonials": {
+          "title": "User Testimonials",
+          "writer": {
+            "name": "Blog Writer A",
+            "quote": "I use it whenever I need fresh ideas. The simple operation produces diverse words, often leading to unexpected insights."
+          },
+          "designer": {
+            "name": "Graphic Designer B",
+            "quote": "Using this tool in the initial design phase helps me gain perspectives I might otherwise miss. It's brought fresh energy to my projects!"
+          }
+        }
+      },
+      "technical": {
+        "title": "Technical Background and Mechanism",
+        "algorithm": {
+          "title": "Unique Algorithm",
+          "description": "The tool incorporates a random number generation algorithm that displays different words with each button press. This algorithm efficiently generates diverse word combinations to help users gain new inspiration."
+        },
+        "database": {
+          "title": "Extensive Word Database",
+          "description": "The database includes words from literature, daily conversation, business terminology, and creative keywords across various fields. Regular updates add new words based on current trends and user needs, continuously expanding the tool's capabilities."
+        },
+        "performance": {
+          "title": "Performance and Security",
+          "description": "The design is lightweight and fast, optimized for instant word generation. User input data and usage patterns are never stored, ensuring safe usage. Privacy and security considerations support reliable service operation."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "questions": {
+          "free": {
+            "question": "Is this tool free to use?",
+            "answer": "Yes, it's basically free to use. All features are available without restrictions, though we plan to announce future database expansions and premium features separately."
+          },
+          "words": {
+            "question": "What kinds of words are generated?",
+            "answer": "We randomly generate words from a wide range of categories, from everyday terms to technical vocabulary and unique words that promote creative thinking. Diverse words are provided each time to meet user needs."
+          },
+          "commercial": {
+            "question": "Can I use it for commercial purposes?",
+            "answer": "Yes, commercial use is permitted. However, you must comply with our terms of use. Please check the terms of use page for specific conditions and restrictions."
+          },
+          "mobile": {
+            "question": "Can I use it from mobile devices?",
+            "answer": "Yes, we've adopted responsive design, so you can comfortably use it from smartphones and tablets. Word generation works smoothly on any device."
+          }
+        }
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "This Random Word Generator is the perfect tool for drawing out creative ideas and supporting daily ideation and brainstorming. With its simple operation, rich word database, and advanced algorithm, it powerfully supports your creativity. We invite all creators seeking new perspectives and ideas to try this tool and capture inspiration for their next steps."
+      }
     }
   },
   "wordCardGenerator": {
-    "title": "Word Card Generator",
+    "title": "Random Word Card Generator",
     "description": "Create flashcards and word cards for learning and memorization",
     "meta": {
       "title": "Word Card Generator - Boring Tool",
@@ -670,7 +757,7 @@
     },
     "form": {
       "count": {
-        "label": "Number of cards"
+        "label": "Number of cards to generate"
       },
       "generate": "Generate Cards"
     },
@@ -686,7 +773,7 @@
     },
     "howTo": {
       "title": "How to Use",
-      "description": "The Word Card Generator tool allows you to easily create flashcards for learning and memorization. Simply select the number of cards you want to generate and click the 'Generate Cards' button."
+      "description": "The word card generator tool makes it easy to create flashcards for learning and memorization. Simply select the number of cards to generate and click the 'Generate Cards' button."
     },
     "useCases": {
       "title": "Use Cases",
@@ -695,6 +782,76 @@
       "games": "Learning Games",
       "writing": "Writing Practice",
       "esl": "ESL Learning"
+    },
+    "about": {
+      "catchphrase": "Catch Inspiration at a Glance! Generate Your Personal Word Cards Randomly",
+      "introduction": "The Random Word Card Generator is a tool that displays randomly selected words in card format. It can be used for various purposes such as learning, brainstorming, and vocabulary enhancement. With its simple and intuitive operation, you'll make new discoveries every time cards appear on the screen.",
+      "features": {
+        "title": "Features and Characteristics",
+        "oneClick": {
+          "title": "One-Click Card Generation",
+          "description": "New word cards are instantly displayed with just a button click. You can easily generate new cards as many times as you want, never getting bored."
+        },
+        "database": {
+          "title": "Rich Vocabulary Database",
+          "description": "Contains words from a wide range of categories including daily conversation, study terms, and technical terms. Enables vocabulary enhancement tailored to your needs."
+        },
+        "design": {
+          "title": "Card Design Customization",
+          "description": "Users can enjoy the visual experience with simple yet sophisticated designs, including background colors and fonts."
+        }
+      },
+      "useCases": {
+        "title": "Usage Scenarios and User Cases",
+        "vocabulary": {
+          "title": "Vocabulary Learning",
+          "description": "Perfect for acquiring new words. Learners can enhance memory retention through visual card-based learning."
+        },
+        "brainstorming": {
+          "title": "Brainstorming",
+          "description": "Random word cards can spark unexpected ideas during ideation sessions."
+        },
+        "games": {
+          "title": "Games and Workshops",
+          "description": "Can be used as a communication tool for groups, serving as prompts for impromptu games and discussion topics."
+        }
+      },
+      "technical": {
+        "title": "Technical Background and Mechanism",
+        "algorithm": {
+          "title": "Unique Random Generation Algorithm",
+          "description": "Random words are extracted and automatically formatted into cards with each click."
+        },
+        "database": {
+          "title": "Regularly Updated Vocabulary Data",
+          "description": "The database is continuously expanded based on user feedback, providing an environment where you can always encounter new words."
+        },
+        "responsive": {
+          "title": "Responsive Design",
+          "description": "Optimized for smartphones and tablets, allowing you to enjoy cards comfortably from any device."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "questions": {
+          "free": {
+            "question": "Can I use this tool for free?",
+            "answer": "Yes, basic features are available free of charge."
+          },
+          "customize": {
+            "question": "Can I customize the card design?",
+            "answer": "Currently, we offer a simple design, but we're considering adding customization features in future updates."
+          },
+          "print": {
+            "question": "Can I print the cards?",
+            "answer": "Yes, you can take screenshots or print the displayed cards."
+          }
+        }
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "The Random Word Card Generator is the perfect tool for vocabulary learning and brainstorming. With its simple operation and rich database, it provides new perspectives for your daily activities. Please use this tool to enjoy new discoveries every time."
+      }
     }
   },
   "sentenceGenerator": {
@@ -717,23 +874,73 @@
       "copyTitle": "Copy to clipboard",
       "copied": "Copied!"
     },
-    "about": {
-      "title": "About Sentence Generator",
-      "description": "Generate random sentences instantly with our free online tool. Perfect for creative writing, language learning, and content creation."
-    },
-    "features": {
-      "title": "Features",
-      "random": "Random sentence generation",
-      "customizable": "Customizable sentence count",
-      "instant": "Instant results",
-      "copy": "Easy copy functionality"
-    },
-    "useCases": {
-      "title": "Use Cases",
-      "writing": "Creative writing practice",
-      "learning": "Language learning",
-      "testing": "Testing and placeholder text",
-      "inspiration": "Writing inspiration"
+    "detailedContent": {
+      "catchphrase": "Need inspiration for your writing? Open new doors to storytelling with our randomly generated sentences!",
+      "introduction": "The Random Sentence Generator is a tool that provides inspiration for writing and creative activities by generating random sentences. It can be used in various scenarios such as blog writing, storytelling, speech preparation, and more.",
+      "features": {
+        "title": "Features and Characteristics",
+        "easyOperation": {
+          "title": "Easy Sentence Generation",
+          "description": "New sentences are generated and displayed instantly with just one touch. Ideas flow effortlessly one after another."
+        },
+        "patterns": {
+          "title": "Diverse Sentence Patterns",
+          "description": "We offer various styles of sentences including casual conversation, narrative, and formal writing. Find the perfect sentence for your needs."
+        },
+        "customization": {
+          "title": "Customizable Output",
+          "description": "Select the length and style of generated sentences to match your specific requirements and preferences."
+        }
+      },
+      "useCases": {
+        "title": "Use Cases and User Examples",
+        "writer": {
+          "title": "Writer's Block Solutions",
+          "description": "When you're stuck in your writing, new sentences can help get your story moving again."
+        },
+        "creative": {
+          "title": "Creative Inspiration",
+          "description": "Get unique sentences as seeds for your creative work, whether it's novels, poetry, or other forms of writing."
+        },
+        "education": {
+          "title": "Educational Applications",
+          "description": "Use it for practicing sentence structure or as writing prompts in educational settings."
+        }
+      },
+      "technical": {
+        "title": "Technical Background and Mechanism",
+        "nlp": {
+          "title": "Natural Language Processing Technology",
+          "description": "Using advanced NLP algorithms to generate grammatically correct sentences while maintaining content consistency."
+        },
+        "database": {
+          "title": "Extensive Style Database",
+          "description": "Our database includes various writing styles and genres to provide diverse sentence patterns."
+        },
+        "performance": {
+          "title": "High-Performance Design",
+          "description": "Optimized for speed to ensure a smooth, stress-free user experience."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "quality": {
+          "question": "What is the quality of the generated sentences?",
+          "answer": "We use NLP technology to ensure grammatically correct and natural-sounding sentences."
+        },
+        "commercial": {
+          "question": "Can I use this for commercial purposes?",
+          "answer": "Yes, commercial use is permitted under our terms of service. Please check the terms page for details."
+        },
+        "style": {
+          "question": "Can I change the style of the sentences?",
+          "answer": "Yes, you can adjust the style and length using our customization features."
+        }
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "The Random Sentence Generator is the perfect tool for all creators who need writing inspiration. With its simple operation and diverse writing styles, it brings fresh perspectives to your writing activities. Try it out and expand your writing horizons."
+      }
     }
   },
   "storyGenerator": {
@@ -742,8 +949,10 @@
       "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration.",
       "keywords": "story generator, random story, creative writing, story ideas, plot generator"
     },
-    "title": "Story Generator",
-    "description": "Create random story prompts and plot ideas",
+    "title": "Random Story Generator",
+    "description": "Generate story elements and plots randomly to inspire your creative process",
+    "catchphrase": "Your story begins here! Get creative inspiration from randomly generated stories",
+    "intro": "The Random Story Generator is a tool that generates random story elements and plots to provide inspiration for creative activities. It stimulates new ideas for various scenarios including novels, scripts, and game stories.",
     "form": {
       "generate": "Generate Story"
     },
@@ -753,33 +962,71 @@
       "copyAlt": "Copy icon",
       "copied": "Copied!"
     },
-    "about": {
-      "title": "About Story Generator",
-      "description": "Create unique and engaging stories with our AI-powered story generator. Perfect for creative writing, storytelling, and inspiration."
-    },
-    "howTo": {
-      "title": "How to Use",
-      "generate": {
-        "title": "Generate a Story",
-        "description": "Click the 'Generate Story' button to create a unique story with random characters and events."
+    "features": {
+      "title": "Features and Characteristics",
+      "oneClick": {
+        "title": "One-Click Story Generation",
+        "description": "With simple operation, part or all of the plot is generated instantly. Get new hints immediately when ideas aren't flowing."
       },
-      "review": {
-        "title": "Review and Edit",
-        "description": "Read through the generated story and use it as inspiration for your own creative writing."
+      "patterns": {
+        "title": "Diverse Plot Patterns",
+        "description": "Includes various genres such as adventure, romance, mystery, and sci-fi. Creates stories tailored to users' preferences and purposes."
       },
-      "share": {
-        "title": "Share Your Story",
-        "description": "Copy the story to share it with others or save it for later use."
+      "customization": {
+        "title": "Customizable Scenario Settings",
+        "description": "Detailed customization of characters, settings, and story tone is possible, providing more specific creative ideas."
       }
     },
-    "features": {
-      "title": "Features",
-      "instant": "Instant story generation",
-      "unique": "Unique storylines every time",
-      "creative": "Creative character combinations",
-      "memorable": "Memorable plot twists",
-      "interface": "User-friendly interface",
-      "copy": "Easy copy and share functionality"
+    "useCases": {
+      "title": "Use Cases and User Examples",
+      "novel": {
+        "title": "Novel and Script Ideation",
+        "description": "During the story planning phase, randomly generated plots can serve as new story starters."
+      },
+      "game": {
+        "title": "Game Story Inspiration",
+        "description": "When stuck on character or scenario settings, random ideas can provide hints for new developments."
+      },
+      "workshop": {
+        "title": "Creative Workshops",
+        "description": "Can be used as shared ideas in group creative activities and brainstorming sessions."
+      }
+    },
+    "technical": {
+      "title": "Technical Background and Mechanism",
+      "algorithm": {
+        "title": "Storytelling Algorithm",
+        "description": "Our unique algorithm combines multiple elements like themes, characters, and settings to generate natural stories."
+      },
+      "database": {
+        "title": "Extensive Scenario Database",
+        "description": "Learning from classic works and various genres, we've databased numerous plot patterns to provide fresh story ideas consistently."
+      },
+      "performance": {
+        "title": "Fast Generation and User Optimization",
+        "description": "Lightweight and optimized processing ensures stress-free story generation."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "questions": {
+        "random": {
+          "question": "Are the generated stories completely random?",
+          "answer": "Yes, while emphasizing randomness, they are designed to maintain a certain narrative coherence."
+        },
+        "commercial": {
+          "question": "Can I use the generated stories for commercial purposes?",
+          "answer": "Yes, commercial use is possible following our terms of service. Please check the terms page for details."
+        },
+        "customize": {
+          "question": "Can I adjust the plot length and details?",
+          "answer": "Some customization features allow you to adjust the level of detail and direction of the plot."
+        }
+      }
+    },
+    "conclusion": {
+      "title": "Conclusion",
+      "description": "The Random Story Generator is a powerful tool that provides new story hints when facing creative blocks. Try this tool to bring fresh inspiration to your storytelling with its simple operation and rich database."
     }
   },
   "nameGenerator": {
@@ -805,8 +1052,72 @@
       "copied": "Copied!"
     },
     "about": {
-      "title": "About Name Generator",
-      "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
+      "catchphrase": "Discover unique names! A random name generator that creates distinctive naming solutions",
+      "introduction": "The random name generator is a tool that creates diverse names for characters, businesses, nicknames, and more. It provides a wide range of options when you're out of ideas or looking for new concepts.",
+      "features": {
+        "title": "Features and Characteristics",
+        "oneClick": {
+          "title": "One-Click Name Generation",
+          "description": "With simple button operation, new names appear instantly. Try as many times as you like to find the perfect name."
+        },
+        "patterns": {
+          "title": "Diverse Name Patterns",
+          "description": "Featuring a wide range of genres including fantasy, modern, and classical names. Create names that suit your specific needs."
+        },
+        "categories": {
+          "title": "Category-Based Output",
+          "description": "Filter by purpose such as character names, company names, or pet names to easily find names that match your objectives."
+        }
+      },
+      "useCases": {
+        "title": "Use Cases and User Examples",
+        "character": {
+          "title": "Character Creation",
+          "description": "Generate unique names for novel and game characters."
+        },
+        "branding": {
+          "title": "Brand Naming",
+          "description": "Get innovative ideas for company and product names."
+        },
+        "personal": {
+          "title": "Personal Use",
+          "description": "Perfect for creating unique usernames and nicknames."
+        }
+      },
+      "technical": {
+        "title": "Technical Background and Mechanism",
+        "algorithm": {
+          "title": "Proprietary Generation Algorithm",
+          "description": "Combines random elements with database patterns to create natural and appealing names."
+        },
+        "updates": {
+          "title": "Regular Data Updates",
+          "description": "Database is continuously updated with latest trends and user feedback to provide fresh name options."
+        },
+        "responsive": {
+          "title": "Multi-Device Support",
+          "description": "Responsive design ensures comfortable use from any device."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "commercial": {
+          "question": "Can I use the generated names commercially?",
+          "answer": "Yes, commercial use is permitted under our terms of service."
+        },
+        "categories": {
+          "question": "Can I choose specific categories of names?",
+          "answer": "Yes, we provide filtering options to match your specific needs."
+        },
+        "retry": {
+          "question": "What if I don't like the suggested names?",
+          "answer": "You can click the generate button as many times as you like until you find names you love."
+        }
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "The random name generator creates distinctive names using its unique algorithm, solving naming challenges in creative and business contexts. Use this tool to find the perfect name for your project."
+      }
     },
     "useCases": {
       "title": "Use Cases",
@@ -841,11 +1152,13 @@
   },
   "passwordGenerator": {
     "meta": {
-      "title": "Random Password Generator - Boring Tool",
-      "description": "Generate strong, secure passwords instantly with our free random password generator tool. Perfect for creating unique passwords for your accounts.",
-      "keywords": "password generator, random password, secure password, strong password"
+      "title": "Enhance Your Security with Random Password Generator!",
+      "description": "Random Password Generator is a tool that creates strong and unpredictable passwords. Perfect for enhancing the security of online accounts and systems while protecting user privacy.",
+      "keywords": "password generation, random password, secure password, strong password"
     },
     "title": "Random Password Generator",
+    "catchphrase": "Secure passwords at your fingertips! Enhance your security with our random password generator tool",
+    "intro": "Random Password Generator is a tool that creates strong and unpredictable passwords. Perfect for enhancing the security of online accounts and systems while protecting user privacy.",
     "generatedPassword": "Generated Password",
     "copyButton": "Copy password",
     "copied": "Copied!",
@@ -859,43 +1172,74 @@
     "generateButton": "Generate New Password",
     "description": {
       "title": "Free & Secure Random Password Generator",
-      "intro": "A free password generator tool that instantly creates secure and strong passwords. Customize length and character types to create unique passwords for each account.",
-      "features": {
-        "title": "Key Features",
-        "list": [
-          "Customizable password length (4-128 characters)",
-          "Character type selection (uppercase, lowercase, numbers, symbols)",
-          "One-click copy functionality",
-          "Secure random password generation"
-        ]
-      },
-      "howToUse": {
-        "title": "How to Use",
-        "list": [
-          "Set password length using the slider",
-          "Select character types to include",
-          "Click 'Generate New Password' to create a password",
-          "Click the copy icon to copy password to clipboard"
-        ]
-      },
-      "securityTips": {
-        "title": "Password Security Tips",
-        "list": [
-          "Use at least 12 characters for strong security",
-          "Combine multiple character types",
-          "Generate different passwords for each account",
-          "Never share your passwords with others"
-        ]
-      }
-    }
-  },
-  "common": {
-    "meta": {
-      "siteName": "Boring Tools",
-      "publisher": "Boring Tool",
-      "logoAlt": "Boring Tools Logo"
+      "intro": "A free password generator tool that instantly creates secure and strong passwords. Customize length and character types to create unique passwords for each account."
     },
-    "menu": "Menu"
+    "features": {
+      "title": "Features and Characteristics",
+      "easyOperation": {
+        "title": "Easy Password Generation",
+        "description": "Complex passwords are generated instantly with one click and ready to use. Anyone can easily achieve high security."
+      },
+      "customization": {
+        "title": "Customizable Password Settings",
+        "description": "Fine-tune settings like length, symbols, uppercase/lowercase letters, and numbers to create passwords that suit your needs."
+      },
+      "security": {
+        "title": "High Security Standards",
+        "description": "Generated passwords combine randomness and complexity, meeting security expert recommendations."
+      }
+    },
+    "useCases": {
+      "title": "Use Cases and User Examples",
+      "onlineAccounts": {
+        "title": "Online Account Protection",
+        "description": "Strengthen passwords for various accounts and reduce hacking risks."
+      },
+      "corporate": {
+        "title": "Corporate System Security",
+        "description": "Ideal for generating passwords for employee accounts and internal systems."
+      },
+      "privacy": {
+        "title": "Personal Information Protection",
+        "description": "Perfect for regular password updates to protect your privacy."
+      }
+    },
+    "technical": {
+      "title": "Technical Background and Mechanism",
+      "algorithm": {
+        "title": "Cryptographic Random Number Generation Algorithm",
+        "description": "Uses the latest cryptographic technology to generate unpredictable passwords. Designed with security as the top priority."
+      },
+      "performance": {
+        "title": "Fast and Reliable Processing",
+        "description": "Responds instantly to user operations, allowing stress-free password creation."
+      },
+      "privacy": {
+        "title": "Privacy Protection Design",
+        "description": "No user information is stored during the password generation process. Designed for worry-free use."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "questions": {
+        "security": {
+          "question": "Are the generated passwords truly secure?",
+          "answer": "Yes, high security is ensured through cryptographic random number generation algorithms."
+        },
+        "customization": {
+          "question": "Can I adjust the password length and composition?",
+          "answer": "Yes, you can freely configure settings through the customization options."
+        },
+        "commercial": {
+          "question": "Can it be used for commercial systems?",
+          "answer": "Yes, it can be used by both businesses and individuals in accordance with the terms of service."
+        }
+      }
+    },
+    "conclusion": {
+      "title": "Summary",
+      "description": "Random Password Generator is a tool that achieves secure password generation with simple operations. Use this tool, ideal for all users seeking enhanced security, to keep your online environment safer."
+    }
   },
   "link-status-checker": {
     "meta": {

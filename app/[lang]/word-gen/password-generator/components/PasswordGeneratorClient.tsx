@@ -11,6 +11,75 @@ const SYMBOL_CHARS = '!@#$%^&*()_-+=<>?/{}[]~|'
 
 type Translations = {
   title: string
+  catchphrase: string
+  intro: string
+  description: string
+  features: {
+    title: string
+    easyOperation: {
+      title: string
+      description: string
+    }
+    customization: {
+      title: string
+      description: string
+    }
+    security: {
+      title: string
+      description: string
+    }
+  }
+  useCases: {
+    title: string
+    onlineAccounts: {
+      title: string
+      description: string
+    }
+    corporate: {
+      title: string
+      description: string
+    }
+    privacy: {
+      title: string
+      description: string
+    }
+  }
+  technical: {
+    title: string
+    algorithm: {
+      title: string
+      description: string
+    }
+    performance: {
+      title: string
+      description: string
+    }
+    privacy: {
+      title: string
+      description: string
+    }
+  }
+  faq: {
+    title: string
+    questions: {
+      security: {
+        question: string
+        answer: string
+      }
+      customization: {
+        question: string
+        answer: string
+      }
+      commercial: {
+        question: string
+        answer: string
+      }
+    }
+  }
+  conclusion: {
+    title: string
+    description: string
+  }
   generatedPassword: string
   copyButton: string
   copied: string
@@ -22,22 +91,6 @@ type Translations = {
     symbols: string
   }
   generateButton: string
-  description: {
-    title: string
-    intro: string
-    features: {
-      title: string
-      list: string[]
-    }
-    howToUse: {
-      title: string
-      list: string[]
-    }
-    securityTips: {
-      title: string
-      list: string[]
-    }
-  }
 }
 
 export default function PasswordGeneratorClient({ translations }: { translations: Translations }) {
@@ -85,7 +138,9 @@ export default function PasswordGeneratorClient({ translations }: { translations
       <div className="bg-gray-800 text-gray-100 font-sans">
         <main className="max-w-4xl mx-auto px-4 pb-24">
           <h1 className="text-3xl font-bold text-center py-8">{translations.title}</h1>
-          <div className="bg-gray-700 p-6 rounded-lg text-center">
+          
+          {/* Password Generator Section */}
+          <div className="bg-gray-700 p-6 rounded-lg text-center mb-6">
             <h2 className="text-xl mb-4">{translations.generatedPassword}</h2>
             <div className="relative">
               <p className="text-2xl font-bold font-mono bg-gray-900 p-4 rounded-lg break-all">
@@ -111,7 +166,8 @@ export default function PasswordGeneratorClient({ translations }: { translations
             </div>
           </div>
 
-          <div className="mt-6 bg-gray-700 p-6 rounded-lg">
+          {/* Password Settings Section */}
+          <div className="bg-gray-700 p-6 rounded-lg mb-6">
             <div className="mb-6">
               <label className="block text-lg mb-2">{translations.passwordLength}: {length}</label>
               <input
@@ -171,32 +227,89 @@ export default function PasswordGeneratorClient({ translations }: { translations
             </button>
           </div>
 
-          <div className="bg-gray-700 p-6 rounded-lg mt-6">
-            <h2 className="text-xl mb-4 text-center">{translations.description.title}</h2>
-            <p className="mb-4">
-              {translations.description.intro}
-            </p>
-            
-            <h3 className="text-lg mb-2 font-bold">{translations.description.features.title}</h3>
-            <ul className="list-disc pl-5 mb-4">
-              {translations.description.features.list.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
+          {/* About Section */}
+          <div className="mt-16 space-y-12">
+            {/* Introduction */}
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-4">{translations.catchphrase}</h2>
+              <p className="text-lg text-gray-300">{translations.intro}</p>
+            </div>
 
-            <h3 className="text-lg mb-2 font-bold">{translations.description.howToUse.title}</h3>
-            <ul className="list-disc pl-5 mb-4">
-              {translations.description.howToUse.list.map((step, index) => (
-                <li key={index}>{step}</li>
-              ))}
-            </ul>
+            {/* Features */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.features.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.features.easyOperation.title}</h3>
+                  <p className="text-gray-300">{translations.features.easyOperation.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.features.customization.title}</h3>
+                  <p className="text-gray-300">{translations.features.customization.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.features.security.title}</h3>
+                  <p className="text-gray-300">{translations.features.security.description}</p>
+                </div>
+              </div>
+            </div>
 
-            <h3 className="text-lg mb-2 font-bold">{translations.description.securityTips.title}</h3>
-            <ul className="list-disc pl-5">
-              {translations.description.securityTips.list.map((tip, index) => (
-                <li key={index}>{tip}</li>
-              ))}
-            </ul>
+            {/* Use Cases */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.useCases.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{translations.useCases.onlineAccounts.title}</h3>
+                  <p className="text-gray-300">{translations.useCases.onlineAccounts.description}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{translations.useCases.corporate.title}</h3>
+                  <p className="text-gray-300">{translations.useCases.corporate.description}</p>
+                </div>
+                <div className="bg-gray-600 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-3">{translations.useCases.privacy.title}</h3>
+                  <p className="text-gray-300">{translations.useCases.privacy.description}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Technical Background */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.technical.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.technical.algorithm.title}</h3>
+                  <p className="text-gray-300">{translations.technical.algorithm.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.technical.performance.title}</h3>
+                  <p className="text-gray-300">{translations.technical.performance.description}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">{translations.technical.privacy.title}</h3>
+                  <p className="text-gray-300">{translations.technical.privacy.description}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ */}
+            <div className="bg-gray-700 rounded-lg p-8">
+              <h2 className="text-2xl font-bold mb-6">{translations.faq.title}</h2>
+              <div className="space-y-6">
+                {Object.entries(translations.faq.questions).map(([key, question]) => (
+                  <div key={key} className="bg-gray-600 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold mb-3">{question.question}</h3>
+                    <p className="text-gray-300">{question.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Conclusion */}
+            <div className="bg-gray-700 rounded-lg p-8 text-center">
+              <h2 className="text-2xl font-bold mb-4">{translations.conclusion.title}</h2>
+              <p className="text-lg text-gray-300">{translations.conclusion.description}</p>
+            </div>
           </div>
         </main>
       </div>
