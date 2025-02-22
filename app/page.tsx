@@ -58,6 +58,9 @@ export default function Home() {
             <li>
               <Link href="/link-status-checker" className="text-white hover:underline">Link Status Checker</Link>
             </li>
+            <li>
+              <Link href="/country-data" className="text-white hover:underline">Country Data</Link>
+            </li>
           </ul>
         </div>
       </div>
