@@ -10,13 +10,6 @@ interface StoryData {
   endings: string[]
 }
 
-interface Questions {
-  [key: string]: {
-    question: string;
-    answer: string;
-  }
-}
-
 type Props = {
   lang: string;
 };
@@ -173,12 +166,30 @@ export default function StoryGeneratorClient({ lang }: Props) {
           <div className="bg-gray-700 rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-6">{translate(lang, 'storyGenerator.faq.title')}</h2>
             <div className="space-y-6">
-              {Object.entries(translate(lang, 'storyGenerator.faq.questions') as unknown as Questions).map(([key, question]) => (
-                <div key={key} className="bg-gray-600 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">{question.question}</h3>
-                  <p className="text-gray-300">{question.answer}</p>
-                </div>
-              ))}
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">
+                  {translate(lang, 'storyGenerator.faq.questions.random.question')}
+                </h3>
+                <p className="text-gray-300">
+                  {translate(lang, 'storyGenerator.faq.questions.random.answer')}
+                </p>
+              </div>
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">
+                  {translate(lang, 'storyGenerator.faq.questions.commercial.question')}
+                </h3>
+                <p className="text-gray-300">
+                  {translate(lang, 'storyGenerator.faq.questions.commercial.answer')}
+                </p>
+              </div>
+              <div className="bg-gray-600 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">
+                  {translate(lang, 'storyGenerator.faq.questions.customize.question')}
+                </h3>
+                <p className="text-gray-300">
+                  {translate(lang, 'storyGenerator.faq.questions.customize.answer')}
+                </p>
+              </div>
             </div>
           </div>
 
