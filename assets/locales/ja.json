@@ -1,4 +1,12 @@
 {
+  "common": {
+    "menu": "メニュー",
+    "meta": {
+      "siteName": "Boring Tools",
+      "publisher": "Boring Inc.",
+      "logoAlt": "ボーリングツールのロゴ"
+    }
+  },
   "home": {
     "title": "ボーリングツール",
     "description": "日常的なタスクに役立つツール集",

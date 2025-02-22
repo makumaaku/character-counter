@@ -1,4 +1,12 @@
 {
+  "common": {
+    "menu": "Menu",
+    "meta": {
+      "siteName": "Boring Tools",
+      "publisher": "Boring Inc.",
+      "logoAlt": "Boring Tools Logo"
+    }
+  },
   "home": {
     "title": "Boring Tools",
     "description": "A collection of useful tools for everyday tasks",
@@ -1232,14 +1240,6 @@
       "title": "Summary",
       "description": "Random Password Generator is a tool that achieves secure password generation with simple operations. Use this tool, ideal for all users seeking enhanced security, to keep your online environment safer."
     }
-  },
-  "common": {
-    "meta": {
-      "siteName": "Boring Tools",
-      "publisher": "Boring Tool",
-      "logoAlt": "Boring Tools Logo"
-    },
-    "menu": "Menu"
   },
   "link-status-checker": {
     "meta": {
