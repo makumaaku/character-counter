@@ -68,7 +68,7 @@ export async function generateMetadata(
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": title,
-    "description": description || t(`characterCounter.column.article.defaultDescription.${title.toLowerCase()}`),
+    "description": description || '',
     "articleBody": "",  // コンテンツは動的に生成されるため、ここでは空文字列を設定
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/column/${slug}`,
     "datePublished": publishedTime,
@@ -86,22 +86,14 @@ export async function generateMetadata(
     commonMeta,
     {
       title: title,
-      description: description || t(`characterCounter.column.article.defaultDescription.${title.toLowerCase()}`),
-      keywords: keywords || t('characterCounter.column.article.defaultKeywords'),
+      description: description || '',
+      keywords: keywords || '',
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/column/${slug}`,
     }
   );
 
   return {
     ...metadata,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseURL}/${lang}/character-counter/column/${slug}`,
-      languages: {
-        'en': `${SITE_CONFIG.baseURL}/en/character-counter/column/${slug}`,
-        'ja': `${SITE_CONFIG.baseURL}/ja/character-counter/column/${slug}`,
-        'x-default': `${SITE_CONFIG.baseURL}/en/character-counter/column/${slug}`
-      }
-    },
     other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
