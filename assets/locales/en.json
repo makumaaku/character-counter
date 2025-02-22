@@ -1004,8 +1004,72 @@
       "copied": "Copied!"
     },
     "about": {
-      "title": "About Name Generator",
-      "description": "Generate unique and memorable names instantly with our free online tool. Perfect for character creation, business naming, and project naming."
+      "catchphrase": "Discover unique names! A random name generator that creates distinctive naming solutions",
+      "introduction": "The random name generator is a tool that creates diverse names for characters, businesses, nicknames, and more. It provides a wide range of options when you're out of ideas or looking for new concepts.",
+      "features": {
+        "title": "Features and Characteristics",
+        "oneClick": {
+          "title": "One-Click Name Generation",
+          "description": "With simple button operation, new names appear instantly. Try as many times as you like to find the perfect name."
+        },
+        "patterns": {
+          "title": "Diverse Name Patterns",
+          "description": "Featuring a wide range of genres including fantasy, modern, and classical names. Create names that suit your specific needs."
+        },
+        "categories": {
+          "title": "Category-Based Output",
+          "description": "Filter by purpose such as character names, company names, or pet names to easily find names that match your objectives."
+        }
+      },
+      "useCases": {
+        "title": "Use Cases and User Examples",
+        "character": {
+          "title": "Character Creation",
+          "description": "Generate unique names for novel and game characters."
+        },
+        "branding": {
+          "title": "Brand Naming",
+          "description": "Get innovative ideas for company and product names."
+        },
+        "personal": {
+          "title": "Personal Use",
+          "description": "Perfect for creating unique usernames and nicknames."
+        }
+      },
+      "technical": {
+        "title": "Technical Background and Mechanism",
+        "algorithm": {
+          "title": "Proprietary Generation Algorithm",
+          "description": "Combines random elements with database patterns to create natural and appealing names."
+        },
+        "updates": {
+          "title": "Regular Data Updates",
+          "description": "Database is continuously updated with latest trends and user feedback to provide fresh name options."
+        },
+        "responsive": {
+          "title": "Multi-Device Support",
+          "description": "Responsive design ensures comfortable use from any device."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "commercial": {
+          "question": "Can I use the generated names commercially?",
+          "answer": "Yes, commercial use is permitted under our terms of service."
+        },
+        "categories": {
+          "question": "Can I choose specific categories of names?",
+          "answer": "Yes, we provide filtering options to match your specific needs."
+        },
+        "retry": {
+          "question": "What if I don't like the suggested names?",
+          "answer": "You can click the generate button as many times as you like until you find names you love."
+        }
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "The random name generator creates distinctive names using its unique algorithm, solving naming challenges in creative and business contexts. Use this tool to find the perfect name for your project."
+      }
     },
     "useCases": {
       "title": "Use Cases",
