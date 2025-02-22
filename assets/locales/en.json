@@ -740,7 +740,7 @@
     }
   },
   "wordCardGenerator": {
-    "title": "Word Card Generator",
+    "title": "Random Word Card Generator",
     "description": "Create flashcards and word cards for learning and memorization",
     "meta": {
       "title": "Word Card Generator - Boring Tool",
@@ -749,7 +749,7 @@
     },
     "form": {
       "count": {
-        "label": "Number of cards"
+        "label": "Number of cards to generate"
       },
       "generate": "Generate Cards"
     },
@@ -765,7 +765,7 @@
     },
     "howTo": {
       "title": "How to Use",
-      "description": "The Word Card Generator tool allows you to easily create flashcards for learning and memorization. Simply select the number of cards you want to generate and click the 'Generate Cards' button."
+      "description": "The word card generator tool makes it easy to create flashcards for learning and memorization. Simply select the number of cards to generate and click the 'Generate Cards' button."
     },
     "useCases": {
       "title": "Use Cases",
@@ -774,6 +774,76 @@
       "games": "Learning Games",
       "writing": "Writing Practice",
       "esl": "ESL Learning"
+    },
+    "about": {
+      "catchphrase": "Catch Inspiration at a Glance! Generate Your Personal Word Cards Randomly",
+      "introduction": "The Random Word Card Generator is a tool that displays randomly selected words in card format. It can be used for various purposes such as learning, brainstorming, and vocabulary enhancement. With its simple and intuitive operation, you'll make new discoveries every time cards appear on the screen.",
+      "features": {
+        "title": "Features and Characteristics",
+        "oneClick": {
+          "title": "One-Click Card Generation",
+          "description": "New word cards are instantly displayed with just a button click. You can easily generate new cards as many times as you want, never getting bored."
+        },
+        "database": {
+          "title": "Rich Vocabulary Database",
+          "description": "Contains words from a wide range of categories including daily conversation, study terms, and technical terms. Enables vocabulary enhancement tailored to your needs."
+        },
+        "design": {
+          "title": "Card Design Customization",
+          "description": "Users can enjoy the visual experience with simple yet sophisticated designs, including background colors and fonts."
+        }
+      },
+      "useCases": {
+        "title": "Usage Scenarios and User Cases",
+        "vocabulary": {
+          "title": "Vocabulary Learning",
+          "description": "Perfect for acquiring new words. Learners can enhance memory retention through visual card-based learning."
+        },
+        "brainstorming": {
+          "title": "Brainstorming",
+          "description": "Random word cards can spark unexpected ideas during ideation sessions."
+        },
+        "games": {
+          "title": "Games and Workshops",
+          "description": "Can be used as a communication tool for groups, serving as prompts for impromptu games and discussion topics."
+        }
+      },
+      "technical": {
+        "title": "Technical Background and Mechanism",
+        "algorithm": {
+          "title": "Unique Random Generation Algorithm",
+          "description": "Random words are extracted and automatically formatted into cards with each click."
+        },
+        "database": {
+          "title": "Regularly Updated Vocabulary Data",
+          "description": "The database is continuously expanded based on user feedback, providing an environment where you can always encounter new words."
+        },
+        "responsive": {
+          "title": "Responsive Design",
+          "description": "Optimized for smartphones and tablets, allowing you to enjoy cards comfortably from any device."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "questions": {
+          "free": {
+            "question": "Can I use this tool for free?",
+            "answer": "Yes, basic features are available free of charge."
+          },
+          "customize": {
+            "question": "Can I customize the card design?",
+            "answer": "Currently, we offer a simple design, but we're considering adding customization features in future updates."
+          },
+          "print": {
+            "question": "Can I print the cards?",
+            "answer": "Yes, you can take screenshots or print the displayed cards."
+          }
+        }
+      },
+      "conclusion": {
+        "title": "Conclusion",
+        "description": "The Random Word Card Generator is the perfect tool for vocabulary learning and brainstorming. With its simple operation and rich database, it provides new perspectives for your daily activities. Please use this tool to enjoy new discoveries every time."
+      }
     }
   },
   "sentenceGenerator": {

@@ -32,17 +32,75 @@ type Props = {
         length: string
         category: string
       }
-      howTo: {
-        title: string
-        description: string
-      }
-      useCases: {
-        title: string
-        vocabulary: string
-        teaching: string
-        games: string
-        writing: string
-        esl: string
+      about: {
+        catchphrase: string
+        introduction: string
+        features: {
+          title: string
+          oneClick: {
+            title: string
+            description: string
+          }
+          database: {
+            title: string
+            description: string
+          }
+          design: {
+            title: string
+            description: string
+          }
+        }
+        useCases: {
+          title: string
+          vocabulary: {
+            title: string
+            description: string
+          }
+          brainstorming: {
+            title: string
+            description: string
+          }
+          games: {
+            title: string
+            description: string
+          }
+        }
+        technical: {
+          title: string
+          algorithm: {
+            title: string
+            description: string
+          }
+          database: {
+            title: string
+            description: string
+          }
+          responsive: {
+            title: string
+            description: string
+          }
+        }
+        faq: {
+          title: string
+          questions: {
+            free: {
+              question: string
+              answer: string
+            }
+            customize: {
+              question: string
+              answer: string
+            }
+            print: {
+              question: string
+              answer: string
+            }
+          }
+        }
+        conclusion: {
+          title: string
+          description: string
+        }
       }
     }
   }
@@ -146,24 +204,88 @@ export default function WordCardGeneratorClient({ translations }: Props) {
           </div>
         </div>
 
-        <div className="bg-gray-700 p-6 rounded-lg mt-6">
-          <h2 className="text-2xl font-bold mb-4 text-center">
-            {translations.wordCardGenerator.howTo.title}
-          </h2>
-          <p className="text-gray-300 mb-4">
-            {translations.wordCardGenerator.howTo.description}
-          </p>
+        {/* About Section */}
+        <div className="mt-12 bg-gray-700 p-8 rounded-lg">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-4">{translations.wordCardGenerator.about.catchphrase}</h2>
+            <p className="text-lg text-gray-300">{translations.wordCardGenerator.about.introduction}</p>
+          </div>
 
-          <h3 className="text-xl font-bold mt-6 mb-4">
-            {translations.wordCardGenerator.useCases.title}
-          </h3>
-          <ul className="list-disc pl-5 text-gray-300">
-            <li>{translations.wordCardGenerator.useCases.vocabulary}</li>
-            <li>{translations.wordCardGenerator.useCases.teaching}</li>
-            <li>{translations.wordCardGenerator.useCases.games}</li>
-            <li>{translations.wordCardGenerator.useCases.writing}</li>
-            <li>{translations.wordCardGenerator.useCases.esl}</li>
-          </ul>
+          {/* Features */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{translations.wordCardGenerator.about.features.title}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.features.oneClick.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.features.oneClick.description}</p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.features.database.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.features.database.description}</p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.features.design.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.features.design.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Use Cases */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{translations.wordCardGenerator.about.useCases.title}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.useCases.vocabulary.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.useCases.vocabulary.description}</p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.useCases.brainstorming.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.useCases.brainstorming.description}</p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.useCases.games.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.useCases.games.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Background */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{translations.wordCardGenerator.about.technical.title}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.technical.algorithm.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.technical.algorithm.description}</p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.technical.database.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.technical.database.description}</p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{translations.wordCardGenerator.about.technical.responsive.title}</h4>
+                <p className="text-gray-300">{translations.wordCardGenerator.about.technical.responsive.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{translations.wordCardGenerator.about.faq.title}</h3>
+            <div className="space-y-6">
+              {Object.entries(translations.wordCardGenerator.about.faq.questions).map(([key, question]: [string, { question: string; answer: string }]) => (
+                <div key={key} className="bg-gray-800 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold mb-3">{question.question}</h4>
+                  <p className="text-gray-300">{question.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Conclusion */}
+          <div>
+            <h3 className="text-2xl font-bold mb-4">{translations.wordCardGenerator.about.conclusion.title}</h3>
+            <p className="text-gray-300">{translations.wordCardGenerator.about.conclusion.description}</p>
+          </div>
         </div>
       </main>
     </div>
