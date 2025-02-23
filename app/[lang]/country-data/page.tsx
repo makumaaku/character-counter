@@ -171,7 +171,7 @@ export default function CountryDataPage() {
   }
 
   return (
-    <main className="p-4 max-w-7xl mx-auto bg-white shadow-lg rounded-lg">
+    <main className="p-4 max-w-7xl mx-auto bg-white shadow-lg dark:shadow-none rounded-lg">
       <h1 className="text-2xl font-bold mb-6">{messages.countryData.title}</h1>
       
       <nav className="flex flex-wrap gap-4 items-center mb-6">
