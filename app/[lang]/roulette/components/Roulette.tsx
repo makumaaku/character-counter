@@ -40,14 +40,41 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const MAX_SPEED = Math.PI * 6; // 最高速度
 
   // 効果音の設定
-  const [playTickSound] = useSound('/sounds/tick.mp3', { volume: 0.5 });
-  const [playStopSound] = useSound('/sounds/stop.mp3', { volume: 0.7 });
+  const [playTickSound] = useSound('/sounds/tick.mp3', { 
+    volume: 0.5,
+    interrupt: true, // 音声の重複を許可
+    soundEnabled: true, // 常に音声を有効化
+    preload: true, // 事前ロード
+    html5: true, // Web Audio APIではなくHTML5 Audioを使用
+  });
+  const [playStopSound] = useSound('/sounds/stop.mp3', { 
+    volume: 0.7,
+    soundEnabled: true, // 常に音声を有効化
+    preload: true, // 事前ロード
+    html5: true, // Web Audio APIではなくHTML5 Audioを使用
+  });
 
   // ルーレットのサイズ設定
   const WHEEL_RADIUS = 3;
   const TEXT_RADIUS = WHEEL_RADIUS * 0.6;
   const CENTER_RADIUS = WHEEL_RADIUS * 0.15;
   const ARROW_POSITION = WHEEL_RADIUS + 0.3;
+
+  // visibilitychangeイベントの監視
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      // タブがバックグラウンドになった時も音声を継続させる
+      if (document.hidden && isSpinningRef.current) {
+        // 既存の音声を停止せずに継続
+        return;
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   useEffect(() => {
     isSpinningRef.current = isSpinning;
