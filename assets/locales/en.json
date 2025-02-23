@@ -1295,12 +1295,12 @@
   },
   "countryData": {
     "meta": {
-      "title": "World Country Data - Full List Demo",
+      "title": "World Country Data",
       "description": "Comprehensive list of world countries with detailed information including official names, capitals, languages, and more.",
       "keywords": "world countries, country data, capitals, languages, currencies, regions"
     },
     "ui": {
-      "title": "World Country Data - Full List Demo",
+      "title": "World Country Data",
       "searchLabel": "Search by keyword:",
       "filterLabel": "Region Filter:",
       "noData": "No matching data found",
