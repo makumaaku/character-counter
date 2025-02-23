@@ -75,6 +75,7 @@ export function CharacterCounterClient() {
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
+        {/* Counter Section */}
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">{t('characterCounter.charCount')}</h2>
           <p className="text-4xl font-bold">{charCount}</p>
@@ -159,6 +160,102 @@ export function CharacterCounterClient() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-bold mt-16 mb-4">{t('characterCounter.content.hero.title')}</h2>
+          <p className="text-lg text-gray-300 mb-2">{t('characterCounter.content.hero.description')}</p>
+          <p className="text-sm text-purple-400">{t('characterCounter.content.hero.darkMode')}</p>
+        </div>
+
+        {/* How To Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">{t('characterCounter.content.howTo.title')}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.howTo.steps.input.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.howTo.steps.input.description')}</p>
+              <p className="text-sm text-purple-400 mt-2">{t('characterCounter.content.howTo.steps.input.note')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.howTo.steps.realtime.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.howTo.steps.realtime.description')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.howTo.steps.utilize.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.howTo.steps.utilize.description')}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">{t('characterCounter.content.testimonials.title')}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.testimonials.users.writer.name')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.testimonials.users.writer.comment')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.testimonials.users.social.name')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.testimonials.users.social.comment')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.testimonials.users.marketer.name')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.testimonials.users.marketer.comment')}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">{t('characterCounter.content.features.title')}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.features.items.easy.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.features.items.easy.description')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.features.items.accurate.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.features.items.accurate.description')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.features.items.free.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.features.items.free.description')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.features.items.darkMode.title')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.features.items.darkMode.description')}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-6 text-center">{t('characterCounter.content.faq.title')}</h2>
+          <div className="space-y-4">
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.faq.questions.what.question')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.faq.questions.what.answer')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.faq.questions.usage.question')}</h3>
+              <p className="text-gray-300 whitespace-pre-line">{t('characterCounter.content.faq.questions.usage.answer')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.faq.questions.counting.question')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.faq.questions.counting.answer')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.faq.questions.languages.question')}</h3>
+              <p className="text-gray-300">{t('characterCounter.content.faq.questions.languages.answer')}</p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold mb-3">{t('characterCounter.content.faq.questions.pricing.question')}</h3>
+              <p className="text-gray-300 whitespace-pre-line">{t('characterCounter.content.faq.questions.pricing.answer')}</p>
+            </div>
+          </div>
         </div>
       </main>
     </div>
