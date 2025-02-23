@@ -6,14 +6,14 @@ import useSound from 'use-sound';
 
 // より鮮やかな色のパレットを定義
 const VIBRANT_COLORS = [
-  '#FF1E1E', // 赤
-  '#FF8C1A', // オレンジ
-  '#FFD700', // 黄色
-  '#32CD32', // ライムグリーン
-  '#1E90FF', // ドジャーブルー
-  '#9932CC', // ダークオーキッド
-  '#FF1493', // ディープピンク
-  '#00CED1', // ダークターコイズ
+  '#FF3366', // ビビッドピンク
+  '#00CCFF', // ブライトスカイブルー
+  '#33FF66', // ネオングリーン
+  '#FFCC00', // ゴールデンイエロー
+  '#FF6633', // ビビッドオレンジ
+  '#3366FF', // ブライトブルー
+  '#FF33FF', // ホットピンク
+  '#33FFCC', // ターコイズ
 ];
 
 export interface RouletteProps {
@@ -31,6 +31,8 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const isSpinningRef = useRef(isSpinning);
   const lastSegmentIndex = useRef(0); // 最後に通過したセグメントのインデックス
   const startTime = useRef(0); // 回転開始時刻
+  const speedVariationFactor = useRef(1); // 回転速度の変動係数
+  const targetSegmentIndex = useRef(0); // 目標となるセグメントのインデックス
   const TOTAL_DURATION = 10; // 合計回転時間（秒）
   const ACCELERATION_DURATION = 2; // 加速時間（秒）
   const CONSTANT_SPEED_DURATION = 2; // 最高速度維持時間（秒）
@@ -52,10 +54,18 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
     if (isSpinning) {
       startTime.current = performance.now() / 1000; // 秒単位で保存
       spinSpeed.current = 0; // 初期速度は0
-      const totalRotations = 20 + Math.random() * 5; // 合計回転数（20-25回転）
-      targetRotation.current = currentRotation.current + totalRotations * Math.PI * 2;
+      speedVariationFactor.current = 0.9 + Math.random() * 0.2; // 0.9 ~ 1.1の範囲でランダムな係数を設定
+      
+      // ランダムに目標セグメントを選択
+      targetSegmentIndex.current = Math.floor(Math.random() * items.length);
+      const segmentAngle = (Math.PI * 2) / items.length;
+      const targetAngle = segmentAngle * targetSegmentIndex.current;
+      
+      // 最低20回転 + ランダムな追加回転 + 目標位置までの回転
+      const baseRotations = 20 + Math.random() * 5;
+      targetRotation.current = (baseRotations * Math.PI * 2) + targetAngle;
     }
-  }, [isSpinning]);
+  }, [isSpinning, items.length]);
 
   useFrame((_, delta) => {
     if (!wheelRef.current || !isSpinningRef.current) return;
@@ -66,6 +76,13 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
     // 10秒経過で強制停止
     if (elapsedTime >= TOTAL_DURATION) {
       isSpinningRef.current = false;
+      
+      // 最終的な回転位置を目標位置に調整
+      const segmentAngle = (Math.PI * 2) / items.length;
+      const targetAngle = segmentAngle * targetSegmentIndex.current;
+      currentRotation.current = Math.floor(currentRotation.current / (Math.PI * 2)) * Math.PI * 2 + targetAngle;
+      wheelRef.current.rotation.z = currentRotation.current;
+      
       playStopSound();
       onRotationUpdate(-currentRotation.current);
       onSpinComplete();
@@ -75,16 +92,16 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
     // 速度パターンの計算
     if (elapsedTime <= ACCELERATION_DURATION) {
       // 加速フェーズ（0-2秒）
-      spinSpeed.current = MathUtils.lerp(0, MAX_SPEED, elapsedTime / ACCELERATION_DURATION);
+      spinSpeed.current = MathUtils.lerp(0, MAX_SPEED, elapsedTime / ACCELERATION_DURATION) * speedVariationFactor.current;
     } else if (elapsedTime >= DECELERATION_START) {
       // 減速フェーズ（4-10秒）: より長いイージングで滑らかに減速
       const decelerationProgress = (elapsedTime - DECELERATION_START) / (TOTAL_DURATION - DECELERATION_START);
       // イージング関数を使用してより自然な減速を実現
       const easeOutProgress = 1 - Math.pow(1 - decelerationProgress, 3); // cubic ease-out
-      spinSpeed.current = MathUtils.lerp(MAX_SPEED, 0, easeOutProgress);
+      spinSpeed.current = MathUtils.lerp(MAX_SPEED, 0, easeOutProgress) * speedVariationFactor.current;
     } else {
       // 最高速度維持フェーズ（2-4秒）
-      spinSpeed.current = MAX_SPEED;
+      spinSpeed.current = MAX_SPEED * speedVariationFactor.current;
     }
 
     // 回転の更新
@@ -118,10 +135,8 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
 
   return (
     <group>
-      {/* 環境光を明るく、ポイントライトを追加 */}
-      <ambientLight intensity={1.2} />
-      <pointLight position={[0, 0, 5]} intensity={0.8} />
-      <pointLight position={[5, 5, 5]} intensity={0.3} />
+      {/* 基本的な環境光のみ維持 */}
+      <ambientLight intensity={1.0} />
 
       <mesh ref={wheelRef} rotation={[0, 0, 0]}>
         {items.map((item, index) => {
@@ -137,7 +152,7 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
                   color={color} 
                   side={DoubleSide}
                   roughness={0.3}
-                  metalness={0.1}
+                  metalness={0.0}
                 />
               </mesh>
               
@@ -167,8 +182,8 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
           <circleGeometry args={[CENTER_RADIUS, 32]} />
           <meshStandardMaterial 
             color="#1a1a1a"
-            roughness={0.2}
-            metalness={0.8}
+            roughness={0.3}
+            metalness={0.0}
           />
         </mesh>
       </mesh>
@@ -177,9 +192,9 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
       <mesh position={[ARROW_POSITION, 0, 0.1]} rotation={[0, 0, Math.PI / 2]}>
         <coneGeometry args={[0.3, 0.6, 32]} />
         <meshStandardMaterial 
-          color="#FF1E1E"
+          color="#FF0000"
           roughness={0.3}
-          metalness={0.2}
+          metalness={0.0}
         />
       </mesh>
     </group>
