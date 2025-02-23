@@ -3,18 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { Mesh, DoubleSide, MathUtils } from 'three';
 import { Text } from '@react-three/drei';
 import useSound from 'use-sound';
-
-// より鮮やかな色のパレットを定義
-const VIBRANT_COLORS = [
-  '#FF3366', // ビビッドピンク
-  '#00CCFF', // ブライトスカイブルー
-  '#33FF66', // ネオングリーン
-  '#FFCC00', // ゴールデンイエロー
-  '#FF6633', // ビビッドオレンジ
-  '#3366FF', // ブライトブルー
-  '#FF33FF', // ホットピンク
-  '#33FFCC', // ターコイズ
-];
+import { VIBRANT_COLORS } from '../constants';
 
 export interface RouletteProps {
   items: string[];

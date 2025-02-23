@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import { VIBRANT_COLORS } from './constants';
 
 // Three.jsコンポーネントは動的importが必要
 const Roulette = dynamic(() => import('./components/Roulette'), { ssr: false });
@@ -61,8 +62,8 @@ export default function RoulettePage() {
     const selectedItem = items[selectedIndex];
     
     // 選択されたアイテムのインデックスに基づいて色を設定
-    const hue = (360 / items.length) * selectedIndex;
-    setSelectedColor(`hsl(${hue}, 70%, 90%)`);
+    const colorIndex = selectedIndex % VIBRANT_COLORS.length;
+    setSelectedColor(VIBRANT_COLORS[colorIndex]);
     setResult(selectedItem);
   }, [items, currentRotation]);
 
@@ -122,7 +123,7 @@ export default function RoulettePage() {
               opacity: 0.8
             }}
           >
-            <h2 className="text-3xl font-bold text-emerald-800 mb-2">
+            <h2 className="text-3xl font-bold mb-2">
               🎉 Selected!
             </h2>
             <p className="text-4xl font-bold mt-4">
