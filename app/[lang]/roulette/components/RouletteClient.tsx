@@ -6,6 +6,9 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { VIBRANT_COLORS } from '../constants';
 
+const STORAGE_KEY = 'roulette-items';
+const DEFAULT_ITEMS = ['Item 1', 'Item 2', 'Item 3'];
+
 // Three.jsコンポーネントは動的importが必要
 const Roulette = dynamic(() => import('./Roulette'), { ssr: false });
 
@@ -28,7 +31,7 @@ type RouletteClientProps = {
 }
 
 export default function RouletteClient({ translations }: RouletteClientProps) {
-  const [items, setItems] = useState<string[]>(['Item 1', 'Item 2', 'Item 3']);
+  const [items, setItems] = useState<string[]>(DEFAULT_ITEMS);
   const [isSpinning, setIsSpinning] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [textAreaValue, setTextAreaValue] = useState('');
@@ -36,9 +39,33 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
   const [currentRotation, setCurrentRotation] = useState(0);
   const [selectedColor, setSelectedColor] = useState<string>('');
 
-  // テキストエリアの初期化
+  // ローカルストレージへの保存を行う関数
+  const saveItemsToStorage = useCallback((itemsToSave: string[]) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(itemsToSave));
+    } catch (error) {
+      console.error('Failed to save items to localStorage:', error);
+    }
+  }, []);
+
+  // ローカルストレージからアイテムを読み込む
   useEffect(() => {
-    setTextAreaValue(items.join('\n'));
+    try {
+      const savedItems = localStorage.getItem(STORAGE_KEY);
+      if (savedItems) {
+        const parsedItems = JSON.parse(savedItems);
+        if (Array.isArray(parsedItems) && parsedItems.length > 0) {
+          setItems(parsedItems);
+          setTextAreaValue(parsedItems.join('\n'));
+          return;
+        }
+      }
+      // 保存されたデータがない場合やエラーの場合はデフォルト値を設定
+      setTextAreaValue(DEFAULT_ITEMS.join('\n'));
+    } catch (error) {
+      console.error('Failed to load items from localStorage:', error);
+      setTextAreaValue(DEFAULT_ITEMS.join('\n'));
+    }
   }, []);
 
   // キーボードショートカット
@@ -79,7 +106,10 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
     const colorIndex = selectedIndex % VIBRANT_COLORS.length;
     setSelectedColor(VIBRANT_COLORS[colorIndex]);
     setResult(selectedItem);
-  }, [items, currentRotation]);
+
+    // ルーレットを回した後に自動保存
+    saveItemsToStorage(items);
+  }, [items, currentRotation, saveItemsToStorage]);
 
   const handleReset = useCallback(() => {
     setTextAreaValue(items.join('\n'));
@@ -95,10 +125,12 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
     
     if (newItems.length > 0) {
       setItems(newItems);
+      saveItemsToStorage(newItems);
     }
     setIsEditing(false);
     setResult(null);
-  }, [textAreaValue]);
+  }, [textAreaValue, saveItemsToStorage]);
+
 
   return (
     <div className="min-h-screen p-4">
