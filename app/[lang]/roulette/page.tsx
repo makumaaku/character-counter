@@ -15,6 +15,7 @@ export default function RoulettePage() {
   const [textAreaValue, setTextAreaValue] = useState('');
   const [result, setResult] = useState<string | null>(null);
   const [currentRotation, setCurrentRotation] = useState(0);
+  const [selectedColor, setSelectedColor] = useState<string>('');
 
   // テキストエリアの初期化
   useEffect(() => {
@@ -59,6 +60,9 @@ export default function RoulettePage() {
     const selectedIndex = Math.floor(normalizedRotation / segmentAngle);
     const selectedItem = items[selectedIndex];
     
+    // 選択されたアイテムのインデックスに基づいて色を設定
+    const hue = (360 / items.length) * selectedIndex;
+    setSelectedColor(`hsl(${hue}, 70%, 90%)`);
     setResult(selectedItem);
   }, [items, currentRotation]);
 
@@ -108,7 +112,24 @@ export default function RoulettePage() {
             </button>
           </div>
         </div>
-
+        {/* 結果表示 */}
+        {result && (
+          <div 
+            className="text-center p-8 rounded-xl shadow-lg border animate-fade-in"
+            style={{
+              background: selectedColor,
+              borderColor: selectedColor,
+              opacity: 0.8
+            }}
+          >
+            <h2 className="text-3xl font-bold text-emerald-800 mb-2">
+              🎉 Selected!
+            </h2>
+            <p className="text-4xl font-bold mt-4">
+              {result}
+            </p>
+          </div>
+        )}
         {isEditing ? (
           <div className="mb-8">
             <textarea
@@ -147,18 +168,6 @@ export default function RoulettePage() {
                 <OrbitControls enableZoom={false} enablePan={false} />
               </Canvas>
             </div>
-
-            {/* 結果表示 */}
-            {result && (
-              <div className="text-center p-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl shadow-lg border border-green-100 animate-fade-in">
-                <h2 className="text-3xl font-bold text-emerald-800 mb-2">
-                  🎉 Selected!
-                </h2>
-                <p className="text-4xl font-bold text-emerald-600 mt-4">
-                  {result}
-                </p>
-              </div>
-            )}
           </>
         )}
       </div>
