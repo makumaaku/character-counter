@@ -34,7 +34,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remark-gfm": "^4.0.1",
-    "three": "^0.173.0"
+    "three": "^0.173.0",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

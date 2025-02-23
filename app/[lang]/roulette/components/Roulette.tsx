@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh, DoubleSide, MathUtils } from 'three';
 import { Text } from '@react-three/drei';
+import useSound from 'use-sound';
 
 // より鮮やかな色のパレットを定義
 const VIBRANT_COLORS = [
@@ -27,8 +28,18 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const spinSpeed = useRef(0);
   const targetRotation = useRef(0);
   const currentRotation = useRef(0);
-  const dampingFactor = useRef(0.99);
   const isSpinningRef = useRef(isSpinning);
+  const lastSegmentIndex = useRef(0); // 最後に通過したセグメントのインデックス
+  const startTime = useRef(0); // 回転開始時刻
+  const TOTAL_DURATION = 10; // 合計回転時間（秒）
+  const ACCELERATION_DURATION = 2; // 加速時間（秒）
+  const CONSTANT_SPEED_DURATION = 2; // 最高速度維持時間（秒）
+  const DECELERATION_START = ACCELERATION_DURATION + CONSTANT_SPEED_DURATION; // 減速開始時間（秒）
+  const MAX_SPEED = Math.PI * 6; // 最高速度
+
+  // 効果音の設定
+  const [playTickSound] = useSound('/sounds/tick.mp3', { volume: 0.5 });
+  const [playStopSound] = useSound('/sounds/stop.mp3', { volume: 0.7 });
 
   // ルーレットのサイズ設定
   const WHEEL_RADIUS = 3;
@@ -39,34 +50,67 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   useEffect(() => {
     isSpinningRef.current = isSpinning;
     if (isSpinning) {
-      const rotations = 16 + Math.random() * 8;
-      targetRotation.current = currentRotation.current + rotations * Math.PI * 2;
-      spinSpeed.current = Math.PI * 4;
-      dampingFactor.current = 0.99;
+      startTime.current = performance.now() / 1000; // 秒単位で保存
+      spinSpeed.current = 0; // 初期速度は0
+      const totalRotations = 20 + Math.random() * 5; // 合計回転数（20-25回転）
+      targetRotation.current = currentRotation.current + totalRotations * Math.PI * 2;
     }
   }, [isSpinning]);
 
   useFrame((_, delta) => {
     if (!wheelRef.current || !isSpinningRef.current) return;
 
-    const distanceToTarget = targetRotation.current - currentRotation.current;
-    const shouldStop = spinSpeed.current < 0.01 || distanceToTarget < 0.1;
+    const currentTime = performance.now() / 1000;
+    const elapsedTime = currentTime - startTime.current;
 
-    if (!shouldStop) {
-      spinSpeed.current *= dampingFactor.current;
-      
-      if (distanceToTarget < Math.PI * 2) {
-        dampingFactor.current = MathUtils.lerp(dampingFactor.current, 0.97, 0.005);
-      }
-
-      const rotation = spinSpeed.current * delta;
-      currentRotation.current += rotation;
-      wheelRef.current.rotation.z = currentRotation.current;
-      onRotationUpdate(-currentRotation.current); // 回転方向を反転
-    } else {
+    // 10秒経過で強制停止
+    if (elapsedTime >= TOTAL_DURATION) {
       isSpinningRef.current = false;
-      onRotationUpdate(-currentRotation.current); // 回転方向を反転
+      playStopSound();
+      onRotationUpdate(-currentRotation.current);
       onSpinComplete();
+      return;
+    }
+
+    // 速度パターンの計算
+    if (elapsedTime <= ACCELERATION_DURATION) {
+      // 加速フェーズ（0-2秒）
+      spinSpeed.current = MathUtils.lerp(0, MAX_SPEED, elapsedTime / ACCELERATION_DURATION);
+    } else if (elapsedTime >= DECELERATION_START) {
+      // 減速フェーズ（4-10秒）: より長いイージングで滑らかに減速
+      const decelerationProgress = (elapsedTime - DECELERATION_START) / (TOTAL_DURATION - DECELERATION_START);
+      // イージング関数を使用してより自然な減速を実現
+      const easeOutProgress = 1 - Math.pow(1 - decelerationProgress, 3); // cubic ease-out
+      spinSpeed.current = MathUtils.lerp(MAX_SPEED, 0, easeOutProgress);
+    } else {
+      // 最高速度維持フェーズ（2-4秒）
+      spinSpeed.current = MAX_SPEED;
+    }
+
+    // 回転の更新
+    const rotation = spinSpeed.current * delta;
+    currentRotation.current += rotation;
+    wheelRef.current.rotation.z = currentRotation.current;
+    onRotationUpdate(-currentRotation.current);
+
+    // セグメントの切り替わりを検出して音を鳴らす
+    const segmentAngle = (Math.PI * 2) / items.length;
+    const currentAngle = -currentRotation.current % (Math.PI * 2);
+    const currentSegmentIndex = Math.floor(currentAngle / segmentAngle);
+
+    if (currentSegmentIndex !== lastSegmentIndex.current) {
+      playTickSound();
+      lastSegmentIndex.current = currentSegmentIndex;
+    }
+
+    // 完全に停止した場合
+    if (elapsedTime >= TOTAL_DURATION - 0.1) {
+      if (isSpinningRef.current) {
+        playStopSound();
+        isSpinningRef.current = false;
+        onRotationUpdate(-currentRotation.current);
+        onSpinComplete();
+      }
     }
   });
 
