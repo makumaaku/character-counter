@@ -4,8 +4,8 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
 type Props = {
-  children: React.ReactNode;
   params: Promise<{ lang: string }>;
+  children: React.ReactNode;
 }
 
 export async function generateMetadata(
@@ -28,7 +28,7 @@ export async function generateMetadata(
     "name": t('roulette.meta.title'),
     "description": t('roulette.meta.description'),
     "url": `${SITE_CONFIG.baseURL}/${lang}/roulette`,
-    "applicationCategory": "Utility",
+    "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
     "publisher": {
       "@type": "Organization",
@@ -67,9 +67,5 @@ export default function RouletteLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {children}
-    </div>
-  );
+  return <>{children}</>;
 } 

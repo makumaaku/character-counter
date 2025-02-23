@@ -1346,5 +1346,25 @@
         "lastUpdated": "Last Updated"
       }
     }
+  },
+  "roulette": {
+    "meta": {
+      "title": "Web Roulette - Free Online Decision Making Tool",
+      "description": "Make decisions easily with our free online roulette tool. Perfect for random selections, decision making, and team activities.",
+      "keywords": "web roulette, decision making tool, random selection, online roulette, team decision"
+    },
+    "title": "Web Roulette",
+    "buttons": {
+      "spin": "Spin (Space)",
+      "spinning": "Spinning...",
+      "edit": "Edit List (E)",
+      "reset": "Reset (R)",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "result": {
+      "selected": "Selected!",
+      "placeholder": "Enter items (one per line)"
+    }
   }
 } 
