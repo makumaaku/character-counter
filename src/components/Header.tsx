@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ title, homeLink, children }) => {
         {children}
       </div>
       <Link href={homeLink}>
-        <h1 className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</h1>
+        <div className="text-xl font-bold hover:text-gray-200 transition-colors cursor-pointer">{title}</div>
       </Link>
       <div className="w-[76px] flex items-center justify-end">
         <LanguageSwitcher />

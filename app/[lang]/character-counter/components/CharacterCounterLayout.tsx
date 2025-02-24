@@ -31,7 +31,7 @@ export default function CharacterCounterLayout({ children }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('characterCounter.title')} homeLink={`/${lang}/character-counter`}>
+      <Header title={''} homeLink={`/${lang}/character-counter`}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"
