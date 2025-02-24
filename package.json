@@ -10,13 +10,10 @@
     "postbuild": "next-sitemap --config next-sitemap.config.cjs"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
     "@formatjs/intl-localematcher": "^0.6.0",
     "@heroicons/react": "^2.2.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@mui/material": "^6.4.5",
     "@next/mdx": "^15.1.6",
     "@react-three/drei": "^10.0.0",
     "@react-three/fiber": "^9.0.4",
@@ -28,11 +25,11 @@
     "gray-matter": "^4.0.3",
     "negotiator": "^1.0.0",
     "next": "15.1.6",
-    "next-mdx-remote": "^4.4.1",
+    "next-mdx-remote": "^5.0.0",
     "next-sitemap": "^4.2.3",
     "qrcode.react": "^4.2.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "remark-gfm": "^4.0.1",
     "three": "^0.173.0",
     "use-sound": "^5.0.0"
