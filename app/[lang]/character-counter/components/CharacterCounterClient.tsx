@@ -75,6 +75,7 @@ export function CharacterCounterClient() {
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto mt-10 px-4 pb-24">
+      <h1 className="text-3xl font-bold text-white mb-6">{t('characterCounter.title')}</h1>
         {/* Counter Section */}
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h2 className="text-xl mb-4">{t('characterCounter.charCount')}</h2>
