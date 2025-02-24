@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { translate } from '@/lib/i18n/client';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
@@ -15,8 +15,11 @@ type Props = {
 export default function CharacterCounterLayout({ children }: Props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const params = useParams();
+  const pathname = usePathname();
   const lang = params.lang as string;
   const t = (key: string) => translate(lang, key);
+  // 文字数カウンターのトップページかどうかを判断
+  const isCharacterCounterTop = pathname === `/${lang}/character-counter`;
 
   const navigationItems = [
     { name: t('characterCounter.sidebar.function'), path: `/character-counter/function` },
@@ -31,7 +34,7 @@ export default function CharacterCounterLayout({ children }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={''} homeLink={`/${lang}/character-counter`}>
+      <Header title={t('characterCounter.title')} homeLink={`/${lang}/character-counter`}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"
@@ -48,6 +51,9 @@ export default function CharacterCounterLayout({ children }: Props) {
           lang={lang}
         />
         <main className="flex-1 px-4 lg:px-8">
+          {!isCharacterCounterTop && (
+            <h1 className="text-3xl font-bold text-white mb-6">{t('characterCounter.title')}</h1>
+          )}
           {children}
         </main>
       </div>
