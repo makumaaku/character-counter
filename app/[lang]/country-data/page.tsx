@@ -171,16 +171,16 @@ export default function CountryDataPage() {
   }
 
   return (
-    <main className="p-4 max-w-7xl mx-auto bg-white shadow-lg dark:shadow-none rounded-lg">
-      <h1 className="text-2xl font-bold mb-6">{messages.countryData.title}</h1>
+    <main className="p-4 max-w-7xl mx-auto bg-white dark:bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-bold mb-6 text-gray-900">{messages.countryData.title}</h1>
       
       <nav className="flex flex-wrap gap-4 items-center mb-6">
         <div>
-          <label htmlFor="searchInput" className="mr-2">{messages.countryData.search.label}</label>
+          <label htmlFor="searchInput" className="mr-2 text-gray-900">{messages.countryData.search.label}</label>
           <input
             type="text"
             id="searchInput"
-            className="px-3 py-1 border border-gray-300 rounded"
+            className="px-3 py-1 border border-gray-300 rounded text-gray-900 bg-white"
             value={searchKeyword}
             onChange={(e) => {
               setSearchKeyword(e.target.value);
@@ -191,10 +191,10 @@ export default function CountryDataPage() {
         </div>
 
         <div>
-          <label htmlFor="regionFilter" className="mr-2">{messages.countryData.filter.label}</label>
+          <label htmlFor="regionFilter" className="mr-2 text-gray-900">{messages.countryData.filter.label}</label>
           <select
             id="regionFilter"
-            className="px-3 py-1 border border-gray-300 rounded"
+            className="px-3 py-1 border border-gray-300 rounded text-gray-900 bg-white"
             value={selectedRegion}
             onChange={(e) => {
               setSelectedRegion(e.target.value);
@@ -220,7 +220,7 @@ export default function CountryDataPage() {
                   <th
                     key={key}
                     onClick={() => sortDataByKey(key)}
-                    className="p-3 text-left bg-gray-100 hover:bg-gray-200 cursor-pointer"
+                    className="p-3 text-left bg-gray-100 hover:bg-gray-200 cursor-pointer text-gray-900"
                   >
                     {messages.countryData.table.headers[key]}
                   </th>
@@ -230,15 +230,15 @@ export default function CountryDataPage() {
             <tbody>
               {filteredData.map((country, index) => (
                 <tr key={index} className="border-b hover:bg-gray-50">
-                  <td className="p-3">{country.name}</td>
-                  <td className="p-3">{country.officialName}</td>
-                  <td className="p-3">{country.area.toLocaleString()}</td>
-                  <td className="p-3">{country.capital}</td>
-                  <td className="p-3">{country.languages}</td>
-                  <td className="p-3">{country.currency}</td>
-                  <td className="p-3">{country.region}</td>
-                  <td className="p-3">{country.source}</td>
-                  <td className="p-3">{country.lastUpdated}</td>
+                  <td className="p-3 text-gray-900">{country.name}</td>
+                  <td className="p-3 text-gray-900">{country.officialName}</td>
+                  <td className="p-3 text-gray-900">{country.area.toLocaleString()}</td>
+                  <td className="p-3 text-gray-900">{country.capital}</td>
+                  <td className="p-3 text-gray-900">{country.languages}</td>
+                  <td className="p-3 text-gray-900">{country.currency}</td>
+                  <td className="p-3 text-gray-900">{country.region}</td>
+                  <td className="p-3 text-gray-900">{country.source}</td>
+                  <td className="p-3 text-gray-900">{country.lastUpdated}</td>
                 </tr>
               ))}
             </tbody>
