@@ -34,7 +34,7 @@ export default function CharacterCounterLayout({ children }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('characterCounter.title')} homeLink={`/${lang}/character-counter`}>
+      <Header title={isCharacterCounterTop ? '' : t('characterCounter.title')} homeLink={`/${lang}/character-counter`}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"
@@ -51,9 +51,6 @@ export default function CharacterCounterLayout({ children }: Props) {
           lang={lang}
         />
         <main className="flex-1 px-4 lg:px-8">
-          {!isCharacterCounterTop && (
-            <h1 className="text-3xl font-bold text-white mb-6">{t('characterCounter.title')}</h1>
-          )}
           {children}
         </main>
       </div>
