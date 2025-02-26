@@ -21,10 +21,10 @@ export default function WordGenLayout({ children }: Props) {
   const navigationItems = [
     { name: t('home.tools.wordGenerator'), path: `/word-gen/word-generator` },
     { name: t('home.tools.wordCardGenerator'), path: `/word-gen/word-card-generator` },
-    { name: t('home.tools.storyGenerator'), path: `/word-gen/story-generator` },
     { name: t('home.tools.sentenceGenerator'), path: `/word-gen/sentence-generator` },
     { name: t('home.tools.nameGenerator'), path: `/word-gen/name-generator` },
     { name: t('home.tools.passwordGenerator'), path: `/word-gen/password-generator` },
+    { name: t('home.tools.storyGenerator'), path: `/word-gen/story-generator` },
   ];
 
   return (

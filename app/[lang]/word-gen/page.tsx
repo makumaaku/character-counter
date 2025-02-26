@@ -16,6 +16,18 @@ export default async function WordGenTools({ params }: Props) {
       icon: "📝"
     },
     {
+      title: translate(lang, 'wordGen.tools.wordCardGenerator.title'),
+      description: translate(lang, 'wordGen.tools.wordCardGenerator.description'),
+      path: `/${lang}/word-gen/word-card-generator`,
+      icon: "🗂️"
+    },
+    {
+      title: translate(lang, 'wordGen.tools.sentenceGenerator.title'),
+      description: translate(lang, 'wordGen.tools.sentenceGenerator.description'),
+      path: `/${lang}/word-gen/sentence-generator`,
+      icon: "✍️"
+    },
+    {
       title: translate(lang, 'wordGen.tools.nameGenerator.title'),
       description: translate(lang, 'wordGen.tools.nameGenerator.description'),
       path: `/${lang}/word-gen/name-generator`,
@@ -33,18 +45,6 @@ export default async function WordGenTools({ params }: Props) {
       path: `/${lang}/word-gen/story-generator`,
       icon: "📚"
     },
-    {
-      title: translate(lang, 'wordGen.tools.sentenceGenerator.title'),
-      description: translate(lang, 'wordGen.tools.sentenceGenerator.description'),
-      path: `/${lang}/word-gen/sentence-generator`,
-      icon: "✍️"
-    },
-    {
-      title: translate(lang, 'wordGen.tools.wordCardGenerator.title'),
-      description: translate(lang, 'wordGen.tools.wordCardGenerator.description'),
-      path: `/${lang}/word-gen/word-card-generator`,
-      icon: "🗂️"
-    }
   ]
 
   const featuresList = translate(lang, 'wordGen.about.features.list')

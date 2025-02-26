@@ -18,10 +18,6 @@ export default async function FunctionPage(props: Props) {
           <h2 className="text-xl font-bold mb-6">{t('characterCounter.function.keyFeatures.title')}</h2>
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-2">{t('characterCounter.function.keyFeatures.darkMode.title')}</h3>
-              <p className="text-gray-300">{t('characterCounter.function.keyFeatures.darkMode.description')}</p>
-            </div>
-            <div>
               <h3 className="text-lg font-semibold mb-2">{t('characterCounter.function.keyFeatures.charCount.title')}</h3>
               <p className="text-gray-300">{t('characterCounter.function.keyFeatures.charCount.description')}</p>
             </div>
