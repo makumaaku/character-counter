@@ -112,16 +112,12 @@ export default function WordGeneratorClient({ translations }: Props) {
   const [wordCount, setWordCount] = useState<number>(10)
   const [minLength, setMinLength] = useState(3)
   const [maxLength, setMaxLength] = useState(10)
-  const [pattern, setPattern] = useState('')
   const [copied, setCopied] = useState(false)
 
   const generateWords = () => {
     let filteredWords = words.words.filter(word => 
       word.length >= minLength && 
-      word.length <= maxLength &&
-      (!pattern || new RegExp(pattern.replace(/C/g, '[bcdfghjklmnpqrstvwxyz]')
-                                    .replace(/V/g, '[aeiou]')
-                                    .replace(/\*/g, '.')).test(word))
+      word.length <= maxLength
     )
     
     const selected: string[] = []
@@ -199,19 +195,6 @@ export default function WordGeneratorClient({ translations }: Props) {
                 </div>
               </div>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                {translations.form.pattern.label}
-              </label>
-              <input
-                type="text"
-                value={pattern}
-                onChange={(e) => setPattern(e.target.value)}
-                placeholder={translations.form.pattern.placeholder}
-                className="bg-gray-800 text-white px-3 py-2 rounded w-full"
-              />
-            </div>
           </div>
 
           <div className="mb-6">
@@ -246,7 +229,6 @@ export default function WordGeneratorClient({ translations }: Props) {
                 setWordCount(10)
                 setMinLength(3)
                 setMaxLength(10)
-                setPattern('')
               }}
               className="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded transition-colors"
             >

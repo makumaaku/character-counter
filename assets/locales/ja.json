@@ -711,10 +711,6 @@
         "min": "最小",
         "max": "最大"
       },
-      "pattern": {
-        "label": "パターン",
-        "placeholder": "例: CV*CV (C=子音, V=母音, *=任意の文字)"
-      },
       "count": {
         "label": "生成数",
         "placeholder": "生成する単語の数を入力"

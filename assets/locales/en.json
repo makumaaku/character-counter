@@ -711,10 +711,6 @@
         "min": "Minimum",
         "max": "Maximum"
       },
-      "pattern": {
-        "label": "Pattern",
-        "placeholder": "e.g., CV*CV (C=consonant, V=vowel, *=any)"
-      },
       "count": {
         "label": "Count",
         "placeholder": "Enter number of words to generate"
