@@ -64,14 +64,14 @@ export async function generateMetadata(
   };
 }
 
-export default function RouletteLayout({
+export default async function RouletteLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const lang = params.lang;
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
   return (

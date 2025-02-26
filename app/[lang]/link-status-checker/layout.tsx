@@ -112,14 +112,14 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({
+export default async function Layout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const lang = params.lang;
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key);
 
   return (
