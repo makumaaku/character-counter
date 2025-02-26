@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 type CountryData = {
   name: string;
@@ -95,9 +95,33 @@ export default function CountryDataPage() {
   const [selectedRegion, setSelectedRegion] = useState('all');
   const messages = useMessages();
 
+  // Convert filterData to useCallback with dependencies
+  const filterData = useCallback(() => {
+    const filtered = allCountriesData.filter(country => {
+      const matchRegion = selectedRegion === 'all' || country.region === selectedRegion;
+      const keyword = searchKeyword.toLowerCase();
+      const matchKeyword =
+        country.name.toLowerCase().includes(keyword) ||
+        country.officialName.toLowerCase().includes(keyword) ||
+        country.capital.toLowerCase().includes(keyword) ||
+        country.languages.toLowerCase().includes(keyword) ||
+        country.currency.toLowerCase().includes(keyword) ||
+        country.region.toLowerCase().includes(keyword);
+      return matchRegion && matchKeyword;
+    });
+    setFilteredData(filtered);
+  }, [allCountriesData, selectedRegion, searchKeyword]);
+
   useEffect(() => {
     fetchCountryData();
   }, []);
+
+  // Update the useEffect to call filterData when dependencies change
+  useEffect(() => {
+    if (allCountriesData.length > 0) {
+      filterData();
+    }
+  }, [allCountriesData, selectedRegion, searchKeyword, filterData]);
 
   const fetchCountryData = async () => {
     try {
@@ -127,22 +151,6 @@ export default function CountryDataPage() {
       setError(true);
       setLoading(false);
     }
-  };
-
-  const filterData = () => {
-    const filtered = allCountriesData.filter(country => {
-      const matchRegion = selectedRegion === 'all' || country.region === selectedRegion;
-      const keyword = searchKeyword.toLowerCase();
-      const matchKeyword =
-        country.name.toLowerCase().includes(keyword) ||
-        country.officialName.toLowerCase().includes(keyword) ||
-        country.capital.toLowerCase().includes(keyword) ||
-        country.languages.toLowerCase().includes(keyword) ||
-        country.currency.toLowerCase().includes(keyword) ||
-        country.region.toLowerCase().includes(keyword);
-      return matchRegion && matchKeyword;
-    });
-    setFilteredData(filtered);
   };
 
   const sortDataByKey = (key: keyof CountryData) => {
@@ -184,7 +192,6 @@ export default function CountryDataPage() {
             value={searchKeyword}
             onChange={(e) => {
               setSearchKeyword(e.target.value);
-              filterData();
             }}
             placeholder={messages.countryData.search.placeholder}
           />
@@ -198,7 +205,6 @@ export default function CountryDataPage() {
             value={selectedRegion}
             onChange={(e) => {
               setSelectedRegion(e.target.value);
-              filterData();
             }}
           >
             <option value="all">{messages.countryData.filter.allRegions}</option>
