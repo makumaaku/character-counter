@@ -181,7 +181,7 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
             <textarea
               value={textAreaValue}
               onChange={(e) => setTextAreaValue(e.target.value)}
-              className="w-full h-64 p-4 border rounded"
+              className="w-full h-64 p-4 border rounded text-black"
               placeholder={translations.result.placeholder}
             />
             <div className="flex gap-4 mt-4">
