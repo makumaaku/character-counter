@@ -153,46 +153,44 @@ export default function WordGeneratorClient({ translations }: Props) {
         </div>
 
         <div className="bg-gray-700 rounded-lg p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                {translations.form.length.label}
-              </label>
-              <div className="flex gap-4">
-                <div>
-                  <label className="block text-xs text-gray-400">
-                    {translations.form.length.min}
-                  </label>
-                  <input
-                    type="number"
-                    value={minLength}
-                    onChange={(e) => {
-                      const value = parseInt(e.target.value)
-                      if (!isNaN(value) && value >= 1) {
-                        setMinLength(value)
-                      }
-                    }}
-                    className="bg-gray-800 text-white px-3 py-2 rounded w-full"
-                    min="1"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs text-gray-400">
-                    {translations.form.length.max}
-                  </label>
-                  <input
-                    type="number"
-                    value={maxLength}
-                    onChange={(e) => {
-                      const value = parseInt(e.target.value)
-                      if (!isNaN(value) && value >= minLength) {
-                        setMaxLength(value)
-                      }
-                    }}
-                    className="bg-gray-800 text-white px-3 py-2 rounded w-full"
-                    min={minLength}
-                  />
-                </div>
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-2">
+              {translations.form.length.label}
+            </label>
+            <div className="flex gap-4 max-w-md mx-auto">
+              <div className="w-1/2">
+                <label className="block text-xs text-gray-400">
+                  {translations.form.length.min}
+                </label>
+                <input
+                  type="number"
+                  value={minLength}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value)
+                    if (!isNaN(value) && value >= 1) {
+                      setMinLength(value)
+                    }
+                  }}
+                  className="bg-gray-800 text-white px-3 py-2 rounded w-full"
+                  min="1"
+                />
+              </div>
+              <div className="w-1/2">
+                <label className="block text-xs text-gray-400">
+                  {translations.form.length.max}
+                </label>
+                <input
+                  type="number"
+                  value={maxLength}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value)
+                    if (!isNaN(value) && value >= minLength) {
+                      setMaxLength(value)
+                    }
+                  }}
+                  className="bg-gray-800 text-white px-3 py-2 rounded w-full"
+                  min={minLength}
+                />
               </div>
             </div>
           </div>
@@ -201,22 +199,24 @@ export default function WordGeneratorClient({ translations }: Props) {
             <label className="block text-sm font-medium mb-2">
               {translations.form.count.label}
             </label>
-            <input
-              type="number"
-              value={wordCount}
-              onChange={(e) => {
-                const value = parseInt(e.target.value)
-                if (!isNaN(value) && value >= 1) {
-                  setWordCount(value)
-                }
-              }}
-              placeholder={translations.form.count.placeholder}
-              className="bg-gray-800 text-white px-3 py-2 rounded w-full md:w-1/3"
-              min="1"
-            />
+            <div className="max-w-md mx-auto">
+              <input
+                type="number"
+                value={wordCount}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value)
+                  if (!isNaN(value) && value >= 1) {
+                    setWordCount(value)
+                  }
+                }}
+                placeholder={translations.form.count.placeholder}
+                className="bg-gray-800 text-white px-3 py-2 rounded w-full"
+                min="1"
+              />
+            </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 justify-center">
             <button
               onClick={generateWords}
               className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded transition-colors"
