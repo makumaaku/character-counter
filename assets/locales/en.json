@@ -695,30 +695,6 @@
         "title": "Word Card Generator",
         "description": "Create flashcards for learning and memorization."
       }
-    },
-    "about": {
-      "title": "About Our Word Generation Tools",
-      "description": "Our collection of word generation tools is designed to help you create various types of text content quickly and easily. Whether you need random words, unique names, secure passwords, or creative writing prompts, we have the right tool for you.",
-      "features": {
-        "title": "Features of Our Tools:",
-        "list": [
-          "Simple and intuitive interfaces",
-          "Customizable generation options",
-          "Instant results",
-          "Free to use",
-          "No registration required"
-        ]
-      },
-      "useCases": {
-        "title": "Common Use Cases:",
-        "list": [
-          "Creative writing and storytelling",
-          "Game development and worldbuilding",
-          "Password management and security",
-          "Language learning and education",
-          "Content creation and brainstorming"
-        ]
-      }
     }
   },
   "wordGenerator": {

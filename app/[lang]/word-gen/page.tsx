@@ -47,9 +47,6 @@ export default async function WordGenTools({ params }: Props) {
     },
   ]
 
-  const featuresList = translate(lang, 'wordGen.about.features.list')
-  const useCasesList = translate(lang, 'wordGen.about.useCases.list')
-
   return (
     <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
       <main className="max-w-4xl mx-auto px-4 py-10">
@@ -76,29 +73,6 @@ export default async function WordGenTools({ params }: Props) {
               </div>
             </Link>
           ))}
-        </div>
-
-        <div className="mt-12 bg-gray-700 p-6 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">{translate(lang, 'wordGen.about.title')}</h2>
-          <div className="space-y-4">
-            <p>
-              {translate(lang, 'wordGen.about.description')}
-            </p>
-            
-            <h3 className="text-xl font-bold mt-6">{translate(lang, 'wordGen.about.features.title')}</h3>
-            <ul className="list-disc pl-5 space-y-2">
-              {Array.isArray(featuresList) && featuresList.map((feature: string, index: number) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
-
-            <h3 className="text-xl font-bold mt-6">{translate(lang, 'wordGen.about.useCases.title')}</h3>
-            <ul className="list-disc pl-5 space-y-2">
-              {Array.isArray(useCasesList) && useCasesList.map((useCase: string, index: number) => (
-                <li key={index}>{useCase}</li>
-              ))}
-            </ul>
-          </div>
         </div>
       </main>
     </div>
