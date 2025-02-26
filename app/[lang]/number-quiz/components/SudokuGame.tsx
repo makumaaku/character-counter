@@ -122,7 +122,7 @@ export default function SudokuGame({ lang }: Props) {
 
   useEffect(() => {
     generateNewGame();
-  });
+  }, []);
 
   return (
     <div className="flex flex-col items-center">
