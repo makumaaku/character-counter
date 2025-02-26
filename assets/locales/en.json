@@ -20,7 +20,7 @@
       "nameGenerator": "Random Name Generator",
       "passwordGenerator": "Random Password Generator",
       "storyGenerator": "Random Story Generator",
-      "numberQuiz": "Number Quiz Game",
+      "numberQuiz": "Number Place",
       "linkStatusChecker": "Link Status Checker"
     },
     "meta": {
@@ -1358,10 +1358,11 @@
   },
   "numberQuiz": {
     "meta": {
-      "title": "Sudoku - Number Quiz Game",
+      "title": "Number Place - Sudoku",
       "description": "Challenge yourself with our Sudoku puzzle game. Choose from multiple difficulty levels and improve your logical thinking skills.",
       "keywords": "sudoku, number puzzle, brain training, logic game"
     },
+    "title": "Number Place",
     "game": {
       "title": "Sudoku",
       "difficulty": {

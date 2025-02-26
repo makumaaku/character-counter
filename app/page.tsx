@@ -53,7 +53,7 @@ export default function Home() {
               <Link href="/word-gen/story-generator" className="text-white hover:underline ml-4">Random Story Generator</Link>
             </li>
             <li>
-              <Link href="/number-quiz" className="text-white hover:underline">Number Quiz Game</Link>
+              <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>
               <Link href="/link-status-checker" className="text-white hover:underline">Link Status Checker</Link>
