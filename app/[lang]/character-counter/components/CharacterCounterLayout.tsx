@@ -28,7 +28,7 @@ export default function CharacterCounterLayout({ children }: Props) {
     { name: t('characterCounter.sidebar.aboutUs'), path: `/character-counter/about-us` },
     { name: t('characterCounter.sidebar.contact'), path: `/character-counter/contact` },
     { name: t('characterCounter.sidebar.privacy'), path: `/character-counter/privacy` },
-    { name: t('characterCounter.sidebar.plan'), path: `/character-counter/plan` },
+    // { name: t('characterCounter.sidebar.plan'), path: `/character-counter/plan` },
     { name: t('characterCounter.sidebar.column'), path: `/character-counter/column` },
   ];
 
