@@ -29,7 +29,7 @@ export default function WordGenLayout({ children }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('wordGen.title')} homeLink={`/${lang}/word-gen`}>
+      <Header title={'Word Generation Tools'} homeLink={`/${lang}/word-gen`}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"
