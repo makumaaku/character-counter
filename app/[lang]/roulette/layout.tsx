@@ -3,6 +3,7 @@ import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -65,13 +66,25 @@ export async function generateMetadata(
 
 export default function RouletteLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { lang: string };
 }) {
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
   return (
-    <>
-      {children}
+    <div className="flex flex-col min-h-screen bg-gray-800">
+      <Header title={t('roulette.title')} homeLink={`/${lang}/roulette`}>
+        <div className="flex items-center gap-2">
+          {/* Left side content removed */}
+        </div>
+      </Header>
+      <main className="flex-1 bg-gray-800">
+        {children}
+      </main>
       <Footer />
-    </>
+    </div>
   );
 } 

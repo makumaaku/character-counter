@@ -1,4 +1,5 @@
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
@@ -106,6 +107,11 @@ export default async function CountryDataLayout({ children, params }: Props) {
         }}
       />
       <div className="flex flex-col min-h-screen bg-gray-800">
+        <Header title={translate(lang, 'countryData.ui.title')} homeLink={`/${lang}/country-data`}>
+          <div className="flex items-center gap-2">
+            {/* Left side content removed */}
+          </div>
+        </Header>
         <main className="flex-1 bg-gray-800">
           {children}
         </main>

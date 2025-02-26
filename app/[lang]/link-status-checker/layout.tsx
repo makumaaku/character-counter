@@ -2,6 +2,8 @@ import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 type Props = {
   children: React.ReactNode;
@@ -112,12 +114,25 @@ export async function generateMetadata(
 
 export default function Layout({
   children,
+  params,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: { lang: string };
 }) {
+  const lang = params.lang;
+  const t = (key: string) => translate(lang, key);
+
   return (
-    <>
-      {children}
-    </>
+    <div className="flex flex-col min-h-screen bg-gray-800">
+      <Header title={t('home.tools.linkStatusChecker')} homeLink={`/${lang}/link-status-checker`}>
+        <div className="flex items-center gap-2">
+          {/* Left side content removed */}
+        </div>
+      </Header>
+      <main className="flex-1 bg-gray-800">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
 } 
