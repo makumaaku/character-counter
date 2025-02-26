@@ -2,6 +2,7 @@ import { SITE_CONFIG } from '@/constants/constants';
 import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import Footer from '@/components/Footer';
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -67,5 +68,10 @@ export default function RouletteLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <Footer />
+    </>
+  );
 } 
