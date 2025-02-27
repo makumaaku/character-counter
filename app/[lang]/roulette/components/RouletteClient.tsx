@@ -136,7 +136,7 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
     <div className="min-h-screen p-4">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">{translations.title}</h1>
+          <h1 className="text-3xl font-bold mb-4 text-white">{translations.title}</h1>
           <div className="flex gap-4 mb-4">
             <button
               onClick={handleSpin}
