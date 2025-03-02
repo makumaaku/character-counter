@@ -208,7 +208,7 @@ export default function WordCardGeneratorClient({ translations }: Props) {
         <div className="mt-12 bg-gray-700 p-8 rounded-lg">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4">{translations.wordCardGenerator.about.catchphrase}</h2>
-            <p className="text-lg text-gray-300">{translations.wordCardGenerator.about.introduction}</p>
+            <p className="text-lg text-gray-300 text-start">{translations.wordCardGenerator.about.introduction}</p>
           </div>
 
           {/* Features */}
