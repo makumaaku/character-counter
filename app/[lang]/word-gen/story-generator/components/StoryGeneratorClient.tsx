@@ -20,11 +20,16 @@ export default function StoryGeneratorClient({ lang }: Props) {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    fetch('/words/story.json')
+    // 言語に応じたJSONファイルを読み込む
+    const jsonFile = lang === 'ja' ? '/words/story-ja.json' : '/words/story-en.json';
+    
+    fetch(jsonFile)
       .then(response => response.json())
       .then(data => setStoryData(data))
-      .catch(error => console.error('Error loading story data:', error))
-  }, []);
+      .catch(error => {
+        console.error(`Error loading story data from ${jsonFile}:`, error);
+      });
+  }, [lang]); // langが変わったら再度読み込む
 
   const getRandomIndex = (max: number) => Math.floor(Math.random() * max);
 
@@ -166,29 +171,17 @@ export default function StoryGeneratorClient({ lang }: Props) {
           <div className="bg-gray-700 rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-6">{translate(lang, 'storyGenerator.faq.title')}</h2>
             <div className="space-y-6">
-              <div className="bg-gray-600 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">
-                  {translate(lang, 'storyGenerator.faq.questions.random.question')}
-                </h3>
-                <p className="text-gray-300">
-                  {translate(lang, 'storyGenerator.faq.questions.random.answer')}
-                </p>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{translate(lang, 'storyGenerator.faq.q1')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.faq.a1')}</p>
               </div>
-              <div className="bg-gray-600 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">
-                  {translate(lang, 'storyGenerator.faq.questions.commercial.question')}
-                </h3>
-                <p className="text-gray-300">
-                  {translate(lang, 'storyGenerator.faq.questions.commercial.answer')}
-                </p>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{translate(lang, 'storyGenerator.faq.q2')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.faq.a2')}</p>
               </div>
-              <div className="bg-gray-600 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">
-                  {translate(lang, 'storyGenerator.faq.questions.customize.question')}
-                </h3>
-                <p className="text-gray-300">
-                  {translate(lang, 'storyGenerator.faq.questions.customize.answer')}
-                </p>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{translate(lang, 'storyGenerator.faq.q3')}</h3>
+                <p className="text-gray-300">{translate(lang, 'storyGenerator.faq.a3')}</p>
               </div>
             </div>
           </div>
