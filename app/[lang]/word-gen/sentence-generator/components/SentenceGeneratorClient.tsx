@@ -1,43 +1,66 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { translate } from '@/lib/i18n/client';
 
 type Props = {
   lang: string;
 };
 
+type SentencesData = {
+  sentences: string[];
+};
+
 export default function SentenceGeneratorClient({ lang }: Props) {
   const [generatedSentences, setGeneratedSentences] = useState<string[]>([]);
   const [sentenceCount, setSentenceCount] = useState<string>('5');
   const [showToast, setShowToast] = useState(false);
+  const [allSentences, setAllSentences] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchSentences = async () => {
+      try {
+        const fileName = lang === 'ja' ? 'sentences-ja.json' : 'sentences-en.json';
+        const response = await fetch(`/words/${fileName}`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch sentences: ${response.status}`);
+        }
+        
+        const data: SentencesData = await response.json();
+        setAllSentences(data.sentences);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching sentences:', err);
+        setError('Failed to load sentences. Please try again later.');
+      }
+    };
+
+    fetchSentences();
+  }, [lang]);
 
   const generateSentences = () => {
+    if (allSentences.length === 0) {
+      setError('No sentences available. Please try again later.');
+      return;
+    }
+
     const count = Math.min(20, Math.max(1, parseInt(sentenceCount) || 1));
-    // TODO: Implement sentence generation logic
-    const sentences = [
-      "The quick brown fox jumps over the lazy dog.",
-      "A journey of a thousand miles begins with a single step.",
-      "All that glitters is not gold.",
-      "Actions speak louder than words.",
-      "Beauty is in the eye of the beholder.",
-      "Time heals all wounds.",
-      "Knowledge is power.",
-      "Practice makes perfect.",
-      "Better late than never.",
-      "Every cloud has a silver lining.",
-      "Fortune favors the bold.",
-      "Hope for the best, prepare for the worst.",
-      "Actions speak louder than words.",
-      "Where there's a will, there's a way.",
-      "Time is money.",
-      "Life is what happens while you're busy making other plans.",
-      "The early bird catches the worm.",
-      "Don't put all your eggs in one basket.",
-      "When in Rome, do as the Romans do.",
-      "A picture is worth a thousand words."
-    ];
-    setGeneratedSentences(sentences.slice(0, count));
+    const selectedSentences: string[] = [];
+    const usedIndices = new Set<number>();
+
+    // Select random sentences without repetition
+    while (selectedSentences.length < count && usedIndices.size < allSentences.length) {
+      const randomIndex = Math.floor(Math.random() * allSentences.length);
+      
+      if (!usedIndices.has(randomIndex)) {
+        selectedSentences.push(allSentences[randomIndex]);
+        usedIndices.add(randomIndex);
+      }
+    }
+
+    setGeneratedSentences(selectedSentences);
   };
 
   const handleCopy = async () => {
@@ -93,7 +116,9 @@ export default function SentenceGeneratorClient({ lang }: Props) {
 
       <div className="relative mt-6">
         <div className="w-full bg-gray-900 text-gray-100 p-6 rounded-lg min-h-[200px]">
-          {generatedSentences.length > 0 ? (
+          {error ? (
+            <p className="text-red-400">{error}</p>
+          ) : generatedSentences.length > 0 ? (
             <div className="space-y-4">
               {generatedSentences.map((sentence, index) => (
                 <p key={index}>{sentence}</p>
