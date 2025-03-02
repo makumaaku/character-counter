@@ -20,6 +20,12 @@ export default async function PdfTools({ params }: Props) {
       description: translate(lang, 'pdfTools.tools.jpgToPdf.description'),
       path: `/${lang}/pdf-tools/jpg-to-pdf`,
       icon: "📄"
+    },
+    {
+      title: translate(lang, 'pdfTools.tools.webToPdf.title'),
+      description: translate(lang, 'pdfTools.tools.webToPdf.description'),
+      path: `/${lang}/pdf-tools/web-to-pdf`,
+      icon: "🌐"
     }
     // More PDF tools can be added here in the future
   ]

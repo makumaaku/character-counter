@@ -53,6 +53,10 @@
       "jpgToPdf": {
         "title": "JPG to PDF変換ツール",
         "description": "JPG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
+      },
+      "webToPdf": {
+        "title": "Web to PDF変換ツール",
+        "description": "ウェブページをワンクリックでPDFドキュメントに変換"
       }
     }
   },
@@ -123,6 +127,54 @@
     "error": {
       "fileType": "JPGまたはPNGファイルのみをアップロードしてください",
       "fileSize": "合計ファイルサイズが20MBの制限を超えています"
+    }
+  },
+  "webToPdf": {
+    "meta": {
+      "title": "Web to PDF変換ツール - ウェブページをPDFに変換",
+      "description": "ウェブページをPDFドキュメントに変換する無料オンラインツール。URLを入力するだけで、任意のウェブサイトをダウンロード可能なPDFファイルに変換できます。インストール不要。",
+      "keywords": "webからpdf, ウェブサイトからpdf, ウェブページをpdfに変換, urlからpdf, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "Web to PDF変換ツール",
+    "description": "ウェブページをワンクリックでPDFドキュメントに変換",
+    "form": {
+      "url": {
+        "label": "ウェブサイトURL",
+        "placeholder": "ウェブサイトURLを入力（例：https://example.com）",
+        "button": "PDFに変換"
+      },
+      "options": {
+        "label": "PDF設定",
+        "format": {
+          "label": "用紙サイズ",
+          "a4": "A4",
+          "letter": "レター",
+          "legal": "リーガル"
+        },
+        "orientation": {
+          "label": "向き",
+          "portrait": "縦向き",
+          "landscape": "横向き"
+        },
+        "scale": {
+          "label": "スケール",
+          "default": "デフォルト（1）",
+          "fit": "ページに合わせる"
+        }
+      }
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "ウェブページをPDFに変換中...",
+      "noUrl": "有効なURLを入力してください",
+      "success": "変換が完了しました！"
+    },
+    "error": {
+      "invalidUrl": "無効なURLです。有効なウェブサイトアドレスを入力してください。",
+      "conversionFailed": "変換に失敗しました。もう一度お試しください。",
+      "networkError": "ネットワークエラー。接続を確認して再試行してください。"
     }
   },
   "characterCounter": {

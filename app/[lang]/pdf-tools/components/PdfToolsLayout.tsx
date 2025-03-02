@@ -26,6 +26,10 @@ export default function PdfToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'pdfTools.tools.jpgToPdf.title'),
       path: `/pdf-tools/jpg-to-pdf`
+    },
+    {
+      name: translate(lang, 'pdfTools.tools.webToPdf.title'),
+      path: `/pdf-tools/web-to-pdf`
     }
     // Add more PDF tools here as they become available
   ]

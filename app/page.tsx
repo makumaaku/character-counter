@@ -62,6 +62,9 @@ export default function Home() {
               <Link href="/pdf-tools/jpg-to-pdf" className="text-white hover:underline ml-4">JPG to PDF Converter</Link>
             </li>
             <li>
+              <Link href="/pdf-tools/web-to-pdf" className="text-white hover:underline ml-4">Web to PDF Converter</Link>
+            </li>
+            <li>
               <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>

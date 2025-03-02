@@ -1529,6 +1529,10 @@
       "jpgToPdf": {
         "title": "JPG to PDF Converter",
         "description": "Convert JPG images to PDF documents with customizable settings"
+      },
+      "webToPdf": {
+        "title": "Web to PDF Converter",
+        "description": "Convert any web page to a PDF document with a single click"
       }
     }
   },
@@ -1599,6 +1603,54 @@
     "error": {
       "fileType": "Please upload JPG or PNG files only",
       "fileSize": "Total file size exceeds 20MB limit"
+    }
+  },
+  "webToPdf": {
+    "meta": {
+      "title": "Web to PDF Converter - Convert Web Pages to PDF Online",
+      "description": "Free online tool to convert web pages to PDF documents. Simply enter a URL and convert any website to a downloadable PDF file. No installation required.",
+      "keywords": "web to pdf, website to pdf, convert web page to pdf, url to pdf, online pdf converter, free pdf converter"
+    },
+    "title": "Web to PDF Converter",
+    "description": "Convert any web page to a PDF document with a single click",
+    "form": {
+      "url": {
+        "label": "Website URL",
+        "placeholder": "Enter website URL (e.g., https://example.com)",
+        "button": "Convert to PDF"
+      },
+      "options": {
+        "label": "PDF Options",
+        "format": {
+          "label": "Paper Format",
+          "a4": "A4",
+          "letter": "Letter",
+          "legal": "Legal"
+        },
+        "orientation": {
+          "label": "Orientation",
+          "portrait": "Portrait",
+          "landscape": "Landscape"
+        },
+        "scale": {
+          "label": "Scale",
+          "default": "Default (1)",
+          "fit": "Fit to Page"
+        }
+      }
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Converting web page to PDF...",
+      "noUrl": "Please enter a valid URL",
+      "success": "Conversion successful!"
+    },
+    "error": {
+      "invalidUrl": "Invalid URL. Please enter a valid website address.",
+      "conversionFailed": "Conversion failed. Please try again.",
+      "networkError": "Network error. Please check your connection and try again."
     }
   }
 } 
