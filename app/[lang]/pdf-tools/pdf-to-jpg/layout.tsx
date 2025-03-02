@@ -2,6 +2,7 @@ import { translate } from '@/lib/i18n/client';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import Script from 'next/script';
 
 type Props = {
   children: React.ReactNode;
@@ -77,6 +78,16 @@ export async function generateMetadata(
 export default function Layout({ children }: Props) {
   return (
     <>
+      <Script 
+        src="/pdfjs/pdf.mjs"
+        strategy="beforeInteractive"
+        id="pdf-lib"
+      />
+      <Script 
+        src="/pdfjs/pdf.worker.mjs"
+        strategy="beforeInteractive"
+        id="pdf-worker"
+      />
       {children}
     </>
   );

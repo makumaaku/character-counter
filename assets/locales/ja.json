@@ -47,18 +47,18 @@
     "description": "PDFファイルを変換、編集、管理するための無料オンラインツール",
     "tools": {
       "pdfToJpg": {
-        "title": "PDFからJPGへの変換ツール",
+        "title": "PDF to JPG変換ツール",
         "description": "PDFページを調整可能な品質でJPG画像に変換"
       }
     }
   },
   "pdfToJpg": {
     "meta": {
-      "title": "PDFからJPGへの変換ツール - オンラインでPDFを画像に変換",
+      "title": "PDF to JPG変換ツール - オンラインでPDFを画像に変換",
       "description": "PDFドキュメントをJPG画像に変換する無料オンラインツール。各ページを調整可能な品質で個別の画像に変換。インストール不要。",
       "keywords": "pdfからjpg, pdfから画像, pdfをjpgに変換, pdf変換, オンラインpdf変換, 無料pdf変換"
     },
-    "title": "PDFからJPGへの変換ツール",
+    "title": "PDF to JPG変換ツール",
     "description": "PDFページを調整可能な品質でJPG画像に変換",
     "form": {
       "upload": {

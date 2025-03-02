@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Document, Page, pdfjs } from 'react-pdf'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 
-// Initialize PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
 
 type Props = {
   translations: {
@@ -55,7 +54,36 @@ export default function PdfToJpgClient({ translations }: Props) {
   const [convertedImages, setConvertedImages] = useState<ConvertedImage[]>([])
   const [isConverting, setIsConverting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [isPdfJsReady, setIsPdfJsReady] = useState(false)
   const canvasRefs = useRef<(HTMLCanvasElement | null)[]>([])
+
+  // Check if PDF.js worker is loaded correctly
+  useEffect(() => {
+    const checkPdfJsWorker = async () => {
+      try {
+        console.log('PDF.js version:', pdfjs.version);
+        
+        // Check if the worker file is accessible
+        const response = await fetch('/pdfjs/pdf.worker.mjs', { method: 'HEAD' });
+        if (response.ok) {
+          console.log('PDF.js worker file is accessible');
+          
+          // Add a small delay to ensure the worker is fully loaded
+          setTimeout(() => {
+            setIsPdfJsReady(true);
+          }, 500);
+        } else {
+          console.error('PDF.js worker file is not accessible');
+          setError('Error loading PDF.js worker. Please try again later.');
+        }
+      } catch (err) {
+        console.error('Error checking PDF.js worker:', err);
+        setError('Error loading PDF.js worker. Please try again later.');
+      }
+    };
+    
+    checkPdfJsWorker();
+  }, []);
 
   // Quality settings
   const qualitySettings = {
@@ -104,27 +132,52 @@ export default function PdfToJpgClient({ translations }: Props) {
 
   // Convert PDF pages to JPG
   const convertToJpg = async () => {
-    if (!pdfFile || !numPages) return
+    if (!pdfFile) return
     
-    setIsConverting(true)
-    setConvertedImages([])
-    const images: ConvertedImage[] = []
-    
-    // Process each page
-    for (let i = 1; i <= numPages; i++) {
-      const canvas = canvasRefs.current[i - 1]
-      if (canvas) {
-        // Get data URL with quality setting
-        const dataUrl = canvas.toDataURL('image/jpeg', qualitySettings[quality])
-        images.push({
-          dataUrl,
-          pageNumber: i
-        })
+    try {
+      setIsConverting(true)
+      setConvertedImages([])
+      setError(null)
+      
+      // Process each canvas that has been rendered
+      const canvasElements = canvasRefs.current.filter(canvas => canvas !== null);
+      if (canvasElements.length === 0) {
+        setError("PDF pages are not ready yet. Please wait a moment and try again.");
+        setIsConverting(false);
+        return;
       }
+      
+      const images: ConvertedImage[] = []
+      
+      // Process each available canvas
+      canvasElements.forEach((canvas, index) => {
+        if (canvas) {
+          try {
+            // Get data URL with quality setting
+            const dataUrl = canvas.toDataURL('image/jpeg', qualitySettings[quality])
+            images.push({
+              dataUrl,
+              pageNumber: index + 1
+            })
+          } catch (err) {
+            console.error(`Error converting page ${index + 1}:`, err);
+          }
+        }
+      });
+      
+      if (images.length === 0) {
+        setError("Failed to convert PDF pages to JPG. Please try again.");
+        setIsConverting(false);
+        return;
+      }
+      
+      setConvertedImages(images)
+    } catch (err) {
+      console.error('Error during conversion:', err);
+      setError("An error occurred during conversion. Please try again.");
+    } finally {
+      setIsConverting(false)
     }
-    
-    setConvertedImages(images)
-    setIsConverting(false)
   }
 
   // Download a single image
@@ -162,86 +215,95 @@ export default function PdfToJpgClient({ translations }: Props) {
         <p className="text-gray-300">{translations.description}</p>
       </div>
 
-      <div className="bg-gray-700 rounded-lg p-6 mb-8">
-        <div className="mb-6">
-          <label className="block text-gray-300 mb-2">
-            {translations.form.upload.label}
-          </label>
-          <div
-            {...getRootProps()}
-            className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-              isDragActive ? 'border-blue-500 bg-gray-600' : 'border-gray-500 hover:border-gray-400'
-            }`}
-          >
-            <input {...getInputProps()} />
-            <p className="text-gray-300 mb-2">
-              {isDragActive
-                ? translations.form.upload.dragDrop
-                : translations.form.upload.button}
-            </p>
-            {pdfFile && (
-              <p className="text-green-400 mt-2">
-                {pdfFile.name} ({(pdfFile.size / 1024 / 1024).toFixed(2)} MB)
-              </p>
-            )}
+      {!isPdfJsReady && !error ? (
+        <div className="bg-gray-700 rounded-lg p-6 mb-8 text-center">
+          <p className="text-gray-300 mb-2">Loading PDF processor...</p>
+          <div className="w-full flex justify-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
           </div>
-          {error && <p className="text-red-400 mt-2">{error}</p>}
         </div>
-
-        {pdfFile && (
+      ) : (
+        <div className="bg-gray-700 rounded-lg p-6 mb-8">
           <div className="mb-6">
             <label className="block text-gray-300 mb-2">
-              {translations.form.quality.label}
+              {translations.form.upload.label}
             </label>
-            <div className="flex space-x-4">
-              <button
-                type="button"
-                onClick={() => setQuality('low')}
-                className={`px-4 py-2 rounded ${
-                  quality === 'low'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
-                }`}
-              >
-                {translations.form.quality.low}
-              </button>
-              <button
-                type="button"
-                onClick={() => setQuality('medium')}
-                className={`px-4 py-2 rounded ${
-                  quality === 'medium'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
-                }`}
-              >
-                {translations.form.quality.medium}
-              </button>
-              <button
-                type="button"
-                onClick={() => setQuality('high')}
-                className={`px-4 py-2 rounded ${
-                  quality === 'high'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
-                }`}
-              >
-                {translations.form.quality.high}
-              </button>
+            <div
+              {...getRootProps()}
+              className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
+                isDragActive ? 'border-blue-500 bg-gray-600' : 'border-gray-500 hover:border-gray-400'
+              }`}
+            >
+              <input {...getInputProps()} />
+              <p className="text-gray-300 mb-2">
+                {isDragActive
+                  ? translations.form.upload.dragDrop
+                  : translations.form.upload.button}
+              </p>
+              {pdfFile && (
+                <p className="text-green-400 mt-2">
+                  {pdfFile.name} ({(pdfFile.size / 1024 / 1024).toFixed(2)} MB)
+                </p>
+              )}
             </div>
+            {error && <p className="text-red-400 mt-2">{error}</p>}
           </div>
-        )}
 
-        {pdfFile && (
-          <button
-            type="button"
-            onClick={convertToJpg}
-            disabled={isConverting || !numPages}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isConverting ? translations.status.processing : translations.form.convert}
-          </button>
-        )}
-      </div>
+          {pdfFile && (
+            <div className="mb-6">
+              <label className="block text-gray-300 mb-2">
+                {translations.form.quality.label}
+              </label>
+              <div className="flex space-x-4">
+                <button
+                  type="button"
+                  onClick={() => setQuality('low')}
+                  className={`px-4 py-2 rounded ${
+                    quality === 'low'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                  }`}
+                >
+                  {translations.form.quality.low}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setQuality('medium')}
+                  className={`px-4 py-2 rounded ${
+                    quality === 'medium'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                  }`}
+                >
+                  {translations.form.quality.medium}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setQuality('high')}
+                  className={`px-4 py-2 rounded ${
+                    quality === 'high'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
+                  }`}
+                >
+                  {translations.form.quality.high}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {pdfFile && (
+            <button
+              type="button"
+              onClick={convertToJpg}
+              disabled={isConverting}
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isConverting ? translations.status.processing : translations.form.convert}
+            </button>
+          )}
+        </div>
+      )}
 
       {/* PDF Preview (hidden, used for rendering) */}
       <div className="hidden">
@@ -271,7 +333,7 @@ export default function PdfToJpgClient({ translations }: Props) {
             </h2>
             <button
               onClick={downloadAllImages}
-              className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded"
+              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
             >
               {translations.result.downloadAll}
             </button>
@@ -292,7 +354,7 @@ export default function PdfToJpgClient({ translations }: Props) {
                 <div className="p-3">
                   <button
                     onClick={() => downloadImage(image.dataUrl, image.pageNumber)}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded text-sm"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white py-1 px-3 rounded text-sm"
                   >
                     {translations.result.download}
                   </button>
