@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { translate } from '@/lib/i18n/client';
+import DownloadButton from '../../components/DownloadButton';
 
 type Props = {
   lang: string;
@@ -129,17 +130,25 @@ export default function SentenceGeneratorClient({ lang }: Props) {
           )}
         </div>
         {generatedSentences.length > 0 && (
-          <button
-            onClick={handleCopy}
-            className="absolute top-4 right-4 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors"
-            title={translate(lang, 'sentenceGenerator.result.copyTitle')}
-          >
-            {translate(lang, 'sentenceGenerator.form.copy')}
-          </button>
-        )}
-        {showToast && (
-          <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-            {translate(lang, 'sentenceGenerator.result.copied')}
+          <div className="mt-4 flex justify-end space-x-2">
+            <div className="relative">
+              <button
+                onClick={handleCopy}
+                className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
+                title={translate(lang, 'sentenceGenerator.result.copyTitle')}
+              >
+                {translate(lang, 'sentenceGenerator.form.copy')}
+              </button>
+              {showToast && (
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg whitespace-nowrap">
+                  {translate(lang, 'sentenceGenerator.result.copied')}
+                </div>
+              )}
+            </div>
+            <DownloadButton
+              content={generatedSentences.join('\n')}
+              filename="generated-sentences.txt"
+            />
           </div>
         )}
       </div>

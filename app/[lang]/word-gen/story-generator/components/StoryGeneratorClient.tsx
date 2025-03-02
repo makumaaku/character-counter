@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { translate } from '@/lib/i18n/client';
+import DownloadButton from '../../components/DownloadButton';
 
 interface StoryData {
   characters: string[]
@@ -82,18 +83,25 @@ export default function StoryGeneratorClient({ lang }: Props) {
             {story || translate(lang, 'storyGenerator.result.empty')}
           </div>
           {story && (
-            <button
-              onClick={handleCopy}
-              className="absolute bottom-4 right-4 text-white hover:text-gray-300 transition-colors"
-              title={translate(lang, 'storyGenerator.result.copyTitle')}
-            >
-              <Image 
-                src="/copy_icon_white.png" 
-                alt={translate(lang, 'storyGenerator.result.copyAlt')}
-                width={20}
-                height={20}
+            <div className="absolute bottom-4 right-4 flex items-center space-x-3">
+              <button
+                onClick={handleCopy}
+                className="text-white hover:text-gray-300 transition-colors"
+                title={translate(lang, 'storyGenerator.result.copyTitle')}
+              >
+                <Image 
+                  src="/copy_icon_white.png" 
+                  alt={translate(lang, 'storyGenerator.result.copyAlt')}
+                  width={20}
+                  height={20}
+                />
+              </button>
+              <DownloadButton
+                content={story}
+                filename="generated-story.txt"
+                className="bg-gray-600 hover:bg-gray-500 text-white px-3 py-1 rounded text-sm transition-colors"
               />
-            </button>
+            </div>
           )}
           {showToast && (
             <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">

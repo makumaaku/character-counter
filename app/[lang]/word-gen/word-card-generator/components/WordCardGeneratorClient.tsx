@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import wordsData from '../../../../../public/words/card-words.json'
+import DownloadButton from '../../components/DownloadButton'
 
 type Word = {
   word: string
@@ -173,14 +174,20 @@ export default function WordCardGeneratorClient({ translations }: Props) {
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">{translations.wordCardGenerator.result.title}</h2>
               {generatedWords.length > 0 && (
-                <button
-                  onClick={copyToClipboard}
-                  className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
-                >
-                  {copied 
-                    ? translations.wordCardGenerator.result.copied
-                    : translations.wordCardGenerator.result.copy}
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={copyToClipboard}
+                    className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
+                  >
+                    {copied 
+                      ? translations.wordCardGenerator.result.copied
+                      : translations.wordCardGenerator.result.copy}
+                  </button>
+                  <DownloadButton
+                    content={generatedWords.map(w => w.word).join('\n')}
+                    filename="generated-words.txt"
+                  />
+                </div>
               )}
             </div>
             {generatedWords.length > 0 ? (
