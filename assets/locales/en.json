@@ -1525,6 +1525,10 @@
       "pdfToJpg": {
         "title": "PDF to JPG Converter",
         "description": "Convert PDF pages to JPG images with adjustable quality"
+      },
+      "jpgToPdf": {
+        "title": "JPG to PDF Converter",
+        "description": "Convert JPG images to PDF documents with customizable settings"
       }
     }
   },
@@ -1561,6 +1565,40 @@
     "error": {
       "fileType": "Please upload a PDF file",
       "fileSize": "File size exceeds 20MB limit"
+    }
+  },
+  "jpgToPdf": {
+    "meta": {
+      "title": "JPG to PDF Converter - Convert Images to PDF Online",
+      "description": "Free online tool to convert JPG images to PDF documents. Combine multiple images into a single PDF with customizable settings. No installation required.",
+      "keywords": "jpg to pdf, image to pdf, convert jpg to pdf, image converter, online image converter, free image converter"
+    },
+    "title": "JPG to PDF Converter",
+    "description": "Convert JPG images to PDF documents with customizable settings",
+    "form": {
+      "upload": {
+        "label": "Upload Image Files",
+        "button": "Drag & drop image files here, or click to select",
+        "dragDrop": "Drop the image files here..."
+      },
+      "quality": {
+        "label": "PDF Quality",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "convert": "Convert to PDF"
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No files selected"
+    },
+    "error": {
+      "fileType": "Please upload JPG or PNG files only",
+      "fileSize": "Total file size exceeds 20MB limit"
     }
   }
 } 
