@@ -10,9 +10,13 @@ export default function QRGenerationPage() {
   const params = useParams()
   const lang = params.lang as string
   const t = (key: string) => translate(lang, key)
+  const MAX_CHARS = 500
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value)
+    const inputText = e.target.value
+    if (inputText.length <= MAX_CHARS) {
+      setText(inputText)
+    }
   }
 
   return (
@@ -24,7 +28,11 @@ export default function QRGenerationPage() {
           rows={6}
           value={text}
           onChange={handleChange}
+          maxLength={MAX_CHARS}
         />
+        <div className="text-right text-sm text-gray-300 mt-1">
+          {text.length}/{MAX_CHARS}
+        </div>
 
         <div className="mt-6 p-4 bg-gray-800 rounded-lg text-center">
           {text ? (
