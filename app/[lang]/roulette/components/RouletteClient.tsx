@@ -19,7 +19,6 @@ type RouletteClientProps = {
       spin: string;
       spinning: string;
       edit: string;
-      reset: string;
       save: string;
       cancel: string;
     };
@@ -74,8 +73,6 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
       if (e.code === 'Space' && !isEditing) {
         e.preventDefault();
         if (!isSpinning) handleSpin();
-      } else if (e.code === 'KeyR' && !isEditing) {
-        handleReset();
       } else if (e.code === 'KeyE') {
         setIsEditing(true);
       }
@@ -111,7 +108,7 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
     saveItemsToStorage(items);
   }, [items, currentRotation, saveItemsToStorage]);
 
-  const handleReset = useCallback(() => {
+  const handleCancel = useCallback(() => {
     setTextAreaValue(items.join('\n'));
     setIsEditing(false);
     setResult(null);
@@ -151,12 +148,6 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
             >
               {translations.buttons.edit}
             </button>
-            <button
-              onClick={handleReset}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-            >
-              {translations.buttons.reset}
-            </button>
           </div>
         </div>
         {result && (
@@ -192,7 +183,7 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
                 {translations.buttons.save}
               </button>
               <button
-                onClick={handleReset}
+                onClick={handleCancel}
                 className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
               >
                 {translations.buttons.cancel}

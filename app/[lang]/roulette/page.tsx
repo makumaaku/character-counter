@@ -14,7 +14,6 @@ export default async function RoulettePage({ params }: Props) {
       spin: translate(lang, 'roulette.buttons.spin'),
       spinning: translate(lang, 'roulette.buttons.spinning'),
       edit: translate(lang, 'roulette.buttons.edit'),
-      reset: translate(lang, 'roulette.buttons.reset'),
       save: translate(lang, 'roulette.buttons.save'),
       cancel: translate(lang, 'roulette.buttons.cancel'),
     },
