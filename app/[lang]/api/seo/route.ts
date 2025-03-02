@@ -13,7 +13,7 @@ export async function GET(request: Request) {
   try {
     // Set a timeout for the initial request to prevent long-running requests
     const response = await axios.get(url, { 
-      timeout: 15000, // Reduce timeout to 15 seconds
+      timeout: 30000, 
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
       }
@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     
     // URLの重複を排除するためのセット
     const uniqueUrls = new Set<string>();
-    const links: { url: string; status: number }[] = [];
+    const links: { url: string; status: number; errorMessage?: string }[] = [];
 
     $('a').each((index: number, el: cheerio.Element) => {
       const href = $(el).attr('href');
@@ -49,7 +49,7 @@ export async function GET(request: Request) {
       try {
         // Set a timeout for each link check to prevent long-running requests
         const response = await axios.get(link.url, { 
-          timeout: 5000,
+          timeout: 10000,
           headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
           }
@@ -58,8 +58,27 @@ export async function GET(request: Request) {
       } catch (error) {
         if (error instanceof AxiosError) {
           link.status = error.response?.status || 500;
+          
+          // エラーメッセージを追加
+          if (link.status >= 400) {
+            if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+              link.errorMessage = 'Request timed out';
+            } else if (error.code === 'ENOTFOUND') {
+              link.errorMessage = 'Host not found';
+            } else if (error.code === 'ECONNREFUSED') {
+              link.errorMessage = 'Connection refused';
+            } else if (error.response?.statusText) {
+              link.errorMessage = error.response.statusText;
+            } else if (error.message) {
+              // エラーメッセージが長すぎる場合は短縮
+              link.errorMessage = error.message.length > 100 
+                ? error.message.substring(0, 100) + '...' 
+                : error.message;
+            }
+          }
         } else {
           link.status = 500;
+          link.errorMessage = 'Unknown error';
         }
       }
     });

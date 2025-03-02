@@ -7,12 +7,20 @@ type Props = {
   lang: string;
 };
 
+// リンクの型定義を更新
+type LinkStatus = {
+  url: string;
+  status: number;
+  errorMessage?: string;
+};
+
 export default function LinkStatusCheckerForm({ lang }: Props) {
   const [url, setUrl] = useState('');
-  const [links, setLinks] = useState<{ url: string; status: number }[]>([]);
+  const [links, setLinks] = useState<LinkStatus[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [sortedLinks, setSortedLinks] = useState<{ url: string; status: number }[]>([]);
+  const [sortedLinks, setSortedLinks] = useState<LinkStatus[]>([]);
+  const [progress, setProgress] = useState(0); // 進行状況を追跡
 
   useEffect(() => {
     if (links.length > 0) {
@@ -37,17 +45,22 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
     setError('');
     setLinks([]);
     setLoading(true);
+    setProgress(0); // 進行状況をリセット
+    setProgress(10); // 初期進行状況を設定
 
     try {
       // Add a timeout to the fetch request - increase timeout for handling more links
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 60000); // 60秒に延長
       
+      setProgress(20); // リクエスト開始
+      
       const response = await fetch(`/api/seo?url=${encodeURIComponent(url)}`, {
         signal: controller.signal
       });
       
       clearTimeout(timeoutId);
+      setProgress(50); // レスポンス受信
       
       let data;
       const contentType = response.headers.get('content-type');
@@ -55,6 +68,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       // Check if the response is JSON
       if (contentType && contentType.includes('application/json')) {
         data = await response.json();
+        setProgress(70); // JSONパース完了
       } else {
         // If not JSON, get the text and create an error object
         const text = await response.text();
@@ -64,6 +78,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       if (response.ok) {
         if (data.links && Array.isArray(data.links)) {
           setLinks(data.links);
+          setProgress(100); // 処理完了
           
           // リンクが多い場合は通知
           if (data.links.length > 50) {
@@ -71,6 +86,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
           }
         } else {
           setLinks([]);
+          setProgress(100); // 処理完了
         }
       } else {
         // Handle specific error types
@@ -87,6 +103,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
         } else {
           setError(translate(lang, 'link-status-checker.errors.general'));
         }
+        setProgress(100); // エラー時も処理完了
       }
     } catch (error: unknown) {
       console.error('Error in link status checker:', error);
@@ -94,6 +111,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       // Handle fetch abort (timeout)
       if (error instanceof DOMException && error.name === 'AbortError') {
         setError(translate(lang, 'link-status-checker.errors.timeout'));
+        setProgress(100); // タイムアウト時も処理完了
         return;
       }
       
@@ -112,9 +130,18 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       } else {
         setError(translate(lang, 'link-status-checker.errors.general'));
       }
+      setProgress(100); // エラー時も処理完了
     } finally {
       setLoading(false);
     }
+  };
+
+  // ステータスコードに応じたテキストカラーを取得する関数
+  const getStatusColor = (status: number) => {
+    if (status >= 200 && status < 300) return 'text-green-500';
+    if (status >= 300 && status < 400) return 'text-yellow-500';
+    if (status >= 400 && status < 600) return 'text-red-500';
+    return 'text-gray-400';
   };
 
   return (
@@ -135,6 +162,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder={translate(lang, 'link-status-checker.form.url.placeholder')}
+              disabled={loading}
             />
           </div>
         </div>
@@ -152,6 +180,24 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
         </div>
       </form>
 
+      {/* ローディングインジケーター */}
+      {loading && (
+        <div className="mt-4">
+          <div className="text-center text-gray-300 mb-2">
+            {translate(lang, 'link-status-checker.form.button.checking')}...
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-2.5">
+            <div 
+              className="bg-purple-600 h-2.5 rounded-full transition-all duration-300 ease-in-out" 
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <div className="text-center text-gray-400 text-sm mt-1">
+            {progress < 50 ? 'URLを解析中...' : 'リンクをチェック中...'}
+          </div>
+        </div>
+      )}
+
       {error && (
         <div className="rounded-md bg-red-50 p-4 mt-4">
           <div className="text-red-700">
@@ -165,6 +211,9 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
           <h2 className="text-lg font-medium text-gray-300">
             {translate(lang, 'link-status-checker.results.title')}:
           </h2>
+          <div className="text-sm text-gray-400 mb-2">
+            合計 {sortedLinks.length} リンクをチェックしました
+          </div>
           <ul className="mt-2 space-y-1">
             {sortedLinks.map((link, index) => (
               <li key={index} className="text-gray-400">
@@ -180,8 +229,11 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
                 >
                   {link.url}
                 </a>
-                <span className="ml-2">
+                <span className={`ml-2 ${getStatusColor(link.status)}`}>
                   {translate(lang, 'link-status-checker.results.status')}: {link.status}
+                  {link.errorMessage && link.status >= 400 && (
+                    <span className="ml-2 text-red-400">({link.errorMessage})</span>
+                  )}
                 </span>
               </li>
             ))}
