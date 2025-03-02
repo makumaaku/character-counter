@@ -1,35 +1,82 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { translate } from '@/lib/i18n/client';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   lang: string;
 };
 
+type NameData = {
+  male_first_names: string[];
+  female_first_names: string[];
+  last_names: string[];
+};
+
+// 名前データを保持するステート
+const useNameData = (lang: string) => {
+  const [nameData, setNameData] = useState<NameData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchNameData = async () => {
+      try {
+        setLoading(true);
+        // 言語に基づいて適切なJSONファイルを選択
+        const language = lang as Language;
+        const fileName = `names-${language}.json`;
+        const response = await fetch(`/words/${fileName}`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to load name data: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setNameData(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error loading name data:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNameData();
+  }, [lang]);
+
+  return { nameData, loading, error };
+};
+
 // 名前生成のためのヘルパー関数
-const generateRandomName = () => {
-  const firstNames = ['James', 'John', 'Robert', 'Michael', 'William', 'David', 'Richard', 'Joseph', 'Thomas', 'Charles',
-    'Emma', 'Olivia', 'Ava', 'Isabella', 'Sophia', 'Mia', 'Charlotte', 'Amelia', 'Harper', 'Evelyn',
-    '太郎', '次郎', '三郎', '四郎', '五郎', '一郎', '正', '誠', '勇', '優',
-    '花子', '桜', '梅', '菊', '椿', '紅', '愛', '美', '優', '真'];
+const generateRandomName = (nameData: NameData | null, language: string) => {
+  if (!nameData) {
+    return 'Loading...';
+  }
   
-  const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez',
-    '田中', '鈴木', '佐藤', '高橋', '渡辺', '伊藤', '山本', '中村', '小林', '加藤'];
+  // 男性名と女性名を合わせる
+  const firstNames = [...nameData.male_first_names, ...nameData.female_first_names];
+  const lastNames = nameData.last_names;
 
   const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
   const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
   
-  return `${firstName} ${lastName}`;
+  // 日本語の場合は姓名の順（lastname firstname）、それ以外は名姓の順（firstname lastname）
+  return language === 'ja' ? `${lastName} ${firstName}` : `${firstName} ${lastName}`;
 };
 
 export default function NameGeneratorClient({ lang }: Props) {
   const [generatedNames, setGeneratedNames] = useState<string[]>([]);
   const [nameCount, setNameCount] = useState(10);
   const [copied, setCopied] = useState(false);
+  const { nameData, loading, error } = useNameData(lang);
 
   const generateNames = () => {
-    const names = Array.from({ length: nameCount }, () => generateRandomName());
+    if (!nameData) return;
+    
+    const names = Array.from({ length: nameCount }, () => generateRandomName(nameData, lang));
     setGeneratedNames(names);
   };
 
@@ -60,11 +107,18 @@ export default function NameGeneratorClient({ lang }: Props) {
         />
         <button
           onClick={generateNames}
-          className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded transition-colors"
+          disabled={loading || !!error}
+          className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
         >
           {translate(lang, 'nameGenerator.form.generate')}
         </button>
       </div>
+
+      {error && (
+        <div className="mt-4 p-4 bg-red-800 text-white rounded">
+          {error}
+        </div>
+      )}
 
       <div className="mt-6">
         <div className="flex justify-between items-center mb-4">
@@ -79,7 +133,9 @@ export default function NameGeneratorClient({ lang }: Props) {
             </button>
           )}
         </div>
-        {generatedNames.length > 0 ? (
+        {loading ? (
+          <p className="text-gray-400">Loading name data...</p>
+        ) : generatedNames.length > 0 ? (
           <div className="bg-gray-800 p-4 rounded max-h-96 overflow-y-auto">
             <div className="flex flex-wrap gap-2">
               {generatedNames.map((name, index) => (
