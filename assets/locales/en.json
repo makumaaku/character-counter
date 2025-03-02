@@ -1313,7 +1313,10 @@
       "status": "Status"
     },
     "errors": {
-      "general": "An error occurred"
+      "general": "An error occurred",
+      "timeout": "The request timed out. The server took too long to respond.",
+      "network": "Network error. Please check your connection and try again.",
+      "invalid_url": "Invalid URL format. Please enter a valid URL."
     }
   },
   "numberQuiz": {

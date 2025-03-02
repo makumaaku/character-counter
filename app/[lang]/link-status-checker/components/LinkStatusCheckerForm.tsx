@@ -39,17 +39,76 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
     setLoading(true);
 
     try {
-      const response = await fetch(`/api/seo?url=${encodeURIComponent(url)}`);
-      const data = await response.json();
+      // Add a timeout to the fetch request - increase timeout for handling more links
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000); // 60秒に延長
+      
+      const response = await fetch(`/api/seo?url=${encodeURIComponent(url)}`, {
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      let data;
+      const contentType = response.headers.get('content-type');
+      
+      // Check if the response is JSON
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        // If not JSON, get the text and create an error object
+        const text = await response.text();
+        throw new Error(`Server returned non-JSON response: ${text.substring(0, 100)}`);
+      }
 
       if (response.ok) {
-        setLinks(data.links);
+        if (data.links && Array.isArray(data.links)) {
+          setLinks(data.links);
+          
+          // リンクが多い場合は通知
+          if (data.links.length > 50) {
+            console.log(`Found ${data.links.length} links on the page`);
+          }
+        } else {
+          setLinks([]);
+        }
       } else {
-        setError(data.error || translate(lang, 'link-status-checker.errors.general'));
+        // Handle specific error types
+        if (data.error) {
+          if (data.error.includes('timeout') || data.error.includes('too long') || response.status === 504) {
+            setError(translate(lang, 'link-status-checker.errors.timeout'));
+          } else if (data.error.includes('network') || data.error.includes('ENOTFOUND') || data.error.includes('resolve host')) {
+            setError(translate(lang, 'link-status-checker.errors.network'));
+          } else if (data.error.includes('URL') || data.error.includes('url')) {
+            setError(translate(lang, 'link-status-checker.errors.invalid_url'));
+          } else {
+            setError(data.error);
+          }
+        } else {
+          setError(translate(lang, 'link-status-checker.errors.general'));
+        }
       }
     } catch (error: unknown) {
+      console.error('Error in link status checker:', error);
+      
+      // Handle fetch abort (timeout)
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        setError(translate(lang, 'link-status-checker.errors.timeout'));
+        return;
+      }
+      
       if (error instanceof Error) {
-        setError(error.message || translate(lang, 'link-status-checker.errors.general'));
+        if (error.message.includes('JSON')) {
+          setError(translate(lang, 'link-status-checker.errors.general'));
+        } else if (error.message.includes('timeout') || error.message.includes('abort') || error.message.includes('Gateway Timeout')) {
+          setError(translate(lang, 'link-status-checker.errors.timeout'));
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          setError(translate(lang, 'link-status-checker.errors.network'));
+        } else if (error.message.includes('URL')) {
+          setError(translate(lang, 'link-status-checker.errors.invalid_url'));
+        } else {
+          setError(error.message || translate(lang, 'link-status-checker.errors.general'));
+        }
       } else {
         setError(translate(lang, 'link-status-checker.errors.general'));
       }
@@ -94,7 +153,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       </form>
 
       {error && (
-        <div className="rounded-md bg-red-50 p-4">
+        <div className="rounded-md bg-red-50 p-4 mt-4">
           <div className="text-red-700">
             {error}
           </div>
