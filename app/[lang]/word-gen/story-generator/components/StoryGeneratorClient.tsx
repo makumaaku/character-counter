@@ -107,7 +107,7 @@ export default function StoryGeneratorClient({ lang }: Props) {
           {/* Introduction */}
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">{translate(lang, 'storyGenerator.catchphrase')}</h2>
-            <p className="text-lg text-gray-300">{translate(lang, 'storyGenerator.intro')}</p>
+            <p className="text-lg text-start text-gray-300">{translate(lang, 'storyGenerator.intro')}</p>
           </div>
 
           {/* Features */}
@@ -189,7 +189,7 @@ export default function StoryGeneratorClient({ lang }: Props) {
           {/* Conclusion */}
           <div className="bg-gray-700 rounded-lg p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">{translate(lang, 'storyGenerator.conclusion.title')}</h2>
-            <p className="text-lg text-gray-300">{translate(lang, 'storyGenerator.conclusion.description')}</p>
+            <p className="text-lg text-start text-gray-300">{translate(lang, 'storyGenerator.conclusion.description')}</p>
           </div>
         </div>
       </main>
