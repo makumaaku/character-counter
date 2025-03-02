@@ -69,13 +69,13 @@ export default async function Layout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  // const t = (key: string) => translate(lang, key);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('numberQuiz.title')} homeLink={`/${lang}/number-quiz`}>
+      {/* 言語情報関係なく、"Number Place"を表示する */}
+      <Header title={"Number Place"} homeLink={`/${lang}/number-quiz`}>
         <div className="flex items-center gap-2">
-          {/* Left side content removed */}
         </div>
       </Header>
       <main className="flex-1 bg-gray-800">
