@@ -1347,7 +1347,7 @@
   },
   "countryData": {
     "meta": {
-      "title": "World Country Data",
+      "title": "Country Area comparison data",
       "description": "Comprehensive list of world countries with detailed information including official names, capitals, languages, and more.",
       "keywords": "world countries, country data, capitals, languages, currencies, regions"
     },
@@ -1371,7 +1371,7 @@
         "lastUpdated": "Last Update"
       }
     },
-    "title": "Country Data",
+    "title": "Country Area comparison data",
     "states": {
       "loading": "Loading...",
       "error": "An error occurred while fetching data",
