@@ -25,7 +25,8 @@
       "passwordGenerator": "Random Password Generator",
       "storyGenerator": "Random Story Generator",
       "numberQuiz": "Number Place",
-      "linkStatusChecker": "Link Status Checker"
+      "linkStatusChecker": "Link Status Checker",
+      "pdfTools": "PDF Tools"
     },
     "meta": {
       "title": "Boring Tools - Simple and Useful Tools for Everyone",
@@ -1510,6 +1511,146 @@
           }
         }
       }
+    }
+  },
+  "pdfTools": {
+    "meta": {
+      "title": "PDF Tools - Convert, Edit and Manage PDF Files",
+      "description": "Free online PDF tools to convert, edit, and manage your PDF files. No installation required, works directly in your browser.",
+      "keywords": "pdf tools, pdf converter, pdf to jpg, pdf editor, online pdf tools, free pdf tools"
+    },
+    "title": "PDF Tools",
+    "description": "Free online tools to convert, edit, and manage your PDF files",
+    "tools": {
+      "pdfToJpg": {
+        "title": "PDF to JPG Converter",
+        "description": "Convert PDF pages to JPG images with adjustable quality"
+      },
+      "jpgToPdf": {
+        "title": "JPG to PDF Converter",
+        "description": "Convert JPG images to PDF documents with customizable settings"
+      },
+      "webToPdf": {
+        "title": "Web to PDF Converter",
+        "description": "Convert any web page to a PDF document with a single click"
+      }
+    }
+  },
+  "pdfToJpg": {
+    "meta": {
+      "title": "PDF to JPG Converter - Convert PDF to Images Online",
+      "description": "Free online tool to convert PDF documents to JPG images. Convert each page to a separate image with adjustable quality. No installation required.",
+      "keywords": "pdf to jpg, pdf to image, convert pdf to jpg, pdf converter, online pdf converter, free pdf converter"
+    },
+    "title": "PDF to JPG Converter",
+    "description": "Convert PDF pages to JPG images with adjustable quality",
+    "form": {
+      "upload": {
+        "label": "Upload PDF File",
+        "button": "Drag & drop a PDF file here, or click to select",
+        "dragDrop": "Drop the PDF file here..."
+      },
+      "quality": {
+        "label": "Image Quality",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "convert": "Convert to JPG"
+    },
+    "result": {
+      "downloadAll": "Download All",
+      "download": "Download"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No file selected"
+    },
+    "error": {
+      "fileType": "Please upload a PDF file",
+      "fileSize": "File size exceeds 20MB limit"
+    }
+  },
+  "jpgToPdf": {
+    "meta": {
+      "title": "JPG to PDF Converter - Convert Images to PDF Online",
+      "description": "Free online tool to convert JPG images to PDF documents. Combine multiple images into a single PDF with customizable settings. No installation required.",
+      "keywords": "jpg to pdf, image to pdf, convert jpg to pdf, image converter, online image converter, free image converter"
+    },
+    "title": "JPG to PDF Converter",
+    "description": "Convert JPG images to PDF documents with customizable settings",
+    "form": {
+      "upload": {
+        "label": "Upload Image Files",
+        "button": "Drag & drop image files here, or click to select",
+        "dragDrop": "Drop the image files here..."
+      },
+      "quality": {
+        "label": "PDF Quality",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "convert": "Convert to PDF"
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No files selected"
+    },
+    "error": {
+      "fileType": "Please upload JPG or PNG files only",
+      "fileSize": "Total file size exceeds 20MB limit"
+    }
+  },
+  "webToPdf": {
+    "meta": {
+      "title": "Web to PDF Converter - Convert Web Pages to PDF Online",
+      "description": "Free online tool to convert web pages to PDF documents. Simply enter a URL and convert any website to a downloadable PDF file. No installation required.",
+      "keywords": "web to pdf, website to pdf, convert web page to pdf, url to pdf, online pdf converter, free pdf converter"
+    },
+    "title": "Web to PDF Converter",
+    "description": "Convert any web page to a PDF document with a single click",
+    "form": {
+      "url": {
+        "label": "Website URL",
+        "placeholder": "Enter website URL (e.g., https://example.com)",
+        "button": "Convert to PDF"
+      },
+      "options": {
+        "label": "PDF Options",
+        "format": {
+          "label": "Paper Format",
+          "a4": "A4",
+          "letter": "Letter",
+          "legal": "Legal"
+        },
+        "orientation": {
+          "label": "Orientation",
+          "portrait": "Portrait",
+          "landscape": "Landscape"
+        },
+        "scale": {
+          "label": "Scale",
+          "default": "Default (1)",
+          "fit": "Fit to Page"
+        }
+      }
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Converting web page to PDF...",
+      "noUrl": "Please enter a valid URL",
+      "success": "Conversion successful!"
+    },
+    "error": {
+      "invalidUrl": "Invalid URL. Please enter a valid website address.",
+      "conversionFailed": "Conversion failed. Please try again.",
+      "networkError": "Network error. Please check your connection and try again."
     }
   }
 } 

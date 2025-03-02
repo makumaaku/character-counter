@@ -25,7 +25,8 @@
       "passwordGenerator": "ランダムパスワード生成",
       "storyGenerator": "ランダムストーリー生成",
       "numberQuiz": "数独ゲーム",
-      "linkStatusChecker": "リンクステータスチェッカー"
+      "linkStatusChecker": "リンクステータスチェッカー",
+      "pdfTools": "PDFツール"
     },
     "meta": {
       "title": "ボーリングツール - シンプルで便利なツール集",
@@ -34,6 +35,146 @@
       "publisher": "ボーリングツール",
       "logoAlt": "ボーリングツールのロゴ",
       "keywords": "文字数カウンター, QRコード生成, 名前生成, ツール, ユーティリティ, Webツール"
+    }
+  },
+  "pdfTools": {
+    "meta": {
+      "title": "PDFツール - PDFファイルの変換、編集、管理",
+      "description": "PDFファイルを変換、編集、管理するための無料オンラインツール。インストール不要、ブラウザで直接動作します。",
+      "keywords": "pdfツール, pdf変換, pdfからjpg, pdfエディタ, オンラインpdfツール, 無料pdfツール"
+    },
+    "title": "PDFツール",
+    "description": "PDFファイルを変換、編集、管理するための無料オンラインツール",
+    "tools": {
+      "pdfToJpg": {
+        "title": "PDF to JPG変換ツール",
+        "description": "PDFページを調整可能な品質でJPG画像に変換"
+      },
+      "jpgToPdf": {
+        "title": "JPG to PDF変換ツール",
+        "description": "JPG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
+      },
+      "webToPdf": {
+        "title": "Web to PDF変換ツール",
+        "description": "ウェブページをワンクリックでPDFドキュメントに変換"
+      }
+    }
+  },
+  "pdfToJpg": {
+    "meta": {
+      "title": "PDF to JPG変換ツール - オンラインでPDFを画像に変換",
+      "description": "PDFドキュメントをJPG画像に変換する無料オンラインツール。各ページを調整可能な品質で個別の画像に変換。インストール不要。",
+      "keywords": "pdfからjpg, pdfから画像, pdfをjpgに変換, pdf変換, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "PDF to JPG変換ツール",
+    "description": "PDFページを調整可能な品質でJPG画像に変換",
+    "form": {
+      "upload": {
+        "label": "PDFファイルをアップロード",
+        "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "PDFファイルをここにドロップ..."
+      },
+      "quality": {
+        "label": "画像品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "downloadAll": "すべてダウンロード",
+      "download": "ダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PDFファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが20MBの制限を超えています"
+    }
+  },
+  "jpgToPdf": {
+    "meta": {
+      "title": "JPG to PDF変換ツール - オンラインで画像をPDFに変換",
+      "description": "JPG画像をPDFドキュメントに変換する無料オンラインツール。複数の画像をカスタマイズ可能な設定で1つのPDFにまとめます。インストール不要。",
+      "keywords": "jpgからpdf, 画像からpdf, jpgをpdfに変換, 画像変換, オンライン画像変換, 無料画像変換"
+    },
+    "title": "JPG to PDF変換ツール",
+    "description": "JPG画像をカスタマイズ可能な設定でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "画像ファイルをアップロード",
+        "button": "画像ファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "画像ファイルをここにドロップ..."
+      },
+      "quality": {
+        "label": "PDF品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPGまたはPNGファイルのみをアップロードしてください",
+      "fileSize": "合計ファイルサイズが20MBの制限を超えています"
+    }
+  },
+  "webToPdf": {
+    "meta": {
+      "title": "Web to PDF変換ツール - ウェブページをPDFに変換",
+      "description": "ウェブページをPDFドキュメントに変換する無料オンラインツール。URLを入力するだけで、任意のウェブサイトをダウンロード可能なPDFファイルに変換できます。インストール不要。",
+      "keywords": "webからpdf, ウェブサイトからpdf, ウェブページをpdfに変換, urlからpdf, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "Web to PDF変換ツール",
+    "description": "ウェブページをワンクリックでPDFドキュメントに変換",
+    "form": {
+      "url": {
+        "label": "ウェブサイトURL",
+        "placeholder": "ウェブサイトURLを入力（例：https://example.com）",
+        "button": "PDFに変換"
+      },
+      "options": {
+        "label": "PDF設定",
+        "format": {
+          "label": "用紙サイズ",
+          "a4": "A4",
+          "letter": "レター",
+          "legal": "リーガル"
+        },
+        "orientation": {
+          "label": "向き",
+          "portrait": "縦向き",
+          "landscape": "横向き"
+        },
+        "scale": {
+          "label": "スケール",
+          "default": "デフォルト（1）",
+          "fit": "ページに合わせる"
+        }
+      }
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "ウェブページをPDFに変換中...",
+      "noUrl": "有効なURLを入力してください",
+      "success": "変換が完了しました！"
+    },
+    "error": {
+      "invalidUrl": "無効なURLです。有効なウェブサイトアドレスを入力してください。",
+      "conversionFailed": "変換に失敗しました。もう一度お試しください。",
+      "networkError": "ネットワークエラー。接続を確認して再試行してください。"
     }
   },
   "characterCounter": {

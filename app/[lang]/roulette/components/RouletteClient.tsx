@@ -157,6 +157,13 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
     }
   }, []);
 
+  // スピン処理
+  const handleSpin = useCallback(() => {
+    if (items.length < 2) return;
+    setIsSpinning(true);
+    setResult(null);
+  }, [items]);
+
   // キーボードショートカット
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -170,13 +177,7 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isSpinning, isEditing]);
-
-  const handleSpin = useCallback(() => {
-    if (items.length < 2) return;
-    setIsSpinning(true);
-    setResult(null);
-  }, [items]);
+  }, [isSpinning, isEditing, handleSpin]);
 
   const handleSpinComplete = useCallback(() => {
     setIsSpinning(false);

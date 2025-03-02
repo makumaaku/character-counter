@@ -53,6 +53,18 @@ export default function Home() {
               <Link href="/word-gen/story-generator" className="text-white hover:underline ml-4">Random Story Generator</Link>
             </li>
             <li>
+              <Link href="/pdf-tools" className="text-white hover:underline font-bold">PDF Tools</Link>
+            </li>
+            <li>
+              <Link href="/pdf-tools/pdf-to-jpg" className="text-white hover:underline ml-4">PDF to JPG Converter</Link>
+            </li>
+            <li>
+              <Link href="/pdf-tools/jpg-to-pdf" className="text-white hover:underline ml-4">JPG to PDF Converter</Link>
+            </li>
+            <li>
+              <Link href="/pdf-tools/web-to-pdf" className="text-white hover:underline ml-4">Web to PDF Converter</Link>
+            </li>
+            <li>
               <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>
