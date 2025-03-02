@@ -21,6 +21,8 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     resultEmpty,
     resultCopy,
     resultCopied,
+    resultDownload,
+    resultDownloaded,
     // About section translations
     aboutCatchphrase,
     aboutIntroduction,
@@ -75,6 +77,8 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     translate(lang, 'wordGenerator.result.empty'),
     translate(lang, 'wordGenerator.result.copy'),
     translate(lang, 'wordGenerator.result.copied'),
+    translate(lang, 'wordGenerator.result.download'),
+    translate(lang, 'wordGenerator.result.downloaded'),
     // About section translations
     translate(lang, 'wordGenerator.about.catchphrase'),
     translate(lang, 'wordGenerator.about.introduction'),
@@ -140,6 +144,8 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
       empty: resultEmpty,
       copy: resultCopy,
       copied: resultCopied,
+      download: resultDownload,
+      downloaded: resultDownloaded,
     },
     about: {
       catchphrase: aboutCatchphrase,
