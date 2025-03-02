@@ -5,6 +5,10 @@
       "siteName": "Boring Tools",
       "publisher": "Boring Inc.",
       "logoAlt": "Boring Tools Logo"
+    },
+    "download": {
+      "button": "Download",
+      "downloaded": "Downloaded!"
     }
   },
   "home": {

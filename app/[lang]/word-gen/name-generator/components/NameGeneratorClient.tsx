@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { translate } from '@/lib/i18n/client';
 import { Language } from '@/lib/i18n/types';
+import DownloadButton from '../../components/DownloadButton';
 
 type Props = {
   lang: string;
@@ -124,13 +125,19 @@ export default function NameGeneratorClient({ lang }: Props) {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">{translate(lang, 'nameGenerator.result.title')}</h2>
           {generatedNames.length > 0 && (
-            <button
-              onClick={copyToClipboard}
-              className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
-              title={translate(lang, 'nameGenerator.result.copyTitle')}
-            >
-              {copied ? translate(lang, 'nameGenerator.result.copied') : translate(lang, 'nameGenerator.result.copy')}
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={copyToClipboard}
+                className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
+                title={translate(lang, 'nameGenerator.result.copyTitle')}
+              >
+                {copied ? translate(lang, 'nameGenerator.result.copied') : translate(lang, 'nameGenerator.result.copy')}
+              </button>
+              <DownloadButton
+                content={generatedNames.join('\n')}
+                filename="generated-names.txt"
+              />
+            </div>
           )}
         </div>
         {loading ? (

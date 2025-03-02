@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import wordsData from '../../../../../public/words/words.json'
+import DownloadButton from '../../components/DownloadButton'
 
 // words.jsonの型定義
 type WordsData = {
@@ -36,6 +37,8 @@ type Props = {
       empty: string
       copy: string
       copied: string
+      download: string
+      downloaded: string
     }
     about: {
       catchphrase: string
@@ -241,12 +244,18 @@ export default function WordGeneratorClient({ translations }: Props) {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">{translations.result.title}</h2>
             {generatedWords.length > 0 && (
-              <button
-                onClick={copyToClipboard}
-                className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
-              >
-                {copied ? translations.result.copied : translations.result.copy}
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={copyToClipboard}
+                  className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
+                >
+                  {copied ? translations.result.copied : translations.result.copy}
+                </button>
+                <DownloadButton
+                  content={generatedWords.join('\n')}
+                  filename="generated-words.txt"
+                />
+              </div>
             )}
           </div>
           {generatedWords.length > 0 ? (

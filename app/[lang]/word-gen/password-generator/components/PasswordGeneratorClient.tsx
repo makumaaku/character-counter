@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import DownloadButton from '../../components/DownloadButton'
 
 // Character sets for password generation
 const UPPERCASE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -142,22 +143,36 @@ export default function PasswordGeneratorClient({ translations }: { translations
           {/* Password Generator Section */}
           <div className="bg-gray-700 p-6 rounded-lg text-center mb-6">
             <h2 className="text-xl mb-4">{translations.generatedPassword}</h2>
-            <div className="relative">
-              <p className="text-2xl font-bold font-mono bg-gray-900 p-4 rounded-lg break-all">
-                {password}
-              </p>
-              <button
-                onClick={handleCopy}
-                className="absolute top-1/2 right-4 -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
-                title={translations.copyButton}
-              >
-                <Image 
-                  src="/copy_icon_white.png" 
-                  alt={translations.copyButton}
-                  width={20}
-                  height={20}
-                />
-              </button>
+            <div className="relative flex flex-col">
+              <div className="relative w-full">
+                <p className="text-2xl font-bold font-mono bg-gray-900 p-4 rounded-lg break-all">
+                  {password}
+                </p>
+                {password && (
+                  <div className="absolute bottom-4 right-4">
+                    <button
+                      onClick={handleCopy}
+                      className="text-white hover:text-gray-300 transition-colors"
+                      title={translations.copyButton}
+                    >
+                      <Image 
+                        src="/copy_icon_white.png" 
+                        alt={translations.copyButton}
+                        width={20}
+                        height={20}
+                      />
+                    </button>
+                  </div>
+                )}
+              </div>
+              {password && (
+                <div className="w-full flex justify-end mt-4">
+                  <DownloadButton
+                    content={password}
+                    filename="generated-password.txt"
+                  />
+                </div>
+              )}
               {showToast && (
                 <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
                   {translations.copied}
