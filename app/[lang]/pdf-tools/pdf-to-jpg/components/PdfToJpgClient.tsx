@@ -342,6 +342,7 @@ export default function PdfToJpgClient({ translations }: Props) {
             {convertedImages.map((image) => (
               <div key={image.pageNumber} className="bg-gray-700 rounded-lg overflow-hidden">
                 <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={image.dataUrl}
                     alt={`Page ${image.pageNumber}`}

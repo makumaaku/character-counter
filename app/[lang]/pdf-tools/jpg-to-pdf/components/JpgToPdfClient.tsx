@@ -10,11 +10,11 @@ declare global {
     PDFLib: {
       PDFDocument: {
         create: () => Promise<{
-          embedJpg: (imageBytes: ArrayBuffer) => Promise<any>;
-          embedPng: (imageBytes: ArrayBuffer) => Promise<any>;
+          embedJpg: (imageBytes: ArrayBuffer) => Promise<PDFImage>;
+          embedPng: (imageBytes: ArrayBuffer) => Promise<PDFImage>;
           addPage: (size: [number, number]) => {
             getSize: () => { width: number; height: number };
-            drawImage: (image: any, options: { x: number; y: number; width: number; height: number }) => void;
+            drawImage: (image: PDFImage, options: { x: number; y: number; width: number; height: number }) => void;
           };
           save: (options?: { useObjectStreams?: boolean }) => Promise<Uint8Array>;
         }>;
@@ -24,6 +24,12 @@ declare global {
       };
     };
   }
+}
+
+// Define a type for PDF images
+interface PDFImage {
+  width: number;
+  height: number;
 }
 
 type Props = {
@@ -368,6 +374,7 @@ export default function JpgToPdfClient({ translations }: Props) {
             {imageFiles.map((file, index) => (
               <div key={index} className="bg-gray-700 rounded-lg overflow-hidden">
                 <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={URL.createObjectURL(file)}
                     alt={`Image ${index + 1}`}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { translate } from '@/lib/i18n/client';
 
 type Props = {
@@ -10,6 +10,8 @@ type Props = {
 export default function SudokuGame({ lang }: Props) {
   const [board, setBoard] = useState<number[][]>([]);
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
+  const [message, setMessage] = useState<string>('');
+  const [isComplete, setIsComplete] = useState<boolean>(false);
   const t = useCallback((key: string) => translate(lang, key), [lang]);
 
   const generateEmptyBoard = () => {
@@ -59,11 +61,11 @@ export default function SudokuGame({ lang }: Props) {
     return true;
   };
 
-  const generateNewGame = () => {
+  const generateNewGame = useCallback(() => {
     const newBoard = generateEmptyBoard();
     solveSudoku(newBoard);
     
-    const difficulty = (document.getElementById('difficulty') as HTMLSelectElement).value;
+    const difficulty = (document.getElementById('difficulty') as HTMLSelectElement)?.value || '0.4';
     const cellsToRemove = Math.floor(81 * parseFloat(difficulty));
 
     const gameBoard = newBoard.map(row => [...row]);
@@ -78,7 +80,9 @@ export default function SudokuGame({ lang }: Props) {
 
     setBoard(gameBoard.map(row => [...row]));
     setInitialBoard(gameBoard.map(row => [...row]));
-  };
+    setMessage('');
+    setIsComplete(false);
+  }, []);
 
   const handleCellChange = (row: number, col: number, value: string) => {
     if (initialBoard[row][col] !== 0) return;
@@ -96,7 +100,8 @@ export default function SudokuGame({ lang }: Props) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         if (board[i][j] === 0) {
-          alert(t('numberQuiz.game.messages.incorrect'));
+          setMessage(t('numberQuiz.game.messages.incorrect'));
+          setIsComplete(false);
           return;
         }
       }
@@ -109,20 +114,21 @@ export default function SudokuGame({ lang }: Props) {
         board[i][j] = 0;
         if (!isValid(board, i, j, temp)) {
           board[i][j] = temp;
-          alert(t('numberQuiz.game.messages.incorrect'));
+          setMessage(t('numberQuiz.game.messages.incorrect'));
+          setIsComplete(false);
           return;
         }
         board[i][j] = temp;
       }
     }
 
-    alert(t('numberQuiz.game.messages.complete'));
-    generateNewGame();
+    setMessage(t('numberQuiz.game.messages.complete'));
+    setIsComplete(true);
   };
 
   useEffect(() => {
     generateNewGame();
-  }, []);
+  }, [generateNewGame]);
 
   return (
     <div className="flex flex-col items-center">
@@ -133,13 +139,20 @@ export default function SudokuGame({ lang }: Props) {
         <select
           id="difficulty"
           className="bg-gray-700 text-white px-4 py-2 rounded-lg"
-          onChange={generateNewGame}
+          defaultValue="0.4"
+          onChange={() => generateNewGame()}
         >
-          <option value="0.2">{t('numberQuiz.game.difficulty.easy')}</option>
-          <option value="0.5" selected>{t('numberQuiz.game.difficulty.normal')}</option>
-          <option value="0.8">{t('numberQuiz.game.difficulty.hard')}</option>
+          <option value="0.3">{t('numberQuiz.game.difficulty.easy')}</option>
+          <option value="0.4">{t('numberQuiz.game.difficulty.normal')}</option>
+          <option value="0.6">{t('numberQuiz.game.difficulty.hard')}</option>
         </select>
       </div>
+
+      {message && (
+        <div className={`mb-4 p-3 rounded-lg ${isComplete ? 'bg-green-600' : 'bg-red-600'}`}>
+          {message}
+        </div>
+      )}
 
       <div className="grid grid-cols-9 gap-0.5 bg-purple-800 p-0.5 rounded-lg shadow-lg mb-6">
         {board.map((row, rowIndex) => (
