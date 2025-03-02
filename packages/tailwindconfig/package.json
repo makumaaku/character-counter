@@ -1,8 +1,0 @@
-{
-  "name": "@boring-tool/tailwindconfig",
-  "version": "0.0.0",
-  "private": true,
-  "devDependencies": {
-    "tailwindcss": "^3.4.1"
-  }
-}

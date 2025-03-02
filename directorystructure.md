@@ -31,7 +31,6 @@
 │       ├── columns.ts            # カラム定義
 │       └── metadata.ts           # メタデータ定義
 ├── assets/                       # アセットファイル
-├── packages/                     # パッケージディレクトリ
 ├── public/                       # 静的ファイル
 ├── .cursor/                      # Cursor設定
 ├── .git/                         # Gitリポジトリ
