@@ -1416,6 +1416,96 @@
     "result": {
       "selected": "Selected!",
       "placeholder": "Enter items (one per line)"
+    },
+    "content": {
+      "hero": {
+        "title": "Easy & Simple! Free Online Roulette Tool",
+        "description": "Just enter your options and spin to make fair decisions. Perfect for team decisions, games, raffles, and more.",
+        "darkMode": "※Dark mode supported for eye-friendly design!"
+      },
+      "howTo": {
+        "title": "Easy Steps to Use",
+        "steps": {
+          "input": {
+            "title": "Enter Options",
+            "description": "Click the 'Edit List' button and enter your options, one per line.",
+            "note": "※At least 2 options are required. Your options are automatically saved."
+          },
+          "spin": {
+            "title": "Spin the Roulette",
+            "description": "Click the 'Spin' button or press the Space key to spin the roulette wheel.",
+            "note": "※While the roulette is spinning, other operations are disabled."
+          },
+          "result": {
+            "title": "Check the Result",
+            "description": "When the roulette stops, the selected item will be displayed at the top of the screen.",
+            "note": "※The result is shown in a colored box for easy visibility."
+          }
+        }
+      },
+      "testimonials": {
+        "title": "User Testimonials",
+        "users": {
+          "teacher": {
+            "name": "Mr. Sato, Teacher",
+            "comment": "I use this when dividing students into groups for class activities. The students get excited watching the screen, which helps create a positive classroom atmosphere."
+          },
+          "team": {
+            "name": "Mr. Tanaka, Project Manager",
+            "comment": "We use this for team decision making. It's perfect for fairly deciding things like 'who will do the next presentation.' I appreciate the simple and user-friendly interface."
+          },
+          "family": {
+            "name": "Mrs. Suzuki, Homemaker",
+            "comment": "I use this to decide where to eat out or where to go on holidays with my family. The kids enjoy participating, and it has reduced disagreements in our family."
+          }
+        }
+      },
+      "features": {
+        "title": "Service Features & Benefits",
+        "items": {
+          "easy": {
+            "title": "Easy and Intuitive Operation",
+            "description": "Just enter your options and press the 'Spin' button. No special knowledge required - anyone can use it immediately."
+          },
+          "fair": {
+            "title": "Completely Random and Fair Selection",
+            "description": "Advanced algorithm ensures completely random results. Make reliable choices in situations where fair decisions are needed."
+          },
+          "visual": {
+            "title": "Visually Engaging Animation",
+            "description": "Colorful and smooth spinning animation makes the selection process visually enjoyable. Great for team or family use."
+          },
+          "free": {
+            "title": "Completely Free with No Limitations",
+            "description": "No registration required and completely free. No limit on the number of options, and can be used as many times as needed. Data is stored locally for privacy."
+          }
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "questions": {
+          "what": {
+            "question": "What is Web Roulette?",
+            "answer": "Web Roulette is an online tool for randomly selecting one option from multiple choices. It visually spins like a real roulette wheel to support fair decision making."
+          },
+          "usage": {
+            "question": "In what scenarios can it be used?",
+            "answer": "It can be used in any scenario requiring random selection: team role assignments, classroom group divisions, family decisions, game turn order, raffles, and more."
+          },
+          "save": {
+            "question": "Are my entered options saved?",
+            "answer": "Yes, your entered options are automatically saved in your browser's local storage. They will be displayed the next time you access the tool from the same device."
+          },
+          "limit": {
+            "question": "Is there a limit to the number of options?",
+            "answer": "There is no theoretical limit, but for visibility, around 20 options is optimal. If you have more, we recommend using the tool multiple times."
+          },
+          "mobile": {
+            "question": "Can I use it on mobile devices?",
+            "answer": "Yes, it works comfortably on all devices including smartphones and tablets. The responsive design optimizes the display for your screen size."
+          }
+        }
+      }
     }
   }
 } 

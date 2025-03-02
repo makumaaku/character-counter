@@ -26,6 +26,96 @@ type RouletteClientProps = {
       selected: string;
       placeholder: string;
     };
+    content?: {
+      hero: {
+        title: string;
+        description: string;
+        darkMode: string;
+      };
+      howTo: {
+        title: string;
+        steps: {
+          input: {
+            title: string;
+            description: string;
+            note: string;
+          };
+          spin: {
+            title: string;
+            description: string;
+            note: string;
+          };
+          result: {
+            title: string;
+            description: string;
+            note: string;
+          };
+        };
+      };
+      testimonials: {
+        title: string;
+        users: {
+          teacher: {
+            name: string;
+            comment: string;
+          };
+          team: {
+            name: string;
+            comment: string;
+          };
+          family: {
+            name: string;
+            comment: string;
+          };
+        };
+      };
+      features: {
+        title: string;
+        items: {
+          easy: {
+            title: string;
+            description: string;
+          };
+          fair: {
+            title: string;
+            description: string;
+          };
+          visual: {
+            title: string;
+            description: string;
+          };
+          free: {
+            title: string;
+            description: string;
+          };
+        };
+      };
+      faq: {
+        title: string;
+        questions: {
+          what: {
+            question: string;
+            answer: string;
+          };
+          usage: {
+            question: string;
+            answer: string;
+          };
+          save: {
+            question: string;
+            answer: string;
+          };
+          limit: {
+            question: string;
+            answer: string;
+          };
+          mobile: {
+            question: string;
+            answer: string;
+          };
+        };
+      };
+    };
   };
 }
 
@@ -219,6 +309,109 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
           </div>
         </div>
       </div>
+
+      {/* SEOテキストセクション */}
+      {translations.content && (
+        <main className="max-w-4xl mx-auto mt-16 text-white">
+          {/* Hero Section */}
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold mb-4">{translations.content.hero.title}</h2>
+            <p className="text-lg text-gray-300 mb-2">{translations.content.hero.description}</p>
+            <p className="text-sm text-purple-400">{translations.content.hero.darkMode}</p>
+          </div>
+
+          {/* How To Section */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">{translations.content.howTo.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.howTo.steps.input.title}</h3>
+                <p className="text-gray-300">{translations.content.howTo.steps.input.description}</p>
+                <p className="text-sm text-purple-400 mt-2">{translations.content.howTo.steps.input.note}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.howTo.steps.spin.title}</h3>
+                <p className="text-gray-300">{translations.content.howTo.steps.spin.description}</p>
+                <p className="text-sm text-purple-400 mt-2">{translations.content.howTo.steps.spin.note}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.howTo.steps.result.title}</h3>
+                <p className="text-gray-300">{translations.content.howTo.steps.result.description}</p>
+                <p className="text-sm text-purple-400 mt-2">{translations.content.howTo.steps.result.note}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">{translations.content.testimonials.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.testimonials.users.teacher.name}</h3>
+                <p className="text-gray-300">{translations.content.testimonials.users.teacher.comment}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.testimonials.users.team.name}</h3>
+                <p className="text-gray-300">{translations.content.testimonials.users.team.comment}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.testimonials.users.family.name}</h3>
+                <p className="text-gray-300">{translations.content.testimonials.users.family.comment}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">{translations.content.features.title}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.features.items.easy.title}</h3>
+                <p className="text-gray-300">{translations.content.features.items.easy.description}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.features.items.fair.title}</h3>
+                <p className="text-gray-300">{translations.content.features.items.fair.description}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.features.items.visual.title}</h3>
+                <p className="text-gray-300">{translations.content.features.items.visual.description}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.features.items.free.title}</h3>
+                <p className="text-gray-300">{translations.content.features.items.free.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-16 mb-16">
+            <h2 className="text-2xl font-bold mb-6 text-center">{translations.content.faq.title}</h2>
+            <div className="space-y-4">
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.faq.questions.what.question}</h3>
+                <p className="text-gray-300">{translations.content.faq.questions.what.answer}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.faq.questions.usage.question}</h3>
+                <p className="text-gray-300">{translations.content.faq.questions.usage.answer}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.faq.questions.save.question}</h3>
+                <p className="text-gray-300">{translations.content.faq.questions.save.answer}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.faq.questions.limit.question}</h3>
+                <p className="text-gray-300">{translations.content.faq.questions.limit.answer}</p>
+              </div>
+              <div className="bg-gray-700 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold mb-3">{translations.content.faq.questions.mobile.question}</h3>
+                <p className="text-gray-300">{translations.content.faq.questions.mobile.answer}</p>
+              </div>
+            </div>
+          </div>
+        </main>
+      )}
     </div>
   );
 } 

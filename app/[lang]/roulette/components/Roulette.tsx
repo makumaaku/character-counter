@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh, DoubleSide, MathUtils } from 'three';
 import { Text } from '@react-three/drei';
-import useSound from 'use-sound';
 import { VIBRANT_COLORS } from '../constants';
 
 export interface RouletteProps {
@@ -28,21 +27,6 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const DECELERATION_START = ACCELERATION_DURATION + CONSTANT_SPEED_DURATION; // 減速開始時間（秒）
   const MAX_SPEED = Math.PI * 6; // 最高速度
 
-  // 効果音の設定
-  const [playTickSound] = useSound('/sounds/tick.mp3', { 
-    volume: 0.5,
-    interrupt: true, // 音声の重複を許可
-    soundEnabled: true, // 常に音声を有効化
-    preload: true, // 事前ロード
-    html5: true, // Web Audio APIではなくHTML5 Audioを使用
-  });
-  const [playStopSound] = useSound('/sounds/stop.mp3', { 
-    volume: 0.7,
-    soundEnabled: true, // 常に音声を有効化
-    preload: true, // 事前ロード
-    html5: true, // Web Audio APIではなくHTML5 Audioを使用
-  });
-
   // ルーレットのサイズ設定
   const WHEEL_RADIUS = 3;
   const TEXT_RADIUS = WHEEL_RADIUS * 0.6;
@@ -52,9 +36,8 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   // visibilitychangeイベントの監視
   useEffect(() => {
     const handleVisibilityChange = () => {
-      // タブがバックグラウンドになった時も音声を継続させる
+      // タブがバックグラウンドになった時の処理
       if (document.hidden && isSpinningRef.current) {
-        // 既存の音声を停止せずに継続
         return;
       }
     };
@@ -99,7 +82,6 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
       currentRotation.current = Math.floor(currentRotation.current / (Math.PI * 2)) * Math.PI * 2 + targetAngle;
       wheelRef.current.rotation.z = currentRotation.current;
       
-      playStopSound();
       onRotationUpdate(-currentRotation.current);
       onSpinComplete();
       return;
@@ -126,20 +108,18 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
     wheelRef.current.rotation.z = currentRotation.current;
     onRotationUpdate(-currentRotation.current);
 
-    // セグメントの切り替わりを検出して音を鳴らす
+    // セグメントの切り替わりを検出
     const segmentAngle = (Math.PI * 2) / items.length;
     const currentAngle = -currentRotation.current % (Math.PI * 2);
     const currentSegmentIndex = Math.floor(currentAngle / segmentAngle);
 
     if (currentSegmentIndex !== lastSegmentIndex.current) {
-      playTickSound();
       lastSegmentIndex.current = currentSegmentIndex;
     }
 
     // 完全に停止した場合
     if (elapsedTime >= TOTAL_DURATION - 0.1) {
       if (isSpinningRef.current) {
-        playStopSound();
         isSpinningRef.current = false;
         onRotationUpdate(-currentRotation.current);
         onSpinComplete();
