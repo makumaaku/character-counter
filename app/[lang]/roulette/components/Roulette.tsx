@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Mesh, DoubleSide, MathUtils } from 'three';
+import { Mesh, DoubleSide, MathUtils, Group } from 'three';
 import { Text } from '@react-three/drei';
 import { VIBRANT_COLORS } from '../constants';
 
@@ -13,6 +13,7 @@ export interface RouletteProps {
 
 export default function Roulette({ items, isSpinning, onSpinComplete, onRotationUpdate }: RouletteProps) {
   const wheelRef = useRef<Mesh>(null);
+  const groupRef = useRef<Group>(null);
   const spinSpeed = useRef(0);
   const targetRotation = useRef(0);
   const currentRotation = useRef(0);
@@ -21,17 +22,34 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const startTime = useRef(0); // 回転開始時刻
   const speedVariationFactor = useRef(1); // 回転速度の変動係数
   const targetSegmentIndex = useRef(0); // 目標となるセグメントのインデックス
-  const TOTAL_DURATION = 10; // 合計回転時間（秒）
-  const ACCELERATION_DURATION = 2; // 加速時間（秒）
-  const CONSTANT_SPEED_DURATION = 2; // 最高速度維持時間（秒）
+  const TOTAL_DURATION = 8; // 合計回転時間（秒）- 8秒に変更
+  const ACCELERATION_DURATION = 2; // 加速時間（秒）- 2秒に変更
+  const CONSTANT_SPEED_DURATION = 2; // 最高速度維持時間（秒）- 2秒に変更
   const DECELERATION_START = ACCELERATION_DURATION + CONSTANT_SPEED_DURATION; // 減速開始時間（秒）
-  const MAX_SPEED = Math.PI * 6; // 最高速度
+  // 減速時間は TOTAL_DURATION - DECELERATION_START = 4秒
+  const MAX_SPEED = Math.PI * 6; // 最高速度 - 3回転/秒に増加（より速く回転）
+  const MAX_ROTATION_ANGLE = Math.PI / 9; // 3Dでの最大傾き角度 - 20度（π/9ラジアン）
+
+  // 初回レンダリング時のアニメーション用の状態
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  const initialAnimationRef = useRef({ time: 0, duration: 2.1 }); // 持続時間を0.7倍に短縮（3 * 0.7 = 2.1）
 
   // ルーレットのサイズ設定
   const WHEEL_RADIUS = 3;
   const TEXT_RADIUS = WHEEL_RADIUS * 0.6;
   const CENTER_RADIUS = WHEEL_RADIUS * 0.15;
   const ARROW_POSITION = WHEEL_RADIUS + 0.3;
+
+  // 初回レンダリング時のアニメーション
+  useEffect(() => {
+    if (isFirstRender) {
+      // アニメーション終了後に初回レンダリングフラグをfalseに設定
+      const timer = setTimeout(() => {
+        setIsFirstRender(false);
+      }, initialAnimationRef.current.duration * 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isFirstRender]);
 
   // visibilitychangeイベントの監視
   useEffect(() => {
@@ -60,26 +78,63 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
       const segmentAngle = (Math.PI * 2) / items.length;
       const targetAngle = segmentAngle * targetSegmentIndex.current;
       
-      // 最低20回転 + ランダムな追加回転 + 目標位置までの回転
-      const baseRotations = 20 + Math.random() * 5;
-      targetRotation.current = (baseRotations * Math.PI * 2) + targetAngle;
+      // Z軸の回転は制限なし
+      targetRotation.current = targetAngle;
     }
   }, [isSpinning, items.length]);
 
   useFrame((_, delta) => {
-    if (!wheelRef.current || !isSpinningRef.current) return;
+    if (!wheelRef.current || !groupRef.current) return;
+
+    // グループの回転を制限（毎フレーム適用）- X軸とY軸のみ制限
+    if (groupRef.current) {
+      // X軸とY軸の回転を最大20度（±0.35ラジアン）に制限
+      groupRef.current.rotation.x = Math.max(-MAX_ROTATION_ANGLE, Math.min(MAX_ROTATION_ANGLE, groupRef.current.rotation.x));
+      groupRef.current.rotation.y = Math.max(-MAX_ROTATION_ANGLE, Math.min(MAX_ROTATION_ANGLE, groupRef.current.rotation.y));
+      // Z軸は制限しない
+    }
+
+    // 初回レンダリング時のアニメーション
+    if (isFirstRender) {
+      initialAnimationRef.current.time += delta;
+      const t = initialAnimationRef.current.time;
+      const duration = initialAnimationRef.current.duration;
+      
+      // 揺れるアニメーション - より大きな揺れに
+      if (t < duration) {
+        // より大きな振幅で揺らす
+        const swayX = Math.sin(t * 2.5) * 0.15 * Math.max(0, 1 - t / duration);
+        const swayY = Math.cos(t * 2) * 0.12 * Math.max(0, 1 - t / duration);
+        const swayZ = Math.sin(t * 1.5) * 0.08 * Math.max(0, 1 - t / duration);
+        
+        // グループ全体を揺らす
+        groupRef.current.rotation.x = swayX;
+        groupRef.current.rotation.y = swayY;
+        
+        // ホイールを少し回転させる
+        wheelRef.current.rotation.z = swayZ;
+      } else {
+        // アニメーション終了時に位置をリセット
+        groupRef.current.rotation.x = 0;
+        groupRef.current.rotation.y = 0;
+        wheelRef.current.rotation.z = 0;
+      }
+      return;
+    }
+
+    if (!isSpinningRef.current) return;
 
     const currentTime = performance.now() / 1000;
     const elapsedTime = currentTime - startTime.current;
 
-    // 10秒経過で強制停止
+    // 回転時間が経過したら停止
     if (elapsedTime >= TOTAL_DURATION) {
       isSpinningRef.current = false;
       
       // 最終的な回転位置を目標位置に調整
       const segmentAngle = (Math.PI * 2) / items.length;
       const targetAngle = segmentAngle * targetSegmentIndex.current;
-      currentRotation.current = Math.floor(currentRotation.current / (Math.PI * 2)) * Math.PI * 2 + targetAngle;
+      currentRotation.current = targetAngle;
       wheelRef.current.rotation.z = currentRotation.current;
       
       onRotationUpdate(-currentRotation.current);
@@ -89,20 +144,20 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
 
     // 速度パターンの計算
     if (elapsedTime <= ACCELERATION_DURATION) {
-      // 加速フェーズ（0-2秒）
+      // 加速フェーズ (0-2秒)
       spinSpeed.current = MathUtils.lerp(0, MAX_SPEED, elapsedTime / ACCELERATION_DURATION) * speedVariationFactor.current;
     } else if (elapsedTime >= DECELERATION_START) {
-      // 減速フェーズ（4-10秒）: より長いイージングで滑らかに減速
+      // 減速フェーズ (4-8秒)
       const decelerationProgress = (elapsedTime - DECELERATION_START) / (TOTAL_DURATION - DECELERATION_START);
       // イージング関数を使用してより自然な減速を実現
       const easeOutProgress = 1 - Math.pow(1 - decelerationProgress, 3); // cubic ease-out
       spinSpeed.current = MathUtils.lerp(MAX_SPEED, 0, easeOutProgress) * speedVariationFactor.current;
     } else {
-      // 最高速度維持フェーズ（2-4秒）
+      // 最高速度維持フェーズ (2-4秒)
       spinSpeed.current = MAX_SPEED * speedVariationFactor.current;
     }
 
-    // 回転の更新
+    // 回転の更新（Z軸は制限なし）
     const rotation = spinSpeed.current * delta;
     currentRotation.current += rotation;
     wheelRef.current.rotation.z = currentRotation.current;
@@ -130,7 +185,7 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
   const segmentAngle = (Math.PI * 2) / items.length;
 
   return (
-    <group>
+    <group ref={groupRef}>
       {/* 基本的な環境光のみ維持 */}
       <ambientLight intensity={1.0} />
 
