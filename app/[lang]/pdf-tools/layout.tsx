@@ -83,6 +83,7 @@ export async function generateMetadata(
       "JPG to PDF conversion",
       "Web to PDF conversion",
       "PDF to Word conversion",
+      "PDF to PNG conversion",
       "Free to use",
       "No registration required"
     ],
@@ -112,6 +113,12 @@ export async function generateMetadata(
         "name": t('pdfToWord.meta.title'),
         "description": t('pdfToWord.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-word`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('pdfToPng.meta.title'),
+        "description": t('pdfToPng.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-png`
       }
     ]
   };

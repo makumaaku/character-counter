@@ -40,27 +40,31 @@
   "pdfTools": {
     "meta": {
       "title": "PDFツール - PDFファイルの変換、編集、管理",
-      "description": "PDFファイルを変換、編集、管理するための無料オンラインツール。インストール不要、ブラウザで直接動作します。",
+      "description": "無料のオンラインPDFツールでPDFファイルを変換、編集、管理できます。インストール不要で、ブラウザ上で直接動作します。",
       "keywords": "pdfツール, pdf変換, pdfからjpg, pdfエディタ, オンラインpdfツール, 無料pdfツール"
     },
     "title": "PDFツール",
     "description": "PDFファイルを変換、編集、管理するための無料オンラインツール",
     "tools": {
       "pdfToJpg": {
-        "title": "PDF to JPG変換ツール",
+        "title": "PDFからJPGへの変換",
         "description": "PDFページを調整可能な品質でJPG画像に変換"
       },
       "jpgToPdf": {
-        "title": "JPG to PDF変換ツール",
+        "title": "JPGからPDFへの変換",
         "description": "JPG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
       },
       "webToPdf": {
-        "title": "Web to PDF変換ツール",
-        "description": "ウェブページをワンクリックでPDFドキュメントに変換"
+        "title": "WebページからPDFへの変換",
+        "description": "ワンクリックで任意のWebページをPDFドキュメントに変換"
       },
       "pdfToWord": {
-        "title": "PDF to Word変換ツール",
+        "title": "PDFからWordへの変換",
         "description": "PDFドキュメントを編集可能なWordファイルに簡単に変換"
+      },
+      "pdfToPng": {
+        "title": "PDFからPNGへの変換",
+        "description": "PDFページを透過対応の高品質PNG画像に変換"
       }
     }
   },
@@ -217,6 +221,41 @@
       "fileSize": "ファイルサイズが20MBの制限を超えています"
     },
     "loading": "必要なライブラリを読み込み中..."
+  },
+  "pdfToPng": {
+    "meta": {
+      "title": "PDFからPNGへの変換 - PDFを透過PNG画像に変換",
+      "description": "無料のオンラインツールでPDFドキュメントを透過対応のPNG画像に変換。各ページを個別の高品質PNG画像に変換します。インストール不要です。",
+      "keywords": "pdfからpng, pdf画像変換, pdfをpngに変換, pdf変換, 透過png, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "PDFからPNGへの変換",
+    "description": "PDFページを透過対応の高品質PNG画像に変換",
+    "form": {
+      "upload": {
+        "label": "PDFファイルをアップロード",
+        "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "PDFファイルをここにドロップ..."
+      },
+      "quality": {
+        "label": "画像品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "downloadAll": "すべてダウンロード",
+      "download": "ダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PDFファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが20MBの制限を超えています"
+    }
   },
   "characterCounter": {
     "meta": {
