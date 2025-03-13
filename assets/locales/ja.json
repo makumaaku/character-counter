@@ -65,6 +65,10 @@
       "pdfToPng": {
         "title": "PDFからPNGへの変換",
         "description": "PDFページを透過対応の高品質PNG画像に変換"
+      },
+      "pngToPdf": {
+        "title": "PNGからPDFへの変換",
+        "description": "PNG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
       }
     }
   },
@@ -255,6 +259,40 @@
     "error": {
       "fileType": "PDFファイルをアップロードしてください",
       "fileSize": "ファイルサイズが20MBの制限を超えています"
+    }
+  },
+  "pngToPdf": {
+    "meta": {
+      "title": "PNG to PDF変換ツール - オンラインで画像をPDFに変換",
+      "description": "PNG画像をPDFドキュメントに変換する無料オンラインツール。複数の画像を1つのPDFにまとめてカスタマイズ可能。インストール不要。",
+      "keywords": "pngからpdf, 画像からpdf, pngをpdfに変換, 画像変換, オンライン画像変換, 無料画像変換"
+    },
+    "title": "PNG to PDF変換ツール",
+    "description": "PNG画像をカスタマイズ可能な設定でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "PNGファイルをアップロード",
+        "button": "PNGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "PNGファイルをここにドロップ..."
+      },
+      "quality": {
+        "label": "PDF品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PNGファイルのみをアップロードしてください",
+      "fileSize": "ファイルサイズの合計が20MB制限を超えています"
     }
   },
   "characterCounter": {

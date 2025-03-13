@@ -46,6 +46,10 @@
       "pdfToPng": {
         "title": "PDF to PNG Converter",
         "description": "Convert PDF pages to high-quality PNG images with transparency support"
+      },
+      "pngToPdf": {
+        "title": "PNG to PDF Converter",
+        "description": "Convert PNG images to PDF documents with customizable settings"
       }
     },
     "meta": {
@@ -1535,12 +1539,12 @@
   },
   "pdfTools": {
     "meta": {
-      "title": "PDF Tools - Convert, Edit and Manage PDF Files",
-      "description": "Free online PDF tools to convert, edit, and manage your PDF files. No installation required, works directly in your browser.",
+      "title": "PDF Tools - Convert, Edit, and Manage PDF Files",
+      "description": "Free online PDF tools to convert, edit, and manage PDF files. No installation required, works directly in your browser.",
       "keywords": "pdf tools, pdf converter, pdf to jpg, pdf editor, online pdf tools, free pdf tools"
     },
     "title": "PDF Tools",
-    "description": "Free online tools to convert, edit, and manage your PDF files",
+    "description": "Free online tools to convert, edit, and manage PDF files",
     "tools": {
       "pdfToJpg": {
         "title": "PDF to JPG Converter",
@@ -1561,6 +1565,10 @@
       "pdfToPng": {
         "title": "PDF to PNG Converter",
         "description": "Convert PDF pages to high-quality PNG images with transparency support"
+      },
+      "pngToPdf": {
+        "title": "PNG to PDF Converter",
+        "description": "Convert PNG images to PDF documents with customizable settings"
       }
     }
   },
@@ -1751,6 +1759,40 @@
     "error": {
       "fileType": "Please upload a PDF file",
       "fileSize": "File size exceeds 20MB limit"
+    }
+  },
+  "pngToPdf": {
+    "meta": {
+      "title": "PNG to PDF Converter - Convert Images to PDF Online",
+      "description": "Free online tool to convert PNG images to PDF documents. Combine multiple images into a single PDF with customizable settings. No installation required.",
+      "keywords": "png to pdf, image to pdf, convert png to pdf, image converter, online image converter, free image converter"
+    },
+    "title": "PNG to PDF Converter",
+    "description": "Convert PNG images to PDF documents with customizable settings",
+    "form": {
+      "upload": {
+        "label": "Upload PNG Files",
+        "button": "Drag & drop PNG files here, or click to select",
+        "dragDrop": "Drop the PNG files here..."
+      },
+      "quality": {
+        "label": "PDF Quality",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "convert": "Convert to PDF"
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No files selected"
+    },
+    "error": {
+      "fileType": "Please upload PNG files only",
+      "fileSize": "Total file size exceeds 20MB limit"
     }
   }
 } 
