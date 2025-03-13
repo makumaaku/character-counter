@@ -80,6 +80,9 @@ export async function generateMetadata(
     },
     "featureList": [
       "PDF to JPG conversion",
+      "JPG to PDF conversion",
+      "Web to PDF conversion",
+      "PDF to Word conversion",
       "Free to use",
       "No registration required"
     ],
@@ -91,6 +94,24 @@ export async function generateMetadata(
         "name": t('pdfToJpg.meta.title'),
         "description": t('pdfToJpg.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-jpg`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('jpgToPdf.meta.title'),
+        "description": t('jpgToPdf.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/jpg-to-pdf`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('webToPdf.meta.title'),
+        "description": t('webToPdf.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/web-to-pdf`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('pdfToWord.meta.title'),
+        "description": t('pdfToWord.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-word`
       }
     ]
   };
