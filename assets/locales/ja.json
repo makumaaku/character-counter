@@ -57,6 +57,10 @@
       "webToPdf": {
         "title": "Web to PDF変換ツール",
         "description": "ウェブページをワンクリックでPDFドキュメントに変換"
+      },
+      "pdfToWord": {
+        "title": "PDF to Word変換ツール",
+        "description": "PDFドキュメントを編集可能なWordファイルに簡単に変換"
       }
     }
   },
@@ -175,6 +179,39 @@
       "invalidUrl": "無効なURLです。有効なウェブサイトアドレスを入力してください。",
       "conversionFailed": "変換に失敗しました。もう一度お試しください。",
       "networkError": "ネットワークエラー。接続を確認して再試行してください。"
+    }
+  },
+  "pdfToWord": {
+    "meta": {
+      "title": "PDF to Word変換ツール - PDFを編集可能なドキュメントに変換",
+      "description": "PDFドキュメントを編集可能なWordファイルに変換する無料オンラインツール。PDFからテキストと書式を抽出して簡単に編集。インストール不要。",
+      "keywords": "pdfからword, pdfからdocx, pdfをwordに変換, pdf変換, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "PDF to Word変換ツール",
+    "description": "PDFドキュメントを編集可能なWordファイルに変換",
+    "form": {
+      "upload": {
+        "label": "PDFファイルをアップロード",
+        "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "PDFファイルをここにドロップ..."
+      },
+      "format": {
+        "label": "出力形式",
+        "docx": "DOCX",
+        "doc": "DOC"
+      },
+      "convert": "Wordに変換"
+    },
+    "result": {
+      "download": "Wordドキュメントをダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PDFファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが20MBの制限を超えています"
     }
   },
   "characterCounter": {

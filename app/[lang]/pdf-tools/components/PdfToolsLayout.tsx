@@ -30,6 +30,10 @@ export default function PdfToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'pdfTools.tools.webToPdf.title'),
       path: `/pdf-tools/web-to-pdf`
+    },
+    {
+      name: translate(lang, 'pdfTools.tools.pdfToWord.title'),
+      path: `/pdf-tools/pdf-to-word`
     }
     // Add more PDF tools here as they become available
   ]
