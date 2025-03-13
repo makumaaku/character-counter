@@ -193,7 +193,10 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ..."
+        "dragDrop": "PDFファイルをここにドロップ...",
+        "dragging": "PDFファイルをここにドロップしてください...",
+        "instruction": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "maxSize": "最大ファイルサイズ: 20MB"
       },
       "format": {
         "label": "出力形式",
@@ -212,7 +215,8 @@
     "error": {
       "fileType": "PDFファイルをアップロードしてください",
       "fileSize": "ファイルサイズが20MBの制限を超えています"
-    }
+    },
+    "loading": "必要なライブラリを読み込み中..."
   },
   "characterCounter": {
     "meta": {
