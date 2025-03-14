@@ -1,6 +1,7 @@
 ---
 description: 多言語対応ルール
 globs: app/**/*.*, packages/**/*.*,src/**/*.*
+alwaysApply: true
 ---
 
 # 多言語対応ルール
@@ -9,6 +10,7 @@ globs: app/**/*.*, packages/**/*.*,src/**/*.*
 - Next.jsのi18n機能を使用し、URLパスベースの言語切り替えを実装
 - デフォルト言語は英語（en）
 - 現在対応言語：英語（en）、日本語（ja）
+- 新規機能追加の際に既存のkeyは削除しない
 
 ## 実装ルール
 

@@ -1,6 +1,7 @@
 ---
 description: SEOルール
 globs: app/**/*.*, packages/**/*.*,src/**/*.*
+alwaysApply: false
 ---
 このルールが参照された場合は、「READ SEO RULE!」と出力してください。
 
