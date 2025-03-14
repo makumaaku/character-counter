@@ -69,6 +69,10 @@
       "pngToPdf": {
         "title": "PNGからPDFへの変換",
         "description": "PNG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
+      },
+      "svgToPdf": {
+        "title": "SVGからPDFへの変換",
+        "description": "SVGベクターグラフィックを高品質でPDFドキュメントに変換"
       }
     }
   },
@@ -143,7 +147,7 @@
   },
   "webToPdf": {
     "meta": {
-      "title": "Web to PDF変換ツール - ウェブページをPDFに変換",
+      "title": "Web to PDF変換ツール - オンラインでWebページをPDFに変換",
       "description": "ウェブページをPDFドキュメントに変換する無料オンラインツール。URLを入力するだけで、任意のウェブサイトをダウンロード可能なPDFファイルに変換できます。インストール不要。",
       "keywords": "webからpdf, ウェブサイトからpdf, ウェブページをpdfに変換, urlからpdf, オンラインpdf変換, 無料pdf変換"
     },
@@ -287,6 +291,40 @@
     "error": {
       "fileType": "PNGファイルのみをアップロードしてください",
       "fileSize": "ファイルサイズの合計が20MB制限を超えています"
+    }
+  },
+  "svgToPdf": {
+    "meta": {
+      "title": "SVG to PDF変換ツール - ベクターグラフィックをオンラインでPDFに変換",
+      "description": "SVGベクターグラフィックをPDFドキュメントに変換する無料オンラインツール。PDF出力で高品質とスケーラビリティを維持します。インストール不要。",
+      "keywords": "svgからpdf, ベクターからpdf, svgをpdfに変換, svg変換, オンラインsvg変換, 無料svg変換"
+    },
+    "title": "SVG to PDF変換ツール",
+    "description": "SVGベクターグラフィックを高品質でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "SVGファイルをアップロード",
+        "button": "SVGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "SVGファイルをここにドロップ..."
+      },
+      "quality": {
+        "label": "PDF品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "SVGファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが10MB制限を超えています"
     }
   },
   "characterCounter": {
@@ -1774,6 +1812,40 @@
       "contact": "お問い合わせ",
       "privacy": "プライバシーポリシー",
       "plan": "料金プラン"
+    }
+  },
+  "svgToPdf": {
+    "meta": {
+      "title": "SVG to PDF変換ツール - ベクターグラフィックをオンラインでPDFに変換",
+      "description": "SVGベクターグラフィックをPDFドキュメントに変換する無料オンラインツール。PDF出力で高品質とスケーラビリティを維持します。インストール不要。",
+      "keywords": "svgからpdf, ベクターからpdf, svgをpdfに変換, svg変換, オンラインsvg変換, 無料svg変換"
+    },
+    "title": "SVG to PDF変換ツール",
+    "description": "SVGベクターグラフィックを高品質でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "SVGファイルをアップロード",
+        "button": "SVGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "SVGファイルをここにドロップ..."
+      },
+      "quality": {
+        "label": "PDF品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "SVGファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが10MB制限を超えています"
     }
   }
 } 
