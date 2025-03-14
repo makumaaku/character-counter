@@ -275,12 +275,6 @@
         "button": "PNGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
         "dragDrop": "PNGファイルをここにドロップ..."
       },
-      "quality": {
-        "label": "PDF品質",
-        "low": "低",
-        "medium": "中",
-        "high": "高"
-      },
       "convert": "PDFに変換"
     },
     "result": {

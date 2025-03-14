@@ -14,12 +14,6 @@ type Translations = {
       button: string
       dragDrop: string
     }
-    quality: {
-      label: string
-      low: string
-      medium: string
-      high: string
-    }
     convert: string
   }
   result: {
@@ -39,11 +33,8 @@ type Props = {
   translations: Translations
 }
 
-type ImageQuality = 'low' | 'medium' | 'high'
-
 export default function PngToPdfClient({ translations }: Props) {
   const [files, setFiles] = useState<File[]>([])
-  const [quality, setQuality] = useState<ImageQuality>('medium')
   const [isProcessing, setIsProcessing] = useState(false)
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -96,8 +87,8 @@ export default function PngToPdfClient({ translations }: Props) {
         unit: 'mm'
       })
 
-      // Quality settings
-      const imageQuality = quality === 'low' ? 0.7 : quality === 'medium' ? 0.85 : 0.95
+      // Use medium compression level as default
+      const compressionLevel = 'MEDIUM';
 
       // Process each file
       for (let i = 0; i < files.length; i++) {
@@ -139,8 +130,8 @@ export default function PngToPdfClient({ translations }: Props) {
         const x = (pageWidth - imgWidth) / 2
         const y = (pageHeight - imgHeight) / 2
         
-        // Add the image to the PDF
-        pdf.addImage(imageUrl, 'PNG', x, y, imgWidth, imgHeight, undefined, 'FAST', 0, imageQuality)
+        // Add the image to the PDF with proper compression settings
+        pdf.addImage(imageUrl, 'PNG', x, y, imgWidth, imgHeight, undefined, compressionLevel)
         
         // Clean up the object URL
         URL.revokeObjectURL(imageUrl)
@@ -212,48 +203,6 @@ export default function PngToPdfClient({ translations }: Props) {
             {error}
           </div>
         )}
-      </div>
-
-      <div className="bg-gray-700 rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">{translations.form.quality.label}</h2>
-        
-        <div className="flex space-x-4">
-          <button
-            type="button"
-            onClick={() => setQuality('low')}
-            className={`px-4 py-2 rounded-lg ${
-              quality === 'low' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-600 hover:bg-gray-500'
-            }`}
-          >
-            {translations.form.quality.low}
-          </button>
-          
-          <button
-            type="button"
-            onClick={() => setQuality('medium')}
-            className={`px-4 py-2 rounded-lg ${
-              quality === 'medium' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-600 hover:bg-gray-500'
-            }`}
-          >
-            {translations.form.quality.medium}
-          </button>
-          
-          <button
-            type="button"
-            onClick={() => setQuality('high')}
-            className={`px-4 py-2 rounded-lg ${
-              quality === 'high' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-600 hover:bg-gray-500'
-            }`}
-          >
-            {translations.form.quality.high}
-          </button>
-        </div>
       </div>
 
       <div className="text-center">

@@ -1775,12 +1775,6 @@
         "button": "Drag & drop PNG files here, or click to select",
         "dragDrop": "Drop the PNG files here..."
       },
-      "quality": {
-        "label": "PDF Quality",
-        "low": "Low",
-        "medium": "Medium",
-        "high": "High"
-      },
       "convert": "Convert to PDF"
     },
     "result": {

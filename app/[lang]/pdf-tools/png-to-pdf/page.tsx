@@ -11,10 +11,6 @@ export default async function PngToPdf({ params }: { params: Promise<{ lang: str
     uploadLabel,
     uploadButton,
     dragDropText,
-    qualityLabel,
-    qualityLow,
-    qualityMedium,
-    qualityHigh,
     convertButton,
     downloadButton,
     processingText,
@@ -27,10 +23,6 @@ export default async function PngToPdf({ params }: { params: Promise<{ lang: str
     translate(lang, 'pngToPdf.form.upload.label'),
     translate(lang, 'pngToPdf.form.upload.button'),
     translate(lang, 'pngToPdf.form.upload.dragDrop'),
-    translate(lang, 'pngToPdf.form.quality.label'),
-    translate(lang, 'pngToPdf.form.quality.low'),
-    translate(lang, 'pngToPdf.form.quality.medium'),
-    translate(lang, 'pngToPdf.form.quality.high'),
     translate(lang, 'pngToPdf.form.convert'),
     translate(lang, 'pngToPdf.result.download'),
     translate(lang, 'pngToPdf.status.processing'),
@@ -47,12 +39,6 @@ export default async function PngToPdf({ params }: { params: Promise<{ lang: str
         label: uploadLabel,
         button: uploadButton,
         dragDrop: dragDropText
-      },
-      quality: {
-        label: qualityLabel,
-        low: qualityLow,
-        medium: qualityMedium,
-        high: qualityHigh
       },
       convert: convertButton
     },
