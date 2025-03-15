@@ -50,6 +50,10 @@
       "pngToPdf": {
         "title": "PNG to PDF Converter",
         "description": "Convert PNG images to PDF documents with customizable settings"
+      },
+      "svgToPdf": {
+        "title": "SVG to PDF Converter",
+        "description": "Convert SVG vector graphics to PDF documents with high quality"
       }
     },
     "meta": {
@@ -1569,6 +1573,10 @@
       "pngToPdf": {
         "title": "PNG to PDF Converter",
         "description": "Convert PNG images to PDF documents with customizable settings"
+      },
+      "svgToPdf": {
+        "title": "SVG to PDF Converter",
+        "description": "Convert SVG vector graphics to PDF documents with high quality"
       }
     }
   },
@@ -1787,6 +1795,34 @@
     "error": {
       "fileType": "Please upload PNG files only",
       "fileSize": "Total file size exceeds 20MB limit"
+    }
+  },
+  "svgToPdf": {
+    "meta": {
+      "title": "SVG to PDF Converter - Convert Vector Graphics to PDF Online",
+      "description": "Free online tool to convert SVG vector graphics to PDF documents. Maintain high quality and scalability in your PDF output. No installation required.",
+      "keywords": "svg to pdf, vector to pdf, convert svg to pdf, svg converter, online svg converter, free svg converter"
+    },
+    "title": "SVG to PDF Converter",
+    "description": "Convert SVG vector graphics to PDF documents with high quality",
+    "form": {
+      "upload": {
+        "label": "Upload SVG File",
+        "button": "Drag & drop an SVG file here, or click to select",
+        "dragDrop": "Drop the SVG file here..."
+      },
+      "convert": "Convert to PDF"
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No file selected"
+    },
+    "error": {
+      "fileType": "Please upload an SVG file",
+      "fileSize": "File size exceeds 10MB limit"
     }
   }
 } 

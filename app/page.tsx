@@ -74,6 +74,9 @@ export default function Home() {
               <Link href="/pdf-tools/pdf-to-word" className="text-white hover:underline ml-4">PDF to Word Converter</Link>
             </li>
             <li>
+              <Link href="/pdf-tools/svg-to-pdf" className="text-white hover:underline ml-4">SVG to PDF Converter</Link>
+            </li>
+            <li>
               <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>
