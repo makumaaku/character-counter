@@ -50,6 +50,12 @@ export default async function PdfTools({ params }: Props) {
       description: translate(lang, 'pdfTools.tools.svgToPdf.description'),
       path: `/${lang}/pdf-tools/svg-to-pdf`,
       icon: "🔄"
+    },
+    {
+      title: translate(lang, 'pdfTools.tools.pdfToEpub.title'),
+      description: translate(lang, 'pdfTools.tools.pdfToEpub.description'),
+      path: `/${lang}/pdf-tools/pdf-to-epub`,
+      icon: "📚"
     }
     // More PDF tools can be added here in the future
   ]
