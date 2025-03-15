@@ -295,23 +295,17 @@
   },
   "svgToPdf": {
     "meta": {
-      "title": "SVG to PDF変換ツール - ベクターグラフィックをオンラインでPDFに変換",
-      "description": "SVGベクターグラフィックをPDFドキュメントに変換する無料オンラインツール。PDF出力で高品質とスケーラビリティを維持します。インストール不要。",
-      "keywords": "svgからpdf, ベクターからpdf, svgをpdfに変換, svg変換, オンラインsvg変換, 無料svg変換"
+      "title": "SVG to PDF 変換ツール - ベクターグラフィックをPDFに変換",
+      "description": "SVGベクターグラフィックをPDFドキュメントに変換する無料オンラインツール。高品質とスケーラビリティを維持したPDF出力を実現します。インストール不要。",
+      "keywords": "svg to pdf, ベクター to pdf, svg変換, svg コンバーター, オンラインsvg変換, 無料svg変換"
     },
-    "title": "SVG to PDF変換ツール",
-    "description": "SVGベクターグラフィックを高品質でPDFドキュメントに変換",
+    "title": "SVG to PDF 変換ツール",
+    "description": "SVGベクターグラフィックを高品質なPDFドキュメントに変換",
     "form": {
       "upload": {
         "label": "SVGファイルをアップロード",
         "button": "SVGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
         "dragDrop": "SVGファイルをここにドロップ..."
-      },
-      "quality": {
-        "label": "PDF品質",
-        "low": "低",
-        "medium": "中",
-        "high": "高"
       },
       "convert": "PDFに変換"
     },
@@ -1813,39 +1807,5 @@
       "privacy": "プライバシーポリシー",
       "plan": "料金プラン"
     }
-  },
-  "svgToPdf": {
-    "meta": {
-      "title": "SVG to PDF変換ツール - ベクターグラフィックをオンラインでPDFに変換",
-      "description": "SVGベクターグラフィックをPDFドキュメントに変換する無料オンラインツール。PDF出力で高品質とスケーラビリティを維持します。インストール不要。",
-      "keywords": "svgからpdf, ベクターからpdf, svgをpdfに変換, svg変換, オンラインsvg変換, 無料svg変換"
-    },
-    "title": "SVG to PDF変換ツール",
-    "description": "SVGベクターグラフィックを高品質でPDFドキュメントに変換",
-    "form": {
-      "upload": {
-        "label": "SVGファイルをアップロード",
-        "button": "SVGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "SVGファイルをここにドロップ..."
-      },
-      "quality": {
-        "label": "PDF品質",
-        "low": "低",
-        "medium": "中",
-        "high": "高"
-      },
-      "convert": "PDFに変換"
-    },
-    "result": {
-      "download": "PDFをダウンロード"
-    },
-    "status": {
-      "processing": "処理中...",
-      "noFile": "ファイルが選択されていません"
-    },
-    "error": {
-      "fileType": "SVGファイルをアップロードしてください",
-      "fileSize": "ファイルサイズが10MB制限を超えています"
-    }
   }
-} 
+}

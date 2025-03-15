@@ -1811,12 +1811,6 @@
         "button": "Drag & drop an SVG file here, or click to select",
         "dragDrop": "Drop the SVG file here..."
       },
-      "quality": {
-        "label": "PDF Quality",
-        "low": "Low",
-        "medium": "Medium",
-        "high": "High"
-      },
       "convert": "Convert to PDF"
     },
     "result": {

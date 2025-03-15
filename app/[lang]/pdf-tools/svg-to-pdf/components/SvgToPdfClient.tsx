@@ -14,12 +14,6 @@ type Translations = {
       button: string
       dragDrop: string
     }
-    quality: {
-      label: string
-      low: string
-      medium: string
-      high: string
-    }
     convert: string
   }
   result: {
@@ -39,14 +33,11 @@ type Props = {
   translations: Translations
 }
 
-type Quality = 'low' | 'medium' | 'high'
-
 export default function SvgToPdfClient({ translations }: Props) {
   const [files, setFiles] = useState<File[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [quality, setQuality] = useState<Quality>('medium')
 
   // Handle file drop
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -96,9 +87,6 @@ export default function SvgToPdfClient({ translations }: Props) {
         orientation: 'portrait',
         unit: 'mm'
       })
-
-      // Get compression level based on selected quality
-      const compressionLevel = quality === 'low' ? 'FAST' : quality === 'high' ? 'SLOW' : 'MEDIUM'
 
       // Process the SVG file
       const file = files[0]
@@ -161,8 +149,25 @@ export default function SvgToPdfClient({ translations }: Props) {
       const x = (pageWidth - imgWidth) / 2
       const y = (pageHeight - imgHeight) / 2
       
-      // Add the SVG to the PDF
-      pdf.addImage(svgUrl, 'SVG', x, y, imgWidth, imgHeight, undefined, compressionLevel)
+      // Create a canvas element to draw the SVG
+      const canvas = document.createElement('canvas')
+      canvas.width = imgWidth * 4 // Multiply by 4 for better quality
+      canvas.height = imgHeight * 4
+      const ctx = canvas.getContext('2d')
+      
+      if (ctx) {
+        // Scale for better quality
+        ctx.scale(4, 4)
+        
+        // Draw the SVG image to the canvas
+        ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+        
+        // Convert canvas to data URL (PNG format)
+        const dataUrl = canvas.toDataURL('image/png')
+        
+        // Add the image to the PDF
+        pdf.addImage(dataUrl, 'PNG', x, y, imgWidth, imgHeight)
+      }
       
       // Clean up the object URL
       URL.revokeObjectURL(svgUrl)
@@ -226,45 +231,6 @@ export default function SvgToPdfClient({ translations }: Props) {
               </ul>
             </div>
           )}
-        </div>
-        
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold mb-2">{translations.form.quality.label}</h3>
-          <div className="flex space-x-4">
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                name="quality"
-                value="low"
-                checked={quality === 'low'}
-                onChange={() => setQuality('low')}
-                className="form-radio h-4 w-4 text-blue-600"
-              />
-              <span className="ml-2">{translations.form.quality.low}</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                name="quality"
-                value="medium"
-                checked={quality === 'medium'}
-                onChange={() => setQuality('medium')}
-                className="form-radio h-4 w-4 text-blue-600"
-              />
-              <span className="ml-2">{translations.form.quality.medium}</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                name="quality"
-                value="high"
-                checked={quality === 'high'}
-                onChange={() => setQuality('high')}
-                className="form-radio h-4 w-4 text-blue-600"
-              />
-              <span className="ml-2">{translations.form.quality.high}</span>
-            </label>
-          </div>
         </div>
         
         {error && (

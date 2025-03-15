@@ -11,10 +11,6 @@ export default async function SvgToPdf({ params }: { params: Promise<{ lang: str
     uploadLabel,
     uploadButton,
     dragDropText,
-    qualityLabel,
-    qualityLow,
-    qualityMedium,
-    qualityHigh,
     convertButton,
     downloadButton,
     processingText,
@@ -27,10 +23,6 @@ export default async function SvgToPdf({ params }: { params: Promise<{ lang: str
     translate(lang, 'svgToPdf.form.upload.label'),
     translate(lang, 'svgToPdf.form.upload.button'),
     translate(lang, 'svgToPdf.form.upload.dragDrop'),
-    translate(lang, 'svgToPdf.form.quality.label'),
-    translate(lang, 'svgToPdf.form.quality.low'),
-    translate(lang, 'svgToPdf.form.quality.medium'),
-    translate(lang, 'svgToPdf.form.quality.high'),
     translate(lang, 'svgToPdf.form.convert'),
     translate(lang, 'svgToPdf.result.download'),
     translate(lang, 'svgToPdf.status.processing'),
@@ -47,12 +39,6 @@ export default async function SvgToPdf({ params }: { params: Promise<{ lang: str
         label: uploadLabel,
         button: uploadButton,
         dragDrop: dragDropText
-      },
-      quality: {
-        label: qualityLabel,
-        low: qualityLow,
-        medium: qualityMedium,
-        high: qualityHigh
       },
       convert: convertButton
     },
