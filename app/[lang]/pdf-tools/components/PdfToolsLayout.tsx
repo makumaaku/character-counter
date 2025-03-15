@@ -46,6 +46,10 @@ export default function PdfToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'pdfTools.tools.svgToPdf.title'),
       path: `/pdf-tools/svg-to-pdf`
+    },
+    {
+      name: translate(lang, 'pdfTools.tools.pdfToEpub.title'),
+      path: `/pdf-tools/pdf-to-epub`
     }
     // Add more PDF tools here as they become available
   ]
