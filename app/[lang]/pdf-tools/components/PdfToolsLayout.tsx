@@ -50,6 +50,10 @@ export default function PdfToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'pdfTools.tools.pdfToEpub.title'),
       path: `/pdf-tools/pdf-to-epub`
+    },
+    {
+      name: translate(lang, 'pdfTools.tools.heicToPdf.title'),
+      path: `/pdf-tools/heic-to-pdf`
     }
     // Add more PDF tools here as they become available
   ]

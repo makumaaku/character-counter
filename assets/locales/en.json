@@ -58,6 +58,10 @@
       "pdfToEpub": {
         "title": "PDF to EPUB Converter",
         "description": "Convert PDF documents to EPUB eBook format for e-readers"
+      },
+      "heicToPdf": {
+        "title": "HEIC to PDF Converter",
+        "description": "Convert HEIC images to PDF documents with high quality"
       }
     },
     "meta": {
@@ -1585,6 +1589,10 @@
       "pdfToEpub": {
         "title": "PDF to EPUB Converter",
         "description": "Convert PDF documents to EPUB eBook format for e-readers"
+      },
+      "heicToPdf": {
+        "title": "HEIC to PDF Converter",
+        "description": "Convert HEIC images to PDF documents with high quality"
       }
     }
   },
@@ -1653,6 +1661,38 @@
     "error": {
       "fileType": "Please upload a PDF file",
       "fileSize": "File size exceeds 20MB limit"
+    }
+  },
+  "heicToPdf": {
+    "meta": {
+      "title": "HEIC to PDF Converter - Convert HEIC Images to PDF Online",
+      "description": "Free online tool to convert HEIC images to PDF documents. Convert your iPhone photos to PDF format with high quality. No installation required.",
+      "keywords": "heic to pdf, heic converter, convert heic, heic to pdf converter, online heic converter, free heic converter"
+    },
+    "title": "HEIC to PDF Converter",
+    "description": "Convert HEIC images to PDF documents with high quality",
+    "form": {
+      "upload": {
+        "label": "Upload HEIC File",
+        "button": "Drag & drop HEIC file here or click to select",
+        "dragDrop": "Drop HEIC file here..."
+      },
+      "convert": "Convert to PDF"
+    },
+    "result": {
+      "download": "Download PDF"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No file selected"
+    },
+    "error": {
+      "fileSize": "File size exceeds the 20MB limit",
+      "fileType": "Only HEIC files are supported",
+      "conversion": "Error during conversion. Please try again."
+    },
+    "success": {
+      "message": "Conversion completed successfully!"
     }
   },
   "jpgToPdf": {

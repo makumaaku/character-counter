@@ -56,6 +56,12 @@ export default async function PdfTools({ params }: Props) {
       description: translate(lang, 'pdfTools.tools.pdfToEpub.description'),
       path: `/${lang}/pdf-tools/pdf-to-epub`,
       icon: "📚"
+    },
+    {
+      title: translate(lang, 'pdfTools.tools.heicToPdf.title'),
+      description: translate(lang, 'pdfTools.tools.heicToPdf.description'),
+      path: `/${lang}/pdf-tools/heic-to-pdf`,
+      icon: "📱"
     }
     // More PDF tools can be added here in the future
   ]
