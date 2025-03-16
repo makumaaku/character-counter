@@ -85,6 +85,9 @@ export async function generateMetadata(
       "PDF to Word conversion",
       "PDF to PNG conversion",
       "PNG to PDF conversion",
+      "SVG to PDF conversion",
+      "PDF to EPUB conversion",
+      "HEIC to PDF conversion",
       "Free to use",
       "No registration required"
     ],
@@ -126,6 +129,24 @@ export async function generateMetadata(
         "name": t('pngToPdf.meta.title'),
         "description": t('pngToPdf.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/png-to-pdf`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('svgToPdf.meta.title'),
+        "description": t('svgToPdf.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/svg-to-pdf`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('pdfToEpub.meta.title'),
+        "description": t('pdfToEpub.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-epub`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('heicToPdf.meta.title'),
+        "description": t('heicToPdf.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/heic-to-pdf`
       }
     ]
   };
