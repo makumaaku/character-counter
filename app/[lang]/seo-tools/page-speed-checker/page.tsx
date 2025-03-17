@@ -21,7 +21,7 @@ export default async function PageSpeedChecker({ params }: { params: Promise<{ l
     translate(lang, 'pageSpeedChecker.title'),
     translate(lang, 'pageSpeedChecker.description'),
     translate(lang, 'pageSpeedChecker.input.url'),
-    translate(lang, 'pageSpeedChecker.analyze.button'),
+    translate(lang, 'pageSpeedChecker.input.analyzeButton'),
     translate(lang, 'pageSpeedChecker.results.loading'),
     translate(lang, 'pageSpeedChecker.error.invalidUrl'),
     translate(lang, 'pageSpeedChecker.error.fetchFailed'),

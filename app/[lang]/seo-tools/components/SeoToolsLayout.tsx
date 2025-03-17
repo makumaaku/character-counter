@@ -22,6 +22,10 @@ export default function SeoToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'pageSpeedChecker.title'),
       path: `/seo-tools/page-speed-checker`
+    },
+    {
+      name: translate(lang, 'link-status-checker.title'),
+      path: `/seo-tools/link-status-checker`
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]
