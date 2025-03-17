@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, FormEvent, useEffect } from 'react'
-import { ChartBarIcon, ClockIcon, LightBulbIcon, DocumentTextIcon, ArrowPathIcon } from '@heroicons/react/24/outline'
+import { useState, FormEvent } from 'react'
+import { ClockIcon, LightBulbIcon, DocumentTextIcon, ArrowPathIcon } from '@heroicons/react/24/outline'
 
 type Props = {
   translations: {
@@ -46,19 +46,12 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
   const [analyzing, setAnalyzing] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<PerformanceResult | null>(null)
-  const [canRunLighthouse, setCanRunLighthouse] = useState<boolean>(false)
-  
-  // ブラウザ環境かどうかをチェック
-  useEffect(() => {
-    // Lighthouseを実行できる環境かどうかをチェック（Chrome拡張機能などが必要）
-    setCanRunLighthouse(typeof window !== 'undefined' && 'chrome' in window && 'runtime' in (window as any).chrome)
-  }, [])
   
   const isValidUrl = (url: string): boolean => {
     try {
       new URL(url)
       return true
-    } catch (e) {
+    } catch {
       return false
     }
   }
@@ -67,7 +60,7 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
     try {
       const urlObj = new URL(url)
       return urlObj.origin === window.location.origin
-    } catch (e) {
+    } catch {
       return false
     }
   }
@@ -97,7 +90,7 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
       performance.clearResourceTimings()
       
       // URLにリクエストを送信
-      const response = await fetch(url, {
+      await fetch(url, {
         method: 'HEAD',
         mode: 'no-cors', // CORSエラーを回避
         cache: 'no-cache'
@@ -118,7 +111,14 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
       // Resource Timing APIからリソース情報を取得
       const resourceEntries = performance.getEntriesByType('resource')
       
-      resourceEntries.forEach((entry: any) => {
+      interface ResourceEntry {
+        name: string;
+        initiatorType?: string;
+        transferSize?: number;
+        duration?: number;
+      }
+      
+      resourceEntries.forEach((entry: ResourceEntry) => {
         try {
           const entryUrl = entry.name
           // URLがリクエストしたURLに関連するものだけを取得

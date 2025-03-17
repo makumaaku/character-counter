@@ -247,7 +247,8 @@
       "invalidUrl": "無効なURLです。有効なウェブサイトアドレスを入力してください。",
       "conversionFailed": "変換に失敗しました。もう一度お試しください。",
       "networkError": "ネットワークエラー。接続を確認して再試行してください。"
-    }
+    },
+    "loading": "PDF変換ツールを読み込み中..."
   },
   "pdfToWord": {
     "meta": {

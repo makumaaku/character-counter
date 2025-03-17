@@ -46,14 +46,16 @@ type Props = {
       conversionFailed: string
       networkError: string
     }
+    loading?: string
   }
+  lang: string
 }
 
 type PaperFormat = 'a4' | 'letter' | 'legal'
 type Orientation = 'portrait' | 'landscape'
 type Scale = 'default' | 'fit'
 
-export default function WebToPdfClient({ translations }: Props) {
+export default function WebToPdfClient({ translations, lang }: Props) {
   const [url, setUrl] = useState<string>('')
   const [format, setFormat] = useState<PaperFormat>('a4')
   const [orientation, setOrientation] = useState<Orientation>('portrait')
@@ -62,6 +64,7 @@ export default function WebToPdfClient({ translations }: Props) {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
+  const [progress, setProgress] = useState(0)
   const formRef = useRef<HTMLFormElement>(null)
 
   // Function to validate URL
@@ -80,6 +83,7 @@ export default function WebToPdfClient({ translations }: Props) {
     setError(null)
     setPdfUrl(null)
     setIsSuccess(false)
+    setProgress(0)
 
     if (!url) {
       setError(translations.status.noUrl)
@@ -92,13 +96,18 @@ export default function WebToPdfClient({ translations }: Props) {
     }
 
     setIsConverting(true)
+    setProgress(10) // 初期進捗を設定
 
     try {
       // 実際のAPIエンドポイントを使用してPDFを生成
-      const apiUrl = `/api/pdf?url=${encodeURIComponent(url)}&format=${format}&orientation=${orientation}&scale=${scale}`
+      const apiUrl = `/${lang}/api/pdf?url=${encodeURIComponent(url)}&format=${format}&orientation=${orientation}&scale=${scale}`
+      
+      setProgress(30) // リクエスト開始時の進捗を更新
       
       // APIの応答をチェック（ヘッダーのみを取得）
       const response = await fetch(apiUrl, { method: 'HEAD' })
+      
+      setProgress(70) // レスポンス受信時の進捗を更新
       
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`)
@@ -107,6 +116,7 @@ export default function WebToPdfClient({ translations }: Props) {
       // 成功した場合、PDFのURLを設定
       setPdfUrl(apiUrl)
       setIsSuccess(true)
+      setProgress(100) // 完了時の進捗を100%に設定
     } catch (error) {
       console.error('Conversion error:', error)
       setError(translations.error.conversionFailed)
@@ -268,6 +278,25 @@ export default function WebToPdfClient({ translations }: Props) {
             </div>
           </div>
         </form>
+
+        {/* 変換中のプログレスバー */}
+        {isConverting && (
+          <div className="mt-6">
+            <div className="w-full bg-gray-600 rounded-full h-2.5">
+              <div 
+                className="bg-blue-600 h-2.5 rounded-full transition-all duration-300" 
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            <div className="flex justify-between items-center mt-2">
+              <p className="text-gray-300 text-sm">{translations.status.processing}</p>
+              <p className="text-gray-300 text-sm">{progress}%</p>
+            </div>
+            <div className="flex justify-center mt-4">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Result or Error */}
