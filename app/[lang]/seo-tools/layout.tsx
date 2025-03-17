@@ -1,9 +1,8 @@
+import { translate } from '@/lib/i18n/client';
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import SeoToolsLayout from './components/SeoToolsLayout';
 
 type Props = {
   children: React.ReactNode;
@@ -36,6 +35,12 @@ type JsonLdType = {
   featureList: string[];
   isAccessibleForFree: boolean;
   browserRequirements: string;
+  hasPart: {
+    "@type": string;
+    name: string;
+    description: string;
+    url: string;
+  }[];
 }
 
 export async function generateMetadata(
@@ -53,9 +58,9 @@ export async function generateMetadata(
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('link-status-checker.meta.title'),
-    "description": t('link-status-checker.meta.description'),
-    "url": `${SITE_CONFIG.baseURL}/${lang}/link-status-checker`,
+    "name": t('seoTools.meta.title'),
+    "description": t('seoTools.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools`,
     "publisher": {
       "@type": "Organization",
       "name": commonMeta.siteName,
@@ -74,65 +79,47 @@ export async function generateMetadata(
       "priceCurrency": "USD"
     },
     "featureList": [
-      "Link status checking",
-      "Bulk URL validation",
-      "HTTP status code detection",
-      "Real-time checking",
+      "Page Speed Checker",
+      "SEO Analysis",
       "Free to use",
       "No registration required"
     ],
     "isAccessibleForFree": true,
-    "browserRequirements": "Requires a modern web browser with JavaScript enabled"
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+    "hasPart": [
+      {
+        "@type": "WebApplication",
+        "name": t('pageSpeedChecker.meta.title'),
+        "description": t('pageSpeedChecker.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-speed-checker`
+      }
+      // 将来的に他のSEOツールを追加する場合はここに追加
+    ]
   };
 
   const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('link-status-checker.meta.title'),
-      description: t('link-status-checker.meta.description'),
-      keywords: t('link-status-checker.meta.keywords'),
-      url: `${SITE_CONFIG.baseURL}/${lang}/link-status-checker`,
+      title: t('seoTools.meta.title'),
+      description: t('seoTools.meta.description'),
+      keywords: t('seoTools.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/seo-tools`,
     }
   );
 
   return {
     ...metadata,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseURL}/${lang}/link-status-checker`,
-      languages: {
-        'en': `${SITE_CONFIG.baseURL}/en/link-status-checker`,
-        'ja': `${SITE_CONFIG.baseURL}/ja/link-status-checker`,
-        'x-default': `${SITE_CONFIG.baseURL}/en/link-status-checker`
-      }
-    },
     other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 }
 
-export default async function Layout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ lang: string }>;
-}) {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
-
+export default async function Layout({ children }: Props) {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('home.tools.linkStatusChecker')} homeLink={`/${lang}/link-status-checker`}>
-        <div className="flex items-center gap-2">
-          {/* Left side content removed */}
-        </div>
-      </Header>
-      <main className="flex-1 bg-gray-800">
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <SeoToolsLayout>
+      {children}
+    </SeoToolsLayout>
   );
 } 

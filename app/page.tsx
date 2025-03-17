@@ -83,10 +83,16 @@ export default function Home() {
               <Link href="/pdf-tools/heic-to-pdf" className="text-white hover:underline ml-4">HEIC to PDF Converter</Link>
             </li>
             <li>
-              <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
+              <Link href="/seo-tools" className="text-white hover:underline font-bold">SEO Tools</Link>
             </li>
             <li>
-              <Link href="/link-status-checker" className="text-white hover:underline">Link Status Checker</Link>
+              <Link href="/seo-tools/page-speed-checker" className="text-white hover:underline ml-4">Page Speed Checker</Link>
+            </li>
+            <li>
+              <Link href="/seo-tools/link-status-checker" className="text-white hover:underline ml-4">Link Status Checker</Link>
+            </li>
+            <li>
+              <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>
               <Link href="/country-data" className="text-white hover:underline">Country Area comparison data</Link>
