@@ -29,6 +29,7 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     invalidUrlError,
     conversionFailedError,
     networkError,
+    timeoutError,
     loadingText
   ] = await Promise.all([
     translate(lang, 'webToPdf.title'),
@@ -54,6 +55,7 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     translate(lang, 'webToPdf.error.invalidUrl'),
     translate(lang, 'webToPdf.error.conversionFailed'),
     translate(lang, 'webToPdf.error.networkError'),
+    translate(lang, 'webToPdf.error.timeout'),
     translate(lang, 'webToPdf.loading')
   ])
 
@@ -97,7 +99,8 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     error: {
       invalidUrl: invalidUrlError,
       conversionFailed: conversionFailedError,
-      networkError: networkError
+      networkError: networkError,
+      timeout: timeoutError
     },
     loading: loadingText
   }

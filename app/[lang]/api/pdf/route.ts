@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+import puppeteer, { Page } from 'puppeteer';
 
 export async function GET(request: NextRequest) {
   try {
@@ -79,6 +79,30 @@ export async function GET(request: NextRequest) {
       });
     });
 
+    // 動的コンテンツのロードを待つための追加処理
+    try {
+      // ローディング要素が消えるのを待つ（最大10秒）
+      await page.waitForFunction(
+        () => {
+          // ローディング要素を探す一般的なセレクタ
+          const loadingElements = document.querySelectorAll('.loading, .loader, [data-loading], [aria-busy="true"]');
+          return loadingElements.length === 0;
+        },
+        { timeout: 10000 }
+      ).catch(() => {
+        console.log('Loading elements still present or not found, continuing anyway');
+      });
+      
+      // 少し待機して、最終的なJavaScriptの実行を待つ
+      await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
+      
+      // スクロールしてすべてのコンテンツを読み込む
+      await autoScroll(page);
+      
+    } catch (error) {
+      console.log('Error waiting for dynamic content, continuing anyway:', error);
+    }
+
     // PDFオプションを設定
     interface PDFOptions {
       format: 'a4' | 'letter' | 'legal';
@@ -137,4 +161,24 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+// ページを自動スクロールする関数
+async function autoScroll(page: Page) {
+  await page.evaluate(async () => {
+    await new Promise<void>((resolve) => {
+      let totalHeight = 0;
+      const distance = 100;
+      const timer = setInterval(() => {
+        const scrollHeight = document.body.scrollHeight;
+        window.scrollBy(0, distance);
+        totalHeight += distance;
+
+        if (totalHeight >= scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
 } 

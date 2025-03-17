@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Script from 'next/script'
 
 type Props = {
@@ -45,6 +45,7 @@ type Props = {
       invalidUrl: string
       conversionFailed: string
       networkError: string
+      timeout?: string
     }
     loading?: string
   }
@@ -65,7 +66,9 @@ export default function WebToPdfClient({ translations, lang }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [progress, setProgress] = useState(0)
+  const [timeoutWarning, setTimeoutWarning] = useState<boolean>(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Function to validate URL
   const isValidUrl = (urlString: string): boolean => {
@@ -84,6 +87,12 @@ export default function WebToPdfClient({ translations, lang }: Props) {
     setPdfUrl(null)
     setIsSuccess(false)
     setProgress(0)
+    setTimeoutWarning(false)
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
 
     if (!url) {
       setError(translations.status.noUrl)
@@ -98,14 +107,27 @@ export default function WebToPdfClient({ translations, lang }: Props) {
     setIsConverting(true)
     setProgress(10) // 初期進捗を設定
 
+    // 30秒後にタイムアウト警告を表示
+    timeoutRef.current = setTimeout(() => {
+      setTimeoutWarning(true)
+      // 進捗を更新して処理中であることを示す
+      setProgress((prev) => Math.min(prev + 10, 90))
+    }, 30000)
+
     try {
       // 実際のAPIエンドポイントを使用してPDFを生成
       const apiUrl = `/${lang}/api/pdf?url=${encodeURIComponent(url)}&format=${format}&orientation=${orientation}&scale=${scale}`
       
       setProgress(30) // リクエスト開始時の進捗を更新
       
-      // APIの応答をチェック（ヘッダーのみを取得）
-      const response = await fetch(apiUrl, { method: 'HEAD' })
+      // APIの応答をチェック（実際にGETリクエストを送信）
+      const response = await fetch(apiUrl)
+      
+      // タイムアウトタイマーをクリア
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
       
       setProgress(70) // レスポンス受信時の進捗を更新
       
@@ -113,8 +135,14 @@ export default function WebToPdfClient({ translations, lang }: Props) {
         throw new Error(`API error: ${response.status}`)
       }
       
+      // レスポンスをBlobとして取得
+      const blob = await response.blob()
+      
+      // BlobからURLを生成
+      const blobUrl = URL.createObjectURL(blob)
+      
       // 成功した場合、PDFのURLを設定
-      setPdfUrl(apiUrl)
+      setPdfUrl(blobUrl)
       setIsSuccess(true)
       setProgress(100) // 完了時の進捗を100%に設定
     } catch (error) {
@@ -122,6 +150,13 @@ export default function WebToPdfClient({ translations, lang }: Props) {
       setError(translations.error.conversionFailed)
     } finally {
       setIsConverting(false)
+      setTimeoutWarning(false)
+      
+      // タイムアウトタイマーをクリア
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
     }
   }
 
@@ -131,6 +166,26 @@ export default function WebToPdfClient({ translations, lang }: Props) {
     if (error) setError(null)
     if (isSuccess) setIsSuccess(false)
   }
+
+  // コンポーネントがアンマウントされる時にBlobURLを解放
+  const cleanupBlobUrl = () => {
+    if (pdfUrl) {
+      URL.revokeObjectURL(pdfUrl)
+    }
+  }
+
+  // コンポーネントがアンマウントされる時にクリーンアップ
+  useEffect(() => {
+    return () => {
+      cleanupBlobUrl()
+      
+      // タイムアウトタイマーをクリア
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+    }
+  }, [])
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
@@ -295,6 +350,15 @@ export default function WebToPdfClient({ translations, lang }: Props) {
             <div className="flex justify-center mt-4">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
             </div>
+            
+            {/* タイムアウト警告 */}
+            {timeoutWarning && (
+              <div className="mt-4 p-3 bg-yellow-900/50 border border-yellow-700 text-yellow-100 rounded-md">
+                <p className="text-sm">
+                  {translations.error.timeout || '変換に時間がかかっています。複雑なウェブサイトの場合は、完了までに1分以上かかることがあります。しばらくお待ちください...'}
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>

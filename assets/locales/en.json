@@ -1722,7 +1722,8 @@
     "error": {
       "invalidUrl": "Invalid URL. Please enter a valid website address.",
       "conversionFailed": "Conversion failed. Please try again.",
-      "networkError": "Network error. Please check your connection and try again."
+      "networkError": "Network error. Please check your connection and try again.",
+      "timeout": "The conversion is taking longer than expected. Complex websites may take over a minute to convert. Please wait..."
     },
     "loading": "Loading PDF converter..."
   },
