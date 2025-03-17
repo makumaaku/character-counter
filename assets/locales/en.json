@@ -12,58 +12,6 @@
     }
   },
   "home": {
-    "title": "Boring Tools",
-    "description": "A collection of useful tools for everyday tasks",
-    "tools": {
-      "characterCounter": "Character Counter",
-      "qrGeneration": "QR Generation",
-      "wordGeneration": "Word Generation Tools",
-      "wordGenerator": "Random Word Generator",
-      "wordCardGenerator": "Random Word Card Generator",
-      "sentenceGenerator": "Random Sentence Generator",
-      "nameGenerator": "Random Name Generator",
-      "passwordGenerator": "Random Password Generator",
-      "storyGenerator": "Random Story Generator",
-      "numberQuiz": "Number Place",
-      "linkStatusChecker": "Link Status Checker",
-      "pdfTools": "PDF Tools",
-      "pdfToJpg": {
-        "title": "PDF to JPG Converter",
-        "description": "Convert PDF pages to JPG images with adjustable quality"
-      },
-      "jpgToPdf": {
-        "title": "JPG to PDF Converter",
-        "description": "Convert JPG images to PDF documents with customizable settings"
-      },
-      "webToPdf": {
-        "title": "Web to PDF Converter",
-        "description": "Convert any web page to a PDF document with a single click"
-      },
-      "pdfToWord": {
-        "title": "PDF to Word Converter",
-        "description": "Convert PDF documents to editable Word files easily"
-      },
-      "pdfToPng": {
-        "title": "PDF to PNG Converter",
-        "description": "Convert PDF pages to high-quality PNG images with transparency support"
-      },
-      "pngToPdf": {
-        "title": "PNG to PDF Converter",
-        "description": "Convert PNG images to PDF documents with customizable settings"
-      },
-      "svgToPdf": {
-        "title": "SVG to PDF Converter",
-        "description": "Convert SVG vector graphics to PDF documents with high quality"
-      },
-      "pdfToEpub": {
-        "title": "PDF to EPUB Converter",
-        "description": "Convert PDF documents to EPUB eBook format for e-readers"
-      },
-      "heicToPdf": {
-        "title": "HEIC to PDF Converter",
-        "description": "Convert HEIC images to PDF documents with high quality"
-      }
-    },
     "meta": {
       "title": "Boring Tools - Simple and Useful Tools for Everyone",
       "description": "A collection of simple and useful tools including character counter, QR code generator, name generator, and more to help with your everyday tasks.",
@@ -1903,6 +1851,51 @@
     "error": {
       "fileType": "Please upload an SVG file",
       "fileSize": "File size exceeds 10MB limit"
+    }
+  },
+  "seoTools": {
+    "meta": {
+      "title": "SEO Tools - Website Optimization Tools",
+      "description": "Free online SEO tools to analyze and optimize your website performance. No installation required, works directly in your browser.",
+      "keywords": "seo tools, website optimization, page speed checker, seo analysis, free seo tools"
+    },
+    "title": "SEO Tools",
+    "description": "Free online tools to analyze and optimize your website performance",
+    "tools": {
+      "pageSpeedChecker": {
+        "title": "Page Speed Checker",
+        "description": "Analyze website loading speed and get performance improvement suggestions"
+      },
+      "linkStatusChecker": {
+        "title": "Link Status Checker",
+        "description": "Check the status of all links on a webpage to find broken links"
+      }
+    }
+  },
+  "pageSpeedChecker": {
+    "meta": {
+      "title": "Page Speed Checker - Website Performance Analysis Tool",
+      "description": "Analyze your website's loading speed, resource usage, and get performance improvement suggestions with our free Page Speed Checker tool.",
+      "keywords": "page speed checker, website performance, loading speed, performance optimization, resource analysis"
+    },
+    "title": "Page Speed Checker",
+    "description": "Analyze website loading speed and get performance improvement suggestions",
+    "input": {
+      "url": "Website URL",
+      "analyzeButton": "Analyze"
+    },
+    "results": {
+      "loading": "Analyzing...",
+      "loadTime": "Page Load Time",
+      "resources": "Top Resources by Size",
+      "suggestions": "Performance Suggestions"
+    },
+    "error": {
+      "invalidUrl": "Please enter a valid URL (e.g., https://example.com)",
+      "fetchFailed": "Failed to analyze the page. Please check the URL and try again."
+    },
+    "status": {
+      "noUrl": "Please enter a URL to analyze"
     }
   }
 } 
