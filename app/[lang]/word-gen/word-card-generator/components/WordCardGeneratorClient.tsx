@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import wordsData from '../../../../../public/words/card-words.json'
+import wordsData from '../../../../../assets/words/card-words.json'
 import DownloadButton from '../../components/DownloadButton'
 
 type Word = {

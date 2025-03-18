@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import wordsData from '../../../../../public/words/words.json'
+import wordsData from '../../../../../assets/words/words.json'
 import DownloadButton from '../../components/DownloadButton'
 
 // words.jsonの型定義

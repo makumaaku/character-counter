@@ -21,14 +21,17 @@ export default function StoryGeneratorClient({ lang }: Props) {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    // 言語に応じたJSONファイルを読み込む
-    const jsonFile = lang === 'ja' ? '/words/story-ja.json' : '/words/story-en.json';
-    
-    fetch(jsonFile)
-      .then(response => response.json())
+    // APIルートを使用してJSONファイルを読み込む
+    fetch(`/${lang}/api/word-gen/stories`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Failed to load story data: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => setStoryData(data))
       .catch(error => {
-        console.error(`Error loading story data from ${jsonFile}:`, error);
+        console.error('Error loading story data:', error);
       });
   }, [lang]); // langが変わったら再度読み込む
 
