@@ -116,7 +116,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
 
     try {
       // 実際のAPIエンドポイントを使用してPDFを生成
-      const apiUrl = `/${lang}/api/pdf?url=${encodeURIComponent(url)}&format=${format}&orientation=${orientation}&scale=${scale}`
+      const apiUrl = `/${lang}/api/pdf-tools?url=${encodeURIComponent(url)}&format=${format}&orientation=${orientation}&scale=${scale}`
       
       setProgress(30) // リクエスト開始時の進捗を更新
       

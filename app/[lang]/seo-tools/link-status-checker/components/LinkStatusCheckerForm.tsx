@@ -55,7 +55,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       
       setProgress(20); // リクエスト開始
       
-      const response = await fetch(`/api/seo?url=${encodeURIComponent(url)}`, {
+      const response = await fetch(`/${lang}/api/seo-tools?url=${encodeURIComponent(url)}`, {
         signal: controller.signal
       });
       

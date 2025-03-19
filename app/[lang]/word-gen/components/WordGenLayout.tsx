@@ -19,16 +19,17 @@ export default function WordGenLayout({ children }: Props) {
   const t = (key: string) => translate(lang, key);
 
   const navigationItems = [
-    { name: t('home.tools.wordGenerator'), path: `/word-gen/word-generator` },
-    { name: t('home.tools.wordCardGenerator'), path: `/word-gen/word-card-generator` },
-    { name: t('home.tools.sentenceGenerator'), path: `/word-gen/sentence-generator` },
-    { name: t('home.tools.nameGenerator'), path: `/word-gen/name-generator` },
-    { name: t('home.tools.passwordGenerator'), path: `/word-gen/password-generator` },
-    { name: t('home.tools.storyGenerator'), path: `/word-gen/story-generator` },
+    { name: t('wordGen.tools.wordGenerator.title'), path: `/word-gen/word-generator` },
+    { name: t('wordGen.tools.wordCardGenerator.title'), path: `/word-gen/word-card-generator` },
+    { name: t('wordGen.tools.sentenceGenerator.title'), path: `/word-gen/sentence-generator` },
+    { name: t('wordGen.tools.nameGenerator.title'), path: `/word-gen/name-generator` },
+    { name: t('wordGen.tools.passwordGenerator.title'), path: `/word-gen/password-generator` },
+    { name: t('wordGen.tools.storyGenerator.title'), path: `/word-gen/story-generator` },
   ];
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
+      {/* こちらは多言語対応の必要はない */}
       <Header title={'Word Generation Tools'} homeLink={`/${lang}/word-gen`}>
         <button
           onClick={() => setIsSidebarOpen(true)}

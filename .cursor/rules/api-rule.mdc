@@ -1,0 +1,120 @@
+---
+description: API実装時のルール
+globs: app/[lang]/api/*.*
+alwaysApply: false
+---
+# API実装ルール
+
+## ディレクトリ構成
+- すべてのAPIは `app/[lang]/api` 配下に実装する
+- フォルダ構成は `[ツールカテゴリ]/[ツール名]` という階層とし、その中に `route.ts` を作成する
+  - ツールカテゴリの例: `seo-tools`, `pdf-tools`, `word-gen` など。このツールカテゴリ名は実際に app/[lang]ディレクトリ配下に存在するものにしてください。
+  - ツール名の例: `pdf-to-jpg`, `heic-to-pdf` など。このツール名は実際に app/[lang]ディレクトリ配下に存在するものにしてください。
+- 単一のAPIエンドポイントで複数の機能を提供する場合は、カテゴリ名のみのフォルダ（例: `pdf-tools/`）に `route.ts` を配置する
+
+## 言語パラメータの処理
+- `[lang]` パラメータは Promise 型で処理する
+```typescript
+type Props = {
+  params: Promise<{ lang: string }>
+}
+```
+- 言語情報の取得は `src/lib/i18n/server.ts` の `getLanguageFromParams` を使用する
+
+## API実装の基本ルール
+### 1. エンドポイント設計
+- RESTful APIの原則に従う
+- GETリクエスト: データの取得やクエリベースの操作に使用
+- POSTリクエスト: ファイルアップロードや複雑なデータ処理に使用
+- PUTリクエスト: リソースの更新に使用
+- DELETEリクエスト: リソースの削除に使用
+
+### 2. エラーハンドリング
+- すべてのAPIは適切なエラーハンドリングを実装する
+- エラー発生時は以下の形式でレスポンスを返す
+```typescript
+return NextResponse.json(
+  { error: 'エラーメッセージ' },
+  { status: エラーコード }
+);
+```
+- 一般的なエラーコード:
+  - 400: Bad Request（クライアントのリクエストに問題がある）
+  - 401: Unauthorized（認証が必要）
+  - 403: Forbidden（アクセス権限がない）
+  - 404: Not Found（リソースが見つからない）
+  - 429: Too Many Requests（レート制限超過）
+  - 500: Internal Server Error（サーバー内部エラー）
+
+### 3. バリデーション
+- すべてのリクエストパラメータとボディは適切にバリデーションを行う
+- ファイルアップロード時は以下を検証する:
+  - ファイルタイプ
+  - ファイルサイズ（最大サイズ制限）
+  - ファイル内容の整合性
+
+### 4. パフォーマンスと最適化
+- 長時間実行される処理は適切なタイムアウト処理を実装する
+- 大きなファイル処理時はストリーミングを検討する
+- メモリ使用量に注意し、大きなオブジェクトは不要になったら解放する
+
+### 5. セキュリティ
+- ユーザー入力は常にサニタイズする
+- 機密情報をログに出力しない
+- 外部APIやサービスとの通信時は適切な認証を行う
+- ファイルアップロード処理では、安全なファイル処理を心がける
+
+### 6. キャッシュ戦略
+- データの性質に応じて適切なキャッシュヘッダーを設定
+- 頻繁に変更されないデータはキャッシュを活用
+```typescript
+return NextResponse.json(
+  { data: responseData },
+  { 
+    status: 200,
+    headers: {
+      'Cache-Control': 'max-age=3600' // 1時間キャッシュ
+    }
+  }
+);
+```
+
+### 7. レスポンス形式
+- 成功時のレスポンス
+```typescript
+return NextResponse.json(
+  { 
+    success: true,
+    data: /* 処理結果 */
+  },
+  { status: 200 }
+);
+```
+- ファイル返却時のレスポンス
+```typescript
+return new Response(
+  fileBuffer,
+  {
+    status: 200,
+    headers: {
+      'Content-Type': '適切なMIMEタイプ',
+      'Content-Disposition': `attachment; filename="${filename}"`
+    }
+  }
+);
+```
+
+## コード品質とメンテナンス
+- コードは適切にコメントを入れる
+- 複雑な処理は関数に分割する
+- 外部ライブラリは慎重に選定し、必要な場合は型定義を追加する
+```typescript
+// @ts-expect-error - ライブラリが型定義を持たない場合
+import externalLibrary from 'external-library';
+```
+- 共通処理は再利用可能な関数として実装し、必要に応じて共通モジュールに移動する
+
+## テスト
+- 新しいAPIは単体テストを作成する
+- エッジケースのテストも考慮する
+- 負荷テストを行い、パフォーマンスを検証する

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { translate } from '@/lib/i18n/client';
-import { Language } from '@/lib/i18n/types';
 import DownloadButton from '../../components/DownloadButton';
 
 type Props = {
@@ -25,10 +24,8 @@ const useNameData = (lang: string) => {
     const fetchNameData = async () => {
       try {
         setLoading(true);
-        // 言語に基づいて適切なJSONファイルを選択
-        const language = lang as Language;
-        const fileName = `names-${language}.json`;
-        const response = await fetch(`/words/${fileName}`);
+        // APIルートを使用してデータを取得
+        const response = await fetch(`/${lang}/api/word-gen/name-generator`);
         
         if (!response.ok) {
           throw new Error(`Failed to load name data: ${response.status}`);
