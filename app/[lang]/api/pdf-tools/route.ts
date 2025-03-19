@@ -21,7 +21,8 @@ export async function GET(request: NextRequest) {
     // Puppeteerを起動
     const browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      protocolTimeout: 180000 // プロトコルタイムアウトを180秒（3分）に設定
     });
     
     // 新しいページを作成
@@ -40,44 +41,58 @@ export async function GET(request: NextRequest) {
     // ページに移動
     await page.goto(url, {
       waitUntil: 'networkidle0',
-      timeout: 60000 // タイムアウトを60秒に設定
+      timeout: 120000 // タイムアウトを120秒に増やす
     });
 
     // ページが完全に読み込まれるのを待つ
-    await page.evaluate(() => {
-      return new Promise((resolve) => {
-        // すべての画像が読み込まれるのを待つ
-        const images = document.querySelectorAll('img');
-        let loadedImages = 0;
-        
-        if (images.length === 0) {
-          resolve(true);
-          return;
-        }
-        
-        images.forEach(img => {
-          if (img.complete) {
-            loadedImages++;
-            if (loadedImages === images.length) {
-              resolve(true);
-            }
-          } else {
-            img.addEventListener('load', () => {
-              loadedImages++;
-              if (loadedImages === images.length) {
-                resolve(true);
-              }
-            });
-            img.addEventListener('error', () => {
-              loadedImages++;
-              if (loadedImages === images.length) {
-                resolve(true);
-              }
-            });
+    try {
+      await page.evaluate(() => {
+        return new Promise((resolve) => {
+          // タイムアウト処理を追加（30秒後に強制的に解決）
+          const forceResolveTimeout = setTimeout(() => {
+            console.log('Image loading timeout, continuing anyway');
+            resolve(true);
+          }, 30000);
+          
+          // すべての画像が読み込まれるのを待つ
+          const images = document.querySelectorAll('img');
+          let loadedImages = 0;
+          
+          if (images.length === 0) {
+            clearTimeout(forceResolveTimeout);
+            resolve(true);
+            return;
           }
+          
+          images.forEach(img => {
+            if (img.complete) {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                clearTimeout(forceResolveTimeout);
+                resolve(true);
+              }
+            } else {
+              img.addEventListener('load', () => {
+                loadedImages++;
+                if (loadedImages === images.length) {
+                  clearTimeout(forceResolveTimeout);
+                  resolve(true);
+                }
+              });
+              img.addEventListener('error', () => {
+                loadedImages++;
+                if (loadedImages === images.length) {
+                  clearTimeout(forceResolveTimeout);
+                  resolve(true);
+                }
+              });
+            }
+          });
         });
       });
-    });
+    } catch (error) {
+      console.log('Error waiting for images, continuing anyway:', error);
+    }
 
     // 動的コンテンツのロードを待つための追加処理
     try {
@@ -117,6 +132,7 @@ export async function GET(request: NextRequest) {
       scale?: number;
       preferCSSPageSize?: boolean;
       displayHeaderFooter?: boolean;
+      timeout?: number;
     }
 
     const pdfOptions: PDFOptions = {
@@ -130,7 +146,8 @@ export async function GET(request: NextRequest) {
         left: '1cm',
       },
       preferCSSPageSize: true,
-      displayHeaderFooter: false
+      displayHeaderFooter: false,
+      timeout: 120000 // PDF生成のタイムアウトも延長
     };
 
     // スケールオプションを設定
