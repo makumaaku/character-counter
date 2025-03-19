@@ -7,15 +7,28 @@
 ├── app/                          # Next.jsのアプリケーションディレクトリ
 │   ├── [lang]/                   # 言語別ルーティング
 │   │   ├── api/                  # APIエンドポイント
-│   │   │   ├── seo/              # SEO関連API
-│   │   │   └── translations/     # 翻訳関連API
+│   │   │   ├── i18n-tools/       # 国際化関連API
+│   │   │   │   └── translations/ # 翻訳関連API
+│   │   │   ├── pdf-tools/        # PDF関連API
+│   │   │   │   └── heic-to-pdf/  # HEIC→PDF変換API
+│   │   │   ├── seo-tools/        # SEO関連API
+│   │   │   └── word-gen/         # 単語生成関連API
+│   │   │       ├── name-generator/    # 名前生成API
+│   │   │       ├── sentence-generator/ # 文章生成API
+│   │   │       └── story-generator/    # ストーリー生成API
 │   │   ├── character-counter/    # 文字カウントツール
 │   │   ├── country-data/         # 国データツール
-│   │   ├── link-status-checker/  # リンクステータスチェッカー
 │   │   ├── number-quiz/          # 数字クイズツール
+│   │   ├── pdf-tools/            # PDFツール
+│   │   │   └── heic-to-pdf/      # HEIC→PDF変換ツール
 │   │   ├── qr-generation/        # QRコード生成ツール
 │   │   ├── roulette/             # ルーレットツール
+│   │   ├── seo-tools/            # SEOツール
+│   │   │   └── link-status-checker/ # リンクステータスチェッカー
 │   │   └── word-gen/             # 単語生成ツール
+│   │       ├── name-generator/   # 名前生成ツール
+│   │       ├── sentence-generator/ # 文章生成ツール
+│   │       └── story-generator/  # ストーリー生成ツール
 │   ├── globals.css               # グローバルスタイル
 │   ├── layout.tsx                # ルートレイアウト
 │   ├── not-found.tsx             # 404ページ
@@ -56,7 +69,7 @@
 ### 配置ルール
 - 言語別ルーティング → `app/[lang]/`
 - ツール別ページ → `app/[lang]/[tool-name]/`
-- APIエンドポイント → `app/[lang]/api/[endpoint]/`
+- APIエンドポイント → `app/[lang]/api/[category]/[tool-name]/`
 - 共通コンポーネント → `src/components/`
 - 共通処理 → `src/lib/`
 - 国際化関連 → `src/lib/i18n/`

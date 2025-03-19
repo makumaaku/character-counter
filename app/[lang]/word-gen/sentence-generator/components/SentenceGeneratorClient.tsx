@@ -22,7 +22,7 @@ export default function SentenceGeneratorClient({ lang }: Props) {
   useEffect(() => {
     const fetchSentences = async () => {
       try {
-        const response = await fetch(`/${lang}/api/word-gen/sentences`);
+        const response = await fetch(`/${lang}/api/word-gen/sentence-generator`);
         
         if (!response.ok) {
           throw new Error(`Failed to fetch sentences: ${response.status}`);

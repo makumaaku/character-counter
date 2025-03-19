@@ -96,7 +96,7 @@ export default function HeicToPdfClient({ translations }: Props) {
       setProgress(30)
       
       // Send request to API
-      const response = await fetch(`/${lang}/api/heic-to-pdf`, {
+      const response = await fetch(`/${lang}/api/pdf-tools/heic-to-pdf`, {
         method: 'POST',
         body: formData
       })

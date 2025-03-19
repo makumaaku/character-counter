@@ -25,7 +25,7 @@ const useNameData = (lang: string) => {
       try {
         setLoading(true);
         // APIルートを使用してデータを取得
-        const response = await fetch(`/${lang}/api/word-gen/names`);
+        const response = await fetch(`/${lang}/api/word-gen/name-generator`);
         
         if (!response.ok) {
           throw new Error(`Failed to load name data: ${response.status}`);

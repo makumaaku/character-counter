@@ -22,7 +22,7 @@ export default function StoryGeneratorClient({ lang }: Props) {
 
   useEffect(() => {
     // APIルートを使用してJSONファイルを読み込む
-    fetch(`/${lang}/api/word-gen/stories`)
+    fetch(`/${lang}/api/word-gen/story-generator`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`Failed to load story data: ${response.status}`);
