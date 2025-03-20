@@ -92,6 +92,9 @@ export default function Home() {
               <Link href="/seo-tools/link-status-checker" className="text-white hover:underline ml-4">Link Status Checker</Link>
             </li>
             <li>
+              <Link href="/seo-tools/seo-cannibalization-checker" className="text-white hover:underline ml-4">SEO Cannibalization Checker</Link>
+            </li>
+            <li>
               <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>

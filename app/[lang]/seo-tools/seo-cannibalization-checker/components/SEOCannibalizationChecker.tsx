@@ -1,0 +1,163 @@
+'use client';
+
+import { useState } from 'react';
+
+interface SEOCannibalizationCheckerProps {
+  lang: string;
+  translations: {
+    title: string;
+    description: string;
+    domain: {
+      label: string;
+      placeholder: string;
+      help: string;
+    };
+    keyword: {
+      label: string;
+      placeholder: string;
+      help: string;
+    };
+    button: {
+      check: string;
+      processing: string;
+    };
+    result: {
+      title: string;
+      description: string;
+      openButton: string;
+    };
+    error: {
+      emptyDomain: string;
+      invalidDomain: string;
+      emptyKeyword: string;
+      generic: string;
+    };
+  };
+}
+
+export default function SEOCannibalizationChecker({ lang, translations }: SEOCannibalizationCheckerProps) {
+  const [domain, setDomain] = useState('');
+  const [keyword, setKeyword] = useState('');
+  const [searchUrl, setSearchUrl] = useState('');
+  const [error, setError] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const isValidDomain = (domain: string) => {
+    const domainRegex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}(?:\/.*)?$/;
+    return domainRegex.test(domain);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    
+    if (!domain) {
+      setError(translations.error.emptyDomain);
+      return;
+    }
+    
+    if (!isValidDomain(domain)) {
+      setError(translations.error.invalidDomain);
+      return;
+    }
+    
+    if (!keyword.trim()) {
+      setError(translations.error.emptyKeyword);
+      return;
+    }
+    
+    setIsProcessing(true);
+    
+    try {
+      // ドメインからプロトコルとwwwを削除
+      const domainClean = domain.replace(/^(https?:\/\/)?(www\.)?/, '');
+      
+      // 検索URLを作成
+      const googleSearchUrl = `https://www.google.com/search?q=site:${encodeURIComponent(domainClean)}+${encodeURIComponent(`"${keyword}"`)}`; 
+      
+      setSearchUrl(googleSearchUrl);
+      setIsProcessing(false);
+    } catch (err) {
+      setError(translations.error.generic);
+      setIsProcessing(false);
+    }
+  };
+
+  return (
+    <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
+      <main className="max-w-4xl mx-auto px-4 py-10">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold mb-4">{translations.title}</h1>
+          <p className="text-xl text-gray-300 mb-6">
+            {translations.description}
+          </p>
+        </div>
+
+        <div className="bg-gray-700 rounded-lg p-6 mb-8">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="domain" className="block text-lg mb-2">
+                {translations.domain.label}
+              </label>
+              <input
+                type="text"
+                id="domain"
+                className="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-white"
+                placeholder={translations.domain.placeholder}
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+              />
+              <p className="text-sm text-gray-400 mt-1">{translations.domain.help}</p>
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="keyword" className="block text-lg mb-2">
+                {translations.keyword.label}
+              </label>
+              <input
+                type="text"
+                id="keyword"
+                className="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-white"
+                placeholder={translations.keyword.placeholder}
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+              <p className="text-sm text-gray-400 mt-1">{translations.keyword.help}</p>
+            </div>
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-900 text-white rounded-lg">
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isProcessing}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-bold text-lg transition duration-200"
+            >
+              {isProcessing ? translations.button.processing : translations.button.check}
+            </button>
+          </form>
+        </div>
+
+        {searchUrl && (
+          <div className="bg-gray-700 rounded-lg p-6">
+            <h2 className="text-2xl font-bold mb-4">{translations.result.title}</h2>
+            <p className="mb-6 text-gray-300">
+              {translations.result.description}
+            </p>
+            <a
+              href={searchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold text-lg text-center transition duration-200"
+            >
+              {translations.result.openButton}
+            </a>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+} 
