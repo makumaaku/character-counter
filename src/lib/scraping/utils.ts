@@ -1,10 +1,10 @@
-import { PageInterface } from './page-interface';
+import { Page } from 'puppeteer-core';
 
 /**
  * ページを自動スクロールしてすべてのコンテンツを読み込む
  * @param page Puppeteerのページオブジェクト
  */
-export async function autoScroll(page: PageInterface): Promise<void> {
+export async function autoScroll(page: Page): Promise<void> {
   const startTime = Date.now();
   await page.evaluate(async () => {
     await new Promise<void>((resolve) => {
@@ -53,7 +53,7 @@ export async function autoScroll(page: PageInterface): Promise<void> {
  * @param page Puppeteerのページオブジェクト
  * @param url 開くURL
  */
-export async function loadPage(page: PageInterface, url: string): Promise<void> {
+export async function loadPage(page: Page, url: string): Promise<void> {
   const startTime = Date.now();
   
   // ページに移動
@@ -162,7 +162,7 @@ export async function loadPage(page: PageInterface, url: string): Promise<void> 
  * @param width ビューポートの幅
  * @param height ビューポートの高さ
  */
-export async function setupPage(page: PageInterface, width: number, height: number): Promise<void> {
+export async function setupPage(page: Page, width: number, height: number): Promise<void> {
   // より広いビューポートサイズを設定（PCサイズを保証）
   const pcWidth = Math.max(width, 1280);
   const pcHeight = Math.max(height, 900);
