@@ -1,5 +1,121 @@
+import chromium from '@sparticuz/chromium-min';
+import { execSync } from 'child_process';
 import { NextRequest, NextResponse } from 'next/server';
-import puppeteer, { Page } from 'puppeteer';
+import puppeteer from 'puppeteer';
+import type { Page } from 'puppeteer-core';
+import puppeteerCore from 'puppeteer-core';
+
+// Vercelのタイムアウトを60秒に設定
+export const maxDuration = 60; // Vercelのサーバーレス関数のタイムアウト設定 (秒)
+export const dynamic = "force-dynamic";
+
+// GitHubからChromiumを取得するためのパス
+const remoteExecutablePath = 
+  "https://github.com/Sparticuz/chromium/releases/download/v133.0.0/chromium-v133.0.0-pack.tar";
+
+// ブラウザインスタンスをキャッシュ
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let browser: any = null;
+
+// 開発環境でChromeをインストールする関数
+async function ensureChromium() {
+  try {
+    // Puppeteerが互換性のあるChromeバージョンを見つけられるか確認
+    await puppeteer.launch({ 
+      headless: true,
+      protocolTimeout: 5000 // 短めのタイムアウトで確認
+    });
+    console.log('互換性のあるChromeが見つかりました');
+  } catch {
+    console.log('互換性のあるChromeが見つかりません。自動的にインストールします...');
+    try {
+      // Puppeteerが要求する正確なバージョンを取得してインストール
+      const requiredVersion = String(execSync('node -e "console.log(require(\'puppeteer\')._preferredRevision)"', { encoding: 'utf-8' })).trim();
+      console.log(`Puppeteerが必要とするChromeバージョン: ${requiredVersion}`);
+      
+      // 具体的なバージョンでChromeをインストール
+      execSync(`npx puppeteer browsers install chrome@${requiredVersion}`, { stdio: 'inherit' });
+      console.log('Chromeのインストールが完了しました！');
+    } catch (installError) {
+      console.error('Chromeのインストールに失敗しました:', installError);
+      throw new Error('Chromeのインストールに失敗しました。手動でインストールしてください: npx puppeteer browsers install chrome');
+    }
+  }
+}
+
+// ブラウザインスタンスを取得する関数
+async function getBrowser() {
+  if (browser) return browser;
+
+  if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production" || process.env.NODE_ENV === "production") {
+    // 本番環境（Vercel）では@sparticuz/chromium-minを使用
+    browser = await puppeteerCore.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(remoteExecutablePath),
+      headless: true,
+      protocolTimeout: 50000 // タイムアウトを50秒に設定
+    });
+  } else {
+    // 開発環境ではローカルのPuppeteerを使用
+    // Chromeが利用可能か確認し、必要ならインストール
+    await ensureChromium();
+    
+    // インストールされたChromeの実行パスを取得
+    // Puppeteerのデフォルトの実行可能パスを使用
+    // これにより自動的にPuppeteerが互換性のあるChromeバージョンを選択する
+    const executablePath = puppeteer.executablePath();
+    
+    // Chromeのバージョン情報を取得
+    try {
+      // Puppeteerのバージョン情報をコマンドで取得する
+      const requiredVersion = String(execSync('npx puppeteer browsers install --help | grep -o "chrome@[0-9.]*" | head -1 | cut -d@ -f2', { encoding: 'utf-8' })).trim() || '不明';
+      const puppeteerVersion = String(execSync('npx puppeteer --version', { encoding: 'utf-8' })).trim() || '不明';
+      
+      // パスからバージョン情報を抽出（OS非依存の方法）
+      let installedChromeVersion = '不明';
+      try {
+        // Chromeのバージョン情報を直接取得
+        const versionOutput = String(execSync(`"${executablePath}" --version`, { encoding: 'utf-8' })).trim();
+        installedChromeVersion = versionOutput.match(/[\d\.]+/)?.[0] || '不明';
+      } catch {
+        // 直接実行できない場合はパスからバージョンを推測
+        const macMatch = executablePath.match(/mac(?:_arm)?-([^\/]+)/);
+        const winMatch = executablePath.match(/win(?:64)?-([^\\]+)/);
+        const linuxMatch = executablePath.match(/linux-([^\/]+)/);
+        installedChromeVersion = macMatch?.[1] || winMatch?.[1] || linuxMatch?.[1] || '不明';
+      }
+      
+      console.log(`------- ブラウザ情報 -------`);
+      console.log(`Puppeteerバージョン: ${puppeteerVersion}`);
+      console.log(`Puppeteerが必要とするChromeバージョン: ${requiredVersion}`);
+      console.log(`実際に使用するChromeバージョン: ${installedChromeVersion}`);
+      console.log(`使用するChromeのパス: ${executablePath}`);
+      
+      // 実行環境の情報を追加
+      try {
+        const nodeVersion = String(execSync('node --version', { encoding: 'utf-8' })).trim();
+        const osInfo = String(execSync('uname -a || ver', { encoding: 'utf-8' })).trim();
+        console.log(`Node.jsバージョン: ${nodeVersion}`);
+        console.log(`OS情報: ${osInfo}`);
+      } catch (envError) {
+        console.log(`実行環境情報の取得に失敗: ${envError}`);
+      }
+      
+      console.log(`---------------------------`);
+    } catch (error) {
+      console.warn('バージョン情報の取得に失敗しました:', error);
+      console.log(`使用するChromeのパス: ${executablePath}`);
+    }
+    
+    browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      headless: true,
+      executablePath: executablePath,
+      protocolTimeout: 50000 // タイムアウトを50秒に設定
+    });
+  }
+  return browser;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -18,12 +134,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Puppeteerを起動
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-      protocolTimeout: 180000 // プロトコルタイムアウトを180秒（3分）に設定
-    });
+    // ブラウザを取得
+    const browser = await getBrowser();
     
     // 新しいページを作成
     const page = await browser.newPage();
@@ -41,7 +153,7 @@ export async function GET(request: NextRequest) {
     // ページに移動
     await page.goto(url, {
       waitUntil: 'networkidle0',
-      timeout: 120000 // タイムアウトを120秒に増やす
+      timeout: 45000 // タイムアウトを45秒に設定
     });
 
     // ページが完全に読み込まれるのを待つ
@@ -147,7 +259,7 @@ export async function GET(request: NextRequest) {
       },
       preferCSSPageSize: true,
       displayHeaderFooter: false,
-      timeout: 120000 // PDF生成のタイムアウトも延長
+      timeout: 45000 // PDF生成のタイムアウトも調整
     };
 
     // スケールオプションを設定
@@ -161,8 +273,8 @@ export async function GET(request: NextRequest) {
     // PDFを生成
     const pdf = await page.pdf(pdfOptions);
 
-    // ブラウザを閉じる
-    await browser.close();
+    // ページを閉じる（ブラウザは閉じない - 再利用のため）
+    await page.close();
 
     // PDFをレスポンスとして返す
     return new NextResponse(pdf, {
