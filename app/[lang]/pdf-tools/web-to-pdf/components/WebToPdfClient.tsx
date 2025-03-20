@@ -582,6 +582,14 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                           translations.preview.pageOf.replace('{current}', pageNum.toString()).replace('{total}', numPages?.toString() || '') : 
                           `Page ${pageNum} of ${numPages}`}
                       </span>
+                      
+                      <button 
+                        onClick={() => changePage(1)} 
+                        disabled={numPages !== null && pageNum >= numPages}
+                        className={`px-3 py-1 rounded ${numPages !== null && pageNum >= numPages ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-500 text-white'}`}
+                      >
+                        次のページ →
+                      </button>
                     </div>
                   )}
                 </div>

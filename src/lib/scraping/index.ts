@@ -120,7 +120,7 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
       },
       preferCSSPageSize: false, // CSSのページサイズを優先しない
       displayHeaderFooter: true,
-      timeout: 30000 // タイムアウトを30秒に短縮（前は45000）
+      timeout: 45000 // 
     };
 
     // スケールオプションを設定
