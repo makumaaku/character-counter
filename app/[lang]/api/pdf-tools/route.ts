@@ -67,8 +67,9 @@ async function getBrowser() {
     
     // Chromeのバージョン情報を取得
     try {
-      const requiredVersion = String(execSync('node -e "console.log(require(\'puppeteer\')._preferredRevision)"', { encoding: 'utf-8' })).trim();
-      const puppeteerVersion = String(execSync('node -e "console.log(require(\'puppeteer\').version())"', { encoding: 'utf-8' })).trim();
+      // Puppeteerのバージョン情報をコマンドで取得する
+      const requiredVersion = String(execSync('npx puppeteer browsers install --help | grep -o "chrome@[0-9.]*" | head -1 | cut -d@ -f2', { encoding: 'utf-8' })).trim() || '不明';
+      const puppeteerVersion = String(execSync('npx puppeteer --version', { encoding: 'utf-8' })).trim() || '不明';
       
       // パスからバージョン情報を抽出（OS非依存の方法）
       let installedChromeVersion = '不明';
@@ -89,6 +90,17 @@ async function getBrowser() {
       console.log(`Puppeteerが必要とするChromeバージョン: ${requiredVersion}`);
       console.log(`実際に使用するChromeバージョン: ${installedChromeVersion}`);
       console.log(`使用するChromeのパス: ${executablePath}`);
+      
+      // 実行環境の情報を追加
+      try {
+        const nodeVersion = String(execSync('node --version', { encoding: 'utf-8' })).trim();
+        const osInfo = String(execSync('uname -a || ver', { encoding: 'utf-8' })).trim();
+        console.log(`Node.jsバージョン: ${nodeVersion}`);
+        console.log(`OS情報: ${osInfo}`);
+      } catch (envError) {
+        console.log(`実行環境情報の取得に失敗: ${envError}`);
+      }
+      
       console.log(`---------------------------`);
     } catch (error) {
       console.warn('バージョン情報の取得に失敗しました:', error);
