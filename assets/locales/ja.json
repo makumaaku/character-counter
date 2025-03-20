@@ -190,7 +190,8 @@
       "convert": "PDFに変換"
     },
     "result": {
-      "download": "PDFをダウンロード"
+      "download": "PDFをダウンロード",
+      "preview": "PDFをプレビュー"
     },
     "status": {
       "processing": "処理中...",
@@ -236,7 +237,8 @@
       }
     },
     "result": {
-      "download": "PDFをダウンロード"
+      "download": "PDFをダウンロード",
+      "preview": "PDFをプレビュー"
     },
     "status": {
       "processing": "ウェブページをPDFに変換中...",
@@ -249,7 +251,12 @@
       "networkError": "ネットワークエラー。接続を確認して再試行してください。",
       "timeout": "変換に時間がかかっています。複雑なウェブサイトの場合は、完了までに1分以上かかることがあります。しばらくお待ちください..."
     },
-    "loading": "PDF変換ツールを読み込み中..."
+    "loading": "PDF変換ツールを読み込み中...",
+    "preview": {
+      "loading": "PDFプレビューを読み込み中...",
+      "error": "プレビューの読み込みに失敗しました",
+      "pageOf": "ページ {current}/{total}"
+    }
   },
   "pdfToWord": {
     "meta": {

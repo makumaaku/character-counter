@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Script from 'next/script'
+import Image from 'next/image'
 
 type Props = {
   translations: {
@@ -527,9 +528,11 @@ export default function WebToPdfClient({ translations, lang }: Props) {
             {!showPreview && pdfThumbnail && (
               <div className="mt-2 flex justify-center">
                 <div className="relative w-full max-w-sm">
-                  <img 
+                  <Image 
                     src={pdfThumbnail} 
                     alt="PDF Thumbnail" 
+                    width={500}
+                    height={700}
                     className="w-full h-auto rounded-md border-2 border-purple-500 shadow-lg cursor-pointer" 
                     onClick={togglePreview}
                   />
