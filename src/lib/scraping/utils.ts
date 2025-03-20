@@ -182,6 +182,28 @@ export async function setupPage(page: PageInterface, width: number, height: numb
     { name: 'prefers-reduced-motion', value: 'no-preference' }
   ]);
   
+  // 日本語フォント対応の追加設定
+  await page.evaluate(() => {
+    // 日本語フォントを確実に利用するためのオーバーライド
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = `
+      @font-face {
+        font-family: 'PuppeteerJPFont';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Hiragino Sans'), local('Meiryo'), 
+             local('MS PGothic'), local('Noto Sans CJK JP'),
+             local('Yu Gothic');
+      }
+      
+      body, html, div, p, span, h1, h2, h3, h4, h5, h6, 
+      a, li, td, th, input, textarea, button, select {
+        font-family: 'PuppeteerJPFont', sans-serif !important;
+      }
+    `;
+    document.head.appendChild(styleElement);
+  });
+  
   // デスクトップビューを強制する設定をより堅牢に
   await page.evaluateOnNewDocument(() => {
     // モバイルデバイス検出をオーバーライド

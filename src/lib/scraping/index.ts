@@ -1,5 +1,5 @@
+import { Page } from 'puppeteer-core';
 import * as local from './local';
-import { PageInterface } from './page-interface';
 import * as production from './production';
 import { PDFOptions, PageSetupOptions } from './types';
 import { loadPage, setupPage } from './utils';
@@ -21,8 +21,8 @@ export async function getBrowser() {
  * 新しいPuppeteerページを作成する
  * @returns Puppeteerのページオブジェクト
  */
-export async function createPage(): Promise<PageInterface> {
-  return environment.createPage() as unknown as PageInterface;
+export async function createPage(): Promise<Page> {
+  return environment.createPage();
 }
 
 /**
@@ -37,7 +37,7 @@ export function logBrowserInfo(): void {
  * @param options ページ設定オプション
  * @returns PDFバッファ
  */
-export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
+export async function convertToPDF(options: PageSetupOptions): Promise<Uint8Array> {
   // 処理開始時間を記録
   const startTime = Date.now();
   console.log(`🔄 [Web-to-PDF] 処理開始: URL=${options.url}`);
@@ -131,6 +131,30 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
       pdfOptions.scale = 0.8; // デフォルトのスケールも少し小さく
     }
 
+    // ページに日本語フォントをインジェクトする
+    await page.evaluate(() => {
+      // 日本語フォントのフォールバックを設定するためのスタイルを追加
+      const style = document.createElement('style');
+      style.textContent = `
+        @font-face {
+          font-family: 'NotoSansJP';
+          src: local('Noto Sans JP'), local('Noto Sans CJK JP'), 
+               local('Hiragino Sans'), local('Hiragino Kaku Gothic Pro'), 
+               local('Yu Gothic'), local('Meiryo'), local('MS PGothic'), 
+               local('sans-serif');
+          font-weight: normal;
+          font-style: normal;
+        }
+        
+        * {
+          font-family: 'NotoSansJP', 'Noto Sans JP', 'Noto Sans CJK JP', 
+                      'Hiragino Sans', 'Hiragino Kaku Gothic Pro', 
+                      'Yu Gothic', 'Meiryo', 'MS PGothic', sans-serif !important;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+
     // PDFを生成
     console.log(`🔄 [Web-to-PDF] PDF生成開始...`);
     const pdf = await page.pdf(pdfOptions);
@@ -152,4 +176,24 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
     await page.close();
     console.log(`🔄 [Web-to-PDF] ページクローズ完了 (${Date.now() - startTime}ms)`);
   }
+}
+
+/**
+ * ウェブページからPDFを生成する
+ * @param url PDFに変換するウェブページのURL
+ * @param options PDFオプションとページセットアップオプション
+ * @returns PDFバイナリデータ
+ */
+export async function webToPdf(
+  url: string, 
+  options: { pdf?: Partial<PDFOptions>; page?: Partial<PageSetupOptions> } = {}
+): Promise<Uint8Array> {
+  const pageOptions: PageSetupOptions = {
+    url,
+    width: options.page?.width || 1280,
+    height: options.page?.height,
+    scale: options.page?.scale || 'fit'
+  };
+  
+  return convertToPDF(pageOptions);
 } 

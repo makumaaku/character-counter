@@ -1,36 +1,48 @@
 import { execSync } from 'child_process';
-import puppeteer from 'puppeteer';
-import { Browser, Page } from './puppeteer-types';
+import puppeteerCore, { Browser, Page } from 'puppeteer-core';
 
 // ブラウザインスタンスをキャッシュ
 let browserInstance: Browser | null = null;
 
 /**
- * 開発環境でChromeをインストールする関数
+ * Chromeの実行パスを取得する関数
+ * @returns Chromeの実行パス
  */
-async function ensureChromium(): Promise<void> {
-  try {
-    // Puppeteerが互換性のあるChromeバージョンを見つけられるか確認
-    await puppeteer.launch({ 
-      headless: true,
-      protocolTimeout: 5000 // 短めのタイムアウトで確認
-    });
-    console.log('互換性のあるChromeが見つかりました');
-  } catch {
-    console.log('互換性のあるChromeが見つかりません。自動的にインストールします...');
+async function getChromeExecutablePath(): Promise<string> {
+  // OSに応じたデフォルトのChrome実行パス
+  const defaultPaths = {
+    win32: [
+      'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+      'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+      process.env.LOCALAPPDATA + '\\Google\\Chrome\\Application\\chrome.exe'
+    ],
+    darwin: [
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+    ],
+    linux: [
+      '/usr/bin/google-chrome',
+      '/usr/bin/chromium-browser',
+      '/usr/bin/chromium'
+    ]
+  };
+
+  // 現在のOSに合わせたパスリストを取得
+  const paths = defaultPaths[process.platform as keyof typeof defaultPaths] || defaultPaths.linux;
+
+  // パスが存在するか確認
+  for (const path of paths) {
     try {
-      // Puppeteerが要求する正確なバージョンを取得してインストール
-      const requiredVersion = String(execSync('node -e "console.log(require(\'puppeteer\')._preferredRevision)"', { encoding: 'utf-8' })).trim();
-      console.log(`Puppeteerが必要とするChromeバージョン: ${requiredVersion}`);
-      
-      // 具体的なバージョンでChromeをインストール
-      execSync(`npx puppeteer browsers install chrome@${requiredVersion}`, { stdio: 'inherit' });
-      console.log('Chromeのインストールが完了しました！');
-    } catch (installError) {
-      console.error('Chromeのインストールに失敗しました:', installError);
-      throw new Error('Chromeのインストールに失敗しました。手動でインストールしてください: npx puppeteer browsers install chrome');
+      execSync(`"${path}" --version`, { stdio: 'ignore' });
+      console.log(`使用可能なChromeが見つかりました: ${path}`);
+      return path;
+    } catch {
+      // このパスでは実行できない、次を試す
     }
   }
+
+  // 見つからない場合はエラー
+  throw new Error('Chrome実行パスが見つかりません。Chromeをインストールしてください。');
 }
 
 /**
@@ -39,10 +51,6 @@ async function ensureChromium(): Promise<void> {
  */
 function logLocalBrowserInfo(executablePath: string): void {
   try {
-    // Puppeteerのバージョン情報をコマンドで取得する
-    const requiredVersion = String(execSync('npx puppeteer browsers install --help | grep -o "chrome@[0-9.]*" | head -1 | cut -d@ -f2', { encoding: 'utf-8' })).trim() || '不明';
-    const puppeteerVersion = String(execSync('npx puppeteer --version', { encoding: 'utf-8' })).trim() || '不明';
-    
     // パスからバージョン情報を抽出（OS非依存の方法）
     let installedChromeVersion = '不明';
     try {
@@ -58,9 +66,8 @@ function logLocalBrowserInfo(executablePath: string): void {
     }
     
     console.log(`------- ローカルブラウザ情報 -------`);
-    console.log(`Puppeteerバージョン: ${puppeteerVersion}`);
-    console.log(`Puppeteerが必要とするChromeバージョン: ${requiredVersion}`);
-    console.log(`実際に使用するChromeバージョン: ${installedChromeVersion}`);
+    console.log(`puppeteer-coreを使用`);
+    console.log(`使用するChromeバージョン: ${installedChromeVersion}`);
     console.log(`使用するChromeのパス: ${executablePath}`);
     
     // 実行環境の情報を追加
@@ -82,26 +89,48 @@ function logLocalBrowserInfo(executablePath: string): void {
 
 /**
  * ローカル開発環境でブラウザインスタンスを取得する
- * @returns Puppeteerのブラウザインスタンス
+ * @returns Puppeteer-Coreのブラウザインスタンス
  */
 export async function getBrowser(): Promise<Browser> {
   if (browserInstance) return browserInstance;
 
-  // 開発環境ではローカルのPuppeteerを使用
-  // Chromeが利用可能か確認し、必要ならインストール
-  await ensureChromium();
-  
-  // インストールされたChromeの実行パスを取得
-  const executablePath = puppeteer.executablePath();
+  // ローカルのChromeパスを取得
+  const executablePath = await getChromeExecutablePath();
   
   // Chromeのバージョン情報を取得
   logLocalBrowserInfo(executablePath);
   
-  browserInstance = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  // 環境変数から日本語フォントサポート設定を取得
+  const fontSupport = process.env.PUPPETEER_FONT_SUPPORT === 'true';
+  const lang = process.env.PUPPETEER_LANG || 'ja';
+  
+  // 起動オプションを設定
+  const launchArgs = [
+    '--no-sandbox', 
+    '--disable-setuid-sandbox', 
+    '--disable-dev-shm-usage'
+  ];
+  
+  // 日本語フォントサポートが有効な場合、フォント関連のオプションを追加
+  if (fontSupport) {
+    launchArgs.push(
+      '--font-render-hinting=none',
+      '--disable-font-subpixel-positioning',
+      '--disable-features=BlinkGenPropertyTrees',
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins,site-per-process',
+      `--lang=${lang}`,
+      '--font-family=Noto Sans JP,Noto Sans CJK JP,Hiragino Sans,Hiragino Kaku Gothic Pro,Yu Gothic,Meiryo,sans-serif'
+    );
+  }
+  
+  // puppeteer-coreでローカルのChromeを使用
+  browserInstance = await puppeteerCore.launch({
+    args: launchArgs,
     headless: true,
     executablePath: executablePath,
-    protocolTimeout: 50000 // タイムアウトを50秒に設定
+    protocolTimeout: 50000, // タイムアウトを50秒に設定
+    ignoreDefaultArgs: ['--disable-extensions']
   });
   
   return browserInstance;
@@ -122,6 +151,6 @@ export async function createPage(): Promise<Page> {
 export function logBrowserInfo(): void {
   console.log('------- ローカル環境ブラウザ情報 -------');
   console.log('環境: ローカル開発環境');
-  console.log('puppeteerを使用');
+  console.log('puppeteer-coreを使用');
   console.log('----------------------------------------');
 } 
