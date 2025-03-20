@@ -11,17 +11,6 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     urlLabel,
     urlPlaceholder,
     convertButton,
-    optionsLabel,
-    formatLabel,
-    formatA4,
-    formatLetter,
-    formatLegal,
-    orientationLabel,
-    orientationPortrait,
-    orientationLandscape,
-    scaleLabel,
-    scaleDefault,
-    scaleFit,
     downloadButton,
     processingText,
     noUrlText,
@@ -37,17 +26,6 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     translate(lang, 'webToPdf.form.url.label'),
     translate(lang, 'webToPdf.form.url.placeholder'),
     translate(lang, 'webToPdf.form.url.button'),
-    translate(lang, 'webToPdf.form.options.label'),
-    translate(lang, 'webToPdf.form.options.format.label'),
-    translate(lang, 'webToPdf.form.options.format.a4'),
-    translate(lang, 'webToPdf.form.options.format.letter'),
-    translate(lang, 'webToPdf.form.options.format.legal'),
-    translate(lang, 'webToPdf.form.options.orientation.label'),
-    translate(lang, 'webToPdf.form.options.orientation.portrait'),
-    translate(lang, 'webToPdf.form.options.orientation.landscape'),
-    translate(lang, 'webToPdf.form.options.scale.label'),
-    translate(lang, 'webToPdf.form.options.scale.default'),
-    translate(lang, 'webToPdf.form.options.scale.fit'),
     translate(lang, 'webToPdf.result.download'),
     translate(lang, 'webToPdf.status.processing'),
     translate(lang, 'webToPdf.status.noUrl'),
@@ -67,25 +45,6 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
         label: urlLabel,
         placeholder: urlPlaceholder,
         button: convertButton
-      },
-      options: {
-        label: optionsLabel,
-        format: {
-          label: formatLabel,
-          a4: formatA4,
-          letter: formatLetter,
-          legal: formatLegal
-        },
-        orientation: {
-          label: orientationLabel,
-          portrait: orientationPortrait,
-          landscape: orientationLandscape
-        },
-        scale: {
-          label: scaleLabel,
-          default: scaleDefault,
-          fit: scaleFit
-        }
       }
     },
     result: {

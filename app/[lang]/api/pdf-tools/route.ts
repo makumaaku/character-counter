@@ -10,6 +10,7 @@ export const maxDuration = 60; // Vercelのサーバーレス関数のタイム�
 export const dynamic = "force-dynamic";
 
 // GitHubからChromiumを取得するためのパス
+// @sparticuz/chromium-minのバージョンに応じてパスを変更する必要があります。
 const remoteExecutablePath = 
   "https://github.com/Sparticuz/chromium/releases/download/v133.0.0/chromium-v133.0.0-pack.tar";
 

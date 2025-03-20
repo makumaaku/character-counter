@@ -13,25 +13,6 @@ type Props = {
         placeholder: string
         button: string
       }
-      options: {
-        label: string
-        format: {
-          label: string
-          a4: string
-          letter: string
-          legal: string
-        }
-        orientation: {
-          label: string
-          portrait: string
-          landscape: string
-        }
-        scale: {
-          label: string
-          default: string
-          fit: string
-        }
-      }
     }
     result: {
       download: string
@@ -52,15 +33,8 @@ type Props = {
   lang: string
 }
 
-type PaperFormat = 'a4' | 'letter' | 'legal'
-type Orientation = 'portrait' | 'landscape'
-type Scale = 'default' | 'fit'
-
 export default function WebToPdfClient({ translations, lang }: Props) {
   const [url, setUrl] = useState<string>('')
-  const [format, setFormat] = useState<PaperFormat>('a4')
-  const [orientation, setOrientation] = useState<Orientation>('portrait')
-  const [scale, setScale] = useState<Scale>('default')
   const [isConverting, setIsConverting] = useState<boolean>(false)
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -115,8 +89,8 @@ export default function WebToPdfClient({ translations, lang }: Props) {
     }, 30000)
 
     try {
-      // 実際のAPIエンドポイントを使用してPDFを生成
-      const apiUrl = `/${lang}/api/pdf-tools?url=${encodeURIComponent(url)}&format=${format}&orientation=${orientation}&scale=${scale}`
+      // 実際のAPIエンドポイントを使用してPDFを生成（デフォルト値を使用）
+      const apiUrl = `/${lang}/api/pdf-tools?url=${encodeURIComponent(url)}&format=a4&orientation=portrait&scale=default`
       
       setProgress(30) // リクエスト開始時の進捗を更新
       
@@ -208,27 +182,21 @@ export default function WebToPdfClient({ translations, lang }: Props) {
               },
               {
                 '@type': 'HowToStep',
-                'name': 'Customize Options',
-                'text': 'Customize the PDF options (format, orientation, scale)',
-                'position': 2
-              },
-              {
-                '@type': 'HowToStep',
                 'name': 'Convert',
                 'text': 'Click the Convert to PDF button',
-                'position': 3
+                'position': 2
               },
               {
                 '@type': 'HowToStep',
                 'name': 'Wait',
                 'text': 'Wait for the conversion to complete',
-                'position': 4
+                'position': 3
               },
               {
                 '@type': 'HowToStep',
                 'name': 'Download',
                 'text': 'Download your PDF file',
-                'position': 5
+                'position': 4
               }
             ]
           })
@@ -270,66 +238,6 @@ export default function WebToPdfClient({ translations, lang }: Props) {
               >
                 {isConverting ? translations.status.processing : translations.form.url.button}
               </button>
-            </div>
-          </div>
-
-          {/* Options */}
-          <div>
-            <h3 className="text-lg font-medium text-gray-200 mb-3">
-              {translations.form.options.label}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Format */}
-              <div>
-                <label htmlFor="format" className="block text-sm font-medium text-gray-300 mb-2">
-                  {translations.form.options.format.label}
-                </label>
-                <select
-                  id="format"
-                  value={format}
-                  onChange={(e) => setFormat(e.target.value as PaperFormat)}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-                  disabled={isConverting}
-                >
-                  <option value="a4">{translations.form.options.format.a4}</option>
-                  <option value="letter">{translations.form.options.format.letter}</option>
-                  <option value="legal">{translations.form.options.format.legal}</option>
-                </select>
-              </div>
-
-              {/* Orientation */}
-              <div>
-                <label htmlFor="orientation" className="block text-sm font-medium text-gray-300 mb-2">
-                  {translations.form.options.orientation.label}
-                </label>
-                <select
-                  id="orientation"
-                  value={orientation}
-                  onChange={(e) => setOrientation(e.target.value as Orientation)}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-                  disabled={isConverting}
-                >
-                  <option value="portrait">{translations.form.options.orientation.portrait}</option>
-                  <option value="landscape">{translations.form.options.orientation.landscape}</option>
-                </select>
-              </div>
-
-              {/* Scale */}
-              <div>
-                <label htmlFor="scale" className="block text-sm font-medium text-gray-300 mb-2">
-                  {translations.form.options.scale.label}
-                </label>
-                <select
-                  id="scale"
-                  value={scale}
-                  onChange={(e) => setScale(e.target.value as Scale)}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-                  disabled={isConverting}
-                >
-                  <option value="default">{translations.form.options.scale.default}</option>
-                  <option value="fit">{translations.form.options.scale.fit}</option>
-                </select>
-              </div>
             </div>
           </div>
         </form>
