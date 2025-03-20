@@ -89,8 +89,8 @@ export default function WebToPdfClient({ translations, lang }: Props) {
     }, 30000)
 
     try {
-      // 実際のAPIエンドポイントを使用してPDFを生成（デフォルト値を使用）
-      const apiUrl = `/${lang}/api/pdf-tools?url=${encodeURIComponent(url)}&format=a4&orientation=portrait&scale=default`
+      // 実際のAPIエンドポイントを使用してPDFを生成（PCサイズのレイアウトを再現するため幅を1920pxに設定、スケールを調整）
+      const apiUrl = `/${lang}/api/pdf-tools?url=${encodeURIComponent(url)}&format=a4&orientation=portrait&scale=fit`
       
       setProgress(30) // リクエスト開始時の進捗を更新
       
