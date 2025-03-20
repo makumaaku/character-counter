@@ -38,8 +38,14 @@ export function logBrowserInfo(): void {
  * @returns PDFバッファ
  */
 export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
+  // 処理開始時間を記録
+  const startTime = Date.now();
+  console.log(`🔄 [Web-to-PDF] 処理開始: URL=${options.url}`);
+  
   // ブラウザページを作成
+  console.log(`🔄 [Web-to-PDF] ブラウザページ作成中...`);
   const page = await createPage();
+  console.log(`✅ [Web-to-PDF] ブラウザページ作成完了 (${Date.now() - startTime}ms)`);
   
   try {
     // PCビューを確保するため、十分な幅を設定（最低でも1280px）
@@ -50,12 +56,17 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
     const height = options.height || Math.round(pcWidth * aspectRatio);
     
     // ページの設定
+    console.log(`🔄 [Web-to-PDF] ページ設定中... (width=${pcWidth}, height=${height})`);
     await setupPage(page, pcWidth, height);
+    console.log(`✅ [Web-to-PDF] ページ設定完了 (${Date.now() - startTime}ms)`);
     
     // ページを読み込む
+    console.log(`🔄 [Web-to-PDF] ページ読み込み開始...`);
     await loadPage(page, options.url);
+    console.log(`✅ [Web-to-PDF] ページ読み込み完了 (${Date.now() - startTime}ms)`);
     
     // さらにPC表示を確実にするためのスクリプトを実行
+    console.log(`🔄 [Web-to-PDF] PC表示用スクリプト実行...`);
     await page.evaluate(() => {
       // メディアクエリチェックを上書き
       const styleSheets = Array.from(document.styleSheets);
@@ -94,6 +105,7 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
         }
       });
     });
+    console.log(`✅ [Web-to-PDF] PC表示用スクリプト実行完了 (${Date.now() - startTime}ms)`);
     
     // PDFオプションを設定
     const pdfOptions: PDFOptions = {
@@ -108,7 +120,7 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
       },
       preferCSSPageSize: false, // CSSのページサイズを優先しない
       displayHeaderFooter: true,
-      timeout: 45000 // PDF生成のタイムアウトも調整
+      timeout: 30000 // タイムアウトを30秒に短縮（前は45000）
     };
 
     // スケールオプションを設定
@@ -120,11 +132,24 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Buffer> {
     }
 
     // PDFを生成
+    console.log(`🔄 [Web-to-PDF] PDF生成開始...`);
     const pdf = await page.pdf(pdfOptions);
+    console.log(`✅ [Web-to-PDF] PDF生成完了 (${Date.now() - startTime}ms)`);
+    
+    // 処理完了時間とサイズをログ出力
+    const totalTime = Date.now() - startTime;
+    const pdfSizeMB = (pdf.length / (1024 * 1024)).toFixed(2);
+    console.log(`✅ [Web-to-PDF] 処理完了: 合計時間=${totalTime}ms, サイズ=${pdfSizeMB}MB`);
     
     return pdf;
+  } catch (error) {
+    // エラー発生時のログ
+    const errorTime = Date.now() - startTime;
+    console.error(`❌ [Web-to-PDF] エラー発生 (${errorTime}ms):`, error);
+    throw error;
   } finally {
     // 常にページを閉じる（エラーが発生しても閉じる）
     await page.close();
+    console.log(`🔄 [Web-to-PDF] ページクローズ完了 (${Date.now() - startTime}ms)`);
   }
 } 

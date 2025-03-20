@@ -5,17 +5,32 @@ import { PageInterface } from './page-interface';
  * @param page Puppeteerのページオブジェクト
  */
 export async function autoScroll(page: PageInterface): Promise<void> {
+  const startTime = Date.now();
   await page.evaluate(async () => {
     await new Promise<void>((resolve) => {
       let totalHeight = 0;
-      const distance = 100; // スクロール距離
-      const scrollDelay = 100;
+      const distance = 150; // スクロール距離
+      const scrollDelay = 100; // スクロール間隔を短縮（100から50に）
+      let lastScrollHeight = 0;
+      let unchangedScrolls = 0;
+      
+      console.log('Starting auto-scroll');
+      
       const timer = setInterval(() => {
         const scrollHeight = document.body.scrollHeight;
         window.scrollBy(0, distance);
         totalHeight += distance;
 
-        if (totalHeight >= scrollHeight) {
+        // スクロール高さが変わらない場合をカウント
+        if (lastScrollHeight === scrollHeight) {
+          unchangedScrolls++;
+        } else {
+          unchangedScrolls = 0;
+        }
+        lastScrollHeight = scrollHeight;
+
+        // 終了条件：スクロール位置が最下部に達した、または3回連続でスクロール高さが変わらなかった
+        if (totalHeight >= scrollHeight || unchangedScrolls >= 3) {
           clearInterval(timer);
           // 最後に画面上部に戻る（ヘッダーなど全ての要素が表示される状態にする）
           window.scrollTo(0, 0);
@@ -27,7 +42,10 @@ export async function autoScroll(page: PageInterface): Promise<void> {
   });
   
   // スクロール後に追加で待機して、動的コンテンツの読み込みを確実にする
+  // ただし待機時間を短縮（1000から500に）
+  console.log(`[AutoScroll] スクロール後の追加待機...`);
   await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000)));
+  console.log(`[AutoScroll] 自動スクロール完了: 合計時間=${Date.now() - startTime}ms`);
 }
 
 /**
@@ -36,17 +54,24 @@ export async function autoScroll(page: PageInterface): Promise<void> {
  * @param url 開くURL
  */
 export async function loadPage(page: PageInterface, url: string): Promise<void> {
+  const startTime = Date.now();
+  
   // ページに移動
+  console.log(`🔄 [LoadPage] goto開始: URL=${url}`);
   await page.goto(url, {
     waitUntil: 'networkidle0',
     timeout: 45000 // タイムアウトを45秒に設定
   });
+  console.log(`✅ [LoadPage] goto完了 (${Date.now() - startTime}ms)`);
 
   // ページが完全に読み込まれるのを待つ
   try {
     // 少し待機してJSの初期化を待つ
-    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000)));
+    console.log(`🔄 [LoadPage] JS初期化待機...`);
+    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000))); // 1000から500に短縮
+    console.log(`✅ [LoadPage] JS初期化待機完了 (${Date.now() - startTime}ms)`);
     
+    console.log(`🔄 [LoadPage] 画像読み込み待機...`);
     await page.evaluate(() => {
       return new Promise((resolve) => {
         // タイムアウト処理を追加（30秒後に強制的に解決）
@@ -64,6 +89,8 @@ export async function loadPage(page: PageInterface, url: string): Promise<void> 
           resolve(true);
           return;
         }
+        
+        console.log(`Total images to load: ${images.length}`);
         
         images.forEach(img => {
           if (img.complete) {
@@ -91,13 +118,15 @@ export async function loadPage(page: PageInterface, url: string): Promise<void> 
         });
       });
     });
+    console.log(`✅ [LoadPage] 画像読み込み完了または継続 (${Date.now() - startTime}ms)`);
   } catch (error) {
     console.log('Error waiting for images, continuing anyway:', error);
   }
 
   // 動的コンテンツのロードを待つための追加処理
   try {
-    // ローディング要素が消えるのを待つ（最大10秒）
+    // ローディング要素が消えるのを待つ（最大5秒 - 前は10秒）
+    console.log(`🔄 [LoadPage] ローディング要素消失待機...`);
     await page.waitForFunction(
       () => {
         // ローディング要素を探す一般的なセレクタ
@@ -108,13 +137,20 @@ export async function loadPage(page: PageInterface, url: string): Promise<void> 
     ).catch(() => {
       console.log('Loading elements still present or not found, continuing anyway');
     });
+    console.log(`✅ [LoadPage] ローディング要素消失待機完了 (${Date.now() - startTime}ms)`);
     
     // 少し待機して、最終的なJavaScriptの実行を待つ
-    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000)));
+    console.log(`🔄 [LoadPage] 最終JavaScriptの実行待機...`);
+    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000))); // 1000から500に短縮
+    console.log(`✅ [LoadPage] 最終JavaScript実行待機完了 (${Date.now() - startTime}ms)`);
     
     // スクロールしてすべてのコンテンツを読み込む
+    console.log(`🔄 [LoadPage] コンテンツ読み込みのための自動スクロール開始...`);
     await autoScroll(page);
+    console.log(`✅ [LoadPage] 自動スクロール完了 (${Date.now() - startTime}ms)`);
     
+    // 処理完了ログ
+    console.log(`✅ [LoadPage] すべての読み込み処理完了: 合計時間=${Date.now() - startTime}ms`);
   } catch (error) {
     console.log('Error waiting for dynamic content, continuing anyway:', error);
   }
