@@ -212,7 +212,7 @@
     "form": {
       "url": {
         "label": "ウェブサイトURL",
-        "placeholder": "ウェブサイトURLを入力（例：https://example.com）",
+        "placeholder": "https://example.com ",
         "button": "PDFに変換"
       },
       "options": {

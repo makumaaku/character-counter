@@ -1688,7 +1688,7 @@
     "form": {
       "url": {
         "label": "Website URL",
-        "placeholder": "Enter website URL (e.g., https://example.com)",
+        "placeholder": "https://example.com ",
         "button": "Convert to PDF"
       },
       "options": {
