@@ -64,6 +64,127 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Uint8Arra
     console.log(`🔄 [Web-to-PDF] ページ読み込み開始...`);
     await loadPage(page, options.url);
     console.log(`✅ [Web-to-PDF] ページ読み込み完了 (${Date.now() - startTime}ms)`);
+
+    // 画像の読み込み状態を確認して、必要に応じて再読み込み
+    console.log(`🔄 [Web-to-PDF] 画像の読み込み状態を確認...`);
+    const imageStatus = await page.evaluate(() => {
+      const images = Array.from(document.querySelectorAll('img'));
+      const totalImages = images.length;
+      const loadedImages = images.filter(img => img.complete && img.naturalWidth > 0).length;
+      
+      // 未読み込みの画像を特定
+      const unloadedImages = images.filter(img => !img.complete || img.naturalWidth === 0)
+        .map(img => ({
+          src: img.src,
+          srcset: img.srcset,
+          classes: img.className,
+          id: img.id,
+          width: img.width,
+          height: img.height,
+          isVisible: img.getBoundingClientRect().top < window.innerHeight
+        }));
+      
+      return { 
+        totalImages, 
+        loadedImages, 
+        unloadedImages: unloadedImages.slice(0, 10), // 最初の10個だけを返す
+        hasUnloaded: loadedImages < totalImages
+      };
+    });
+    
+    console.log(`📊 [Web-to-PDF] 画像読み込み状況: ${imageStatus.loadedImages}/${imageStatus.totalImages}`);
+    
+    // 未読み込みの画像がある場合、追加の対策を実施
+    if (imageStatus.hasUnloaded && imageStatus.totalImages > 0) {
+      console.log(`⚠️ [Web-to-PDF] 未読み込み画像があります。追加対策を実施...`);
+      
+      // 未読み込み画像の詳細をログ出力
+      console.log(`未読み込み画像サンプル:`, JSON.stringify(imageStatus.unloadedImages, null, 2));
+      
+      // 画像を強制的に表示させるスクリプトを実行
+      await page.evaluate(() => {
+        const images = Array.from(document.querySelectorAll('img'));
+        
+        // すべての画像を可視化
+        images.forEach(img => {
+          if (!img.complete || img.naturalWidth === 0) {
+            // 画像のスタイルを調整して表示を確保
+            img.style.visibility = 'visible';
+            img.style.display = 'inline-block';
+            
+            // data-src や data-srcset がある場合、それらの値をsrcやsrcsetに設定
+            if (img.getAttribute('data-src')) {
+              img.src = img.getAttribute('data-src') || img.src;
+            }
+            if (img.getAttribute('data-srcset')) {
+              img.srcset = img.getAttribute('data-srcset') || img.srcset;
+            }
+            
+            // loading="lazy"を無効化
+            img.loading = 'eager';
+            
+            // サイズが0の場合は最小サイズを設定
+            if (img.width === 0) img.width = 100;
+            if (img.height === 0) img.height = 100;
+          }
+        });
+        
+        // 遅延読み込みスクリプトを事前に実行するヒント
+        interface WindowWithLazyLoad extends Window {
+          lazyLoadInstance?: {
+            update(): void;
+          };
+        }
+        if ((window as WindowWithLazyLoad).lazyLoadInstance) {
+          try {
+            (window as WindowWithLazyLoad).lazyLoadInstance?.update();
+          } catch (e) {
+            console.log('LazyLoad update failed:', e);
+          }
+        }
+        
+        return true;
+      });
+      
+      // 追加の待機時間を設定
+      console.log(`🔄 [Web-to-PDF] 画像の追加読み込み待機中...`);
+      await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 5000)));
+      
+      // 再度スクロールして画像を表示
+      await page.evaluate(async () => {
+        await new Promise<void>((resolve) => {
+          let totalHeight = 0;
+          const distance = 100;
+          const scrollDelay = 100;
+          let lastScrollHeight = 0;
+          
+          console.log('Rescrolling to ensure images are loaded...');
+          
+          const timer = setInterval(() => {
+            const scrollHeight = document.body.scrollHeight;
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+            
+            if (totalHeight >= scrollHeight || lastScrollHeight === scrollHeight) {
+              clearInterval(timer);
+              window.scrollTo(0, 0);
+              setTimeout(resolve, 500);
+            }
+            
+            lastScrollHeight = scrollHeight;
+          }, scrollDelay);
+        });
+      });
+      
+      // 最終的な画像状態を確認
+      const finalImageStatus = await page.evaluate(() => {
+        const images = Array.from(document.querySelectorAll('img'));
+        const loadedImages = images.filter(img => img.complete && img.naturalWidth > 0).length;
+        return { total: images.length, loaded: loadedImages };
+      });
+      
+      console.log(`📊 [Web-to-PDF] 最終画像読み込み状況: ${finalImageStatus.loaded}/${finalImageStatus.total}`);
+    }
     
     // さらにPC表示を確実にするためのスクリプトを実行
     console.log(`🔄 [Web-to-PDF] PC表示用スクリプト実行...`);
