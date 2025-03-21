@@ -2197,5 +2197,52 @@
       "success": "Conversion successful!",
       "convertingFile": "Converting {filename}..."
     }
+  },
+  "seoVolumeGuess": {
+    "meta": {
+      "title": "SEO Volume Prediction Tool | Easily Estimate Keyword Search Volume",
+      "description": "A free tool that collects keyword suggestions and scores the estimated search volume.",
+      "keywords": "SEO,search volume,keyword analysis,suggestions"
+    },
+    "title": "SEO Volume Prediction Tool",
+    "description": "Just enter a keyword, and we'll predict SEO volume from Google suggestions.",
+    "input": {
+      "placeholder": "Enter a keyword (e.g., ramen, English lessons)"
+    },
+    "button": {
+      "analyze": "Analyze"
+    },
+    "result": {
+      "volume-score": "Search Volume Prediction",
+      "suggestions": "suggestions",
+      "all-suggestions": "All Suggestion Candidates",
+      "score-description-1": "Very low volume. This is a niche keyword.",
+      "score-description-2": "Low volume. There might be less competition.",
+      "score-description-3": "Medium volume. A balanced keyword.",
+      "score-description-4": "High volume. This is a popular keyword.",
+      "score-description-5": "Very high volume. This keyword has intense competition."
+    },
+    "error": {
+      "empty-keyword": "Please enter a keyword",
+      "unknown": "An error occurred. Please try again.",
+      "api-error": "API error occurred. Please try again later."
+    },
+    "country": {
+      "selector": "Select target country",
+      "result": "Results for {country}",
+      "japan": "Japan",
+      "us": "United States",
+      "uk": "United Kingdom",
+      "australia": "Australia",
+      "canada": "Canada",
+      "germany": "Germany",
+      "france": "France",
+      "india": "India"
+    },
+    "notice": {
+      "title": "Usage Notes",
+      "language": "When searching Japanese keywords in other countries, they are automatically translated to that country's language (e.g., 'パン' → 'bread'). This works for a limited set of common keywords.",
+      "location": "Results may be influenced by your geographic location. For example, if you're accessing from Japan, you might still see Japanese-oriented results regardless of the country setting."
+    }
   }
 } 
