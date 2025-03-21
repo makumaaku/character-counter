@@ -2001,6 +2001,10 @@
       "jpgToPng": {
         "title": "JPGからPNGへの変換",
         "description": "JPG画像を透過対応のPNG形式に変換"
+      },
+      "pngToJpg": {
+        "title": "PNGからJPGへの変換",
+        "description": "PNG画像をJPG形式に簡単に変換"
       }
     }
   },
@@ -2030,6 +2034,39 @@
     "error": {
       "fileType": "JPG/JPEGファイルのみ対応しています",
       "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "pngToJpg": {
+    "meta": {
+      "title": "PNGからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "PNG画像をオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "PNGからJPG, PNGからJPEG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "PNGからJPGへの変換",
+    "description": "PNG画像をJPG形式に変換",
+    "form": {
+      "upload": {
+        "label": "PNG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "またはファイルをここにドラッグ＆ドロップ"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてのJPGをダウンロード",
+      "preview": "プレビュー"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "browserProcessing": "処理はブラウザ上で行われるため、デバイスによって速度が異なることがあります"
+    },
+    "error": {
+      "fileType": "PNGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました。もう一度お試しください"
     }
   }
 }

@@ -14,6 +14,12 @@ export default async function ImageTools({ params }: Props) {
       description: translate(lang, 'imageTools.tools.jpgToPng.description'),
       path: `/${lang}/image-tools/jpg-to-png`,
       icon: "🖼️"
+    },
+    {
+      title: translate(lang, 'imageTools.tools.pngToJpg.title'),
+      description: translate(lang, 'imageTools.tools.pngToJpg.description'),
+      path: `/${lang}/image-tools/png-to-jpg`,
+      icon: "📸"
     }
     // More image conversion tools can be added here in the future
   ]

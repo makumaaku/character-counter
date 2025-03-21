@@ -80,6 +80,7 @@ export async function generateMetadata(
     },
     "featureList": [
       "JPG to PNG conversion",
+      "PNG to JPG conversion",
       "Free to use",
       "No registration required",
       "Fast processing",
@@ -93,6 +94,12 @@ export async function generateMetadata(
         "name": t('jpgToPng.meta.title'),
         "description": t('jpgToPng.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/jpg-to-png`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('pngToJpg.meta.title'),
+        "description": t('pngToJpg.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/png-to-jpg`
       }
     ]
   };
