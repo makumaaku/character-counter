@@ -50,8 +50,15 @@ export default function ImageToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'imageTools.tools.svgToJpg.title'),
       path: `/image-tools/svg-to-jpg`
+    },
+    {
+      name: translate(lang, 'imageTools.tools.svgToPng.title'),
+      path: `/image-tools/svg-to-png`
+    },
+    {
+      name: translate(lang, 'imageTools.tools.svgToWebp.title'),
+      path: `/image-tools/svg-to-webp`
     }
-    // More image tools can be added here as they become available
   ]
 
   return (
