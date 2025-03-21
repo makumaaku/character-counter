@@ -30,6 +30,10 @@ export default function SeoToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'seoCannibalizationChecker.title'),
       path: `/seo-tools/seo-cannibalization-checker`
+    },
+    {
+      name: translate(lang, 'seo-volume-guess.title'),
+      path: `/seo-tools/seo-volume-guess`
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]

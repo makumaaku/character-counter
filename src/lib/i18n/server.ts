@@ -47,3 +47,17 @@ export function translate(lang: string, key: string): string {
 export function getAvailableLanguages(): Language[] {
   return Array.from(messages.keys());
 }
+
+// パラメータから言語を取得する関数
+export async function getLanguageFromParams(params: { lang: string } | Promise<{ lang: string }>): Promise<Language> {
+  const resolvedParams = await Promise.resolve(params);
+  const langParam = resolvedParams.lang;
+  
+  // 有効な言語かチェック
+  if (messages.has(langParam as Language)) {
+    return langParam as Language;
+  }
+  
+  // デフォルト言語を返す
+  return 'en';
+}

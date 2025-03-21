@@ -26,6 +26,12 @@ export default async function SeoTools({ params }: Props) {
       description: translate(lang, 'seoTools.tools.seoCannibalizationChecker.description'),
       path: `/${lang}/seo-tools/seo-cannibalization-checker`,
       icon: "🔍"
+    },
+    {
+      title: translate(lang, 'seo-volume-guess.title'),
+      description: translate(lang, 'seo-volume-guess.description'),
+      path: `/${lang}/seo-tools/seo-volume-guess`,
+      icon: "📊"
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]
