@@ -116,6 +116,9 @@ export default function Home() {
               <Link href="/seo-tools/seo-cannibalization-checker" className="text-white hover:underline ml-4">SEO Cannibalization Checker</Link>
             </li>
             <li>
+              <Link href="/seo-tools/seo-volume-guess" className="text-white hover:underline ml-4">SEO Volume Prediction Tool</Link>
+            </li>
+            <li>
               <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>
             </li>
             <li>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Language } from '@/lib/i18n/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,7 +48,6 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<SuggestResult | null>(null);
-  const [previousCountry, setPreviousCountry] = useState<CountryCode | null>(null);
 
   // キーワード分析を実行する関数
   const analyzeKeyword = async (searchKeyword: string, targetCountry: CountryCode) => {
@@ -63,7 +62,6 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
     try {
       const result = await analyzeSEOVolume(searchKeyword, lang, targetCountry);
       setResult(result);
-      setPreviousCountry(targetCountry);
     } catch (error) {
       setError(error instanceof Error ? error.message : translations.errorUnknown);
     } finally {
