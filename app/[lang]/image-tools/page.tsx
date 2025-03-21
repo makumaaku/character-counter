@@ -26,6 +26,12 @@ export default async function ImageTools({ params }: Props) {
       description: translate(lang, 'imageTools.tools.heicToJpg.description'),
       path: `/${lang}/image-tools/heic-to-jpg`,
       icon: "📱"
+    },
+    {
+      title: translate(lang, 'imageTools.tools.heicToPng.title'),
+      description: translate(lang, 'imageTools.tools.heicToPng.description'),
+      path: `/${lang}/image-tools/heic-to-png`,
+      icon: "🔄"
     }
     // More image conversion tools can be added here in the future
   ]

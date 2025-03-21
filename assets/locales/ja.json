@@ -4,11 +4,11 @@
     "meta": {
       "siteName": "Boring Tools",
       "publisher": "Boring Inc.",
-      "logoAlt": "ボーリングツールのロゴ"
+      "logoAlt": "Boring Toolsロゴ"
     },
     "download": {
       "button": "ダウンロード",
-      "downloaded": "ダウンロードしました！"
+      "downloaded": "ダウンロード完了！"
     }
   },
   "home": {
@@ -2009,6 +2009,10 @@
       "heicToJpg": {
         "title": "HEICからJPGへの変換",
         "description": "HEICファイルをJPGフォーマットに変換（プレビュー表示付き）"
+      },
+      "heicToPng": {
+        "title": "HEICからPNGへの変換",
+        "description": "HEICファイルをPNG形式に変換（プレビュー表示付き）"
       }
     }
   },
@@ -2103,6 +2107,38 @@
       "fileType": "HEICファイルのみ対応しています",
       "fileSize": "ファイルサイズは10MB以下にしてください",
       "conversion": "ファイル変換エラー: {error}"
+    }
+  },
+  "heicToPng": {
+    "meta": {
+      "title": "HEIC→PNG変換ツール | 無料オンライン画像コンバーター",
+      "description": "iPhoneやiPadで撮影したHEIC形式の写真をPNG形式に無料変換。簡単操作で登録不要、すべてのデバイスに対応しています。",
+      "keywords": "heic png 変換, heicコンバーター, heic 変換, iphone 写真 変換, 画像 変換, pngコンバーター, 無料 変換"
+    },
+    "title": "HEIC→PNG変換ツール",
+    "description": "HEIC画像を簡単にPNG形式に変換",
+    "upload": {
+      "title": "HEICファイルをアップロード",
+      "dragndrop": "HEICファイルをここにドラッグ＆ドロップするか、クリックして選択",
+      "button": "ファイルを選択",
+      "limit": "最大ファイルサイズ：1ファイルあたり10MB"
+    },
+    "convert": {
+      "button": "PNGに変換",
+      "processing": "変換中...",
+      "download": "PNGをダウンロード",
+      "downloadAll": "すべてダウンロード（ZIP）",
+      "converted": "{{count}}ファイルの変換が完了しました"
+    },
+    "preview": {
+      "title": "プレビュー＆ダウンロード",
+      "nofiles": "表示する変換済みファイルがありません"
+    },
+    "error": {
+      "invalidFormat": "HEICファイルのみ対応しています",
+      "tooLarge": "ファイルサイズが大きすぎます（最大10MB）",
+      "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
+      "failed": "変換に失敗しました。もう一度お試しください。"
     }
   }
 }

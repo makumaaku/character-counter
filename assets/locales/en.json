@@ -1997,6 +1997,10 @@
       "heicToJpg": {
         "title": "HEIC to JPG Converter",
         "description": "Convert HEIC images to JPG format with preview"
+      },
+      "heicToPng": {
+        "title": "HEIC to PNG Converter",
+        "description": "Convert HEIC files to PNG format with preview"
       }
     }
   },
@@ -2091,6 +2095,38 @@
       "fileType": "Only HEIC files are allowed",
       "fileSize": "File size must be less than 10MB",
       "conversion": "Error converting file: {error}"
+    }
+  },
+  "heicToPng": {
+    "meta": {
+      "title": "HEIC to PNG Converter | Free Online Image Converter",
+      "description": "Convert HEIC images to PNG format online for free. Easy to use, no registration needed. Works on all devices including iPhone, iPad, and Mac.",
+      "keywords": "heic to png, heic converter, convert heic, iphone photo converter, image converter, png converter, free converter"
+    },
+    "title": "HEIC to PNG Converter",
+    "description": "Convert HEIC images to PNG format easily",
+    "upload": {
+      "title": "Upload HEIC Files",
+      "dragndrop": "Drag & drop HEIC files here or click to browse",
+      "button": "Browse Files",
+      "limit": "Maximum file size: 10MB per file"
+    },
+    "convert": {
+      "button": "Convert to PNG",
+      "processing": "Converting...",
+      "download": "Download PNG",
+      "downloadAll": "Download All (ZIP)",
+      "converted": "{{count}} files converted successfully"
+    },
+    "preview": {
+      "title": "Preview & Download",
+      "nofiles": "No converted files to display"
+    },
+    "error": {
+      "invalidFormat": "Only HEIC files are supported",
+      "tooLarge": "File is too large (maximum 10MB)",
+      "noFiles": "Please upload at least one HEIC file",
+      "failed": "Conversion failed. Please try again."
     }
   }
 } 

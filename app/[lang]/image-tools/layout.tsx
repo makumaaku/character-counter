@@ -81,6 +81,8 @@ export async function generateMetadata(
     "featureList": [
       "JPG to PNG conversion",
       "PNG to JPG conversion",
+      "HEIC to JPG conversion",
+      "HEIC to PNG conversion",
       "Free to use",
       "No registration required",
       "Fast processing",
@@ -100,6 +102,18 @@ export async function generateMetadata(
         "name": t('pngToJpg.meta.title'),
         "description": t('pngToJpg.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/png-to-jpg`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('heicToJpg.meta.title'),
+        "description": t('heicToJpg.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-jpg`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('heicToPng.meta.title'),
+        "description": t('heicToPng.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-png`
       }
     ]
   };
