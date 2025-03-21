@@ -19,6 +19,9 @@ type Props = {
   translations: {
     title: string
     description: string
+    upload: {
+      limit: string
+    }
     form: {
       upload: {
         label: string
@@ -227,7 +230,7 @@ export default function HeicToJpgClient({ translations }: Props) {
         <FileUploadArea
           title={translations.form.upload.label}
           dragDropText={translations.form.upload.dragDrop}
-          limitText="最大ファイルサイズ: 10MB"
+          limitText={translations.upload.limit}
           buttonText={translations.form.upload.button}
           accept=".heic"
           multiple={true}

@@ -2093,6 +2093,9 @@
     },
     "title": "HEIC to JPG 変換ツール",
     "description": "HEICファイルをJPGフォーマットに変換（プレビュー表示付き）",
+    "upload": {
+      "limit": "最大ファイルサイズ: ファイルあたり10MB"
+    },
     "form": {
       "upload": {
         "label": "HEICファイルをアップロード",

@@ -2081,6 +2081,9 @@
     },
     "title": "HEIC to JPG Converter",
     "description": "Convert HEIC images to JPG format with preview",
+    "upload": {
+      "limit": "Maximum file size: 10MB per file"
+    },
     "form": {
       "upload": {
         "label": "Upload HEIC Images",

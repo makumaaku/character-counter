@@ -11,6 +11,7 @@ export default async function HeicToJpg({ params }: { params: Promise<{ lang: st
     uploadLabel,
     uploadButton,
     dragDropText,
+    uploadLimit,
     convertButton,
     downloadButton,
     downloadAllButton,
@@ -27,6 +28,7 @@ export default async function HeicToJpg({ params }: { params: Promise<{ lang: st
     translate(lang, 'heicToJpg.form.upload.label'),
     translate(lang, 'heicToJpg.form.upload.button'),
     translate(lang, 'heicToJpg.form.upload.dragDrop'),
+    translate(lang, 'heicToJpg.upload.limit'),
     translate(lang, 'heicToJpg.form.convert'),
     translate(lang, 'heicToJpg.result.download'),
     translate(lang, 'heicToJpg.result.downloadAll'),
@@ -42,6 +44,9 @@ export default async function HeicToJpg({ params }: { params: Promise<{ lang: st
   const translations = {
     title,
     description,
+    upload: {
+      limit: uploadLimit
+    },
     form: {
       upload: {
         label: uploadLabel,
