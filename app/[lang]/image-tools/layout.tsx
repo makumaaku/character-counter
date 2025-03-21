@@ -135,6 +135,18 @@ export async function generateMetadata(
         "name": t('pngToWebp.meta.title'),
         "description": t('pngToWebp.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/png-to-webp`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('svgToJpg.meta.title'),
+        "description": t('svgToJpg.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/svg-to-jpg`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('svgToPng.meta.title'),
+        "description": t('svgToPng.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/svg-to-png`
       }
     ]
   };

@@ -2013,6 +2013,18 @@
       "pngToWebp": {
         "title": "PNG to WebP Converter",
         "description": "Convert PNG images to WebP format for better web performance"
+      },
+      "svgToJpg": {
+        "title": "SVG to JPG Converter",
+        "description": "Convert SVG vector images to JPG format"
+      },
+      "svgToPng": {
+        "title": "SVG to PNG Converter",
+        "description": "Convert SVG vector images to PNG format with transparency"
+      },
+      "svgToWebp": {
+        "title": "SVG to WebP Converter",
+        "description": "Convert SVG vector images to WebP format optimized for web display"
       }
     }
   },
@@ -2315,6 +2327,111 @@
     "error": {
       "fileType": "Only PNG files are allowed",
       "fileSize": "File size must be less than 10MB"
+    }
+  },
+  "svgToJpg": {
+    "meta": {
+      "title": "SVG to JPG Converter - Free Online Image Conversion Tool",
+      "description": "Convert SVG vector images to JPG format online. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "svg to jpg, svg converter, image converter, free converter, online image tool, vector image converter"
+    },
+    "title": "SVG to JPG Converter",
+    "description": "Convert SVG vector images to JPG format",
+    "form": {
+      "upload": {
+        "label": "Upload SVG Image(s)",
+        "button": "Select Files",
+        "dragDrop": "Drag & drop SVG files here or click to browse",
+        "limitText": "Maximum file size: 20MB (up to 100MB total)"
+      },
+      "convert": "Convert to JPG"
+    },
+    "result": {
+      "download": "Download JPG",
+      "downloadAll": "Download All JPGs",
+      "preview": "Preview",
+      "selectedFiles": "files selected"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No file selected",
+      "success": "Conversion successful!",
+      "browserProcessing": "Processing is done in your browser, speed may vary by device"
+    },
+    "error": {
+      "fileType": "Only SVG files are allowed",
+      "fileSize": "File size must be less than 20MB",
+      "conversionFailed": "Conversion failed"
+    }
+  },
+  "svgToPng": {
+    "meta": {
+      "title": "SVG to PNG Converter - Free Online Image Conversion Tool",
+      "description": "Convert SVG vector images to PNG format online with transparency. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "svg to png, svg converter, image converter, free converter, online image tool, vector image converter, transparency"
+    },
+    "title": "SVG to PNG Converter",
+    "description": "Convert SVG vector images to PNG format with transparency",
+    "form": {
+      "upload": {
+        "label": "Upload SVG Image(s)",
+        "button": "Select Files",
+        "dragDrop": "Drag & drop SVG files here or click to browse",
+        "limitText": "Maximum file size: 20MB (up to 100MB total)"
+      },
+      "convert": "Convert to PNG"
+    },
+    "result": {
+      "download": "Download PNG",
+      "downloadAll": "Download All PNGs",
+      "preview": "Preview",
+      "selectedFiles": "files selected"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No file selected",
+      "success": "Conversion Complete!",
+      "browserProcessing": "All processing is done in your browser. Files are never uploaded to any server."
+    },
+    "error": {
+      "fileType": "Only SVG files are allowed",
+      "fileSize": "File size is too large",
+      "conversionFailed": "Conversion failed"
+    }
+  },
+  "svgToWebp": {
+    "meta": {
+      "title": "SVG to WebP Converter - Free Online Image Conversion Tool",
+      "description": "Convert SVG vector images to WebP format online. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "svg to webp, svg converter, image converter, free converter, online image tool, vector image converter, webp conversion"
+    },
+    "title": "SVG to WebP Converter",
+    "description": "Convert SVG vector images to WebP format optimized for web display",
+    "form": {
+      "upload": {
+        "label": "Upload SVG Image(s)",
+        "button": "Select Files",
+        "dragDrop": "Drag & drop SVG files here or click to browse",
+        "limitText": "Maximum file size: 20MB (up to 100MB total)"
+      },
+      "convert": "Convert to WebP"
+    },
+    "result": {
+      "download": "Download WebP",
+      "downloadAll": "Download All WebPs",
+      "preview": "Preview",
+      "selectedFiles": "files selected"
+    },
+    "status": {
+      "processing": "Processing...",
+      "noFile": "No file selected",
+      "success": "Conversion Complete!",
+      "browserProcessing": "All processing is done in your browser. Files are never uploaded to any server."
+    },
+    "error": {
+      "fileType": "Only SVG files are allowed",
+      "fileSize": "File size is too large",
+      "conversionFailed": "Conversion failed"
     }
   }
 } 

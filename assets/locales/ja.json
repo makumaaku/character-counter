@@ -2019,12 +2019,24 @@
         "description": "HEICファイルをWebP形式に変換"
       },
       "jpgToWebp": {
-        "title": "JPG から WebP 変換ツール",
+        "title": "JPGからWebPへの変換",
         "description": "JPG画像をウェブ表示に最適化されたWebP形式に変換"
       },
       "pngToWebp": {
-        "title": "PNG から WebP 変換ツール",
+        "title": "PNGからWebPへの変換",
         "description": "PNG画像をウェブ表示に最適化されたWebP形式に変換"
+      },
+      "svgToJpg": {
+        "title": "SVGからJPGへの変換",
+        "description": "SVGベクター画像をJPG形式に変換"
+      },
+      "svgToPng": {
+        "title": "SVGからPNGへの変換",
+        "description": "SVGベクター画像を透過対応のPNG形式に変換"
+      },
+      "svgToWebp": {
+        "title": "SVGからWebPへの変換",
+        "description": "SVGベクター画像をウェブ表示に最適化されたWebP形式に変換"
       }
     }
   },
@@ -2275,6 +2287,111 @@
     "error": {
       "fileType": "PNGファイルのみが許可されています",
       "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "svgToJpg": {
+    "meta": {
+      "title": "SVGからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからJPG, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換"
+    },
+    "title": "SVGからJPGへの変換",
+    "description": "SVGベクター画像をJPG形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてのJPGをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "browserProcessing": "処理はブラウザ上で行われるため、デバイスによって速度が異なることがあります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
+    }
+  },
+  "svgToPng": {
+    "meta": {
+      "title": "SVGからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからPNG, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換"
+    },
+    "title": "SVGからPNGへの変換",
+    "description": "SVGベクター画像をPNG形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "download": "PNGをダウンロード",
+      "downloadAll": "すべてのPNGをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換が完了しました！",
+      "browserProcessing": "処理はブラウザで行われるため、デバイスによって速度が異なる場合があります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ許可されています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
+    }
+  },
+  "svgToWebp": {
+    "meta": {
+      "title": "SVGからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからWebP, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換, webp変換"
+    },
+    "title": "SVGからWebPへの変換",
+    "description": "SVGベクター画像をウェブ表示に最適化されたWebP形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてのWebPをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換が完了しました！",
+      "browserProcessing": "処理はブラウザで行われるため、デバイスによって速度が異なる場合があります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ許可されています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
     }
   },
   "seoVolumeGuess": {
