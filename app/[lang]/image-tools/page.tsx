@@ -56,6 +56,12 @@ export default async function ImageTools({ params }: Props) {
       description: translate(lang, 'imageTools.tools.svgToJpg.description'),
       path: `/${lang}/image-tools/svg-to-jpg`,
       icon: "🎨"
+    },
+    {
+      title: translate(lang, 'imageTools.tools.svgToPng.title'),
+      description: translate(lang, 'imageTools.tools.svgToPng.description'),
+      path: `/${lang}/image-tools/svg-to-png`,
+      icon: "🖼️"
     }
     // More image conversion tools can be added here in the future
   ]
