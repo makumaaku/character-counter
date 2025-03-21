@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import JSZip from 'jszip'
+import Image from 'next/image'
 import FileUploadArea from '../../components/FileUploadArea'
 
 type Translations = {
@@ -109,7 +110,7 @@ export default function PngToJpgClient({ translations }: Props) {
         const imageUrl = URL.createObjectURL(file)
         
         // Create an image element
-        const img = new Image()
+        const img = new globalThis.Image()
         
         // Wait for the image to load
         await new Promise<void>((resolve, reject) => {
@@ -257,10 +258,13 @@ export default function PngToJpgClient({ translations }: Props) {
         <div className="mt-4 bg-gray-700 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">{translations.result.preview}</h2>
           <div className="bg-gray-800 rounded-lg p-4">
-            <img 
+            <Image 
               src={previewUrl} 
-              alt="Preview" 
+              alt="Preview"
               className="max-w-full h-auto max-h-96 mx-auto"
+              width={500}
+              height={400}
+              unoptimized
             />
           </div>
         </div>
@@ -305,10 +309,13 @@ export default function PngToJpgClient({ translations }: Props) {
           
           <div className="mb-4">
             <div className="bg-gray-800 rounded-lg p-4 mb-4">
-              <img 
+              <Image 
                 src={previewUrl || ''} 
                 alt="Converted JPG"
                 className="max-w-full h-auto max-h-96 mx-auto"
+                width={500}
+                height={400}
+                unoptimized
               />
             </div>
             
@@ -338,10 +345,13 @@ export default function PngToJpgClient({ translations }: Props) {
                     onClick={() => handlePreview(index)}
                   >
                     <div className="aspect-square overflow-hidden bg-gray-900 rounded mb-1">
-                      <img 
+                      <Image 
                         src={file.jpgUrl} 
                         alt={file.originalName}
                         className="w-full h-full object-contain"
+                        width={100}
+                        height={100}
+                        unoptimized
                       />
                     </div>
                     <p className="text-xs truncate">{file.originalName}</p>

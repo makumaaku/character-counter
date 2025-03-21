@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import heicConvert from 'heic-convert/browser'
 import FileUploadArea from '../../components/FileUploadArea'
-
+import Image from 'next/image';
 // heic-convert の型定義
 interface HeicConvertOptions {
   buffer: Uint8Array;
@@ -123,7 +123,7 @@ export default function HeicToWebpClient({ translations }: Props) {
           const pngUrl = URL.createObjectURL(pngBlob)
           
           // Create a canvas to convert PNG to WebP
-          const img = new Image()
+          const img = new globalThis.Image()
           img.src = pngUrl
           
           // Wait for image to load
@@ -316,11 +316,15 @@ export default function HeicToWebpClient({ translations }: Props) {
                 {file.status === 'done' && (
                   <>
                     <div className="h-48 bg-gray-800 flex items-center justify-center">
-                      <img 
-                        src={file.convertedUrl} 
-                        alt={`Converted ${file.fileName}`}
-                        className="max-h-full max-w-full object-contain"
-                      />
+                    <Image
+                              src={file.convertedUrl} 
+                              alt={`Converted ${file.fileName}`}
+                              className="max-h-full max-w-full object-contain"
+                              width={200}
+                              height={150}
+                              unoptimized
+                            />
+                   
                     </div>
                     <div className="p-3 bg-gray-700">
                       <p className="text-sm text-gray-300 truncate">{file.fileName}</p>

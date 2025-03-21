@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -345,10 +346,13 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
                       ) : (
                         <>
                           <div className="h-48 bg-gray-800 flex items-center justify-center">
-                            <img
+                            <Image
                               src={image.pngUrl}
                               alt={`Preview ${index + 1}`}
                               className="max-h-full max-w-full object-contain"
+                              width={200}
+                              height={150}
+                              unoptimized
                             />
                           </div>
                           <div className="p-3 border-t border-gray-600">
