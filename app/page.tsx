@@ -71,6 +71,9 @@ export default function Home() {
               <Link href="/image-tools/heic-to-png" className="text-white hover:underline ml-4">HEIC to PNG Converter</Link>
             </li>
             <li>
+              <Link href="/image-tools/heic-to-webp" className="text-white hover:underline ml-4">HEIC to WebP Converter</Link>
+            </li>
+            <li>
               <Link href="/pdf-tools" className="text-white hover:underline font-bold">PDF Tools</Link>
             </li>
             <li>
