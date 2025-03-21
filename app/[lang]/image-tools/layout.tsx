@@ -114,6 +114,12 @@ export async function generateMetadata(
         "name": t('heicToPng.meta.title'),
         "description": t('heicToPng.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-png`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('heicToWebp.meta.title'),
+        "description": t('heicToWebp.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-webp`
       }
     ]
   };

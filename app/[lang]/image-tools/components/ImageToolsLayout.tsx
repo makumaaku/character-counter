@@ -34,6 +34,10 @@ export default function ImageToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'imageTools.tools.heicToPng.title'),
       path: `/image-tools/heic-to-png`
+    },
+    {
+      name: translate(lang, 'imageTools.tools.heicToWebp.title'),
+      path: `/image-tools/heic-to-webp`
     }
     // More image tools can be added here as they become available
   ]
@@ -41,7 +45,8 @@ export default function ImageToolsLayout({ children }: Props) {
   return (
     <div className="flex flex-col min-h-screen bg-gray-800 text-gray-100">
       <Header 
-        title={translate(lang, 'imageTools.title')} 
+        // 多言語対応せず英語固定
+        title={'Image Converters'} 
         homeLink={`/${lang}/image-tools`}
       >
         <button
