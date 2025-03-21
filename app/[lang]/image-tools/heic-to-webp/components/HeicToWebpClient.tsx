@@ -9,7 +9,7 @@ import FileUploadArea from '../../components/FileUploadArea'
 // heic-convert の型定義
 interface HeicConvertOptions {
   buffer: Uint8Array;
-  format: 'JPEG' | 'PNG' | 'WEBP';
+  format: 'JPEG' | 'PNG';  // 'WEBP' is not supported by heic-convert
   quality: number;
 }
 
@@ -109,16 +109,47 @@ export default function HeicToWebpClient({ translations }: Props) {
           // Read file as ArrayBuffer
           const arrayBuffer = await file.arrayBuffer()
           
-          // Convert HEIC to WebP using heic-convert
+          // Step 1: Convert HEIC to PNG using heic-convert
           // @ts-expect-error - heic-convert types are not perfect
-          const outputBuffer = await heicConvert({
+          const pngBuffer = await heicConvert({
             buffer: new Uint8Array(arrayBuffer),
-            format: 'WEBP',
-            quality: 0.8
+            format: 'PNG',  // Use PNG as intermediate format
+            quality: 1.0  // Use highest quality for PNG
           } as HeicConvertOptions)
           
-          // Create Blob from buffer
-          const webPBlob = new Blob([outputBuffer], { type: 'image/webp' })
+          // Step 2: Convert PNG to WebP
+          // Create PNG image from buffer
+          const pngBlob = new Blob([pngBuffer], { type: 'image/png' })
+          const pngUrl = URL.createObjectURL(pngBlob)
+          
+          // Create a canvas to convert PNG to WebP
+          const img = new Image()
+          img.src = pngUrl
+          
+          // Wait for image to load
+          await new Promise(resolve => {
+            img.onload = resolve
+          })
+          
+          // Draw image on canvas
+          const canvas = document.createElement('canvas')
+          canvas.width = img.width
+          canvas.height = img.height
+          const ctx = canvas.getContext('2d')
+          if (!ctx) throw new Error('Failed to get canvas context')
+          ctx.drawImage(img, 0, 0)
+          
+          // Convert to WebP
+          // We can release the PNG URL now
+          URL.revokeObjectURL(pngUrl)
+          
+          // Get WebP blob from canvas
+          const webPBlob = await new Promise<Blob>((resolve, reject) => {
+            canvas.toBlob(blob => {
+              if (blob) resolve(blob)
+              else reject(new Error('Failed to convert to WebP'))
+            }, 'image/webp', 0.8)
+          })
           
           // Create URL for preview
           const webPUrl = URL.createObjectURL(webPBlob)

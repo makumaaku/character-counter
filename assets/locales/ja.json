@@ -2121,9 +2121,9 @@
     }
   },
   "heicToPng": {
-    "metadata": {
-      "title": "HEICからPNGへの変換",
-      "description": "HEICファイルをPNG形式に変換（プレビュー表示付き）",
+    "meta": {
+      "title": "HEICからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
       "keywords": "heic から png, heic 変換, iphone 写真変換, 画像変換, png変換, 無料変換"
     },
     "title": "HEICからPNGへの変換",
@@ -2153,9 +2153,9 @@
     }
   },
   "heicToWebp": {
-    "metadata": {
-      "title": "HEICからWebPへの変換",
-      "description": "HEICファイルをWebP形式に変換（プレビュー表示付き）",
+    "meta": {
+      "title": "HEICからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
       "keywords": "heic から webp, heic 変換, iphone 写真変換, 画像変換, webp変換, 無料変換"
     },
     "title": "HEICからWebPへの変換",
@@ -2181,7 +2181,10 @@
       "invalidFormat": "HEICファイルのみ対応しています",
       "tooLarge": "ファイルが大きすぎます（最大10MB）",
       "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
-      "failed": "変換に失敗しました。もう一度お試しください。"
+      "failed": "変換に失敗しました。もう一度お試しください。",
+      "fileType": "HEICファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB以下にしてください",
+      "conversion": "ファイル変換エラー: {error}"
     },
     "form": {
       "upload": {
