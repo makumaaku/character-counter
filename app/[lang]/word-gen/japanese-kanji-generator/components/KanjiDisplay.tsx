@@ -90,9 +90,6 @@ export default function KanjiDisplay({
       
       {kanji && (
         <div className="mt-4 flex flex-col items-center">
-          <div className="text-2xl font-bold bg-purple-100 text-purple-800 px-6 py-3 rounded-lg mb-2">
-            {kanji}
-          </div>
           <button
             onClick={copyKanjiToClipboard}
             className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"

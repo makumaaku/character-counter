@@ -2016,6 +2016,9 @@
     },
     "title": "JPG to PNG Converter",
     "description": "Convert JPG images to PNG format with transparency support",
+    "upload": {
+      "limit": "Maximum file size: 10MB per file"
+    },
     "form": {
       "upload": {
         "label": "Upload JPG Image",

@@ -1,7 +1,12 @@
 import { translate } from '@/lib/i18n/server'
 import JpgToPngClient from './components/JpgToPngClient'
 
-export default async function JpgToPng({ params }: { params: Promise<{ lang: string }> }) {
+type Props = {
+  params: Promise<{ lang: string }>
+}
+
+
+export default async function JpgToPng({ params }: Props) {
   const { lang } = await params
 
   // Get translations
@@ -31,9 +36,18 @@ export default async function JpgToPng({ params }: { params: Promise<{ lang: str
     translate(lang, 'jpgToPng.error.fileSize')
   ])
 
+  // 最大ファイルサイズのメッセージ
+  // 翻訳キーがない場合はデフォルト値を使用する
+  const uploadLimit = translate(lang, 'jpgToPng.upload.limit') === 'jpgToPng.upload.limit'
+    ? 'Maximum file size: 10MB per file'
+    : translate(lang, 'jpgToPng.upload.limit');
+
   const translations = {
     title,
     description,
+    upload: {
+      limit: uploadLimit
+    },
     form: {
       upload: {
         label: uploadLabel,

@@ -2,12 +2,25 @@
 
 import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
+import JSZip from 'jszip'
+import Image from 'next/image'
 import FileUploadArea from '../../components/FileUploadArea'
+
+type ConvertedFile = {
+  originalFile: File
+  convertedUrl: string
+  fileName: string
+  status: 'processing' | 'done' | 'error'
+  error?: string
+}
 
 type Props = {
   translations: {
     title: string
     description: string
+    upload?: {
+      limit: string
+    }
     form: {
       upload: {
         label: string
@@ -33,21 +46,20 @@ type Props = {
 export default function JpgToPngClient({ translations }: Props) {
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [convertedImageUrl, setConvertedImageUrl] = useState<string | null>(null)
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([])
+  const [convertedFiles, setConvertedFiles] = useState<ConvertedFile[]>([])
 
   // クリーンアップ処理
   useEffect(() => {
     return () => {
-      if (previewUrl && !previewUrl.startsWith('data:')) {
-        URL.revokeObjectURL(previewUrl)
-      }
-      if (convertedImageUrl && !convertedImageUrl.startsWith('data:')) {
-        URL.revokeObjectURL(convertedImageUrl)
-      }
+      // クリーンアップ時に作成したURL Objectsを解放
+      convertedFiles.forEach(file => {
+        if (file.convertedUrl && !file.convertedUrl.startsWith('data:')) {
+          URL.revokeObjectURL(file.convertedUrl)
+        }
+      })
     }
-  }, [previewUrl, convertedImageUrl])
+  }, [convertedFiles])
 
   // ファイルアップロードエリアからのエラーハンドリング
   const handleUploadError = (errorMessage: string) => {
@@ -58,22 +70,13 @@ export default function JpgToPngClient({ translations }: Props) {
   const handleFilesSelected = (files: File[]) => {
     if (files.length === 0) return
 
-    const file = files[0] // 複数選択の場合でも最初のファイルのみ使用
-    
     setError(null)
-    setConvertedImageUrl(null)
-    setSelectedFile(file)
-
-    // Create preview
-    const reader = new FileReader()
-    reader.onload = () => {
-      setPreviewUrl(reader.result as string)
-    }
-    reader.readAsDataURL(file)
+    setConvertedFiles([])
+    setSelectedFiles(files)
   }
 
   const convertToPng = async () => {
-    if (!selectedFile) {
+    if (selectedFiles.length === 0) {
       setError(translations.status.noFile)
       return
     }
@@ -81,34 +84,92 @@ export default function JpgToPngClient({ translations }: Props) {
     setIsProcessing(true)
     setError(null)
 
-    try {
-      // Create a new image element from the selected file
-      const image = new Image()
-      image.src = URL.createObjectURL(selectedFile)
-
-      await new Promise((resolve) => {
-        image.onload = resolve
-      })
-
-      // Create a canvas to draw the image
-      const canvas = document.createElement('canvas')
-      canvas.width = image.width
-      canvas.height = image.height
-      
-      const ctx = canvas.getContext('2d')
-      if (!ctx) {
-        throw new Error('Could not get canvas context')
+    // 以前の変換結果をクリア
+    convertedFiles.forEach(file => {
+      if (file.convertedUrl && !file.convertedUrl.startsWith('data:')) {
+        URL.revokeObjectURL(file.convertedUrl)
       }
-      
-      // Draw the image on the canvas
-      ctx.drawImage(image, 0, 0)
+    })
+    setConvertedFiles([])
 
-      // Convert canvas to PNG
-      const pngUrl = canvas.toDataURL('image/png')
-      setConvertedImageUrl(pngUrl)
+    const newConvertedFiles: ConvertedFile[] = []
 
-      // Release the object URL
-      URL.revokeObjectURL(image.src)
+    try {
+      // 各ファイルを処理
+      for (const file of selectedFiles) {
+        const fileName = file.name.replace(/\.(jpg|jpeg)$/i, '.png')
+        
+        // 処理中状態で追加
+        newConvertedFiles.push({
+          originalFile: file,
+          fileName,
+          convertedUrl: '',
+          status: 'processing'
+        })
+        
+        // 処理中の状態を更新
+        setConvertedFiles([...newConvertedFiles])
+        
+        try {
+          // 画像要素を作成
+          const image = new window.Image()
+          image.src = URL.createObjectURL(file)
+
+          await new Promise((resolve) => {
+            image.onload = resolve
+          })
+
+          // キャンバスに描画
+          const canvas = document.createElement('canvas')
+          canvas.width = image.width
+          canvas.height = image.height
+          
+          const ctx = canvas.getContext('2d')
+          if (!ctx) {
+            throw new Error('Could not get canvas context')
+          }
+          
+          ctx.drawImage(image, 0, 0)
+
+          // PNGに変換
+          const pngUrl = canvas.toDataURL('image/png')
+          
+          // ファイル状態を更新
+          const fileIndex = newConvertedFiles.findIndex(
+            f => f.originalFile === file
+          )
+          
+          if (fileIndex !== -1) {
+            newConvertedFiles[fileIndex] = {
+              ...newConvertedFiles[fileIndex],
+              convertedUrl: pngUrl,
+              status: 'done'
+            }
+            
+            setConvertedFiles([...newConvertedFiles])
+          }
+
+          // オブジェクトURLを解放
+          URL.revokeObjectURL(image.src)
+        } catch (conversionError) {
+          // このファイルの変換エラーを処理
+          const errorMessage = (conversionError as Error).message || 'Unknown error'
+          const fileIndex = newConvertedFiles.findIndex(
+            f => f.originalFile === file
+          )
+          
+          if (fileIndex !== -1) {
+            newConvertedFiles[fileIndex] = {
+              ...newConvertedFiles[fileIndex],
+              status: 'error',
+              error: errorMessage
+            }
+          }
+          
+          setConvertedFiles([...newConvertedFiles])
+          setError(errorMessage)
+        }
+      }
     } catch (error) {
       setError((error as Error).message)
     } finally {
@@ -116,19 +177,39 @@ export default function JpgToPngClient({ translations }: Props) {
     }
   }
 
-  const downloadPng = () => {
-    if (!convertedImageUrl || !selectedFile) return
+  const downloadPng = (fileIndex: number) => {
+    const file = convertedFiles[fileIndex]
+    if (!file || file.status !== 'done') return
 
-    // Extract filename from the original file and change extension to .png
-    const originalFilename = selectedFile.name || 'image.jpg'
-    const pngFilename = originalFilename.replace(/\.(jpg|jpeg)$/i, '.png')
-
-    // Convert data URL to Blob and download
-    fetch(convertedImageUrl)
+    fetch(file.convertedUrl)
       .then(res => res.blob())
       .then(blob => {
-        saveAs(blob, pngFilename)
+        saveAs(blob, file.fileName)
       })
+  }
+
+  const downloadAllPngs = async () => {
+    const successfulFiles = convertedFiles.filter(file => file.status === 'done')
+    if (successfulFiles.length === 0) return
+    
+    if (successfulFiles.length === 1) {
+      // ファイルが1つしかない場合は直接ダウンロード
+      downloadPng(convertedFiles.findIndex(file => file.status === 'done'))
+      return
+    }
+
+    // 複数ファイルのzipを作成
+    const zip = new JSZip()
+    
+    // 成功した変換をzipに追加
+    for (const file of successfulFiles) {
+      const blob = await fetch(file.convertedUrl).then(res => res.blob())
+      zip.file(file.fileName, blob)
+    }
+
+    // zipをダウンロード
+    const zipBlob = await zip.generateAsync({ type: 'blob' })
+    saveAs(zipBlob, 'converted_png_images.zip')
   }
 
   return (
@@ -141,10 +222,10 @@ export default function JpgToPngClient({ translations }: Props) {
         <FileUploadArea
           title={translations.form.upload.label}
           dragDropText={translations.form.upload.dragDrop}
-          limitText="最大ファイルサイズ: 10MB"
+          limitText={translations.upload?.limit || "Maximum file size: 10MB per file"}
           buttonText={translations.form.upload.button}
           accept=".jpg,.jpeg"
-          multiple={false}
+          multiple={true}
           maxSizeMB={10}
           validExtensions={['jpg', 'jpeg']}
           onFilesSelected={handleFilesSelected}
@@ -158,16 +239,12 @@ export default function JpgToPngClient({ translations }: Props) {
         </div>
       )}
 
-      {previewUrl && !convertedImageUrl && (
+      {selectedFiles.length > 0 && !convertedFiles.length && (
         <div className="mt-6 bg-gray-700 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">プレビュー</h2>
-          <div className="mt-2 p-4 bg-gray-800 rounded-lg">
-            <img 
-              src={previewUrl} 
-              alt="Preview" 
-              className="max-w-full h-auto max-h-96 mx-auto"
-            />
-          </div>
+          <p className="text-gray-300 mb-2">
+            {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
+          </p>
           <button
             onClick={convertToPng}
             disabled={isProcessing}
@@ -178,22 +255,74 @@ export default function JpgToPngClient({ translations }: Props) {
         </div>
       )}
 
-      {convertedImageUrl && (
-        <div className="mt-6 bg-gray-700 p-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">変換後のPNG</h2>
-          <div className="mt-2 p-4 bg-gray-800 rounded-lg">
-            <img
-              src={convertedImageUrl}
-              alt="Converted PNG"
-              className="max-w-full h-auto max-h-96 mx-auto"
-            />
+      {convertedFiles.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold mb-4">変換後のPNG</h2>
+          
+          {convertedFiles.filter(file => file.status === 'done').length > 1 && (
+            <div className="mb-4">
+              <button
+                type="button"
+                onClick={downloadAllPngs}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+              >
+                全てのPNGをダウンロード
+              </button>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {convertedFiles.map((file, index) => (
+              <div 
+                key={index} 
+                className={`relative border rounded-lg overflow-hidden ${
+                  file.status === 'error' ? 'border-red-500' : 'border-gray-500'
+                }`}
+              >
+                {file.status === 'processing' && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+                    <div className="text-white text-center">
+                      <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white mx-auto"></div>
+                      <p className="mt-2">変換中...</p>
+                    </div>
+                  </div>
+                )}
+                
+                {file.status === 'error' && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+                    <div className="text-red-500 text-center p-4">
+                      <p>エラー: {file.error}</p>
+                    </div>
+                  </div>
+                )}
+                
+                {file.status === 'done' && (
+                  <>
+                    <div className="h-48 bg-gray-800 flex items-center justify-center">
+                      <Image 
+                        src={file.convertedUrl} 
+                        alt={`変換後の ${file.fileName}`}
+                        className="max-h-full max-w-full object-contain"
+                        unoptimized={true}
+                        width={400}
+                        height={300}
+                      />
+                    </div>
+                    <div className="p-3 bg-gray-700">
+                      <p className="text-sm text-gray-300 truncate">{file.fileName}</p>
+                      <button
+                        type="button"
+                        onClick={() => downloadPng(index)}
+                        className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+                      >
+                        {translations.result.download}
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
           </div>
-          <button
-            onClick={downloadPng}
-            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-          >
-            {translations.result.download}
-          </button>
         </div>
       )}
     </div>
