@@ -2025,6 +2025,10 @@
       "pngToWebp": {
         "title": "PNG から WebP 変換ツール",
         "description": "PNG画像をウェブ表示に最適化されたWebP形式に変換"
+      },
+      "svgToJpg": {
+        "title": "SVGからJPGへの変換",
+        "description": "SVGベクター画像をJPG形式に変換"
       }
     }
   },
@@ -2275,6 +2279,41 @@
     "error": {
       "fileType": "PNGファイルのみが許可されています",
       "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "svgToJpg": {
+    "meta": {
+      "title": "SVGからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからJPG, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換"
+    },
+    "title": "SVGからJPGへの変換",
+    "description": "SVGベクター画像をJPG形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてのJPGをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "browserProcessing": "処理はブラウザ上で行われるため、デバイスによって速度が異なることがあります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
     }
   },
   "seoVolumeGuess": {

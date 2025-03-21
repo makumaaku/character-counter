@@ -50,6 +50,12 @@ export default async function ImageTools({ params }: Props) {
       description: translate(lang, 'imageTools.tools.pngToWebp.description'),
       path: `/${lang}/image-tools/png-to-webp`,
       icon: "🖼️"
+    },
+    {
+      title: translate(lang, 'imageTools.tools.svgToJpg.title'),
+      description: translate(lang, 'imageTools.tools.svgToJpg.description'),
+      path: `/${lang}/image-tools/svg-to-jpg`,
+      icon: "🎨"
     }
     // More image conversion tools can be added here in the future
   ]
