@@ -26,6 +26,10 @@ export default function SeoToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'link-status-checker.title'),
       path: `/seo-tools/link-status-checker`
+    },
+    {
+      name: translate(lang, 'seoCannibalizationChecker.title'),
+      path: `/seo-tools/seo-cannibalization-checker`
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]

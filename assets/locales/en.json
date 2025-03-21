@@ -1877,6 +1877,10 @@
       "linkStatusChecker": {
         "title": "Link Status Checker",
         "description": "Check the status of all links on a webpage to find broken links"
+      },
+      "seoCannibalizationChecker": {
+        "title": "SEO Cannibalization Checker",
+        "description": "Check for keyword cannibalization (competition) within your site"
       }
     }
   },
@@ -1904,6 +1908,40 @@
     },
     "status": {
       "noUrl": "Please enter a URL to analyze"
+    }
+  },
+  "seoCannibalizationChecker": {
+    "meta": {
+      "title": "SEO Cannibalization Checker | Boring Tools",
+      "description": "Check if specific keywords are competing across multiple pages on your site. Easily identify SEO cannibalization issues.",
+      "keywords": "SEO,cannibalization,keyword competition,SEO tools,search engine optimization"
+    },
+    "title": "SEO Cannibalization Checker",
+    "description": "Enter a domain and keyword to check for keyword cannibalization (competition) within your site.",
+    "domain": {
+      "label": "Domain",
+      "placeholder": "e.g. example.com",
+      "help": "Protocol (http:// or https://) is optional"
+    },
+    "keyword": {
+      "label": "Keyword",
+      "placeholder": "Enter keyword to check",
+      "help": "You can search for multiple words"
+    },
+    "button": {
+      "check": "Check Now",
+      "processing": "Processing..."
+    },
+    "result": {
+      "title": "Search Results",
+      "description": "Click the link below to view Google search results. If multiple pages are displayed, cannibalization may be occurring.",
+      "openButton": "Open Google Search Results"
+    },
+    "error": {
+      "emptyDomain": "Please enter a domain",
+      "invalidDomain": "Please enter a valid domain",
+      "emptyKeyword": "Please enter a keyword",
+      "generic": "An error occurred. Please try again."
     }
   }
 } 

@@ -1875,20 +1875,24 @@
   },
   "seoTools": {
     "meta": {
-      "title": "SEOツール - ウェブサイト最適化ツール",
-      "description": "ウェブサイトのパフォーマンスを分析・最適化するための無料オンラインSEOツール。インストール不要、ブラウザで直接動作します。",
-      "keywords": "SEOツール, ウェブサイト最適化, ページ速度チェッカー, SEO分析, 無料SEOツール"
+      "title": "SEOツール - Webサイト最適化ツール",
+      "description": "Webサイトのパフォーマンスを分析・最適化するための無料オンラインSEOツール。インストール不要で、ブラウザ上で直接動作します。",
+      "keywords": "seoツール, webサイト最適化, ページ速度チェッカー, seo分析, 無料seoツール"
     },
     "title": "SEOツール",
-    "description": "ウェブサイトのパフォーマンスを分析・最適化するための無料オンラインツール",
+    "description": "Webサイトのパフォーマンスを分析・最適化するための無料オンラインツール",
     "tools": {
       "pageSpeedChecker": {
         "title": "ページ速度チェッカー",
-        "description": "ウェブサイトの読み込み速度を分析し、パフォーマンス改善の提案を取得"
+        "description": "Webサイトの読み込み速度を分析し、パフォーマンス改善の提案を取得"
       },
       "linkStatusChecker": {
-        "title": "リンクステータスチェッカー",
-        "description": "ウェブページ上のすべてのリンクのステータスをチェックして、リンク切れを発見"
+        "title": "リンク状態チェッカー",
+        "description": "ウェブページ上のすべてのリンクの状態をチェックして、壊れたリンクを見つける"
+      },
+      "seoCannibalizationChecker": {
+        "title": "SEOカニバリゼーションチェッカー",
+        "description": "サイト内でのキーワード競合（カニバリゼーション）をチェック"
       }
     }
   },
@@ -1916,6 +1920,40 @@
     },
     "status": {
       "noUrl": "分析するURLを入力してください"
+    }
+  },
+  "seoCannibalizationChecker": {
+    "meta": {
+      "title": "SEOカニバリゼーションチェッカー | Boring Tools",
+      "description": "サイト内で特定のキーワードが複数ページで競合していないかチェックするツール。SEOのカニバリゼーション（共食い）問題を簡単に特定できます。",
+      "keywords": "SEO,カニバリゼーション,キーワード競合,SEOツール,検索エンジン最適化"
+    },
+    "title": "SEOカニバリゼーションチェッカー",
+    "description": "ドメインとキーワードを入力して、サイト内でのキーワード競合（カニバリゼーション）をチェックします。",
+    "domain": {
+      "label": "ドメイン",
+      "placeholder": "例: example.com",
+      "help": "プロトコル（http://やhttps://）は省略可能です"
+    },
+    "keyword": {
+      "label": "キーワード",
+      "placeholder": "チェックしたいキーワードを入力",
+      "help": "複数の単語でも検索できます"
+    },
+    "button": {
+      "check": "チェックする",
+      "processing": "処理中..."
+    },
+    "result": {
+      "title": "検索結果",
+      "description": "以下のリンクをクリックしてGoogle検索結果を確認してください。複数のページが表示される場合、カニバリゼーションが発生している可能性があります。",
+      "openButton": "Google検索結果を開く"
+    },
+    "error": {
+      "emptyDomain": "ドメインを入力してください",
+      "invalidDomain": "有効なドメインを入力してください",
+      "emptyKeyword": "キーワードを入力してください",
+      "generic": "エラーが発生しました。もう一度お試しください。"
     }
   }
 }

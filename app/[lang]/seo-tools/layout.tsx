@@ -92,6 +92,12 @@ export async function generateMetadata(
         "name": t('pageSpeedChecker.meta.title'),
         "description": t('pageSpeedChecker.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-speed-checker`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('seoCannibalizationChecker.meta.title'),
+        "description": t('seoCannibalizationChecker.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/seo-cannibalization-checker`
       }
       // 将来的に他のSEOツールを追加する場合はここに追加
     ]
