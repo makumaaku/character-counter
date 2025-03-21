@@ -2009,6 +2009,10 @@
       "jpgToWebp": {
         "title": "JPG to WebP Converter",
         "description": "Convert JPG images to WebP format for better web performance"
+      },
+      "pngToWebp": {
+        "title": "PNG to WebP Converter",
+        "description": "Convert PNG images to WebP format for better web performance"
       }
     }
   },
@@ -2278,6 +2282,38 @@
     },
     "error": {
       "fileType": "Only JPG/JPEG files are allowed",
+      "fileSize": "File size must be less than 10MB"
+    }
+  },
+  "pngToWebp": {
+    "meta": {
+      "title": "PNG to WebP Converter - Free Online Image Conversion Tool",
+      "description": "Convert PNG images to WebP format online. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "png to webp, image converter, free converter, online image tool, web optimization"
+    },
+    "title": "PNG to WebP Converter",
+    "description": "Convert PNG images to WebP format for better web performance and smaller file sizes",
+    "upload": {
+      "limit": "Maximum file size: 10MB per file"
+    },
+    "form": {
+      "upload": {
+        "label": "Upload PNG Image(s)",
+        "button": "Select Files",
+        "dragDrop": "Drag & drop files here or click to browse"
+      },
+      "convert": "Convert to WebP"
+    },
+    "result": {
+      "download": "Download WebP",
+      "downloadAll": "Download All WebPs"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No file selected"
+    },
+    "error": {
+      "fileType": "Only PNG files are allowed",
       "fileSize": "File size must be less than 10MB"
     }
   }

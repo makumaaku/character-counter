@@ -77,6 +77,9 @@ export default function Home() {
               <Link href="/image-tools/jpg-to-webp" className="text-white hover:underline ml-4">JPG to WebP Converter</Link>
             </li>
             <li>
+              <Link href="/image-tools/png-to-webp" className="text-white hover:underline ml-4">PNG to WebP Converter</Link>
+            </li>
+            <li>
               <Link href="/pdf-tools" className="text-white hover:underline font-bold">PDF Tools</Link>
             </li>
             <li>
