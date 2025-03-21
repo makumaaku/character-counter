@@ -12,37 +12,42 @@ type Props = {
   children: ReactNode
 }
 
-export default function SeoToolsLayout({ children }: Props) {
+export default function ImageToolsLayout({ children }: Props) {
   const params = useParams()
   const lang = params.lang as string
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   
-  // SEOツールのリスト（サイドバー用）
+  // List of Image tools for the sidebar
   const navigationItems = [
     {
-      name: translate(lang, 'pageSpeedChecker.title'),
-      path: `/seo-tools/page-speed-checker`
+      name: translate(lang, 'imageTools.tools.jpgToPng.title'),
+      path: `/image-tools/jpg-to-png`
     },
     {
-      name: translate(lang, 'link-status-checker.title'),
-      path: `/seo-tools/link-status-checker`
+      name: translate(lang, 'imageTools.tools.pngToJpg.title'),
+      path: `/image-tools/png-to-jpg`
     },
     {
-      name: translate(lang, 'seoCannibalizationChecker.title'),
-      path: `/seo-tools/seo-cannibalization-checker`
+      name: translate(lang, 'imageTools.tools.heicToJpg.title'),
+      path: `/image-tools/heic-to-jpg`
     },
     {
-      name: translate(lang, 'seoVolumeGuess.title'),
-      path: `/seo-tools/seo-volume-guess`
+      name: translate(lang, 'imageTools.tools.heicToPng.title'),
+      path: `/image-tools/heic-to-png`
+    },
+    {
+      name: translate(lang, 'imageTools.tools.heicToWebp.title'),
+      path: `/image-tools/heic-to-webp`
     }
-    // 将来的に他のSEOツールを追加する場合はここに追加
+    // More image tools can be added here as they become available
   ]
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800 text-gray-100">
       <Header 
-        title={translate(lang, 'seoTools.title')} 
-        homeLink={`/${lang}/seo-tools`}
+        // 多言語対応せず英語固定
+        title={'Image Converters'} 
+        homeLink={`/${lang}/image-tools`}
       >
         <button
           onClick={() => setIsSidebarOpen(true)}

@@ -28,8 +28,8 @@ export default async function SeoTools({ params }: Props) {
       icon: "🔍"
     },
     {
-      title: translate(lang, 'seo-volume-guess.title'),
-      description: translate(lang, 'seo-volume-guess.description'),
+      title: translate(lang, 'seoVolumeGuess.title'),
+      description: translate(lang, 'seoVolumeGuess.description'),
       path: `/${lang}/seo-tools/seo-volume-guess`,
       icon: "📊"
     }

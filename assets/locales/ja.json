@@ -4,11 +4,11 @@
     "meta": {
       "siteName": "Boring Tools",
       "publisher": "Boring Inc.",
-      "logoAlt": "ボーリングツールのロゴ"
+      "logoAlt": "Boring Toolsロゴ"
     },
     "download": {
       "button": "ダウンロード",
-      "downloaded": "ダウンロードしました！"
+      "downloaded": "ダウンロード完了！"
     }
   },
   "home": {
@@ -80,7 +80,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "quality": {
         "label": "画像品質",
@@ -115,7 +115,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ...",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
         "dragging": "ここにドロップしてね！",
         "instruction": "PDFファイルのみ対応しています",
         "maxSize": "最大ファイルサイズ：20MB"
@@ -147,7 +147,7 @@
       "upload": {
         "label": "HEICファイルをアップロード",
         "button": "HEICファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "HEICファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "convert": "PDFに変換"
     },
@@ -179,7 +179,7 @@
       "upload": {
         "label": "画像ファイルをアップロード",
         "button": "画像ファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "画像ファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "quality": {
         "label": "PDF品質",
@@ -270,7 +270,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ...",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
         "dragging": "PDFファイルをここにドロップしてください...",
         "instruction": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
         "maxSize": "最大ファイルサイズ: 20MB"
@@ -307,7 +307,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "quality": {
         "label": "画像品質",
@@ -342,7 +342,7 @@
       "upload": {
         "label": "PNGファイルをアップロード",
         "button": "PNGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PNGファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "convert": "PDFに変換"
     },
@@ -370,7 +370,7 @@
       "upload": {
         "label": "SVGファイルをアップロード",
         "button": "SVGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "SVGファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "convert": "PDFに変換"
     },
@@ -1048,6 +1048,10 @@
       "wordCardGenerator": {
         "title": "単語カード生成",
         "description": "学習と暗記のためのフラッシュカードを作成します。"
+      },
+      "japaneseKanjiGenerator": {
+        "title": "漢字ジェネレーター",
+        "description": "日本語の漢字を自動生成し、画像としてダウンロードできます。"
       }
     }
   },
@@ -1956,7 +1960,252 @@
       "generic": "エラーが発生しました。もう一度お試しください。"
     }
   },
-  "seo-volume-guess": {
+  "japaneseKanjiGenerator": {
+    "meta": {
+      "title": "日本語漢字ジェネレーター - ランダムな漢字を画像として生成",
+      "description": "日本語の漢字を自動生成するツールです。1つだけランダムに生成し、512 x 512pxのjpgまたはpng画像としてダウンロードできます。",
+      "keywords": "漢字ジェネレーター, 漢字生成, 漢字画像, 日本語, ランダム漢字"
+    },
+    "title": "日本語漢字ジェネレーター",
+    "description": "日本語の漢字を自動生成するツールです。1つだけランダムに生成し、512 x 512pxのjpgまたはpng画像としてダウンロードできます。",
+    "generate": {
+      "button": "漢字を生成",
+      "loading": "生成中..."
+    },
+    "download": {
+      "button": "画像をダウンロード",
+      "jpg": "JPGとしてダウンロード",
+      "png": "PNGとしてダウンロード"
+    },
+    "copy": {
+      "button": "漢字をコピー",
+      "success": "✓ コピーしました"
+    },
+    "display": {
+      "noImage": "画像が生成されていません"
+    },
+    "error": {
+      "generation": "漢字の生成中にエラーが発生しました。もう一度お試しください。",
+      "download": "ダウンロード中にエラーが発生しました。もう一度お試しください。"
+    }
+  },
+  "imageTools": {
+    "meta": {
+      "title": "画像変換ツール - 無料オンライン画像変換",
+      "description": "無料のオンラインツールで画像を様々な形式に変換できます。シンプル、高速、安全な画像変換ツールがあなたのニーズに応えます。",
+      "keywords": "画像変換, 画像ツール, JPGからPNG, PNGからJPG, 画像フォーマット変換, 無料画像変換"
+    },
+    "title": "画像変換ツール",
+    "description": "様々な形式の画像を変換する無料オンラインツール",
+    "tools": {
+      "jpgToPng": {
+        "title": "JPGからPNGへの変換",
+        "description": "JPG画像を透過対応のPNG形式に変換"
+      },
+      "pngToJpg": {
+        "title": "PNGからJPGへの変換",
+        "description": "PNG画像をJPG形式に簡単に変換"
+      },
+      "heicToJpg": {
+        "title": "HEICからJPGへの変換",
+        "description": "HEICファイルをJPGフォーマットに変換"
+      },
+      "heicToPng": {
+        "title": "HEICからPNGへの変換",
+        "description": "HEICファイルをPNG形式に変換"
+      },
+      "heicToWebp": {
+        "title": "HEICからWebPへの変換",
+        "description": "HEICファイルをWebP形式に変換"
+      }
+    }
+  },
+  "jpgToPng": {
+    "meta": {
+      "title": "JPGからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "JPG画像をオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "JPGからPNG, JPEGからPNG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "JPGからPNGへの変換",
+    "description": "JPG画像を透過対応のPNG形式に変換",
+    "upload": {
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "JPG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "download": "PNGをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPG/JPEGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "pngToJpg": {
+    "meta": {
+      "title": "PNGからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "PNG画像をオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "PNGからJPG, PNGからJPEG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "PNGからJPGへの変換",
+    "description": "PNG画像をJPG形式に変換",
+    "form": {
+      "upload": {
+        "label": "PNG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてのJPGをダウンロード",
+      "preview": "プレビュー"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "browserProcessing": "処理はブラウザ上で行われるため、デバイスによって速度が異なることがあります"
+    },
+    "error": {
+      "fileType": "PNGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました。もう一度お試しください"
+    }
+  },
+  "heicToJpg": {
+    "meta": {
+      "title": "HEICからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "HEICからJPG, HEIC変換, iPhone写真変換, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "HEIC to JPG 変換ツール",
+    "description": "HEICファイルをJPGフォーマットに変換（プレビュー表示付き）",
+    "upload": {
+      "limit": "最大ファイルサイズ: ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "HEICファイルをアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "convertingFile": "{filename}を変換中..."
+    },
+    "error": {
+      "fileType": "HEICファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB以下にしてください",
+      "conversion": "ファイル変換エラー: {error}"
+    }
+  },
+  "heicToPng": {
+    "meta": {
+      "title": "HEICからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "heic から png, heic 変換, iphone 写真変換, 画像変換, png変換, 無料変換"
+    },
+    "title": "HEICからPNGへの変換",
+    "description": "HEICファイルをPNG形式に変換（プレビュー表示付き）",
+    "upload": {
+      "title": "HEICファイルをアップロード",
+      "dragndrop": "HEICファイルをここにドラッグ＆ドロップするか、クリックして参照",
+      "button": "ファイルを参照",
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "convert": {
+      "button": "PNGに変換",
+      "processing": "変換中...",
+      "download": "PNGをダウンロード",
+      "downloadAll": "すべてダウンロード（ZIP）",
+      "converted": "{{count}}個のファイルを変換しました"
+    },
+    "preview": {
+      "title": "プレビューとダウンロード",
+      "nofiles": "変換されたファイルがありません"
+    },
+    "error": {
+      "invalidFormat": "HEICファイルのみ対応しています",
+      "tooLarge": "ファイルが大きすぎます（最大10MB）",
+      "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
+      "failed": "変換に失敗しました。もう一度お試しください。"
+    }
+  },
+  "heicToWebp": {
+    "meta": {
+      "title": "HEICからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "heic から webp, heic 変換, iphone 写真変換, 画像変換, webp変換, 無料変換"
+    },
+    "title": "HEICからWebPへの変換",
+    "description": "HEICファイルをWebP形式に変換（プレビュー表示付き）",
+    "upload": {
+      "title": "HEICファイルをアップロード",
+      "dragndrop": "HEICファイルをここにドラッグ＆ドロップするか、クリックして選択",
+      "button": "ファイルを選択",
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "convert": {
+      "button": "WebPに変換",
+      "processing": "変換中...",
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてダウンロード（ZIP）",
+      "converted": "{{count}}個のファイルを変換しました"
+    },
+    "preview": {
+      "title": "プレビューとダウンロード",
+      "nofiles": "変換されたファイルがありません"
+    },
+    "error": {
+      "invalidFormat": "HEICファイルのみ対応しています",
+      "tooLarge": "ファイルが大きすぎます（最大10MB）",
+      "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
+      "failed": "変換に失敗しました。もう一度お試しください。",
+      "fileType": "HEICファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB以下にしてください",
+      "conversion": "ファイル変換エラー: {error}"
+    },
+    "form": {
+      "upload": {
+        "label": "HEICファイルをアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "convertingFile": "{filename}を変換中..."
+    }
+  },
+  "seoVolumeGuess": {
     "meta": {
       "title": "SEOボリューム予測ツール | キーワード検索ボリュームを簡単に推測",
       "description": "キーワードのサジェスト候補を収集し、検索ボリュームの目安をスコア化する無料ツールです。",

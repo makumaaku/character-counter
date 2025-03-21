@@ -683,6 +683,10 @@
       "wordCardGenerator": {
         "title": "Word Card Generator",
         "description": "Create flashcards for learning and memorization."
+      },
+      "japaneseKanjiGenerator": {
+        "title": "Japanese Kanji Generator",
+        "description": "Generate Japanese kanji characters and download them as images."
       }
     }
   },
@@ -1556,7 +1560,7 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop a PDF file here, or click to select",
-        "dragDrop": "Drop the PDF file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "quality": {
         "label": "Image Quality",
@@ -1591,7 +1595,7 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop a PDF file here, or click to select",
-        "dragDrop": "Drop the PDF file here...",
+        "dragDrop": "Drag & drop file here or click to browse",
         "dragging": "Drop it right here!",
         "instruction": "Only PDF files are supported",
         "maxSize": "Maximum file size: 20MB"
@@ -1623,7 +1627,7 @@
       "upload": {
         "label": "Upload HEIC File",
         "button": "Drag & drop HEIC file here or click to select",
-        "dragDrop": "Drop HEIC file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "convert": "Convert to PDF"
     },
@@ -1655,7 +1659,7 @@
       "upload": {
         "label": "Upload Image Files",
         "button": "Drag & drop image files here, or click to select",
-        "dragDrop": "Drop the image files here..."
+        "dragDrop": "Drag & drop files here or click to browse"
       },
       "quality": {
         "label": "PDF Quality",
@@ -1745,8 +1749,8 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop PDF file here, or click to select",
-        "dragDrop": "Drop PDF file here...",
-        "dragging": "Drop PDF file here...",
+        "dragDrop": "Drag & drop PDF file here or click to browse",
+        "dragging": "Drag & drop PDF file here or click to browse",
         "instruction": "Drag & drop PDF file here, or click to select",
         "maxSize": "Maximum file size: 20MB"
       },
@@ -1782,7 +1786,7 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop a PDF file here, or click to select",
-        "dragDrop": "Drop the PDF file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "quality": {
         "label": "Image Quality",
@@ -1817,7 +1821,7 @@
       "upload": {
         "label": "Upload PNG Files",
         "button": "Drag & drop PNG files here, or click to select",
-        "dragDrop": "Drop the PNG files here..."
+        "dragDrop": "Drag & drop files here or click to browse"
       },
       "convert": "Convert to PDF"
     },
@@ -1845,7 +1849,7 @@
       "upload": {
         "label": "Upload SVG File",
         "button": "Drag & drop an SVG file here, or click to select",
-        "dragDrop": "Drop the SVG file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "convert": "Convert to PDF"
     },
@@ -1944,7 +1948,257 @@
       "generic": "An error occurred. Please try again."
     }
   },
-  "seo-volume-guess": {
+  "japaneseKanjiGenerator": {
+    "meta": {
+      "title": "Japanese Kanji Generator - Create Random Kanji Images",
+      "description": "A tool that automatically generates Japanese kanji characters. Randomly create one character and download it as a 512 x 512px jpg or png image.",
+      "keywords": "kanji generator, kanji creation, kanji image, Japanese, random kanji"
+    },
+    "title": "Japanese Kanji Generator",
+    "description": "A tool that automatically generates Japanese kanji characters. Randomly create one character and download it as a 512 x 512px jpg or png image.",
+    "generate": {
+      "button": "Generate Kanji",
+      "loading": "Generating..."
+    },
+    "download": {
+      "button": "Download Image",
+      "jpg": "Download as JPG",
+      "png": "Download as PNG"
+    },
+    "copy": {
+      "button": "Copy Kanji",
+      "success": "✓ Copied"
+    },
+    "display": {
+      "noImage": "No image generated yet"
+    },
+    "error": {
+      "generation": "An error occurred while generating the kanji. Please try again.",
+      "download": "An error occurred while downloading. Please try again."
+    }
+  },
+  "imageTools": {
+    "meta": {
+      "title": "Image Converters - Free Online Image Conversion Tools",
+      "description": "Convert images between different formats with our free online tools. Simple, fast, and secure image conversion tools for all your needs.",
+      "keywords": "image converter, image tools, jpg to png, png to jpg, image format converter, free image converter"
+    },
+    "title": "Image Converters",
+    "description": "Free online tools to convert images between different formats",
+    "tools": {
+      "jpgToPng": {
+        "title": "JPG to PNG Converter",
+        "description": "Convert JPG images to PNG format with transparency support"
+      },
+      "pngToJpg": {
+        "title": "PNG to JPG Converter",
+        "description": "Convert PNG images to JPG format easily"
+      },
+      "heicToJpg": {
+        "title": "HEIC to JPG Converter",
+        "description": "Convert HEIC images to JPG format with preview"
+      },
+      "heicToPng": {
+        "title": "HEIC to PNG Converter",
+        "description": "Convert HEIC files to PNG format with preview"
+      },
+      "heicToWebp": {
+        "title": "HEIC to WebP Converter",
+        "description": "Convert HEIC files to WebP format with preview"
+      }
+    }
+  },
+  "jpgToPng": {
+    "meta": {
+      "title": "JPG to PNG Converter - Free Online Image Conversion Tool",
+      "description": "Convert JPG images to PNG format online. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "jpg to png, jpeg to png, image converter, free converter, online image tool"
+    },
+    "title": "JPG to PNG Converter",
+    "description": "Convert JPG images to PNG format with transparency support",
+    "upload": {
+      "limit": "Maximum file size: 10MB per file"
+    },
+    "form": {
+      "upload": {
+        "label": "Upload JPG Image",
+        "button": "Select File",
+        "dragDrop": "Drag & drop file here or click to browse"
+      },
+      "convert": "Convert to PNG"
+    },
+    "result": {
+      "download": "Download PNG"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No file selected"
+    },
+    "error": {
+      "fileType": "Only JPG/JPEG files are allowed",
+      "fileSize": "File size must be less than 10MB"
+    }
+  },
+  "pngToJpg": {
+    "meta": {
+      "title": "PNG to JPG Converter - Free Online Image Conversion Tool",
+      "description": "Convert PNG images to JPG format online. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "png to jpg, png to jpeg, image converter, free converter, online image tool"
+    },
+    "title": "PNG to JPG Converter",
+    "description": "Convert PNG images to JPG format",
+    "form": {
+      "upload": {
+        "label": "Upload PNG Image(s)",
+        "button": "Select Files",
+        "dragDrop": "Drag & drop files here or click to browse",
+        "limitText": "Maximum file size: 20MB (up to 100MB total)"
+      },
+      "convert": "Convert to JPG"
+    },
+    "result": {
+      "download": "Download JPG",
+      "downloadAll": "Download All JPGs",
+      "preview": "Preview"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No file selected",
+      "success": "Conversion successful!",
+      "browserProcessing": "Processing is done in your browser, speed may vary by device"
+    },
+    "error": {
+      "fileType": "Only PNG files are allowed",
+      "fileSize": "File size must be less than 20MB",
+      "conversionFailed": "Conversion failed, please try again"
+    }
+  },
+  "heicToJpg": {
+    "meta": {
+      "title": "HEIC to JPG Converter - Free Online Image Conversion Tool",
+      "description": "Convert HEIC images to JPG format online. Free, fast, and easy to use with instant preview and batch conversion.",
+      "keywords": "heic to jpg, heic converter, heif to jpg, image converter, free converter, online image tool, batch conversion"
+    },
+    "title": "HEIC to JPG Converter",
+    "description": "Convert HEIC images to JPG format with preview",
+    "upload": {
+      "limit": "Maximum file size: 10MB per file"
+    },
+    "form": {
+      "upload": {
+        "label": "Upload HEIC Images",
+        "button": "Select Files",
+        "dragDrop": "Drag & drop files here or click to browse"
+      },
+      "convert": "Convert to JPG"
+    },
+    "result": {
+      "download": "Download JPG",
+      "downloadAll": "Download All JPGs"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No files selected",
+      "success": "Conversion successful!",
+      "convertingFile": "Converting {filename}..."
+    },
+    "error": {
+      "fileType": "Only HEIC files are allowed",
+      "fileSize": "File size must be less than 10MB",
+      "conversion": "Error converting file: {error}"
+    }
+  },
+  "heicToPng": {
+    "meta": {
+      "title": "HEIC to PNG Converter | Free Online Image Converter",
+      "description": "Convert HEIC images to PNG format online for free. Easy to use, no registration needed. Works on all devices including iPhone, iPad, and Mac.",
+      "keywords": "heic to png, heic converter, convert heic, iphone photo converter, image converter, png converter, free converter"
+    },
+    "title": "HEIC to PNG Converter",
+    "description": "Convert HEIC images to PNG format easily",
+    "upload": {
+      "title": "Upload HEIC Files",
+      "dragndrop": "Drag & drop HEIC files here or click to browse",
+      "button": "Browse Files",
+      "limit": "Maximum file size: 10MB per file"
+    },
+    "form": {
+      "upload": {
+        "label": "Upload HEIC Files",
+        "button": "Browse Files",
+        "dragDrop": "Drag & drop HEIC files here or click to browse"
+      },
+      "convert": "Convert to PNG"
+    },
+    "convert": {
+      "button": "Convert to PNG",
+      "processing": "Converting...",
+      "download": "Download PNG",
+      "downloadAll": "Download All (ZIP)",
+      "converted": "{{count}} files converted successfully"
+    },
+    "preview": {
+      "title": "Preview & Download",
+      "nofiles": "No converted files to display"
+    },
+    "error": {
+      "invalidFormat": "Only HEIC files are supported",
+      "tooLarge": "File is too large (maximum 10MB)",
+      "noFiles": "Please upload at least one HEIC file",
+      "failed": "Conversion failed. Please try again."
+    }
+  },
+  "heicToWebp": {
+    "meta": {
+      "title": "HEIC to WebP Converter | Free Online Image Converter",
+      "description": "Convert HEIC images to WebP format online for free. Preview before download, batch conversion available. Works on all devices including iPhone, iPad, and Mac.",
+      "keywords": "heic to webp, heic converter, convert heic, iphone photo converter, image converter, webp converter, free converter, webp image format"
+    },
+    "title": "HEIC to WebP Converter",
+    "description": "Convert HEIC images to WebP format with preview",
+    "upload": {
+      "title": "Upload HEIC Files",
+      "dragndrop": "Drag & drop HEIC files here or click to browse",
+      "button": "Browse Files",
+      "limit": "Maximum file size: 10MB per file"
+    },
+    "form": {
+      "upload": {
+        "label": "Upload HEIC Files",
+        "button": "Browse Files",
+        "dragDrop": "Drag & drop HEIC files here or click to browse"
+      },
+      "convert": "Convert to WebP"
+    },
+    "convert": {
+      "button": "Convert to WebP",
+      "processing": "Converting...",
+      "download": "Download WebP",
+      "downloadAll": "Download All (ZIP)",
+      "converted": "{{count}} files converted successfully"
+    },
+    "preview": {
+      "title": "Preview & Download",
+      "nofiles": "No converted files to display"
+    },
+    "error": {
+      "invalidFormat": "Only HEIC files are supported",
+      "tooLarge": "File is too large (maximum 10MB)",
+      "noFiles": "Please upload at least one HEIC file",
+      "failed": "Conversion failed. Please try again."
+    },
+    "result": {
+      "download": "Download WebP",
+      "downloadAll": "Download All (ZIP)"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No files selected",
+      "success": "Conversion successful!",
+      "convertingFile": "Converting {filename}..."
+    }
+  },
+  "seoVolumeGuess": {
     "meta": {
       "title": "SEO Volume Prediction Tool | Easily Estimate Keyword Search Volume",
       "description": "A free tool that collects keyword suggestions and scores the estimated search volume.",
