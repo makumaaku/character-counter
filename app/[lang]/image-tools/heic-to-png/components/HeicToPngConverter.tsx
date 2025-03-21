@@ -4,13 +4,17 @@ import { useState, useEffect } from 'react';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import heicConvert from "heic-convert/browser";
 import FileUploadArea from '../../components/FileUploadArea';
 
 // TypeScript型定義
 type ConvertedImage = {
+  originalFile: File;
   originalName: string;
   pngBlob: Blob;
   pngUrl: string;
+  status: 'processing' | 'done' | 'error';
+  error?: string;
 };
 
 // 翻訳タイプ定義
@@ -55,6 +59,7 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
   const [error, setError] = useState<string | null>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [convertedImages, setConvertedImages] = useState<ConvertedImage[]>([]);
+  const [convertedCount, setConvertedCount] = useState(0);
 
   // リソース解放のためのクリーンアップ
   useEffect(() => {
@@ -76,6 +81,7 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
     setError(null);
     setUploadedFiles(files);
     setConvertedImages([]);
+    setConvertedCount(0);
   };
 
   // 変換処理
@@ -92,41 +98,87 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
     convertedImages.forEach(image => {
       URL.revokeObjectURL(image.pngUrl);
     });
-    setConvertedImages([]);
+    
+    // 選択されたファイルごとにConvertedImageオブジェクトを初期化
+    const initialConvertedImages = uploadedFiles.map(file => ({
+      originalFile: file,
+      originalName: file.name.replace(/\.heic$/i, ''),
+      pngBlob: new Blob(),
+      pngUrl: '',
+      status: 'processing' as const
+    }));
+    
+    setConvertedImages(initialConvertedImages);
+    setConvertedCount(0);
 
     try {
-      const converted: ConvertedImage[] = [];
+      let currentImages: ConvertedImage[] = initialConvertedImages;
 
-      // heic2any ライブラリを動的にインポート
-      const heic2any = (await import('heic2any')).default;
-
-      for (const file of uploadedFiles) {
+      for (let i = 0; i < uploadedFiles.length; i++) {
+        const file = uploadedFiles[i];
+        
         try {
+          // ファイル変換中のステータスを表示
+          currentImages = currentImages.map((image, index) => {
+            if (index === i) {
+              return { ...image, status: 'processing' };
+            }
+            return image;
+          });
+          setConvertedImages(currentImages);
+          
+          // ファイル変換処理
           const arrayBuffer = await file.arrayBuffer();
           
-          // HEIC → PNG 変換
-          const pngBlob = await heic2any({
-            blob: new Blob([arrayBuffer]),
-            toType: 'image/png',
+          // ブラウザ環境でheic-convertを使用
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const convert = heicConvert as any;
+          const outputBuffer = await convert({
+            buffer: new Uint8Array(arrayBuffer),
+            format: 'PNG',
             quality: 0.8
-          }) as Blob;
-
-          // 変換結果をステートに追加
-          const pngUrl = URL.createObjectURL(pngBlob);
-          converted.push({
-            originalName: file.name.replace(/\.heic$/i, ''),
-            pngBlob,
-            pngUrl
           });
+          
+          // 変換結果を更新
+          const pngBlob = new Blob([outputBuffer], { type: 'image/png' });
+          const pngUrl = URL.createObjectURL(pngBlob);
+          
+          currentImages = currentImages.map((image, index) => {
+            if (index === i) {
+              return {
+                originalFile: file,
+                originalName: file.name.replace(/\.heic$/i, ''),
+                pngBlob,
+                pngUrl,
+                status: 'done'
+              };
+            }
+            return image;
+          });
+          
+          setConvertedImages(currentImages);
+          setConvertedCount(prev => prev + 1);
         } catch (err) {
           console.error(`Error converting file ${file.name}:`, err);
-          // 個別ファイルのエラーは続行し、他のファイルを処理
+          currentImages = currentImages.map((image, index) => {
+            if (index === i) {
+              return {
+                originalFile: file,
+                originalName: file.name.replace(/\.heic$/i, ''),
+                pngBlob: new Blob(),
+                pngUrl: '',
+                status: 'error',
+                error: String(err)
+              };
+            }
+            return image;
+          });
+          
+          setConvertedImages(currentImages);
         }
       }
-
-      setConvertedImages(converted);
       
-      if (converted.length === 0) {
+      if (convertedCount === 0) {
         setError(t.error.failed);
       }
     } catch (err) {
@@ -139,19 +191,22 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
 
   // 個別ダウンロード
   const downloadImage = (image: ConvertedImage) => {
-    saveAs(image.pngBlob, `${image.originalName}.png`);
+    if (image.status === 'done') {
+      saveAs(image.pngBlob, `${image.originalName}.png`);
+    }
   };
 
   // 一括ダウンロード
   const downloadAllImages = async () => {
-    if (convertedImages.length === 0) return;
+    const successfulImages = convertedImages.filter(image => image.status === 'done');
+    if (successfulImages.length === 0) return;
 
     try {
       setIsLoading(true);
       const zip = new JSZip();
 
       // 各画像をZIPに追加
-      convertedImages.forEach((image) => {
+      successfulImages.forEach((image) => {
         zip.file(`${image.originalName}.png`, image.pngBlob);
       });
 
@@ -217,7 +272,7 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
             <h2 className="text-xl font-semibold text-white">{t.preview.title}</h2>
             
             {/* 一括ダウンロードボタン */}
-            {convertedImages.length > 0 && (
+            {convertedCount > 0 && (
               <button
                 onClick={downloadAllImages}
                 disabled={isLoading}
@@ -239,25 +294,43 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {convertedImages.map((image, index) => (
                     <div key={index} className="border border-gray-600 rounded-lg overflow-hidden">
-                      <div className="h-48 bg-gray-800 flex items-center justify-center">
-                        <img
-                          src={image.pngUrl}
-                          alt={`Preview ${index + 1}`}
-                          className="max-h-full max-w-full object-contain"
-                        />
-                      </div>
-                      <div className="p-3 border-t border-gray-600">
-                        <p className="text-sm text-gray-300 truncate">
-                          {image.originalName}.png
-                        </p>
-                        <button
-                          onClick={() => downloadImage(image)}
-                          className="mt-2 w-full inline-flex justify-center items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-                        >
-                          <ArrowDownTrayIcon className="h-4 w-4 mr-1" />
-                          {t.convert.download}
-                        </button>
-                      </div>
+                      {image.status === 'processing' ? (
+                        <div className="h-48 bg-gray-800 flex items-center justify-center text-gray-400">
+                          <div className="flex flex-col items-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-2"></div>
+                            <span>変換中...</span>
+                          </div>
+                        </div>
+                      ) : image.status === 'error' ? (
+                        <div className="h-48 bg-gray-800 flex items-center justify-center p-3 text-red-300 text-center">
+                          <div>
+                            <div className="text-3xl mb-2">⚠️</div>
+                            <div>{t.error.failed}</div>
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="h-48 bg-gray-800 flex items-center justify-center">
+                            <img
+                              src={image.pngUrl}
+                              alt={`Preview ${index + 1}`}
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </div>
+                          <div className="p-3 border-t border-gray-600">
+                            <p className="text-sm text-gray-300 truncate">
+                              {image.originalName}.png
+                            </p>
+                            <button
+                              onClick={() => downloadImage(image)}
+                              className="mt-2 w-full inline-flex justify-center items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                            >
+                              <ArrowDownTrayIcon className="h-4 w-4 mr-1" />
+                              {t.convert.download}
+                            </button>
+                          </div>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -269,9 +342,9 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
             </>
           )}
 
-          {convertedImages.length > 0 && (
+          {convertedCount > 0 && (
             <p className="mt-4 text-sm text-center text-gray-400">
-              {t.convert.converted.replace('{count}', convertedImages.length.toString())}
+              {t.convert.converted.replace('{count}', convertedCount.toString())}
             </p>
           )}
         </div>
