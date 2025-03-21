@@ -2051,7 +2051,8 @@
       "upload": {
         "label": "Upload PNG Image(s)",
         "button": "Select Files",
-        "dragDrop": "Drag & drop files here or click to browse"
+        "dragDrop": "Drag & drop files here or click to browse",
+        "limitText": "Maximum file size: 20MB (up to 100MB total)"
       },
       "convert": "Convert to JPG"
     },

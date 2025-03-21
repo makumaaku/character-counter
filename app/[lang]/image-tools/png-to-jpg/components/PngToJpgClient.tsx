@@ -14,6 +14,7 @@ type Translations = {
       label: string
       button: string
       dragDrop: string
+      limitText: string
     }
     convert: string
   }
@@ -227,7 +228,7 @@ export default function PngToJpgClient({ translations }: Props) {
         <FileUploadArea
           title={translations.form.upload.label}
           dragDropText={translations.form.upload.dragDrop}
-          limitText="最大ファイルサイズ: 20MB (合計100MBまで)"
+          limitText={translations.form.upload.limitText}
           buttonText={translations.form.upload.button}
           accept=".png"
           multiple={true}
