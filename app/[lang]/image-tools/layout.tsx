@@ -83,6 +83,8 @@ export async function generateMetadata(
       "PNG to JPG conversion",
       "HEIC to JPG conversion",
       "HEIC to PNG conversion",
+      "HEIC to WebP conversion",
+      "JPG to WebP conversion",
       "Free to use",
       "No registration required",
       "Fast processing",
@@ -120,6 +122,12 @@ export async function generateMetadata(
         "name": t('heicToWebp.meta.title'),
         "description": t('heicToWebp.meta.description'),
         "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-webp`
+      },
+      {
+        "@type": "WebApplication",
+        "name": t('jpgToWebp.meta.title'),
+        "description": t('jpgToWebp.meta.description'),
+        "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/jpg-to-webp`
       }
     ]
   };

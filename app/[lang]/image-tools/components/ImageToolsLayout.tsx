@@ -38,6 +38,10 @@ export default function ImageToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'imageTools.tools.heicToWebp.title'),
       path: `/image-tools/heic-to-webp`
+    },
+    {
+      name: translate(lang, 'imageTools.tools.jpgToWebp.title'),
+      path: `/image-tools/jpg-to-webp`
     }
     // More image tools can be added here as they become available
   ]
