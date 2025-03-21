@@ -1,6 +1,5 @@
 import chromium from '@sparticuz/chromium-min';
-import puppeteerCore from 'puppeteer-core';
-import { Browser, Page } from './puppeteer-core-types';
+import puppeteerCore, { Browser, Page } from 'puppeteer-core';
 
 // GitHubからChromiumを取得するためのパス
 // @sparticuz/chromium-minのバージョンに応じてパスを変更する必要があります。
