@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-import heic2any from 'heic2any'
+// eslint-disable-next-line
+import heicConvert from "heic-convert/browser"
 import FileUploadArea from '../../components/FileUploadArea'
 
 type ConvertedFile = {
@@ -121,13 +121,18 @@ export default function HeicToJpgClient({ translations }: Props) {
           
           // ファイル変換処理
           const arrayBuffer = await file.arrayBuffer()
-          const jpgBlob = await heic2any({
-            blob: new Blob([arrayBuffer]),
-            toType: 'image/jpeg',
+          
+          // ブラウザ環境でheic-convertを使用
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const convert = heicConvert as any;
+          const outputBuffer = await convert({
+            buffer: new Uint8Array(arrayBuffer),
+            format: 'JPEG',
             quality: 0.8
-          }) as Blob
+          })
           
           // 変換結果を更新
+          const jpgBlob = new Blob([outputBuffer], { type: 'image/jpeg' })
           const jpgUrl = URL.createObjectURL(jpgBlob)
           currentFiles = currentFiles.map((convertedFile, index) => {
             if (index === i) {
