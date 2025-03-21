@@ -38,5 +38,5 @@ export default async function SEOCannibalizationCheckerPage({ params }: Props) {
     }
   };
   
-  return <SEOCannibalizationChecker lang={lang} translations={translations} />;
+  return <SEOCannibalizationChecker translations={translations} />;
 } 

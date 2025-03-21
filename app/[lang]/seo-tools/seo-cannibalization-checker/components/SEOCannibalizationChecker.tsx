@@ -3,7 +3,6 @@
 import { useState } from 'react';
 
 interface SEOCannibalizationCheckerProps {
-  lang: string;
   translations: {
     title: string;
     description: string;
@@ -35,7 +34,7 @@ interface SEOCannibalizationCheckerProps {
   };
 }
 
-export default function SEOCannibalizationChecker({ lang, translations }: SEOCannibalizationCheckerProps) {
+export default function SEOCannibalizationChecker({ translations }: SEOCannibalizationCheckerProps) {
   const [domain, setDomain] = useState('');
   const [keyword, setKeyword] = useState('');
   const [searchUrl, setSearchUrl] = useState('');
@@ -77,7 +76,7 @@ export default function SEOCannibalizationChecker({ lang, translations }: SEOCan
       
       setSearchUrl(googleSearchUrl);
       setIsProcessing(false);
-    } catch (err) {
+    } catch {
       setError(translations.error.generic);
       setIsProcessing(false);
     }
