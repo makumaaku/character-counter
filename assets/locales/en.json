@@ -1976,5 +1976,48 @@
       "generation": "An error occurred while generating the kanji. Please try again.",
       "download": "An error occurred while downloading. Please try again."
     }
+  },
+  "imageTools": {
+    "meta": {
+      "title": "Image Converters - Free Online Image Conversion Tools",
+      "description": "Convert images between different formats with our free online tools. Simple, fast, and secure image conversion tools for all your needs.",
+      "keywords": "image converter, image tools, jpg to png, png to jpg, image format converter, free image converter"
+    },
+    "title": "Image Converters",
+    "description": "Free online tools to convert images between different formats",
+    "tools": {
+      "jpgToPng": {
+        "title": "JPG to PNG Converter",
+        "description": "Convert JPG images to PNG format with transparency support"
+      }
+    }
+  },
+  "jpgToPng": {
+    "meta": {
+      "title": "JPG to PNG Converter - Free Online Image Conversion Tool",
+      "description": "Convert JPG images to PNG format online. Free, fast, and easy to use with instant preview and download options.",
+      "keywords": "jpg to png, jpeg to png, image converter, free converter, online image tool"
+    },
+    "title": "JPG to PNG Converter",
+    "description": "Convert JPG images to PNG format with transparency support",
+    "form": {
+      "upload": {
+        "label": "Upload JPG Image",
+        "button": "Select File",
+        "dragDrop": "or drag and drop file here"
+      },
+      "convert": "Convert to PNG"
+    },
+    "result": {
+      "download": "Download PNG"
+    },
+    "status": {
+      "processing": "Converting...",
+      "noFile": "No file selected"
+    },
+    "error": {
+      "fileType": "Only JPG/JPEG files are allowed",
+      "fileSize": "File size must be less than 10MB"
+    }
   }
 } 

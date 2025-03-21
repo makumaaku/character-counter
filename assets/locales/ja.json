@@ -1988,5 +1988,48 @@
       "generation": "漢字の生成中にエラーが発生しました。もう一度お試しください。",
       "download": "ダウンロード中にエラーが発生しました。もう一度お試しください。"
     }
+  },
+  "imageTools": {
+    "meta": {
+      "title": "画像変換ツール - 無料オンライン画像変換",
+      "description": "無料のオンラインツールで画像を様々な形式に変換できます。シンプル、高速、安全な画像変換ツールがあなたのニーズに応えます。",
+      "keywords": "画像変換, 画像ツール, JPGからPNG, PNGからJPG, 画像フォーマット変換, 無料画像変換"
+    },
+    "title": "画像変換ツール",
+    "description": "様々な形式の画像を変換する無料オンラインツール",
+    "tools": {
+      "jpgToPng": {
+        "title": "JPGからPNGへの変換",
+        "description": "JPG画像を透過対応のPNG形式に変換"
+      }
+    }
+  },
+  "jpgToPng": {
+    "meta": {
+      "title": "JPGからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "JPG画像をオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "JPGからPNG, JPEGからPNG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "JPGからPNGへの変換",
+    "description": "JPG画像を透過対応のPNG形式に変換",
+    "form": {
+      "upload": {
+        "label": "JPG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "またはファイルをここにドラッグ＆ドロップ"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "download": "PNGをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPG/JPEGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
   }
 }

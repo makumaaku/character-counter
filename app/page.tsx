@@ -56,6 +56,12 @@ export default function Home() {
               <Link href="/word-gen/japanese-kanji-generator" className="text-white hover:underline ml-4">Japanese Kanji Generator</Link>
             </li>
             <li>
+              <Link href="/image-tools" className="text-white hover:underline font-bold">Image Converters</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/jpg-to-png" className="text-white hover:underline ml-4">JPG to PNG Converter</Link>
+            </li>
+            <li>
               <Link href="/pdf-tools" className="text-white hover:underline font-bold">PDF Tools</Link>
             </li>
             <li>
