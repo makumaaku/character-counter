@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
@@ -23,6 +23,11 @@ type ConvertedImage = {
   status: 'processing' | 'done' | 'error';
   error?: string;
 };
+
+// 処理中/完了/エラー状態の型
+// type ProcessingImage = Omit<ConvertedImage, 'status'> & { status: 'processing' };
+// type DoneImage = Omit<ConvertedImage, 'status'> & { status: 'done' };
+// type ErrorImage = Omit<ConvertedImage, 'status'> & { status: 'error', error: string };
 
 // 翻訳タイプ定義
 type TranslationsType = {
@@ -67,16 +72,23 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [convertedImages, setConvertedImages] = useState<ConvertedImage[]>([]);
   const [convertedCount, setConvertedCount] = useState(0);
+  
+  // BlobURLの参照を保持するref
+  const blobUrlsRef = useRef<string[]>([]);
 
   // リソース解放のためのクリーンアップ
   useEffect(() => {
+    // コンポーネントのアンマウント時にすべてのBlobのURLを解放
     return () => {
-      // コンポーネントのアンマウント時にBlobのURLを解放
-      convertedImages.forEach(image => {
-        URL.revokeObjectURL(image.pngUrl);
+      blobUrlsRef.current.forEach(url => {
+        if (url) {
+          URL.revokeObjectURL(url);
+        }
       });
+      // 配列をリセット
+      blobUrlsRef.current = [];
     };
-  }, [convertedImages]);
+  }, []);
 
   // ファイルアップロードのエラーハンドラー
   const handleUploadError = (errorMessage: string) => {
@@ -87,6 +99,15 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
   const handleFilesSelected = (files: File[]) => {
     setError(null);
     setUploadedFiles(files);
+    
+    // クリーンアップ - 既存のBlobURLを解放
+    blobUrlsRef.current.forEach(url => {
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+    });
+    blobUrlsRef.current = [];
+    
     setConvertedImages([]);
     setConvertedCount(0);
   };
@@ -101,38 +122,42 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
     setIsLoading(true);
     setError(null);
     
-    // 古いURLを解放
-    convertedImages.forEach(image => {
-      URL.revokeObjectURL(image.pngUrl);
+    // クリーンアップ - 既存のBlobURLを解放
+    blobUrlsRef.current.forEach(url => {
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
     });
+    blobUrlsRef.current = [];
     
-    // 選択されたファイルごとにConvertedImageオブジェクトを初期化
+    // 新しいconvertedImagesの状態を初期化
     const initialConvertedImages = uploadedFiles.map(file => ({
       originalFile: file,
       originalName: file.name.replace(/\.heic$/i, ''),
       pngBlob: new Blob(),
       pngUrl: '',
-      status: 'processing' as const
-    }));
+      status: 'processing'
+    } as ConvertedImage));
     
+    // 状態を更新
     setConvertedImages(initialConvertedImages);
     setConvertedCount(0);
 
     try {
-      let currentImages: ConvertedImage[] = initialConvertedImages;
+      let newConvertedImages = [...initialConvertedImages];
+      let successCount = 0; // 成功カウンターをループ内で追跡
 
       for (let i = 0; i < uploadedFiles.length; i++) {
         const file = uploadedFiles[i];
         
         try {
-          // ファイル変換中のステータスを表示
-          currentImages = currentImages.map((image, index) => {
-            if (index === i) {
-              return { ...image, status: 'processing' };
-            }
-            return image;
-          });
-          setConvertedImages(currentImages);
+          // 処理中の状態を設定して状態を更新
+          newConvertedImages = [...newConvertedImages];
+          newConvertedImages[i] = {
+            ...newConvertedImages[i],
+            status: 'processing'
+          } as ConvertedImage;
+          setConvertedImages(newConvertedImages);
           
           // ファイル変換処理
           const arrayBuffer = await file.arrayBuffer();
@@ -142,50 +167,53 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
           const outputBuffer = await heicConvert({
             buffer: new Uint8Array(arrayBuffer),
             format: 'PNG',
-            quality: 0.8
+            quality: 0.5  // 変換品質
           } as HeicConvertOptions);
           
           // 変換結果を更新
           const pngBlob = new Blob([outputBuffer], { type: 'image/png' });
           const pngUrl = URL.createObjectURL(pngBlob);
           
-          currentImages = currentImages.map((image, index) => {
-            if (index === i) {
-              return {
-                originalFile: file,
-                originalName: file.name.replace(/\.heic$/i, ''),
-                pngBlob,
-                pngUrl,
-                status: 'done'
-              };
-            }
-            return image;
-          });
+          // BlobURLを追跡
+          blobUrlsRef.current.push(pngUrl);
           
-          setConvertedImages(currentImages);
-          setConvertedCount(prev => prev + 1);
+          // 成功状態を更新
+          newConvertedImages = [...newConvertedImages];
+          newConvertedImages[i] = {
+            originalFile: file,
+            originalName: file.name.replace(/\.heic$/i, ''),
+            pngBlob,
+            pngUrl,
+            status: 'done'
+          } as ConvertedImage;
+          
+          successCount++; // 成功カウンターをインクリメント
+          setConvertedImages(newConvertedImages);
+          setConvertedCount(successCount); // 現在のループでの成功数を設定
         } catch (err) {
           console.error(`Error converting file ${file.name}:`, err);
-          currentImages = currentImages.map((image, index) => {
-            if (index === i) {
-              return {
-                originalFile: file,
-                originalName: file.name.replace(/\.heic$/i, ''),
-                pngBlob: new Blob(),
-                pngUrl: '',
-                status: 'error',
-                error: String(err)
-              };
-            }
-            return image;
-          });
           
-          setConvertedImages(currentImages);
+          // エラー状態を更新
+          newConvertedImages = [...newConvertedImages];
+          newConvertedImages[i] = {
+            originalFile: file,
+            originalName: file.name.replace(/\.heic$/i, ''),
+            pngBlob: new Blob(),
+            pngUrl: '',
+            status: 'error',
+            error: String(err)
+          } as ConvertedImage;
+          
+          setConvertedImages(newConvertedImages);
         }
       }
       
-      if (convertedCount === 0) {
+      // すべての変換が失敗した場合のみエラーを表示
+      if (successCount === 0) {
         setError(t.error.failed);
+      } else {
+        // 1つでも成功していれば、エラーメッセージをクリア
+        setError(null);
       }
     } catch (err) {
       console.error('Conversion error:', err);
