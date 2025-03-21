@@ -1,7 +1,13 @@
+import heicConvert from 'heic-convert';
 import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument } from 'pdf-lib';
-// @ts-expect-error - heic-convert lacks TypeScript definitions
-import heicConvert from 'heic-convert';
+
+// heic-convert の型定義
+interface HeicConvertOptions {
+  buffer: Buffer;
+  format: 'JPEG' | 'PNG' | 'WEBP';
+  quality: number;
+}
 
 export async function POST(
   request: NextRequest,
@@ -36,11 +42,12 @@ export async function POST(
 
     // Convert HEIC to JPEG
     const fileBuffer = await file.arrayBuffer();
+    // @ts-expect-error - heic-convert types are not perfect
     const jpegBuffer = await heicConvert({
       buffer: Buffer.from(fileBuffer),
       format: 'JPEG',
       quality: 0.9
-    });
+    } as HeicConvertOptions);
 
     // Create a new PDF document
     const pdfDoc = await PDFDocument.create();

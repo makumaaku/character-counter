@@ -7,6 +7,13 @@ import { saveAs } from 'file-saver';
 import heicConvert from "heic-convert/browser";
 import FileUploadArea from '../../components/FileUploadArea';
 
+// heic-convert の型定義
+interface HeicConvertOptions {
+  buffer: Uint8Array;
+  format: 'JPEG' | 'PNG';
+  quality: number;
+}
+
 // TypeScript型定義
 type ConvertedImage = {
   originalFile: File;
@@ -131,13 +138,12 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
           const arrayBuffer = await file.arrayBuffer();
           
           // ブラウザ環境でheic-convertを使用
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const convert = heicConvert as any;
-          const outputBuffer = await convert({
+          // @ts-expect-error - heic-convert types are not perfect
+          const outputBuffer = await heicConvert({
             buffer: new Uint8Array(arrayBuffer),
             format: 'PNG',
             quality: 0.8
-          });
+          } as HeicConvertOptions);
           
           // 変換結果を更新
           const pngBlob = new Blob([outputBuffer], { type: 'image/png' });

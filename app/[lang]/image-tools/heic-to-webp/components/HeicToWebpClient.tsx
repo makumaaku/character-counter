@@ -3,9 +3,15 @@
 import { useState } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-import heic2any from 'heic2any'
+import heicConvert from 'heic-convert/browser'
 import FileUploadArea from '../../components/FileUploadArea'
+
+// heic-convert の型定義
+interface HeicConvertOptions {
+  buffer: Uint8Array;
+  format: 'JPEG' | 'PNG' | 'WEBP';
+  quality: number;
+}
 
 type ConvertedFile = {
   originalFile: File
@@ -49,19 +55,17 @@ type Props = {
 }
 
 export default function HeicToWebpClient({ translations }: Props) {
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
   const [convertedFiles, setConvertedFiles] = useState<ConvertedFile[]>([])
-
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  
   const handleFilesSelected = (files: File[]) => {
-    if (!files.length) return
-    
-    setError(null)
-    setConvertedFiles([])
     setSelectedFiles(files)
+    setConvertedFiles([])
+    setError(null)
   }
-
+  
   const handleError = (errorMessage: string) => {
     setError(errorMessage)
   }
@@ -105,12 +109,16 @@ export default function HeicToWebpClient({ translations }: Props) {
           // Read file as ArrayBuffer
           const arrayBuffer = await file.arrayBuffer()
           
-          // Convert HEIC to WebP using heic2any
-          const webPBlob = await heic2any({
-            blob: new Blob([arrayBuffer]),
-            toType: 'image/webp',
+          // Convert HEIC to WebP using heic-convert
+          // @ts-expect-error - heic-convert types are not perfect
+          const outputBuffer = await heicConvert({
+            buffer: new Uint8Array(arrayBuffer),
+            format: 'WEBP',
             quality: 0.8
-          }) as Blob
+          } as HeicConvertOptions)
+          
+          // Create Blob from buffer
+          const webPBlob = new Blob([outputBuffer], { type: 'image/webp' })
           
           // Create URL for preview
           const webPUrl = URL.createObjectURL(webPBlob)

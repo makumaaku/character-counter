@@ -3,10 +3,9 @@
 import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
-// eslint-disable-next-line
 import heicConvert from "heic-convert/browser"
 import FileUploadArea from '../../components/FileUploadArea'
-
+import Image from 'next/image'
 type ConvertedFile = {
   originalFile: File
   convertedUrl: string
@@ -295,10 +294,13 @@ export default function HeicToJpgClient({ translations }: Props) {
                 ) : (
                   <div className="relative group">
                     <div className="h-40 flex items-center justify-center bg-gray-900">
-                      <img
+                    <Image 
                         src={file.convertedUrl}
                         alt={file.fileName}
                         className="max-h-40 max-w-full object-contain"
+                        unoptimized={true}
+                        width={400}
+                        height={300}
                       />
                     </div>
                     <div className="p-3">

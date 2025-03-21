@@ -11,6 +11,7 @@ export default async function PngToJpg({ params }: { params: Promise<{ lang: str
     uploadLabel,
     uploadButton,
     dragDropText,
+    uploadLimitText,
     convertButton,
     downloadButton,
     downloadAllButton,
@@ -28,6 +29,7 @@ export default async function PngToJpg({ params }: { params: Promise<{ lang: str
     translate(lang, 'pngToJpg.form.upload.label'),
     translate(lang, 'pngToJpg.form.upload.button'),
     translate(lang, 'pngToJpg.form.upload.dragDrop'),
+    translate(lang, 'pngToJpg.form.upload.limitText'),
     translate(lang, 'pngToJpg.form.convert'),
     translate(lang, 'pngToJpg.result.download'),
     translate(lang, 'pngToJpg.result.downloadAll'),
@@ -48,7 +50,8 @@ export default async function PngToJpg({ params }: { params: Promise<{ lang: str
       upload: {
         label: uploadLabel,
         button: uploadButton,
-        dragDrop: dragDropText
+        dragDrop: dragDropText,
+        limitText: uploadLimitText
       },
       convert: convertButton
     },
