@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useState } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import heic2any from 'heic2any'
+import FileUploadArea from '../../components/FileUploadArea'
 
 type ConvertedFile = {
   originalFile: File
@@ -19,6 +19,9 @@ type Props = {
   translations: {
     title: string
     description: string
+    upload?: {
+      limit: string
+    }
     form: {
       upload: {
         label: string
@@ -50,153 +53,97 @@ export default function HeicToWebpClient({ translations }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
   const [convertedFiles, setConvertedFiles] = useState<ConvertedFile[]>([])
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    handleFileChange(acceptedFiles)
-  }, [])
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'image/heic': ['.heic', '.HEIC'],
-      'image/heif': ['.heif', '.HEIF']
-    },
-    maxSize: MAX_FILE_SIZE,
-    multiple: true
-  })
-
-  const handleFileChange = (files: File[]) => {
+  const handleFilesSelected = (files: File[]) => {
     if (!files.length) return
-
+    
     setError(null)
     setConvertedFiles([])
-
-    // Filter valid files
-    const validFiles = files.filter(file => {
-      // Check file type (HEIC or HEIF)
-      const isHeic = file.name.toLowerCase().endsWith('.heic') || 
-                     file.type === 'image/heic' || 
-                     file.name.toLowerCase().endsWith('.heif') || 
-                     file.type === 'image/heif'
-      
-      if (!isHeic) {
-        setError(translations.error.fileType)
-        return false
-      }
-
-      // Check file size
-      if (file.size > MAX_FILE_SIZE) {
-        setError(translations.error.fileSize)
-        return false
-      }
-
-      return true
-    })
-
-    if (validFiles.length > 0) {
-      setSelectedFiles(validFiles)
-    }
+    setSelectedFiles(files)
   }
 
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const filesArray = Array.from(e.target.files)
-      handleFileChange(filesArray)
-    }
-  }
-
-  const handleSelectFileClick = () => {
-    fileInputRef.current?.click()
+  const handleError = (errorMessage: string) => {
+    setError(errorMessage)
   }
 
   const convertToWebP = async () => {
-    if (!selectedFiles.length) return
+    if (selectedFiles.length === 0) {
+      setError(translations.error.fileType)
+      return
+    }
 
     setIsProcessing(true)
     setError(null)
+
+    // Clean up previous converted files
+    convertedFiles.forEach(file => {
+      if (file.convertedUrl) {
+        URL.revokeObjectURL(file.convertedUrl)
+      }
+    })
     setConvertedFiles([])
 
-    const newConvertedFiles: ConvertedFile[] = []
-
     try {
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const file = selectedFiles[i]
+      const newConvertedFiles: ConvertedFile[] = []
+
+      // Process each file
+      for (const file of selectedFiles) {
+        const fileName = file.name.replace(/\.(heic|heif)$/i, '.webp')
         
-        // Create a placeholder for this file
-        const fileIndex = newConvertedFiles.length
+        // Add to state with 'processing' status
         newConvertedFiles.push({
           originalFile: file,
+          fileName,
           convertedUrl: '',
-          fileName: file.name.replace(/\.(heic|heif)$/i, '.webp'),
           status: 'processing'
         })
+        
+        // Update state to show processing
         setConvertedFiles([...newConvertedFiles])
-
+        
         try {
-          // Convert HEIC to PNG Blob first (intermediate step)
-          const pngBlob = await heic2any({
-            blob: file,
-            toType: 'image/png',
-            quality: 0.9
-          }) as Blob
-
-          // Create canvas to convert PNG to WebP
-          const img = new Image()
-          const pngUrl = URL.createObjectURL(pngBlob)
+          // Read file as ArrayBuffer
+          const arrayBuffer = await file.arrayBuffer()
           
-          // Load the image and convert to WebP when loaded
-          img.onload = () => {
-            const canvas = document.createElement('canvas')
-            canvas.width = img.width
-            canvas.height = img.height
-            const ctx = canvas.getContext('2d')
+          // Convert HEIC to WebP using heic2any
+          const webPBlob = await heic2any({
+            blob: new Blob([arrayBuffer]),
+            toType: 'image/webp',
+            quality: 0.8
+          }) as Blob
+          
+          // Create URL for preview
+          const webPUrl = URL.createObjectURL(webPBlob)
+          
+          // Update file status to 'done'
+          const fileIndex = newConvertedFiles.findIndex(
+            f => f.originalFile === file
+          )
+          
+          if (fileIndex !== -1) {
+            newConvertedFiles[fileIndex] = {
+              ...newConvertedFiles[fileIndex],
+              convertedUrl: webPUrl,
+              status: 'done'
+            }
             
-            if (ctx) {
-              // Draw the image on the canvas
-              ctx.drawImage(img, 0, 0)
-              
-              // Convert to WebP
-              canvas.toBlob((webpBlob) => {
-                if (webpBlob) {
-                  // Create object URL from the blob
-                  const webpUrl = URL.createObjectURL(webpBlob)
-                  
-                  // Update the converted file record
-                  newConvertedFiles[fileIndex] = {
-                    ...newConvertedFiles[fileIndex],
-                    convertedUrl: webpUrl,
-                    status: 'done'
-                  }
-                  setConvertedFiles([...newConvertedFiles])
-                  
-                  // Cleanup
-                  URL.revokeObjectURL(pngUrl)
-                } else {
-                  throw new Error('Failed to convert to WebP format')
-                }
-              }, 'image/webp', 0.9)
-            } else {
-              throw new Error('Failed to get canvas context')
+            setConvertedFiles([...newConvertedFiles])
+          }
+        } catch (conversionError) {
+          // Handle conversion error for this file
+          const errorMessage = (conversionError as Error).message || 'Unknown error'
+          const fileIndex = newConvertedFiles.findIndex(
+            f => f.originalFile === file
+          )
+          
+          if (fileIndex !== -1) {
+            newConvertedFiles[fileIndex] = {
+              ...newConvertedFiles[fileIndex],
+              status: 'error',
+              error: errorMessage
             }
           }
           
-          img.onerror = () => {
-            throw new Error('Failed to load image')
-          }
-          
-          img.src = pngUrl
-        } catch (error) {
-          const errorMessage = (error as Error).message || 'Unknown error'
-          
-          // Update with error status
-          newConvertedFiles[fileIndex] = {
-            ...newConvertedFiles[fileIndex],
-            status: 'error',
-            error: errorMessage
-          }
           setConvertedFiles([...newConvertedFiles])
           
           setError(translations.error.conversion.replace('{error}', errorMessage))
@@ -250,32 +197,18 @@ export default function HeicToWebpClient({ translations }: Props) {
       <p className="text-lg text-gray-300 mb-8">{translations.description}</p>
 
       <div className="mb-8">
-        <div className="mb-4">
-          <label className="block text-lg font-medium mb-2">
-            {translations.form.upload.label}
-          </label>
-          
-          <div 
-            {...getRootProps()} 
-            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors ${
-              isDragActive ? 'border-blue-500 bg-gray-600' : 'border-gray-500'
-            }`}
-          >
-            <input 
-              {...getInputProps()} 
-              ref={fileInputRef}
-              onChange={handleFileInputChange}
-            />
-            <p>{translations.form.upload.dragDrop}</p>
-            <button
-              type="button"
-              onClick={handleSelectFileClick}
-              className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
-            >
-              {translations.form.upload.button}
-            </button>
-          </div>
-        </div>
+        <FileUploadArea
+          title={translations.form.upload.label}
+          dragDropText={translations.form.upload.dragDrop}
+          limitText={translations.upload?.limit || "Maximum file size: 10MB per file"}
+          buttonText={translations.form.upload.button}
+          accept=".heic,.heif"
+          multiple={true}
+          maxSizeMB={10}
+          validExtensions={['heic', 'heif']}
+          onFilesSelected={handleFilesSelected}
+          onError={handleError}
+        />
 
         {error && (
           <div className="text-red-500 mt-4">

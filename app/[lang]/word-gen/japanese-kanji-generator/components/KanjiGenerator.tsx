@@ -1,6 +1,6 @@
 'use client';
 
-import { generateRandomKanji } from '../utils/kanjiGenerator';
+import { generateRandomKanji } from '../kanjiGenerator';
 
 interface KanjiGeneratorProps {
   onGenerateKanji: (kanji: string) => void;

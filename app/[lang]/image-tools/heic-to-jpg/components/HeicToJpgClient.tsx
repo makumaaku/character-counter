@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import heic2any from 'heic2any'
+import FileUploadArea from '../../components/FileUploadArea'
 
 type ConvertedFile = {
   originalFile: File
@@ -50,125 +50,120 @@ export default function HeicToJpgClient({ translations }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
   const [convertedFiles, setConvertedFiles] = useState<ConvertedFile[]>([])
-  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [convertedCount, setConvertedCount] = useState(0)
 
-  const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
+  // BlobのURLを解放するためのクリーンアップ
+  useEffect(() => {
+    return () => {
+      convertedFiles.forEach(file => {
+        if (file.convertedUrl) {
+          URL.revokeObjectURL(file.convertedUrl)
+        }
+      })
+    }
+  }, [convertedFiles])
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    handleFileChange(acceptedFiles)
-  }, [])
+  // 共通コンポーネントのエラーハンドラー
+  const handleUploadError = (errorMessage: string) => {
+    setError(errorMessage)
+  }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'image/heic': ['.heic', '.HEIC'],
-      'image/heif': ['.heif', '.HEIF']
-    },
-    maxSize: MAX_FILE_SIZE,
-    multiple: true
-  })
-
-  const handleFileChange = (files: File[]) => {
-    if (!files.length) return
-
+  // 共通コンポーネントのファイル選択ハンドラー
+  const handleFilesSelected = (files: File[]) => {
     setError(null)
+    setSelectedFiles(files)
     setConvertedFiles([])
-
-    // Filter valid files
-    const validFiles = files.filter(file => {
-      // Check file type (HEIC or HEIF)
-      const isHeic = file.name.toLowerCase().endsWith('.heic') || 
-                     file.type === 'image/heic' || 
-                     file.name.toLowerCase().endsWith('.heif') || 
-                     file.type === 'image/heif'
-      
-      if (!isHeic) {
-        setError(translations.error.fileType)
-        return false
-      }
-
-      // Check file size
-      if (file.size > MAX_FILE_SIZE) {
-        setError(translations.error.fileSize)
-        return false
-      }
-
-      return true
-    })
-
-    if (validFiles.length > 0) {
-      setSelectedFiles(validFiles)
-    }
-  }
-
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const filesArray = Array.from(e.target.files)
-      handleFileChange(filesArray)
-    }
-  }
-
-  const handleSelectFileClick = () => {
-    fileInputRef.current?.click()
+    setConvertedCount(0)
   }
 
   const convertToJpg = async () => {
-    if (!selectedFiles.length) return
+    if (selectedFiles.length === 0) {
+      setError(translations.status.noFile)
+      return
+    }
 
     setIsProcessing(true)
     setError(null)
-    setConvertedFiles([])
-
-    const newConvertedFiles: ConvertedFile[] = []
+    
+    // 古いURLを解放
+    convertedFiles.forEach(file => {
+      if (file.convertedUrl) {
+        URL.revokeObjectURL(file.convertedUrl)
+      }
+    })
+    
+    // 選択されたファイルごとにConvertedFileオブジェクトを初期化
+    const initialConvertedFiles = selectedFiles.map(file => ({
+      originalFile: file,
+      convertedUrl: '',
+      fileName: file.name.replace(/\.heic$/i, '.jpg'),
+      status: 'processing' as const
+    }))
+    
+    setConvertedFiles(initialConvertedFiles)
+    setConvertedCount(0)
 
     try {
+      let currentFiles: ConvertedFile[] = initialConvertedFiles;
+
       for (let i = 0; i < selectedFiles.length; i++) {
         const file = selectedFiles[i]
         
-        // Create a placeholder for this file
-        const fileIndex = newConvertedFiles.length
-        newConvertedFiles.push({
-          originalFile: file,
-          convertedUrl: '',
-          fileName: file.name.replace(/\.(heic|heif)$/i, '.jpg'),
-          status: 'processing'
-        })
-        setConvertedFiles([...newConvertedFiles])
-
         try {
-          // Convert HEIC to JPEG Blob
-          const jpegBlob = await heic2any({
-            blob: file,
+          // ファイル変換中のステータスを表示
+          currentFiles = currentFiles.map((convertedFile, index) => {
+            if (index === i) {
+              return { ...convertedFile, status: 'processing' };
+            }
+            return convertedFile;
+          });
+          setConvertedFiles(currentFiles);
+          
+          // ファイル変換処理
+          const arrayBuffer = await file.arrayBuffer()
+          const jpgBlob = await heic2any({
+            blob: new Blob([arrayBuffer]),
             toType: 'image/jpeg',
-            quality: 0.9
+            quality: 0.8
           }) as Blob
-
-          // Create object URL from the blob
-          const jpegUrl = URL.createObjectURL(jpegBlob)
           
-          // Update the converted file record
-          newConvertedFiles[fileIndex] = {
-            ...newConvertedFiles[fileIndex],
-            convertedUrl: jpegUrl,
-            status: 'done'
-          }
-          setConvertedFiles([...newConvertedFiles])
-        } catch (error) {
-          const errorMessage = (error as Error).message || 'Unknown error'
+          // 変換結果を更新
+          const jpgUrl = URL.createObjectURL(jpgBlob)
+          currentFiles = currentFiles.map((convertedFile, index) => {
+            if (index === i) {
+              return {
+                originalFile: file,
+                convertedUrl: jpgUrl,
+                fileName: file.name.replace(/\.heic$/i, '.jpg'),
+                status: 'done'
+              };
+            }
+            return convertedFile;
+          });
           
-          // Update with error status
-          newConvertedFiles[fileIndex] = {
-            ...newConvertedFiles[fileIndex],
-            status: 'error',
-            error: errorMessage
-          }
-          setConvertedFiles([...newConvertedFiles])
+          setConvertedFiles(currentFiles);
+          setConvertedCount(prev => prev + 1)
+        } catch (err) {
+          console.error(`Error converting file ${file.name}:`, err)
+          currentFiles = currentFiles.map((convertedFile, index) => {
+            if (index === i) {
+              return {
+                originalFile: file,
+                convertedUrl: '',
+                fileName: file.name,
+                status: 'error',
+                error: String(err)
+              };
+            }
+            return convertedFile;
+          });
           
-          setError(translations.error.conversion.replace('{error}', errorMessage))
+          setConvertedFiles(currentFiles);
         }
       }
-    } catch (error) {
-      setError((error as Error).message)
+    } catch (err) {
+      console.error('Conversion error:', err)
+      setError(translations.error.conversion.replace('{error}', String(err)))
     } finally {
       setIsProcessing(false)
     }
@@ -176,155 +171,150 @@ export default function HeicToJpgClient({ translations }: Props) {
 
   const downloadJpg = (fileIndex: number) => {
     const file = convertedFiles[fileIndex]
-    if (!file || file.status !== 'done') return
-
-    fetch(file.convertedUrl)
-      .then(res => res.blob())
-      .then(blob => {
-        saveAs(blob, file.fileName)
-      })
+    if (file && file.status === 'done' && file.convertedUrl) {
+      fetch(file.convertedUrl)
+        .then(res => res.blob())
+        .then(blob => {
+          saveAs(blob, file.fileName)
+        })
+    }
   }
 
   const downloadAllJpgs = async () => {
     const successfulFiles = convertedFiles.filter(file => file.status === 'done')
     if (successfulFiles.length === 0) return
-    
-    if (successfulFiles.length === 1) {
-      // If only one file, just download it directly
-      downloadJpg(convertedFiles.findIndex(file => file.status === 'done'))
-      return
-    }
 
-    // Create a zip file for multiple downloads
-    const zip = new JSZip()
-    
-    // Add all successful conversions to zip
-    for (const file of successfulFiles) {
-      const blob = await fetch(file.convertedUrl).then(res => res.blob())
-      zip.file(file.fileName, blob)
-    }
+    try {
+      setIsProcessing(true)
+      const zip = new JSZip()
 
-    // Generate and download the zip file
-    const zipBlob = await zip.generateAsync({ type: 'blob' })
-    saveAs(zipBlob, 'converted_images.zip')
+      // すべての成功したファイルの変換結果をFetchして取得
+      const fetchPromises = successfulFiles.map(async (file) => {
+        try {
+          const response = await fetch(file.convertedUrl)
+          const blob = await response.blob()
+          zip.file(file.fileName, blob)
+        } catch (err) {
+          console.error(`Error adding file to zip: ${file.fileName}`, err)
+        }
+      })
+
+      await Promise.all(fetchPromises)
+      
+      // ZIPファイル生成
+      const zipBlob = await zip.generateAsync({ type: 'blob' })
+      saveAs(zipBlob, 'converted_images.zip')
+    } catch (err) {
+      console.error('ZIP creation error:', err)
+      setError('Failed to create ZIP file')
+    } finally {
+      setIsProcessing(false)
+    }
   }
 
   return (
-    <div className="py-6">
-      <h1 className="text-3xl font-bold mb-4">{translations.title}</h1>
-      <p className="text-lg text-gray-300 mb-8">{translations.description}</p>
+    <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-white mb-4">{translations.title}</h1>
+      <p className="text-gray-300 mb-6">{translations.description}</p>
 
-      <div className="mb-8">
-        <div className="mb-4">
-          <label className="block text-lg font-medium mb-2">
-            {translations.form.upload.label}
-          </label>
-          
-          <div 
-            {...getRootProps()} 
-            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors ${
-              isDragActive ? 'border-blue-500 bg-gray-600' : 'border-gray-500'
-            }`}
-          >
-            <input 
-              {...getInputProps()} 
-              ref={fileInputRef}
-              onChange={handleFileInputChange}
-            />
-            <p>{translations.form.upload.dragDrop}</p>
-            <button
-              type="button"
-              onClick={handleSelectFileClick}
-              className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
-            >
-              {translations.form.upload.button}
-            </button>
-          </div>
-        </div>
+      {/* 共通のファイルアップロードエリアコンポーネント */}
+      <div className="mb-6">
+        <FileUploadArea
+          title={translations.form.upload.label}
+          dragDropText={translations.form.upload.dragDrop}
+          limitText="最大ファイルサイズ: 10MB"
+          buttonText={translations.form.upload.button}
+          accept=".heic"
+          multiple={true}
+          maxSizeMB={10}
+          validExtensions={['heic']}
+          onFilesSelected={handleFilesSelected}
+          onError={handleUploadError}
+        />
+      </div>
 
+      {/* 変換ボタン */}
+      <div className="bg-gray-700 p-4 rounded-lg mb-6">
+        <button
+          onClick={convertToJpg}
+          disabled={isProcessing || selectedFiles.length === 0}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md disabled:bg-gray-500 disabled:cursor-not-allowed"
+        >
+          {isProcessing ? translations.status.processing : translations.form.convert}
+        </button>
+        
         {error && (
-          <div className="text-red-500 mt-4">
+          <div className="mt-4 bg-red-900/30 border border-red-700 p-3 rounded-md text-red-200">
             {error}
           </div>
         )}
+      </div>
 
-        {selectedFiles.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-xl font-bold mb-2">
-              {selectedFiles.length === 1 
-                ? selectedFiles[0].name 
-                : `${selectedFiles.length} HEIC files selected`}
-            </h2>
+      {/* 変換結果 */}
+      {(convertedFiles.length > 0 || isProcessing) && (
+        <div className="bg-gray-700 p-4 rounded-lg">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold text-white">プレビュー</h2>
             
-            <button
-              onClick={convertToJpg}
-              disabled={isProcessing}
-              className="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition-colors disabled:opacity-50"
-            >
-              {isProcessing ? translations.status.processing : translations.form.convert}
-            </button>
-          </div>
-        )}
-
-        {convertedFiles.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4">Converted Images</h2>
-            
-            {convertedFiles.length > 1 && (
-              <div className="mb-4">
-                <button
-                  onClick={downloadAllJpgs}
-                  className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition-colors"
-                >
-                  {translations.result.downloadAll}
-                </button>
-              </div>
+            {convertedCount > 0 && (
+              <button
+                onClick={downloadAllJpgs}
+                disabled={isProcessing}
+                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-sm disabled:bg-gray-500 disabled:cursor-not-allowed"
+              >
+                {translations.result.downloadAll}
+              </button>
             )}
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {convertedFiles.map((file, index) => (
-                <div key={index} className="bg-gray-700 rounded-lg p-4">
-                  <p className="text-sm font-medium mb-2 truncate">{file.fileName}</p>
-                  
-                  {file.status === 'processing' && (
-                    <div className="flex items-center justify-center h-40 bg-gray-800 rounded">
-                      <div className="text-sm text-gray-400">
-                        {translations.status.processing}
-                      </div>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {convertedFiles.map((file, index) => (
+              <div key={index} className="bg-gray-800 border border-gray-600 rounded-lg overflow-hidden">
+                {file.status === 'processing' ? (
+                  <div className="h-40 flex items-center justify-center text-gray-400">
+                    <div className="flex flex-col items-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-2"></div>
+                      <span>{translations.status.convertingFile.replace('{filename}', file.originalFile.name)}</span>
                     </div>
-                  )}
-                  
-                  {file.status === 'error' && (
-                    <div className="flex items-center justify-center h-40 bg-gray-800 rounded">
-                      <div className="text-sm text-red-500 p-2 text-center">
-                        {file.error || 'Error converting file'}
-                      </div>
+                  </div>
+                ) : file.status === 'error' ? (
+                  <div className="h-40 flex items-center justify-center p-3 text-red-300 text-center">
+                    <div>
+                      <div className="text-3xl mb-2">⚠️</div>
+                      <div>{translations.error.conversion.replace('{error}', file.error || '')}</div>
                     </div>
-                  )}
-                  
-                  {file.status === 'done' && (
-                    <>
-                      <div className="h-40 bg-gray-800 rounded overflow-hidden mb-2">
-                        <img 
-                          src={file.convertedUrl} 
-                          alt={file.fileName}
-                          className="w-full h-full object-contain" 
-                        />
-                      </div>
+                  </div>
+                ) : (
+                  <div className="relative group">
+                    <div className="h-40 flex items-center justify-center bg-gray-900">
+                      <img
+                        src={file.convertedUrl}
+                        alt={file.fileName}
+                        className="max-h-40 max-w-full object-contain"
+                      />
+                    </div>
+                    <div className="p-3">
+                      <p className="text-gray-300 truncate text-sm">{file.fileName}</p>
                       <button
                         onClick={() => downloadJpg(index)}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline transition-colors text-sm"
+                        className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm"
                       >
                         {translations.result.download}
                       </button>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-        )}
-      </div>
+          
+          {convertedCount > 0 && (
+            <p className="mt-4 text-center text-gray-400">
+              {translations.status.success}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   )
 } 

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
-import { PhotoIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import FileUploadArea from '../../components/FileUploadArea';
 
 // TypeScript型定義
 type ConvertedImage = {
@@ -54,7 +55,6 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
   const [error, setError] = useState<string | null>(null);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [convertedImages, setConvertedImages] = useState<ConvertedImage[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // リソース解放のためのクリーンアップ
   useEffect(() => {
@@ -66,51 +66,15 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
     };
   }, [convertedImages]);
 
-  // ファイルアップロードハンドラー
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
-
-    validateAndSetFiles(Array.from(files));
+  // ファイルアップロードのエラーハンドラー
+  const handleUploadError = (errorMessage: string) => {
+    setError(errorMessage);
   };
 
-  // ドラッグ&ドロップハンドラー
-  const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (e.dataTransfer.files) {
-      validateAndSetFiles(Array.from(e.dataTransfer.files));
-    }
-  }, []);
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
-  // ファイルバリデーション
-  const validateAndSetFiles = (files: File[]) => {
+  // ファイル選択時のハンドラー
+  const handleFilesSelected = (files: File[]) => {
     setError(null);
-    const validFiles: File[] = [];
-
-    for (const file of files) {
-      // HEICファイル拡張子チェック
-      if (!file.name.toLowerCase().endsWith('.heic')) {
-        setError(t.error.invalidFormat);
-        return;
-      }
-
-      // ファイルサイズチェック (10MB上限)
-      if (file.size > 10 * 1024 * 1024) {
-        setError(t.error.tooLarge);
-        return;
-      }
-
-      validFiles.push(file);
-    }
-
-    setUploadedFiles(validFiles);
+    setUploadedFiles(files);
     setConvertedImages([]);
   };
 
@@ -210,55 +174,24 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
         <p className="text-xl text-gray-300">{t.description}</p>
       </div>
 
-      {/* ファイルアップロードセクション */}
-      <div className="bg-gray-700 shadow rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4 text-white">{t.upload.title}</h2>
-        
-        <div
-          className="border-2 border-dashed border-gray-500 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 transition-colors"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <PhotoIcon className="mx-auto h-12 w-12 text-gray-400" />
-          <p className="mt-2 text-sm font-medium text-gray-300">
-            {t.upload.dragndrop}
-          </p>
-          <p className="mt-1 text-xs text-gray-400">
-            {t.upload.limit}
-          </p>
-          <button
-            type="button"
-            className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            {t.upload.button}
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            multiple
-            accept=".heic"
-            onChange={handleFileChange}
-            className="hidden"
-          />
-        </div>
-
-        {/* アップロードファイル一覧 */}
-        {uploadedFiles.length > 0 && (
-          <div className="mt-4">
-            <h3 className="text-sm font-medium text-gray-300 mb-2">
-              {uploadedFiles.length} ファイル選択済み
-            </h3>
-            <ul className="text-xs text-gray-400 space-y-1">
-              {uploadedFiles.map((file, index) => (
-                <li key={index}>{file.name}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+      {/* 共通のファイルアップロードエリアコンポーネントを使用 */}
+      <div className="mb-8">
+        <FileUploadArea
+          title={t.upload.title}
+          dragDropText={t.upload.dragndrop}
+          limitText={t.upload.limit}
+          buttonText={t.upload.button}
+          accept=".heic"
+          multiple={true}
+          maxSizeMB={10}
+          selectedFilesText="ファイル選択済み"
+          validExtensions={['heic']}
+          onFilesSelected={handleFilesSelected}
+          onError={handleUploadError}
+        />
 
         {/* 変換ボタン */}
-        <div className="mt-6">
+        <div className="mt-6 bg-gray-700 shadow rounded-lg p-6">
           <button
             type="button"
             onClick={convertToPng}
@@ -267,14 +200,14 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
           >
             {isLoading ? t.convert.processing : t.convert.button}
           </button>
-        </div>
 
-        {/* エラーメッセージ */}
-        {error && (
-          <div className="mt-4 p-3 bg-red-900/50 text-red-200 rounded-md">
-            <p>{error}</p>
-          </div>
-        )}
+          {/* エラーメッセージ */}
+          {error && (
+            <div className="mt-4 p-3 bg-red-900/50 text-red-200 rounded-md">
+              <p>{error}</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* プレビューと結果セクション */}

@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import JSZip from 'jszip'
+import FileUploadArea from '../../components/FileUploadArea'
 
 type Translations = {
   title: string
@@ -53,53 +53,27 @@ export default function PngToJpgClient({ translations }: Props) {
   const [convertedFiles, setConvertedFiles] = useState<ConvertedFile[]>([])
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState<number>(0)
   const [conversionComplete, setConversionComplete] = useState(false)
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const MAX_FILE_SIZE = 20 * 1024 * 1024 // 20MB
-  const TOTAL_MAX_SIZE = 100 * 1024 * 1024 // 100MB for all files combined
+  // Cleanup URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      if (previewUrl && !previewUrl.startsWith('data:')) {
+        URL.revokeObjectURL(previewUrl)
+      }
+    }
+  }, [previewUrl])
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    handleFileChange(acceptedFiles)
-  }, [])
+  // ファイルアップロードエリアからのエラーハンドリング
+  const handleUploadError = (errorMessage: string) => {
+    setError(errorMessage)
+  }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'image/png': ['.png']
-    },
-    maxSize: MAX_FILE_SIZE,
-    multiple: true
-  })
-
-  const handleFileChange = (files: File[]) => {
-    if (!files.length) return
-
+  // ファイルアップロードエリアからのファイル選択ハンドリング
+  const handleFilesSelected = (files: File[]) => {
     setError(null)
     setConvertedFiles([])
     setPreviewUrl(null)
     setConversionComplete(false)
-
-    // Check file types
-    const invalidFiles = files.filter(file => !file.type.includes('image/png'))
-    if (invalidFiles.length > 0) {
-      setError(translations.error.fileType)
-      return
-    }
-
-    // Check individual file sizes
-    const oversizedFiles = files.filter(file => file.size > MAX_FILE_SIZE)
-    if (oversizedFiles.length > 0) {
-      setError(translations.error.fileSize)
-      return
-    }
-
-    // Check total size
-    const totalSize = files.reduce((sum, file) => sum + file.size, 0)
-    if (totalSize > TOTAL_MAX_SIZE) {
-      setError(`Total size of all files must be less than ${TOTAL_MAX_SIZE / (1024 * 1024)}MB`)
-      return
-    }
-
     setSelectedFiles(files)
 
     // Create preview for the first file
@@ -110,15 +84,6 @@ export default function PngToJpgClient({ translations }: Props) {
       }
       reader.readAsDataURL(files[0])
     }
-  }
-
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || [])
-    handleFileChange(files)
-  }
-
-  const handleSelectFileClick = () => {
-    fileInputRef.current?.click()
   }
 
   const convertToJpg = async () => {
@@ -253,93 +218,81 @@ export default function PngToJpgClient({ translations }: Props) {
   }
 
   return (
-    <div className="py-6">
-      <h1 className="text-3xl font-bold mb-4">{translations.title}</h1>
-      <p className="text-lg text-gray-300 mb-8">{translations.description}</p>
+    <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-white mb-4">{translations.title}</h1>
+      <p className="text-gray-300 mb-6">{translations.description}</p>
 
-      <div className="mb-8">
-        <div className="mb-4">
-          <label className="block text-lg font-medium mb-2">
-            {translations.form.upload.label}
-          </label>
-          
-          <div 
-            {...getRootProps()} 
-            className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors ${
-              isDragActive ? 'border-blue-500 bg-gray-600' : 'border-gray-500'
-            }`}
-          >
-            <input 
-              {...getInputProps()} 
-              ref={fileInputRef}
-              onChange={handleFileInputChange}
-            />
-            <p>{translations.form.upload.dragDrop}</p>
-            <button
-              type="button"
-              onClick={handleSelectFileClick}
-              className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
-            >
-              {translations.form.upload.button}
-            </button>
-          </div>
-        </div>
-
-        {selectedFiles.length > 0 && (
-          <div className="mt-4">
-            <p className="font-semibold">{selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected</p>
-            <ul className="mt-2 text-sm text-gray-300 max-h-40 overflow-y-auto bg-gray-700 rounded-lg p-2">
-              {selectedFiles.map((file, index) => (
-                <li key={index} className="mb-1 last:mb-0">
-                  {file.name} ({(file.size / 1024).toFixed(1)} KB)
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {previewUrl && !conversionComplete && (
-          <div className="mt-4">
-            <h2 className="text-xl font-bold mb-2">{translations.result.preview}</h2>
-            <div className="bg-gray-700 rounded-lg p-4">
-              <img 
-                src={previewUrl} 
-                alt="Preview" 
-                className="max-w-full h-auto max-h-96 mx-auto"
-              />
-            </div>
-          </div>
-        )}
-
-        {error && (
-          <div className="mt-4 p-3 bg-red-900/50 text-red-200 rounded-lg">
-            {error}
-          </div>
-        )}
-
-        <div className="mt-6 text-center">
-          <button
-            onClick={convertToJpg}
-            disabled={isProcessing || selectedFiles.length === 0}
-            className={`px-6 py-3 rounded-lg font-semibold text-white ${
-              isProcessing || selectedFiles.length === 0
-                ? 'bg-gray-600 cursor-not-allowed'
-                : 'bg-green-600 hover:bg-green-700'
-            }`}
-          >
-            {isProcessing ? translations.status.processing : translations.form.convert}
-          </button>
-        </div>
-        
-        <p className="mt-2 text-sm text-gray-400">
-          {translations.status.browserProcessing}
-        </p>
+      {/* 共通のファイルアップロードエリアコンポーネント */}
+      <div className="mb-6">
+        <FileUploadArea
+          title={translations.form.upload.label}
+          dragDropText={translations.form.upload.dragDrop}
+          limitText="最大ファイルサイズ: 20MB (合計100MBまで)"
+          buttonText={translations.form.upload.button}
+          accept=".png"
+          multiple={true}
+          maxSizeMB={20}
+          totalMaxSizeMB={100}
+          validExtensions={['png']}
+          onFilesSelected={handleFilesSelected}
+          onError={handleUploadError}
+        />
       </div>
+
+      {selectedFiles.length > 0 && (
+        <div className="mt-4 bg-gray-700 p-4 rounded-lg">
+          <p className="font-semibold">{selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected</p>
+          <ul className="mt-2 text-sm text-gray-300 max-h-40 overflow-y-auto bg-gray-800 rounded-lg p-2">
+            {selectedFiles.map((file, index) => (
+              <li key={index} className="mb-1 last:mb-0">
+                {file.name} ({(file.size / 1024).toFixed(1)} KB)
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {previewUrl && !conversionComplete && (
+        <div className="mt-4 bg-gray-700 p-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">{translations.result.preview}</h2>
+          <div className="bg-gray-800 rounded-lg p-4">
+            <img 
+              src={previewUrl} 
+              alt="Preview" 
+              className="max-w-full h-auto max-h-96 mx-auto"
+            />
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="mt-4 p-3 bg-red-900/50 text-red-200 rounded-lg">
+          {error}
+        </div>
+      )}
+
+      <div className="mt-6 text-center">
+        <button
+          onClick={convertToJpg}
+          disabled={isProcessing || selectedFiles.length === 0}
+          className={`px-6 py-3 rounded-lg font-semibold text-white ${
+            isProcessing || selectedFiles.length === 0
+              ? 'bg-gray-600 cursor-not-allowed'
+              : 'bg-green-600 hover:bg-green-700'
+          }`}
+        >
+          {isProcessing ? translations.status.processing : translations.form.convert}
+        </button>
+      </div>
+      
+      <p className="mt-2 text-sm text-gray-400 text-center">
+        {translations.status.browserProcessing}
+      </p>
 
       {conversionComplete && convertedFiles.length > 0 && (
         <div className="mt-8 bg-gray-700 rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold">{translations.status.success}</h2>
+            <h2 className="text-xl font-semibold">{translations.status.success}</h2>
             <button
               onClick={downloadAllJpgs}
               className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold text-white"

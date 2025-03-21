@@ -1560,7 +1560,7 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop a PDF file here, or click to select",
-        "dragDrop": "Drop the PDF file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "quality": {
         "label": "Image Quality",
@@ -1595,7 +1595,7 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop a PDF file here, or click to select",
-        "dragDrop": "Drop the PDF file here...",
+        "dragDrop": "Drag & drop file here or click to browse",
         "dragging": "Drop it right here!",
         "instruction": "Only PDF files are supported",
         "maxSize": "Maximum file size: 20MB"
@@ -1627,7 +1627,7 @@
       "upload": {
         "label": "Upload HEIC File",
         "button": "Drag & drop HEIC file here or click to select",
-        "dragDrop": "Drop HEIC file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "convert": "Convert to PDF"
     },
@@ -1659,7 +1659,7 @@
       "upload": {
         "label": "Upload Image Files",
         "button": "Drag & drop image files here, or click to select",
-        "dragDrop": "Drop the image files here..."
+        "dragDrop": "Drag & drop files here or click to browse"
       },
       "quality": {
         "label": "PDF Quality",
@@ -1749,8 +1749,8 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop PDF file here, or click to select",
-        "dragDrop": "Drop PDF file here...",
-        "dragging": "Drop PDF file here...",
+        "dragDrop": "Drag & drop PDF file here or click to browse",
+        "dragging": "Drag & drop PDF file here or click to browse",
         "instruction": "Drag & drop PDF file here, or click to select",
         "maxSize": "Maximum file size: 20MB"
       },
@@ -1786,7 +1786,7 @@
       "upload": {
         "label": "Upload PDF File",
         "button": "Drag & drop a PDF file here, or click to select",
-        "dragDrop": "Drop the PDF file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "quality": {
         "label": "Image Quality",
@@ -1821,7 +1821,7 @@
       "upload": {
         "label": "Upload PNG Files",
         "button": "Drag & drop PNG files here, or click to select",
-        "dragDrop": "Drop the PNG files here..."
+        "dragDrop": "Drag & drop files here or click to browse"
       },
       "convert": "Convert to PDF"
     },
@@ -1849,7 +1849,7 @@
       "upload": {
         "label": "Upload SVG File",
         "button": "Drag & drop an SVG file here, or click to select",
-        "dragDrop": "Drop the SVG file here..."
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "convert": "Convert to PDF"
     },
@@ -2020,7 +2020,7 @@
       "upload": {
         "label": "Upload JPG Image",
         "button": "Select File",
-        "dragDrop": "or drag and drop file here"
+        "dragDrop": "Drag & drop file here or click to browse"
       },
       "convert": "Convert to PNG"
     },
@@ -2048,7 +2048,7 @@
       "upload": {
         "label": "Upload PNG Image(s)",
         "button": "Select Files",
-        "dragDrop": "or drag and drop files here"
+        "dragDrop": "Drag & drop files here or click to browse"
       },
       "convert": "Convert to JPG"
     },
@@ -2081,7 +2081,7 @@
       "upload": {
         "label": "Upload HEIC Images",
         "button": "Select Files",
-        "dragDrop": "or drag and drop files here"
+        "dragDrop": "Drag & drop files here or click to browse"
       },
       "convert": "Convert to JPG"
     },
@@ -2115,6 +2115,14 @@
       "button": "Browse Files",
       "limit": "Maximum file size: 10MB per file"
     },
+    "form": {
+      "upload": {
+        "label": "Upload HEIC Files",
+        "button": "Browse Files",
+        "dragDrop": "Drag & drop HEIC files here or click to browse"
+      },
+      "convert": "Convert to PNG"
+    },
     "convert": {
       "button": "Convert to PNG",
       "processing": "Converting...",
@@ -2147,6 +2155,14 @@
       "button": "Browse Files",
       "limit": "Maximum file size: 10MB per file"
     },
+    "form": {
+      "upload": {
+        "label": "Upload HEIC Files",
+        "button": "Browse Files",
+        "dragDrop": "Drag & drop HEIC files here or click to browse"
+      },
+      "convert": "Convert to WebP"
+    },
     "convert": {
       "button": "Convert to WebP",
       "processing": "Converting...",
@@ -2163,14 +2179,6 @@
       "tooLarge": "File is too large (maximum 10MB)",
       "noFiles": "Please upload at least one HEIC file",
       "failed": "Conversion failed. Please try again."
-    },
-    "form": {
-      "upload": {
-        "label": "Upload HEIC Files",
-        "button": "Browse Files",
-        "dragDrop": "Drag & drop HEIC files here or click to browse"
-      },
-      "convert": "Convert to WebP"
     },
     "result": {
       "download": "Download WebP",

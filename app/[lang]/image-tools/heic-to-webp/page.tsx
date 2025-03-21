@@ -1,7 +1,24 @@
 import { translate } from '@/lib/i18n/server'
 import HeicToWebpClient from './components/HeicToWebpClient'
+import { Metadata } from 'next';
 
-export default async function HeicToWebp({ params }: { params: Promise<{ lang: string }> }) {
+type Props = {
+  params: Promise<{ lang: string }>
+}
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { lang } = await params;
+  
+  return {
+    title: translate(lang, 'heicToWebp.meta.title'),
+    description: translate(lang, 'heicToWebp.meta.description'),
+    keywords: translate(lang, 'heicToWebp.meta.keywords'),
+  };
+}
+
+export default async function HeicToWebp({ params }: Props) {
   const { lang } = await params
 
   // Get translations
@@ -11,6 +28,7 @@ export default async function HeicToWebp({ params }: { params: Promise<{ lang: s
     uploadLabel,
     uploadButton,
     dragDropText,
+    uploadLimit,
     convertButton,
     downloadButton,
     downloadAllButton,
@@ -27,6 +45,7 @@ export default async function HeicToWebp({ params }: { params: Promise<{ lang: s
     translate(lang, 'heicToWebp.form.upload.label'),
     translate(lang, 'heicToWebp.form.upload.button'),
     translate(lang, 'heicToWebp.form.upload.dragDrop'),
+    translate(lang, 'heicToWebp.upload.limit'),
     translate(lang, 'heicToWebp.form.convert'),
     translate(lang, 'heicToWebp.result.download'),
     translate(lang, 'heicToWebp.result.downloadAll'),
@@ -42,6 +61,9 @@ export default async function HeicToWebp({ params }: { params: Promise<{ lang: s
   const translations = {
     title,
     description,
+    upload: {
+      limit: uploadLimit
+    },
     form: {
       upload: {
         label: uploadLabel,

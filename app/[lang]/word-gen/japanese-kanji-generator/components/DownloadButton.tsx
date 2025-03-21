@@ -1,6 +1,6 @@
 'use client';
 
-import { downloadKanjiImage } from '../utils/kanjiGenerator';
+import { downloadKanjiImage } from '../kanjiGenerator';
 
 interface DownloadButtonProps {
   kanji: string | null;
