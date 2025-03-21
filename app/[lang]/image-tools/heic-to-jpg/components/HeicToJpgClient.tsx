@@ -9,6 +9,7 @@ import Image from 'next/image'
 type ConvertedFile = {
   originalFile: File
   convertedUrl: string
+  convertedBlob?: Blob
   fileName: string
   status: 'processing' | 'done' | 'error'
   error?: string
@@ -141,6 +142,7 @@ export default function HeicToJpgClient({ translations }: Props) {
               return {
                 originalFile: file,
                 convertedUrl: jpgUrl,
+                convertedBlob: jpgBlob,
                 fileName: file.name.replace(/\.heic$/i, '.jpg'),
                 status: 'done'
               };
@@ -178,12 +180,20 @@ export default function HeicToJpgClient({ translations }: Props) {
 
   const downloadJpg = (fileIndex: number) => {
     const file = convertedFiles[fileIndex]
-    if (file && file.status === 'done' && file.convertedUrl) {
-      fetch(file.convertedUrl)
-        .then(res => res.blob())
-        .then(blob => {
-          saveAs(blob, file.fileName)
-        })
+    if (file && file.status === 'done') {
+      if (file.convertedBlob) {
+        saveAs(file.convertedBlob, file.fileName)
+      } else if (file.convertedUrl) {
+        fetch(file.convertedUrl)
+          .then(res => res.blob())
+          .then(blob => {
+            saveAs(blob, file.fileName)
+          })
+          .catch(err => {
+            console.error(`Download error for ${file.fileName}:`, err)
+            setError(`${file.fileName}のダウンロードに失敗しました: ${err}`)
+          })
+      }
     }
   }
 
@@ -193,27 +203,55 @@ export default function HeicToJpgClient({ translations }: Props) {
 
     try {
       setIsProcessing(true)
+      setError(null)
       const zip = new JSZip()
+      let hasErrors = false
 
-      // すべての成功したファイルの変換結果をFetchして取得
-      const fetchPromises = successfulFiles.map(async (file) => {
+      for (const file of successfulFiles) {
         try {
-          const response = await fetch(file.convertedUrl)
-          const blob = await response.blob()
-          zip.file(file.fileName, blob)
+          if (file.convertedBlob) {
+            zip.file(file.fileName, file.convertedBlob)
+          } else if (file.convertedUrl) {
+            try {
+              const response = await fetch(file.convertedUrl)
+              if (!response.ok) {
+                throw new Error(`Failed to fetch ${file.fileName}: ${response.status} ${response.statusText}`)
+              }
+              const blob = await response.blob()
+              zip.file(file.fileName, blob)
+            } catch (fetchErr) {
+              console.error(`Error fetching file: ${file.fileName}`, fetchErr)
+              hasErrors = true
+              throw fetchErr
+            }
+          } else {
+            throw new Error(`${file.fileName}のデータが見つかりません`)
+          }
         } catch (err) {
           console.error(`Error adding file to zip: ${file.fileName}`, err)
+          setError(`${file.fileName}をZIPに追加できませんでした: ${err}`)
+          hasErrors = true
         }
-      })
-
-      await Promise.all(fetchPromises)
+      }
       
-      // ZIPファイル生成
-      const zipBlob = await zip.generateAsync({ type: 'blob' })
+      if (hasErrors) {
+        console.warn('Some files could not be added to the ZIP')
+      }
+      
+      const zipBlob = await zip.generateAsync({ 
+        type: 'blob',
+        compression: 'DEFLATE',
+        compressionOptions: { level: 6 }
+      })
+      
+      if (zipBlob.size === 0) {
+        throw new Error('ZIPファイルが空です。ファイルの追加に失敗しました。')
+      }
+      
       saveAs(zipBlob, 'converted_images.zip')
     } catch (err) {
       console.error('ZIP creation error:', err)
-      setError('Failed to create ZIP file')
+      setError(`ZIPファイルの作成に失敗しました: ${err}`)
     } finally {
       setIsProcessing(false)
     }
