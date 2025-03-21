@@ -53,6 +53,9 @@ export default function Home() {
               <Link href="/word-gen/story-generator" className="text-white hover:underline ml-4">Random Story Generator</Link>
             </li>
             <li>
+              <Link href="/word-gen/japanese-kanji-generator" className="text-white hover:underline ml-4">Japanese Kanji Generator</Link>
+            </li>
+            <li>
               <Link href="/pdf-tools" className="text-white hover:underline font-bold">PDF Tools</Link>
             </li>
             <li>

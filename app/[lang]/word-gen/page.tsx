@@ -45,6 +45,12 @@ export default async function WordGenTools({ params }: Props) {
       path: `/${lang}/word-gen/story-generator`,
       icon: "📚"
     },
+    {
+      title: translate(lang, 'wordGen.tools.japaneseKanjiGenerator.title'),
+      description: translate(lang, 'wordGen.tools.japaneseKanjiGenerator.description'),
+      path: `/${lang}/word-gen/japanese-kanji-generator`,
+      icon: "漢"
+    },
   ]
 
   return (
