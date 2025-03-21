@@ -26,6 +26,10 @@ export default function ImageToolsLayout({ children }: Props) {
     {
       name: translate(lang, 'imageTools.tools.pngToJpg.title'),
       path: `/image-tools/png-to-jpg`
+    },
+    {
+      name: translate(lang, 'imageTools.tools.heicToJpg.title'),
+      path: `/image-tools/heic-to-jpg`
     }
     // More image tools can be added here as they become available
   ]

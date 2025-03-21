@@ -2005,6 +2005,10 @@
       "pngToJpg": {
         "title": "PNGからJPGへの変換",
         "description": "PNG画像をJPG形式に簡単に変換"
+      },
+      "heicToJpg": {
+        "title": "HEICからJPGへの変換",
+        "description": "HEICファイルをJPGフォーマットに変換（プレビュー表示付き）"
       }
     }
   },
@@ -2067,6 +2071,38 @@
       "fileType": "PNGファイルのみ対応しています",
       "fileSize": "ファイルサイズは20MB未満である必要があります",
       "conversionFailed": "変換に失敗しました。もう一度お試しください"
+    }
+  },
+  "heicToJpg": {
+    "meta": {
+      "title": "HEIC to JPG 変換ツール - 無料オンライン画像変換",
+      "description": "HEICファイルをJPGに無料で変換。プレビュー機能付き、複数ファイルの一括変換が可能な高速ツール。",
+      "keywords": "heic to jpg, heic 変換, heif to jpg, 画像変換, 無料変換ツール, オンライン画像ツール, 一括変換"
+    },
+    "title": "HEIC to JPG 変換ツール",
+    "description": "HEICファイルをJPGフォーマットに変換（プレビュー表示付き）",
+    "form": {
+      "upload": {
+        "label": "HEICファイルをアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "またはここにファイルをドラッグ＆ドロップ"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "convertingFile": "{filename}を変換中..."
+    },
+    "error": {
+      "fileType": "HEICファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB以下にしてください",
+      "conversion": "ファイル変換エラー: {error}"
     }
   }
 }
