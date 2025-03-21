@@ -276,8 +276,145 @@ export async function convertToPDF(options: PageSetupOptions): Promise<Uint8Arra
       document.head.appendChild(style);
     });
 
+    // PDF生成直前に最終的な画像強制読み込み処理を実行
+    console.log(`🔄 [Web-to-PDF] 画像の最終強制読み込み処理を実行...`);
+    await page.evaluate(() => {
+      // すべての画像URLを収集
+      const allImages = Array.from(document.querySelectorAll('img'));
+      const imageUrls = new Set<string>();
+      
+      // 通常のsrc属性
+      allImages.forEach(img => {
+        if (img.src && img.src.trim() !== '' && !img.src.startsWith('data:')) {
+          imageUrls.add(img.src);
+        }
+        
+        // 他の可能性のある属性をチェック
+        ['data-src', 'data-lazy-src', 'data-original', 'lazy-src'].forEach(attr => {
+          const value = img.getAttribute(attr);
+          if (value && value.trim() !== '' && !value.startsWith('data:')) {
+            imageUrls.add(value);
+          }
+        });
+      });
+      
+      // 背景画像のURLも取得
+      const extractBackgroundImageUrl = (style: string): string | null => {
+        const match = style.match(/url\(['"]?(.*?)['"]?\)/);
+        return match ? match[1] : null;
+      };
+      
+      // CSSからのバックグラウンド画像
+      Array.from(document.querySelectorAll('*')).forEach(el => {
+        const style = window.getComputedStyle(el).backgroundImage;
+        if (style && style !== 'none') {
+          const url = extractBackgroundImageUrl(style);
+          if (url && !url.startsWith('data:')) {
+            imageUrls.add(url);
+          }
+        }
+      });
+      
+      console.log(`Collected ${imageUrls.size} unique image URLs to preload`);
+      
+      // 画像をプリロード
+      const preloadImages = Array.from(imageUrls).map(url => {
+        return new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve(); // エラーでも続行
+          img.src = url;
+        });
+      });
+      
+      // 最大10秒待機
+      return Promise.race([
+        Promise.all(preloadImages),
+        new Promise(resolve => setTimeout(resolve, 10000))
+      ]);
+    });
+    
+    // 画像の表示を強制するもう一つのアプローチ
+    await page.evaluate(() => {
+      const images = Array.from(document.querySelectorAll('img'));
+      
+      // すべての画像を完全なDOM内に表示させる
+      images.forEach(img => {
+        // すべての親要素を表示状態に
+        let parent = img.parentElement;
+        while (parent) {
+          parent.style.display = 'block';
+          parent.style.visibility = 'visible';
+          parent.style.opacity = '1';
+          parent = parent.parentElement;
+        }
+        
+        // 画像自体を表示状態に
+        img.style.display = 'inline-block';
+        img.style.visibility = 'visible';
+        img.style.opacity = '1';
+        img.style.width = img.width ? `${img.width}px` : 'auto';
+        img.style.height = img.height ? `${img.height}px` : 'auto';
+        
+        // サイズが0なら最小サイズを設定
+        if (!img.width || img.width < 10) img.style.width = '100px';
+        if (!img.height || img.height < 10) img.style.height = '100px';
+        
+        // 画像を強制読み込み
+        img.loading = 'eager'; // 遅延読み込みを無効化
+        
+        // 画像を新しいものに置き換えて強制的に読み込む
+        const originalSrc = img.src;
+        if (originalSrc && !originalSrc.startsWith('data:')) {
+          img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // 空のGIF
+          setTimeout(() => { img.src = originalSrc; }, 10);
+        }
+      });
+      
+      // シャドウDOMの中の画像も処理
+      const processShadowRoots = (root: Element) => {
+        if (root.shadowRoot) {
+          const shadowImages = Array.from(root.shadowRoot.querySelectorAll('img'));
+          shadowImages.forEach(img => {
+            img.style.display = 'inline-block';
+            img.style.visibility = 'visible';
+            img.loading = 'eager';
+          });
+          
+          Array.from(root.shadowRoot.querySelectorAll('*')).forEach(processShadowRoots);
+        }
+      };
+      
+      Array.from(document.querySelectorAll('*')).forEach(processShadowRoots);
+      
+      return Promise.resolve(true);
+    });
+    
+    // 少し待機して画像の読み込みを待つ
+    console.log(`🔄 [Web-to-PDF] 画像の最終読み込み待機...`);
+    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 5000)));
+
     // PDFを生成
     console.log(`🔄 [Web-to-PDF] PDF生成開始...`);
+    
+    // バックグラウンドで画像読み込みを継続するようにする
+    await page.evaluate(() => {
+      window.setInterval(() => {
+        const images = Array.from(document.querySelectorAll('img'));
+        const unloadedImages = images.filter(img => !img.complete || img.naturalWidth === 0);
+        
+        if (unloadedImages.length > 0) {
+          console.log(`Still trying to load ${unloadedImages.length} images...`);
+          unloadedImages.forEach(img => {
+            const src = img.src;
+            img.src = "about:blank";
+            setTimeout(() => { img.src = src; }, 50);
+          });
+        }
+      }, 1000);
+    });
+    
+    // PDFを生成
     const pdf = await page.pdf(pdfOptions);
     console.log(`✅ [Web-to-PDF] PDF生成完了 (${Date.now() - startTime}ms)`);
     

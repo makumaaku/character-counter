@@ -1,263 +1,319 @@
 import { Page } from 'puppeteer-core';
 
 /**
- * ページを自動スクロールしてすべてのコンテンツを読み込む
- * @param page Puppeteerのページオブジェクト
+ * ページを自動スクロールして全てのコンテンツを読み込む
+ * @param page puppeteerのページオブジェクト
  */
 export async function autoScroll(page: Page): Promise<void> {
-  const startTime = Date.now();
-  await page.evaluate(async () => {
-    await new Promise<void>((resolve) => {
-      let totalHeight = 0;
-      const distance = 100; // スクロール距離を小さくして、より細かくスクロール
-      const scrollDelay = 150; // スクロール間隔を長めに設定して、読み込みの時間を確保
-      let lastScrollHeight = 0;
-      let unchangedScrolls = 0;
-      let totalScrolls = 0;
-      
-      console.log('Starting auto-scroll');
-      
-      // スクロール前に遅延読み込みの画像を事前に確認
-      const checkLazyImages = () => {
-        // srcset属性を持つ画像または遅延読み込み用の属性を持つ要素を検出
-        const lazyElements = document.querySelectorAll('img[srcset], img[data-src], img[data-srcset], img[loading="lazy"], [data-lazy-src], [data-lazy-srcset]');
-        
-        console.log(`Detected ${lazyElements.length} potentially lazy-loaded images`);
-        
-        // スクリーンに入った時に読み込まれる可能性のある画像のためのIntersectionObserverをシミュレート
-        if ('IntersectionObserver' in window) {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const img = entry.target;
-                observer.unobserve(img);
-              }
-            });
-          });
-          
-          lazyElements.forEach(img => observer.observe(img));
+  console.log('🔄 自動スクロール開始...');
+  
+  // スクロール状態のトラッキング用変数
+  const scrollResult = await page.evaluate(async (): Promise<{ 
+    totalHeight: number, 
+    imageStats: { total: number, loaded: number, urls: string[] } 
+  }> => {
+    // スクロール開始前のスタイルシート読み込み確認
+    const checkStyleSheets = () => {
+      const styleSheets = Array.from(document.styleSheets);
+      const pendingSheets = styleSheets.filter(sheet => {
+        try {
+          // CSSルールへのアクセスを試みる - 読み込み済みならエラーにならない
+          return !(sheet.cssRules || sheet.rules);
+        } catch (e: unknown) {
+          // CORSエラーは無視（外部スタイルシートの場合）
+          if ((e as Error).name === 'SecurityError') return false;
+          // その他のエラーは未読み込みとみなす
+          return true;
         }
+      });
+      return pendingSheets.length === 0;
+    };
+    
+    // 全ての画像の読み込み状態をチェック
+    const checkImages = () => {
+      const images = Array.from(document.querySelectorAll('img'));
+      const loadedImages = images.filter(img => img.complete && img.naturalWidth > 0);
+      const unloadedUrls = images
+        .filter(img => !img.complete || img.naturalWidth === 0)
+        .slice(0, 5)  // 最初の5件だけログに出す
+        .map(img => img.src || img.getAttribute('data-src') || 'unknown');
+      
+      return {
+        total: images.length,
+        loaded: loadedImages.length,
+        urls: unloadedUrls
       };
+    };
+    
+    return new Promise<{ 
+      totalHeight: number, 
+      imageStats: { total: number, loaded: number, urls: string[] } 
+    }>((resolve) => {
+      let totalHeight = 0;
+      const distance = 100;   
+      const scrollDelay = 100; 
       
-      // 初回チェック
-      checkLazyImages();
+      // スクロール高さが変わらない回数をカウント
+      let unchangedCount = 0;
+      let lastScrollHeight = document.body.scrollHeight;
+      const maxUnchangedCount = 5;
       
+      const styleLoaded = checkStyleSheets();
+      console.log(`スタイルシート読み込み状態: ${styleLoaded ? '完了' : '未完了'}`);
+      
+      // スクロール前の画像状態をチェック
+      const initialImageStats = checkImages();
+      console.log(`初期画像状態: ${initialImageStats.loaded}/${initialImageStats.total}枚読み込み済み`);
+      
+      // スクロールを繰り返す処理
       const timer = setInterval(() => {
+        // 現在のスクロール高さを取得
         const scrollHeight = document.body.scrollHeight;
         window.scrollBy(0, distance);
         totalHeight += distance;
-        totalScrolls++;
-
-        // スクロール高さが変わらない場合をカウント
+        
+        // 画像の読み込み状態をチェック
+        const imageStats = checkImages();
+        
+        // スクロール高さが変わらない場合（読み込み完了の可能性）
         if (lastScrollHeight === scrollHeight) {
-          unchangedScrolls++;
+          unchangedCount++;
+          
+          // 画像読み込みを強制
+          if (imageStats.total > 0 && imageStats.loaded < imageStats.total) {
+            // まだ読み込まれていない画像がある場合、それらの表示を試みる
+            const images = Array.from(document.querySelectorAll('img'));
+            images.forEach(img => {
+              if (!img.complete || img.naturalWidth === 0) {
+                // 画像の表示を強制
+                img.style.visibility = 'visible';
+                img.style.display = 'inline-block';
+                img.loading = 'eager';
+                
+                // data-src属性がある場合（遅延読み込みの対策）
+                if (img.getAttribute('data-src')) {
+                  img.src = img.getAttribute('data-src') || img.src;
+                }
+              }
+            });
+          }
+          
+          // 最大回数に達したらスクロール終了
+          if (unchangedCount >= maxUnchangedCount) {
+            clearInterval(timer);
+            window.scrollTo(0, 0); // 一番上に戻る
+            
+            const finalImageStats = checkImages();
+            console.log(`最終画像状態: ${finalImageStats.loaded}/${finalImageStats.total}枚読み込み済み`);
+            
+            // スクロール結果を返す
+            resolve({ 
+              totalHeight, 
+              imageStats: finalImageStats 
+            });
+          }
         } else {
-          unchangedScrolls = 0;
-          // スクロール高さが変わったら画像をチェック
-          checkLazyImages();
+          // スクロール高さが変わった場合はカウントをリセット
+          unchangedCount = 0;
+          lastScrollHeight = scrollHeight;
         }
-        lastScrollHeight = scrollHeight;
-
-        // 終了条件：
-        // 1. スクロール位置が最下部に達した、または
-        // 2. 3回連続でスクロール高さが変わらなかった、または
-        // 3. 最大100回スクロールした（安全策）
-        if (totalHeight >= scrollHeight || unchangedScrolls >= 3 || totalScrolls >= 100) {
+        
+        // 画面の最下部に到達した場合もスクロール終了
+        if (totalHeight >= scrollHeight) {
           clearInterval(timer);
-          console.log(`Auto-scroll completed after ${totalScrolls} scrolls`);
+          window.scrollTo(0, 0); // 一番上に戻る
           
-          // 画像の読み込み状態を最終確認
-          const images = document.querySelectorAll('img');
-          const loadedImages = Array.from(images).filter(img => img.complete && img.naturalWidth > 0).length;
-          console.log(`Images loaded during scroll: ${loadedImages}/${images.length}`);
+          const finalImageStats = checkImages();
+          console.log(`最終画像状態: ${finalImageStats.loaded}/${finalImageStats.total}枚読み込み済み`);
           
-          // 最後に画面上部に戻る（ヘッダーなど全ての要素が表示される状態にする）
-          window.scrollTo(0, 0);
-          
-          // スクロール完了後にさらに待機して、遅延読み込み要素が表示される時間を確保
-          setTimeout(resolve, 1000);
+          // スクロール結果を返す
+          resolve({ 
+            totalHeight, 
+            imageStats: finalImageStats 
+          });
         }
       }, scrollDelay);
     });
   });
   
-  // スクロール後に追加で待機して、動的コンテンツの読み込みを確実にする
-  console.log(`[AutoScroll] スクロール後の追加待機...`);
-  await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000))); // 2秒に延長
-  console.log(`[AutoScroll] 自動スクロール完了: 合計時間=${Date.now() - startTime}ms`);
+  console.log(`✅ 自動スクロール完了 (総距離=${scrollResult.totalHeight}px)`);
+  console.log(`📊 画像読み込み状況: ${scrollResult.imageStats.loaded}/${scrollResult.imageStats.total}枚`);
   
-  // 画像の読み込み状態を最終確認
-  await page.evaluate(() => {
-    const images = document.querySelectorAll('img');
-    const loadedCount = Array.from(images).filter(img => img.complete && img.naturalWidth > 0).length;
-    console.log(`[AutoScroll] 最終画像読み込み状態: ${loadedCount}/${images.length}`);
-    
-    // スタイルシートがすべて読み込まれているか確認
-    const styleSheets = Array.from(document.styleSheets);
-    let loadedStyles = 0;
-    let failedStyles = 0;
-    
-    styleSheets.forEach(sheet => {
-      try {
-        // スタイルシートにアクセスしてみる（読み込みが完了していれば成功する）
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const rules = sheet.cssRules || sheet.rules;
-        loadedStyles++;
-      } catch (error) {
-        // CORSの制約などでアクセスできない場合
-        failedStyles++;
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const _error = error; // エラーを使用したことにする
-      }
-    });
-    
-    console.log(`[AutoScroll] スタイルシート読み込み状態: ${loadedStyles}/${styleSheets.length} (${failedStyles} 失敗)`);
-  });
+  // 未読み込みの画像がある場合はログ出力
+  if (scrollResult.imageStats.urls.length > 0) {
+    console.log(`⚠️ 未読み込み画像例:`, scrollResult.imageStats.urls);
+  }
 }
 
 /**
- * 指定したURLのページを開き、コンテンツが完全に読み込まれるのを待つ
- * @param page Puppeteerのページオブジェクト
+ * 指定されたURLのページを開き、コンテンツが完全に読み込まれるまで待機する
+ * @param page puppeteerのページオブジェクト
  * @param url 開くURL
  */
 export async function loadPage(page: Page, url: string): Promise<void> {
   const startTime = Date.now();
+  console.log(`🔄 [loadPage] ページ読み込み開始: ${url}`);
   
-  // ページに移動
-  console.log(`🔄 [LoadPage] goto開始: URL=${url}`);
-  await page.goto(url, {
-    waitUntil: 'networkidle0',
-    timeout: 60000 // タイムアウトを60秒に延長（画像読み込みのため）
-  });
-  console.log(`✅ [LoadPage] goto完了 (${Date.now() - startTime}ms)`);
-
-  // ページが完全に読み込まれるのを待つ
   try {
-    // 少し待機してJSの初期化を待つ
-    console.log(`🔄 [LoadPage] JS初期化待機...`);
-    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000))); // 初期化待機時間を2秒に延長
-    console.log(`✅ [LoadPage] JS初期化待機完了 (${Date.now() - startTime}ms)`);
-    
-    console.log(`🔄 [LoadPage] 画像読み込み待機...`);
-    await page.evaluate(() => {
-      return new Promise((resolve) => {
-        // タイムアウト処理を追加（45秒後に強制的に解決 - 延長）
-        const forceResolveTimeout = setTimeout(() => {
-          console.log('Image loading timeout, continuing anyway');
-          resolve(true);
-        }, 45000);
+    // ページを開く
+    await page.goto(url, { 
+      waitUntil: 'networkidle0',  // 全てのネットワークリクエストが完了するまで待機
+      timeout: 60000  // タイムアウトを60秒に設定（大きいページのために長めに）
+    });
+    console.log(`✅ [loadPage] 初期読み込み完了: ${Date.now() - startTime}ms`);
+
+    // ローディング要素が消えるまで待機
+    console.log(`🔄 [loadPage] ローディング要素の消失を待機中...`);
+    await page.evaluate(async () => {
+      return new Promise<void>(resolve => {
+        // よくあるローディング要素のセレクタリスト
+        const loadingSelectors = [
+          '.loading', '#loading', '.spinner', '#spinner', '.loader', '#loader',
+          '[class*="loading"]', '[id*="loading"]', '[class*="spinner"]', '[id*="spinner"]',
+          '.page-loading', '.content-loading', '.ajax-loader', '.progress'
+        ];
         
-        // すべての画像が読み込まれるのを待つ - 改善版
-        const images = Array.from(document.querySelectorAll('img'));
-        let loadedImages = 0;
-        
-        if (images.length === 0) {
-          clearTimeout(forceResolveTimeout);
-          resolve(true);
-          return;
-        }
-        
-        console.log(`Total images to load: ${images.length}`);
-        
-        // 画像の読み込み状態を定期的にチェック
-        const checkImages = () => {
-          // すでに読み込み済みの画像をカウント
-          loadedImages = images.filter(img => 
-            img.complete && 
-            (img.naturalWidth > 0 || img.src.startsWith('data:'))
-          ).length;
-          
-          console.log(`Loaded ${loadedImages} of ${images.length} images`);
-          
-          if (loadedImages === images.length) {
-            clearTimeout(forceResolveTimeout);
-            // 念のため少し待機してから解決
-            setTimeout(() => resolve(true), 500);
-          } else {
-            // まだ読み込まれていない画像がある場合は再チェック
-            setTimeout(checkImages, 1000);
-          }
+        // ローディング要素があるかチェック
+        const hasLoadingElements = () => {
+          return loadingSelectors.some(selector => {
+            const elements = document.querySelectorAll(selector);
+            return Array.from(elements).some(el => {
+              const style = window.getComputedStyle(el);
+              return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+            });
+          });
         };
         
-        // イベントリスナーも併用して確実に捕捉
-        images.forEach(img => {
-          if (!img.complete) {
-            img.addEventListener('load', () => {
-              loadedImages++;
-              if (loadedImages === images.length) {
-                clearTimeout(forceResolveTimeout);
-                resolve(true);
+        // 初期チェック - ローディング要素がなければすぐに解決
+        if (!hasLoadingElements()) {
+          return resolve();
+        }
+        
+        // ローディング要素が消えるのを監視
+        const checkInterval = setInterval(() => {
+          if (!hasLoadingElements()) {
+            clearInterval(checkInterval);
+            clearTimeout(timeout);
+            resolve();
+          }
+        }, 500);
+        
+        // 最大10秒待機したらタイムアウト
+        const timeout = setTimeout(() => {
+          clearInterval(checkInterval);
+          console.log('⚠️ [loadPage] ローディング要素待機タイムアウト');
+          resolve();
+        }, 10000);
+      });
+    });
+    
+    // 画像が読み込まれるまで待機
+    console.log(`🔄 [loadPage] 画像の読み込みを待機中...`);
+    let imagesLoaded = false;
+    let attemptCount = 0;
+    const maxAttempts = 12; // 最大試行回数（60秒間）
+    
+    while (!imagesLoaded && attemptCount < maxAttempts) {
+      attemptCount++;
+      
+      // 画像の読み込み状態をチェック
+      const imageStatus = await page.evaluate(() => {
+        const images = Array.from(document.querySelectorAll('img'));
+        const totalImages = images.length;
+        if (totalImages === 0) return { loaded: true, total: 0, loadedCount: 0, sampleUrls: [] };
+        
+        const loadedImages = images.filter(img => img.complete && img.naturalWidth > 0);
+        const loadedCount = loadedImages.length;
+        const isAllLoaded = loadedCount === totalImages;
+        
+        // サンプルとして未読み込みの画像URLを最大5つ取得
+        const sampleUrls = images
+          .filter(img => !img.complete || img.naturalWidth === 0)
+          .slice(0, 5)
+          .map(img => ({
+            src: img.src,
+            width: img.width,
+            height: img.height,
+            complete: img.complete,
+            naturalWidth: img.naturalWidth,
+            visible: img.getBoundingClientRect().top < window.innerHeight
+          }));
+        
+        return { 
+          loaded: isAllLoaded, 
+          total: totalImages, 
+          loadedCount,
+          sampleUrls
+        };
+      });
+      
+      // 画像の読み込み状態をログ出力
+      console.log(`📊 [loadPage] 画像読み込み状況 (${attemptCount}/${maxAttempts}): ${imageStatus.loadedCount}/${imageStatus.total}`);
+      
+      // すべての画像が読み込まれた、または画像がない場合
+      if (imageStatus.loaded) {
+        imagesLoaded = true;
+        break;
+      }
+      
+      // 未読み込みの画像がある場合、サンプルをログ出力
+      if (imageStatus.sampleUrls.length > 0) {
+        console.log(`⚠️ [loadPage] 未読み込み画像サンプル:`, JSON.stringify(imageStatus.sampleUrls, null, 2));
+        
+        // 画像読み込みを促進するためのスクリプトを実行
+        await page.evaluate(() => {
+          const images = Array.from(document.querySelectorAll('img'));
+          
+          // 未読み込みの画像の読み込みを促進
+          images.forEach(img => {
+            if (!img.complete || img.naturalWidth === 0) {
+              // 画像の表示を強制
+              img.style.visibility = 'visible';
+              img.style.display = 'inline-block';
+              
+              // loading属性を変更して遅延読み込みを無効化
+              img.loading = 'eager';
+              
+              // data-src属性があれば、それをsrcに設定
+              if (img.getAttribute('data-src')) {
+                img.src = img.getAttribute('data-src') || img.src;
               }
-            });
-            img.addEventListener('error', () => {
-              console.log(`Failed to load image: ${img.src}`);
-              loadedImages++;
-              if (loadedImages === images.length) {
-                clearTimeout(forceResolveTimeout);
-                resolve(true);
+              
+              // data-srcset属性があれば、それをsrcsetに設定
+              if (img.getAttribute('data-srcset')) {
+                img.srcset = img.getAttribute('data-srcset') || img.srcset;
               }
-            });
+            }
+          });
+          
+          // 遅延読み込みライブラリのupdateメソッドがあれば呼び出す
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const win = window as any;
+          if (win.lazyLoadInstance && typeof win.lazyLoadInstance.update === 'function') {
+            try {
+              win.lazyLoadInstance.update();
+            } catch (e) {
+              console.log('LazyLoad update failed:', e);
+            }
           }
         });
-        
-        // 初回チェック開始
-        checkImages();
-      });
-    });
-    console.log(`✅ [LoadPage] 画像読み込み完了または継続 (${Date.now() - startTime}ms)`);
-    
-    // ページ内の画像URLをログ出力（デバッグ用）
-    await page.evaluate(() => {
-      const images = Array.from(document.querySelectorAll('img'));
-      console.log(`ページ内の画像数: ${images.length}`);
-      images.slice(0, 5).forEach((img, index) => {
-        console.log(`画像[${index}]: src=${img.src}, complete=${img.complete}, naturalWidth=${img.naturalWidth}`);
-      });
-      if (images.length > 5) {
-        console.log(`...他 ${images.length - 5} 個の画像`);
       }
-    });
-  } catch (error) {
-    console.log('Error waiting for images, continuing anyway:', error);
-  }
-
-  // 動的コンテンツのロードを待つための追加処理
-  try {
-    // ローディング要素が消えるのを待つ（最大10秒に延長）
-    console.log(`🔄 [LoadPage] ローディング要素消失待機...`);
-    await page.waitForFunction(
-      () => {
-        // ローディング要素を探す一般的なセレクタ
-        const loadingElements = document.querySelectorAll('.loading, .loader, [data-loading], [aria-busy="true"], .is-loading');
-        return loadingElements.length === 0;
-      },
-      { timeout: 10000 }
-    ).catch(() => {
-      console.log('Loading elements still present or not found, continuing anyway');
-    });
-    console.log(`✅ [LoadPage] ローディング要素消失待機完了 (${Date.now() - startTime}ms)`);
+      
+      // 5秒待機して再チェック
+      await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 5000)));
+    }
     
-    // 少し待機して、最終的なJavaScriptの実行を待つ
-    console.log(`🔄 [LoadPage] 最終JavaScriptの実行待機...`);
-    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000))); // 2秒に延長
-    console.log(`✅ [LoadPage] 最終JavaScript実行待機完了 (${Date.now() - startTime}ms)`);
-    
-    // スクロールしてすべてのコンテンツを読み込む
-    console.log(`🔄 [LoadPage] コンテンツ読み込みのための自動スクロール開始...`);
+    // 画像の読み込み状態に関わらず、自動スクロールを実行して残りのコンテンツを表示
     await autoScroll(page);
-    console.log(`✅ [LoadPage] 自動スクロール完了 (${Date.now() - startTime}ms)`);
     
-    // 最後にもう一度画像の状態を確認
-    await page.evaluate(() => {
-      const images = Array.from(document.querySelectorAll('img'));
-      const loadedCount = images.filter(img => img.complete && img.naturalWidth > 0).length;
-      console.log(`最終確認: 画像読み込み状態 - ${loadedCount}/${images.length} 完了`);
-    });
+    // JavaScriptの実行が完了するまで少し待機
+    console.log(`🔄 [loadPage] 最終確認のため追加で待機中...`);
+    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 3000)));
     
-    // 処理完了ログ
-    console.log(`✅ [LoadPage] すべての読み込み処理完了: 合計時間=${Date.now() - startTime}ms`);
+    console.log(`✅ [loadPage] ページ読み込み完了: 合計${Date.now() - startTime}ms`);
   } catch (error) {
-    console.log('Error waiting for dynamic content, continuing anyway:', error);
+    console.error(`❌ [loadPage] エラー発生:`, error);
+    throw new Error(`ページ読み込み中にエラーが発生しました: ${error}`);
   }
 }
 
