@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import wordsData from '../../../../../assets/words/card-words.json'
 import DownloadButton from '../../components/DownloadButton'
+import { Button } from '@/components/ui/button'
+import CopyButton from '@/components/CopyButton'
 
 type Word = {
   word: string
@@ -110,7 +112,6 @@ type Props = {
 export default function WordCardGeneratorClient({ translations }: Props) {
   const [wordCount, setWordCount] = useState(10)
   const [generatedWords, setGeneratedWords] = useState<Word[]>([])
-  const [copied, setCopied] = useState(false)
 
   const getRandomWords = (count: number): Word[] => {
     const words = [...wordsData.words] as Word[]
@@ -127,16 +128,6 @@ export default function WordCardGeneratorClient({ translations }: Props) {
 
   const generateWords = () => {
     setGeneratedWords(getRandomWords(wordCount))
-  }
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(generatedWords.map(w => w.word).join('\n'))
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (error) {
-      console.error('Failed to copy:', error)
-    }
   }
 
   return (
@@ -160,12 +151,13 @@ export default function WordCardGeneratorClient({ translations }: Props) {
               onChange={(e) => setWordCount(Math.min(100, Math.max(1, parseInt(e.target.value) || 1)))}
               className="bg-gray-800 text-white px-3 py-2 rounded w-32 mr-4"
             />
-            <button
+            <Button
               onClick={generateWords}
-              className="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-colors"
+              variant="purple"
+              size="lg"
             >
               {translations.wordCardGenerator.form.generate}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -175,17 +167,16 @@ export default function WordCardGeneratorClient({ translations }: Props) {
               <h2 className="text-xl font-bold">{translations.wordCardGenerator.result.title}</h2>
               {generatedWords.length > 0 && (
                 <div className="flex space-x-2">
-                  <button
-                    onClick={copyToClipboard}
-                    className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
-                  >
-                    {copied 
-                      ? translations.wordCardGenerator.result.copied
-                      : translations.wordCardGenerator.result.copy}
-                  </button>
+                  <CopyButton
+                    text={generatedWords.map(w => w.word).join('\n')}
+                    variant="purple"
+                    copyText={translations.wordCardGenerator.result.copy}
+                    toastText={translations.wordCardGenerator.result.copied}
+                  />
                   <DownloadButton
                     content={generatedWords.map(w => w.word).join('\n')}
                     filename="generated-words.txt"
+                    variant="purple"
                   />
                 </div>
               )}

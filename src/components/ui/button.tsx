@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'purple';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   className?: string;
@@ -32,7 +32,8 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50',
     destructive: 'bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50',
     outline: 'border border-gray-300 bg-transparent text-gray-700 hover:bg-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700',
-    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
+    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700',
+    purple: 'bg-purple-600 text-white hover:bg-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50'
   };
 
   // 無効時のクラス
