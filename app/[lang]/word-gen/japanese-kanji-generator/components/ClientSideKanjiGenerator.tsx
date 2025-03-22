@@ -38,7 +38,7 @@ export default function ClientSideKanjiGenerator({
   copyButtonText = "Copy Kanji",
   copiedText = "Copied",
   noImageText = "No image generated yet",
-  fontLoadingText = "フォントをロード中..."
+  fontLoadingText = "Loading font..."
 }: ClientSideKanjiGeneratorProps) {
   const [kanji, setKanji] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);

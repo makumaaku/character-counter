@@ -1975,6 +1975,9 @@
     "error": {
       "generation": "An error occurred while generating the kanji. Please try again.",
       "download": "An error occurred while downloading. Please try again."
+    },
+    "font": {
+      "loading": "Now loading..."
     }
   },
   "imageTools": {

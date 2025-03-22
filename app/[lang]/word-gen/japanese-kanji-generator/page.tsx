@@ -30,6 +30,7 @@ export default async function JapaneseKanjiGenerator({ params }: Props) {
             copyButtonText={t('japaneseKanjiGenerator.copy.button')}
             copiedText={t('japaneseKanjiGenerator.copy.success')}
             noImageText={t('japaneseKanjiGenerator.display.noImage')}
+            fontLoadingText={t('japaneseKanjiGenerator.font.loading')}
           />
         </div>
       </main>
