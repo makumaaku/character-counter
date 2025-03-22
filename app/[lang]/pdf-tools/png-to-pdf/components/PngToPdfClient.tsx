@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { jsPDF } from 'jspdf'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
+import Button from '@/components/ui/button'
 
 type Translations = {
   title: string
@@ -206,7 +207,7 @@ export default function PngToPdfClient({ translations }: Props) {
       </div>
 
       <div className="text-center">
-        <button
+        <Button
           type="button"
           onClick={convertToPdf}
           disabled={isProcessing || files.length === 0}
@@ -217,20 +218,20 @@ export default function PngToPdfClient({ translations }: Props) {
           }`}
         >
           {isProcessing ? translations.status.processing : translations.form.convert}
-        </button>
+        </Button>
       </div>
 
       {pdfUrl && (
         <div className="mt-8 bg-gray-700 rounded-lg p-6 text-center">
           <h2 className="text-xl font-semibold mb-4">PDF Ready!</h2>
-          <button
+              <Button
             type="button"
             onClick={downloadPdf}
-            className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold"
+            variant="purple"
           >
             <ArrowDownTrayIcon className="w-5 h-5 mr-2" />
             {translations.result.download}
-          </button>
+          </Button>
         </div>
       )}
     </div>

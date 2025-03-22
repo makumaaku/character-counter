@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Script from 'next/script'
 import Image from 'next/image'
+import Button from '@/components/ui/button'
 
 type Props = {
   translations: {
@@ -415,7 +416,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                 className="flex-grow px-4 py-2 bg-gray-800 border border-gray-600 rounded-md sm:rounded-l-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
                 disabled={isConverting}
               />
-              <button
+              <Button
                 type="submit"
                 className={`px-4 py-2 rounded-md sm:rounded-l-none sm:rounded-r-md font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 ${
                   isConverting
@@ -425,7 +426,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                 disabled={isConverting}
               >
                 {isConverting ? translations.status.processing : translations.form.url.button}
-              </button>
+              </Button>
             </div>
           </div>
         </form>
@@ -472,7 +473,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
               <p className="mb-3 sm:mb-0">{translations.status.success}</p>
               <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                <button
+                <Button
                   onClick={togglePreview}
                   className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 bg-purple-700 hover:bg-purple-600 text-white rounded-md transition-colors"
                 >
@@ -497,7 +498,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                     />
                   </svg>
                   {translations.result.preview || 'Preview PDF'}
-                </button>
+                </Button>
                 <a
                   href={pdfUrl}
                   download={`webpage-${new Date().getTime()}.pdf`}
@@ -569,13 +570,13 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                   
                   {numPages && numPages > 0 && (
                     <div className="flex items-center justify-between w-full mt-4">
-                      <button 
+                      <Button 
                         onClick={() => changePage(-1)} 
                         disabled={pageNum <= 1}
                         className={`px-3 py-1 rounded ${pageNum <= 1 ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-500 text-white'}`}
                       >
                         ← 前のページ
-                      </button>
+                      </Button>
                       
                       <span className="text-gray-300">
                         {translations.preview?.pageOf ? 
@@ -583,13 +584,13 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                           `Page ${pageNum} of ${numPages}`}
                       </span>
                       
-                      <button 
+                      <Button 
                         onClick={() => changePage(1)} 
                         disabled={numPages !== null && pageNum >= numPages}
                         className={`px-3 py-1 rounded ${numPages !== null && pageNum >= numPages ? 'bg-gray-600 text-gray-400 cursor-not-allowed' : 'bg-purple-600 hover:bg-purple-500 text-white'}`}
                       >
                         次のページ →
-                      </button>
+                      </Button>
                     </div>
                   )}
                 </div>

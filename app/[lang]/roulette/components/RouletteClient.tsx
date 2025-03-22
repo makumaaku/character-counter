@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { VIBRANT_COLORS } from '../constants';
+import Button from '@/components/ui/button';
 
 const STORAGE_KEY = 'roulette-items';
 const DEFAULT_ITEMS = ['Item 1', 'Item 2', 'Item 3'];
@@ -226,19 +227,19 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
         <div className="mb-6">
           <h1 className="text-3xl font-bold mb-4 text-white">{translations.title}</h1>
           <div className="flex flex-wrap gap-4 mb-4">
-            <button
+            <Button
               onClick={handleSpin}
               disabled={isSpinning || items.length < 2}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              variant="purple"
             >
               {isSpinning ? translations.buttons.spinning : translations.buttons.spin}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setIsEditing(!isEditing)}
-              className={`px-4 py-2 ${isEditing ? 'bg-blue-700' : 'bg-gray-500'} text-white rounded hover:${isEditing ? 'bg-blue-800' : 'bg-gray-600'}`}
+              variant={isEditing ? 'purple' : 'secondary'}
             >
               {translations.buttons.edit}
-            </button>
+            </Button>
           </div>
         </div>
         {result && (
@@ -275,18 +276,18 @@ export default function RouletteClient({ translations }: RouletteClientProps) {
                   placeholder={translations.result.placeholder}
                 />
                 <div className="flex gap-3 lg:gap-4 mt-3 lg:mt-4">
-                  <button
+                  <Button
                     onClick={handleSave}
-                    className="flex-1 px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    variant="purple"
                   >
                     {translations.buttons.save}
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={handleCancel}
-                    className="flex-1 px-3 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                    variant="secondary"
                   >
                     {translations.buttons.cancel}
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
