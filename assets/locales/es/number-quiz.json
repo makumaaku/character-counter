@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "Sudoku - Juego de Números",
+    "description": "Desafíate con nuestro juego de sudoku. Elige entre múltiples niveles de dificultad y mejora tus habilidades de pensamiento lógico.",
+    "keywords": "sudoku, rompecabezas numérico, entrenamiento cerebral, juego de lógica"
+  },
+  "title": "Sudoku",
+  "game": {
+    "title": "Sudoku",
+    "difficulty": {
+      "label": "Dificultad",
+      "easy": "Fácil",
+      "normal": "Normal",
+      "hard": "Difícil"
+    },
+    "buttons": {
+      "newGame": "Nuevo Juego",
+      "checkSolution": "Verificar Solución"
+    },
+    "messages": {
+      "correct": "¡Correcto! ¡Bien hecho!",
+      "incorrect": "Incorrecto. ¡Sigue intentando!",
+      "complete": "¡Felicidades! ¡Has resuelto el rompecabezas!"
+    }
+  }
+} 

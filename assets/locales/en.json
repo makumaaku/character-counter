@@ -1312,32 +1312,6 @@
       "invalid_url": "Invalid URL format. Please enter a valid URL."
     }
   },
-  "numberQuiz": {
-    "meta": {
-      "title": "Number Place - Sudoku",
-      "description": "Challenge yourself with our Sudoku puzzle game. Choose from multiple difficulty levels and improve your logical thinking skills.",
-      "keywords": "sudoku, number puzzle, brain training, logic game"
-    },
-    "title": "Number Place",
-    "game": {
-      "title": "Sudoku",
-      "difficulty": {
-        "label": "Difficulty",
-        "easy": "Easy",
-        "normal": "Normal",
-        "hard": "Hard"
-      },
-      "buttons": {
-        "newGame": "New Game",
-        "checkSolution": "Check Solution"
-      },
-      "messages": {
-        "correct": "Correct! Well done!",
-        "incorrect": "Incorrect. Keep trying!",
-        "complete": "Congratulations! You've solved the puzzle!"
-      }
-    }
-  },
   "roulette": {
     "meta": {
       "title": "Web Roulette - Free Online Decision Making Tool",
