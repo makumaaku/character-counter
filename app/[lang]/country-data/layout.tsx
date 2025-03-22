@@ -1,7 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
@@ -14,21 +15,26 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // country-data用の翻訳をロード
+  await loadToolMessages(lang as Language, 'country-data');
+  
+  // 翻訳関数
+  const t = async (key: string) => await translate(lang, key);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: await t('siteName'),
+    publisher: await t('publisher'),
+    logoAlt: await t('common.meta.logoAlt'),
   };
 
   // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('countryData.meta.title'),
-    "description": t('countryData.meta.description'),
+    "name": await t('countryData.meta.title'),
+    "description": await t('countryData.meta.description'),
     "url": `${SITE_CONFIG.baseURL}/${lang}/country-data`,
     "publisher": {
       "@type": "Organization",
@@ -43,13 +49,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('countryData.meta.title'),
-      description: t('countryData.meta.description'),
-      keywords: t('countryData.meta.keywords'),
+      title: await t('countryData.meta.title'),
+      description: await t('countryData.meta.description'),
+      keywords: await t('countryData.meta.keywords'),
       url: `${SITE_CONFIG.baseURL}/${lang}/country-data`,
     }
   );
@@ -64,34 +70,37 @@ export async function generateMetadata(
 
 export default async function CountryDataLayout({ children, params }: Props) {
   const { lang } = await params;
+  
+  // country-data用の翻訳をロード
+  await loadToolMessages(lang as Language, 'country-data');
 
   const messages = {
     countryData: {
-      title: translate(lang, 'countryData.title'),
+      title: await translate(lang, 'countryData.title'),
       states: {
-        loading: translate(lang, 'countryData.states.loading'),
-        error: translate(lang, 'countryData.states.error'),
-        noData: translate(lang, 'countryData.states.noData'),
+        loading: await translate(lang, 'countryData.states.loading'),
+        error: await translate(lang, 'countryData.states.error'),
+        noData: await translate(lang, 'countryData.states.noData'),
       },
       search: {
-        label: translate(lang, 'countryData.search.label'),
-        placeholder: translate(lang, 'countryData.search.placeholder'),
+        label: await translate(lang, 'countryData.search.label'),
+        placeholder: await translate(lang, 'countryData.search.placeholder'),
       },
       filter: {
-        label: translate(lang, 'countryData.filter.label'),
-        allRegions: translate(lang, 'countryData.filter.allRegions'),
+        label: await translate(lang, 'countryData.filter.label'),
+        allRegions: await translate(lang, 'countryData.filter.allRegions'),
       },
       table: {
         headers: {
-          name: translate(lang, 'countryData.table.headers.name'),
-          officialName: translate(lang, 'countryData.table.headers.officialName'),
-          area: translate(lang, 'countryData.table.headers.area'),
-          capital: translate(lang, 'countryData.table.headers.capital'),
-          languages: translate(lang, 'countryData.table.headers.languages'),
-          currency: translate(lang, 'countryData.table.headers.currency'),
-          region: translate(lang, 'countryData.table.headers.region'),
-          source: translate(lang, 'countryData.table.headers.source'),
-          lastUpdated: translate(lang, 'countryData.table.headers.lastUpdated'),
+          name: await translate(lang, 'countryData.table.headers.name'),
+          officialName: await translate(lang, 'countryData.table.headers.officialName'),
+          area: await translate(lang, 'countryData.table.headers.area'),
+          capital: await translate(lang, 'countryData.table.headers.capital'),
+          languages: await translate(lang, 'countryData.table.headers.languages'),
+          currency: await translate(lang, 'countryData.table.headers.currency'),
+          region: await translate(lang, 'countryData.table.headers.region'),
+          source: await translate(lang, 'countryData.table.headers.source'),
+          lastUpdated: await translate(lang, 'countryData.table.headers.lastUpdated'),
         },
       },
     },
@@ -107,7 +116,7 @@ export default async function CountryDataLayout({ children, params }: Props) {
         }}
       />
       <div className="flex flex-col min-h-screen bg-gray-800">
-        <Header title={translate(lang, 'countryData.ui.title')} homeLink={`/${lang}/country-data`}>
+        <Header title={await translate(lang, 'countryData.ui.title')} homeLink={`/${lang}/country-data`}>
           <div className="flex items-center gap-2">
             {/* Left side content removed */}
           </div>

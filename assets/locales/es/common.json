@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "logoAlt": "Logo de Boring Tools"
+  },
+  "header": {
+    "home": "Inicio",
+    "tools": "Herramientas",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "copyright": "© 2024 Boring Tools. Todos los derechos reservados.",
+    "terms": "Términos de servicio",
+    "privacy": "Política de privacidad"
+  },
+  "error": {
+    "general": "Ocurrió un error",
+    "notFound": "Página no encontrada",
+    "serverError": "Error del servidor"
+  }
+} 

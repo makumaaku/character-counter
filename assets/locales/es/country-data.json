@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Datos de comparación de área de países",
+    "description": "Lista completa de países del mundo con información detallada que incluye nombres oficiales, capitales, idiomas y más.",
+    "keywords": "países del mundo, datos de país, capitales, idiomas, monedas, regiones"
+  },
+  "ui": {
+    "title": "Datos de países del mundo",
+    "searchLabel": "Buscar por palabra clave:",
+    "filterLabel": "Filtro de región:",
+    "noData": "No se encontraron datos coincidentes",
+    "loading": "Cargando...",
+    "error": "Error al cargar datos. Intente recargar.",
+    "allRegions": "Todos",
+    "tableHeaders": {
+      "name": "Nombre",
+      "officialName": "Nombre oficial",
+      "area": "Área (km²)",
+      "capital": "Capital",
+      "languages": "Idioma(s)",
+      "currency": "Moneda",
+      "region": "Región",
+      "source": "Fuente",
+      "lastUpdated": "Última actualización"
+    }
+  },
+  "title": "Datos de comparación de área de países",
+  "states": {
+    "loading": "Cargando...",
+    "error": "Se produjo un error al obtener datos",
+    "noData": "No se encontraron países coincidentes"
+  },
+  "search": {
+    "label": "Buscar",
+    "placeholder": "Buscar por nombre, capital, idioma, etc..."
+  },
+  "filter": {
+    "label": "Filtrar por región",
+    "allRegions": "Todas las regiones"
+  },
+  "table": {
+    "headers": {
+      "name": "Nombre del país",
+      "officialName": "Nombre oficial",
+      "area": "Área (km²)",
+      "capital": "Capital",
+      "languages": "Idiomas",
+      "currency": "Moneda",
+      "region": "Región",
+      "source": "Fuente de datos",
+      "lastUpdated": "Última actualización"
+    }
+  }
+} 
