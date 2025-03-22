@@ -19,14 +19,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Dot Gothic 16';
-  src: url('/fonts/DotGothic16-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
