@@ -3,77 +3,71 @@ description: 多言語対応ルール
 globs: app/**/*.*, packages/**/*.*,src/**/*.*
 alwaysApply: true
 ---
-
 # 多言語対応ルール
 
 ## 基本方針
 - Next.jsのi18n機能を使用し、URLパスベースの言語切り替えを実装
 - デフォルト言語は英語（en）
-- 現在対応言語：英語（en）、日本語（ja）
+- 現在対応言語：英語（en）、日本語（ja）、スペイン語（es）
 - 新規機能追加の際に既存のkeyは削除しない
 
 ## 実装ルール
 
 ### 1. 画面遷移時の注意事項
 - トップページ以外のすべてのページは`/[lang]/`配下に配置する
-- 画面遷移時はlang情報を必ず`/[lang]/`パスを含めること
-- [ja.json](mdc:assets/locales/ja.json), [en.json](mdc:assets/locales/en.json) など、各言語の文字列管理jsonファイルのkeyは階層構造を含め、すべてのファイルで完全一致させてください。
+- 画面遷移時はlang情報を必ず`/[lang]/`パス 各内のjsonファイル構造とkeyは、すべての言語で完全一致させること
 - `next/link`を使用する場合は、lang情報がある場合には、以下のように言語パラメータを含める
 ```tsx
 <Link href={`/${lang}/about`}>About</Link>
 ```
 - 指示がない限りはjsonファイルの既存のkeyを削除しないでください。
 
+### 2. 言語ファイルの構造
+- jsonファイルのディレクトリ構造の詳細については、[jsondirectrystructure.md](mdc:jsondirectrystructure.md) を参照してください。
+- すべての翻訳ファイルは`assets/locales/[lang]/`ディレクトリ内で管理
+  - 英語：`locales/en/`
+  - 日本語：`locales/ja/`
+  - スペイン語：`locales/es/`
+- 各言語ディレクトリには以下のような構造で翻訳ファイルを配置：
+  - `common.json` - 共通テキスト（ヘッダー、フッター、エラーメッセージなど）
+  - `meta.json` - メタデータ（タイトル、説明文など）
+  - 単体ツール用ファイル（例：`character-counter.json`）
+  - カテゴリ別ディレクトリ（例：`pdf-tools/`）
+    - カテゴリ共通ファイル: `[カテゴリ名]/common.json`
+    - 個別ツールファイル: `[カテゴリ名]/[ツール名].json`
 
-### 2. テキストの追加方法
-- すべてのテキストは`assets/locales/`ディレクトリ内の言語ファイルで管理
-  - 英語：`locales/en.json`
-  - 日本語：`locales/ja.json`
-- 新規テキスト追加時は必ず両方の言語ファイルに追加すること
+### 3. 新規テキスト追加方法
+- 新規テキスト追加時は必ずすべての言語ディレクトリの対応するファイルに追加すること
 - キーは階層構造を持たせ、スコープを明確にする
+- カテゴリごとの共通テキストは各カテゴリの`common.json`に配置
 
 #### メタデータの翻訳構造
 メタデータの翻訳は以下の構造で管理します：
 ```json
 {
-  "common": {
-    "meta": {
-      "siteName": "サイト名",
-      "publisher": "発行者",
-      "logoAlt": "ロゴの代替テキスト"
-    }
-  },
-  "[page]": {
-    "meta": {
-      "title": "ページタイトル",
-      "description": "ページの説明",
-      "keywords": "キーワード"
-    }
-  }
+  "title": "ページタイトル",
+  "description": "ページの説明",
+  "keywords": "キーワード1,キーワード2",
+  "siteName": "サイト名",
+  "publisher": "発行者",
+  "logoAlt": "ロゴの代替テキスト"
 }
 ```
 
-- `common.meta`: 共通のメタデータ
-  - `siteName`: サイト名
-  - `publisher`: 発行者名
-  - `logoAlt`: ロゴの代替テキスト
-
-- `[page].meta`: 各ページのメタデータ
-  - `title`: ページタイトル
-  - `description`: ページの説明
-  - `keywords`: SEOキーワード
-
-### 3. 新規言語追加時の手順
-1. `src/lib/i18n/types.ts`の`Language`型に新しい言語を追加
+### 4. 新規言語追加時の手順
+1. [types.ts](mdc:src/lib/scraping/types.ts)の`Language`型に新しい言語を追加
 ```typescript
-export type Language = 'en' | 'ja' | 'new_lang';
+export type Language = 'en' | 'ja' | 'es' | 'new_lang';
 ```
-2. `assets/locales/`に新しい言語ファイルを作成（例：`fr.json`）
-3. `src/lib/i18n/server.ts`の`messages`オブジェクトに新しい言語を追加
-4. すべての既存テキストを新しい言語に翻訳
+2. `assets/locales/`に新しい言語ディレクトリを作成（例：`fr/`）
+3. 英語ディレクトリ（`en/`）の構造を複製し、すべてのファイルを新言語に翻訳
+4. [server.ts](mdc:src/lib/i18n/server.ts)の`messages`オブジェクトに新しい言語を追加
 5. 言語切り替えコンポーネントに新しい言語を追加
 
-### 4. 注意事項
+### 5. 翻訳の読み込み優先順位
+- ツール固有の翻訳 > カテゴリ共通翻訳 > メタデータ > 全体共通翻訳
+
+### 6. 注意事項
 - 翻訳漏れを防ぐため、新規テキスト追加時は必ずすべての言語ファイルを更新
 - 言語ファイルのキー構造は全言語で統一すること
 - 動的なテキストを含む場合は、プレースホルダーを使用
@@ -84,25 +78,20 @@ export type Language = 'en' | 'ja' | 'new_lang';
 ```
 - SEO対策として、各ページのメタデータも多言語対応すること
 
-### 5. 型安全性
+### 7. 型安全性
 - 翻訳キーの型安全性を確保するため、可能な限り定数として管理
 - 新規キー追加時は、TypeScriptの型チェックを活用
 
-### 6. パフォーマンス考慮事項
+### 8. パフォーマンス考慮事項
 - 言語ファイルは必要な時のみ読み込む（動的インポート推奨）
 - キャッシュ戦略を適切に設定
-- 不要な再レンダリングを防ぐため、翻訳の使用は適切なスコープで行う
+- 不要な再レンダリの使用は適切なスコープで行う
 
-### 7. Tips
-- langは非同期で取得してください。
-```ts
-type Props = {
+### 9. Tips
+- langは非同期で取得してくださtype Props = {
   params: Promise<{ lang: string }>
 }
 ```
 - 言語情報の取得は [server.ts](mdc:src/lib/i18n/server.ts) のgetLanguageFromParamsを使用してください。
 - サイトトップページ [page.tsx](mdc:app/page.tsx) のみは多言語対応の必要はないです
-
-
-
 
