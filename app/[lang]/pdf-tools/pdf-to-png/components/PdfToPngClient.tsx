@@ -6,6 +6,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
+import Button from '@/components/ui/button'
 
 // Set the worker source for PDF.js
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
@@ -259,7 +260,7 @@ export default function PdfToPngClient({ translations }: Props) {
                 {translations.form.quality.label}
               </label>
               <div className="flex space-x-4">
-                <button
+                <Button
                   type="button"
                   onClick={() => setQuality('low')}
                   className={`px-4 py-2 rounded ${
@@ -269,8 +270,8 @@ export default function PdfToPngClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.low}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setQuality('medium')}
                   className={`px-4 py-2 rounded ${
@@ -280,8 +281,8 @@ export default function PdfToPngClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.medium}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setQuality('high')}
                   className={`px-4 py-2 rounded ${
@@ -291,20 +292,20 @@ export default function PdfToPngClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.high}
-                </button>
+                </Button>
               </div>
             </div>
           )}
 
           {pdfFile && (
-            <button
+            <Button
               type="button"
               onClick={convertToPng}
               disabled={isConverting}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="purple"
             >
               {isConverting ? translations.status.processing : translations.form.convert}
-            </button>
+            </Button>
           )}
         </div>
       )}
@@ -335,13 +336,13 @@ export default function PdfToPngClient({ translations }: Props) {
             <h2 className="text-xl font-bold">
               {convertedImages.length} {convertedImages.length === 1 ? 'Image' : 'Images'} Converted
             </h2>
-            <button
+            <Button
               onClick={downloadAllImages}
-              className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+              variant="purple"
             >
               <ArrowDownTrayIcon className="h-5 w-5" />
               <span>{translations.result.downloadAll}</span>
-            </button>
+            </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {convertedImages.map((image) => (
@@ -358,13 +359,13 @@ export default function PdfToPngClient({ translations }: Props) {
                   </div>
                 </div>
                 <div className="p-3">
-                  <button
+                  <Button
                     onClick={() => downloadImage(image.dataUrl, image.pageNumber)}
-                    className="w-full flex items-center justify-center space-x-1 bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded text-sm"
+                    variant="purple"
                   >
                     <ArrowDownTrayIcon className="h-4 w-4" />
                     <span>{translations.result.download}</span>
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}

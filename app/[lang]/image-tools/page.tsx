@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { translate } from '@/lib/i18n/server'
+import ToolCard from '@/components/ToolCard'
 
 type Props = {
   params: Promise<{ lang: string }>
@@ -84,19 +84,13 @@ export default async function ImageTools({ params }: Props) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {tools.map((tool) => (
-            <Link
+            <ToolCard
               key={tool.path}
-              href={tool.path}
-              className="bg-gray-700 rounded-lg p-6 hover:bg-gray-600 transition-colors duration-200"
-            >
-              <div className="flex items-start space-x-4">
-                <span className="text-4xl">{tool.icon}</span>
-                <div>
-                  <h2 className="text-xl font-bold mb-2">{tool.title}</h2>
-                  <p className="text-gray-300">{tool.description}</p>
-                </div>
-              </div>
-            </Link>
+              title={tool.title}
+              description={tool.description}
+              path={tool.path}
+              icon={tool.icon}
+            />
           ))}
         </div>
       </main>

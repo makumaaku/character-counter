@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import JSZip from 'jszip'
 import Image from 'next/image'
-import FileUploadArea from '../../components/FileUploadArea'
+import FileUploadArea from '@/components/FileUploadArea'
+import { Button } from '@/components/ui/button'
 
 type Translations = {
   title: string
@@ -241,19 +242,6 @@ export default function PngToJpgClient({ translations }: Props) {
         />
       </div>
 
-      {selectedFiles.length > 0 && (
-        <div className="mt-4 bg-gray-700 p-4 rounded-lg">
-          <p className="font-semibold">{selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected</p>
-          <ul className="mt-2 text-sm text-gray-300 max-h-40 overflow-y-auto bg-gray-800 rounded-lg p-2">
-            {selectedFiles.map((file, index) => (
-              <li key={index} className="mb-1 last:mb-0">
-                {file.name} ({(file.size / 1024).toFixed(1)} KB)
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
       {previewUrl && !conversionComplete && (
         <div className="mt-4 bg-gray-700 p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">{translations.result.preview}</h2>
@@ -277,17 +265,14 @@ export default function PngToJpgClient({ translations }: Props) {
       )}
 
       <div className="mt-6 text-center">
-        <button
+        <Button
           onClick={convertToJpg}
           disabled={isProcessing || selectedFiles.length === 0}
-          className={`px-6 py-3 rounded-lg font-semibold text-white ${
-            isProcessing || selectedFiles.length === 0
-              ? 'bg-gray-600 cursor-not-allowed'
-              : 'bg-green-600 hover:bg-green-700'
-          }`}
+          isLoading={isProcessing}
+          variant={selectedFiles.length === 0 ? "secondary" : "purple"}
         >
           {isProcessing ? translations.status.processing : translations.form.convert}
-        </button>
+        </Button>
       </div>
       
       <p className="mt-2 text-sm text-gray-400 text-center">
@@ -298,13 +283,14 @@ export default function PngToJpgClient({ translations }: Props) {
         <div className="mt-8 bg-gray-700 rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">{translations.status.success}</h2>
-            <button
+            <Button
               onClick={downloadAllJpgs}
-              className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold text-white"
+              variant="purple"
+              className="inline-flex items-center"
             >
               <ArrowDownTrayIcon className="w-5 h-5 mr-2" />
               {translations.result.downloadAll}
-            </button>
+            </Button>
           </div>
           
           <div className="mb-4">
@@ -320,13 +306,14 @@ export default function PngToJpgClient({ translations }: Props) {
             </div>
             
             <div className="text-center mb-4">
-              <button
+              <Button
                 onClick={() => downloadJpg(currentPreviewIndex)}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold text-white"
+                variant="purple"
+                className="inline-flex items-center"
               >
                 <ArrowDownTrayIcon className="w-5 h-5 mr-2" />
                 {translations.result.download}
-              </button>
+              </Button>
             </div>
           </div>
           

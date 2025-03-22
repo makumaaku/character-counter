@@ -1,6 +1,7 @@
 'use client';
 
 import { generateRandomKanji } from '../kanjiGenerator';
+import { Button } from '@/components/ui/button';
 
 interface KanjiGeneratorProps {
   onGenerateKanji: (kanji: string) => void;
@@ -27,13 +28,14 @@ export default function KanjiGenerator({
 
   return (
     <div className="flex flex-col items-center justify-center mt-6">
-      <button
+      <Button
         onClick={handleGenerateClick}
         disabled={isGenerating}
-        className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 disabled:bg-purple-400 disabled:cursor-not-allowed shadow-md"
+        variant="purple"
+        className="py-3 px-6 text-lg shadow-md"
       >
         {isGenerating ? loadingText : generateButtonText}
-      </button>
+      </Button>
     </div>
   );
 } 

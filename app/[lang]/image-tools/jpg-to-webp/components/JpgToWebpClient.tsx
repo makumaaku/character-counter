@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import Image from 'next/image'
-import FileUploadArea from '../../components/FileUploadArea'
+import FileUploadArea from '@/components/FileUploadArea'
+import { Button } from '@/components/ui/button'
 
 type ConvertedFile = {
   originalFile: File
@@ -248,13 +249,14 @@ export default function JpgToWebpClient({ translations }: Props) {
           <p className="text-gray-300 mb-2">
             {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
           </p>
-          <button
+          <Button
             onClick={convertToWebp}
             disabled={isProcessing}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            isLoading={isProcessing}
+            variant="purple"
           >
-            {isProcessing ? translations.status.processing : translations.form.convert}
-          </button>
+            {translations.form.convert}
+          </Button>
         </div>
       )}
 
@@ -263,12 +265,13 @@ export default function JpgToWebpClient({ translations }: Props) {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold">変換結果</h2>
             {convertedFiles.filter(f => f.status === 'done').length > 1 && (
-              <button
+              <Button
                 onClick={downloadAllWebps}
-                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-sm font-medium"
+                variant="purple"
+                size="sm"
               >
                 {translations.result.downloadAll}
-              </button>
+              </Button>
             )}
           </div>
 
@@ -298,12 +301,14 @@ export default function JpgToWebpClient({ translations }: Props) {
                     </div>
                     <div className="p-2">
                       <p className="text-sm text-gray-300 truncate mb-2">{file.fileName}</p>
-                      <button
+                      <Button
                         onClick={() => downloadWebp(index)}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium"
+                        variant="purple"
+                        size="sm"
+                        className="w-full"
                       >
                         {translations.result.download}
-                      </button>
+                      </Button>
                     </div>
                   </>
                 )}

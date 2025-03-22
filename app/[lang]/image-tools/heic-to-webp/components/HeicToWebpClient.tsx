@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import heicConvert from 'heic-convert/browser'
-import FileUploadArea from '../../components/FileUploadArea'
+import FileUploadArea from '@/components/FileUploadArea'
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 // heic-convert の型定義
 interface HeicConvertOptions {
   buffer: Uint8Array;
@@ -260,16 +261,15 @@ export default function HeicToWebpClient({ translations }: Props) {
             <p className="text-gray-300 mb-2">
               {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
             </p>
-            <button
+            <Button
               type="button"
               onClick={convertToWebP}
               disabled={isProcessing}
-              className={`${
-                isProcessing ? 'bg-gray-500 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
-              } text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline transition-colors`}
+              isLoading={isProcessing}
+              variant="purple"
             >
               {isProcessing ? translations.status.processing : translations.form.convert}
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -279,13 +279,13 @@ export default function HeicToWebpClient({ translations }: Props) {
           <h2 className="text-2xl font-bold mb-4">Preview</h2>
           
           <div className="mb-4">
-            <button
+            <Button
               type="button"
               onClick={downloadAllWebPs}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+              variant="purple"
             >
               {translations.result.downloadAll}
-            </button>
+            </Button>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -328,13 +328,14 @@ export default function HeicToWebpClient({ translations }: Props) {
                     </div>
                     <div className="p-3 bg-gray-700">
                       <p className="text-sm text-gray-300 truncate">{file.fileName}</p>
-                      <button
+                      <Button
                         type="button"
                         onClick={() => downloadWebP(index)}
-                        className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+                        variant="purple"
+                        className="mt-2 w-full"
                       >
                         {translations.result.download}
-                      </button>
+                      </Button>
                     </div>
                   </>
                 )}

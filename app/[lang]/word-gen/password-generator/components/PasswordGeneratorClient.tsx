@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import DownloadButton from '../../components/DownloadButton'
+import CopyButton from '@/components/CopyButton'
+import { Button } from '@/components/ui/button'
 
 // Character sets for password generation
 const UPPERCASE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -101,7 +102,6 @@ export default function PasswordGeneratorClient({ translations }: { translations
   const [useLowercase, setUseLowercase] = useState(true)
   const [useNumbers, setUseNumbers] = useState(true)
   const [useSymbols, setUseSymbols] = useState(true)
-  const [showToast, setShowToast] = useState(false)
 
   const generatePassword = () => {
     let charSet = ''
@@ -124,16 +124,6 @@ export default function PasswordGeneratorClient({ translations }: { translations
     setPassword(newPassword)
   }
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(password)
-      setShowToast(true)
-      setTimeout(() => setShowToast(false), 2000)
-    } catch (error) {
-      console.error('Failed to copy:', error)
-    }
-  }
-
   return (
     <>
       <div className="bg-gray-800 text-gray-100 font-sans">
@@ -145,39 +135,26 @@ export default function PasswordGeneratorClient({ translations }: { translations
             <h2 className="text-xl mb-4">{translations.generatedPassword}</h2>
             <div className="relative flex flex-col">
               <div className="relative w-full">
-                <p className="text-2xl font-bold font-mono bg-gray-900 p-4 rounded-lg break-all">
-                  {password}
+                <p className="text-2xl font-bold font-mono bg-gray-900 p-4 rounded-lg break-all min-h-[60px] flex items-center justify-center">
+                  {password || translations.generatedPassword}
                 </p>
-                {password && (
-                  <div className="absolute bottom-4 right-4">
-                    <button
-                      onClick={handleCopy}
-                      className="text-white hover:text-gray-300 transition-colors"
-                      title={translations.copyButton}
-                    >
-                      <Image 
-                        src="/copy_icon_white.png" 
-                        alt={translations.copyButton}
-                        width={20}
-                        height={20}
-                      />
-                    </button>
-                  </div>
-                )}
               </div>
-              {password && (
-                <div className="w-full flex justify-end mt-4">
-                  <DownloadButton
-                    content={password}
-                    filename="generated-password.txt"
-                  />
-                </div>
-              )}
-              {showToast && (
-                <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-                  {translations.copied}
-                </div>
-              )}
+              <div className="w-full flex justify-end mt-4 space-x-4">
+                <CopyButton
+                  text={password}
+                  copyText={translations.copyButton}
+                  toastText={translations.copied}
+                  variant="purple"
+                  className="text-white hover:text-gray-300 transition-colors p-0 h-auto"
+                  disabled={!password}
+                />
+                <DownloadButton
+                  content={password}
+                  filename="generated-password.txt"
+                  variant="purple"
+                  disabled={!password}
+                />
+              </div>
             </div>
           </div>
 
@@ -234,12 +211,14 @@ export default function PasswordGeneratorClient({ translations }: { translations
               </label>
             </div>
 
-            <button
+            <Button
               onClick={generatePassword}
-              className="w-full mt-6 bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors"
+              variant="purple"
+              size="lg"
+              className="w-full mt-6"
             >
               {translations.generateButton}
-            </button>
+            </Button>
           </div>
 
           {/* About Section */}
@@ -311,12 +290,18 @@ export default function PasswordGeneratorClient({ translations }: { translations
             <div className="bg-gray-700 rounded-lg p-8">
               <h2 className="text-2xl font-bold mb-6">{translations.faq.title}</h2>
               <div className="space-y-6">
-                {Object.entries(translations.faq.questions).map(([key, question]) => (
-                  <div key={key} className="bg-gray-600 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-3">{question.question}</h3>
-                    <p className="text-gray-300">{question.answer}</p>
-                  </div>
-                ))}
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{translations.faq.questions.security.question}</h3>
+                  <p className="text-gray-300">{translations.faq.questions.security.answer}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{translations.faq.questions.customization.question}</h3>
+                  <p className="text-gray-300">{translations.faq.questions.customization.answer}</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{translations.faq.questions.commercial.question}</h3>
+                  <p className="text-gray-300">{translations.faq.questions.commercial.answer}</p>
+                </div>
               </div>
             </div>
 

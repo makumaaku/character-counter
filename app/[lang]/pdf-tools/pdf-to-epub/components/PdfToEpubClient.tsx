@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver'
 // TextLayerとAnnotationLayerのCSSをインポート
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
+import Button from '@/components/ui/button'
 
 // PDFJSのワーカーを設定
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
@@ -611,14 +612,14 @@ li {
           </div>
 
           {pdfFile && (
-            <button
+            <Button
               type="button"
               onClick={convertToEpub}
               disabled={isConverting}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="purple"
             >
               {isConverting ? translations.status.processing : translations.form.convert}
-            </button>
+            </Button>
           )}
 
           {/* 変換中のプログレスバー */}
@@ -657,12 +658,12 @@ li {
         <div className="mt-8">
           <div className="bg-gray-700 rounded-lg p-6">
             <h2 className="text-xl font-bold mb-4">Conversion Complete</h2>
-            <button
+            <Button
               onClick={downloadEpub}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
+              variant="purple"
             >
               {translations.result.download}
-            </button>
+            </Button>
           </div>
         </div>
       )}

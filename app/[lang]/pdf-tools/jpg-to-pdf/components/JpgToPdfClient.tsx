@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { saveAs } from 'file-saver'
+import Button from '@/components/ui/button';
 
 // Define the PDF-lib global type
 declare global {
@@ -314,7 +315,7 @@ export default function JpgToPdfClient({ translations }: Props) {
                 {translations.form.quality.label}
               </label>
               <div className="flex space-x-4">
-                <button
+                <Button
                   type="button"
                   onClick={() => setQuality('low')}
                   className={`px-4 py-2 rounded ${
@@ -324,8 +325,8 @@ export default function JpgToPdfClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.low}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setQuality('medium')}
                   className={`px-4 py-2 rounded ${
@@ -335,8 +336,8 @@ export default function JpgToPdfClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.medium}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setQuality('high')}
                   className={`px-4 py-2 rounded ${
@@ -346,20 +347,20 @@ export default function JpgToPdfClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.high}
-                </button>
+                </Button>
               </div>
             </div>
           )}
 
           {imageFiles.length > 0 && (
-            <button
+            <Button
               type="button"
               onClick={convertToPdf}
               disabled={isConverting}
               className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isConverting ? translations.status.processing : translations.form.convert}
-            </button>
+            </Button>
           )}
         </div>
       )}

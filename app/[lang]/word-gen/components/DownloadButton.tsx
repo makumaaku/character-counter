@@ -3,23 +3,30 @@
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { translate } from '@/lib/i18n/client'
+import { Button } from '@/components/ui/button'
 
 type DownloadButtonProps = {
   content: string
   filename: string
   className?: string
+  variant?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'purple'
+  disabled?: boolean
 }
 
 export default function DownloadButton({ 
   content, 
-  filename, 
-  className = "bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
+  filename,
+  variant = 'secondary',
+  className = "",
+  disabled = false
 }: DownloadButtonProps) {
   const [downloaded, setDownloaded] = useState(false)
   const params = useParams()
   const lang = params.lang as string
 
   const handleDownload = () => {
+    if (disabled || !content) return;
+    
     // Create a blob with the content
     const blob = new Blob([content], { type: 'text/plain' })
     
@@ -45,14 +52,16 @@ export default function DownloadButton({
   }
 
   return (
-    <button
+    <Button
       onClick={handleDownload}
+      variant={variant}
       className={className}
+      disabled={disabled || !content}
     >
       {downloaded 
         ? translate(lang, 'common.download.downloaded') 
         : translate(lang, 'common.download.button')
       }
-    </button>
+    </Button>
   )
 } 

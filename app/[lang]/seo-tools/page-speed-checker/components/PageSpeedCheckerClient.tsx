@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import { ClockIcon, LightBulbIcon, DocumentTextIcon, ArrowPathIcon } from '@heroicons/react/24/outline'
+import Button from '@/components/ui/button'
 
 type Props = {
   translations: {
@@ -324,13 +325,13 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
                   placeholder="https://example.com"
                   className="flex-1 bg-gray-600 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <button
+                <Button
                   type="submit"
                   disabled={analyzing}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-r-md font-medium transition-colors duration-200 disabled:bg-blue-800 disabled:cursor-not-allowed"
+                  variant="purple"
                 >
                   {analyzing ? translations.results.loading : translations.input.analyzeButton}
-                </button>
+                </Button>
               </div>
               {error && (
                 <p className="mt-2 text-red-400">{error}</p>
@@ -366,13 +367,14 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
                   (初期接続時間のみ - 実際のページ読み込み時間はこれより長い場合があります)
                 </p>
                 <div className="mt-4 flex justify-center">
-                  <button
+                  <Button
                     onClick={openPageSpeedInsights}
+                    variant="purple"
                     className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200 flex items-center"
                   >
                     <ArrowPathIcon className="h-5 w-5 mr-2" />
                     Google PageSpeed Insightsで詳細分析
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

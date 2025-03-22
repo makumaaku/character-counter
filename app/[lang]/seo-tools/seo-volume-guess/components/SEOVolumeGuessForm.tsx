@@ -142,7 +142,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
             </div>
             
             <div className="sm:w-1/2 flex items-end">
-              <Button type="submit" disabled={isLoading} className="w-full">
+              <Button type="submit" variant="purple" disabled={isLoading} className="w-full">
                 {isLoading ? <LoadingDots /> : translations.analyzeButton}
               </Button>
             </div>

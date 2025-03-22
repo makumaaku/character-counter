@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone'
 import { pdfjs } from 'react-pdf'
 import { saveAs } from 'file-saver'
 import { CloudArrowUpIcon, DocumentIcon } from '@heroicons/react/24/outline'
+import Button from '@/components/ui/button'
 
 // PDFJSをグローバルに設定
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
@@ -276,12 +277,12 @@ export default function PdfToWordClient({ translations }: Props) {
                 onChange={handleFileSelect}
                 className="hidden"
               />
-              <button
+              <Button
                 onClick={() => fileInputRef.current?.click()}
-                className="bg-gray-600 hover:bg-gray-500 text-white py-2 px-4 rounded"
-              >
+                variant="secondary"
+              > 
                 {translations.form.upload.button.split(',')[0]}
-              </button>
+              </Button>
             </div>
           </div>
           
@@ -323,13 +324,13 @@ export default function PdfToWordClient({ translations }: Props) {
                 </div>
               </div>
               
-              <button
+              <Button
                 onClick={handleConversion}
                 disabled={converting || !librariesLoaded}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {converting ? translations.status.processing : translations.form.convert}
-              </button>
+              </Button>
             </div>
           )}
           
@@ -341,12 +342,12 @@ export default function PdfToWordClient({ translations }: Props) {
         {wordDocument && (
           <div className="bg-gray-700 rounded-lg p-6">
             <h2 className="text-2xl font-bold mb-4">Result</h2>
-            <button
+            <Button
               onClick={downloadWord}
-              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg"
+              variant="purple"
             >
               {translations.result.download}
-            </button>
+            </Button>
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { downloadKanjiImage } from '../kanjiGenerator';
+import { Button } from '@/components/ui/button';
 
 interface DownloadButtonProps {
   kanji: string | null;
@@ -34,20 +35,22 @@ export default function DownloadButton({
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4 mb-8">
-      <button
+      <Button
         onClick={handleDownloadJpg}
         disabled={!kanji}
-        className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-300 shadow-md"
+        variant="purple"
+        className="shadow-md"
       >
         {jpgButtonText}
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={handleDownloadPng}
         disabled={!kanji}
-        className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-300 shadow-md"
+        variant="purple"
+        className="shadow-md"
       >
         {pngButtonText}
-      </button>
+      </Button>
     </div>
   );
 } 
