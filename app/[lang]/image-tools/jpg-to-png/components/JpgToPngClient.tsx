@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import Image from 'next/image'
 import FileUploadArea from '../../components/FileUploadArea'
+import { Button } from '@/components/ui/button'
 
 type ConvertedFile = {
   originalFile: File
@@ -245,13 +246,15 @@ export default function JpgToPngClient({ translations }: Props) {
           <p className="text-gray-300 mb-2">
             {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
           </p>
-          <button
+          <Button
             onClick={convertToPng}
             disabled={isProcessing}
-            className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md disabled:bg-gray-500 disabled:cursor-not-allowed"
+            isLoading={isProcessing}
+            variant="primary"
+            className="mt-4"
           >
             {isProcessing ? translations.status.processing : translations.form.convert}
-          </button>
+          </Button>
         </div>
       )}
 
@@ -261,13 +264,13 @@ export default function JpgToPngClient({ translations }: Props) {
           
           {convertedFiles.filter(file => file.status === 'done').length > 1 && (
             <div className="mb-4">
-              <button
+              <Button
                 type="button"
                 onClick={downloadAllPngs}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+                variant="primary"
               >
                 全てのPNGをダウンロード
-              </button>
+              </Button>
             </div>
           )}
           
@@ -310,13 +313,14 @@ export default function JpgToPngClient({ translations }: Props) {
                     </div>
                     <div className="p-3 bg-gray-700">
                       <p className="text-sm text-gray-300 truncate">{file.fileName}</p>
-                      <button
+                      <Button
                         type="button"
                         onClick={() => downloadPng(index)}
-                        className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+                        variant="primary"
+                        className="mt-2 w-full"
                       >
                         {translations.result.download}
-                      </button>
+                      </Button>
                     </div>
                   </>
                 )}

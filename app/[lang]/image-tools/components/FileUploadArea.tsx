@@ -2,6 +2,7 @@
 
 import { useRef, useCallback, useState } from 'react';
 import { PhotoIcon } from '@heroicons/react/24/outline';
+import { Button } from '@/components/ui/button';
 
 // バリデーション関数の型定義
 export type FileValidator = (file: File) => string | null;
@@ -142,12 +143,13 @@ export default function FileUploadArea({
         <p className="mt-1 text-xs text-gray-400">
           {limitText}
         </p>
-        <button
+        <Button
           type="button"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          variant="purple"
+          className="mt-4"
         >
           {buttonText}
-        </button>
+        </Button>
         <input
           ref={fileInputRef}
           type="file"

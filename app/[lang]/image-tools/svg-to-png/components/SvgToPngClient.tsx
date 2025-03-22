@@ -6,6 +6,7 @@ import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import JSZip from 'jszip'
 import FileUploadArea from '../../components/FileUploadArea'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 type Translations = {
   title: string
@@ -327,13 +328,14 @@ export default function SvgToPngClient({ translations }: Props) {
       
       {/* 変換ボタン */}
       <div className="mt-6 text-center">
-        <button
+        <Button
           onClick={convertSvgToPng}
           disabled={isProcessing || selectedFiles.length === 0}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          isLoading={isProcessing}
+          variant="purple"
         >
-          {isProcessing ? translations.status.processing : translations.form.convert}
-        </button>
+          {translations.form.convert}
+        </Button>
       </div>
       
       {/* 変換結果と処理ステータス */}
@@ -369,41 +371,43 @@ export default function SvgToPngClient({ translations }: Props) {
           {/* ナビゲーションボタン */}
           {convertedFiles.length > 1 && (
             <div className="flex justify-center gap-4 mb-4">
-              <button
+              <Button
                 onClick={handlePrevPreview}
                 disabled={currentPreviewIndex === 0}
-                className="bg-gray-600 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                variant="outline"
               >
                 前へ
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleNextPreview}
                 disabled={currentPreviewIndex === convertedFiles.length - 1}
-                className="bg-gray-600 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                variant="outline"
               >
                 次へ
-              </button>
+              </Button>
             </div>
           )}
           
           {/* ダウンロードボタン */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button
+            <Button
               onClick={downloadCurrentFile}
-              className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center"
+              variant="purple"
+              className="flex items-center justify-center"
             >
               <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
               {translations.result.download}
-            </button>
+            </Button>
             
             {convertedFiles.length > 1 && (
-              <button
+              <Button
                 onClick={downloadAllFiles}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center"
+                variant="purple"
+                className="flex items-center justify-center"
               >
                 <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
                 {translations.result.downloadAll}
-              </button>
+              </Button>
             )}
           </div>
         </div>

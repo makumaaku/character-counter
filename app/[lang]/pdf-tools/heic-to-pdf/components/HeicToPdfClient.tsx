@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { saveAs } from 'file-saver'
 import { useParams } from 'next/navigation'
+import Button from '@/components/ui/button'
 
 type Props = {
   translations: {
@@ -163,14 +164,13 @@ export default function HeicToPdfClient({ translations }: Props) {
         </div>
 
         {heicFile && (
-          <button
-            type="button"
+          <Button
             onClick={convertToPdf}
             disabled={isConverting}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            variant="purple"
           >
             {isConverting ? translations.status.processing : translations.form.convert}
-          </button>
+          </Button>
         )}
         
         {isConverting && (
@@ -202,12 +202,12 @@ export default function HeicToPdfClient({ translations }: Props) {
               title="PDF Preview"
             />
           </div>
-          <button
+          <Button
             onClick={() => saveAs(pdfBlob, `${heicFile?.name.replace('.heic', '')}.pdf`)}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
+            variant="purple"
           >
             {translations.result.download}
-          </button>
+          </Button>
         </div>
       )}
     </div>

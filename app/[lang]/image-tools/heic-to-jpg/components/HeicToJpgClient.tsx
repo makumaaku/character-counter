@@ -6,6 +6,8 @@ import JSZip from 'jszip'
 import heicConvert from "heic-convert/browser"
 import FileUploadArea from '../../components/FileUploadArea'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
+
 type ConvertedFile = {
   originalFile: File
   convertedUrl: string
@@ -90,7 +92,7 @@ export default function HeicToJpgClient({ translations }: Props) {
     
     // 古いURLを解放
     convertedFiles.forEach(file => {
-      if (file.convertedUrl) {
+      if (file.convertedUrl) {  
         URL.revokeObjectURL(file.convertedUrl)
       }
     })
@@ -280,13 +282,14 @@ export default function HeicToJpgClient({ translations }: Props) {
 
       {/* 変換ボタン */}
       <div className="bg-gray-700 p-4 rounded-lg mb-6">
-        <button
+        <Button
           onClick={convertToJpg}
           disabled={isProcessing || selectedFiles.length === 0}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md disabled:bg-gray-500 disabled:cursor-not-allowed"
+          isLoading={isProcessing}
+          variant="purple"
         >
           {isProcessing ? translations.status.processing : translations.form.convert}
-        </button>
+        </Button>
         
         {error && (
           <div className="mt-4 bg-red-900/30 border border-red-700 p-3 rounded-md text-red-200">
@@ -302,13 +305,14 @@ export default function HeicToJpgClient({ translations }: Props) {
             <h2 className="text-xl font-semibold text-white">プレビュー</h2>
             
             {convertedCount > 0 && (
-              <button
+              <Button
                 onClick={downloadAllJpgs}
                 disabled={isProcessing}
-                className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-sm disabled:bg-gray-500 disabled:cursor-not-allowed"
+                variant="purple"
+                size="sm"
               >
                 {translations.result.downloadAll}
-              </button>
+              </Button>
             )}
           </div>
           
@@ -343,12 +347,14 @@ export default function HeicToJpgClient({ translations }: Props) {
                     </div>
                     <div className="p-3">
                       <p className="text-gray-300 truncate text-sm">{file.fileName}</p>
-                      <button
+                      <Button
                         onClick={() => downloadJpg(index)}
-                        className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm"
+                        variant="purple"
+                        size="sm"
+                        className="mt-2 w-full"
                       >
                         {translations.result.download}
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 )}

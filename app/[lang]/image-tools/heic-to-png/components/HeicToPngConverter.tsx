@@ -7,6 +7,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import heicConvert from "heic-convert/browser";
 import FileUploadArea from '../../components/FileUploadArea';
+import { Button } from '@/components/ui/button';
 
 // heic-convert の型定義
 interface HeicConvertOptions {
@@ -282,14 +283,15 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
 
         {/* 変換ボタン */}
         <div className="mt-6 bg-gray-700 shadow rounded-lg p-6">
-          <button
+          <Button
             type="button"
             onClick={convertToPng}
             disabled={isLoading || uploadedFiles.length === 0}
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-500 disabled:cursor-not-allowed"
+            isLoading={isLoading}
+            variant="purple"
           >
             {isLoading ? t.convert.processing : t.convert.button}
-          </button>
+          </Button>
 
           {/* エラーメッセージ */}
           {error && (
@@ -308,14 +310,16 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
             
             {/* 一括ダウンロードボタン */}
             {convertedCount > 0 && (
-              <button
+              <Button
                 onClick={downloadAllImages}
                 disabled={isLoading}
-                className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed"
+                variant="purple"
+                size="sm"
+                className="inline-flex items-center"
               >
                 <ArrowDownTrayIcon className="h-4 w-4 mr-1" />
                 {t.convert.downloadAll}
-              </button>
+              </Button>
             )}
           </div>
 
@@ -359,13 +363,15 @@ export default function HeicToPngConverter({ translations }: HeicToPngConverterP
                             <p className="text-sm text-gray-300 truncate">
                               {image.originalName}.png
                             </p>
-                            <button
+                            <Button
                               onClick={() => downloadImage(image)}
-                              className="mt-2 w-full inline-flex justify-center items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                              variant="purple"
+                              size="sm"
+                              className="mt-2 w-full inline-flex justify-center items-center"
                             >
                               <ArrowDownTrayIcon className="h-4 w-4 mr-1" />
                               {t.convert.download}
-                            </button>
+                            </Button>
                           </div>
                         </>
                       )}
