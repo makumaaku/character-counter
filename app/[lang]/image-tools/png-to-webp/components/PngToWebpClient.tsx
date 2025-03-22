@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import Image from 'next/image'
-import FileUploadArea from '../../components/FileUploadArea'
+import FileUploadArea from '@/components/FileUploadArea'
 
 type ConvertedFile = {
   originalFile: File

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import heicConvert from "heic-convert/browser"
-import FileUploadArea from '../../components/FileUploadArea'
+import FileUploadArea from '@/components/FileUploadArea'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 

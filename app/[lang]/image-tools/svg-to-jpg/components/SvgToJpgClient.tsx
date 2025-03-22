@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { saveAs } from 'file-saver'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import JSZip from 'jszip'
-import FileUploadArea from '../../components/FileUploadArea'
+import FileUploadArea from '@/components/FileUploadArea'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 

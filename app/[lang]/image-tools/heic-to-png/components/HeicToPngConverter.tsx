@@ -6,7 +6,7 @@ import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import heicConvert from "heic-convert/browser";
-import FileUploadArea from '../../components/FileUploadArea';
+import FileUploadArea from '@/components/FileUploadArea';
 import { Button } from '@/components/ui/button';
 
 // heic-convert の型定義
