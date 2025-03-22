@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { translate } from '@/lib/i18n/client';
 import DownloadButton from '../../components/DownloadButton';
+import CopyButton from '@/components/CopyButton';
+import { Button } from '@/components/ui/button';
 
 interface StoryData {
   characters: string[]
@@ -18,7 +19,6 @@ type Props = {
 export default function StoryGeneratorClient({ lang }: Props) {
   const [storyData, setStoryData] = useState<StoryData | null>(null);
   const [story, setStory] = useState('');
-  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     // APIルートを使用してJSONファイルを読み込む
@@ -50,18 +50,6 @@ export default function StoryGeneratorClient({ lang }: Props) {
     setStory(generatedStory);
   };
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(story);
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2000);
-    } catch (error) {
-      console.error('Failed to copy:', error);
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2000);
-    }
-  };
-
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
       <main className="max-w-4xl mx-auto px-4 pb-24">
@@ -71,12 +59,13 @@ export default function StoryGeneratorClient({ lang }: Props) {
             {translate(lang, 'storyGenerator.description')}
           </p>
           
-          <button
+          <Button
             onClick={generateStory}
-            className="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-colors"
+            variant="purple"
+            size="lg"
           >
             {translate(lang, 'storyGenerator.form.generate')}
-          </button>
+          </Button>
         </div>
 
         <div className="relative mt-6">
@@ -86,29 +75,20 @@ export default function StoryGeneratorClient({ lang }: Props) {
             {story || translate(lang, 'storyGenerator.result.empty')}
           </div>
           {story && (
-            <div className="absolute bottom-4 right-4 flex items-center space-x-3">
-              <button
-                onClick={handleCopy}
-                className="text-white hover:text-gray-300 transition-colors"
-                title={translate(lang, 'storyGenerator.result.copyTitle')}
-              >
-                <Image 
-                  src="/copy_icon_white.png" 
-                  alt={translate(lang, 'storyGenerator.result.copyAlt')}
-                  width={20}
-                  height={20}
-                />
-              </button>
+            <div className="flex justify-end mt-4 items-center space-x-3">
+              <CopyButton 
+                text={story}
+                copyText={translate(lang, 'storyGenerator.result.copyTitle')}
+                toastText={translate(lang, 'storyGenerator.result.copied')}
+                variant="purple"
+                className="text-sm px-2 py-1"
+              />
               <DownloadButton
                 content={story}
                 filename="generated-story.txt"
                 className="bg-gray-600 hover:bg-gray-500 text-white px-3 py-1 rounded text-sm transition-colors"
+                variant='purple'
               />
-            </div>
-          )}
-          {showToast && (
-            <div className="absolute right-4 top-full mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-              {translate(lang, 'storyGenerator.result.copied')}
             </div>
           )}
         </div>

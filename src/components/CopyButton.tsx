@@ -11,6 +11,7 @@ interface CopyButtonProps {
   className?: string;
   duration?: number;
   onCopy?: () => void;
+  disabled?: boolean;
 }
 
 /**
@@ -24,11 +25,14 @@ export default function CopyButton({
   variant = 'secondary',
   className = '',
   duration = 2000,
-  onCopy
+  onCopy,
+  disabled = false
 }: CopyButtonProps) {
   const [showToast, setShowToast] = useState(false);
 
   const handleCopy = async () => {
+    if (disabled) return;
+    
     try {
       await navigator.clipboard.writeText(text);
       setShowToast(true);
@@ -53,6 +57,7 @@ export default function CopyButton({
         onClick={handleCopy}
         variant={variant}
         className={className}
+        disabled={disabled}
       >
         {copyText}
       </Button>

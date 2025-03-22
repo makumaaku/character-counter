@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import CopyButton from '@/components/CopyButton';
 
 interface KanjiDisplayProps {
   kanji: string | null;
@@ -24,21 +25,6 @@ export default function KanjiDisplay({
   noImageText = '画像が生成されていません'
 }: KanjiDisplayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [copied, setCopied] = useState(false);
-
-  // 漢字をクリップボードにコピーする
-  const copyKanjiToClipboard = () => {
-    if (!kanji) return;
-    
-    navigator.clipboard.writeText(kanji)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // 2秒後に通知を消す
-      })
-      .catch(err => {
-        console.error('クリップボードへのコピーに失敗しました:', err);
-      });
-  };
 
   useEffect(() => {
     if (!kanji || !canvasRef.current) return;
@@ -90,12 +76,13 @@ export default function KanjiDisplay({
       
       {kanji && (
         <div className="mt-4 flex flex-col items-center">
-          <button
-            onClick={copyKanjiToClipboard}
-            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-          >
-            {copied ? copiedText : copyButtonText}
-          </button>
+          <CopyButton
+            text={kanji}
+            copyText={copyButtonText}
+            toastText={copiedText}
+            variant="purple"
+            disabled={!kanji}
+          />
         </div>
       )}
     </div>

@@ -10,19 +10,23 @@ type DownloadButtonProps = {
   filename: string
   className?: string
   variant?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'purple'
+  disabled?: boolean
 }
 
 export default function DownloadButton({ 
   content, 
   filename,
   variant = 'secondary',
-  className = ""
+  className = "",
+  disabled = false
 }: DownloadButtonProps) {
   const [downloaded, setDownloaded] = useState(false)
   const params = useParams()
   const lang = params.lang as string
 
   const handleDownload = () => {
+    if (disabled || !content) return;
+    
     // Create a blob with the content
     const blob = new Blob([content], { type: 'text/plain' })
     
@@ -52,6 +56,7 @@ export default function DownloadButton({
       onClick={handleDownload}
       variant={variant}
       className={className}
+      disabled={disabled || !content}
     >
       {downloaded 
         ? translate(lang, 'common.download.downloaded') 
