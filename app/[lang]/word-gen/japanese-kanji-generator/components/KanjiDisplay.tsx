@@ -19,7 +19,7 @@ export default function KanjiDisplay({
   size = 512,
   backgroundColor = '#ffffff',
   textColor = '#000000',
-  fontFamily = 'serif',
+  fontFamily = 'Yuji Mai',
   copyButtonText = '漢字をコピー',
   copiedText = '✓ コピーしました',
   noImageText = '画像が生成されていません'
