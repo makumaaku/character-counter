@@ -1925,35 +1925,71 @@
   "seoCannibalizationChecker": {
     "meta": {
       "title": "SEOカニバリゼーションチェッカー | Boring Tools",
-      "description": "サイト内で特定のキーワードが複数ページで競合していないかチェックするツール。SEOのカニバリゼーション（共食い）問題を簡単に特定できます。",
+      "description": "特定のキーワードがサイト内の複数のページで競合しているかをチェックします。SEOカニバリゼーションの問題を簡単に特定できます。",
       "keywords": "SEO,カニバリゼーション,キーワード競合,SEOツール,検索エンジン最適化"
     },
     "title": "SEOカニバリゼーションチェッカー",
-    "description": "ドメインとキーワードを入力して、サイト内でのキーワード競合（カニバリゼーション）をチェックします。",
+    "description": "ドメインとキーワードを入力して、サイト内のキーワードカニバリゼーション（競合）をチェックします。",
     "domain": {
       "label": "ドメイン",
-      "placeholder": "例: example.com",
-      "help": "プロトコル（http://やhttps://）は省略可能です"
+      "placeholder": "例：example.com",
+      "help": "プロトコル（http://またはhttps://）は省略可能です"
     },
     "keyword": {
       "label": "キーワード",
-      "placeholder": "チェックしたいキーワードを入力",
-      "help": "複数の単語でも検索できます"
+      "placeholder": "チェックするキーワードを入力",
+      "help": "複数の単語で検索できます"
+    }
+  },
+  "page-structure-checker": {
+    "meta": {
+      "title": "ページ構造チェッカー - SEOツール",
+      "description": "ウェブページのタイトル、説明、見出し階層を分析して、適切なSEO最適化を確保します",
+      "keywords": "ページ構造, 見出し構造, SEOチェッカー, h1タグ, titleタグ, メタディスクリプション"
     },
-    "button": {
-      "check": "チェックする",
-      "processing": "処理中..."
-    },
-    "result": {
-      "title": "検索結果",
-      "description": "以下のリンクをクリックしてGoogle検索結果を確認してください。複数のページが表示される場合、カニバリゼーションが発生している可能性があります。",
-      "openButton": "Google検索結果を開く"
+    "title": "ページ構造チェッカー",
+    "description": "ウェブページが適切なタイトル、説明、見出しタグの階層を持つ適切な構造を持っているかをチェックします",
+    "form": {
+      "url-label": "分析するURLを入力",
+      "url-placeholder": "https://example.com",
+      "analyzing": "分析中...",
+      "analyze": "分析する",
+      "example": "例"
     },
     "error": {
-      "emptyDomain": "ドメインを入力してください",
-      "invalidDomain": "有効なドメインを入力してください",
-      "emptyKeyword": "キーワードを入力してください",
-      "generic": "エラーが発生しました。もう一度お試しください。"
-    }
+      "title": "エラー",
+      "url-required": "URLを入力してください",
+      "invalid-url": "有効なURLを入力してください",
+      "fetch-failed": "ページの内容を取得できませんでした",
+      "timeout": "リクエストがタイムアウトしました。ページが大きすぎるか利用できない可能性があります",
+      "network-error": "ネットワークエラーが発生しました。インターネット接続を確認して再試行してください"
+    },
+    "meta-title": "メタ要素",
+    "heading-structure": "見出し構造",
+    "issues": "見つかった問題",
+    "no-title": "タイトルが見つかりません",
+    "no-description": "説明が見つかりません",
+    "no-canonical": "正規URLが見つかりません",
+    "no-headings": "ページに見出しタグが見つかりません",
+    "error": "エラー",
+    "warning": "警告",
+    "analysis": "分析",
+    "good": "良好",
+    "missing": "見つかりません",
+    "present": "存在している",
+    "tag": "タグ",
+    "count": "の数",
+    "hierarchy-issue": "階層構造に問題があります。指摘箇所を確認してください。",
+    "h2-h6: hierarchy-issue": "階層構造に問題あり",
+    "no-title": "ページにタイトルタグがありません",
+    "no-description": "ページにメタディスクリプションがありません",
+    "no-h1": "ページにh1タグがありません",
+    "multiple-h1": "ページに複数のh1タグがあります（1つだけにする必要があります）",
+    "skipped-level": "見出しレベルの階層が正しくありません。",
+    "issue-found": "問題あり",
+    "hierarchy-issue-message": "h2~h6: 階層構造に問題あり",
+    "recommended": "推奨",
+    "important-for-seo": "SEOに重要",
+    "headings": "見出し"
   }
 }

@@ -20,6 +20,10 @@ export default function SeoToolsLayout({ children }: Props) {
   // SEOツールのリスト（サイドバー用）
   const navigationItems = [
     {
+      name: translate(lang, 'page-structure-checker.title'),
+      path: `/seo-tools/page-structure-checker`
+    },
+    {
       name: translate(lang, 'pageSpeedChecker.title'),
       path: `/seo-tools/page-speed-checker`
     },
