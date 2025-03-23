@@ -1,7 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
@@ -14,19 +15,26 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // number-quiz用の翻訳をロード
+  await loadToolMessages(lang as Language, 'number-quiz');
+  
+  // 翻訳関数
+  const t = async (key: string) => await translate(lang, key);
 
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: await t('siteName'),
+    publisher: await t('publisher'),
+    logoAlt: await t('common.meta.logoAlt'),
   };
 
+  // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('numberQuiz.meta.title'),
-    "description": t('numberQuiz.meta.description'),
+    "name": await t('numberQuiz.meta.title'),
+    "description": await t('numberQuiz.meta.description'),
     "url": `${SITE_CONFIG.baseURL}/${lang}/number-quiz`,
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
@@ -42,13 +50,14 @@ export async function generateMetadata(
     }
   };
 
-  const metadata = getCommonMetadata(
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('numberQuiz.meta.title'),
-      description: t('numberQuiz.meta.description'),
-      keywords: t('numberQuiz.meta.keywords'),
+      title: await t('numberQuiz.meta.title'),
+      description: await t('numberQuiz.meta.description'),
+      keywords: await t('numberQuiz.meta.keywords'),
       url: `${SITE_CONFIG.baseURL}/${lang}/number-quiz`,
     }
   );
@@ -69,19 +78,86 @@ export default async function Layout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  // const t = (key: string) => translate(lang, key);
+  
+  // number-quiz用の翻訳をロード
+  await loadToolMessages(lang as Language, 'number-quiz');
+
+  // 翻訳を一括で取得
+  const translations = await Promise.all([
+    translate(lang, 'numberQuiz.game.title'),
+    translate(lang, 'numberQuiz.title'),
+    translate(lang, 'numberQuiz.game.difficulty.label'),
+    translate(lang, 'numberQuiz.game.difficulty.easy'),
+    translate(lang, 'numberQuiz.game.difficulty.normal'),
+    translate(lang, 'numberQuiz.game.difficulty.hard'),
+    translate(lang, 'numberQuiz.game.buttons.newGame'),
+    translate(lang, 'numberQuiz.game.buttons.checkSolution'),
+    translate(lang, 'numberQuiz.game.messages.correct'),
+    translate(lang, 'numberQuiz.game.messages.incorrect'),
+    translate(lang, 'numberQuiz.game.messages.complete')
+  ]);
+
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
+  console.log(translations);
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
+  
+  // 配列から値を取り出し
+  const [
+    gameTitle,
+    title,
+    difficultyLabel,
+    easyDifficulty,
+    normalDifficulty,
+    hardDifficulty,
+    newGameButton,
+    checkSolutionButton,
+    correctMessage,
+    incorrectMessage,
+    completeMessage
+  ] = translations;
+
+  const messages = {
+    numberQuiz: {
+      game: {
+        title: gameTitle,
+        difficulty: {
+          label: difficultyLabel,
+          easy: easyDifficulty,
+          normal: normalDifficulty,
+          hard: hardDifficulty
+        },
+        buttons: {
+          newGame: newGameButton,
+          checkSolution: checkSolutionButton
+        },
+        messages: {
+          correct: correctMessage,
+          incorrect: incorrectMessage,
+          complete: completeMessage
+        }
+      }
+    }
+  };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-800">
-      {/* 言語情報関係なく、"Number Place"を表示する */}
-      <Header title={"Number Place"} homeLink={`/${lang}/number-quiz`}>
-        <div className="flex items-center gap-2">
-        </div>
-      </Header>
-      <main className="flex-1 bg-gray-800">
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <>
+      <script
+        id="messages"
+        type="application/json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(messages),
+        }}
+      />
+      <div className="flex flex-col min-h-screen bg-gray-800">
+        <Header title={title} homeLink={`/${lang}/number-quiz`}>
+          <div className="flex items-center gap-2">
+          </div>
+        </Header>
+        <main className="flex-1 bg-gray-800">
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 } 

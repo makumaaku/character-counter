@@ -1,19 +1,53 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
-import { translate } from '@/lib/i18n/client';
+import React, { useEffect, useState } from 'react';
 import Button from '@/components/ui/button';
 
-type Props = {
-  lang: string;
+// numberQuizの翻訳データの型定義
+type NumberQuizMessages = {
+  numberQuiz: {
+    game: {
+      title: string;
+      difficulty: {
+        label: string;
+        easy: string;
+        normal: string;
+        hard: string;
+      },
+      buttons: {
+        newGame: string;
+        checkSolution: string;
+      },
+      messages: {
+        correct: string;
+        incorrect: string;
+        complete: string;
+      }
+    }
+  }
 }
 
-export default function SudokuGame({ lang }: Props) {
+// messagesを取得するカスタムフック
+function useMessages() {
+  const [messages, setMessages] = useState<NumberQuizMessages | null>(null);
+
+  useEffect(() => {
+    const messagesScript = document.getElementById('messages');
+    if (messagesScript) {
+      const messages = JSON.parse(messagesScript.textContent || '{}');
+      setMessages(messages);
+    }
+  }, []);
+
+  return messages;
+}
+
+export default function SudokuGame() {
   const [board, setBoard] = useState<number[][]>([]);
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
   const [message, setMessage] = useState<string>('');
   const [isComplete, setIsComplete] = useState<boolean>(false);
-  const t = useCallback((key: string) => translate(lang, key), [lang]);
+  const messages = useMessages();
 
   const generateEmptyBoard = () => {
     return Array(9).fill(null).map(() => Array(9).fill(0));
@@ -62,7 +96,7 @@ export default function SudokuGame({ lang }: Props) {
     return true;
   };
 
-  const generateNewGame = useCallback(() => {
+  const generateNewGame = () => {
     const newBoard = generateEmptyBoard();
     solveSudoku(newBoard);
     
@@ -83,7 +117,7 @@ export default function SudokuGame({ lang }: Props) {
     setInitialBoard(gameBoard.map(row => [...row]));
     setMessage('');
     setIsComplete(false);
-  }, []);
+  };
 
   const handleCellChange = (row: number, col: number, value: string) => {
     if (initialBoard[row][col] !== 0) return;
@@ -101,7 +135,7 @@ export default function SudokuGame({ lang }: Props) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         if (board[i][j] === 0) {
-          setMessage(t('numberQuiz.game.messages.incorrect'));
+          setMessage(messages?.numberQuiz?.game?.messages?.incorrect || 'Incorrect. Keep trying!');
           setIsComplete(false);
           return;
         }
@@ -115,7 +149,7 @@ export default function SudokuGame({ lang }: Props) {
         board[i][j] = 0;
         if (!isValid(board, i, j, temp)) {
           board[i][j] = temp;
-          setMessage(t('numberQuiz.game.messages.incorrect'));
+          setMessage(messages?.numberQuiz?.game?.messages?.incorrect || 'Incorrect. Keep trying!');
           setIsComplete(false);
           return;
         }
@@ -123,19 +157,27 @@ export default function SudokuGame({ lang }: Props) {
       }
     }
 
-    setMessage(t('numberQuiz.game.messages.complete'));
+    setMessage(messages?.numberQuiz?.game?.messages?.complete || 'Congratulations! You\'ve solved the puzzle!');
     setIsComplete(true);
   };
 
   useEffect(() => {
     generateNewGame();
-  }, [generateNewGame]);
+  }, []);
+
+  if (!messages) {
+    return <div className="text-center my-8 font-bold text-gray-400">Loading translations...</div>;
+  }
 
   return (
     <div className="flex flex-col items-center">
+      <div className="text-center mb-10">
+        <h1 className="text-4xl font-bold mb-4">{messages.numberQuiz.game.title}</h1>
+      </div>
+      
       <div className="flex items-center gap-4 mb-6">
         <label htmlFor="difficulty" className="text-lg">
-          {t('numberQuiz.game.difficulty.label')}:
+          {messages.numberQuiz.game.difficulty.label}:
         </label>
         <select
           id="difficulty"
@@ -143,9 +185,9 @@ export default function SudokuGame({ lang }: Props) {
           defaultValue="0.4"
           onChange={() => generateNewGame()}
         >
-          <option value="0.3">{t('numberQuiz.game.difficulty.easy')}</option>
-          <option value="0.4">{t('numberQuiz.game.difficulty.normal')}</option>
-          <option value="0.6">{t('numberQuiz.game.difficulty.hard')}</option>
+          <option value="0.3">{messages.numberQuiz.game.difficulty.easy}</option>
+          <option value="0.4">{messages.numberQuiz.game.difficulty.normal}</option>
+          <option value="0.6">{messages.numberQuiz.game.difficulty.hard}</option>
         </select>
       </div>
 
@@ -181,13 +223,13 @@ export default function SudokuGame({ lang }: Props) {
           onClick={generateNewGame}
           variant="secondary"
         >
-          {t('numberQuiz.game.buttons.newGame')}
+          {messages.numberQuiz.game.buttons.newGame}
         </Button>
         <Button
           onClick={checkSolution}
           className="bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors"
         >
-          {t('numberQuiz.game.buttons.checkSolution')}
+          {messages.numberQuiz.game.buttons.checkSolution}
         </Button>
       </div>
     </div>

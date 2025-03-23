@@ -74,33 +74,77 @@ export default async function CountryDataLayout({ children, params }: Props) {
   // country-data用の翻訳をロード
   await loadToolMessages(lang as Language, 'country-data');
 
+  // 翻訳を一括で取得
+  const translations = await Promise.all([
+    translate(lang, 'countryData.title'),
+    translate(lang, 'countryData.states.loading'),
+    translate(lang, 'countryData.states.error'),
+    translate(lang, 'countryData.states.noData'),
+    translate(lang, 'countryData.search.label'),
+    translate(lang, 'countryData.search.placeholder'),
+    translate(lang, 'countryData.filter.label'),
+    translate(lang, 'countryData.filter.allRegions'),
+    translate(lang, 'countryData.table.headers.name'),
+    translate(lang, 'countryData.table.headers.officialName'),
+    translate(lang, 'countryData.table.headers.area'),
+    translate(lang, 'countryData.table.headers.capital'),
+    translate(lang, 'countryData.table.headers.languages'),
+    translate(lang, 'countryData.table.headers.currency'),
+    translate(lang, 'countryData.table.headers.region'),
+    translate(lang, 'countryData.table.headers.source'),
+    translate(lang, 'countryData.table.headers.lastUpdated'),
+    translate(lang, 'countryData.ui.title')
+  ]);
+  
+  // 配列から値を取り出し
+  const [
+    title,
+    loadingState,
+    errorState,
+    noDataState,
+    searchLabel,
+    searchPlaceholder,
+    filterLabel,
+    allRegions,
+    headerName,
+    headerOfficialName,
+    headerArea,
+    headerCapital,
+    headerLanguages,
+    headerCurrency,
+    headerRegion,
+    headerSource,
+    headerLastUpdated,
+    uiTitle
+  ] = translations;
+
   const messages = {
     countryData: {
-      title: await translate(lang, 'countryData.title'),
+      title,
       states: {
-        loading: await translate(lang, 'countryData.states.loading'),
-        error: await translate(lang, 'countryData.states.error'),
-        noData: await translate(lang, 'countryData.states.noData'),
+        loading: loadingState,
+        error: errorState,
+        noData: noDataState,
       },
       search: {
-        label: await translate(lang, 'countryData.search.label'),
-        placeholder: await translate(lang, 'countryData.search.placeholder'),
+        label: searchLabel,
+        placeholder: searchPlaceholder,
       },
       filter: {
-        label: await translate(lang, 'countryData.filter.label'),
-        allRegions: await translate(lang, 'countryData.filter.allRegions'),
+        label: filterLabel,
+        allRegions,
       },
       table: {
         headers: {
-          name: await translate(lang, 'countryData.table.headers.name'),
-          officialName: await translate(lang, 'countryData.table.headers.officialName'),
-          area: await translate(lang, 'countryData.table.headers.area'),
-          capital: await translate(lang, 'countryData.table.headers.capital'),
-          languages: await translate(lang, 'countryData.table.headers.languages'),
-          currency: await translate(lang, 'countryData.table.headers.currency'),
-          region: await translate(lang, 'countryData.table.headers.region'),
-          source: await translate(lang, 'countryData.table.headers.source'),
-          lastUpdated: await translate(lang, 'countryData.table.headers.lastUpdated'),
+          name: headerName,
+          officialName: headerOfficialName,
+          area: headerArea,
+          capital: headerCapital,
+          languages: headerLanguages,
+          currency: headerCurrency,
+          region: headerRegion,
+          source: headerSource,
+          lastUpdated: headerLastUpdated,
         },
       },
     },
@@ -116,7 +160,7 @@ export default async function CountryDataLayout({ children, params }: Props) {
         }}
       />
       <div className="flex flex-col min-h-screen bg-gray-800">
-        <Header title={await translate(lang, 'countryData.ui.title')} homeLink={`/${lang}/country-data`}>
+        <Header title={uiTitle} homeLink={`/${lang}/country-data`}>
           <div className="flex items-center gap-2">
             {/* Left side content removed */}
           </div>

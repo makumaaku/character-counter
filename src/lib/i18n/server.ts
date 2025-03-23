@@ -66,14 +66,13 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
   try {
     let toolMessages = {};
     
-    // ツール名のマッピング（ケバブケース → キャメルケース）
-    // jsonファイル内のkeyはキャメルケースなので、こちらで変換を行う。
-    const toolKeyMap: Record<string, string> = {
-      'country-data': 'countryData',
-      'json-viewer': 'jsonViewer'
+    // マッピングにないツール名の場合はキャメルケースに変換する関数
+    const kebabToCamel = (kebab: string): string => {
+      return kebab.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
     };
     
-    const toolKey = toolKeyMap[toolName] || toolName;
+    // jsonファイル内のkeyはキャメルケースなので、こちらで変換を行う。
+    const toolKey = kebabToCamel(toolName);
     
     // 新しいディレクトリ構造からのツール翻訳ファイル読み込み試行
     try {
