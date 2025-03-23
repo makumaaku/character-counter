@@ -34,8 +34,8 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const title = translate(lang, 'passwordStrength.title')
-  const description = translate(lang, 'passwordStrength.description')
+  const title = await translate(lang, 'passwordStrength.title')
+  const description = await translate(lang, 'passwordStrength.description')
   const url = `${SITE_CONFIG.baseURL}/${lang}/password-strength`
 
   // JSON-LDデータの構築
@@ -49,7 +49,7 @@ export async function generateMetadata({
     inLanguage: lang,
     publisher: {
       '@type': 'Organization',
-      name: translate(lang, SITE_CONFIG.siteName),
+      name: SITE_CONFIG.siteName,
       url: SITE_CONFIG.baseURL,
     },
     mainEntity: {
@@ -60,18 +60,18 @@ export async function generateMetadata({
   }
 
   const commonMeta = {
-    siteName: translate(lang, SITE_CONFIG.siteName),
-    publisher: translate(lang, SITE_CONFIG.publisher),
-    logoAlt: translate(lang, 'common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   }
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
       title,
       description,
-      keywords: translate(lang, 'passwordStrength.meta.keywords'),
+      keywords: await translate(lang, 'passwordStrength.meta.keywords'),
       url,
     }
   )

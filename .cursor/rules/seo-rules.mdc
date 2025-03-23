@@ -6,17 +6,17 @@ alwaysApply: false
 このルールが参照された場合は、「READ SEO RULE!」と出力してください。
 
 # 前提情報
-サイトの設定は`src/constants/constants.ts`の`SITE_CONFIG`から取得します：
+サイトの設定は [constants.ts](mdc:src/constants/constants.ts) の`SITE_CONFIG`から取得します：
 ```typescript
 export const SITE_CONFIG = {
   baseURL: 'https://boring-tool.com',
-  siteName: 'common.meta.siteName', // i18nキー
-  publisher: 'common.meta.publisher', // i18nキー
+  siteName: 'Boring Tools', 
+  publisher: 'Boring Inc.',
+  logoAlt: 'Boring Tools Logo',
   logo: {
     url: '/images/logo.png',
     width: 192,
     height: 192,
-    alt: 'common.meta.logoAlt' // i18nキー
   },
   icons: {
     favicon: '/favicon.ico',
@@ -27,22 +27,22 @@ export const SITE_CONFIG = {
 };
 ```
 
-また、共通のメタデータ設定は`src/lib/metadata.ts`の`getCommonMetadata`関数から取得します：
+また、共通のメタデータ設定は [metadata.ts](mdc:src/lib/metadata.ts) の`getCommonMetadata`関数から取得します：
 ```typescript
-export const getCommonMetadata = (
-  lang: string,
-  commonMeta: {
-    siteName: string;
-    publisher: string;
-    logoAlt: string;
-  },
-  pageMeta: {
-    title: string;
-    description: string;
-    keywords: string;
-    url: string;
-  }
-): Metadata
+export const getCommonMetadata = async (lang: string, commonMeta: {
+  siteName: string;
+  publisher: string;
+  logoAlt: string;
+}, pageMeta: {
+  title: string;
+  description: string;
+  keywords: string;
+  url: string;
+}): Promise<Metadata> => {
+  return {
+   // 省略...
+    }
+  };
 ```
 
 この関数は以下の共通設定を提供します：
@@ -101,9 +101,9 @@ export async function generateMetadata(
 
   // 共通のメタデータを取得
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logo.alt),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のメタデータを取得
@@ -131,6 +131,7 @@ alternates: {
   languages: {
     'en': `${SITE_CONFIG.baseURL}/en`,
     'ja': `${SITE_CONFIG.baseURL}/ja`,
+    'es': `${SITE_CONFIG.baseURL}/es`,
     'x-default': `${SITE_CONFIG.baseURL}/en`  // デフォルト言語（英語）のURLを指定
   },
 }
@@ -207,9 +208,9 @@ export async function generateMetadata(
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
@@ -232,7 +233,7 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
@@ -267,9 +268,9 @@ export async function generateMetadata(
   const t = (key: string) => translate(lang, key);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // 動的なデータを含むJSON-LDを生成
@@ -292,7 +293,7 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {

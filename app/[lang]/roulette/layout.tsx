@@ -20,16 +20,10 @@ export async function generateMetadata(
   
   // 必要な翻訳を並列で取得
   const [
-    siteName,
-    publisher,
-    logoAlt,
     metaTitle,
     metaDescription,
     metaKeywords,
   ] = await Promise.all([
-    translate(lang, 'siteName'),
-    translate(lang, 'publisher'),
-    translate(lang, 'common.meta.logoAlt'),
     translate(lang, 'roulette.meta.title'),
     translate(lang, 'roulette.meta.description'),
     translate(lang, 'roulette.meta.keywords'),
@@ -37,9 +31,9 @@ export async function generateMetadata(
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName,
-    publisher,
-    logoAlt,
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義

@@ -1,8 +1,8 @@
 export const SITE_CONFIG = {
   baseURL: 'https://boring-tool.com',
-  siteName: 'common.meta.siteName',
-  publisher: 'common.meta.publisher',
-  logoAlt: 'common.meta.logoAlt',
+  siteName: 'Boring Tools',
+  publisher: 'Boring Inc.',
+  logoAlt: 'Boring Tools Logo',
   logo: {
     url: '/boring_logo.png',
     width: 286,

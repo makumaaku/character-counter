@@ -54,9 +54,6 @@ export async function generateMetadata(
 
   // 並列で翻訳を取得
   const [
-    siteName,
-    publisher,
-    logoAlt,
     title,
     description,
     keywords,
@@ -75,9 +72,6 @@ export async function generateMetadata(
     japaneseKanjiGeneratorTitle,
     japaneseKanjiGeneratorDescription
   ] = await Promise.all([
-    translate(lang, 'common.siteName'),
-    translate(lang, 'common.publisher'),
-    translate(lang, 'common.meta.logoAlt'),
     translate(lang, 'wordGen.meta.title'),
     translate(lang, 'wordGen.meta.description'),
     translate(lang, 'wordGen.meta.keywords'),
@@ -98,9 +92,9 @@ export async function generateMetadata(
   ]);
 
   const commonMeta = {
-    siteName,
-    publisher,
-    logoAlt
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
@@ -111,7 +105,7 @@ export async function generateMetadata(
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen`,
     "publisher": {
       "@type": "Organization",
-      "name": siteName,
+      "name": commonMeta.siteName,
       "logo": {
         "@type": "ImageObject",
         "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,

@@ -24,9 +24,9 @@ export async function generateMetadata(
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: await t('siteName'),
-    publisher: await t('publisher'),
-    logoAlt: await t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
