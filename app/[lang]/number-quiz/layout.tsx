@@ -96,10 +96,6 @@ export default async function Layout({
     translate(lang, 'numberQuiz.game.messages.incorrect'),
     translate(lang, 'numberQuiz.game.messages.complete')
   ]);
-
-  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
-  console.log(translations);
-  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@');
   
   // 配列から値を取り出し
   const [

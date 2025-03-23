@@ -10,88 +10,258 @@ alwaysApply: true
 - デフォルト言語は英語（en）
 - 現在対応言語：英語（en）、日本語（ja）、スペイン語（es）
 - 新規機能追加の際に既存のkeyは削除しない
+- クライアントコンポーネントではNextの`Script`タグと`useMessages`フックを使用して翻訳を取得
 
 ## 実装ルール
 
-### 1. 画面遷移時の注意事項
-- トップページ以外のすべてのページは`/[lang]/`配下に配置する
-- 画面遷移時はlang情報を必ず`/[lang]/`パス 各内のjsonファイル構造とkeyは、すべての言語で完全一致させること
-- `next/link`を使用する場合は、lang情報がある場合には、以下のように言語パラメータを含める
+### 1. ディレクトリ構造とルーティング
+- トップページ以外のすべてのページは`app/[lang]/`配下に配置
+- 各ツールは`app/[lang]/tools/[tool-name]/`もしくは`app/[lang]/[tool-name]/`に配置
+- 画面遷移時はlang情報を必ず含める
+- `next/link`を使用する場合は、以下のように言語パラメータを含める
 ```tsx
 <Link href={`/${lang}/about`}>About</Link>
 ```
-- 指示がない限りはjsonファイルの既存のkeyを削除しないでください。
 
-### 2. 言語ファイルの構造
-- jsonファイルのディレクトリ構造の詳細については、[jsondirectrystructure.md](mdc:jsondirectrystructure.md) を参照してください。
-- すべての翻訳ファイルは`assets/locales/[lang]/`ディレクトリ内で管理
+### 2. 言語フts/locales/[lang]/`ディレクトリ内で管理
   - 英語：`locales/en/`
   - 日本語：`locales/ja/`
   - スペイン語：`locales/es/`
 - 各言語ディレクトリには以下のような構造で翻訳ファイルを配置：
   - `common.json` - 共通テキスト（ヘッダー、フッター、エラーメッセージなど）
   - `meta.json` - メタデータ（タイトル、説明文など）
-  - 単体ツール用ファイル（例：`character-counter.json`）
+  - 単一ツール用ファイル（例：`character-counter.json`、`number-quiz.json`）
   - カテゴリ別ディレクトリ（例：`pdf-tools/`）
     - カテゴリ共通ファイル: `[カテゴリ名]/common.json`
     - 個別ツールファイル: `[カテゴリ名]/[ツール名].json`
 
-### 3. 新規テキスト追加方法
-- 新規テキスト追加時は必ずすべての言語ディレクトリの対応するファイルに追加すること
-- キーは階層構造を持たせ、スコープを明確にする
-- カテゴリごとの共通テキストは各カテゴリの`common.json`に配置
-
-#### メタデータの翻訳構造
-メタデータの翻訳は以下の構造で管理します：
+### 3. 翻訳ファイルの構造
 ```json
 {
-  "title": "ページタイトル",
-  "description": "ページの説明",
-  "keywords": "キーワード1,キーワード2",
-  "siteName": "サイト名",
-  "publisher": "発行者",
-  "logoAlt": "ロゴの代替テキスト"
+  "meta": {
+    "title": "ページタイトル",
+    "description": "ページの説明",
+    "keywords": "キーワード1,キーワード2"
+  },
+  "title": "ツールタイトル",
+  // ツール固有の翻訳
+  "ui": {
+    "title": "UIに表示するタイトル",
+    // その他UIテキスト
+  }
 }
 ```
 
-### 4. 新規言語追加時の手順
-1. [types.ts](mdc:src/lib/scraping/types.ts)の`Language`型に新しい言語を追加
+### 4. レイアウトファイル（layout.tsx）の実装
+レイアウトファイルでは以下の作業を行います：
+
+1. メタデータの生成
+```tsx
+export async function generateMetadata({ params }: Propse<Metadata> {
+  const { lang } = await params;
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'tool-name');
+  
+  // 翻訳関数
+  const t = async (key: string) => await translate(lan  // 共通のメタデータ情報を設定
+  const commonMeta = {
+    siteName: await t('siteName'),
+    publisher: await t('publisher'),
+    logoAlt: await t('common.meta.logoAlt'),
+  };
+
+  // ページ固有のJSON-LDを定義
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": await t('toolName.meta.title'),
+    "description": await t('toolName.meta.description'),
+    "url": `${SITE_CONFIG.baseURL}/${lang}/tool-path`,
+    // その他のJSON-LD情報
+  };
+
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
+    lang,
+    commonMeta,
+    {
+      title:toolName.meta.title'),
+      description: awaiName.meta.description'),
+      keywords: await t('toolName.meta.keywords'),
+      url: `${SITE_CONFIG.baseURL}/${lang}/tool-path`,
+    }
+  );
+
+  return {
+    ...metadata,
+    other: {
+      'application/ld+json': JSON.stringify(jsonLd)
+    }
+  };
+}
+```
+
+2. クライアントコンポーネントで使用する翻訳の準備
+```tsx
+export default async function Layout({ children, params }: Props) {
+  const { lang } = await params;
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'tool-name');
+
+  // 必要な翻訳を一括で取得
+  const translations = await Promise.all([
+    translate(lang, 'toolName.title'),
+    translate(lang, 'toolName.ui.label1'),
+    translate(lang, 'toolName.ui.label2'),
+    // 必要な翻訳キーを追加
+  ]);
+  
+  // 値を取り出し
+  const [title, label1, label2] = translations;
+
+  // クライアントコンポーネントに渡す翻訳データ
+  const messages = {
+    toolName: {
+      title,
+      ui: {
+        label1,
+        label2
+      }
+    }
+  };
+
+  return (
+    <>
+      {/* クライアントコンポーネントで使用する翻訳をスクリプトタグで埋め込み */}
+      <script
+        id="messages"
+        type="application/json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(messages),
+        }}
+      />
+      <div className="layout-container">
+        <Header title={title} homeLink={`/${lang}/tool-path`} />
+        <main>
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
+}
+```
+
+### 5. ページファイル（page.tsx）の実装
+```tsx
+import ToolComponent from './components/ToolComponent';
+import { getLanguageFromParams } from '@/lib/i18n/server';
+
+type Props = {
+  params: { lang: string }
+}
+
+export default async function ToolPage({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+
+  return (
+    <div className="container">
+      <ToolComponent />
+    </div>
+  );
+}
+```
+
+### 6. クライアントコンポーネントでの翻訳の使用
+クライアントコンポーネントでは、`useMessages`フックを使用して翻訳を取得します：
+
+```tsx
+'use client';
+
+import { useEffect, useState } from 'react';
+
+// メッセージの型定義
+type ToolMessages = {
+  toolName: {
+    title: string;
+    ui: {
+      label1: string;
+      label2: string;
+    }
+  }
+}
+
+// messagesを取得するカスタムフック
+function useMessages() {
+  const [messages, setMessages] = useState<ToolMessages | null>(null);
+
+  useEffect(() => {
+    const messagesScript = document.getElementById('messages');
+    if (messagesScript) {
+      const messages = JSON.parse(messagesScript.textContent || '{}');
+      setMessages(messages);
+    }
+  }, []);
+
+  return messages;
+}
+
+export default function ToolComponent() {
+  const messages = useMessages();
+
+  if (!messages) {
+    return <div>Loading translations...</div>;
+  }
+
+  return (
+    <div>
+      <h1>{messages.toolName.title}</h1>
+      <div>
+        <label>{messages.toolName.ui.label1}</label>
+        {/* その他のUIコンポーネント */}
+      </div>
+    </div>
+  );
+}
+```
+
+### 7. 新規言語追加時の手順
+1. `src/lib/i18n/types.ts`の`Language`型に新しい言語を追加
 ```typescript
 export type Language = 'en' | 'ja' | 'es' | 'new_lang';
 ```
 2. `assets/locales/`に新しい言語ディレクトリを作成（例：`fr/`）
 3. 英語ディレクトリ（`en/`）の構造を複製し、すべてのファイルを新言語に翻訳
-4. [server.ts](mdc:src/lib/i18n/server.ts)の`messages`オブジェクトに新しい言語を追加
+4. `src/lib/i18n/server.ts`の`getAvailableLanguages`関数に新しい言語を追加
 5. 言語切り替えコンポーネントに新しい言語を追加
 
-### 5. 翻訳の読み込み優先順位
-- ツール固有の翻訳 > カテゴリ共通翻訳 > メタデータ > 全体共通翻訳
-
-### 6. 注意事項
+### 8. 注意事項
 - 翻訳漏れを防ぐため、新規テキスト追加時は必ずすべての言語ファイルを更新
-- 言語ファイルのキー構造は全言語で統一すること
+- 言語ファイルのキー構造は全言語で統一
 - 動的なテキストを含む場合は、プレースホルダーを使用
 ```json
 {
   "welcome": "Welcome, {name}!"
 }
 ```
-- SEO対策として、各ページのメタデータも多言語対応すること
+- SEO対策として、各ページのメタデータも多言語対応
+- レイアウトファイルで翻訳データを準備し、クライアントコンポーネントで使用
 
-### 7. 型安全性
-- 翻訳キーの型安全性を確保するため、可能な限り定数として管理
-- 新規キー追加時は、TypeScriptの型チェックを活用
+### 9. 重要なユーティリティ関数
+| 関数名 | 用途 | パス |
+|--------|------|------|
+| `loadToolMessages` | ツール固有の翻訳をロード | `@/lib/i18n/server` |
+| `translate` | サーバーコンポーネントでの翻訳取得 | `@/lib/i18n/server` |
+| `getLanguageFromParams` | パラメータから言語情報を取得 | `@/lib/i18n/server` |
+| `getAvailableLanguages` | 利用可能な言語一覧を取得 | `@/lib/i18n/server` |
 
-### 8. パフォーマンス考慮事項
-- 言語ファイルは必要な時のみ読み込む（動的インポート推奨）
-- キャッシュ戦略を適切に設定
-- 不要な再レンダリの使用は適切なスコープで行う
+### 10. 実装例
+number-quizとcountry-dataの実装を参考にしてください。特に以下のファイルが参考になります：
 
-### 9. Tips
-- langは非同期で取得してくださtype Props = {
-  params: Promise<{ lang: string }>
-}
-```
-- 言語情報の取得は [server.ts](mdc:src/lib/i18n/server.ts) のgetLanguageFromParamsを使用してください。
-- サイトトップページ [page.tsx](mdc:app/page.tsx) のみは多言語対応の必要はないです
-
+- `app/[lang]/number-quiz/layout.tsx`
+- `app/[lang]/number-quiz/page.tsx`
+- `app/[lang]/number-quiz/components/SudokuGame.tsx`
+- `app/[lang]/country-data/layout.tsx`
+- `app/[lang]/country-data/page.tsx`
