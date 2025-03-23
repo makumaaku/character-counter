@@ -1,8 +1,9 @@
-import { translate } from '@/lib/i18n/client';
+import { loadToolMessages, translate } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import WordGenLayout from './components/WordGenLayout';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -47,23 +48,70 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+
+  // word-gen用の翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen');
+
+  // 並列で翻訳を取得
+  const [
+    siteName,
+    publisher,
+    logoAlt,
+    title,
+    description,
+    keywords,
+    wordGeneratorTitle,
+    wordGeneratorDescription,
+    nameGeneratorTitle,
+    nameGeneratorDescription,
+    passwordGeneratorTitle,
+    passwordGeneratorDescription,
+    storyGeneratorTitle,
+    storyGeneratorDescription,
+    sentenceGeneratorTitle,
+    sentenceGeneratorDescription,
+    wordCardGeneratorTitle,
+    wordCardGeneratorDescription,
+    japaneseKanjiGeneratorTitle,
+    japaneseKanjiGeneratorDescription
+  ] = await Promise.all([
+    translate(lang, 'common.siteName'),
+    translate(lang, 'common.publisher'),
+    translate(lang, 'common.meta.logoAlt'),
+    translate(lang, 'wordGen.meta.title'),
+    translate(lang, 'wordGen.meta.description'),
+    translate(lang, 'wordGen.meta.keywords'),
+    translate(lang, 'wordGen.tools.wordGenerator.title'),
+    translate(lang, 'wordGen.tools.wordGenerator.description'),
+    translate(lang, 'wordGen.tools.nameGenerator.title'),
+    translate(lang, 'wordGen.tools.nameGenerator.description'),
+    translate(lang, 'wordGen.tools.passwordGenerator.title'),
+    translate(lang, 'wordGen.tools.passwordGenerator.description'),
+    translate(lang, 'wordGen.tools.storyGenerator.title'),
+    translate(lang, 'wordGen.tools.storyGenerator.description'),
+    translate(lang, 'wordGen.tools.sentenceGenerator.title'),
+    translate(lang, 'wordGen.tools.sentenceGenerator.description'),
+    translate(lang, 'wordGen.tools.wordCardGenerator.title'),
+    translate(lang, 'wordGen.tools.wordCardGenerator.description'),
+    translate(lang, 'wordGen.tools.japaneseKanjiGenerator.title'),
+    translate(lang, 'wordGen.tools.japaneseKanjiGenerator.description')
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName,
+    publisher,
+    logoAlt
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('wordGen.meta.title'),
-    "description": t('wordGen.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen`,
     "publisher": {
       "@type": "Organization",
-      "name": commonMeta.siteName,
+      "name": siteName,
       "logo": {
         "@type": "ImageObject",
         "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
@@ -93,50 +141,56 @@ export async function generateMetadata(
     "hasPart": [
       {
         "@type": "WebApplication",
-        "name": t('wordGenerator.meta.title'),
-        "description": t('wordGenerator.meta.description'),
+        "name": wordGeneratorTitle,
+        "description": wordGeneratorDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/word-generator`
       },
       {
         "@type": "WebApplication",
-        "name": t('nameGenerator.meta.title'),
-        "description": t('nameGenerator.meta.description'),
+        "name": nameGeneratorTitle,
+        "description": nameGeneratorDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/name-generator`
       },
       {
         "@type": "WebApplication",
-        "name": t('passwordGenerator.meta.title'),
-        "description": t('passwordGenerator.meta.description'),
+        "name": passwordGeneratorTitle,
+        "description": passwordGeneratorDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/password-generator`
       },
       {
         "@type": "WebApplication",
-        "name": t('storyGenerator.meta.title'),
-        "description": t('storyGenerator.meta.description'),
+        "name": storyGeneratorTitle,
+        "description": storyGeneratorDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/story-generator`
       },
       {
         "@type": "WebApplication",
-        "name": t('sentenceGenerator.meta.title'),
-        "description": t('sentenceGenerator.meta.description'),
+        "name": sentenceGeneratorTitle,
+        "description": sentenceGeneratorDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/sentence-generator`
       },
       {
         "@type": "WebApplication",
-        "name": t('wordCardGenerator.meta.title'),
-        "description": t('wordCardGenerator.meta.description'),
+        "name": wordCardGeneratorTitle,
+        "description": wordCardGeneratorDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/word-card-generator`
+      },
+      {
+        "@type": "WebApplication",
+        "name": japaneseKanjiGeneratorTitle,
+        "description": japaneseKanjiGeneratorDescription,
+        "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/japanese-kanji-generator`
       }
     ]
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('wordGen.meta.title'),
-      description: t('wordGen.meta.description'),
-      keywords: t('wordGen.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/word-gen`,
     }
   );
@@ -149,10 +203,32 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
+export default async function Layout({ children, params }: Props) {
+  const { lang } = await params;
+
+  // クライアントコンポーネント用の翻訳を準備
+  const [title, description] = await Promise.all([
+    translate(lang, 'wordGen.title'),
+    translate(lang, 'wordGen.description')
+  ]);
+
+  const messages = {
+    title,
+    description
+  };
+
   return (
-    <WordGenLayout>
-      {children}
-    </WordGenLayout>
+    <>
+      <script
+        id="messages"
+        type="application/json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(messages)
+        }}
+      />
+      <WordGenLayout>
+        {children}
+      </WordGenLayout>
+    </>
   );
 } 

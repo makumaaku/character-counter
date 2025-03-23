@@ -87,6 +87,8 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
         ...baseMessages,
         [toolKey]: toolMessages,
       };
+      console.log(combinedMessages);
+      console.log('--------------------------------');
       
       // 更新したメッセージをキャッシュ
       messages.set(lang, combinedMessages);
