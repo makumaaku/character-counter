@@ -11,6 +11,11 @@ export function registerMessages(locale: Language, messageData: Messages): void 
   messages.set(locale, messageData);
 }
 
+ // マッピングにないツール名の場合はキャメルケースに変換する関数
+ const kebabToCamel = (kebab: string): string => {
+  return kebab.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+};
+
 // 翻訳ファイルの遅延読み込み
 export async function loadMessagesByLang(lang: Language): Promise<Messages> {
   try {
@@ -28,7 +33,6 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
       const metaModule = await import(`../../../assets/locales/${lang}/meta.json`);
       metaMessages = metaModule.default || {};
     } catch {
-      console.info(`New directory structure not found for ${lang}, trying legacy file`);
     }
 
     // 既存の大きなJSONファイルからのフォールバック
@@ -36,7 +40,7 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
       const legacyModule = await import(`../../../assets/locales/${lang}.json`);
       legacyMessages = legacyModule.default || {};
     } catch {
-      console.info(`Legacy file not found for ${lang}`);
+      
     }
 
     // 既に読み込まれているか確認
@@ -54,8 +58,7 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
     // メッセージをキャッシュ
     messages.set(lang, initialMessages);
     return initialMessages;
-  } catch (error) {
-    console.error(`Failed to load messages for ${lang}:`, error);
+  } catch {
     // エラーの場合は空のオブジェクトを返す
     return {};
   }
@@ -65,57 +68,75 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
 export async function loadToolMessages(lang: Language, toolName: string): Promise<Messages> {
   try {
     let toolMessages = {};
+    let categoryMessages = {};
     
-    // マッピングにないツール名の場合はキャメルケースに変換する関数
-    const kebabToCamel = (kebab: string): string => {
-      return kebab.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
-    };
-    
-    // jsonファイル内のkeyはキャメルケースなので、こちらで変換を行う。
-    const toolKey = kebabToCamel(toolName);
+    // キャメルケースのキーを生成
+    const parts = toolName.split('/');
+    const toolKey = parts.map(kebabToCamel).join('.');
     
     // 基本メッセージを読み込み
     const baseMessages = await loadMessagesByLang(lang);
     
-    // 新しいディレクトリ構造からのツール翻訳ファイル読み込み試行
     try {
-      // ツール用翻訳ファイルの読み込み
-      const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
-      toolMessages = toolModule.default || {};
-      
-      const combinedMessages = {
-        ...baseMessages,
-        [toolKey]: toolMessages,
-      };
-      console.log(combinedMessages);
-      console.log('--------------------------------');
-      
-      // 更新したメッセージをキャッシュ
-      messages.set(lang, combinedMessages);
-      return combinedMessages;
+      if (toolName.includes('/')) {
+        // カテゴリ/ツールの形式の場合
+        const [category, tool] = toolName.split('/');
+        
+        // カテゴリの共通ファイルを読み込み
+        try {
+          const categoryModule = await import(`../../../assets/locales/${lang}/${category}/common.json`);
+          categoryMessages = categoryModule.default || {};
+        } catch {
+          // カテゴリ共通ファイルが存在しない場合は無視
+        }
+        
+        // 個別ツールファイルを読み込み
+        const toolModule = await import(`../../../assets/locales/${lang}/${category}/${tool}.json`);
+        toolMessages = toolModule.default || {};
+        
+        // カテゴリとツールのメッセージをマージ
+        const categoryKey = kebabToCamel(category);
+        const combinedMessages = {
+          ...baseMessages,
+          [categoryKey]: {
+            ...categoryMessages,
+            [kebabToCamel(tool)]: toolMessages
+          }
+        };
+        
+        messages.set(lang, combinedMessages);
+        return combinedMessages;
+      } else {
+        // トップレベルのツールの場合
+        const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
+        toolMessages = toolModule.default || {};
+        
+        const combinedMessages = {
+          ...baseMessages,
+          [toolKey]: toolMessages,
+        };
+        
+        messages.set(lang, combinedMessages);
+        return combinedMessages;
+      }
     } catch {
-      console.info(`New structure for tool ${toolName} not found, will check legacy file`);
-      
       // 既存のキャッシュされたメッセージからツール情報取得を試みる
       if (messages.has(lang)) {
         const existingMessages = messages.get(lang);
         if (existingMessages && toolKey in existingMessages) {
-          console.info(`Found tool ${toolKey} in cached messages`);
           return existingMessages as Messages;
         }
       }
       
       // 既存メッセージに既にツールのキーがある場合はそれを使用
       if (baseMessages[toolKey]) {
-        console.info(`Using existing ${toolKey} from legacy file`);
         return baseMessages;
       }
       
       // どちらも見つからない場合は基本メッセージを返す
       return baseMessages;
     }
-  } catch (error) {
-    console.error(`Failed to load tool messages for ${toolName} in ${lang}:`, error);
+  } catch {
     // エラーの場合は基本メッセージを返す
     return await loadMessagesByLang(lang);
   }
@@ -134,44 +155,42 @@ export function getMessages(locale: Language = 'en'): Messages {
   return messages.get(locale) || messages.get('en')!;
 }
 
-export async function translate(lang: string, key: string): Promise<string> {
+export async function translate(lang: string, key: string, toolName?: string): Promise<string> {
   const locale = lang as Language;
   
   // メッセージをロード（必要な場合）
   if (!messages.has(locale)) {
     await loadMessagesByLang(locale);
   }
-  
+
+  // キーを分割して解析
   const keys = key.split('.');
-  let value: unknown = getMessages(locale);
-
-  // ルートレベルのキーを特定
-  const rootKey = keys[0];
   
-  // ツール固有の翻訳が必要で、まだ読み込まれていない場合は読み込む
-  if (keys.length > 1 && rootKey && 
-      typeof value === 'object' && value !== null && 
-      !(rootKey in value)) {
-    // ツール名のマッピング（キャメルケース → ケバブケース）
-    const toolNameMap: Record<string, string> = {
-      'countryData': 'country-data',
-      'jsonViewer': 'json-viewer'
-    };
-    
-    const fileToolName = toolNameMap[rootKey] || rootKey;
-    
-    if (Object.keys(toolNameMap).includes(rootKey)) {
-      await loadToolMessages(locale, fileToolName);
-      value = getMessages(locale);
-    }
-  }
-
+  // ツール名が指定されていない場合は、最初のキーをツール名として使用
+  const actualToolName = toolName || keys[0];
+  
+  // ツールのメッセージをロード
+  await loadToolMessages(locale, actualToolName);
+  
+  // メッセージを取得
+  let value: unknown = getMessages(locale);
+  
+  // 各キーに対して順番にアクセス
   for (const k of keys) {
-    if (value === undefined || typeof value !== 'object') return key;
+    if (!value || typeof value !== 'object') {
+      console.warn(`Translation key not found: ${key} (at ${k})`);
+      return key;
+    }
     value = (value as Record<string, unknown>)[k];
   }
 
-  return typeof value === 'string' ? value : key;
+  // 最終的な値が文字列でない場合は、キーを返す
+  if (typeof value !== 'string') {
+    console.warn(`Translation value is not a string: ${key}`);
+    return key;
+  }
+
+  return value;
 }
 
 // 利用可能な言語一覧を取得

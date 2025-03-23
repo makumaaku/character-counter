@@ -1,8 +1,21 @@
 {
   "meta": {
-    "title": "Herramientas de Generación de Palabras - Crea Varios Tipos de Palabras y Texto",
-    "description": "Colección de herramientas para generar palabras, nombres, contraseñas, historias y más. Herramientas gratuitas y fáciles de usar para generar texto.",
-    "keywords": "generador de palabras, generador de nombres, generador de contraseñas, generador de historias, generador de oraciones, generador de tarjetas de palabras, generador de kanji japonés"
+    "title": "Herramientas de Generación de Texto - Crea Varios Tipos de Texto",
+    "description": "Colección de herramientas para generar varios tipos de texto, incluyendo contraseñas, nombres, oraciones y más.",
+    "keywords": "generador de texto,generador de palabras,generador de contraseñas,generador de nombres,generador de oraciones"
+  },
+  "common": {
+    "copyButton": "Copiar",
+    "copied": "¡Copiado!",
+    "generateButton": "Generar",
+    "downloadButton": "Descargar",
+    "resetButton": "Restablecer",
+    "settings": "Configuración",
+    "preview": "Vista Previa",
+    "result": "Resultado",
+    "length": "Longitud",
+    "options": "Opciones",
+    "customize": "Personalizar"
   },
   "title": "Herramientas de Generación de Palabras",
   "description": "Crea varios tipos de palabras y texto con nuestra colección de herramientas de generación",

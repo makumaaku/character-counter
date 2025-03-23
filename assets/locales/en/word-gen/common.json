@@ -1,8 +1,21 @@
 {
   "meta": {
-    "title": "Word Generation Tools - Create Various Types of Words and Text",
-    "description": "Collection of tools for generating words, names, passwords, stories, and more. Free and easy to use text generation tools.",
-    "keywords": "word generator, name generator, password generator, story generator, sentence generator, word card generator, japanese kanji generator"
+    "title": "Word Generation Tools - Create Various Types of Text",
+    "description": "Collection of tools for generating various types of text including passwords, names, sentences and more.",
+    "keywords": "word generator,text generator,password generator,name generator,sentence generator"
+  },
+  "common": {
+    "copyButton": "Copy",
+    "copied": "Copied!",
+    "generateButton": "Generate",
+    "downloadButton": "Download",
+    "resetButton": "Reset",
+    "settings": "Settings",
+    "preview": "Preview",
+    "result": "Result",
+    "length": "Length",
+    "options": "Options",
+    "customize": "Customize"
   },
   "title": "Word Generation Tools",
   "description": "Create various types of words and text with our collection of generation tools",

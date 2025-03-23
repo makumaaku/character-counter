@@ -1,93 +1,189 @@
 import { translate } from '@/lib/i18n/server'
+import { Language } from '@/lib/i18n/types'
+import { loadToolMessages } from '@/lib/i18n/server'
 import PasswordGeneratorClient from './components/PasswordGeneratorClient'
 
 export default async function PasswordGeneratorPage({ params }: { params: Promise<{ lang: string }> }) {
   const pram = await params;
   const lang = pram.lang;
 
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen/password-generator');
+
+  // 必要な翻訳を一括で取得
+  const [
+    title,
+    description,
+    catchphrase,
+    intro,
+    featuresTitle,
+    easyOperationTitle,
+    easyOperationDescription,
+    customizationTitle,
+    customizationDescription,
+    securityTitle,
+    securityDescription,
+    useCasesTitle,
+    onlineAccountsTitle,
+    onlineAccountsDescription,
+    corporateTitle,
+    corporateDescription,
+    privacyTitle,
+    privacyDescription,
+    technicalTitle,
+    algorithmTitle,
+    algorithmDescription,
+    performanceTitle,
+    performanceDescription,
+    technicalPrivacyTitle,
+    technicalPrivacyDescription,
+    faqTitle,
+    securityQuestion,
+    securityAnswer,
+    customizationQuestion,
+    customizationAnswer,
+    commercialQuestion,
+    commercialAnswer,
+    conclusionTitle,
+    conclusionDescription,
+    generatedPassword,
+    copyButton,
+    copied,
+    passwordLength,
+    uppercaseLabel,
+    lowercaseLabel,
+    numbersLabel,
+    symbolsLabel,
+    generateButton
+  ] = await Promise.all([
+    translate(lang, 'wordGen.passwordGenerator.title'),
+    translate(lang, 'wordGen.passwordGenerator.description'),
+    translate(lang, 'wordGen.passwordGenerator.catchphrase'),
+    translate(lang, 'wordGen.passwordGenerator.intro'),
+    translate(lang, 'wordGen.passwordGenerator.features.title'),
+    translate(lang, 'wordGen.passwordGenerator.features.easyOperation.title'),
+    translate(lang, 'wordGen.passwordGenerator.features.easyOperation.description'),
+    translate(lang, 'wordGen.passwordGenerator.features.customization.title'),
+    translate(lang, 'wordGen.passwordGenerator.features.customization.description'),
+    translate(lang, 'wordGen.passwordGenerator.features.security.title'),
+    translate(lang, 'wordGen.passwordGenerator.features.security.description'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.title'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.onlineAccounts.title'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.onlineAccounts.description'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.corporate.title'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.corporate.description'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.privacy.title'),
+    translate(lang, 'wordGen.passwordGenerator.useCases.privacy.description'),
+    translate(lang, 'wordGen.passwordGenerator.technical.title'),
+    translate(lang, 'wordGen.passwordGenerator.technical.algorithm.title'),
+    translate(lang, 'wordGen.passwordGenerator.technical.algorithm.description'),
+    translate(lang, 'wordGen.passwordGenerator.technical.performance.title'),
+    translate(lang, 'wordGen.passwordGenerator.technical.performance.description'),
+    translate(lang, 'wordGen.passwordGenerator.technical.privacy.title'),
+    translate(lang, 'wordGen.passwordGenerator.technical.privacy.description'),
+    translate(lang, 'wordGen.passwordGenerator.faq.title'),
+    translate(lang, 'wordGen.passwordGenerator.faq.questions.security.question'),
+    translate(lang, 'wordGen.passwordGenerator.faq.questions.security.answer'),
+    translate(lang, 'wordGen.passwordGenerator.faq.questions.customization.question'),
+    translate(lang, 'wordGen.passwordGenerator.faq.questions.customization.answer'),
+    translate(lang, 'wordGen.passwordGenerator.faq.questions.commercial.question'),
+    translate(lang, 'wordGen.passwordGenerator.faq.questions.commercial.answer'),
+    translate(lang, 'wordGen.passwordGenerator.conclusion.title'),
+    translate(lang, 'wordGen.passwordGenerator.conclusion.description'),
+    translate(lang, 'wordGen.passwordGenerator.generatedPassword'),
+    translate(lang, 'wordGen.common.copyButton'),
+    translate(lang, 'wordGen.common.copied'),
+    translate(lang, 'wordGen.passwordGenerator.passwordLength'),
+    translate(lang, 'wordGen.passwordGenerator.characterTypes.uppercase'),
+    translate(lang, 'wordGen.passwordGenerator.characterTypes.lowercase'),
+    translate(lang, 'wordGen.passwordGenerator.characterTypes.numbers'),
+    translate(lang, 'wordGen.passwordGenerator.characterTypes.symbols'),
+    translate(lang, 'wordGen.common.generateButton')
+  ]);
+
   const translations = {
-    title: translate(lang, 'passwordGenerator.title'),
-    description: translate(lang, 'passwordGenerator.description'),
-    catchphrase: translate(lang, 'passwordGenerator.catchphrase'),
-    intro: translate(lang, 'passwordGenerator.intro'),
+    title,
+    description,
+    catchphrase,
+    intro,
     features: {
-      title: translate(lang, 'passwordGenerator.features.title'),
+      title: featuresTitle,
       easyOperation: {
-        title: translate(lang, 'passwordGenerator.features.easyOperation.title'),
-        description: translate(lang, 'passwordGenerator.features.easyOperation.description')
+        title: easyOperationTitle,
+        description: easyOperationDescription
       },
       customization: {
-        title: translate(lang, 'passwordGenerator.features.customization.title'),
-        description: translate(lang, 'passwordGenerator.features.customization.description')
+        title: customizationTitle,
+        description: customizationDescription
       },
       security: {
-        title: translate(lang, 'passwordGenerator.features.security.title'),
-        description: translate(lang, 'passwordGenerator.features.security.description')
+        title: securityTitle,
+        description: securityDescription
       }
     },
     useCases: {
-      title: translate(lang, 'passwordGenerator.useCases.title'),
+      title: useCasesTitle,
       onlineAccounts: {
-        title: translate(lang, 'passwordGenerator.useCases.onlineAccounts.title'),
-        description: translate(lang, 'passwordGenerator.useCases.onlineAccounts.description')
+        title: onlineAccountsTitle,
+        description: onlineAccountsDescription
       },
       corporate: {
-        title: translate(lang, 'passwordGenerator.useCases.corporate.title'),
-        description: translate(lang, 'passwordGenerator.useCases.corporate.description')
+        title: corporateTitle,
+        description: corporateDescription
       },
       privacy: {
-        title: translate(lang, 'passwordGenerator.useCases.privacy.title'),
-        description: translate(lang, 'passwordGenerator.useCases.privacy.description')
+        title: privacyTitle,
+        description: privacyDescription
       }
     },
     technical: {
-      title: translate(lang, 'passwordGenerator.technical.title'),
+      title: technicalTitle,
       algorithm: {
-        title: translate(lang, 'passwordGenerator.technical.algorithm.title'),
-        description: translate(lang, 'passwordGenerator.technical.algorithm.description')
+        title: algorithmTitle,
+        description: algorithmDescription
       },
       performance: {
-        title: translate(lang, 'passwordGenerator.technical.performance.title'),
-        description: translate(lang, 'passwordGenerator.technical.performance.description')
+        title: performanceTitle,
+        description: performanceDescription
       },
       privacy: {
-        title: translate(lang, 'passwordGenerator.technical.privacy.title'),
-        description: translate(lang, 'passwordGenerator.technical.privacy.description')
+        title: technicalPrivacyTitle,
+        description: technicalPrivacyDescription
       }
     },
     faq: {
-      title: translate(lang, 'passwordGenerator.faq.title'),
+      title: faqTitle,
       questions: {
         security: {
-          question: translate(lang, 'passwordGenerator.faq.questions.security.question'),
-          answer: translate(lang, 'passwordGenerator.faq.questions.security.answer')
+          question: securityQuestion,
+          answer: securityAnswer
         },
         customization: {
-          question: translate(lang, 'passwordGenerator.faq.questions.customization.question'),
-          answer: translate(lang, 'passwordGenerator.faq.questions.customization.answer')
+          question: customizationQuestion,
+          answer: customizationAnswer
         },
         commercial: {
-          question: translate(lang, 'passwordGenerator.faq.questions.commercial.question'),
-          answer: translate(lang, 'passwordGenerator.faq.questions.commercial.answer')
+          question: commercialQuestion,
+          answer: commercialAnswer
         }
       }
     },
     conclusion: {
-      title: translate(lang, 'passwordGenerator.conclusion.title'),
-      description: translate(lang, 'passwordGenerator.conclusion.description')
+      title: conclusionTitle,
+      description: conclusionDescription
     },
-    generatedPassword: translate(lang, 'passwordGenerator.generatedPassword'),
-    copyButton: translate(lang, 'passwordGenerator.copyButton'),
-    copied: translate(lang, 'passwordGenerator.copied'),
-    passwordLength: translate(lang, 'passwordGenerator.passwordLength'),
+    generatedPassword,
+    copyButton,
+    copied,
+    passwordLength,
     characterTypes: {
-      uppercase: translate(lang, 'passwordGenerator.characterTypes.uppercase'),
-      lowercase: translate(lang, 'passwordGenerator.characterTypes.lowercase'),
-      numbers: translate(lang, 'passwordGenerator.characterTypes.numbers'),
-      symbols: translate(lang, 'passwordGenerator.characterTypes.symbols')
+      uppercase: uppercaseLabel,
+      lowercase: lowercaseLabel,
+      numbers: numbersLabel,
+      symbols: symbolsLabel
     },
-    generateButton: translate(lang, 'passwordGenerator.generateButton')
-  }
+    generateButton
+  };
 
-  return <PasswordGeneratorClient translations={translations} />
+  return <PasswordGeneratorClient translations={translations} />;
 } 
