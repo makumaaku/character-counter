@@ -7,9 +7,7 @@ import PasswordStrengthLayout from './components/PasswordStrengthLayout'
 
 type Props = {
   children: React.ReactNode
-  params: {
-    lang: string
-  }
+  params: Promise<{ lang: string }>;
 }
 
 type JsonLdType = {
@@ -35,7 +33,7 @@ type JsonLdType = {
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
-  const lang = params.lang
+  const { lang } = await params;
   const title = translate(lang, 'passwordStrength.title')
   const description = translate(lang, 'passwordStrength.description')
   const url = `${SITE_CONFIG.baseURL}/${lang}/password-strength`
@@ -86,7 +84,7 @@ export async function generateMetadata({
   }
 }
 
-export default function Layout({ children, params }: Props) {
+export default function Layout({ children }: Props) {
   return (
     <PasswordStrengthLayout>
       {children}

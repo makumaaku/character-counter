@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { analyzePassword, StrengthLevel, estimateCrackTime, type TimeUnits } from './passwordUtils';
+import { analyzePassword, StrengthLevel, estimateCrackTime } from './passwordUtils';
 import PasswordInput from './PasswordInput';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import PasswordSuggestions from './PasswordSuggestions';

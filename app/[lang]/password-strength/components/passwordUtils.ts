@@ -22,9 +22,6 @@ export type PasswordAnalysis = {
   entropy: number;           // エントロピー値
 }
 
-// 記号のリスト
-const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`\'"\\\u00A1\u00FF';
-
 // 複雑なパターンのチェック（キーボード配列パターンなど）
 const COMMON_PATTERNS = [
   'qwerty', 'asdfgh', 'zxcvbn', '123456', 'abcdef', // キーボード配列
