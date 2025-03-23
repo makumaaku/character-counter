@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Button from '@/components/ui/button';
+import { useMessages } from '@/hooks/useMessages';
 
 // numberQuizの翻訳データの型定義
 type NumberQuizMessages = {
@@ -27,27 +28,12 @@ type NumberQuizMessages = {
   }
 }
 
-// messagesを取得するカスタムフック
-function useMessages() {
-  const [messages, setMessages] = useState<NumberQuizMessages | null>(null);
-
-  useEffect(() => {
-    const messagesScript = document.getElementById('messages');
-    if (messagesScript) {
-      const messages = JSON.parse(messagesScript.textContent || '{}');
-      setMessages(messages);
-    }
-  }, []);
-
-  return messages;
-}
-
 export default function SudokuGame() {
   const [board, setBoard] = useState<number[][]>([]);
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
   const [message, setMessage] = useState<string>('');
   const [isComplete, setIsComplete] = useState<boolean>(false);
-  const messages = useMessages();
+  const messages = useMessages<NumberQuizMessages>();
 
   const generateEmptyBoard = () => {
     return Array(9).fill(null).map(() => Array(9).fill(0));

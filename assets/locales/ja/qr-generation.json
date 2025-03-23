@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "QRコード生成ツール - オンラインでQRコードを作成",
+    "description": "URL、テキスト、連絡先情報などのQRコードをオンラインで生成。無料で簡単に使えるQRコード生成ツール。",
+    "keywords": "QRコード, 生成, オンラインツール, URLからQR, テキストからQR"
+  },
+  "title": "QRコード生成ツール",
+  "description": "テキスト、URL、またはデータからQRコードを生成",
+  "ui": {
+    "inputLabel": "QRコードの内容を入力",
+    "placeholder": "https://example.com または任意のテキスト",
+    "generateButton": "QRコードを生成",
+    "downloadButton": "QRコードをダウンロード",
+    "copyButton": "テキストをコピー",
+    "contentTypeLabel": "コンテンツタイプ",
+    "contentTypes": {
+      "text": "テキスト",
+      "url": "URL",
+      "email": "メール",
+      "phone": "電話番号"
+    },
+    "colorLabel": "QRコードの色",
+    "bgColorLabel": "背景色",
+    "sizeLabel": "サイズ",
+    "errorCorrection": "誤り訂正レベル",
+    "errorCorrectionLevels": {
+      "L": "低 (7%)",
+      "M": "中 (15%)",
+      "Q": "四分位 (25%)",
+      "H": "高 (30%)"
+    },
+    "successMessage": "QRコードが正常に生成されました！",
+    "errorMessage": "QRコードの生成に失敗しました。もう一度お試しください。",
+    "emptyState": "テキストを入力してQRコードを生成してください"
+  },
+  "features": {
+    "qrGeneration": "QRコード生成",
+    "textToQr": "テキストからQRコードへの変換",
+    "urlToQr": "URLからQRコードへの変換",
+    "preview": "リアルタイムQRコードプレビュー",
+    "free": "無料で利用可能",
+    "noRegistration": "登録不要",
+    "browserRequirements": "JavaScriptが有効なモダンブラウザが必要です"
+  }
+} 

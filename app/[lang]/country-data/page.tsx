@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import { useMessages } from '@/hooks/useMessages';
 
 type CountryData = {
   name: string;
@@ -71,20 +72,6 @@ type Messages = {
   };
 };
 
-function useMessages() {
-  const [messages, setMessages] = useState<Messages | null>(null);
-
-  useEffect(() => {
-    const messagesScript = document.getElementById('messages');
-    if (messagesScript) {
-      const messages = JSON.parse(messagesScript.textContent || '{}');
-      setMessages(messages);
-    }
-  }, []);
-
-  return messages;
-}
-
 export default function CountryDataPage() {
   const [allCountriesData, setAllCountriesData] = useState<CountryData[]>([]);
   const [filteredData, setFilteredData] = useState<CountryData[]>([]);
@@ -93,7 +80,7 @@ export default function CountryDataPage() {
   const [sortOrder, setSortOrder] = useState(1);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
-  const messages = useMessages();
+  const messages = useMessages<Messages>();
 
   // Convert filterData to useCallback with dependencies
   const filterData = useCallback(() => {

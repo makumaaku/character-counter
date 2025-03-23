@@ -74,11 +74,23 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
     // jsonファイル内のkeyはキャメルケースなので、こちらで変換を行う。
     const toolKey = kebabToCamel(toolName);
     
+    // 基本メッセージを読み込み
+    const baseMessages = await loadMessagesByLang(lang);
+    
     // 新しいディレクトリ構造からのツール翻訳ファイル読み込み試行
     try {
       // ツール用翻訳ファイルの読み込み
       const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
       toolMessages = toolModule.default || {};
+      
+      const combinedMessages = {
+        ...baseMessages,
+        [toolKey]: toolMessages,
+      };
+      
+      // 更新したメッセージをキャッシュ
+      messages.set(lang, combinedMessages);
+      return combinedMessages;
     } catch {
       console.info(`New structure for tool ${toolName} not found, will check legacy file`);
       
@@ -86,30 +98,20 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
       if (messages.has(lang)) {
         const existingMessages = messages.get(lang);
         if (existingMessages && toolKey in existingMessages) {
-          toolMessages = existingMessages[toolKey] as Record<string, unknown>;
           console.info(`Found tool ${toolKey} in cached messages`);
           return existingMessages as Messages;
         }
       }
-    }
-    
-    // 基本メッセージと結合
-    const baseMessages = await loadMessagesByLang(lang);
-    
-    // 既存メッセージに既にツールのキーがある場合はそれを使用
-    if (baseMessages[toolKey]) {
-      console.info(`Using existing ${toolKey} from legacy file`);
+      
+      // 既存メッセージに既にツールのキーがある場合はそれを使用
+      if (baseMessages[toolKey]) {
+        console.info(`Using existing ${toolKey} from legacy file`);
+        return baseMessages;
+      }
+      
+      // どちらも見つからない場合は基本メッセージを返す
       return baseMessages;
     }
-    
-    const combinedMessages = {
-      ...baseMessages,
-      [toolKey]: toolMessages,
-    };
-    
-    // 更新したメッセージをキャッシュ
-    messages.set(lang, combinedMessages);
-    return combinedMessages;
   } catch (error) {
     console.error(`Failed to load tool messages for ${toolName} in ${lang}:`, error);
     // エラーの場合は基本メッセージを返す

@@ -1,9 +1,11 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import Script from 'next/script';
 
 type Props = {
   children: React.ReactNode;
@@ -42,19 +44,26 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
-
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'qr-generation');
+  
+  // 翻訳関数
+  const t = async (key: string) => await translate(lang as Language, key);
+  
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: await t(SITE_CONFIG.siteName),
+    publisher: await t(SITE_CONFIG.publisher),
+    logoAlt: await t('common.meta.logoAlt'),
   };
 
+  // ページ固有のJSON-LDを定義
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('qrGeneration.meta.title'),
-    "description": t('qrGeneration.meta.description'),
+    "name": await t('qrGeneration.meta.title'),
+    "description": await t('qrGeneration.meta.description'),
     "url": `${SITE_CONFIG.baseURL}/${lang}/qr-generation`,
     "publisher": {
       "@type": "Organization",
@@ -74,24 +83,25 @@ export async function generateMetadata(
       "priceCurrency": "USD"
     },
     "featureList": [
-      "QR code generation",
-      "Text to QR code conversion",
-      "URL to QR code conversion",
-      "Real-time QR code preview",
-      "Free to use",
-      "No registration required"
+      await t('qrGeneration.features.qrGeneration'),
+      await t('qrGeneration.features.textToQr'),
+      await t('qrGeneration.features.urlToQr'),
+      await t('qrGeneration.features.preview'),
+      await t('qrGeneration.features.free'),
+      await t('qrGeneration.features.noRegistration')
     ],
     "isAccessibleForFree": true,
-    "browserRequirements": "Requires a modern web browser with JavaScript enabled"
+    "browserRequirements": await t('qrGeneration.features.browserRequirements')
   };
 
-  const metadata = getCommonMetadata(
-    lang,
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
+    lang as Language,
     commonMeta,
     {
-      title: t('qrGeneration.meta.title'),
-      description: t('qrGeneration.meta.description'),
-      keywords: t('qrGeneration.meta.keywords'),
+      title: await t('qrGeneration.meta.title'),
+      description: await t('qrGeneration.meta.description'),
+      keywords: await t('qrGeneration.meta.keywords'),
       url: `${SITE_CONFIG.baseURL}/${lang}/qr-generation`,
     }
   );
@@ -103,6 +113,7 @@ export async function generateMetadata(
       languages: {
         'en': `${SITE_CONFIG.baseURL}/en/qr-generation`,
         'ja': `${SITE_CONFIG.baseURL}/ja/qr-generation`,
+        'es': `${SITE_CONFIG.baseURL}/es/qr-generation`,
         'x-default': `${SITE_CONFIG.baseURL}/en/qr-generation`
       }
     },
@@ -114,15 +125,52 @@ export async function generateMetadata(
 
 export default async function QRGenerationLayout({ children, params }: Props) {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'qr-generation');
+
+  // 必要な翻訳を一括で取得
+  const translations = await Promise.all([
+    translate(lang as Language, 'qrGeneration.title'),
+    translate(lang as Language, 'qrGeneration.description'),
+    translate(lang as Language, 'qrGeneration.ui.placeholder'),
+    translate(lang as Language, 'qrGeneration.ui.emptyState'),
+  ]);
+  
+  // 値を取り出し
+  const [
+    title,
+    description,
+    placeholder,
+    emptyState,
+  ] = translations;
+
+  // クライアントコンポーネントに渡す翻訳データ
+  const messages = {
+    title,
+    description,
+    ui: {
+      placeholder,
+      emptyState,
+    }
+  };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('qrGeneration.title')} homeLink={`/${lang}/qr-generation`} />
-      <main className="flex-1 px-4 lg:px-8">
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Script
+        id="messages"
+        type="application/json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(messages),
+        }}
+      />
+      <div className="flex flex-col min-h-screen bg-gray-800">
+        <Header title={title} homeLink={`/${lang}/qr-generation`} />
+        <main className="flex-1 px-4 lg:px-8">
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 } 
