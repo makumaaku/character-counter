@@ -1,34 +1,53 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 type Props = {
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
   children: React.ReactNode;
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  const lang = await getLanguageFromParams(params);
+  
+  // ツール固有の翻訳をロード
+  await loadToolMessages(lang, 'roulette');
+  
+  // 必要な翻訳を並列で取得
+  const [
+    siteName,
+    publisher,
+    logoAlt,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+  ] = await Promise.all([
+    translate(lang, 'siteName'),
+    translate(lang, 'publisher'),
+    translate(lang, 'common.meta.logoAlt'),
+    translate(lang, 'roulette.meta.title'),
+    translate(lang, 'roulette.meta.description'),
+    translate(lang, 'roulette.meta.keywords'),
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName,
+    publisher,
+    logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('roulette.meta.title'),
-    "description": t('roulette.meta.description'),
+    "name": metaTitle,
+    "description": metaDescription,
     "url": `${SITE_CONFIG.baseURL}/${lang}/roulette`,
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
@@ -45,13 +64,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('roulette.meta.title'),
-      description: t('roulette.meta.description'),
-      keywords: t('roulette.meta.keywords'),
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/roulette`,
     }
   );
@@ -69,14 +88,14 @@ export default async function RouletteLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }) {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  const lang = await getLanguageFromParams(params);
+  const title = await translate(lang, 'roulette.title');
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={t('roulette.title')} homeLink={`/${lang}/roulette`}>
+      <Header title={title} homeLink={`/${lang}/roulette`}>
         <div className="flex items-center gap-2">
           {/* Left side content removed */}
         </div>

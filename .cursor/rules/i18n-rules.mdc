@@ -265,3 +265,86 @@ number-quizとcountry-dataの実装を参考にしてください。特に以下
 - `app/[lang]/number-quiz/components/SudokuGame.tsx`
 - `app/[lang]/country-data/layout.tsx`
 - `app/[lang]/country-data/page.tsx`
+
+### 11. 翻訳の並列処理
+翻訳処理のパフォーマンスを向上させるため、`Promise.all`を使用して並列処理を行います：
+
+```typescript
+// 非推奨：逐次的な翻訳処理
+const translations = {
+  title: await translate(lang, 'page.title'),
+  description: await translate(lang, 'page.description'),
+  button: await translate(lang, 'page.button'),
+};
+
+// 推奨：Promise.allを使用した並列処理
+const [title, description, button] = await Promise.all([
+  translate(lang, 'page.title'),
+  translate(lang, 'page.description'),
+  translate(lang, 'page.button'),
+]);
+
+const translations = {
+  title,
+  description,
+  button,
+};
+```
+
+#### 深いネストの翻訳処理
+オブジェクトが深くネストされている場合は、以下のパターンを使用します：
+
+```typescript
+// 非推奨：深いネストでの逐次処理
+const translations = {
+  content: {
+    hero: {
+      title: await translate(lang, 'content.hero.title'),
+      description: await translate(lang, 'content.hero.description'),
+    },
+    features: {
+      title: await translate(lang, 'content.features.title'),
+      items: {
+        first: await translate(lang, 'content.features.items.first'),
+        second: await translate(lang, 'content.features.items.second'),
+      },
+    },
+  },
+};
+
+// 推奨：Promise.allとオブジェクトの分割代入を組み合わせた並列処理
+const [
+  heroTitle,
+  heroDescription,
+  featuresTitle,
+  featuresItemFirst,
+  featuresItemSecond,
+] = await Promise.all([
+  translate(lang, 'content.hero.title'),
+  translate(lang, 'content.hero.description'),
+  translate(lang, 'content.features.title'),
+  translate(lang, 'content.features.items.first'),
+  translate(lang, 'content.features.items.second'),
+]);
+
+const translations = {
+  content: {
+    hero: {
+      title: heroTitle,
+      description: heroDescription,
+    },
+    features: {
+      title: featuresTitle,
+      items: {
+        first: featuresItemFirst,
+        second: featuresItemSecond,
+      },
+    },
+  },
+};
+```
+
+このパターンを使用することで：
+- 翻訳処理が並列化され、パフォーマンスが向上
+- コードの可読性が向上
+- デバッグが容易になる（各翻訳キーと変数の対応が明確） 
