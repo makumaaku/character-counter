@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "title": "Generador de Palabras - Crea Palabras Aleatorias al Instante",
+    "description": "Genera palabras aleatorias con longitud y patrones personalizables. Perfecto para escritura creativa, lluvia de ideas y proyectos de naming.",
+    "keywords": "generador de palabras,generador de palabras aleatorias,herramienta de creación de palabras,escritura creativa,generador de nombres,herramienta de vocabulario"
+  },
+  "title": "Generador de Palabras",
+  "description": "Genera palabras aleatorias con configuración personalizable",
+  "form": {
+    "length": {
+      "label": "Longitud de Palabra",
+      "min": "Longitud Mínima",
+      "max": "Longitud Máxima"
+    },
+    "pattern": {
+      "label": "Patrón de Palabra",
+      "placeholder": "Ingrese patrón (ej: 'con*')"
+    },
+    "count": {
+      "label": "Número de Palabras",
+      "placeholder": "Ingrese número de palabras a generar"
+    },
+    "generate": "Generar Palabras",
+    "clear": "Limpiar Todo"
+  },
+  "result": {
+    "title": "Palabras Generadas",
+    "empty": "Aún no se han generado palabras",
+    "copy": "Copiar Palabras",
+    "copied": "¡Palabras copiadas al portapapeles!",
+    "download": "Descargar Palabras",
+    "downloaded": "¡Palabras descargadas exitosamente!"
+  },
+  "about": {
+    "catchphrase": "Crea palabras únicas en segundos",
+    "introduction": "Nuestra herramienta Generador de Palabras te ayuda a crear palabras aleatorias para cualquier propósito. Ya sea que estés escribiendo una historia, haciendo lluvia de ideas para nombres o simplemente divirtiéndote, te tenemos cubierto.",
+    "features": {
+      "title": "Características",
+      "oneClick": {
+        "title": "Generación con Un Clic",
+        "description": "Genera palabras instantáneamente con un solo clic. No requiere configuración compleja."
+      },
+      "database": {
+        "title": "Base de Datos Extensa",
+        "description": "Accede a miles de palabras reales y generadas desde nuestra base de datos integral."
+      },
+      "design": {
+        "title": "Diseño Amigable",
+        "description": "Interfaz limpia e intuitiva que hace que la generación de palabras sea muy fácil."
+      }
+    },
+    "useCases": {
+      "title": "Casos de Uso",
+      "scenes": {
+        "title": "Perfecto para",
+        "writer": "Escritores Creativos",
+        "designer": "Diseñadores de Marca",
+        "brainstorming": "Sesiones de Lluvia de Ideas"
+      },
+      "testimonials": {
+        "title": "Lo que Dicen los Usuarios",
+        "writer": {
+          "name": "María García, Autora",
+          "quote": "Esta herramienta ha sido invaluable para crear nombres únicos de personajes en mis novelas."
+        },
+        "designer": {
+          "name": "Carlos Rodríguez, Diseñador de Marca",
+          "quote": "Uso este generador diariamente para encontrar inspiración en proyectos de naming de marca."
+        }
+      }
+    },
+    "technical": {
+      "title": "Detalles Técnicos",
+      "algorithm": {
+        "title": "Algoritmo Inteligente",
+        "description": "Nuestro algoritmo avanzado asegura la generación de palabras aleatorias pero pronunciables."
+      },
+      "database": {
+        "title": "Base de Datos Rica",
+        "description": "Acceso a más de 100,000 patrones y combinaciones de palabras."
+      },
+      "performance": {
+        "title": "Rendimiento Rápido",
+        "description": "Genera cientos de palabras en milisegundos."
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "questions": {
+        "free": {
+          "question": "¿Es gratuita esta herramienta?",
+          "answer": "Sí, el Generador de Palabras es completamente gratuito sin limitaciones."
+        },
+        "words": {
+          "question": "¿Cuántas palabras puedo generar?",
+          "answer": "Puedes generar hasta 1000 palabras a la vez."
+        },
+        "commercial": {
+          "question": "¿Puedo usar las palabras generadas comercialmente?",
+          "answer": "Sí, todas las palabras generadas son libres de usar para cualquier propósito, incluyendo uso comercial."
+        },
+        "mobile": {
+          "question": "¿Funciona en dispositivos móviles?",
+          "answer": "Sí, nuestro Generador de Palabras es totalmente responsive y funciona en todos los dispositivos."
+        }
+      }
+    },
+    "conclusion": {
+      "title": "Comienza a Generar Palabras Ahora",
+      "description": "Prueba nuestra herramienta Generador de Palabras hoy y descubre posibilidades infinitas para la creación de palabras."
+    }
+  }
+} 
