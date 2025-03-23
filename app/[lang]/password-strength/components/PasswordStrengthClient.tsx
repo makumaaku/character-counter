@@ -78,11 +78,6 @@ export default function PasswordStrengthClient({ translations }: { translations:
 
   return (
     <div className="max-w-2xl mx-auto">
-      <header className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">{translations.title}</h1>
-        <p className="text-xl text-gray-300">{translations.description}</p>
-      </header>
-
       <div className="bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-700">
         <label htmlFor="password" className="block text-xl font-medium mb-2">
           {translations.passwordLabel}

@@ -1,114 +1,95 @@
-import { translate } from '@/lib/i18n/client';
-import { SITE_CONFIG } from '@/constants/constants';
-import { getCommonMetadata } from '@/lib/metadata';
-import { Metadata } from 'next';
+import { Metadata } from 'next'
+import { translate } from '@/lib/i18n/server'
+import { SITE_CONFIG } from '@/constants/constants'
+import { getCommonMetadata } from '@/lib/metadata'
+
+import PasswordStrengthLayout from './components/PasswordStrengthLayout'
 
 type Props = {
-  children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  children: React.ReactNode
+  params: {
+    lang: string
+  }
 }
 
 type JsonLdType = {
-  "@context": "https://schema.org";
-  "@type": string;
-  name: string;
-  description: string;
-  url: string;
-  publisher: {
-    "@type": "Organization";
-    name: string;
-    logo: {
-      "@type": "ImageObject";
-      url: string;
-      width: number;
-      height: number;
-    };
-  };
-  applicationCategory: string;
-  operatingSystem: string;
-  offers: {
-    "@type": string;
-    price: string;
-    priceCurrency: string;
-  };
-  featureList: string[];
-  isAccessibleForFree: boolean;
-  browserRequirements: string;
+  '@context': string
+  '@type': string
+  '@id': string
+  name: string
+  description: string
+  url: string
+  inLanguage?: string
+  publisher?: {
+    '@type': string
+    name: string
+    url: string
+  }
+  mainEntity?: {
+    '@type': string
+    name: string
+    description: string
+  }
 }
 
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const lang = params.lang
+  const title = translate(lang, 'passwordStrength.title')
+  const description = translate(lang, 'passwordStrength.description')
+  const url = `${SITE_CONFIG.baseURL}/${lang}/password-strength`
+
+  // JSON-LDデータの構築
+  const jsonLd: JsonLdType = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    '@id': url,
+    name: title,
+    description,
+    url,
+    inLanguage: lang,
+    publisher: {
+      '@type': 'Organization',
+      name: translate(lang, SITE_CONFIG.siteName),
+      url: SITE_CONFIG.baseURL,
+    },
+    mainEntity: {
+      '@type': 'WebPage',
+      name: title,
+      description,
+    },
+  }
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
-  };
-
-  const jsonLd: JsonLdType = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": t('passwordStrength.meta.title'),
-    "description": t('passwordStrength.meta.description'),
-    "url": `${SITE_CONFIG.baseURL}/${lang}/password-strength`,
-    "publisher": {
-      "@type": "Organization",
-      "name": commonMeta.siteName,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
-        "width": SITE_CONFIG.logo.width,
-        "height": SITE_CONFIG.logo.height
-      }
-    },
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "featureList": [
-      "Password strength analysis",
-      "Real-time evaluation",
-      "Security recommendations",
-      "Crack time estimation",
-      "Free to use",
-      "No registration required",
-      "Works offline"
-    ],
-    "isAccessibleForFree": true,
-    "browserRequirements": "Requires a modern web browser with JavaScript enabled"
-  };
+    siteName: translate(lang, SITE_CONFIG.siteName),
+    publisher: translate(lang, SITE_CONFIG.publisher),
+    logoAlt: translate(lang, 'common.meta.logoAlt'),
+  }
 
   const metadata = getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('passwordStrength.meta.title'),
-      description: t('passwordStrength.meta.description'),
-      keywords: t('passwordStrength.meta.keywords'),
-      url: `${SITE_CONFIG.baseURL}/${lang}/password-strength`,
+      title,
+      description,
+      keywords: translate(lang, 'passwordStrength.meta.keywords'),
+      url,
     }
-  );
+  )
 
   return {
     ...metadata,
     other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
-  };
+  }
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, params }: Props) {
   return (
-    <main className="bg-gray-800 text-gray-100 font-sans min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 py-10">
-        {children}
-      </div>
-    </main>
-  );
+    <PasswordStrengthLayout>
+      {children}
+    </PasswordStrengthLayout>
+  )
 } 
