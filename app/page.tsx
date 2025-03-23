@@ -32,6 +32,9 @@ export default function Home() {
               <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
             </li>
             <li>
+              <Link href="/password-strength" className="text-white hover:underline">Password Strength Checker</Link>
+            </li>
+            <li>
               <Link href="/word-gen" className="text-white hover:underline font-bold">Word Generation Tools</Link>
             </li>
             <li>
