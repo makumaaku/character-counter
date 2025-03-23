@@ -2163,5 +2163,46 @@
       "language": "日本語キーワードを別の国で検索する場合、その国の言語（例：「パン」→「bread」）に自動変換されます。一部のキーワードのみ対応しています。",
       "location": "結果はユーザーの所在地によって影響される場合があります。例えば日本からのアクセスでは、国の設定に関わらず日本向けの結果が表示されることがあります。"
     }
+  },
+  "passwordStrength": {
+    "meta": {
+      "title": "パスワード強度チェッカー",
+      "description": "無料オンラインツールであなたのパスワードの強度をチェック。パスワードセキュリティを分析し、推奨事項を取得しましょう。",
+      "keywords": "パスワード強度, パスワードセキュリティ, パスワードチェック, 強力なパスワード, パスワード分析"
+    },
+    "title": "パスワード強度チェッカー",
+    "description": "パスワードを入力して強度をチェックしましょう。分析してセキュリティ評価を表示します。",
+    "passwordLabel": "パスワードを入力",
+    "strengthLabel": "強度",
+    "strengthLevel": {
+      "veryWeak": "非常に弱い",
+      "weak": "弱い",
+      "medium": "普通",
+      "strong": "強い",
+      "veryStrong": "非常に強い"
+    },
+    "timeToCrack": "解読にかかる時間: {{time}}",
+    "timeUnits": {
+      "instantly": "即時",
+      "seconds": "秒",
+      "minutes": "分",
+      "hours": "時間",
+      "days": "日",
+      "months": "か月",
+      "years": "年",
+      "centuries": "世紀",
+      "impossible": "事実上不可能"
+    },
+    "suggestions": {
+      "title": "パスワードを強化するには",
+      "addLength": "長くする",
+      "addNumbers": "数字を追加",
+      "addSymbols": "記号を追加",
+      "addUppercase": "大文字を追加",
+      "addLowercase": "小文字を追加",
+      "avoidCommon": "一般的な単語やパターンを避ける"
+    },
+    "passwordVisible": "パスワード表示中",
+    "passwordHidden": "パスワード非表示"
   }
 }
