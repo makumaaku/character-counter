@@ -2436,5 +2436,46 @@
       "fileSize": "File size is too large",
       "conversionFailed": "Conversion failed"
     }
+  },
+  "passwordStrength": {
+    "meta": {
+      "title": "Password Strength Checker",
+      "description": "Check how strong your password is with our free online tool. Analyze password security and get recommendations.",
+      "keywords": "password strength, password security, check password, strong password, password analyzer"
+    },
+    "title": "Password Strength Checker",
+    "description": "Enter your password to check its strength. We'll analyze it and give you a security rating.",
+    "passwordLabel": "Enter your password",
+    "strengthLabel": "Strength",
+    "strengthLevel": {
+      "veryWeak": "Very Weak",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong",
+      "veryStrong": "Very Strong"
+    },
+    "timeToCrack": "Time to crack: {{time}}",
+    "timeUnits": {
+      "instantly": "instantly",
+      "seconds": "seconds",
+      "minutes": "minutes",
+      "hours": "hours",
+      "days": "days",
+      "months": "months",
+      "years": "years",
+      "centuries": "centuries",
+      "impossible": "virtually impossible"
+    },
+    "suggestions": {
+      "title": "How to improve your password",
+      "addLength": "Make it longer",
+      "addNumbers": "Add numbers",
+      "addSymbols": "Add symbols",
+      "addUppercase": "Add uppercase letters",
+      "addLowercase": "Add lowercase letters",
+      "avoidCommon": "Avoid common words and patterns"
+    },
+    "passwordVisible": "Password visible",
+    "passwordHidden": "Password hidden"
   }
 } 
