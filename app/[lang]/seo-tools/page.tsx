@@ -32,6 +32,12 @@ export default async function SeoTools({ params }: Props) {
       description: translate(lang, 'seoVolumeGuess.description'),
       path: `/${lang}/seo-tools/seo-volume-guess`,
       icon: "📊"
+    },
+    {
+      title: translate(lang, 'metaCraftForLlm.title'),
+      description: translate(lang, 'metaCraftForLlm.description'),
+      path: `/${lang}/seo-tools/meta-craft-for-llm`,
+      icon: "🤖"
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]

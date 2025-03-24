@@ -2484,5 +2484,59 @@
     },
     "passwordVisible": "パスワード表示中",
     "passwordHidden": "パスワード非表示"
+  },
+  "llmTools": {
+    "meta": {
+      "title": "LLMツール - 高度な言語モデル向けツール集",
+      "description": "LLM（大規模言語モデル）向けの便利なツールコレクション。SEOやメタデータ生成などが簡単に行えます。",
+      "keywords": "LLMツール, AI, SEO, メタデータ生成, 大規模言語モデル, ChatGPT, GPT-4"
+    },
+    "title": "LLMツール",
+    "description": "LLM（大規模言語モデル）向けの便利なツールコレクション"
+  },
+  "metaCraftForLlm": {
+    "meta": {
+      "title": "Meta Craft for LLM - LLM向けSEOコード生成ツール",
+      "description": "URLを入力するだけでLLM向けのSEOコードを自動生成。タイトル、メタ説明、OGP、JSON-LDなどを簡単に作成できます。",
+      "keywords": "メタタグ生成, SEO, LLM, OpenGraph, JSON-LD, Twitter Card, 構造化データ"
+    },
+    "title": "Meta Craft for LLM",
+    "description": "ウェブサイトのURLを入力したら、LLM向けのSEOコードを生成し表示するツール",
+    "url": {
+      "label": "解析するURL",
+      "placeholder": "https://example.com",
+      "button": "解析"
+    },
+    "result": {
+      "title": "生成されたメタ情報",
+      "titleTag": "タイトルタグ",
+      "metaDescription": "メタ説明",
+      "ogTags": "OGPタグ",
+      "twitterTags": "Twitterカード",
+      "jsonLd": "JSON-LD",
+      "jsonLdImportance": "LLM向けSEOの最重要要素",
+      "jsonLdDescription": "JSON-LDは検索エンジンやLLMがコンテンツを理解するための構造化データです。LLMにとって最も重要なSEO要素であり、コンテンツの文脈や関係性を明確に伝えます。",
+      "otherElements": "その他のSEO要素"
+    },
+    "copy": {
+      "button": "コピー"
+    },
+    "error": {
+      "fetch": "URLの取得中にエラーが発生しました",
+      "parsing": "HTMLの解析中にエラーが発生しました"
+    },
+    "loading": "処理中...",
+    "seoInfo": {
+      "title": "JSON-LDによる構造化データとLLM向けSEO",
+      "description": "JSON-LDはSchema.orgに準拠した構造化データで、検索エンジンやAIがコンテンツを理解するための重要な要素です。LLMに適切に認識されるためには、以下のポイントに注意しましょう：",
+      "points": [
+        "WebPageやWebApplicationなど、適切な@typeを選択する",
+        "name、description、urlなどの基本プロパティを正確に記述する",
+        "FAQPageスキーマを活用して質問と回答を構造化する",
+        "publisherやorganizationの情報を明確に記述する",
+        "複数のスキーマを組み合わせて豊富な情報を提供する"
+      ],
+      "conclusion": "適切な構造化データを実装することで、LLMはあなたのコンテンツをより深く理解し、検索結果やAIレスポンスに引用される可能性が高まります。"
+    }
   }
 }
