@@ -1,7 +1,5 @@
 'use client'
 
-import { useParams } from 'next/navigation'
-import { translate } from '@/lib/i18n/client'
 import CopyButton from './CopyButton'
 
 interface HtmlViewerProps {
@@ -10,8 +8,6 @@ interface HtmlViewerProps {
 }
 
 export default function HtmlViewer({ title, htmlContent }: HtmlViewerProps) {
-  const params = useParams()
-  const lang = params.lang as string
 
   // HTMLをハイライト表示用にフォーマット
   const formattedHtml = htmlContent

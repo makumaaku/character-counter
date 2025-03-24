@@ -1,4 +1,4 @@
-import { ExtractedMetadata } from './extractor';
+import { ExtractedMetadata, JsonLdType } from './extractor';
 
 export interface GeneratedSeoCode {
   titleTag: string;
@@ -141,7 +141,7 @@ function generateJsonLd(metadata: ExtractedMetadata): string {
   const description = metadata.description || metadata.firstParagraph || '';
   const url = metadata.url || '';
   
-  let jsonLd: any;
+  let jsonLd: JsonLdType;
 
   // LLMツールの場合はWebApplicationスキーマを使用
   if (isAITool) {
@@ -187,7 +187,7 @@ function generateJsonLd(metadata: ExtractedMetadata): string {
 /**
  * WebApplicationスキーマを生成する (LLMツール向け)
  */
-function generateWebApplicationSchema(metadata: ExtractedMetadata): any {
+function generateWebApplicationSchema(metadata: ExtractedMetadata): JsonLdType {
   const title = metadata.title || metadata.h1 || 'AI Tool';
   const description = metadata.description || metadata.firstParagraph || '';
   const url = metadata.url || '';
@@ -272,11 +272,17 @@ function generateFeatureList(metadata: ExtractedMetadata): string[] {
   return features;
 }
 
-/**
- * FAQスキーマを生成する
- */
-function generateFaqSchema(metadata: ExtractedMetadata): { mainEntity: any[] } {
-  const mainEntity: any[] = [];
+interface FaqEntity {
+  '@type': 'Question';
+  name: string;
+  acceptedAnswer: {
+    '@type': 'Answer';
+    text: string;
+  };
+}
+
+function generateFaqSchema(metadata: ExtractedMetadata): { mainEntity: FaqEntity[] } {
+  const mainEntity: FaqEntity[] = [];
   const content = metadata.mainContent || '';
   
   // 簡易的な質問抽出（?で終わる文章を検出）
@@ -296,10 +302,10 @@ function generateFaqSchema(metadata: ExtractedMetadata): { mainEntity: any[] } {
         
         mainEntity.push({
           '@type': 'Question',
-          'name': currentQuestion,
-          'acceptedAnswer': {
+          name: currentQuestion,
+          acceptedAnswer: {
             '@type': 'Answer',
-            'text': answer
+            text: answer
           }
         });
         

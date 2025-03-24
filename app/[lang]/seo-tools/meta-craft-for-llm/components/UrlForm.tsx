@@ -28,7 +28,7 @@ export default function UrlForm({ onSubmit, isLoading }: UrlFormProps) {
       new URL(url) // URLが有効かチェック
       setError('')
       onSubmit(url)
-    } catch (err) {
+    } catch {
       setError('Please enter a valid URL (e.g. https://example.com)')
     }
   }

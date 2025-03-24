@@ -2,6 +2,12 @@
  * HTML文書からメタデータを抽出するユーティリティ関数
  */
 
+export interface JsonLdType {
+  '@context': string;
+  '@type': string;
+  [key: string]: unknown;
+}
+
 export interface ExtractedMetadata {
   title: string;
   description: string;
@@ -25,7 +31,7 @@ export interface ExtractedMetadata {
     description?: string;
     image?: string;
   };
-  jsonLd?: any;
+  jsonLd?: JsonLdType | null;
 }
 
 /**
@@ -189,7 +195,7 @@ function extractTopKeywords(text: string): string[] {
 /**
  * JSON-LDを抽出する
  */
-function extractJsonLd(doc: Document): any {
+function extractJsonLd(doc: Document): JsonLdType | null {
   const jsonLdScripts = doc.querySelectorAll('script[type="application/ld+json"]');
   if (jsonLdScripts.length === 0) return null;
 
