@@ -38,7 +38,7 @@ export default function MetaCraftClient() {
     
     try {
       // APIを使用してHTMLを取得
-      const response = await fetch(`/${lang}/api/crawl`, {
+      const response = await fetch(`/${lang}/api/seo-tools/meta-craft-for-llm`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
