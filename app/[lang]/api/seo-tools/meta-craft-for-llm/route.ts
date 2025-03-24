@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     // URLが有効かどうかチェック
     try {
       new URL(url);
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: 'Invalid URL' },
         { status: 400 }
