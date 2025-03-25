@@ -19,8 +19,16 @@ export async function generateMetadata(
   // number-quiz用の翻訳をロード
   await loadToolMessages(lang as Language, 'number-quiz');
   
-  // 翻訳関数
-  const t = async (key: string) => await translate(lang, key);
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'numberQuiz.meta.title'),
+    translate(lang, 'numberQuiz.meta.description'),
+    translate(lang, 'numberQuiz.meta.keywords')
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
@@ -33,8 +41,8 @@ export async function generateMetadata(
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": await t('numberQuiz.meta.title'),
-    "description": await t('numberQuiz.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/number-quiz`,
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
@@ -55,9 +63,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: await t('numberQuiz.meta.title'),
-      description: await t('numberQuiz.meta.description'),
-      keywords: await t('numberQuiz.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/number-quiz`,
     }
   );

@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "title": "Name Generator - Boring Tool",
+    "description": "Generate unique and creative names for characters, businesses, or projects with our free online name generator.",
+    "keywords": "name generator, random names, character names, business names, project names"
+  },
+  "title": "Name Generator",
+  "description": "Create unique and creative names for characters, businesses, or projects",
+  "form": {
+    "count": {
+      "label": "Number of names"
+    },
+    "generate": "Generate Names",
+    "copy": "Copy"
+  },
+  "result": {
+    "title": "Generated Names",
+    "empty": "Generated names will appear here",
+    "copyTitle": "Copy to clipboard",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "about": {
+    "catchphrase": "Discover unique names! A random name generator that creates distinctive naming solutions",
+    "introduction": "The random name generator is a tool that creates diverse names for characters, businesses, nicknames, and more. It provides a wide range of options when you're out of ideas or looking for new concepts.",
+    "features": {
+      "title": "Features and Characteristics",
+      "oneClick": {
+        "title": "One-Click Name Generation",
+        "description": "With simple button operation, new names appear instantly. Try as many times as you like to find the perfect name."
+      },
+      "patterns": {
+        "title": "Diverse Name Patterns",
+        "description": "Featuring a wide range of genres including fantasy, modern, and classical names. Create names that suit your specific needs."
+      },
+      "categories": {
+        "title": "Category-Based Output",
+        "description": "Filter by purpose such as character names, company names, or pet names to easily find names that match your objectives."
+      }
+    },
+    "useCases": {
+      "title": "Use Cases and User Examples",
+      "character": {
+        "title": "Character Creation",
+        "description": "Generate unique names for novel and game characters."
+      },
+      "branding": {
+        "title": "Brand Naming",
+        "description": "Get innovative ideas for company and product names."
+      },
+      "personal": {
+        "title": "Personal Use",
+        "description": "Perfect for creating unique usernames and nicknames."
+      }
+    },
+    "technical": {
+      "title": "Technical Background and Mechanism",
+      "algorithm": {
+        "title": "Proprietary Generation Algorithm",
+        "description": "Combines random elements with database patterns to create natural and appealing names."
+      },
+      "updates": {
+        "title": "Regular Data Updates",
+        "description": "Database is continuously updated with latest trends and user feedback to provide fresh name options."
+      },
+      "responsive": {
+        "title": "Multi-Device Support",
+        "description": "Responsive design ensures comfortable use from any device."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "commercial": {
+        "question": "Can I use the generated names commercially?",
+        "answer": "Yes, commercial use is permitted under our terms of service."
+      },
+      "categories": {
+        "question": "Can I choose specific categories of names?",
+        "answer": "Yes, we provide filtering options to match your specific needs."
+      },
+      "retry": {
+        "question": "What if I don't like the suggested names?",
+        "answer": "You can click the generate button as many times as you like until you find names you love."
+      }
+    },
+    "conclusion": {
+      "title": "Conclusion",
+      "description": "The random name generator creates distinctive names using its unique algorithm, solving naming challenges in creative and business contexts. Use this tool to find the perfect name for your project."
+    }
+  },
+  "useCases": {
+    "title": "Use Cases",
+    "creative": {
+      "title": "Creative Writing",
+      "description": "Generate character names for stories, novels, and creative writing projects."
+    },
+    "gaming": {
+      "title": "Gaming",
+      "description": "Create unique character names for role-playing games and video games."
+    },
+    "testing": {
+      "title": "Testing",
+      "description": "Generate test user names for software testing and development."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "question": "How are the names generated?",
+      "answer": "Names are generated using a combination of common name patterns and creative elements to ensure uniqueness and usability."
+    },
+    "q2": {
+      "question": "Can I use these names commercially?",
+      "answer": "Yes, all generated names are free to use for any purpose, including commercial use."
+    },
+    "q3": {
+      "question": "How many names can I generate?",
+      "answer": "You can generate up to 100 names at once, and there's no limit to how many times you can use the generator."
+    }
+  }
+}

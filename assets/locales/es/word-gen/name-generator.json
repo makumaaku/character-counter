@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Generador de Nombres Aleatorios - Crea Nombres Creativos",
+    "description": "Genera nombres aleatorios para personajes, negocios o cualquier proyecto creativo. Nuestro generador crea nombres únicos y significativos al instante.",
+    "keywords": "generador de nombres,nombre aleatorio,nombre de personaje,nombre de negocio,nombres creativos"
+  },
+  "title": "Generador de Nombres Aleatorios",
+  "description": "Genera nombres únicos y creativos para tus proyectos",
+  "ui": {
+    "generateButton": "Generar Nombres",
+    "nameType": {
+      "label": "Tipo de Nombre",
+      "character": "Nombre de Personaje",
+      "business": "Nombre de Negocio",
+      "fantasy": "Nombre de Fantasía"
+    },
+    "gender": {
+      "label": "Género",
+      "male": "Masculino",
+      "female": "Femenino",
+      "any": "Cualquiera"
+    },
+    "origin": {
+      "label": "Origen del Nombre",
+      "any": "Cualquiera",
+      "english": "Inglés",
+      "japanese": "Japonés",
+      "spanish": "Español"
+    },
+    "results": {
+      "title": "Nombres Generados",
+      "empty": "Haz clic en generar para crear nombres"
+    }
+  }
+} 
