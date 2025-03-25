@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "Page Speed Checker - Website Performance Analysis Tool",
+    "description": "Analyze your website's loading speed, resource usage, and get performance improvement suggestions with our free Page Speed Checker tool.",
+    "keywords": "page speed checker, website performance, loading speed, performance optimization, resource analysis"
+  },
+  "title": "Page Speed Checker",
+  "description": "Analyze website loading speed and get performance improvement suggestions",
+  "input": {
+    "url": "Website URL",
+    "analyzeButton": "Analyze"
+  },
+  "results": {
+    "loading": "Analyzing...",
+    "loadTime": "Page Load Time",
+    "resources": "Top Resources by Size",
+    "suggestions": "Performance Suggestions"
+  },
+  "error": {
+    "invalidUrl": "Please enter a valid URL (e.g., https://example.com)",
+    "fetchFailed": "Failed to analyze the page. Please check the URL and try again."
+  },
+  "status": {
+    "noUrl": "Please enter a URL to analyze"
+  }
+}

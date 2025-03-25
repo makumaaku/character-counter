@@ -1,0 +1,35 @@
+{
+    "meta": {
+      "title": "PDFからPNGへの変換 - PDFを透過PNG画像に変換",
+      "description": "無料のオンラインツールでPDFドキュメントを透過対応のPNG画像に変換。各ページを個別の高品質PNG画像に変換します。インストール不要です。",
+      "keywords": "pdfからpng, pdf画像変換, pdfをpngに変換, pdf変換, 透過png, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "PDFからPNGへの変換",
+    "description": "PDFページを透過対応の高品質PNG画像に変換",
+    "form": {
+      "upload": {
+        "label": "PDFファイルをアップロード",
+        "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "quality": {
+        "label": "画像品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "downloadAll": "すべてダウンロード",
+      "download": "ダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PDFファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが20MBの制限を超えています"
+    }
+  }

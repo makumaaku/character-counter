@@ -1,0 +1,32 @@
+{
+    "meta": {
+      "title": "HEIC to PDF変換ツール - オンラインでHEIC画像をPDFに変換",
+      "description": "HEIC画像をPDFドキュメントに変換する無料オンラインツール。iPhoneの写真を高品質でPDF形式に変換。インストール不要。",
+      "keywords": "heicからpdf, heic変換, heicを変換, heicからpdfへの変換, オンラインheic変換, 無料heic変換"
+    },
+    "title": "HEIC to PDF変換ツール",
+    "description": "HEIC画像を高品質でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "HEICファイルをアップロード",
+        "button": "HEICファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileSize": "ファイルサイズが20MBの制限を超えています",
+      "fileType": "HEICファイルのみがサポートされています",
+      "conversion": "変換中にエラーが発生しました。もう一度お試しください。"
+    },
+    "success": {
+      "message": "変換が正常に完了しました！"
+    }
+  }

@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Japanese Kanji Generator - Create Random Kanji Images",
+    "description": "A tool that automatically generates Japanese kanji characters. Randomly create one character and download it as a 512 x 512px jpg or png image.",
+    "keywords": "kanji generator, kanji creation, kanji image, Japanese, random kanji"
+  },
+  "title": "Japanese Kanji Generator",
+  "description": "A tool that automatically generates Japanese kanji characters. Randomly create one character and download it as a 512 x 512px jpg or png image.",
+  "generate": {
+    "button": "Generate Kanji",
+    "loading": "Generating..."
+  },
+  "download": {
+    "button": "Download Image",
+    "jpg": "Download as JPG",
+    "png": "Download as PNG"
+  },
+  "copy": {
+    "button": "Copy Kanji",
+    "success": "✓ Copied"
+  },
+  "display": {
+    "noImage": "No image generated yet"
+  },
+  "error": {
+    "generation": "An error occurred while generating the kanji. Please try again.",
+    "download": "An error occurred while downloading. Please try again."
+  },
+  "font": {
+    "loading": "Now loading..."
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "meta": {
+      "title": "PDF to JPG変換ツール - オンラインでPDFを画像に変換",
+      "description": "PDFドキュメントをJPG画像に変換する無料オンラインツール。各ページを調整可能な品質で個別の画像に変換。インストール不要。",
+      "keywords": "pdfからjpg, pdfから画像, pdfをjpgに変換, pdf変換, オンラインpdf変換, 無料pdf変換"
+    },
+    "title": "PDF to JPG変換ツール",
+    "description": "PDFページを調整可能な品質でJPG画像に変換",
+    "form": {
+      "upload": {
+        "label": "PDFファイルをアップロード",
+        "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "quality": {
+        "label": "画像品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "downloadAll": "すべてダウンロード",
+      "download": "ダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PDFファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが20MBの制限を超えています"
+    }
+  }

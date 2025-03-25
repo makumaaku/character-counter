@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Comprobador de Canibalización SEO | Boring Tools",
+    "description": "Comprueba si palabras clave específicas están compitiendo en múltiples páginas de tu sitio. Identifica fácilmente problemas de canibalización SEO.",
+    "keywords": "SEO,canibalización,competencia de palabras clave,herramientas SEO,optimización para motores de búsqueda"
+  },
+  "title": "Comprobador de Canibalización SEO",
+  "description": "Introduce un dominio y una palabra clave para comprobar la canibalización de palabras clave (competencia) dentro de tu sitio.",
+  "domain": {
+    "label": "Dominio",
+    "placeholder": "ej. ejemplo.com",
+    "help": "El protocolo (http:// o https://) es opcional"
+  },
+  "keyword": {
+    "label": "Palabra clave",
+    "placeholder": "Introduce la palabra clave a comprobar",
+    "help": "Puedes buscar múltiples palabras"
+  },
+  "button": {
+    "check": "Comprobar ahora",
+    "processing": "Procesando..."
+  },
+  "result": {
+    "title": "Resultados de búsqueda",
+    "description": "Haz clic en el enlace a continuación para ver los resultados de búsqueda de Google. Si se muestran múltiples páginas, puede estar ocurriendo canibalización.",
+    "openButton": "Abrir resultados de búsqueda de Google"
+  },
+  "error": {
+    "emptyDomain": "Por favor, introduce un dominio",
+    "invalidDomain": "Por favor, introduce un dominio válido",
+    "emptyKeyword": "Por favor, introduce una palabra clave",
+    "generic": "Ha ocurrido un error. Por favor, inténtalo de nuevo."
+  }
+}

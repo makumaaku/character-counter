@@ -1,0 +1,55 @@
+{
+  "title": "Contact Us",
+  "description": "We value your feedback and are here to help with any questions or concerns you may have about our character counter tool.",
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Your name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "your.email@example.com"
+    },
+    "subject": {
+      "label": "Subject",
+      "placeholder": "Select a subject",
+      "options": {
+        "general": "General Inquiry",
+        "technical": "Technical Support",
+        "billing": "Billing Question",
+        "feature": "Feature Request",
+        "other": "Other"
+      }
+    },
+    "message": {
+      "label": "Message",
+      "placeholder": "Please describe your question or concern"
+    },
+    "submit": "Send Message"
+  },
+  "otherWays": {
+    "title": "Other Ways to Reach Us",
+    "email": "Email",
+    "businessHours": "Business Hours",
+    "businessHoursValue": "Monday - Friday, 9:00 AM - 6:00 PM (GMT)",
+    "responseTime": "We typically respond to all inquiries within 24 business hours."
+  },
+  "meta": {
+    "title": "Contact Us - Character Counter Tool | Support & Inquiries",
+    "description": "Get in touch with our support team for any questions about our character counter tool. We are here to help with your text analysis needs.",
+    "keywords": "character counter contact, text counter support, word count help, contact form, customer service",
+    "jsonLd": {
+      "name": "Contact Character Counter Support",
+      "description": "Contact page for Character Counter Tool support and inquiries",
+      "organization": {
+        "name": "Character Counter Tool",
+        "email": "support@character-counter.com",
+        "availableLanguage": [
+          "English",
+          "Japanese"
+        ],
+        "hoursAvailable": "Mo-Fr 09:00-18:00"
+      }
+    }
+  }
+}

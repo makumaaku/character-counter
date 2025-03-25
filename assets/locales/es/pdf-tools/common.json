@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Herramientas PDF - Convierte, Edita y Gestiona archivos PDF",
+    "description": "Herramientas gratuitas en línea para convertir, editar y gestionar archivos PDF. Sin instalación requerida, funciona directamente en tu navegador.",
+    "keywords": "herramientas pdf, convertidor pdf, pdf a jpg, editor pdf, herramientas pdf en línea, herramientas pdf gratis"
+  },
+  "title": "Herramientas PDF",
+  "description": "Herramientas gratuitas en línea para convertir, editar y gestionar archivos PDF",
+  "tools": {
+    "pdfToJpg": {
+      "title": "Convertidor de PDF a JPG",
+      "description": "Convierte páginas PDF a imágenes JPG con calidad ajustable"
+    },
+    "jpgToPdf": {
+      "title": "Convertidor de JPG a PDF",
+      "description": "Convierte imágenes JPG a documentos PDF con ajustes personalizables"
+    },
+    "webToPdf": {
+      "title": "Convertidor de Web a PDF",
+      "description": "Convierte cualquier página web a un documento PDF con un solo clic"
+    },
+    "pdfToWord": {
+      "title": "Convertidor de PDF a Word",
+      "description": "Convierte documentos PDF a archivos Word editables fácilmente"
+    },
+    "pdfToPng": {
+      "title": "Convertidor de PDF a PNG",
+      "description": "Convierte páginas PDF a imágenes PNG de alta calidad con soporte de transparencia"
+    },
+    "pngToPdf": {
+      "title": "Convertidor de PNG a PDF",
+      "description": "Convierte imágenes PNG a documentos PDF con ajustes personalizables"
+    },
+    "svgToPdf": {
+      "title": "Convertidor de SVG a PDF",
+      "description": "Convierte gráficos vectoriales SVG a documentos PDF de alta calidad"
+    },
+    "pdfToEpub": {
+      "title": "Convertidor de PDF a EPUB",
+      "description": "Convierte documentos PDF a formato de libro electrónico EPUB para lectores electrónicos"
+    },
+    "heicToPdf": {
+      "title": "Convertidor de HEIC a PDF",
+      "description": "Convierte imágenes HEIC a documentos PDF de alta calidad"
+    }
+  }
+}

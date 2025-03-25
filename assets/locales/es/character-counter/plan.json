@@ -1,0 +1,85 @@
+{
+  "title": "Planes",
+  "description": "Puedes usar todas las funciones básicas de nuestra aplicación de contador de caracteres con registro gratuito. Para funciones avanzadas, considera actualizar a nuestra versión premium.",
+  "pricing": {
+    "title": "Precios",
+    "free": "Versión Gratuita: $0",
+    "monthly": "Plan Mensual: $4.80",
+    "annual": "Plan Anual: $39.80 (31% DE DESCUENTO comparado con el plan mensual!)"
+  },
+  "comparison": {
+    "title": "Comparación Gratuito vs Premium",
+    "feature": "Función",
+    "free": "Gratuito",
+    "premium": "Premium",
+    "features": {
+      "charCount": "Contador de Caracteres",
+      "counts": "Contador de Líneas, Palabras y Bytes",
+      "search": "Búsqueda de Texto",
+      "darkMode": "Modo Oscuro",
+      "ads": "Publicidad",
+      "export": "Exportación a Word y PDF",
+      "api": "Integración con API"
+    },
+    "yes": "Sí",
+    "no": "No"
+  },
+  "premiumFeatures": {
+    "title": "Funciones Premium",
+    "basic": {
+      "title": "Funciones Básicas",
+      "description": "Todas las funciones básicas disponibles en la versión gratuita están, por supuesto, disponibles en la versión premium:",
+      "features": {
+        "1": "Conteo en tiempo real de caracteres, líneas, palabras y bytes",
+        "2": "Funcionalidad de búsqueda de texto",
+        "3": "Cambio a modo oscuro"
+      }
+    },
+    "adFree": {
+      "title": "Experiencia sin Publicidad",
+      "description": "Se eliminan los anuncios, proporcionando una experiencia de usuario más cómoda."
+    },
+    "export": {
+      "title": "Exportación a Word y PDF",
+      "description": "Exporta los resultados del conteo y el texto de entrada juntos a archivos Word o PDF."
+    },
+    "api": {
+      "title": "Integración con API",
+      "description": "Todas las funciones de nuestro servicio están disponibles a través de API. Por favor, contáctanos a través del formulario de consulta para el uso de la API."
+    }
+  },
+  "subscriptions": {
+    "title": "Planes Mensuales y Anuales",
+    "monthly": {
+      "title": "Plan Mensual",
+      "description": "Paga mensualmente sin compromiso a largo plazo. Perfecto para probar las funciones premium."
+    },
+    "annual": {
+      "title": "Plan Anual",
+      "description": "Estructura de precios más económica, recomendada para uso a largo plazo."
+    },
+    "note": "Para información detallada sobre precios y planes, por favor consulta nuestra página dedicada de precios."
+  },
+  "meta": {
+    "title": "Planes y Precios - Herramienta de Contador de Caracteres | Funciones Gratuitas y Premium",
+    "description": "Explora nuestros planes y precios de la herramienta de contador de caracteres. Elige entre funciones gratuitas y premium para mejorar tu experiencia de análisis de texto.",
+    "keywords": "precios contador de caracteres, planes de análisis de texto, contador de texto gratuito, precios de herramientas en línea, funciones de conteo de caracteres",
+    "product": {
+      "description": "Una herramienta completa de análisis de texto con conteo de caracteres, conteo de palabras y más funciones",
+      "offers": {
+        "free": {
+          "name": "Plan Gratuito",
+          "description": "Funciones básicas con publicidad"
+        },
+        "monthly": {
+          "name": "Plan Premium Mensual",
+          "description": "Todas las funciones con facturación mensual"
+        },
+        "annual": {
+          "name": "Plan Premium Anual",
+          "description": "Todas las funciones con facturación anual (31% de descuento)"
+        }
+      }
+    }
+  }
+}

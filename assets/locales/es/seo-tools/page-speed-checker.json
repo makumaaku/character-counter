@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "Comprobador de Velocidad de Página - Herramienta de análisis de rendimiento web",
+    "description": "Analiza la velocidad de carga de tu sitio web, el uso de recursos y obtén sugerencias de mejora de rendimiento con nuestra herramienta gratuita Comprobador de Velocidad de Página.",
+    "keywords": "comprobador de velocidad de página, rendimiento del sitio web, velocidad de carga, optimización de rendimiento, análisis de recursos"
+  },
+  "title": "Comprobador de Velocidad de Página",
+  "description": "Analiza la velocidad de carga del sitio web y obtén sugerencias de mejora de rendimiento",
+  "input": {
+    "url": "URL del sitio web",
+    "analyzeButton": "Analizar"
+  },
+  "results": {
+    "loading": "Analizando...",
+    "loadTime": "Tiempo de carga de página",
+    "resources": "Recursos principales por tamaño",
+    "suggestions": "Sugerencias de rendimiento"
+  },
+  "error": {
+    "invalidUrl": "Por favor, introduce una URL válida (p. ej., https://ejemplo.com)",
+    "fetchFailed": "No se pudo analizar la página. Por favor, comprueba la URL e inténtalo de nuevo."
+  },
+  "status": {
+    "noUrl": "Por favor, introduce una URL para analizar"
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "meta": {
+      "title": "JPG to PDF変換ツール - オンラインで画像をPDFに変換",
+      "description": "JPG画像をPDFドキュメントに変換する無料オンラインツール。複数の画像をカスタマイズ可能な設定で1つのPDFにまとめます。インストール不要。",
+      "keywords": "jpgからpdf, 画像からpdf, jpgをpdfに変換, 画像変換, オンライン画像変換, 無料画像変換"
+    },
+    "title": "JPG to PDF変換ツール",
+    "description": "JPG画像をカスタマイズ可能な設定でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "画像ファイルをアップロード",
+        "button": "画像ファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "quality": {
+        "label": "PDF品質",
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード",
+      "preview": "PDFをプレビュー"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPGまたはPNGファイルのみをアップロードしてください",
+      "fileSize": "合計ファイルサイズが20MBの制限を超えています"
+    }
+  }

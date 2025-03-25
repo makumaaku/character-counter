@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Convertidor de SVG a JPG - Herramienta gratuita de conversión de imágenes",
+    "description": "Convierte imágenes vectoriales SVG a formato JPG en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
+    "keywords": "svg a jpg, convertidor svg, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea, convertidor de imágenes vectoriales"
+  },
+  "title": "Convertidor de SVG a JPG",
+  "description": "Convierte imágenes vectoriales SVG a formato JPG",
+  "form": {
+    "upload": {
+      "label": "Subir imagen(es) SVG",
+      "button": "Seleccionar archivos",
+      "dragDrop": "Arrastra y suelta archivos SVG aquí o haz clic para explorar",
+      "limitText": "Tamaño máximo de archivo: 20MB (hasta 100MB en total)"
+    },
+    "convert": "Convertir a JPG"
+  },
+  "result": {
+    "download": "Descargar JPG",
+    "downloadAll": "Descargar todos los JPGs",
+    "preview": "Vista previa",
+    "selectedFiles": "archivos seleccionados"
+  },
+  "status": {
+    "processing": "Convirtiendo...",
+    "noFile": "Ningún archivo seleccionado",
+    "success": "¡Conversión exitosa!",
+    "browserProcessing": "El procesamiento se realiza en tu navegador, la velocidad puede variar según el dispositivo"
+  },
+  "error": {
+    "fileType": "Solo se permiten archivos SVG",
+    "fileSize": "El tamaño del archivo debe ser menor a 20MB",
+    "conversionFailed": "La conversión falló"
+  }
+}

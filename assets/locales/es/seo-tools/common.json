@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Herramientas SEO - Herramientas de optimización de sitios web",
+    "description": "Herramientas SEO gratuitas en línea para analizar y optimizar el rendimiento de tu sitio web. Sin instalación requerida, funciona directamente en tu navegador.",
+    "keywords": "herramientas seo, optimización de sitios web, comprobador de velocidad de página, análisis seo, herramientas seo gratuitas"
+  },
+  "title": "Herramientas SEO",
+  "description": "Herramientas gratuitas en línea para analizar y optimizar el rendimiento de tu sitio web",
+  "tools": {
+    "pageSpeedChecker": {
+      "title": "Comprobador de velocidad de página",
+      "description": "Analiza la velocidad de carga del sitio web y obtén sugerencias de mejora de rendimiento"
+    },
+    "linkStatusChecker": {
+      "title": "Comprobador de estado de enlaces",
+      "description": "Comprueba el estado de todos los enlaces en una página web para encontrar enlaces rotos"
+    },
+    "seoCannibalizationChecker": {
+      "title": "Comprobador de canibalización SEO",
+      "description": "Comprueba la canibalización de palabras clave (competencia) dentro de tu sitio"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Convertidor de HEIC a PDF - Convierte imágenes HEIC a PDF en línea",
+    "description": "Herramienta gratuita en línea para convertir imágenes HEIC a documentos PDF. Convierte tus fotos de iPhone a formato PDF con alta calidad. Sin necesidad de instalación.",
+    "keywords": "heic a pdf, convertidor heic, convertir heic, convertidor de heic a pdf, convertidor heic en línea, convertidor heic gratis"
+  },
+  "title": "Convertidor de HEIC a PDF",
+  "description": "Convierte imágenes HEIC a documentos PDF con alta calidad",
+  "form": {
+    "upload": {
+      "label": "Subir archivo HEIC",
+      "button": "Arrastra y suelta archivo HEIC aquí o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar"
+    },
+    "convert": "Convertir a PDF"
+  },
+  "result": {
+    "download": "Descargar PDF"
+  },
+  "status": {
+    "processing": "Convirtiendo...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileSize": "El tamaño del archivo excede el límite de 20MB",
+    "fileType": "Solo se admiten archivos HEIC",
+    "conversion": "Error durante la conversión. Por favor, inténtalo de nuevo."
+  },
+  "success": {
+    "message": "¡Conversión completada con éxito!"
+  }
+}

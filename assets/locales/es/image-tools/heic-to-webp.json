@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "Convertidor de HEIC a WebP | Convertidor de imágenes gratuito en línea",
+    "description": "Convierte imágenes HEIC a formato WebP en línea gratis. Vista previa antes de descargar, conversión por lotes disponible. Funciona en todos los dispositivos, incluidos iPhone, iPad y Mac.",
+    "keywords": "heic a webp, convertidor heic, convertir heic, convertidor de fotos iphone, convertidor de imágenes, convertidor webp, convertidor gratis, formato de imagen webp"
+  },
+  "title": "Convertidor de HEIC a WebP",
+  "description": "Convierte imágenes HEIC a formato WebP con vista previa",
+  "upload": {
+    "title": "Subir archivos HEIC",
+    "dragndrop": "Arrastra y suelta archivos HEIC aquí o haz clic para explorar",
+    "button": "Explorar archivos",
+    "limit": "Tamaño máximo de archivo: 10MB por archivo"
+  },
+  "form": {
+    "upload": {
+      "label": "Subir archivos HEIC",
+      "button": "Explorar archivos",
+      "dragDrop": "Arrastra y suelta archivos HEIC aquí o haz clic para explorar"
+    },
+    "convert": "Convertir a WebP"
+  },
+  "convert": {
+    "button": "Convertir a WebP",
+    "processing": "Convirtiendo...",
+    "download": "Descargar WebP",
+    "downloadAll": "Descargar todo (ZIP)",
+    "converted": "{{count}} archivos convertidos con éxito"
+  },
+  "preview": {
+    "title": "Vista previa y descarga",
+    "nofiles": "No hay archivos convertidos para mostrar"
+  },
+  "error": {
+    "invalidFormat": "Solo se admiten archivos HEIC",
+    "tooLarge": "El archivo es demasiado grande (máximo 10MB)",
+    "noFiles": "Por favor, sube al menos un archivo HEIC",
+    "failed": "La conversión falló. Por favor, inténtalo de nuevo."
+  },
+  "result": {
+    "download": "Descargar WebP",
+    "downloadAll": "Descargar todo (ZIP)"
+  },
+  "status": {
+    "processing": "Convirtiendo...",
+    "noFile": "No hay archivos seleccionados",
+    "success": "¡Conversión exitosa!",
+    "convertingFile": "Convirtiendo {filename}..."
+  }
+}

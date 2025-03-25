@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Convertidor de JPG a WebP - Herramienta gratuita de conversión de imágenes",
+    "description": "Convierte imágenes JPG a formato WebP en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
+    "keywords": "jpg a webp, jpeg a webp, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea, optimización web"
+  },
+  "title": "Convertidor de JPG a WebP",
+  "description": "Convierte imágenes JPG a formato WebP para un mejor rendimiento web y tamaños de archivo más pequeños",
+  "upload": {
+    "limit": "Tamaño máximo de archivo: 10MB por archivo"
+  },
+  "form": {
+    "upload": {
+      "label": "Subir imagen(es) JPG",
+      "button": "Seleccionar archivos",
+      "dragDrop": "Arrastra y suelta archivos aquí o haz clic para explorar"
+    },
+    "convert": "Convertir a WebP"
+  },
+  "result": {
+    "download": "Descargar WebP",
+    "downloadAll": "Descargar todos los WebPs"
+  },
+  "status": {
+    "processing": "Convirtiendo...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Solo se permiten archivos JPG/JPEG",
+    "fileSize": "El tamaño del archivo debe ser menor a 10MB"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "Convertidor de Web a PDF - Convierte páginas web a PDF en línea",
+    "description": "Herramienta gratuita en línea para convertir páginas web a documentos PDF. Simplemente ingresa una URL y convierte cualquier sitio web a un archivo PDF descargable. Sin necesidad de instalación.",
+    "keywords": "web a pdf, sitio web a pdf, convertir página web a pdf, url a pdf, convertidor pdf en línea, convertidor pdf gratis"
+  },
+  "title": "Convertidor de Web a PDF",
+  "description": "Convierte cualquier página web a un documento PDF con un solo clic",
+  "form": {
+    "url": {
+      "label": "URL del sitio web",
+      "placeholder": "https://ejemplo.com",
+      "button": "Convertir a PDF"
+    },
+    "options": {
+      "label": "Opciones de PDF",
+      "format": {
+        "label": "Formato de papel",
+        "a4": "A4",
+        "letter": "Carta",
+        "legal": "Legal"
+      },
+      "orientation": {
+        "label": "Orientación",
+        "portrait": "Vertical",
+        "landscape": "Horizontal"
+      },
+      "scale": {
+        "label": "Escala",
+        "default": "Predeterminado (1)",
+        "fit": "Ajustar a página"
+      }
+    }
+  },
+  "result": {
+    "download": "Descargar PDF",
+    "preview": "Vista previa del PDF"
+  },
+  "status": {
+    "processing": "Convirtiendo página web a PDF...",
+    "noUrl": "Por favor, introduce una URL válida",
+    "success": "¡Conversión exitosa!"
+  },
+  "error": {
+    "invalidUrl": "URL inválida. Por favor, introduce una dirección web válida.",
+    "conversionFailed": "La conversión falló. Por favor, inténtalo de nuevo.",
+    "networkError": "Error de red. Por favor, comprueba tu conexión e inténtalo de nuevo.",
+    "timeout": "La conversión está tomando más tiempo de lo esperado. Los sitios web complejos pueden tardar más de un minuto en convertirse. Por favor, espera..."
+  },
+  "loading": "Cargando convertidor de PDF...",
+  "preview": {
+    "loading": "Cargando vista previa del PDF...",
+    "error": "No se pudo cargar la vista previa",
+    "pageOf": "Página {current} de {total}"
+  }
+}

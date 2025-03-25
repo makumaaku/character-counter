@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Convertidor de JPG a PNG - Herramienta gratuita de conversión de imágenes",
+    "description": "Convierte imágenes JPG a formato PNG en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
+    "keywords": "jpg a png, jpeg a png, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea"
+  },
+  "title": "Convertidor de JPG a PNG",
+  "description": "Convierte imágenes JPG a formato PNG con soporte de transparencia",
+  "upload": {
+    "limit": "Tamaño máximo de archivo: 10MB por archivo"
+  },
+  "form": {
+    "upload": {
+      "label": "Subir imagen JPG",
+      "button": "Seleccionar archivo",
+      "dragDrop": "Arrastra y suelta el archivo aquí o haz clic para explorar"
+    },
+    "convert": "Convertir a PNG"
+  },
+  "result": {
+    "download": "Descargar PNG"
+  },
+  "status": {
+    "processing": "Convirtiendo...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Solo se permiten archivos JPG/JPEG",
+    "fileSize": "El tamaño del archivo debe ser menor a 10MB"
+  }
+}

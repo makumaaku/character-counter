@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "HEIC to WebP Converter | Free Online Image Converter",
+    "description": "Convert HEIC images to WebP format online for free. Preview before download, batch conversion available. Works on all devices including iPhone, iPad, and Mac.",
+    "keywords": "heic to webp, heic converter, convert heic, iphone photo converter, image converter, webp converter, free converter, webp image format"
+  },
+  "title": "HEIC to WebP Converter",
+  "description": "Convert HEIC images to WebP format with preview",
+  "upload": {
+    "title": "Upload HEIC Files",
+    "dragndrop": "Drag & drop HEIC files here or click to browse",
+    "button": "Browse Files",
+    "limit": "Maximum file size: 10MB per file"
+  },
+  "form": {
+    "upload": {
+      "label": "Upload HEIC Files",
+      "button": "Browse Files",
+      "dragDrop": "Drag & drop HEIC files here or click to browse"
+    },
+    "convert": "Convert to WebP"
+  },
+  "convert": {
+    "button": "Convert to WebP",
+    "processing": "Converting...",
+    "download": "Download WebP",
+    "downloadAll": "Download All (ZIP)",
+    "converted": "{{count}} files converted successfully"
+  },
+  "preview": {
+    "title": "Preview & Download",
+    "nofiles": "No converted files to display"
+  },
+  "error": {
+    "invalidFormat": "Only HEIC files are supported",
+    "tooLarge": "File is too large (maximum 10MB)",
+    "noFiles": "Please upload at least one HEIC file",
+    "failed": "Conversion failed. Please try again."
+  },
+  "result": {
+    "download": "Download WebP",
+    "downloadAll": "Download All (ZIP)"
+  },
+  "status": {
+    "processing": "Converting...",
+    "noFile": "No files selected",
+    "success": "Conversion successful!",
+    "convertingFile": "Converting {filename}..."
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "meta": {
+      "title": "SVGからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからWebP, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換, webp変換"
+    },
+    "title": "SVGからWebPへの変換",
+    "description": "SVGベクター画像をウェブ表示に最適化されたWebP形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてのWebPをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換が完了しました！",
+      "browserProcessing": "処理はブラウザで行われるため、デバイスによって速度が異なる場合があります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ許可されています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
+    }
+  }

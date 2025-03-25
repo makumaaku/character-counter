@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "PDF to Word Converter - Convert PDFs to Editable Documents",
+    "description": "Free online tool to convert PDF documents to editable Word files. Extract text and formatting from PDFs for easy editing. No installation required.",
+    "keywords": "pdf to word, pdf to docx, convert pdf to word, pdf converter, online pdf converter, free pdf converter"
+  },
+  "title": "PDF to Word Converter",
+  "description": "Convert PDF documents to editable Word files",
+  "form": {
+    "upload": {
+      "label": "Upload PDF File",
+      "button": "Drag & drop PDF file here, or click to select",
+      "dragDrop": "Drag & drop PDF file here or click to browse",
+      "dragging": "Drag & drop PDF file here or click to browse",
+      "instruction": "Drag & drop PDF file here, or click to select",
+      "maxSize": "Maximum file size: 20MB"
+    },
+    "format": {
+      "label": "Output Format",
+      "docx": "DOCX",
+      "doc": "DOC"
+    },
+    "convert": "Convert to Word"
+  },
+  "result": {
+    "download": "Download Word Document"
+  },
+  "status": {
+    "processing": "Processing...",
+    "noFile": "No file selected"
+  },
+  "error": {
+    "fileType": "Please upload a PDF file",
+    "fileSize": "File size exceeds 20MB limit"
+  },
+  "loading": "Loading required libraries..."
+}

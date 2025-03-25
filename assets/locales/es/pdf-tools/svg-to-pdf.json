@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "Convertidor de SVG a PDF - Convierte gráficos vectoriales a PDF en línea",
+    "description": "Herramienta gratuita en línea para convertir gráficos vectoriales SVG a documentos PDF. Mantén alta calidad y escalabilidad en tu PDF resultante. Sin necesidad de instalación.",
+    "keywords": "svg a pdf, vector a pdf, convertir svg a pdf, convertidor svg, convertidor svg en línea, convertidor svg gratis"
+  },
+  "title": "Convertidor de SVG a PDF",
+  "description": "Convierte gráficos vectoriales SVG a documentos PDF con alta calidad",
+  "form": {
+    "upload": {
+      "label": "Subir archivo SVG",
+      "button": "Arrastra y suelta un archivo SVG aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar"
+    },
+    "convert": "Convertir a PDF"
+  },
+  "result": {
+    "download": "Descargar PDF"
+  },
+  "status": {
+    "processing": "Procesando...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Por favor, sube un archivo SVG",
+    "fileSize": "El tamaño del archivo excede el límite de 10MB"
+  }
+}

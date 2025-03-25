@@ -1,0 +1,60 @@
+{
+  "title": "Features & Usage",
+  "keyFeatures": {
+    "title": "Key Features",
+    "charCount": {
+      "title": "① Character Count",
+      "description": "Counts the number of characters in the input box."
+    },
+    "inputBox": {
+      "title": "② Input Box",
+      "description": "Enter or paste the text you want to analyze in this box."
+    },
+    "lineCount": {
+      "title": "③ Line Count",
+      "description": "Counts the number of line breaks in your text."
+    },
+    "wordCount": {
+      "title": "④ Word Count",
+      "description": "Counts words in space-separated text, perfect for English and other space-delimited languages."
+    },
+    "byteCount": {
+      "title": "⑤ Byte Count (Multibyte Support)",
+      "description": "Counts the number of bytes, with full support for multibyte characters like Japanese text."
+    },
+    "copyButton": {
+      "title": "⑥ Copy Button",
+      "description": "Copy the current text in the input box with one click. Perfect for quickly transferring edited text."
+    },
+    "stringSearch": {
+      "title": "⑦ String Search & Occurrence Counter",
+      "description": "Count how many times a specific string appears in your text. Useful for SEO keyword density analysis."
+    }
+  },
+  "howToUse": {
+    "title": "How to Use - Simple Steps",
+    "step1": {
+      "title": "1. Enter Text",
+      "description": "Copy & paste text into the input area or type and edit directly.<br />Note: Simply typing will instantly count the number of characters, lines, words (English only), and bytes (multibyte compatible).",
+      "text": "Copy & paste text into the input area or type and edit directly."
+    },
+    "step2": {
+      "title": "2. Real-time Results",
+      "description": "As you type, various counts are displayed in real-time, allowing you to check them instantly.",
+      "text": "As you type, various counts are displayed in real-time, allowing you to check them instantly."
+    },
+    "step3": {
+      "title": "3. Utilize Results",
+      "description": "Results can be copied using the copy button.<br />Use the displayed numbers as a reference for social media posts, advertising copy, academic papers, and more.",
+      "text": "Results can be copied using the copy button. Use the displayed numbers as a reference for social media posts, advertising copy, academic papers, and more."
+    }
+  },
+  "meta": {
+    "title": "Features & Usage - Character Counter Tool | Free Online Text Counter",
+    "description": "Learn how to use our free character counter tool. Count characters, words, lines instantly. Perfect for social media posts, content writing, and SEO optimization.",
+    "keywords": "character counter features, text counter usage, word count tool, character count tutorial, online text counter",
+    "howTo": {
+      "title": "How to Use Character Counter Tool"
+    }
+  }
+}

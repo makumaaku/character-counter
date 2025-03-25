@@ -1,0 +1,56 @@
+{
+  "title": "Contáctanos",
+  "description": "Valoramos tus comentarios y estamos aquí para ayudarte con cualquier pregunta o inquietud que puedas tener sobre nuestra herramienta de contador de caracteres.",
+  "form": {
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Tu nombre"
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "tu.email@ejemplo.com"
+    },
+    "subject": {
+      "label": "Asunto",
+      "placeholder": "Selecciona un asunto",
+      "options": {
+        "general": "Consulta general",
+        "technical": "Soporte técnico",
+        "billing": "Pregunta sobre facturación",
+        "feature": "Solicitud de función",
+        "other": "Otro"
+      }
+    },
+    "message": {
+      "label": "Mensaje",
+      "placeholder": "Por favor, describe tu pregunta o inquietud"
+    },
+    "submit": "Enviar mensaje"
+  },
+  "otherWays": {
+    "title": "Otras formas de contactarnos",
+    "email": "Correo electrónico",
+    "businessHours": "Horario de atención",
+    "businessHoursValue": "Lunes - Viernes, 9:00 AM - 6:00 PM (GMT)",
+    "responseTime": "Normalmente respondemos a todas las consultas en un plazo de 24 horas laborables."
+  },
+  "meta": {
+    "title": "Contáctanos - Herramienta de Contador de Caracteres | Soporte y Consultas",
+    "description": "Ponte en contacto con nuestro equipo de soporte para cualquier pregunta sobre nuestra herramienta de contador de caracteres. Estamos aquí para ayudarte con tus necesidades de análisis de texto.",
+    "keywords": "contacto contador de caracteres, soporte contador de texto, ayuda recuento de palabras, formulario de contacto, servicio al cliente",
+    "jsonLd": {
+      "name": "Contactar con el soporte del Contador de Caracteres",
+      "description": "Página de contacto para soporte y consultas de la Herramienta de Contador de Caracteres",
+      "organization": {
+        "name": "Herramienta de Contador de Caracteres",
+        "email": "support@character-counter.com",
+        "availableLanguage": [
+          "English",
+          "Japanese",
+          "Spanish"
+        ],
+        "hoursAvailable": "Lu-Vi 09:00-18:00"
+      }
+    }
+  }
+}

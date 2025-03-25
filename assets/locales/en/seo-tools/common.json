@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "SEO Tools - Website Optimization Tools",
+    "description": "Free online SEO tools to analyze and optimize your website performance. No installation required, works directly in your browser.",
+    "keywords": "seo tools, website optimization, page speed checker, seo analysis, free seo tools"
+  },
+  "title": "SEO Tools",
+  "description": "Free online tools to analyze and optimize your website performance",
+  "tools": {
+    "pageSpeedChecker": {
+      "title": "Page Speed Checker",
+      "description": "Analyze website loading speed and get performance improvement suggestions"
+    },
+    "linkStatusChecker": {
+      "title": "Link Status Checker",
+      "description": "Check the status of all links on a webpage to find broken links"
+    },
+    "seoCannibalizationChecker": {
+      "title": "SEO Cannibalization Checker",
+      "description": "Check for keyword cannibalization (competition) within your site"
+    }
+  }
+}

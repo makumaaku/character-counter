@@ -1,0 +1,23 @@
+{
+    "meta": {
+      "title": "SEOツール - Webサイト最適化ツール",
+      "description": "Webサイトのパフォーマンスを分析・最適化するための無料オンラインSEOツール。インストール不要で、ブラウザ上で直接動作します。",
+      "keywords": "seoツール, webサイト最適化, ページ速度チェッカー, seo分析, 無料seoツール"
+    },
+    "title": "SEOツール",
+    "description": "Webサイトのパフォーマンスを分析・最適化するための無料オンラインツール",
+    "tools": {
+      "pageSpeedChecker": {
+        "title": "ページ速度チェッカー",
+        "description": "Webサイトの読み込み速度を分析し、パフォーマンス改善の提案を取得"
+      },
+      "linkStatusChecker": {
+        "title": "リンク状態チェッカー",
+        "description": "ウェブページ上のすべてのリンクの状態をチェックして、壊れたリンクを見つける"
+      },
+      "seoCannibalizationChecker": {
+        "title": "SEOカニバリゼーションチェッカー",
+        "description": "サイト内でのキーワード競合（カニバリゼーション）をチェック"
+      }
+    }
+  }

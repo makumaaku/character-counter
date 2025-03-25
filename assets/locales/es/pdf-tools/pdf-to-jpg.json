@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Convertidor de PDF a JPG - Convierte PDF a imágenes en línea",
+    "description": "Herramienta gratuita en línea para convertir documentos PDF a imágenes JPG. Convierte cada página a una imagen separada con calidad ajustable. Sin necesidad de instalación.",
+    "keywords": "pdf a jpg, pdf a imagen, convertir pdf a jpg, convertidor pdf, convertidor pdf en línea, convertidor pdf gratis"
+  },
+  "title": "Convertidor de PDF a JPG",
+  "description": "Convierte páginas PDF a imágenes JPG con calidad ajustable",
+  "form": {
+    "upload": {
+      "label": "Subir archivo PDF",
+      "button": "Arrastra y suelta un archivo PDF aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar"
+    },
+    "quality": {
+      "label": "Calidad de imagen",
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta"
+    },
+    "convert": "Convertir a JPG"
+  },
+  "result": {
+    "downloadAll": "Descargar todo",
+    "download": "Descargar"
+  },
+  "status": {
+    "processing": "Procesando...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Por favor, sube un archivo PDF",
+    "fileSize": "El tamaño del archivo excede el límite de 20MB"
+  }
+}
