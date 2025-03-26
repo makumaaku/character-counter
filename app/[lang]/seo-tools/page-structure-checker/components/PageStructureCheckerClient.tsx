@@ -16,6 +16,17 @@ type PageStructureResult = {
     type: 'error' | 'warning'
     message: string
   }[]
+  errorMessage?: string,
+  error :{
+    title: string,
+    urlRequired: string,
+    invalidUrl: string,
+    fetchFailed: string,
+    networkError: string,
+    serverError: string,
+    timeoutError: string,
+    parsingError: string,
+  }
 }
 
 export default function PageStructureCheckerClient({ lang }: { lang: string }) {
@@ -49,7 +60,7 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
       console.log(`Analyzing URL: ${url}`)
 
       try {
-        const response = await fetch(`/${lang}/api/analyze-page-structure`, {
+        const response = await fetch(`/${lang}/api/seo-tools/analyze-page-structure`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -89,6 +100,11 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
           const responseText = await response.text().catch(() => 'Could not read response text')
           setDebugInfo(`Server response: ${responseText.substring(0, 200)}...`)
           throw new Error('Invalid response format from server')
+        }
+
+        // APIからのレスポンスにエラーメッセージが含まれている場合は表示する
+        if (data.errorMessage) {
+          console.warn('API returned an error message:', data.errorMessage)
         }
 
         setResult(data)
@@ -152,6 +168,14 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
 
       {result && (
         <div className="space-y-6">
+          {/* エラーメッセージがある場合に表示 */}
+          {result.errorMessage && (
+            <div className="bg-red-900/30 border border-red-500 text-red-300 p-4 rounded-lg mb-6">
+              <h3 className="font-bold text-lg mb-2">{t('page-structure-checker.error.title')}</h3>
+              <p>{result.errorMessage}</p>
+            </div>
+          )}
+          
           {/* Issues Found セクション - 一番上に表示（シンプルに） */}
           {result.issues && result.issues.length > 0 && (
             <div className="bg-gray-800 rounded-lg p-4">

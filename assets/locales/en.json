@@ -1965,11 +1965,13 @@
     },
     "error": {
       "title": "Error",
-      "url-required": "Please enter a URL",
-      "invalid-url": "Please enter a valid URL",
-      "fetch-failed": "Failed to fetch page content",
-      "timeout": "Request timed out. The page might be too large or unavailable",
-      "network-error": "Network error. Please check your internet connection and try again."
+      "url-required": "Please enter a URL to analyze",
+      "invalid-url": "Please enter a valid URL (including http:// or https://)",
+      "fetch-failed": "Failed to analyze the page",
+      "network-error": "Network error - please check your connection",
+      "server-error": "Server error occurred during analysis",
+      "timeout-error": "The request timed out - the server might be busy",
+      "parsing-error": "Failed to parse the page structure"
     },
     "meta-title": "Meta Information",
     "heading-structure": "Heading Structure",
@@ -1978,7 +1980,6 @@
     "no-description": "No description found",
     "no-canonical": "No canonical URL found",
     "no-headings": "No heading tags found in the page",
-    "error": "Error",
     "warning": "Warning",
     "analysis": "Analysis",
     "good": "Found",

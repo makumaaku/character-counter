@@ -1963,10 +1963,13 @@
     "error": {
       "title": "エラー",
       "url-required": "URLを入力してください",
-      "invalid-url": "有効なURLを入力してください",
-      "fetch-failed": "ページの内容を取得できませんでした",
+      "invalid-url": "有効なURL（http://またはhttps://を含む）を入力してください",
+      "fetch-failed": "ページの分析に失敗しました",
       "timeout": "リクエストがタイムアウトしました。ページが大きすぎるか利用できない可能性があります",
-      "network-error": "ネットワークエラーが発生しました。インターネット接続を確認して再試行してください"
+      "network-error": "ネットワークエラーが発生しました。インターネット接続を確認して再試行してください",
+      "server-error": "分析中にサーバーエラーが発生しました",
+      "timeout-error": "リクエストがタイムアウトしました - サーバーがビジー状態かもしれません",
+      "parsing-error": "ページ構造の解析に失敗しました"
     },
     "meta-title": "メタ要素",
     "heading-structure": "見出し構造",
@@ -1975,7 +1978,6 @@
     "no-description": "説明が見つかりません",
     "no-canonical": "正規URLが見つかりません",
     "no-headings": "ページに見出しタグが見つかりません",
-    "error": "エラー",
     "warning": "警告",
     "analysis": "分析",
     "good": "良好",
