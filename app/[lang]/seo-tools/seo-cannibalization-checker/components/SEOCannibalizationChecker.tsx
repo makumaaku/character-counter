@@ -1,5 +1,6 @@
 'use client';
 
+import Button from '@/components/ui/button';
 import { useState } from 'react';
 
 interface SEOCannibalizationCheckerProps {
@@ -130,13 +131,14 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
               </div>
             )}
 
-            <button
+            <Button
               type="submit"
               disabled={isProcessing}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-bold text-lg transition duration-200"
+              variant="purple"
+              className="w-full"
             >
               {isProcessing ? translations.button.processing : translations.button.check}
-            </button>
+            </Button>
           </form>
         </div>
 

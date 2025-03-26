@@ -3,12 +3,12 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="relative h-screen">
+    <div className="relative min-h-screen w-full">
       <Image
         src="/hp_bg.jpg"
         alt="Background"
         fill
-        className="object-cover -z-10"
+        className="object-cover fixed -z-10"
         priority
       />
       <div className="absolute top-0 left-0 p-4 z-10">
@@ -21,7 +21,7 @@ export default function Home() {
           priority
         />
       </div>
-      <div className="flex flex-col items-center justify-center h-full z-10">
+      <div className="flex flex-col items-center justify-center min-h-screen z-10 pb-10">
         <div className="mt-10">
           <h1 className="text-white text-2xl font-bold text-center">Boring Tools</h1>
           <ul className="mt-4">
@@ -30,6 +30,9 @@ export default function Home() {
             </li>
             <li>
               <Link href="/qr-generation" className="text-white hover:underline">QR Generation</Link>
+            </li>
+            <li>
+              <Link href="/password-strength" className="text-white hover:underline">Password Strength Checker</Link>
             </li>
             <li>
               <Link href="/word-gen" className="text-white hover:underline font-bold">Word Generation Tools</Link>
@@ -51,6 +54,42 @@ export default function Home() {
             </li>
             <li>
               <Link href="/word-gen/story-generator" className="text-white hover:underline ml-4">Random Story Generator</Link>
+            </li>
+            <li>
+              <Link href="/word-gen/japanese-kanji-generator" className="text-white hover:underline ml-4">Japanese Kanji Generator</Link>
+            </li>
+            <li>
+              <Link href="/image-tools" className="text-white hover:underline font-bold">Image Converters</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/jpg-to-png" className="text-white hover:underline ml-4">JPG to PNG Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/png-to-jpg" className="text-white hover:underline ml-4">PNG to JPG Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/heic-to-jpg" className="text-white hover:underline ml-4">HEIC to JPG Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/heic-to-png" className="text-white hover:underline ml-4">HEIC to PNG Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/heic-to-webp" className="text-white hover:underline ml-4">HEIC to WebP Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/jpg-to-webp" className="text-white hover:underline ml-4">JPG to WebP Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/png-to-webp" className="text-white hover:underline ml-4">PNG to WebP Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/svg-to-jpg" className="text-white hover:underline ml-4">SVG to JPG Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/svg-to-png" className="text-white hover:underline ml-4">SVG to PNG Converter</Link>
+            </li>
+            <li>
+              <Link href="/image-tools/svg-to-webp" className="text-white hover:underline ml-4">SVG to WebP Converter</Link>
             </li>
             <li>
               <Link href="/pdf-tools" className="text-white hover:underline font-bold">PDF Tools</Link>
@@ -93,6 +132,12 @@ export default function Home() {
             </li>
             <li>
               <Link href="/seo-tools/seo-cannibalization-checker" className="text-white hover:underline ml-4">SEO Cannibalization Checker</Link>
+            </li>
+            <li>
+              <Link href="/seo-tools/seo-volume-guess" className="text-white hover:underline ml-4">SEO Volume Prediction Tool</Link>
+            </li>
+            <li>
+              <Link href="/seo-tools/meta-craft-for-llm" className="text-white hover:underline ml-4">Meta Craft for LLM</Link>
             </li>
             <li>
               <Link href="/number-quiz" className="text-white hover:underline">Number Place</Link>

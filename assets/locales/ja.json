@@ -4,11 +4,11 @@
     "meta": {
       "siteName": "Boring Tools",
       "publisher": "Boring Inc.",
-      "logoAlt": "ボーリングツールのロゴ"
+      "logoAlt": "Boring Toolsロゴ"
     },
     "download": {
       "button": "ダウンロード",
-      "downloaded": "ダウンロードしました！"
+      "downloaded": "ダウンロード完了！"
     }
   },
   "home": {
@@ -80,7 +80,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "quality": {
         "label": "画像品質",
@@ -115,7 +115,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ...",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
         "dragging": "ここにドロップしてね！",
         "instruction": "PDFファイルのみ対応しています",
         "maxSize": "最大ファイルサイズ：20MB"
@@ -147,7 +147,7 @@
       "upload": {
         "label": "HEICファイルをアップロード",
         "button": "HEICファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "HEICファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "convert": "PDFに変換"
     },
@@ -179,7 +179,7 @@
       "upload": {
         "label": "画像ファイルをアップロード",
         "button": "画像ファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "画像ファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "quality": {
         "label": "PDF品質",
@@ -270,7 +270,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ...",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
         "dragging": "PDFファイルをここにドロップしてください...",
         "instruction": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
         "maxSize": "最大ファイルサイズ: 20MB"
@@ -307,7 +307,7 @@
       "upload": {
         "label": "PDFファイルをアップロード",
         "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PDFファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "quality": {
         "label": "画像品質",
@@ -342,7 +342,7 @@
       "upload": {
         "label": "PNGファイルをアップロード",
         "button": "PNGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "PNGファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "convert": "PDFに変換"
     },
@@ -370,7 +370,7 @@
       "upload": {
         "label": "SVGファイルをアップロード",
         "button": "SVGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
-        "dragDrop": "SVGファイルをここにドロップ..."
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
       },
       "convert": "PDFに変換"
     },
@@ -1048,6 +1048,10 @@
       "wordCardGenerator": {
         "title": "単語カード生成",
         "description": "学習と暗記のためのフラッシュカードを作成します。"
+      },
+      "japaneseKanjiGenerator": {
+        "title": "漢字ジェネレーター",
+        "description": "日本語の漢字を自動生成し、画像としてダウンロードできます。"
       }
     }
   },
@@ -1990,6 +1994,589 @@
     "hierarchy-issue-message": "h2~h6: 階層構造に問題あり",
     "recommended": "推奨",
     "important-for-seo": "SEOに重要",
-    "headings": "見出し"
+    "headings": "見出し",
+      "emptyDomain": "ドメインを入力してください",
+      "invalidDomain": "有効なドメインを入力しzzwてください",
+      "emptyKeyword": "キーワードを入力してください",
+      "generic": "エラーが発生しました。もう一度お試しください。"
+    },
+  "japaneseKanjiGenerator": {
+    "meta": {
+      "title": "日本語漢字ジェネレーター - ランダムな漢字を画像として生成",
+      "description": "日本語の漢字を自動生成するツールです。1つだけランダムに生成し、512 x 512pxのjpgまたはpng画像としてダウンロードできます。",
+      "keywords": "漢字ジェネレーター, 漢字生成, 漢字画像, 日本語, ランダム漢字"
+    },
+    "title": "日本語漢字ジェネレーター",
+    "description": "日本語の漢字を自動生成するツールです。1つだけランダムに生成し、512 x 512pxのjpgまたはpng画像としてダウンロードできます。",
+    "generate": {
+      "button": "漢字を生成",
+      "loading": "生成中..."
+    },
+    "download": {
+      "button": "画像をダウンロード",
+      "jpg": "JPGとしてダウンロード",
+      "png": "PNGとしてダウンロード"
+    },
+    "copy": {
+      "button": "漢字をコピー",
+      "success": "✓ コピーしました"
+    },
+    "display": {
+      "noImage": "画像が生成されていません"
+    },
+    "error": {
+      "generation": "漢字の生成中にエラーが発生しました。もう一度お試しください。",
+      "download": "ダウンロード中にエラーが発生しました。もう一度お試しください。"
+    },
+    "font": {
+      "loading": "ロード中..."
+    }
+  },
+  "imageTools": {
+    "meta": {
+      "title": "画像変換ツール - 無料オンライン画像変換",
+      "description": "無料のオンラインツールで画像を様々な形式に変換できます。シンプル、高速、安全な画像変換ツールがあなたのニーズに応えます。",
+      "keywords": "画像変換, 画像ツール, JPGからPNG, PNGからJPG, 画像フォーマット変換, 無料画像変換"
+    },
+    "title": "画像変換ツール",
+    "description": "様々な形式の画像を変換する無料オンラインツール",
+    "tools": {
+      "jpgToPng": {
+        "title": "JPGからPNGへの変換",
+        "description": "JPG画像を透過対応のPNG形式に変換"
+      },
+      "pngToJpg": {
+        "title": "PNGからJPGへの変換",
+        "description": "PNG画像をJPG形式に簡単に変換"
+      },
+      "heicToJpg": {
+        "title": "HEICからJPGへの変換",
+        "description": "HEICファイルをJPGフォーマットに変換"
+      },
+      "heicToPng": {
+        "title": "HEICからPNGへの変換",
+        "description": "HEICファイルをPNG形式に変換"
+      },
+      "heicToWebp": {
+        "title": "HEICからWebPへの変換",
+        "description": "HEICファイルをWebP形式に変換"
+      },
+      "jpgToWebp": {
+        "title": "JPGからWebPへの変換",
+        "description": "JPG画像をウェブ表示に最適化されたWebP形式に変換"
+      },
+      "pngToWebp": {
+        "title": "PNGからWebPへの変換",
+        "description": "PNG画像をウェブ表示に最適化されたWebP形式に変換"
+      },
+      "svgToJpg": {
+        "title": "SVGからJPGへの変換",
+        "description": "SVGベクター画像をJPG形式に変換"
+      },
+      "svgToPng": {
+        "title": "SVGからPNGへの変換",
+        "description": "SVGベクター画像を透過対応のPNG形式に変換"
+      },
+      "svgToWebp": {
+        "title": "SVGからWebPへの変換",
+        "description": "SVGベクター画像をウェブ表示に最適化されたWebP形式に変換"
+      }
+    }
+  },
+  "jpgToPng": {
+    "meta": {
+      "title": "JPGからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "JPG画像をオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "JPGからPNG, JPEGからPNG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "JPGからPNGへの変換",
+    "description": "JPG画像を透過対応のPNG形式に変換",
+    "upload": {
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "JPG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "download": "PNGをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPG/JPEGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "pngToJpg": {
+    "meta": {
+      "title": "PNGからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "PNG画像をオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "PNGからJPG, PNGからJPEG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "PNGからJPGへの変換",
+    "description": "PNG画像をJPG形式に変換",
+    "form": {
+      "upload": {
+        "label": "PNG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてのJPGをダウンロード",
+      "preview": "プレビュー"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "browserProcessing": "処理はブラウザ上で行われるため、デバイスによって速度が異なることがあります"
+    },
+    "error": {
+      "fileType": "PNGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました。もう一度お試しください"
+    }
+  },
+  "heicToJpg": {
+    "meta": {
+      "title": "HEICからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "HEICからJPG, HEIC変換, iPhone写真変換, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "HEIC to JPG 変換ツール",
+    "description": "HEICファイルをJPGフォーマットに変換（プレビュー表示付き）",
+    "upload": {
+      "limit": "最大ファイルサイズ: ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "HEICファイルをアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "convertingFile": "{filename}を変換中..."
+    },
+    "error": {
+      "fileType": "HEICファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB以下にしてください",
+      "conversion": "ファイル変換エラー: {error}"
+    }
+  },
+  "heicToPng": {
+    "meta": {
+      "title": "HEICからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "heic から png, heic 変換, iphone 写真変換, 画像変換, png変換, 無料変換"
+    },
+    "title": "HEICからPNGへの変換",
+    "description": "HEICファイルをPNG形式に変換（プレビュー表示付き）",
+    "upload": {
+      "title": "HEICファイルをアップロード",
+      "dragndrop": "HEICファイルをここにドラッグ＆ドロップするか、クリックして参照",
+      "button": "ファイルを参照",
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "convert": {
+      "button": "PNGに変換",
+      "processing": "変換中...",
+      "download": "PNGをダウンロード",
+      "downloadAll": "すべてダウンロード（ZIP）",
+      "converted": "{{count}}個のファイルを変換しました"
+    },
+    "preview": {
+      "title": "プレビューとダウンロード",
+      "nofiles": "変換されたファイルがありません"
+    },
+    "error": {
+      "invalidFormat": "HEICファイルのみ対応しています",
+      "tooLarge": "ファイルが大きすぎます（最大10MB）",
+      "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
+      "failed": "変換に失敗しました。もう一度お試しください。"
+    }
+  },
+  "heicToWebp": {
+    "meta": {
+      "title": "HEICからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "heic から webp, heic 変換, iphone 写真変換, 画像変換, webp変換, 無料変換"
+    },
+    "title": "HEICからWebPへの変換",
+    "description": "HEICファイルをWebP形式に変換（プレビュー表示付き）",
+    "upload": {
+      "title": "HEICファイルをアップロード",
+      "dragndrop": "HEICファイルをここにドラッグ＆ドロップするか、クリックして選択",
+      "button": "ファイルを選択",
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "convert": {
+      "button": "WebPに変換",
+      "processing": "変換中...",
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてダウンロード（ZIP）",
+      "converted": "{{count}}個のファイルを変換しました"
+    },
+    "preview": {
+      "title": "プレビューとダウンロード",
+      "nofiles": "変換されたファイルがありません"
+    },
+    "error": {
+      "invalidFormat": "HEICファイルのみ対応しています",
+      "tooLarge": "ファイルが大きすぎます（最大10MB）",
+      "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
+      "failed": "変換に失敗しました。もう一度お試しください。",
+      "fileType": "HEICファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB以下にしてください",
+      "conversion": "ファイル変換エラー: {error}"
+    },
+    "form": {
+      "upload": {
+        "label": "HEICファイルをアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "convertingFile": "{filename}を変換中..."
+    }
+  },
+  "jpgToWebp": {
+    "meta": {
+      "title": "JPGからWebP変換ツール - 無料オンライン画像変換",
+      "description": "JPG画像をWebP形式にオンラインで変換。無料で高速、使いやすいプレビューとダウンロードオプション付き。",
+      "keywords": "jpg to webp, jpeg to webp, 画像変換, 無料コンバーター, オンライン画像ツール, ウェブ最適化"
+    },
+    "title": "JPG から WebP 変換ツール",
+    "description": "JPG画像をより小さなファイルサイズで高画質なWebP形式に変換",
+    "upload": {
+      "limit": "最大ファイルサイズ: ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "JPG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして参照"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてのWebPをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPG/JPEGファイルのみが許可されています",
+      "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "pngToWebp": {
+    "meta": {
+      "title": "PNGからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "PNGファイルをオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "PNGからWebP, 画像変換, 無料変換, オンライン画像ツール, ウェブ最適化"
+    },
+    "title": "PNGからWebPへの変換",
+    "description": "PNG画像をウェブ表示に最適化されたWebP形式に変換",
+    "upload": {
+      "limit": "最大ファイルサイズ: ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "PNG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてのWebPをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PNGファイルのみが許可されています",
+      "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  },
+  "svgToJpg": {
+    "meta": {
+      "title": "SVGからJPGへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでJPG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからJPG, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換"
+    },
+    "title": "SVGからJPGへの変換",
+    "description": "SVGベクター画像をJPG形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "JPGに変換"
+    },
+    "result": {
+      "download": "JPGをダウンロード",
+      "downloadAll": "すべてのJPGをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換完了！",
+      "browserProcessing": "処理はブラウザ上で行われるため、デバイスによって速度が異なることがあります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
+    }
+  },
+  "svgToPng": {
+    "meta": {
+      "title": "SVGからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからPNG, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換"
+    },
+    "title": "SVGからPNGへの変換",
+    "description": "SVGベクター画像をPNG形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "download": "PNGをダウンロード",
+      "downloadAll": "すべてのPNGをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換が完了しました！",
+      "browserProcessing": "処理はブラウザで行われるため、デバイスによって速度が異なる場合があります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ許可されています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
+    }
+  },
+  "svgToWebp": {
+    "meta": {
+      "title": "SVGからWebPへの変換 - 無料オンライン画像変換ツール",
+      "description": "SVGベクター画像をオンラインでWebP形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "SVGからWebP, SVG変換, 画像変換, 無料変換, オンライン画像ツール, ベクター画像変換, webp変換"
+    },
+    "title": "SVGからWebPへの変換",
+    "description": "SVGベクター画像をウェブ表示に最適化されたWebP形式に変換",
+    "form": {
+      "upload": {
+        "label": "SVG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにSVGファイルをドラッグ＆ドロップするか、クリックして選択",
+        "limitText": "最大ファイルサイズ: 20MB (合計100MBまで)"
+      },
+      "convert": "WebPに変換"
+    },
+    "result": {
+      "download": "WebPをダウンロード",
+      "downloadAll": "すべてのWebPをダウンロード",
+      "preview": "プレビュー",
+      "selectedFiles": "ファイルが選択されました"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません",
+      "success": "変換が完了しました！",
+      "browserProcessing": "処理はブラウザで行われるため、デバイスによって速度が異なる場合があります"
+    },
+    "error": {
+      "fileType": "SVGファイルのみ許可されています",
+      "fileSize": "ファイルサイズは20MB未満である必要があります",
+      "conversionFailed": "変換に失敗しました"
+    }
+  },
+  "seoVolumeGuess": {
+    "meta": {
+      "title": "SEOボリューム予測ツール | キーワード検索ボリュームを簡単に推測",
+      "description": "キーワードのサジェスト候補を収集し、検索ボリュームの目安をスコア化する無料ツールです。",
+      "keywords": "SEO,検索ボリューム,キーワード分析,サジェスト"
+    },
+    "title": "SEOボリューム予測ツール",
+    "description": "キーワードを入力するだけで、GoogleサジェストからSEOボリュームを予測します。",
+    "input": {
+      "placeholder": "キーワードを入力（例：ラーメン、英語教室）"
+    },
+    "button": {
+      "analyze": "分析する"
+    },
+    "result": {
+      "volume-score": "検索ボリューム予測",
+      "suggestions": "件のサジェスト",
+      "all-suggestions": "すべてのサジェスト候補",
+      "score-description-1": "非常に低いボリューム。ニッチなキーワードです。",
+      "score-description-2": "低いボリューム。競合は少ないかもしれません。",
+      "score-description-3": "中程度のボリューム。バランスの取れたキーワードです。",
+      "score-description-4": "高いボリューム。人気のあるキーワードです。",
+      "score-description-5": "非常に高いボリューム。競争が激しいキーワードです。"
+    },
+    "error": {
+      "empty-keyword": "キーワードを入力してください",
+      "unknown": "エラーが発生しました。もう一度お試しください。",
+      "api-error": "APIエラーが発生しました。しばらく経ってからお試しください。"
+    },
+    "country": {
+      "selector": "検索対象の国を選択",
+      "result": "{country}の検索結果です",
+      "japan": "日本",
+      "us": "アメリカ",
+      "uk": "イギリス",
+      "australia": "オーストラリア",
+      "canada": "カナダ",
+      "germany": "ドイツ",
+      "france": "フランス",
+      "india": "インド"
+    },
+    "notice": {
+      "title": "ご利用時の注意事項",
+      "language": "日本語キーワードを別の国で検索する場合、その国の言語（例：「パン」→「bread」）に自動変換されます。一部のキーワードのみ対応しています。",
+      "location": "結果はユーザーの所在地によって影響される場合があります。例えば日本からのアクセスでは、国の設定に関わらず日本向けの結果が表示されることがあります。"
+    }
+  },
+  "passwordStrength": {
+    "meta": {
+      "title": "パスワード強度チェッカー",
+      "description": "無料オンラインツールであなたのパスワードの強度をチェック。パスワードセキュリティを分析し、推奨事項を取得しましょう。",
+      "keywords": "パスワード強度, パスワードセキュリティ, パスワードチェック, 強力なパスワード, パスワード分析"
+    },
+    "title": "パスワード強度チェッカー",
+    "description": "パスワードを入力して強度をチェックしましょう。分析してセキュリティ評価を表示します。",
+    "passwordLabel": "パスワードを入力",
+    "strengthLabel": "強度",
+    "strengthLevel": {
+      "veryWeak": "非常に弱い",
+      "weak": "弱い",
+      "medium": "普通",
+      "strong": "強い",
+      "veryStrong": "非常に強い"
+    },
+    "timeToCrack": "解読にかかる時間: {{time}}",
+    "timeUnits": {
+      "instantly": "即時",
+      "seconds": "秒",
+      "minutes": "分",
+      "hours": "時間",
+      "days": "日",
+      "months": "か月",
+      "years": "年",
+      "centuries": "世紀",
+      "impossible": "事実上不可能"
+    },
+    "suggestions": {
+      "title": "パスワードを強化するには",
+      "addLength": "長くする",
+      "addNumbers": "数字を追加",
+      "addSymbols": "記号を追加",
+      "addUppercase": "大文字を追加",
+      "addLowercase": "小文字を追加",
+      "avoidCommon": "一般的な単語やパターンを避ける"
+    },
+    "passwordVisible": "パスワード表示中",
+    "passwordHidden": "パスワード非表示"
+  },
+  "llmTools": {
+    "meta": {
+      "title": "LLMツール - 高度な言語モデル向けツール集",
+      "description": "LLM（大規模言語モデル）向けの便利なツールコレクション。SEOやメタデータ生成などが簡単に行えます。",
+      "keywords": "LLMツール, AI, SEO, メタデータ生成, 大規模言語モデル, ChatGPT, GPT-4"
+    },
+    "title": "LLMツール",
+    "description": "LLM（大規模言語モデル）向けの便利なツールコレクション"
+  },
+  "metaCraftForLlm": {
+    "meta": {
+      "title": "Meta Craft for LLM - LLM向けSEOコード生成ツール",
+      "description": "URLを入力するだけでLLM向けのSEOコードを自動生成。タイトル、メタ説明、OGP、JSON-LDなどを簡単に作成できます。",
+      "keywords": "メタタグ生成, SEO, LLM, OpenGraph, JSON-LD, Twitter Card, 構造化データ"
+    },
+    "title": "Meta Craft for LLM",
+    "description": "ウェブサイトのURLを入力したら、LLM向けのSEOコードを生成し表示するツール",
+    "url": {
+      "label": "解析するURL",
+      "placeholder": "https://example.com",
+      "button": "解析"
+    },
+    "result": {
+      "title": "生成されたメタ情報",
+      "titleTag": "タイトルタグ",
+      "metaDescription": "メタ説明",
+      "ogTags": "OGPタグ",
+      "twitterTags": "Twitterカード",
+      "jsonLd": "JSON-LD",
+      "jsonLdImportance": "LLM向けSEOの最重要要素",
+      "jsonLdDescription": "JSON-LDは検索エンジンやLLMがコンテンツを理解するための構造化データです。LLMにとって最も重要なSEO要素であり、コンテンツの文脈や関係性を明確に伝えます。",
+      "otherElements": "その他のSEO要素"
+    },
+    "copy": {
+      "button": "コピー"
+    },
+    "error": {
+      "fetch": "URLの取得中にエラーが発生しました",
+      "parsing": "HTMLの解析中にエラーが発生しました"
+    },
+    "loading": "処理中...",
+    "seoInfo": {
+      "title": "JSON-LDによる構造化データとLLM向けSEO",
+      "description": "JSON-LDはSchema.orgに準拠した構造化データで、検索エンジンやAIがコンテンツを理解するための重要な要素です。LLMに適切に認識されるためには、以下のポイントに注意しましょう：",
+      "points": [
+        "WebPageやWebApplicationなど、適切な@typeを選択する",
+        "name、description、urlなどの基本プロパティを正確に記述する",
+        "FAQPageスキーマを活用して質問と回答を構造化する",
+        "publisherやorganizationの情報を明確に記述する",
+        "複数のスキーマを組み合わせて豊富な情報を提供する"
+      ],
+      "conclusion": "適切な構造化データを実装することで、LLMはあなたのコンテンツをより深く理解し、検索結果やAIレスポンスに引用される可能性が高まります。"
+    }
   }
 }

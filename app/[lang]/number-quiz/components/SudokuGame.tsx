@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { translate } from '@/lib/i18n/client';
+import Button from '@/components/ui/button';
 
 type Props = {
   lang: string;
@@ -176,18 +177,18 @@ export default function SudokuGame({ lang }: Props) {
       </div>
 
       <div className="flex gap-4">
-        <button
+        <Button
           onClick={generateNewGame}
-          className="bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors"
+          variant="secondary"
         >
           {t('numberQuiz.game.buttons.newGame')}
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={checkSolution}
           className="bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors"
         >
           {t('numberQuiz.game.buttons.checkSolution')}
-        </button>
+        </Button>
       </div>
     </div>
   );

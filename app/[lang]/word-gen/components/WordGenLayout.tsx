@@ -25,6 +25,8 @@ export default function WordGenLayout({ children }: Props) {
     { name: t('wordGen.tools.nameGenerator.title'), path: `/word-gen/name-generator` },
     { name: t('wordGen.tools.passwordGenerator.title'), path: `/word-gen/password-generator` },
     { name: t('wordGen.tools.storyGenerator.title'), path: `/word-gen/story-generator` },
+    { name: t('wordGen.tools.japaneseKanjiGenerator.title'), path: `/word-gen/japanese-kanji-generator` },
+    
   ];
 
   return (

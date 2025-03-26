@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import wordsData from '../../../../../assets/words/words.json'
 import DownloadButton from '../../components/DownloadButton'
+import { Button } from '@/components/ui/button'
+import CopyButton from '@/components/CopyButton'
 
 // words.jsonの型定義
 type WordsData = {
@@ -114,8 +116,7 @@ export default function WordGeneratorClient({ translations }: Props) {
   const [generatedWords, setGeneratedWords] = useState<string[]>([])
   const [wordCount, setWordCount] = useState<number>(10)
   const [minLength, setMinLength] = useState(3)
-  const [maxLength, setMaxLength] = useState(10)
-  const [copied, setCopied] = useState(false)
+  const [maxLength, setMaxLength] = useState(10) 
 
   const generateWords = () => {
     let filteredWords = words.words.filter(word => 
@@ -133,16 +134,6 @@ export default function WordGeneratorClient({ translations }: Props) {
     }
     
     setGeneratedWords(selected)
-  }
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(generatedWords.join('\n'))
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy:', err)
-    }
   }
 
   return (
@@ -220,23 +211,23 @@ export default function WordGeneratorClient({ translations }: Props) {
           </div>
 
           <div className="flex gap-4 justify-center">
-            <button
+            <Button
               onClick={generateWords}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded transition-colors"
+              variant="purple"
             >
               {translations.form.generate}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => {
                 setGeneratedWords([])
                 setWordCount(10)
                 setMinLength(3)
                 setMaxLength(10)
               }}
-              className="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded transition-colors"
+              variant="secondary"
             >
               {translations.form.clear}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -245,15 +236,16 @@ export default function WordGeneratorClient({ translations }: Props) {
             <h2 className="text-xl font-bold">{translations.result.title}</h2>
             {generatedWords.length > 0 && (
               <div className="flex gap-2">
-                <button
-                  onClick={copyToClipboard}
-                  className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
-                >
-                  {copied ? translations.result.copied : translations.result.copy}
-                </button>
+                <CopyButton
+                  text={generatedWords.join('\n')}
+                  variant="purple"
+                  copyText={translations.result.copy}
+                  toastText={translations.result.copied}
+                />
                 <DownloadButton
                   content={generatedWords.join('\n')}
                   filename="generated-words.txt"
+                  variant="purple"
                 />
               </div>
             )}

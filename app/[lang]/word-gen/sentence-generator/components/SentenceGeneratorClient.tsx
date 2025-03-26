@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { translate } from '@/lib/i18n/client';
 import DownloadButton from '../../components/DownloadButton';
+import CopyButton from '@/components/CopyButton';
+import { Button } from '@/components/ui/button';
 
 type Props = {
   lang: string;
@@ -15,7 +17,6 @@ type SentencesData = {
 export default function SentenceGeneratorClient({ lang }: Props) {
   const [generatedSentences, setGeneratedSentences] = useState<string[]>([]);
   const [sentenceCount, setSentenceCount] = useState<string>('5');
-  const [showToast, setShowToast] = useState(false);
   const [allSentences, setAllSentences] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -63,16 +64,6 @@ export default function SentenceGeneratorClient({ lang }: Props) {
     setGeneratedSentences(selectedSentences);
   };
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(generatedSentences.join('\n'));
-      setShowToast(true);
-      setTimeout(() => setShowToast(false), 2000);
-    } catch (error) {
-      console.error('Failed to copy:', error);
-    }
-  };
-
   return (
     <>
       <div className="mb-6">
@@ -107,12 +98,13 @@ export default function SentenceGeneratorClient({ lang }: Props) {
         />
       </div>
       
-      <button
+      <Button
         onClick={generateSentences}
-        className="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition-colors"
+        variant="purple"
+        size="lg"
       >
         {translate(lang, 'sentenceGenerator.form.generate')}
-      </button>
+      </Button>
 
       <div className="relative mt-6">
         <div className="w-full bg-gray-900 text-gray-100 p-6 rounded-lg min-h-[200px]">
@@ -130,23 +122,18 @@ export default function SentenceGeneratorClient({ lang }: Props) {
         </div>
         {generatedSentences.length > 0 && (
           <div className="mt-4 flex justify-end space-x-2">
-            <div className="relative">
-              <button
-                onClick={handleCopy}
-                className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded transition-colors"
-                title={translate(lang, 'sentenceGenerator.result.copyTitle')}
-              >
-                {translate(lang, 'sentenceGenerator.form.copy')}
-              </button>
-              {showToast && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-green-500 text-white px-4 py-2 rounded shadow-lg whitespace-nowrap">
-                  {translate(lang, 'sentenceGenerator.result.copied')}
-                </div>
-              )}
-            </div>
+            <CopyButton
+              text={generatedSentences.join('\n')}
+              copyText={translate(lang, 'sentenceGenerator.form.copy')}
+              toastText={translate(lang, 'sentenceGenerator.result.copied')}
+              variant="purple"
+              className="px-4 py-2"
+            />
             <DownloadButton
               content={generatedSentences.join('\n')}
               filename="generated-sentences.txt"
+              variant='purple'
+
             />
           </div>
         )}

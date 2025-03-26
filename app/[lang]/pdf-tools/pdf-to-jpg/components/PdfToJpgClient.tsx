@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone'
 import { Document, Page, pdfjs } from 'react-pdf'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import Button from '@/components/ui/button'
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
 
@@ -255,7 +256,7 @@ export default function PdfToJpgClient({ translations }: Props) {
                 {translations.form.quality.label}
               </label>
               <div className="flex space-x-4">
-                <button
+                <Button
                   type="button"
                   onClick={() => setQuality('low')}
                   className={`px-4 py-2 rounded ${
@@ -265,8 +266,8 @@ export default function PdfToJpgClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.low}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setQuality('medium')}
                   className={`px-4 py-2 rounded ${
@@ -276,8 +277,8 @@ export default function PdfToJpgClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.medium}
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={() => setQuality('high')}
                   className={`px-4 py-2 rounded ${
@@ -287,20 +288,20 @@ export default function PdfToJpgClient({ translations }: Props) {
                   }`}
                 >
                   {translations.form.quality.high}
-                </button>
+                </Button>
               </div>
             </div>
           )}
 
           {pdfFile && (
-            <button
+            <Button
               type="button"
               onClick={convertToJpg}
               disabled={isConverting}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              variant="purple"
             >
               {isConverting ? translations.status.processing : translations.form.convert}
-            </button>
+            </Button>
           )}
         </div>
       )}
@@ -331,12 +332,12 @@ export default function PdfToJpgClient({ translations }: Props) {
             <h2 className="text-xl font-bold">
               {convertedImages.length} {convertedImages.length === 1 ? 'Image' : 'Images'} Converted
             </h2>
-            <button
+            <Button
               onClick={downloadAllImages}
-              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
+              variant="purple"
             >
               {translations.result.downloadAll}
-            </button>
+            </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {convertedImages.map((image) => (
@@ -353,12 +354,12 @@ export default function PdfToJpgClient({ translations }: Props) {
                   </div>
                 </div>
                 <div className="p-3">
-                  <button
+                  <Button
                     onClick={() => downloadImage(image.dataUrl, image.pageNumber)}
                     className="w-full bg-purple-600 hover:bg-purple-700 text-white py-1 px-3 rounded text-sm"
                   >
                     {translations.result.download}
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
