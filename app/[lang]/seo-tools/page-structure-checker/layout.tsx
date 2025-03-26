@@ -4,14 +4,14 @@ import { translate } from '@/lib/i18n/server'
 import { getCommonMetadata } from '@/lib/metadata'
 
 type Props = {
-  params: Promise<{ lang: string }> | { lang: string }
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await (Promise.resolve(params) as Promise<{ lang: string }>)
+  const { lang } = await params;
   const t = (key: string) => translate(lang, key)
 
   const commonMeta = {
@@ -72,6 +72,10 @@ export async function generateMetadata(
   }
 }
 
-export default function PageStructureCheckerLayout({ children }: Props) {
+export default async function PageStructureCheckerLayout({
+  children
+}: {
+  children: React.ReactNode;
+}) {
   return children
 } 

@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import * as cheerio from 'cheerio'
 import { translate } from '@/lib/i18n/server'
+import * as cheerio from 'cheerio'
+import { NextRequest, NextResponse } from 'next/server'
 
 // CORS用のヘッダー
 const corsHeaders = {
@@ -36,8 +36,8 @@ export async function POST(request: NextRequest) {
     let reqData
     try {
       reqData = await request.json()
-    } catch (e) {
-      console.error('Failed to parse request JSON:', e)
+    } catch {
+      console.error('Failed to parse request JSON:')
       return NextResponse.json(
         { error: 'Invalid request: Could not parse JSON body' },
         { status: 400, headers: corsHeaders }
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     // URLの検証
     try {
       new URL(url)
-    } catch (e) {
+    } catch {
       return NextResponse.json(
         { error: 'Invalid URL format' },
         { status: 400, headers: corsHeaders }

@@ -2,11 +2,11 @@ import { translate } from '@/lib/i18n/server'
 import PageStructureCheckerClient from './components/PageStructureCheckerClient'
 
 type Props = {
-  params: Promise<{ lang: string }> | { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PageStructureCheckerPage({ params }: Props) {
-  const { lang } = await (Promise.resolve(params) as Promise<{ lang: string }>)
+  const { lang } = await params
   const t = (key: string) => translate(lang, key)
 
   return (
