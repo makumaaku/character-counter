@@ -25,7 +25,7 @@ export interface ExtractedMetadata {
     description?: string;
     image?: string;
   };
-  jsonLd?: any;
+  jsonLd?: Record<string, unknown> | null;
 }
 
 /**
@@ -189,7 +189,7 @@ function extractTopKeywords(text: string): string[] {
 /**
  * JSON-LDを抽出する
  */
-function extractJsonLd(doc: Document): any {
+function extractJsonLd(doc: Document): Record<string, unknown> | null {
   const jsonLdScripts = doc.querySelectorAll('script[type="application/ld+json"]');
   if (jsonLdScripts.length === 0) return null;
 

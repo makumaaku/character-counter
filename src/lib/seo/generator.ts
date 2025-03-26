@@ -141,7 +141,7 @@ function generateJsonLd(metadata: ExtractedMetadata): string {
   const description = metadata.description || metadata.firstParagraph || '';
   const url = metadata.url || '';
   
-  let jsonLd: any;
+  let jsonLd: Record<string, unknown>;
 
   // LLMツールの場合はWebApplicationスキーマを使用
   if (isAITool) {
@@ -187,7 +187,7 @@ function generateJsonLd(metadata: ExtractedMetadata): string {
 /**
  * WebApplicationスキーマを生成する (LLMツール向け)
  */
-function generateWebApplicationSchema(metadata: ExtractedMetadata): any {
+function generateWebApplicationSchema(metadata: ExtractedMetadata): Record<string, unknown> {
   const title = metadata.title || metadata.h1 || 'AI Tool';
   const description = metadata.description || metadata.firstParagraph || '';
   const url = metadata.url || '';
@@ -273,10 +273,11 @@ function generateFeatureList(metadata: ExtractedMetadata): string[] {
 }
 
 /**
- * FAQスキーマを生成する
+ * FAQ用のスキーマを生成する
  */
-function generateFaqSchema(metadata: ExtractedMetadata): { mainEntity: any[] } {
-  const mainEntity: any[] = [];
+function generateFaqSchema(metadata: ExtractedMetadata): { mainEntity: Array<Record<string, unknown>> } {
+  // FAQ用の質問と回答のペアを抽出
+  const mainEntity: Array<Record<string, unknown>> = [];
   const content = metadata.mainContent || '';
   
   // 簡易的な質問抽出（?で終わる文章を検出）
