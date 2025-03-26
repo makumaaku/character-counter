@@ -10,6 +10,12 @@ export default async function SeoTools({ params }: Props) {
   
   const tools = [
     {
+      title: translate(lang, 'page-structure-checker.title'),
+      description: translate(lang, 'page-structure-checker.description'),
+      path: `/${lang}/seo-tools/page-structure-checker`,
+      icon: "📋"
+    },
+    {
       title: translate(lang, 'seoTools.tools.pageSpeedChecker.title'),
       description: translate(lang, 'seoTools.tools.pageSpeedChecker.description'),
       path: `/${lang}/seo-tools/page-speed-checker`,

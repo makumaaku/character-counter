@@ -1948,6 +1948,57 @@
       "generic": "An error occurred. Please try again."
     }
   },
+  "page-structure-checker": {
+    "meta": {
+      "title": "Page Structure Checker - SEO Tools",
+      "description": "Analyze your webpage's structure including title, description, and heading hierarchy to ensure proper SEO optimization",
+      "keywords": "page structure, heading structure, seo checker, h1 tag, title tag, meta description"
+    },
+    "title": "Page Structure Checker",
+    "description": "Check if your webpage has a proper structure with appropriate title, description, and heading tags hierarchy",
+    "form": {
+      "url-label": "Enter URL to analyze",
+      "url-placeholder": "https://example.com",
+      "analyzing": "Analyzing...",
+      "analyze": "Analyze",
+      "example": "Example"
+    },
+    "error": {
+      "title": "Error",
+      "url-required": "Please enter a URL to analyze",
+      "invalid-url": "Please enter a valid URL (including http:// or https://)",
+      "fetch-failed": "Failed to analyze the page",
+      "network-error": "Network error - please check your connection",
+      "server-error": "Server error occurred during analysis",
+      "timeout-error": "The request timed out - the server might be busy",
+      "parsing-error": "Failed to parse the page structure"
+    },
+    "meta-title": "Meta Information",
+    "heading-structure": "Heading Structure",
+    "issues": "Issues Found",
+    "no-title": "No title found",
+    "no-description": "No description found",
+    "no-canonical": "No canonical URL found",
+    "no-headings": "No heading tags found in the page",
+    "warning": "Warning",
+    "analysis": "Analysis",
+    "good": "Found",
+    "missing": "Missing",
+    "present": "Present",
+    "tag": "tag",
+    "count": "count",
+    "hierarchy-issue": "h2-h6: hierarchy-issue",
+    "no-title": "The page does not have a title tag",
+    "no-description": "The page does not have a meta description",
+    "no-h1": "The page does not have an h1 tag",
+    "multiple-h1": "The page has multiple h1 tags (should only have one)",
+    "skipped-level": "Heading level hierarchy is incorrect.",
+    "issue-found": "Issue Found",
+    "hierarchy-issue-message": "Hierarchy Issue",
+    "recommended": "Recommended",
+    "important-for-seo": "Important for SEO",
+    "headings": "Headings"
+  },
   "japaneseKanjiGenerator": {
     "meta": {
       "title": "Japanese Kanji Generator - Create Random Kanji Images",
