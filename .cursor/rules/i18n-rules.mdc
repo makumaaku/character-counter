@@ -103,6 +103,7 @@ export async function generateMetadata({ params }: Propse<Metadata> {
 ```
 
 2. クライアントコンポーネントで使用する翻訳の準備
+サーバーコンポーネント側で文字列情報 [server.ts](mdc:src/lib/i18n/server.ts) から取得し、NextJSのScriptタグに`messages`を渡します。
 ```tsx
 export default async function Layout({ children, params }: Props) {
   const { lang } = await params;
@@ -135,7 +136,7 @@ export default async function Layout({ children, params }: Props) {
   return (
     <>
       {/* クライアントコンポーネントで使用する翻訳をスクリプトタグで埋め込み */}
-      <script
+      <Script
         id="messages"
         type="application/json"
         dangerouslySetInnerHTML={{

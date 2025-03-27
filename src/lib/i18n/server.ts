@@ -21,7 +21,7 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
   try {
     let commonMessages = {};
     let metaMessages = {};
-    let legacyMessages = {};
+    const legacyMessages = {};
 
     // 新しいディレクトリ構造から読み込み試行
     try {
@@ -36,12 +36,12 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
     }
 
     // 既存の大きなJSONファイルからのフォールバック
-    try {
-      const legacyModule = await import(`../../../assets/locales/${lang}.json`);
-      legacyMessages = legacyModule.default || {};
-    } catch {
+    // try {
+    //   const legacyModule = await import(`../../../assets/locales/${lang}.json`);
+    //   legacyMessages = legacyModule.default || {};
+    // } catch {
       
-    }
+    // }
 
     // 既に読み込まれているか確認
     if (messages.has(lang)) {
@@ -108,7 +108,7 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
         return combinedMessages;
       } else {
         // トップレベルのツールの場合
-        const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
+        const toolModule = await import(`../../../assets/locales/${lang}/${toolName}/common.json`);
         toolMessages = toolModule.default || {};
         
         const combinedMessages = {
@@ -155,6 +155,31 @@ export function getMessages(locale: Language = 'en'): Messages {
   return messages.get(locale) || messages.get('en')!;
 }
 
+// wordGenで始まるキーを抽出して出力する関数
+export function extractAndLogWordGenKeys(locale: Language = 'en'): void {
+  // メッセージを取得
+  const allMessages = getMessages(locale);
+  console.log(allMessages)
+  
+  // // wordGenで始まるキーを探す
+  // const wordGenKeys: Record<string, MessageValue> = {};
+  
+  // // トップレベルのwordGenキーをチェック
+  // if (allMessages.wordGen) {
+  //   wordGenKeys.wordGen = allMessages.wordGen;
+  // }
+  
+  // // ネストされたキーも確認
+  // Object.entries(allMessages).forEach(([key, value]) => {
+  //   if (key.startsWith('wordGen')) {
+  //     wordGenKeys[key] = value;
+  //   }
+  // });
+  
+  // // 結果を出力
+  // console.warn('Found wordGen keys:', wordGenKeys);
+}
+
 export async function translate(lang: string, key: string, toolName?: string): Promise<string> {
   const locale = lang as Language;
   
@@ -176,6 +201,10 @@ export async function translate(lang: string, key: string, toolName?: string): P
   let value: unknown = getMessages(locale);
   
   // 各キーに対して順番にアクセス
+  console.log('@@@@@@@@@@@@@@@@@@@@@@')
+  extractAndLogWordGenKeys(locale)
+
+
   for (const k of keys) {
     if (!value || typeof value !== 'object') {
       console.warn(`Translation key not found: ${key} (at ${k})`);

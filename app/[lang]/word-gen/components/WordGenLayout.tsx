@@ -2,30 +2,68 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { translate } from '@/lib/i18n/client';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
 import Footer from '@/components/Footer';
+import { useMessages } from '@/hooks/useMessages';
 
 type Props = {
   children: React.ReactNode;
+};
+
+// メッセージの型定義
+type WordGenMessages = {
+  title: string;
+  description: string;
+  wordGen: {
+    tools: {
+      wordGenerator: {
+        title: string;
+      };
+      wordCardGenerator: {
+        title: string;
+      };
+      sentenceGenerator: {
+        title: string;
+      };
+      nameGenerator: {
+        title: string;
+      };
+      passwordGenerator: {
+        title: string;
+      };
+      storyGenerator: {
+        title: string;
+      };
+      japaneseKanjiGenerator: {
+        title: string;
+      };
+    };
+  };
 };
 
 export default function WordGenLayout({ children }: Props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const params = useParams();
   const lang = params.lang as string;
-  const t = (key: string) => translate(lang, key);
+  
+  // messagesを取得するカスタムフック
+  const messages = useMessages<WordGenMessages>();
+
+  // messagesがロードされるまでローディング表示
+  if (!messages) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
 
   const navigationItems = [
-    { name: t('wordGen.tools.wordGenerator.title'), path: `/word-gen/word-generator` },
-    { name: t('wordGen.tools.wordCardGenerator.title'), path: `/word-gen/word-card-generator` },
-    { name: t('wordGen.tools.sentenceGenerator.title'), path: `/word-gen/sentence-generator` },
-    { name: t('wordGen.tools.nameGenerator.title'), path: `/word-gen/name-generator` },
-    { name: t('wordGen.tools.passwordGenerator.title'), path: `/word-gen/password-generator` },
-    { name: t('wordGen.tools.storyGenerator.title'), path: `/word-gen/story-generator` },
-    { name: t('wordGen.tools.japaneseKanjiGenerator.title'), path: `/word-gen/japanese-kanji-generator` },
+    { name: messages.wordGen.tools.wordGenerator.title, path: `/word-gen/word-generator` },
+    { name: messages.wordGen.tools.wordCardGenerator.title, path: `/word-gen/word-card-generator` },
+    { name: messages.wordGen.tools.sentenceGenerator.title, path: `/word-gen/sentence-generator` },
+    { name: messages.wordGen.tools.nameGenerator.title, path: `/word-gen/name-generator` },
+    { name: messages.wordGen.tools.passwordGenerator.title, path: `/word-gen/password-generator` },
+    { name: messages.wordGen.tools.storyGenerator.title, path: `/word-gen/story-generator` },
+    { name: messages.wordGen.tools.japaneseKanjiGenerator.title, path: `/word-gen/japanese-kanji-generator` },
   ];
 
   return (

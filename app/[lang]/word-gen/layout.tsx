@@ -201,14 +201,56 @@ export default async function Layout({ children, params }: Props) {
   const { lang } = await params;
 
   // クライアントコンポーネント用の翻訳を準備
-  const [title, description] = await Promise.all([
+  const [
+    title, 
+    description,
+    wordGeneratorTitle,
+    wordCardGeneratorTitle,
+    sentenceGeneratorTitle,
+    nameGeneratorTitle,
+    passwordGeneratorTitle,
+    storyGeneratorTitle,
+    japaneseKanjiGeneratorTitle
+  ] = await Promise.all([
     translate(lang, 'wordGen.title'),
-    translate(lang, 'wordGen.description')
+    translate(lang, 'wordGen.description'),
+    translate(lang, 'wordGen.tools.wordGenerator.title'),
+    translate(lang, 'wordGen.tools.wordCardGenerator.title'),
+    translate(lang, 'wordGen.tools.sentenceGenerator.title'),
+    translate(lang, 'wordGen.tools.nameGenerator.title'),
+    translate(lang, 'wordGen.tools.passwordGenerator.title'),
+    translate(lang, 'wordGen.tools.storyGenerator.title'),
+    translate(lang, 'wordGen.tools.japaneseKanjiGenerator.title')
   ]);
 
   const messages = {
     title,
-    description
+    description,
+    wordGen: {
+      tools: {
+        wordGenerator: {
+          title: wordGeneratorTitle
+        },
+        wordCardGenerator: {
+          title: wordCardGeneratorTitle
+        },
+        sentenceGenerator: {
+          title: sentenceGeneratorTitle
+        },
+        nameGenerator: {
+          title: nameGeneratorTitle
+        },
+        passwordGenerator: {
+          title: passwordGeneratorTitle
+        },
+        storyGenerator: {
+          title: storyGeneratorTitle
+        },
+        japaneseKanjiGenerator: {
+          title: japaneseKanjiGeneratorTitle
+        }
+      }
+    }
   };
 
   return (
