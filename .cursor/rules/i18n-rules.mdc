@@ -23,15 +23,17 @@ alwaysApply: true
 <Link href={`/${lang}/about`}>About</Link>
 ```
 
-### 2. 言語フts/locales/[lang]/`ディレクトリ内で管理
+### 2. 言語ファイル構成
+- 言語ファイルは `assets/locales/[lang]/` ディレクトリ内で管理
   - 英語：`locales/en/`
   - 日本語：`locales/ja/`
   - スペイン語：`locales/es/`
 - 各言語ディレクトリには以下のような構造で翻訳ファイルを配置：
   - `common.json` - 共通テキスト（ヘッダー、フッター、エラーメッセージなど）
   - `meta.json` - メタデータ（タイトル、説明文など）
-  - 単一ツール用ファイル（例：`character-counter.json`、`number-quiz.json`）
-  - カテゴリ別ディレクトリ（例：`pdf-tools/`）
+  - 単一ツール用ディレクトリ（例：`number-quiz/`）
+    - `common.json` - ツール固有の翻訳
+  - カテゴリ別ディレクトリ（例：`word-gen/`）
     - カテゴリ共通ファイル: `[カテゴリ名]/common.json`
     - 個別ツールファイル: `[カテゴリ名]/[ツール名].json`
 
@@ -57,26 +59,36 @@ alwaysApply: true
 
 1. メタデータの生成
 ```tsx
-export async function generateMetadata({ params }: Propse<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'tool-name');
   
-  // 翻訳関数
-  const t = async (key: string) => await translate(lan  // 共通のメタデータ情報を設定
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'toolName.meta.title'),
+    translate(lang, 'toolName.meta.description'),
+    translate(lang, 'toolName.meta.keywords')
+  ]);
+
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: await t('siteName'),
-    publisher: await t('publisher'),
-    logoAlt: await t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": await t('toolName.meta.title'),
-    "description": await t('toolName.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/tool-path`,
     // その他のJSON-LD情報
   };
@@ -86,16 +98,15 @@ export async function generateMetadata({ params }: Propse<Metadata> {
     lang,
     commonMeta,
     {
-      title:toolName.meta.title'),
-      description: awaiName.meta.description'),
-      keywords: await t('toolName.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/tool-path`,
     }
   );
 
   return {
-    ...metadata,
-    other: {
+    ...metadther: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
@@ -103,7 +114,8 @@ export async function generateMetadata({ params }: Propse<Metadata> {
 ```
 
 2. クライアントコンポーネントで使用する翻訳の準備
-サーバーコンポーネント側で文字列情報 [server.ts](mdc:src/lib/i18n/server.ts) から取得し、NextJSのScriptタグに`messages`を渡します。
+サーバーコンポーネント側で文字列情報をすべて一括で取得し、NextJSの`Script`タグに`messages`として渡します。並列処理を使用してパフォーマンスを向上させます。
+
 ```tsx
 export default async function Layout({ children, params }: Props) {
   const { lang } = await params;
@@ -111,16 +123,19 @@ export default async function Layout({ children, params }: Props) {
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'tool-name');
 
-  // 必要な翻訳を一括で取得
-  const translations = await Promise.all([
+  // 並列で翻訳を一括取得
+  const [
+    title,
+    label1,
+    label2,
+    // 必要な翻訳キーをすべて取得
+    // ...その他の翻訳
+  ] = await Promise.all([
     translate(lang, 'toolName.title'),
     translate(lang, 'toolName.ui.label1'),
     translate(lang, 'toolName.ui.label2'),
     // 必要な翻訳キーを追加
   ]);
-  
-  // 値を取り出し
-  const [title, label1, label2] = translations;
 
   // クライアントコンポーネントに渡す翻訳データ
   const messages = {
@@ -130,14 +145,18 @@ export default async function Layout({ children, params }: Props) {
         label1,
         label2
       }
+      // ...その他の翻訳
     }
   };
+
+  // スクリプトIDは親子ページの衝突を避けるためにユニークな値を設定
+  const scriptId = "tool-name-messages";
 
   return (
     <>
       {/* クライアントコンポーネントで使用する翻訳をスクリプトタグで埋め込み */}
       <Script
-        id="messages"
+        id={scriptId}
         type="application/json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(messages),
@@ -176,7 +195,7 @@ export default async function ToolPage({ params }: Props) {
 ```
 
 ### 6. クライアントコンポーネントでの翻訳の使用
-クライアントコンポーネントでは、`useMessages`フックを使用して翻訳を取得します：
+クライアントコンポーネントでは、`useMessages`フックを使用して翻訳を取得します。このとき、親子レイアウトの衝突を避けるために適切なスクリプトIDを指定します：
 
 ```tsx
 'use client';
@@ -184,7 +203,7 @@ export default async function ToolPage({ params }: Props) {
 import { useEffect, useState } from 'react';
 import { useMessages } from '@/hooks/useMessages';
 
-// メッセージの型定義
+// メッセージの型定義（TypeScriptの型安全性のため）
 type ToolMessages = {
   toolName: {
     title: string;
@@ -196,8 +215,8 @@ type ToolMessages = {
 }
 
 export default function ToolComponent() {
-  // 基本的な使い方（デフォルトのid="messages"を使用）
-  const messages = useMessages<ToolMessages>();
+  // スクリプトIDを指定して翻訳を取得
+  const messages = useMessages<ToolMessages>('tool-name-messages');
 
   if (!messages) {
     return <div>Loading translations...</div>;
@@ -209,7 +228,7 @@ export default function ToolComponent() {
       <div>
         <label>{messages.toolName.ui.label1}</label>
         {/* その他のUIコンポーネント */}
-      </div>
+   
     </div>
   );
 }
@@ -217,7 +236,7 @@ export default function ToolComponent() {
 
 ### 7. 親子レイアウトでのScript IDの衝突防止
 
-Next.jsのネストされたレイアウト構造では、親レイアウト（例：`word-gen/layout.tsx`）と子レイアウト（例：`word-gen/word-card-generator/layout.tsx`）の両方がScriptタグを使用すると、同じID（`messages`）を持つタグが複数存在する状況が発生します。
+Next.jsのネストされたレイアウト構造では、親レイアウト（例：`word-gen/layout.tsx`）と子レイアウト（例：`word-gen/word-card-generator/layout.tsx`）の両方がScriptタグを使用すると、同じID（）を持つタグが複数存在する状況が発生します。
 
 この場合、`document.getElementById('messages')`は最初に見つかったScriptタグを取得するため、クライアントコンポーネントが意図しないメッセージを読み込む可能性があります。
 
@@ -245,59 +264,20 @@ const messages = useMessages<WordCardGeneratorMessages>('word-card-generator-mes
 
 **命名規則**：
 - 単一階層のツール: `{tool-name}-messages`
+  例: `number-quiz-messages`
 - ネストされたツール: `{parent-category}-{tool-name}-messages`
+  例: `word-gen-word-card-generator-messages`
 
 この方法により、親レイアウトと子レイアウトのScriptタグが互いに干渉せず、各コンポーネントが正しいメッセージを取得できます。
 
-### 8. 新規言語追加時の手順
-1. [types.ts](mdc:src/lib/i18n/types.ts) の`Language`型に新しい言語を追加
-```typescript
-export type Language = 'en' | 'ja' | 'es' | 'new_lang';
-```
-2. `assets/locales/`に新しい言語ディレクトリを作成（例：`fr/`）
-3. 英語ディレクトリ（`en/`）の構造を複製し、すべてのファイルを新言語に翻訳
-4. [server.ts](mdc:src/lib/i18n/server.ts) の`getAvailableLanguages`関数に新しい言語を追加
-5. 言語切り替えコンポーネントに新しい言語を追加
-
-### 9. 注意事項
-- 翻訳漏れを防ぐため、新規テキスト追加時は必ずすべての言語ファイルを更新
-- 言語ファイルのキー構造は全言語で統一
-- 動的なテキストを含む場合は、プレースホルダーを使用
-```json
-{
-  "welcome": "Welcome, {name}!"
-}
-```
-- SEO対策として、各ページのメタデータも多言語対応
-- レイアウトファイルで翻訳データを準備し、クライアントコンポーネントで使用
-
-### 10. 重要なユーティリティ関数
-| 関数名 | 用途 | パス |
-|--------|------|------|
-| `loadToolMessages` | ツール固有の翻訳をロード | `@/lib/i18n/server` |
-| `translate` | サーバーコンポーネントでの翻訳取得 | `@/lib/i18n/server` |
-| `getLanguageFromParams` | パラメータから言語情報を取得 | `@/lib/i18n/server` |
-| `getAvailableLanguages` | 利用可能な言語一覧を取得 | `@/lib/i18n/server` |
-
-### 11. 実装例
-number-quizとcountry-dataの実装を参考にしてください。特に以下のファイルが参考になります：
-
-- `app/[lang]/number-quiz/layout.tsx`
-- `app/[lang]/number-quiz/page.tsx`
-- `app/[lang]/number-quiz/components/SudokuGame.tsx`
-- `app/[lang]/country-data/layout.tsx`
-- `app/[lang]/country-data/page.tsx`
-
-### 12. 翻訳の並列処理
+### 8. 翻訳の並列処理
 翻訳処理のパフォーマンスを向上させるため、`Promise.all`を使用して並列処理を行います：
 
 ```typescript
 // 非推奨：逐次的な翻訳処理
-const translations = {
-  title: await translate(lang, 'page.title'),
-  description: await translate(lang, 'page.description'),
-  button: await translate(lang, 'page.button'),
-};
+const title = await translate(lang, 'page.title');
+const description = await translate(lang, 'page.description');
+const button = await translate(lang, 'page.button');
 
 // 推奨：Promise.allを使用した並列処理
 const [title, description, button] = await Promise.all([
@@ -317,23 +297,6 @@ const translations = {
 オブジェクトが深くネストされている場合は、以下のパターンを使用します：
 
 ```typescript
-// 非推奨：深いネストでの逐次処理
-const translations = {
-  content: {
-    hero: {
-      title: await translate(lang, 'content.hero.title'),
-      description: await translate(lang, 'content.hero.description'),
-    },
-    features: {
-      title: await translate(lang, 'content.features.title'),
-      items: {
-        first: await translate(lang, 'content.features.items.first'),
-        second: await translate(lang, 'content.features.items.second'),
-      },
-    },
-  },
-};
-
 // 推奨：Promise.allとオブジェクトの分割代入を組み合わせた並列処理
 const [
   heroTitle,
@@ -369,4 +332,80 @@ const translations = {
 このパターンを使用することで：
 - 翻訳処理が並列化され、パフォーマンスが向上
 - コードの可読性が向上
-- デバッグが容易になる（各翻訳キーと変数の対応が明確） 
+- デバッグが容易になる（各翻訳キーと変数の対応が明確）
+
+### 9. 新規言語追加時の手順
+1. [types.ts](mdc:src/lib/i18n/types.ts) の`Language`型に新しい言語を追加
+```typescript
+export type Language = 'en' | 'ja' | 'es' | 'new_lang';
+```
+2. `assets/locales/`に新しい言語ディレクトリを作成（例：`fr/`）
+3. 英語ディレクトリ（`en/`）の構造を複製し、すべてのファイルを新言語に翻訳
+4. [server.ts](mdc:src/lib/i18n/server.ts) の`getAvailableLanguages`関数に新しい言語を追加
+5. 言語切り替えコンポーネントに新しい言語を追加
+
+### 10. メッセージ型定義のベストプラクティス
+翻訳メッセージの型定義は、クライアントコンポーネントでの型安全性を確保するために重要です：
+
+```tsx
+// 型定義の例（number-quizの場合）
+type NumberQuizMessages = {
+  numberQuiz: {
+    game: {
+      title: string;
+      difficulty: {
+        label: string;
+        easy: string;
+        normal: string;
+        hard: string;
+      },
+      buttons: {
+        newGame: string;
+        checkSolution: string;
+      },
+      messages: {
+        correct: string;
+        incorrect: string;
+        complete: string;
+      }
+    }
+  }
+}
+
+// 使用例
+const messages = useMessages<NumberQuizMessages>('number-quiz-messages');
+if (messages) {
+  // 型安全な方法でメッセージにアクセス可能
+  const title = messages.numberQuiz.game.title;
+}
+```
+
+### 11. 注意事項
+- 翻訳漏れを防ぐため、新規テキスト追加時は必ずすべての言語ファイルを更新
+- 言語ファイルのキー構造は全言語で統一
+- 動的なテキストを含む場合は、プレースホルダーを使用
+```json
+{
+  "welcome": "Welcome, {name}!"
+}
+```
+- SEO対策として、各ページのメタデータも多言語対応
+- レイアウトファイルで翻訳データを準備し、クライアントコンポーネントで使用
+- Script IDの衝突を防ぐため、親子レイアウトでは固有のIDを指定
+
+### 12. 重要なユーティリティ関数
+| 関数名 | 用途 | パス |
+|-----|---|---|
+| `loadToolMessages` | ツール固有の翻訳をロード | `@/lib/i18n/server` |
+| `translate` | サーバーコンポーネントでの翻訳取得 | `@/lib/i18n/server` |
+| `getLanguageFromParams` | パラメータから言語情報を取得 | `@/lib/i18n/server` |
+| `getAvailableLanguages` | 利用可能な言語一覧を取得 | `@/lib/i18n/server` |
+| `useMessages` | クライアントコンポーネントでの翻訳取得 | `@/hooks/useMessages` |
+
+### 13. 実装例
+number-quizとword-gen/word-card-generatorの実装を参考にしてください。特に以下のファイルが参考になります：
+
+- `app/[lang]/number-quiz/layout.tsx` - 単一階層のツール実装
+- `app/[lang]/number-quiz/components/SudokuGame.tsx` - 単一階層のクライアントコンポーネント実装
+- `app/[lang]/word-gen/word-card-generator/layout.tsx` - 親子階層のツール実装
+- `app/[lang]/word-gen/word-card-generator/components/WordCardGeneratorClient.tsx` - 親子階層のクライアントコンポーネント実装 

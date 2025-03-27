@@ -60,9 +60,9 @@ export async function generateMetadata(
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: await translate(lang, SITE_CONFIG.siteName),
-    publisher: await translate(lang, SITE_CONFIG.publisher),
-    logoAlt: await translate(lang, 'common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
