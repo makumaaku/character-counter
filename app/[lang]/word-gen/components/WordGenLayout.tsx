@@ -57,19 +57,18 @@ export default function WordGenLayout({ children }: Props) {
   }
 
   const navigationItems = [
-    { name: messages.wordGen.tools.wordGenerator.title, path: `/word-gen/word-generator` },
-    { name: messages.wordGen.tools.wordCardGenerator.title, path: `/word-gen/word-card-generator` },
-    { name: messages.wordGen.tools.sentenceGenerator.title, path: `/word-gen/sentence-generator` },
-    { name: messages.wordGen.tools.nameGenerator.title, path: `/word-gen/name-generator` },
-    { name: messages.wordGen.tools.passwordGenerator.title, path: `/word-gen/password-generator` },
-    { name: messages.wordGen.tools.storyGenerator.title, path: `/word-gen/story-generator` },
-    { name: messages.wordGen.tools.japaneseKanjiGenerator.title, path: `/word-gen/japanese-kanji-generator` },
+    { name: messages.wordGen.tools.wordGenerator.title, path: `/${lang}/word-gen/word-generator` },
+    { name: messages.wordGen.tools.wordCardGenerator.title, path: `/${lang}/word-gen/word-card-generator` },
+    { name: messages.wordGen.tools.sentenceGenerator.title, path: `/${lang}/word-gen/sentence-generator` },
+    { name: messages.wordGen.tools.nameGenerator.title, path: `/${lang}/word-gen/name-generator` },
+    { name: messages.wordGen.tools.passwordGenerator.title, path: `/${lang}/word-gen/password-generator` },
+    { name: messages.wordGen.tools.storyGenerator.title, path: `/${lang}/word-gen/story-generator` },
+    { name: messages.wordGen.tools.japaneseKanjiGenerator.title, path: `/${lang}/word-gen/japanese-kanji-generator` },
   ];
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      {/* こちらは多言語対応の必要はない */}
-      <Header title={'Word Generation Tools'} homeLink={`/${lang}/word-gen`}>
+      <Header title={messages.title} homeLink={`/${lang}/word-gen`}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"

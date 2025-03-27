@@ -201,7 +201,6 @@ export async function translate(lang: string, key: string, toolName?: string): P
   let value: unknown = getMessages(locale);
   
   // 各キーに対して順番にアクセス
-  console.log('@@@@@@@@@@@@@@@@@@@@@@')
   extractAndLogWordGenKeys(locale)
 
 

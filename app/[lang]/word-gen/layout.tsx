@@ -2,8 +2,10 @@ import { loadToolMessages, translate } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import WordGenLayout from './components/WordGenLayout';
 import { Language } from '@/lib/i18n/types';
+import Script from 'next/script';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 type Props = {
   children: React.ReactNode;
@@ -199,6 +201,9 @@ export async function generateMetadata(
 
 export default async function Layout({ children, params }: Props) {
   const { lang } = await params;
+  
+  // word-gen用の翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen');
 
   // クライアントコンポーネント用の翻訳を準備
   const [
@@ -255,16 +260,20 @@ export default async function Layout({ children, params }: Props) {
 
   return (
     <>
-      <script
+      <Script
         id="messages"
         type="application/json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(messages)
+          __html: JSON.stringify(messages),
         }}
       />
-      <WordGenLayout>
-        {children}
-      </WordGenLayout>
+      <div className="flex flex-col min-h-screen bg-gray-800">
+        <Header title={title} homeLink={`/${lang}/word-gen`} />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+      </div>
     </>
   );
 } 

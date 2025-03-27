@@ -23,7 +23,9 @@
     "title": "Generated Words",
     "empty": "Fill in the form above to generate words",
     "copy": "Copy Results",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "download": "Download",
+    "downloaded": "Downloaded!"
   },
   "about": {
     "catchphrase": "Discover Your Next Great Idea with Random Words!",

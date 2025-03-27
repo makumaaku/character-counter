@@ -182,6 +182,7 @@ export default async function ToolPage({ params }: Props) {
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useMessages } from '@/hooks/useMessages';
 
 // メッセージの型定義
 type ToolMessages = {
@@ -194,23 +195,9 @@ type ToolMessages = {
   }
 }
 
-// messagesを取得するカスタムフック
-function useMessages() {
-  const [messages, setMessages] = useState<ToolMessages | null>(null);
-
-  useEffect(() => {
-    const messagesScript = document.getElementById('messages');
-    if (messagesScript) {
-      const messages = JSON.parse(messagesScript.textContent || '{}');
-      setMessages(messages);
-    }
-  }, []);
-
-  return messages;
-}
-
 export default function ToolComponent() {
-  const messages = useMessages();
+  // 基本的な使い方（デフォルトのid="messages"を使用）
+  const messages = useMessages<ToolMessages>();
 
   if (!messages) {
     return <div>Loading translations...</div>;
@@ -228,17 +215,51 @@ export default function ToolComponent() {
 }
 ```
 
-### 7. 新規言語追加時の手順
-1. `src/lib/i18n/types.ts`の`Language`型に新しい言語を追加
+### 7. 親子レイアウトでのScript IDの衝突防止
+
+Next.jsのネストされたレイアウト構造では、親レイアウト（例：`word-gen/layout.tsx`）と子レイアウト（例：`word-gen/word-card-generator/layout.tsx`）の両方がScriptタグを使用すると、同じID（`messages`）を持つタグが複数存在する状況が発生します。
+
+この場合、`document.getElementById('messages')`は最初に見つかったScriptタグを取得するため、クライアントコンポーネントが意図しないメッセージを読み込む可能性があります。
+
+**対策：固有のID名を使用する**
+
+1. レイアウトファイル（layout.tsx）では、ツール固有のIDを使用します：
+
+```tsx
+// 例：word-gen/word-card-generator/layout.tsx
+<Script
+  id="word-card-generator-messages" // ツール名を含む固有ID
+  type="application/json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(messages),
+  }}
+/>
+```
+
+2. クライアントコンポーネントでは、そのIDを指定してuseMessagesを使用します：
+
+```tsx
+// 例：WordCardGeneratorClient.tsx
+const messages = useMessages<WordCardGeneratorMessages>('word-card-generator-messages');
+```
+
+**命名規則**：
+- 単一階層のツール: `{tool-name}-messages`
+- ネストされたツール: `{parent-category}-{tool-name}-messages`
+
+この方法により、親レイアウトと子レイアウトのScriptタグが互いに干渉せず、各コンポーネントが正しいメッセージを取得できます。
+
+### 8. 新規言語追加時の手順
+1. [types.ts](mdc:src/lib/i18n/types.ts) の`Language`型に新しい言語を追加
 ```typescript
 export type Language = 'en' | 'ja' | 'es' | 'new_lang';
 ```
 2. `assets/locales/`に新しい言語ディレクトリを作成（例：`fr/`）
 3. 英語ディレクトリ（`en/`）の構造を複製し、すべてのファイルを新言語に翻訳
-4. `src/lib/i18n/server.ts`の`getAvailableLanguages`関数に新しい言語を追加
+4. [server.ts](mdc:src/lib/i18n/server.ts) の`getAvailableLanguages`関数に新しい言語を追加
 5. 言語切り替えコンポーネントに新しい言語を追加
 
-### 8. 注意事項
+### 9. 注意事項
 - 翻訳漏れを防ぐため、新規テキスト追加時は必ずすべての言語ファイルを更新
 - 言語ファイルのキー構造は全言語で統一
 - 動的なテキストを含む場合は、プレースホルダーを使用
@@ -250,7 +271,7 @@ export type Language = 'en' | 'ja' | 'es' | 'new_lang';
 - SEO対策として、各ページのメタデータも多言語対応
 - レイアウトファイルで翻訳データを準備し、クライアントコンポーネントで使用
 
-### 9. 重要なユーティリティ関数
+### 10. 重要なユーティリティ関数
 | 関数名 | 用途 | パス |
 |--------|------|------|
 | `loadToolMessages` | ツール固有の翻訳をロード | `@/lib/i18n/server` |
@@ -258,7 +279,7 @@ export type Language = 'en' | 'ja' | 'es' | 'new_lang';
 | `getLanguageFromParams` | パラメータから言語情報を取得 | `@/lib/i18n/server` |
 | `getAvailableLanguages` | 利用可能な言語一覧を取得 | `@/lib/i18n/server` |
 
-### 10. 実装例
+### 11. 実装例
 number-quizとcountry-dataの実装を参考にしてください。特に以下のファイルが参考になります：
 
 - `app/[lang]/number-quiz/layout.tsx`
@@ -267,7 +288,7 @@ number-quizとcountry-dataの実装を参考にしてください。特に以下
 - `app/[lang]/country-data/layout.tsx`
 - `app/[lang]/country-data/page.tsx`
 
-### 11. 翻訳の並列処理
+### 12. 翻訳の並列処理
 翻訳処理のパフォーマンスを向上させるため、`Promise.all`を使用して並列処理を行います：
 
 ```typescript
