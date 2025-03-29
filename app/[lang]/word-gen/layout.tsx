@@ -4,8 +4,7 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import { Language } from '@/lib/i18n/types';
 import Script from 'next/script';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import WordGenLayout from './components/WordGenLayout';
 
 type Props = {
   children: React.ReactNode;
@@ -267,13 +266,9 @@ export default async function Layout({ children, params }: Props) {
           __html: JSON.stringify(messages),
         }}
       />
-      <div className="flex flex-col min-h-screen bg-gray-800">
-        <Header title={title} homeLink={`/${lang}/word-gen`} />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
-      </div>
+      <WordGenLayout>
+      {children}
+      </WordGenLayout>
     </>
   );
 } 
