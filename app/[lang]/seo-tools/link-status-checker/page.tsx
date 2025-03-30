@@ -22,6 +22,9 @@ export default async function LinkStatusChecker({ params }: Props) {
     buttonChecking,
     resultsTitle,
     resultsStatus,
+    resultsProcessingUrl,
+    resultsCheckingLinks,
+    resultsTotalLinksChecked,
     errorGeneral,
     errorTimeout,
     errorNetwork,
@@ -35,6 +38,9 @@ export default async function LinkStatusChecker({ params }: Props) {
     translate(lang, 'seoTools.linkStatusChecker.form.button.checking'),
     translate(lang, 'seoTools.linkStatusChecker.results.title'),
     translate(lang, 'seoTools.linkStatusChecker.results.status'),
+    translate(lang, 'seoTools.linkStatusChecker.results.processing_url'),
+    translate(lang, 'seoTools.linkStatusChecker.results.checking_links'),
+    translate(lang, 'seoTools.linkStatusChecker.results.total_links_checked'),
     translate(lang, 'seoTools.linkStatusChecker.errors.general'),
     translate(lang, 'seoTools.linkStatusChecker.errors.timeout'),
     translate(lang, 'seoTools.linkStatusChecker.errors.network'),
@@ -62,7 +68,10 @@ export default async function LinkStatusChecker({ params }: Props) {
     },
     results: {
       title: resultsTitle,
-      status: resultsStatus
+      status: resultsStatus,
+      processing_url: resultsProcessingUrl,
+      checking_links: resultsCheckingLinks,
+      total_links_checked: resultsTotalLinksChecked
     },
     errors: {
       general: errorGeneral,

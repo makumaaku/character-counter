@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-03-30T05:07:52.729Z
+// Generated at: 2025-03-30T07:56:27.681Z
 
 export interface CommonMessages {
   meta: {
@@ -32,116 +32,6 @@ export interface MetaMessages {
   siteName: string;
   publisher: string;
   logoAlt: string;
-}
-
-export interface CharacterCounterMessages {
-  title: string;
-  description: string;
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-  };
-  placeholder: string;
-  charCount: string;
-  lineCount: string;
-  wordCount: string;
-  byteCount: string;
-  searchString: string;
-  enterSearchString: string;
-  occurrences: string;
-  searchResultPreview: string;
-  copyText: string;
-  copied: string;
-  content: {
-    hero: {
-      title: string;
-      description: string;
-      darkMode: string;
-    };
-    howTo: {
-      title: string;
-      steps: {
-        input: {
-          title: string;
-          description: string;
-          note: string;
-        };
-        realtime: {
-          title: string;
-          description: string;
-        };
-        utilize: {
-          title: string;
-          description: string;
-        };
-      };
-    };
-    testimonials: {
-      title: string;
-      users: {
-        writer: {
-          name: string;
-          comment: string;
-        };
-        social: {
-          name: string;
-          comment: string;
-        };
-        marketer: {
-          name: string;
-          comment: string;
-        };
-      };
-    };
-    features: {
-      title: string;
-      items: {
-        easy: {
-          title: string;
-          description: string;
-        };
-        accurate: {
-          title: string;
-          description: string;
-        };
-        free: {
-          title: string;
-          description: string;
-        };
-        darkMode: {
-          title: string;
-          description: string;
-        };
-      };
-    };
-    faq: {
-      title: string;
-      questions: {
-        what: {
-          question: string;
-          answer: string;
-        };
-        usage: {
-          question: string;
-          answer: string;
-        };
-        counting: {
-          question: string;
-          answer: string;
-        };
-      };
-    };
-  };
-  sidebar: {
-    function: string;
-    usecase: string;
-    faq: string;
-    aboutUs: string;
-    contact: string;
-    privacy: string;
-    column: string;
-  };
 }
 
 export interface CountryDataMessages {
@@ -425,9 +315,122 @@ export interface RouletteMessages {
 }
 
 export interface CharacterCounterCommonMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
   title: string;
   description: string;
-  keywords: string;
+  placeholder: string;
+  charCount: string;
+  lineCount: string;
+  wordCount: string;
+  byteCount: string;
+  searchString: string;
+  enterSearchString: string;
+  occurrences: string;
+  searchResultPreview: string;
+  copyText: string;
+  copied: string;
+  sidebar: {
+    function: string;
+    usecase: string;
+    faq: string;
+    aboutUs: string;
+    contact: string;
+    privacy: string;
+    plan: string;
+    column: string;
+  };
+  content: {
+    hero: {
+      title: string;
+      description: string;
+      darkMode: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        input: {
+          title: string;
+          description: string;
+          note: string;
+        };
+        realtime: {
+          title: string;
+          description: string;
+        };
+        utilize: {
+          title: string;
+          description: string;
+        };
+      };
+    };
+    testimonials: {
+      title: string;
+      users: {
+        writer: {
+          name: string;
+          comment: string;
+        };
+        social: {
+          name: string;
+          comment: string;
+        };
+        marketer: {
+          name: string;
+          comment: string;
+        };
+      };
+    };
+    features: {
+      title: string;
+      items: {
+        easy: {
+          title: string;
+          description: string;
+        };
+        accurate: {
+          title: string;
+          description: string;
+        };
+        free: {
+          title: string;
+          description: string;
+        };
+        darkMode: {
+          title: string;
+          description: string;
+        };
+      };
+    };
+    faq: {
+      title: string;
+      questions: {
+        what: {
+          question: string;
+          answer: string;
+        };
+        usage: {
+          question: string;
+          answer: string;
+        };
+        counting: {
+          question: string;
+          answer: string;
+        };
+        languages: {
+          question: string;
+          answer: string;
+        };
+        pricing: {
+          question: string;
+          answer: string;
+        };
+      };
+    };
+  };
 }
 
 export interface CharacterCounterAboutUsMessages {
@@ -1770,6 +1773,9 @@ export interface SeoToolsLinkStatusCheckerMessages {
   results: {
     title: string;
     status: string;
+    processing_url: string;
+    checking_links: string;
+    total_links_checked: string;
   };
   errors: {
     general: string;

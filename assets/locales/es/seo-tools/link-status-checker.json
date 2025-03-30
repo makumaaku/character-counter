@@ -18,7 +18,10 @@
   },
   "results": {
     "title": "Enlaces",
-    "status": "Estado"
+    "status": "Estado",
+    "processing_url": "Procesando URL...",
+    "checking_links": "Comprobando enlaces...",
+    "total_links_checked": "Total de {{count}} enlaces comprobados"
   },
   "errors": {
     "general": "Ha ocurrido un error",

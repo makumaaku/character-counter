@@ -18,7 +18,10 @@
     },
     "results": {
       "title": "リンク",
-      "status": "ステータス"
+      "status": "ステータス",
+      "processing_url": "URLを解析中...",
+      "checking_links": "リンクをチェック中...",
+      "total_links_checked": "合計 {{count}} リンクをチェックしました"
     },
     "errors": {
       "general": "エラーが発生しました",

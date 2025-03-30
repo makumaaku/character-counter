@@ -18,7 +18,10 @@
   },
   "results": {
     "title": "Links",
-    "status": "Status"
+    "status": "Status",
+    "processing_url": "Processing URL...",
+    "checking_links": "Checking links...",
+    "total_links_checked": "Total of {{count}} links checked"
   },
   "errors": {
     "general": "An error occurred",

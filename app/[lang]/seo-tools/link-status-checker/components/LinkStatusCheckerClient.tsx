@@ -24,10 +24,10 @@ export default function LinkStatusCheckerClient({ lang, messages }: Props) {
   const [sortedLinks, setSortedLinks] = useState<LinkStatus[]>([]);
   const [progress, setProgress] = useState(0); // 進行状況を追跡
 
-  // TODO: 今後の翻訳ファイル追加時に対応する固定メッセージ
-  const processingUrlMessage = "URLを解析中...";
-  const checkingLinksMessage = "リンクをチェック中...";
-  const totalLinksCheckedMessage = (count: number) => `合計 ${count} リンクをチェックしました`;
+  // 翻訳されたメッセージを使用
+  const totalLinksCheckedMessage = (count: number) => {
+    return messages.results.total_links_checked.replace('{{count}}', count.toString());
+  };
 
   useEffect(() => {
     if (links.length > 0) {
@@ -201,7 +201,7 @@ export default function LinkStatusCheckerClient({ lang, messages }: Props) {
             ></div>
           </div>
           <div className="text-center text-gray-400 text-sm mt-1">
-            {progress < 50 ? processingUrlMessage : checkingLinksMessage}
+            {progress < 50 ? messages.results.processing_url : messages.results.checking_links}
           </div>
         </div>
       )}
