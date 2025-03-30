@@ -2,17 +2,15 @@
 
 import { QRCodeCanvas } from 'qrcode.react'
 import { useState } from 'react'
-import { useMessages } from '@/hooks/useMessages'
+import { QrGenerationMessages } from '@/lib/i18n/types'
 
-type QRGeneratorMessages = {
-  placeholder: string;
-  emptyState: string;
-};
+interface QRCodeGeneratorProps {
+  messages: Partial<QrGenerationMessages>;
+}
 
-export default function QRCodeGenerator() {
+export default function QRCodeGenerator({ messages }: QRCodeGeneratorProps) {
   const [text, setText] = useState('')
   const MAX_CHARS = 500
-  const messages = useMessages<QRGeneratorMessages>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value
@@ -21,21 +19,17 @@ export default function QRCodeGenerator() {
     }
   }
 
-  if (!messages) {
-    return <div className="text-center my-8 font-bold text-gray-400">Loading translations...</div>;
-  }
-
   return (
     <div className="space-y-6">
       <div className="bg-gray-700 p-6 rounded-lg">
         <input
           type="text"
           className="w-full bg-gray-900 text-gray-100 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-          placeholder={messages.placeholder}
+          placeholder={messages.ui?.placeholder}
           value={text}
           onChange={handleChange}
           maxLength={MAX_CHARS}
-          aria-label={messages.placeholder}
+          aria-label={messages.ui?.placeholder}
         />
         <div className="text-right text-sm text-gray-300 mt-1">
           {text.length}/{MAX_CHARS}
@@ -51,7 +45,7 @@ export default function QRCodeGenerator() {
               aria-label={`QR code for: ${text}`}
             />
           ) : (
-            <p className="text-white">{messages.emptyState}</p>
+            <p className="text-white">{messages.ui?.emptyState}</p>
           )}
         </div>
       </div>

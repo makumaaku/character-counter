@@ -1,6 +1,7 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getLanguageFromParams } from '@/lib/i18n/server';
 import RouletteClient from './components/RouletteClient';
+import { Language, RouletteMessages } from '@/lib/i18n/types';
 
 type Props = {
   params: { lang: string }
@@ -8,6 +9,9 @@ type Props = {
 
 export default async function RoulettePage({ params }: Props) {
   const lang = await getLanguageFromParams(params);
+  
+  // ツール固有の翻訳をロード
+  await loadToolMessages(lang as Language, 'roulette');
   
   // 翻訳キーの配列を定義
   const [
@@ -110,8 +114,14 @@ export default async function RoulettePage({ params }: Props) {
     translate(lang, 'roulette.content.faq.questions.mobile.answer'),
   ]);
 
-  const translations = {
+  // 型付けされた翻訳オブジェクトを作成
+  const translations: RouletteMessages = {
     title,
+    meta: {
+      title: '',
+      description: '',
+      keywords: ''
+    },
     buttons: {
       spin: spinButton,
       spinning: spinningButton,

@@ -4,6 +4,7 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   params: { lang: string };
@@ -16,7 +17,7 @@ export async function generateMetadata(
   const lang = await getLanguageFromParams(params);
   
   // ツール固有の翻訳をロード
-  await loadToolMessages(lang, 'roulette');
+  await loadToolMessages(lang as Language, 'roulette');
   
   // 必要な翻訳を並列で取得
   const [

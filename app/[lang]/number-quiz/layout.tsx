@@ -91,77 +91,23 @@ export default async function Layout({
   await loadToolMessages(lang as Language, 'number-quiz');
 
   // 翻訳を一括で取得
-  const translations = await Promise.all([
-    translate(lang, 'numberQuiz.game.title'),
-    translate(lang, 'numberQuiz.title'),
-    translate(lang, 'numberQuiz.game.difficulty.label'),
-    translate(lang, 'numberQuiz.game.difficulty.easy'),
-    translate(lang, 'numberQuiz.game.difficulty.normal'),
-    translate(lang, 'numberQuiz.game.difficulty.hard'),
-    translate(lang, 'numberQuiz.game.buttons.newGame'),
-    translate(lang, 'numberQuiz.game.buttons.checkSolution'),
-    translate(lang, 'numberQuiz.game.messages.correct'),
-    translate(lang, 'numberQuiz.game.messages.incorrect'),
-    translate(lang, 'numberQuiz.game.messages.complete')
-  ]);
-  
-  // 配列から値を取り出し
   const [
-    gameTitle,
-    title,
-    difficultyLabel,
-    easyDifficulty,
-    normalDifficulty,
-    hardDifficulty,
-    newGameButton,
-    checkSolutionButton,
-    correctMessage,
-    incorrectMessage,
-    completeMessage
-  ] = translations;
-
-  const messages = {
-    numberQuiz: {
-      game: {
-        title: gameTitle,
-        difficulty: {
-          label: difficultyLabel,
-          easy: easyDifficulty,
-          normal: normalDifficulty,
-          hard: hardDifficulty
-        },
-        buttons: {
-          newGame: newGameButton,
-          checkSolution: checkSolutionButton
-        },
-        messages: {
-          correct: correctMessage,
-          incorrect: incorrectMessage,
-          complete: completeMessage
-        }
-      }
-    }
-  };
+    title
+  ] = await Promise.all([
+    translate(lang, 'numberQuiz.game.title'),
+    translate(lang, 'numberQuiz.title')
+  ]);
 
   return (
-    <>
-      <script
-        id="messages"
-        type="application/json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(messages),
-        }}
-      />
-      <div className="flex flex-col min-h-screen bg-gray-800">
-        <Header title={title} homeLink={`/${lang}/number-quiz`}>
-          <div className="flex items-center gap-2">
-          </div>
-        </Header>
-        <main className="flex-1 bg-gray-800">
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="flex flex-col min-h-screen bg-gray-800">
+      <Header title={title} homeLink={`/${lang}/number-quiz`}>
+        <div className="flex items-center gap-2">
+        </div>
+      </Header>
+      <main className="flex-1 bg-gray-800">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
 } 

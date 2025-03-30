@@ -108,7 +108,7 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
         return combinedMessages;
       } else {
         // トップレベルのツールの場合
-        const toolModule = await import(`../../../assets/locales/${lang}/${toolName}/common.json`);
+        const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
         toolMessages = toolModule.default || {};
         
         const combinedMessages = {
