@@ -18,7 +18,8 @@
       "convert": "EPUBに変換"
     },
     "result": {
-      "download": "EPUBをダウンロード"
+      "download": "EPUBをダウンロード",
+      "conversionComplete": "変換完了"
     },
     "status": {
       "processing": "EPUBに変換中...",

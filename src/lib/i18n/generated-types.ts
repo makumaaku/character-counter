@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-03-30T09:27:07.921Z
+// Generated at: 2025-03-30T09:45:56.568Z
 
 export interface CommonMessages {
   meta: {
@@ -1491,6 +1491,7 @@ export interface PdfToolsPdfToEpubMessages {
   };
   result: {
     download: string;
+    conversionComplete: string;
   };
   status: {
     processing: string;

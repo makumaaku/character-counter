@@ -18,7 +18,8 @@
     "convert": "Convertir a EPUB"
   },
   "result": {
-    "download": "Descargar EPUB"
+    "download": "Descargar EPUB",
+    "conversionComplete": "Conversión Completada"
   },
   "status": {
     "processing": "Convirtiendo a EPUB...",

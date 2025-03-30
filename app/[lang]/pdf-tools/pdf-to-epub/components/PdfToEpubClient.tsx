@@ -632,7 +632,7 @@ li {
       {convertedEpub && (
         <div className="mt-8">
           <div className="bg-gray-700 rounded-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Conversion Complete</h2>
+            <h2 className="text-xl font-bold mb-4">{messages.result.conversionComplete}</h2>
             <Button
               onClick={downloadEpub}
               variant="purple"
