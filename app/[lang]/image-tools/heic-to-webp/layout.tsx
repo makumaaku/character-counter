@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -12,21 +13,34 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // Load heic-to-webp translations
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-webp');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'imageTools.heicToWebp.meta.title'),
+    translate(lang, 'imageTools.heicToWebp.meta.description'),
+    translate(lang, 'imageTools.heicToWebp.meta.keywords')
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logoAlt),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('heicToWebp.meta.title'),
-    "description": t('heicToWebp.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-webp`,
     "applicationCategory": "Utility",
     "operatingSystem": "Any",
@@ -48,13 +62,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('heicToWebp.meta.title'),
-      description: t('heicToWebp.meta.description'),
-      keywords: t('heicToWebp.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-webp`,
     }
   );
@@ -67,10 +81,18 @@ export async function generateMetadata(
   };
 }
 
-export default function HeicToWebpLayout({ children }: Props) {
+export default async function HeicToWebpLayout({ children, params }: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
+  const { lang } = params;
+  
+  // Load translations
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-webp');
+  
   return (
-    <>
+    <div className="layout-container">
       {children}
-    </>
-  )
+    </div>
+  );
 } 

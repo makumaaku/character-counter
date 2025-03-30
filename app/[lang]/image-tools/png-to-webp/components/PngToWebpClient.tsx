@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
 import Image from 'next/image'
 import FileUploadArea from '@/components/FileUploadArea'
+import { ImageToolsPngToWebpMessages } from '@/lib/i18n/types'
 
 type ConvertedFile = {
   originalFile: File
@@ -15,33 +16,7 @@ type ConvertedFile = {
 }
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    upload?: {
-      limit: string
-    }
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-      }
-      convert: string
-    }
-    result: {
-      download: string
-      downloadAll: string
-    }
-    status: {
-      processing: string
-      noFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-    }
-  }
+  translations: ImageToolsPngToWebpMessages
 }
 
 export default function PngToWebpClient({ translations }: Props) {

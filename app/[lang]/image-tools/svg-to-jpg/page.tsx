@@ -1,13 +1,17 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import SvgToJpgClient from './components/SvgToJpgClient'
+import { Language, ImageToolsSvgToJpgMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function SvgToJpg({ params }: Props) {
-  const { lang } = await params
-
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/svg-to-jpg');
+  
   // 翻訳を取得
   const [
     title,
@@ -29,27 +33,33 @@ export default async function SvgToJpg({ params }: Props) {
     conversionFailedError,
     selectedFilesText
   ] = await Promise.all([
-    translate(lang, 'svgToJpg.title'),
-    translate(lang, 'svgToJpg.description'),
-    translate(lang, 'svgToJpg.form.upload.label'),
-    translate(lang, 'svgToJpg.form.upload.button'),
-    translate(lang, 'svgToJpg.form.upload.dragDrop'),
-    translate(lang, 'svgToJpg.form.upload.limitText'),
-    translate(lang, 'svgToJpg.form.convert'),
-    translate(lang, 'svgToJpg.result.download'),
-    translate(lang, 'svgToJpg.result.downloadAll'),
-    translate(lang, 'svgToJpg.result.preview'),
-    translate(lang, 'svgToJpg.status.processing'),
-    translate(lang, 'svgToJpg.status.noFile'),
-    translate(lang, 'svgToJpg.status.success'),
-    translate(lang, 'svgToJpg.status.browserProcessing'),
-    translate(lang, 'svgToJpg.error.fileType'),
-    translate(lang, 'svgToJpg.error.fileSize'),
-    translate(lang, 'svgToJpg.error.conversionFailed'),
-    translate(lang, 'svgToJpg.result.selectedFiles')
+    translate(lang, 'imageTools.svgToJpg.title'),
+    translate(lang, 'imageTools.svgToJpg.description'),
+    translate(lang, 'imageTools.svgToJpg.form.upload.label'),
+    translate(lang, 'imageTools.svgToJpg.form.upload.button'),
+    translate(lang, 'imageTools.svgToJpg.form.upload.dragDrop'),
+    translate(lang, 'imageTools.svgToJpg.form.upload.limitText'),
+    translate(lang, 'imageTools.svgToJpg.form.convert'),
+    translate(lang, 'imageTools.svgToJpg.result.download'),
+    translate(lang, 'imageTools.svgToJpg.result.downloadAll'),
+    translate(lang, 'imageTools.svgToJpg.result.preview'),
+    translate(lang, 'imageTools.svgToJpg.status.processing'),
+    translate(lang, 'imageTools.svgToJpg.status.noFile'),
+    translate(lang, 'imageTools.svgToJpg.status.success'),
+    translate(lang, 'imageTools.svgToJpg.status.browserProcessing'),
+    translate(lang, 'imageTools.svgToJpg.error.fileType'),
+    translate(lang, 'imageTools.svgToJpg.error.fileSize'),
+    translate(lang, 'imageTools.svgToJpg.error.conversionFailed'),
+    translate(lang, 'imageTools.svgToJpg.result.selectedFiles')
   ])
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsSvgToJpgMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     form: {
@@ -80,5 +90,5 @@ export default async function SvgToJpg({ params }: Props) {
     }
   }
 
-  return <SvgToJpgClient translations={translations} />
+  return <SvgToJpgClient translations={messages} />
 } 

@@ -1,33 +1,72 @@
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools');
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-png');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'imageTools.heicToPng.meta.title'),
+    translate(lang, 'imageTools.heicToPng.meta.description'),
+    translate(lang, 'imageTools.heicToPng.meta.keywords')
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t('common.meta.siteName'),
-    publisher: t('common.meta.publisher'),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('heicToPng.title'),
-    "description": t('heicToPng.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-png`,
     "applicationCategory": "Utility",
     "operatingSystem": "Any",
@@ -38,7 +77,7 @@ export async function generateMetadata(
     },
     "publisher": {
       "@type": "Organization",
-      "name": commonMeta.siteName,
+      "name": SITE_CONFIG.siteName,
       "logo": {
         "@type": "ImageObject",
         "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
@@ -49,13 +88,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('heicToPng.title'),
-      description: t('heicToPng.description'),
-      keywords: t('heicToPng.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-png`,
     }
   );
@@ -68,23 +107,18 @@ export async function generateMetadata(
   };
 }
 
-export default function HeicToPngLayout({ children }: Props) {
+export default async function Layout({ children, params }: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
+  const { lang } = params;
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-png');
+  
   return (
-    <>
+    <div className="layout-container">
       {children}
-      <Script id="json-ld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "HEIC to PNG Converter",
-        "description": "Convert HEIC images to PNG format online with preview and batch conversion support.",
-        "applicationCategory": "Utility",
-        "operatingSystem": "Any",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      }) }} />
-    </>
-  )
+    </div>
+  );
 } 

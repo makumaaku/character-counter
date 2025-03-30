@@ -1,10 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import PngToJpgClient from './components/PngToJpgClient'
+import { Language, ImageToolsPngToJpgMessages } from '@/lib/i18n/types'
 
-export default async function PngToJpg({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function PngToJpg({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/png-to-jpg');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
@@ -24,26 +32,32 @@ export default async function PngToJpg({ params }: { params: Promise<{ lang: str
     fileSizeError,
     conversionFailedError
   ] = await Promise.all([
-    translate(lang, 'pngToJpg.title'),
-    translate(lang, 'pngToJpg.description'),
-    translate(lang, 'pngToJpg.form.upload.label'),
-    translate(lang, 'pngToJpg.form.upload.button'),
-    translate(lang, 'pngToJpg.form.upload.dragDrop'),
-    translate(lang, 'pngToJpg.form.upload.limitText'),
-    translate(lang, 'pngToJpg.form.convert'),
-    translate(lang, 'pngToJpg.result.download'),
-    translate(lang, 'pngToJpg.result.downloadAll'),
-    translate(lang, 'pngToJpg.result.preview'),
-    translate(lang, 'pngToJpg.status.processing'),
-    translate(lang, 'pngToJpg.status.noFile'),
-    translate(lang, 'pngToJpg.status.success'),
-    translate(lang, 'pngToJpg.status.browserProcessing'),
-    translate(lang, 'pngToJpg.error.fileType'),
-    translate(lang, 'pngToJpg.error.fileSize'),
-    translate(lang, 'pngToJpg.error.conversionFailed')
+    translate(lang, 'imageTools.pngToJpg.title'),
+    translate(lang, 'imageTools.pngToJpg.description'),
+    translate(lang, 'imageTools.pngToJpg.form.upload.label'),
+    translate(lang, 'imageTools.pngToJpg.form.upload.button'),
+    translate(lang, 'imageTools.pngToJpg.form.upload.dragDrop'),
+    translate(lang, 'imageTools.pngToJpg.form.upload.limitText'),
+    translate(lang, 'imageTools.pngToJpg.form.convert'),
+    translate(lang, 'imageTools.pngToJpg.result.download'),
+    translate(lang, 'imageTools.pngToJpg.result.downloadAll'),
+    translate(lang, 'imageTools.pngToJpg.result.preview'),
+    translate(lang, 'imageTools.pngToJpg.status.processing'),
+    translate(lang, 'imageTools.pngToJpg.status.noFile'),
+    translate(lang, 'imageTools.pngToJpg.status.success'),
+    translate(lang, 'imageTools.pngToJpg.status.browserProcessing'),
+    translate(lang, 'imageTools.pngToJpg.error.fileType'),
+    translate(lang, 'imageTools.pngToJpg.error.fileSize'),
+    translate(lang, 'imageTools.pngToJpg.error.conversionFailed')
   ])
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsPngToJpgMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     form: {
@@ -73,5 +87,5 @@ export default async function PngToJpg({ params }: { params: Promise<{ lang: str
     }
   }
 
-  return <PngToJpgClient translations={translations} />
+  return <PngToJpgClient translations={messages} />
 } 

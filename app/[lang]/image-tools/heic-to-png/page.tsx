@@ -1,57 +1,101 @@
-import { Metadata } from 'next';
-import { translate } from '@/lib/i18n/server';
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server';
 import HeicToPngConverter from './components/HeicToPngConverter';
+import { Language, ImageToolsHeicToPngMessages } from '@/lib/i18n/types';
 
 type Props = {
-  params: Promise<{ lang: string }>
-}
-
-export async function generateMetadata(
-  { params }: Props
-): Promise<Metadata> {
-  const { lang } = await params;
-  
-  return {
-    title: translate(lang, 'heicToPng.metadata.title'),
-    description: translate(lang, 'heicToPng.metadata.description'),
-    keywords: translate(lang, 'heicToPng.metadata.keywords'),
-  };
+  params: { lang: string }
 }
 
 export default async function HeicToPngPage({ params }: Props) {
-  const { lang } = await params;
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-png');
+  
+  // サーバーコンポーネントで翻訳を並列取得
+  const [
+    title,
+    description,
+    uploadTitle,
+    uploadButton,
+    uploadDragndrop,
+    uploadLimit,
+    convertButton,
+    convertProcessing,
+    convertDownload,
+    convertDownloadAll,
+    convertConverted,
+    previewTitle,
+    previewNofiles,
+    errorNoFiles,
+    errorInvalidFormat,
+    errorTooLarge,
+    errorFailed
+  ] = await Promise.all([
+    translate(lang, 'imageTools.heicToPng.title'),
+    translate(lang, 'imageTools.heicToPng.description'),
+    translate(lang, 'imageTools.heicToPng.upload.title'),
+    translate(lang, 'imageTools.heicToPng.upload.button'),
+    translate(lang, 'imageTools.heicToPng.upload.dragndrop'),
+    translate(lang, 'imageTools.heicToPng.upload.limit'),
+    translate(lang, 'imageTools.heicToPng.convert.button'),
+    translate(lang, 'imageTools.heicToPng.convert.processing'),
+    translate(lang, 'imageTools.heicToPng.convert.download'),
+    translate(lang, 'imageTools.heicToPng.convert.downloadAll'),
+    translate(lang, 'imageTools.heicToPng.convert.converted'),
+    translate(lang, 'imageTools.heicToPng.preview.title'),
+    translate(lang, 'imageTools.heicToPng.preview.nofiles'),
+    translate(lang, 'imageTools.heicToPng.error.noFiles'),
+    translate(lang, 'imageTools.heicToPng.error.invalidFormat'),
+    translate(lang, 'imageTools.heicToPng.error.tooLarge'),
+    translate(lang, 'imageTools.heicToPng.error.failed')
+  ]);
 
-  const translations = {
-    title: translate(lang, 'heicToPng.title'),
-    description: translate(lang, 'heicToPng.description'),
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsHeicToPngMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
+    title,
+    description,
     upload: {
-      title: translate(lang, 'heicToPng.upload.title'),
-      button: translate(lang, 'heicToPng.upload.button'),
-      dragndrop: translate(lang, 'heicToPng.upload.dragndrop'),
-      limit: translate(lang, 'heicToPng.upload.limit')
+      title: uploadTitle,
+      button: uploadButton,
+      dragndrop: uploadDragndrop,
+      limit: uploadLimit
+    },
+    form: {
+      upload: {
+        label: "",
+        button: "",
+        dragDrop: ""
+      },
+      convert: ""
     },
     convert: {
-      button: translate(lang, 'heicToPng.convert.button'),
-      processing: translate(lang, 'heicToPng.convert.processing'),
-      download: translate(lang, 'heicToPng.convert.download'),
-      downloadAll: translate(lang, 'heicToPng.convert.downloadAll'),
-      converted: translate(lang, 'heicToPng.convert.converted')
+      button: convertButton,
+      processing: convertProcessing,
+      download: convertDownload,
+      downloadAll: convertDownloadAll,
+      converted: convertConverted
     },
     preview: {
-      title: translate(lang, 'heicToPng.preview.title'),
-      nofiles: translate(lang, 'heicToPng.preview.nofiles')
+      title: previewTitle,
+      nofiles: previewNofiles
     },
     error: {
-      noFiles: translate(lang, 'heicToPng.error.noFiles'),
-      invalidFormat: translate(lang, 'heicToPng.error.invalidFormat'),
-      tooLarge: translate(lang, 'heicToPng.error.tooLarge'),
-      failed: translate(lang, 'heicToPng.error.failed')
+      noFiles: errorNoFiles,
+      invalidFormat: errorInvalidFormat,
+      tooLarge: errorTooLarge,
+      failed: errorFailed
     }
   };
 
   return (
     <div className="w-full">
-      <HeicToPngConverter translations={translations} />
+      <HeicToPngConverter translations={messages} />
     </div>
   );
 } 

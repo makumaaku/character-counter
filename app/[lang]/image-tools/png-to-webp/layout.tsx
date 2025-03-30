@@ -1,32 +1,74 @@
 import { SITE_CONFIG } from '@/constants/constants'
-import { translate } from '@/lib/i18n/server'
+import { translate, loadToolMessages } from '@/lib/i18n/server'
 import { getCommonMetadata } from '@/lib/metadata'
 import { Metadata } from 'next'
+import { Language } from '@/lib/i18n/types'
 
 type Props = {
   children: React.ReactNode
   params: Promise<{ lang: string }>
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  featureList: string[];
+  isAccessibleForFree: boolean;
+  browserRequirements: string;
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params
-  const t = (key: string) => translate(lang, key)
+  
+  // Load png-to-webp translations
+  await loadToolMessages(lang as Language, 'image-tools/png-to-webp');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'imageTools.pngToWebp.meta.title'),
+    translate(lang, 'imageTools.pngToWebp.meta.description'),
+    translate(lang, 'imageTools.pngToWebp.meta.keywords'),
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt
   }
 
   // ページ固有のJSON-LDを定義
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('pngToWebp.meta.title'),
-    "description": t('pngToWebp.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/png-to-webp`,
     "publisher": {
       "@type": "Organization",
@@ -59,13 +101,13 @@ export async function generateMetadata(
   }
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('pngToWebp.meta.title'),
-      description: t('pngToWebp.meta.description'),
-      keywords: t('pngToWebp.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/png-to-webp`,
     }
   )
@@ -78,6 +120,12 @@ export async function generateMetadata(
   }
 }
 
-export default function Layout({ children }: Props) {
-  return children
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="layout-container">
+      {children}
+    </div>
+  );
 } 

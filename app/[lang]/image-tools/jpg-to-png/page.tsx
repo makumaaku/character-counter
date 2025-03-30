@@ -1,15 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import JpgToPngClient from './components/JpgToPngClient'
+import { Language, ImageToolsJpgToPngMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
-
 export default async function JpgToPng({ params }: Props) {
-  const { lang } = await params
-
-  // Get translations
+  const lang = await getLanguageFromParams(params)
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/jpg-to-png')
+    
+  // サーバーコンポーネントで翻訳を取得
   const [
     title,
     description,
@@ -21,28 +24,30 @@ export default async function JpgToPng({ params }: Props) {
     processingText,
     noFileText,
     fileTypeError,
-    fileSizeError
+    fileSizeError,
+    uploadLimit
   ] = await Promise.all([
-    translate(lang, 'jpgToPng.title'),
-    translate(lang, 'jpgToPng.description'),
-    translate(lang, 'jpgToPng.form.upload.label'),
-    translate(lang, 'jpgToPng.form.upload.button'),
-    translate(lang, 'jpgToPng.form.upload.dragDrop'),
-    translate(lang, 'jpgToPng.form.convert'),
-    translate(lang, 'jpgToPng.result.download'),
-    translate(lang, 'jpgToPng.status.processing'),
-    translate(lang, 'jpgToPng.status.noFile'),
-    translate(lang, 'jpgToPng.error.fileType'),
-    translate(lang, 'jpgToPng.error.fileSize')
+    translate(lang, 'imageTools.jpgToPng.title'),
+    translate(lang, 'imageTools.jpgToPng.description'),
+    translate(lang, 'imageTools.jpgToPng.form.upload.label'),
+    translate(lang, 'imageTools.jpgToPng.form.upload.button'),
+    translate(lang, 'imageTools.jpgToPng.form.upload.dragDrop'),
+    translate(lang, 'imageTools.jpgToPng.form.convert'),
+    translate(lang, 'imageTools.jpgToPng.result.download'),
+    translate(lang, 'imageTools.jpgToPng.status.processing'),
+    translate(lang, 'imageTools.jpgToPng.status.noFile'),
+    translate(lang, 'imageTools.jpgToPng.error.fileType'),
+    translate(lang, 'imageTools.jpgToPng.error.fileSize'),
+    translate(lang, 'imageTools.jpgToPng.upload.limit')
   ])
 
-  // 最大ファイルサイズのメッセージ
-  // 翻訳キーがない場合はデフォルト値を使用する
-  const uploadLimit = translate(lang, 'jpgToPng.upload.limit') === 'jpgToPng.upload.limit'
-    ? 'Maximum file size: 10MB per file'
-    : translate(lang, 'jpgToPng.upload.limit');
-
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsJpgToPngMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     upload: {
@@ -69,5 +74,5 @@ export default async function JpgToPng({ params }: Props) {
     }
   }
 
-  return <JpgToPngClient translations={translations} />
+  return <JpgToPngClient translations={messages} />
 } 

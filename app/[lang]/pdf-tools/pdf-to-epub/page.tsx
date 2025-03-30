@@ -31,7 +31,8 @@ export default async function PdfToEpub({ params }: Props) {
     noFileText,
     fileTypeError,
     fileSizeError,
-    loadingText
+    loadingText,
+    conversionCompleteText
   ] = await Promise.all([
     translate(lang, 'pdfTools.pdfToEpub.title'),
     translate(lang, 'pdfTools.pdfToEpub.description'),
@@ -50,7 +51,8 @@ export default async function PdfToEpub({ params }: Props) {
     translate(lang, 'pdfTools.pdfToEpub.status.noFile'),
     translate(lang, 'pdfTools.pdfToEpub.error.fileType'),
     translate(lang, 'pdfTools.pdfToEpub.error.fileSize'),
-    translate(lang, 'pdfTools.pdfToEpub.status.loading')
+    translate(lang, 'pdfTools.pdfToEpub.status.loading'),
+    translate(lang, 'pdfTools.pdfToEpub.result.conversionComplete')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -74,7 +76,8 @@ export default async function PdfToEpub({ params }: Props) {
       convert: convertButton
     },
     result: {
-      download: downloadButton
+      download: downloadButton,
+      conversionComplete: conversionCompleteText
     },
     status: {
       processing: processingText,
