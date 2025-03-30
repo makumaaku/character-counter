@@ -1,5 +1,6 @@
-import { translate } from '@/lib/i18n/server'
+import { translate, loadToolMessages } from '@/lib/i18n/server'
 import ToolCard from '@/components/ToolCard'
+import { Language, WordGenCommonMessages } from '@/lib/i18n/types'
 
 type Props = {
   params: Promise<{ lang: string }>
@@ -7,6 +8,9 @@ type Props = {
 
 export default async function WordGenTools({ params }: Props) {
   const { lang } = await params
+
+  // word-gen用の翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen');
 
   // 並列で翻訳を取得
   const [
@@ -45,46 +49,100 @@ export default async function WordGenTools({ params }: Props) {
     translate(lang, 'wordGen.tools.japaneseKanjiGenerator.description')
   ])
   
+  // WordGenCommonMessagesの構造に合わせてmessagesオブジェクトを作成
+  const messages: WordGenCommonMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
+    common: {
+      copyButton: "",
+      copied: "",
+      generateButton: "",
+      downloadButton: "",
+      resetButton: "",
+      settings: "",
+      preview: "",
+      result: "",
+      length: "",
+      options: "",
+      customize: ""
+    },
+    title,
+    description,
+    tools: {
+      wordGenerator: {
+        title: wordGeneratorTitle,
+        description: wordGeneratorDescription
+      },
+      wordCardGenerator: {
+        title: wordCardGeneratorTitle,
+        description: wordCardGeneratorDescription
+      },
+      sentenceGenerator: {
+        title: sentenceGeneratorTitle,
+        description: sentenceGeneratorDescription
+      },
+      nameGenerator: {
+        title: nameGeneratorTitle,
+        description: nameGeneratorDescription
+      },
+      passwordGenerator: {
+        title: passwordGeneratorTitle,
+        description: passwordGeneratorDescription
+      },
+      storyGenerator: {
+        title: storyGeneratorTitle,
+        description: storyGeneratorDescription
+      },
+      japaneseKanjiGenerator: {
+        title: japaneseKanjiGeneratorTitle,
+        description: japaneseKanjiGeneratorDescription
+      }
+    }
+  };
+  
   const tools = [
     {
-      title: wordGeneratorTitle,
-      description: wordGeneratorDescription,
+      title: messages.tools.wordGenerator.title,
+      description: messages.tools.wordGenerator.description,
       path: `/${lang}/word-gen/word-generator`,
       icon: "📝"
     },
     {
-      title: wordCardGeneratorTitle,
-      description: wordCardGeneratorDescription,
+      title: messages.tools.wordCardGenerator.title,
+      description: messages.tools.wordCardGenerator.description,
       path: `/${lang}/word-gen/word-card-generator`,
       icon: "🗂️"
     },
     {
-      title: sentenceGeneratorTitle,
-      description: sentenceGeneratorDescription,
+      title: messages.tools.sentenceGenerator.title,
+      description: messages.tools.sentenceGenerator.description,
       path: `/${lang}/word-gen/sentence-generator`,
       icon: "✍️"
     },
     {
-      title: nameGeneratorTitle,
-      description: nameGeneratorDescription,
+      title: messages.tools.nameGenerator.title,
+      description: messages.tools.nameGenerator.description,
       path: `/${lang}/word-gen/name-generator`,
       icon: "👤"
     },
     {
-      title: passwordGeneratorTitle,
-      description: passwordGeneratorDescription,
+      title: messages.tools.passwordGenerator.title,
+      description: messages.tools.passwordGenerator.description,
       path: `/${lang}/word-gen/password-generator`,
       icon: "🔒"
     },
     {
-      title: storyGeneratorTitle,
-      description: storyGeneratorDescription,
+      title: messages.tools.storyGenerator.title,
+      description: messages.tools.storyGenerator.description,
       path: `/${lang}/word-gen/story-generator`,
       icon: "📚"
     },
     {
-      title: japaneseKanjiGeneratorTitle,
-      description: japaneseKanjiGeneratorDescription,
+      title: messages.tools.japaneseKanjiGenerator.title,
+      description: messages.tools.japaneseKanjiGenerator.description,
       path: `/${lang}/word-gen/japanese-kanji-generator`,
       icon: "漢"
     }
@@ -94,9 +152,9 @@ export default async function WordGenTools({ params }: Props) {
     <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-4">{title}</h1>
+          <h1 className="text-4xl font-bold mb-4">{messages.title}</h1>
           <p className="text-xl text-gray-300">
-            {description}
+            {messages.description}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

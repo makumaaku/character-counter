@@ -2,8 +2,7 @@ import { loadToolMessages, translate } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import { Language } from '@/lib/i18n/types';
-import Script from 'next/script';
+import { Language, WordGenCommonMessages } from '@/lib/i18n/types';
 import WordGenLayout from './components/WordGenLayout';
 
 type Props = {
@@ -227,48 +226,62 @@ export default async function Layout({ children, params }: Props) {
     translate(lang, 'wordGen.tools.japaneseKanjiGenerator.title')
   ]);
 
-  const messages = {
+  const messages: WordGenCommonMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
+    common: {
+      copyButton: "",
+      copied: "",
+      generateButton: "",
+      downloadButton: "",
+      resetButton: "",
+      settings: "",
+      preview: "",
+      result: "",
+      length: "",
+      options: "",
+      customize: ""
+    },
     title,
     description,
-    wordGen: {
-      tools: {
-        wordGenerator: {
-          title: wordGeneratorTitle
-        },
-        wordCardGenerator: {
-          title: wordCardGeneratorTitle
-        },
-        sentenceGenerator: {
-          title: sentenceGeneratorTitle
-        },
-        nameGenerator: {
-          title: nameGeneratorTitle
-        },
-        passwordGenerator: {
-          title: passwordGeneratorTitle
-        },
-        storyGenerator: {
-          title: storyGeneratorTitle
-        },
-        japaneseKanjiGenerator: {
-          title: japaneseKanjiGeneratorTitle
-        }
+    tools: {
+      wordGenerator: {
+        title: wordGeneratorTitle,
+        description: ""
+      },
+      wordCardGenerator: {
+        title: wordCardGeneratorTitle,
+        description: ""
+      },
+      sentenceGenerator: {
+        title: sentenceGeneratorTitle,
+        description: ""
+      },
+      nameGenerator: {
+        title: nameGeneratorTitle,
+        description: ""
+      },
+      passwordGenerator: {
+        title: passwordGeneratorTitle,
+        description: ""
+      },
+      storyGenerator: {
+        title: storyGeneratorTitle,
+        description: ""
+      },
+      japaneseKanjiGenerator: {
+        title: japaneseKanjiGeneratorTitle,
+        description: ""
       }
     }
   };
 
   return (
-    <>
-      <Script
-        id="messages"
-        type="application/json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(messages),
-        }}
-      />
-      <WordGenLayout>
+    <WordGenLayout messages={messages} lang={lang}>
       {children}
-      </WordGenLayout>
-    </>
+    </WordGenLayout>
   );
 } 
