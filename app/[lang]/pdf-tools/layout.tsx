@@ -1,8 +1,9 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import PdfToolsLayout from './components/PdfToolsLayout';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -47,19 +48,69 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
 
+  // PDFツール用の翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    pdfToJpgTitle,
+    pdfToJpgDescription,
+    jpgToPdfTitle,
+    jpgToPdfDescription,
+    webToPdfTitle,
+    webToPdfDescription,
+    pdfToWordTitle,
+    pdfToWordDescription,
+    pdfToPngTitle,
+    pdfToPngDescription,
+    pngToPdfTitle,
+    pngToPdfDescription,
+    svgToPdfTitle,
+    svgToPdfDescription,
+    pdfToEpubTitle,
+    pdfToEpubDescription,
+    heicToPdfTitle,
+    heicToPdfDescription
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.meta.title'),
+    translate(lang, 'pdfTools.meta.description'),
+    translate(lang, 'pdfTools.meta.keywords'),
+    translate(lang, 'pdfTools.pdfToJpg.meta.title'),
+    translate(lang, 'pdfTools.pdfToJpg.meta.description'),
+    translate(lang, 'pdfTools.jpgToPdf.meta.title'),
+    translate(lang, 'pdfTools.jpgToPdf.meta.description'),
+    translate(lang, 'pdfTools.webToPdf.meta.title'),
+    translate(lang, 'pdfTools.webToPdf.meta.description'),
+    translate(lang, 'pdfTools.pdfToWord.meta.title'),
+    translate(lang, 'pdfTools.pdfToWord.meta.description'),
+    translate(lang, 'pdfTools.pdfToPng.meta.title'),
+    translate(lang, 'pdfTools.pdfToPng.meta.description'),
+    translate(lang, 'pdfTools.pngToPdf.meta.title'),
+    translate(lang, 'pdfTools.pngToPdf.meta.description'),
+    translate(lang, 'pdfTools.svgToPdf.meta.title'),
+    translate(lang, 'pdfTools.svgToPdf.meta.description'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.title'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.description'),
+    translate(lang, 'pdfTools.heicToPdf.meta.title'),
+    translate(lang, 'pdfTools.heicToPdf.meta.description'),
+  ]);
+
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('pdfTools.meta.title'),
-    "description": t('pdfTools.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools`,
     "publisher": {
       "@type": "Organization",
@@ -96,68 +147,69 @@ export async function generateMetadata(
     "hasPart": [
       {
         "@type": "WebApplication",
-        "name": t('pdfToJpg.meta.title'),
-        "description": t('pdfToJpg.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-jpg`
+        "name": pdfToJpgTitle,
+        "description": pdfToJpgDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/pdf-to-jpg`
       },
       {
         "@type": "WebApplication",
-        "name": t('jpgToPdf.meta.title'),
-        "description": t('jpgToPdf.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/jpg-to-pdf`
+        "name": jpgToPdfTitle,
+        "description": jpgToPdfDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/jpg-to-pdf`
       },
       {
         "@type": "WebApplication",
-        "name": t('webToPdf.meta.title'),
-        "description": t('webToPdf.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/web-to-pdf`
+        "name": webToPdfTitle,
+        "description": webToPdfDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/web-to-pdf`
       },
       {
         "@type": "WebApplication",
-        "name": t('pdfToWord.meta.title'),
-        "description": t('pdfToWord.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-word`
+        "name": pdfToWordTitle,
+        "description": pdfToWordDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/pdf-to-word`
       },
       {
         "@type": "WebApplication",
-        "name": t('pdfToPng.meta.title'),
-        "description": t('pdfToPng.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-png`
+        "name": pdfToPngTitle,
+        "description": pdfToPngDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/pdf-to-png`
       },
       {
         "@type": "WebApplication",
-        "name": t('pngToPdf.meta.title'),
-        "description": t('pngToPdf.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/png-to-pdf`
+        "name": pngToPdfTitle,
+        "description": pngToPdfDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/png-to-pdf`
       },
       {
         "@type": "WebApplication",
-        "name": t('svgToPdf.meta.title'),
-        "description": t('svgToPdf.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/svg-to-pdf`
+        "name": svgToPdfTitle,
+        "description": svgToPdfDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/svg-to-pdf`
       },
       {
         "@type": "WebApplication",
-        "name": t('pdfToEpub.meta.title'),
-        "description": t('pdfToEpub.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-epub`
+        "name": pdfToEpubTitle,
+        "description": pdfToEpubDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/pdf-to-epub`
       },
       {
         "@type": "WebApplication",
-        "name": t('heicToPdf.meta.title'),
-        "description": t('heicToPdf.meta.description'),
-        "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/heic-to-pdf`
+        "name": heicToPdfTitle,
+        "description": heicToPdfDescription,
+        "url": `${SITE_CONFIG.baseURL}/pdf-tools/heic-to-pdf`
       }
     ]
   };
 
-  const metadata = getCommonMetadata(
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('pdfTools.meta.title'),
-      description: t('pdfTools.meta.description'),
-      keywords: t('pdfTools.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/pdf-tools`,
     }
   );
@@ -170,9 +222,85 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
+export default async function Layout({ children, params }: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
+  const { lang } = params;
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools');
+  
+  // PDFツールのタイトルと各ツールのタイトルを並列で取得
+  const [
+    pdfToolsTitle,
+    pdfToJpgTitle,
+    jpgToPdfTitle,
+    webToPdfTitle,
+    pdfToWordTitle,
+    pdfToPngTitle,
+    pngToPdfTitle,
+    svgToPdfTitle,
+    pdfToEpubTitle,
+    heicToPdfTitle
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.title'),
+    translate(lang, 'pdfTools.tools.pdfToJpg.title'),
+    translate(lang, 'pdfTools.tools.jpgToPdf.title'),
+    translate(lang, 'pdfTools.tools.webToPdf.title'),
+    translate(lang, 'pdfTools.tools.pdfToWord.title'),
+    translate(lang, 'pdfTools.tools.pdfToPng.title'),
+    translate(lang, 'pdfTools.tools.pngToPdf.title'),
+    translate(lang, 'pdfTools.tools.svgToPdf.title'),
+    translate(lang, 'pdfTools.tools.pdfToEpub.title'),
+    translate(lang, 'pdfTools.tools.heicToPdf.title')
+  ]);
+  
+  // ナビゲーション項目の配列を作成
+  const navigationItems = [
+    {
+      name: pdfToJpgTitle,
+      path: `/${lang}/pdf-tools/pdf-to-jpg`
+    },
+    {
+      name: jpgToPdfTitle,
+      path: `/${lang}/pdf-tools/jpg-to-pdf`
+    },
+    {
+      name: webToPdfTitle,
+      path: `/${lang}/pdf-tools/web-to-pdf`
+    },
+    {
+      name: pdfToWordTitle,
+      path: `/${lang}/pdf-tools/pdf-to-word`
+    },
+    {
+      name: pdfToPngTitle,
+      path: `/${lang}/pdf-tools/pdf-to-png`
+    },
+    {
+      name: pngToPdfTitle,
+      path: `/${lang}/pdf-tools/png-to-pdf`
+    },
+    {
+      name: svgToPdfTitle,
+      path: `/${lang}/pdf-tools/svg-to-pdf`
+    },
+    {
+      name: pdfToEpubTitle,
+      path: `/${lang}/pdf-tools/pdf-to-epub`
+    },
+    {
+      name: heicToPdfTitle,
+      path: `/${lang}/pdf-tools/heic-to-pdf`
+    }
+  ];
+  
   return (
-    <PdfToolsLayout>
+    <PdfToolsLayout
+      navigationItems={navigationItems}
+      title={pdfToolsTitle}
+    >
       {children}
     </PdfToolsLayout>
   );

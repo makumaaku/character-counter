@@ -1,65 +1,114 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import ToolCard from '@/components/ToolCard'
+import { Language } from '@/lib/i18n/types'
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function PdfTools({ params }: Props) {
-  const { lang } = await params
+  const lang = await getLanguageFromParams(params);
   
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools');
+  
+  // サーバーコンポーネントで翻訳を並列取得
+  const [
+    title,
+    description,
+    pdfToJpgTitle,
+    pdfToJpgDescription,
+    jpgToPdfTitle,
+    jpgToPdfDescription,
+    webToPdfTitle,
+    webToPdfDescription,
+    pdfToWordTitle,
+    pdfToWordDescription,
+    pdfToPngTitle,
+    pdfToPngDescription,
+    pngToPdfTitle,
+    pngToPdfDescription,
+    svgToPdfTitle,
+    svgToPdfDescription,
+    pdfToEpubTitle,
+    pdfToEpubDescription,
+    heicToPdfTitle,
+    heicToPdfDescription
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.title'),
+    translate(lang, 'pdfTools.description'),
+    translate(lang, 'pdfTools.tools.pdfToJpg.title'),
+    translate(lang, 'pdfTools.tools.pdfToJpg.description'),
+    translate(lang, 'pdfTools.tools.jpgToPdf.title'),
+    translate(lang, 'pdfTools.tools.jpgToPdf.description'),
+    translate(lang, 'pdfTools.tools.webToPdf.title'),
+    translate(lang, 'pdfTools.tools.webToPdf.description'),
+    translate(lang, 'pdfTools.tools.pdfToWord.title'),
+    translate(lang, 'pdfTools.tools.pdfToWord.description'),
+    translate(lang, 'pdfTools.tools.pdfToPng.title'),
+    translate(lang, 'pdfTools.tools.pdfToPng.description'),
+    translate(lang, 'pdfTools.tools.pngToPdf.title'),
+    translate(lang, 'pdfTools.tools.pngToPdf.description'),
+    translate(lang, 'pdfTools.tools.svgToPdf.title'),
+    translate(lang, 'pdfTools.tools.svgToPdf.description'),
+    translate(lang, 'pdfTools.tools.pdfToEpub.title'),
+    translate(lang, 'pdfTools.tools.pdfToEpub.description'),
+    translate(lang, 'pdfTools.tools.heicToPdf.title'),
+    translate(lang, 'pdfTools.tools.heicToPdf.description')
+  ]);
+
   const tools = [
     {
-      title: translate(lang, 'pdfTools.tools.pdfToJpg.title'),
-      description: translate(lang, 'pdfTools.tools.pdfToJpg.description'),
+      title: pdfToJpgTitle,
+      description: pdfToJpgDescription,
       path: `/${lang}/pdf-tools/pdf-to-jpg`,
       icon: "🖼️"
     },
     {
-      title: translate(lang, 'pdfTools.tools.jpgToPdf.title'),
-      description: translate(lang, 'pdfTools.tools.jpgToPdf.description'),
+      title: jpgToPdfTitle,
+      description: jpgToPdfDescription,
       path: `/${lang}/pdf-tools/jpg-to-pdf`,
       icon: "📄"
     },
     {
-      title: translate(lang, 'pdfTools.tools.webToPdf.title'),
-      description: translate(lang, 'pdfTools.tools.webToPdf.description'),
+      title: webToPdfTitle,
+      description: webToPdfDescription,
       path: `/${lang}/pdf-tools/web-to-pdf`,
       icon: "🌐"
     },
     {
-      title: translate(lang, 'pdfTools.tools.pdfToWord.title'),
-      description: translate(lang, 'pdfTools.tools.pdfToWord.description'),
+      title: pdfToWordTitle,
+      description: pdfToWordDescription,
       path: `/${lang}/pdf-tools/pdf-to-word`,
       icon: "📝"
     },
     {
-      title: translate(lang, 'pdfTools.tools.pdfToPng.title'),
-      description: translate(lang, 'pdfTools.tools.pdfToPng.description'),
+      title: pdfToPngTitle,
+      description: pdfToPngDescription,
       path: `/${lang}/pdf-tools/pdf-to-png`,
       icon: "🔍"
     },
     {
-      title: translate(lang, 'pdfTools.tools.pngToPdf.title'),
-      description: translate(lang, 'pdfTools.tools.pngToPdf.description'),
+      title: pngToPdfTitle,
+      description: pngToPdfDescription,
       path: `/${lang}/pdf-tools/png-to-pdf`,
       icon: "📊"
     },
     {
-      title: translate(lang, 'pdfTools.tools.svgToPdf.title'),
-      description: translate(lang, 'pdfTools.tools.svgToPdf.description'),
+      title: svgToPdfTitle,
+      description: svgToPdfDescription,
       path: `/${lang}/pdf-tools/svg-to-pdf`,
       icon: "🔄"
     },
     {
-      title: translate(lang, 'pdfTools.tools.pdfToEpub.title'),
-      description: translate(lang, 'pdfTools.tools.pdfToEpub.description'),
+      title: pdfToEpubTitle,
+      description: pdfToEpubDescription,
       path: `/${lang}/pdf-tools/pdf-to-epub`,
       icon: "📚"
     },
     {
-      title: translate(lang, 'pdfTools.tools.heicToPdf.title'),
-      description: translate(lang, 'pdfTools.tools.heicToPdf.description'),
+      title: heicToPdfTitle,
+      description: heicToPdfDescription,
       path: `/${lang}/pdf-tools/heic-to-pdf`,
       icon: "📱"
     }
@@ -70,9 +119,9 @@ export default async function PdfTools({ params }: Props) {
     <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-4">{translate(lang, 'pdfTools.title')}</h1>
+          <h1 className="text-4xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-gray-300">
-            {translate(lang, 'pdfTools.description')}
+            {description}
           </p>
         </div>
 
