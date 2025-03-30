@@ -5,7 +5,6 @@ import wordsData from '../../../../../assets/words/words.json'
 import DownloadButton from '../../components/DownloadButton'
 import { Button } from '@/components/ui/button'
 import CopyButton from '@/components/CopyButton'
-import { useMessages } from '@/hooks/useMessages'
 
 // words.jsonの型定義
 type WordsData = {
@@ -14,8 +13,8 @@ type WordsData = {
 
 const words: WordsData = wordsData
 
-// スクリプトタグから取得するメッセージの型定義
-type WordGeneratorMessages = {
+// メッセージの型定義
+export type WordGeneratorMessages = {
   wordGen: {
     wordGenerator: {
       title: string;
@@ -128,23 +127,18 @@ type WordGeneratorMessages = {
   }
 }
 
-export default function WordGeneratorClient() {
+// PropsインターフェースにWordGeneratorMessagesを追加
+interface WordGeneratorClientProps {
+  messages: WordGeneratorMessages;
+}
+
+export default function WordGeneratorClient({ messages }: WordGeneratorClientProps) {
   const [generatedWords, setGeneratedWords] = useState<string[]>([])
   const [wordCount, setWordCount] = useState<number>(10)
   const [minLength, setMinLength] = useState(3)
   const [maxLength, setMaxLength] = useState(10) 
   
-  // Script タグからのメッセージを取得
-  const messages = useMessages<WordGeneratorMessages>('word-generator-messages')
-  
-  // メッセージがロードされていない場合のローディング表示
-  if (!messages) {
-    return <div className="flex justify-center items-center">
-      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
-    </div>
-  }
-  
-  // メッセージからトランスレーションを取得
+  // propsからメッセージを取得
   const { title, description, form, result, about } = messages.wordGen.wordGenerator;
 
   const generateWords = () => {
