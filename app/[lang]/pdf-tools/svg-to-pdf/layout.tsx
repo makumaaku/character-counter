@@ -1,32 +1,46 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  const lang = await getLanguageFromParams(params);
+  
+  // SVG to PDF 用の翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/svg-to-pdf');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.svgToPdf.meta.title'),
+    translate(lang, 'pdfTools.svgToPdf.meta.description'),
+    translate(lang, 'pdfTools.svgToPdf.meta.keywords')
+  ]);
 
-  // Common metadata settings
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
-  // Page-specific JSON-LD definition
+  // ページ固有のJSON-LD定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('svgToPdf.meta.title'),
-    "description": t('svgToPdf.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/svg-to-pdf`,
     "publisher": {
       "@type": "Organization",
@@ -56,14 +70,14 @@ export async function generateMetadata(
     "browserRequirements": "Requires a modern web browser with JavaScript enabled"
   };
 
-  // Get common metadata
-  const metadata = getCommonMetadata(
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('svgToPdf.meta.title'),
-      description: t('svgToPdf.meta.description'),
-      keywords: t('svgToPdf.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/svg-to-pdf`,
     }
   );
@@ -76,6 +90,6 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 } 

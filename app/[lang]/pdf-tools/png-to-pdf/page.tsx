@@ -1,13 +1,24 @@
-import { translate } from '@/lib/i18n/server'
+import { translate, getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
 import PngToPdfClient from './components/PngToPdfClient'
+import { Language, PdfToolsPngToPdfMessages } from '@/lib/i18n/types'
 
-export default async function PngToPdf({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function PngToPdf({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/png-to-pdf');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     uploadLabel,
     uploadButton,
     dragDropText,
@@ -18,20 +29,29 @@ export default async function PngToPdf({ params }: { params: Promise<{ lang: str
     fileTypeError,
     fileSizeError
   ] = await Promise.all([
-    translate(lang, 'pngToPdf.title'),
-    translate(lang, 'pngToPdf.description'),
-    translate(lang, 'pngToPdf.form.upload.label'),
-    translate(lang, 'pngToPdf.form.upload.button'),
-    translate(lang, 'pngToPdf.form.upload.dragDrop'),
-    translate(lang, 'pngToPdf.form.convert'),
-    translate(lang, 'pngToPdf.result.download'),
-    translate(lang, 'pngToPdf.status.processing'),
-    translate(lang, 'pngToPdf.status.noFile'),
-    translate(lang, 'pngToPdf.error.fileType'),
-    translate(lang, 'pngToPdf.error.fileSize')
-  ])
+    translate(lang, 'pdfTools.pngToPdf.title'),
+    translate(lang, 'pdfTools.pngToPdf.description'),
+    translate(lang, 'pdfTools.pngToPdf.meta.title'),
+    translate(lang, 'pdfTools.pngToPdf.meta.description'),
+    translate(lang, 'pdfTools.pngToPdf.meta.keywords'),
+    translate(lang, 'pdfTools.pngToPdf.form.upload.label'),
+    translate(lang, 'pdfTools.pngToPdf.form.upload.button'),
+    translate(lang, 'pdfTools.pngToPdf.form.upload.dragDrop'),
+    translate(lang, 'pdfTools.pngToPdf.form.convert'),
+    translate(lang, 'pdfTools.pngToPdf.result.download'),
+    translate(lang, 'pdfTools.pngToPdf.status.processing'),
+    translate(lang, 'pdfTools.pngToPdf.status.noFile'),
+    translate(lang, 'pdfTools.pngToPdf.error.fileType'),
+    translate(lang, 'pdfTools.pngToPdf.error.fileSize')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsPngToPdfMessages = {
+    meta: {
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
+    },
     title,
     description,
     form: {
@@ -53,11 +73,7 @@ export default async function PngToPdf({ params }: { params: Promise<{ lang: str
       fileType: fileTypeError,
       fileSize: fileSizeError
     }
-  }
+  };
 
-  return (
-    <div>
-      <PngToPdfClient translations={translations} />
-    </div>
-  )
+  return <PngToPdfClient messages={messages} />
 } 

@@ -1,43 +1,39 @@
-import { translate } from '@/lib/i18n/server'
-import { Metadata } from 'next'
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server'
+import { SITE_CONFIG } from '@/constants/constants'
 import { getCommonMetadata } from '@/lib/metadata'
-
-// Define a basic site config since we don't have access to the actual constants
-const SITE_CONFIG = {
-  baseURL: 'https://boring-tool.com',
-  siteName: 'common.meta.siteName',
-  publisher: 'common.meta.publisher',
-  logo: {
-    url: '/boring_logo.png',
-    width: 192,
-    height: 192,
-    alt: 'common.meta.logoAlt'
-  }
-}
+import { Metadata } from 'next'
+import { Language } from '@/lib/i18n/types'
 
 type Props = {
   children: React.ReactNode
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params
-  const t = (key: string) => translate(lang, key)
+  const lang = await getLanguageFromParams(params);
+  
+  // Web-to-PDF 用の翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/web-to-pdf');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.webToPdf.meta.title'),
+    translate(lang, 'pdfTools.webToPdf.meta.description'),
+    translate(lang, 'pdfTools.webToPdf.meta.keywords')
+  ]);
 
-  // Common metadata
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logo.alt),
-  }
-
-  // Page-specific metadata
-  const title = t('webToPdf.meta.title')
-  const description = t('webToPdf.meta.description')
-  const keywords = t('webToPdf.meta.keywords')
-  const url = `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/web-to-pdf`
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
+  };
 
   // JSON-LD structured data for WebApplication
   const webAppJsonLd = {
@@ -45,7 +41,7 @@ export async function generateMetadata(
     '@type': 'WebApplication',
     'name': title,
     'description': description,
-    'url': url,
+    'url': `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/web-to-pdf`,
     'applicationCategory': 'UtilityApplication',
     'operatingSystem': 'Any',
     'offers': {
@@ -64,7 +60,7 @@ export async function generateMetadata(
         'alt': commonMeta.logoAlt
       }
     }
-  }
+  };
 
   // JSON-LD structured data for BreadcrumbList
   const breadcrumbJsonLd = {
@@ -74,35 +70,35 @@ export async function generateMetadata(
       {
         '@type': 'ListItem',
         'position': 1,
-        'name': t('home.title'),
+        'name': await translate(lang, 'home.title'),
         'item': `${SITE_CONFIG.baseURL}/${lang}`
       },
       {
         '@type': 'ListItem',
         'position': 2,
-        'name': t('pdfTools.title'),
+        'name': await translate(lang, 'pdfTools.title'),
         'item': `${SITE_CONFIG.baseURL}/${lang}/pdf-tools`
       },
       {
         '@type': 'ListItem',
         'position': 3,
         'name': title,
-        'item': url
+        'item': `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/web-to-pdf`
       }
     ]
-  }
+  };
 
   // Get common metadata using the getCommonMetadata function
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
       title,
       description,
       keywords,
-      url
+      url: `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/web-to-pdf`
     }
-  )
+  );
 
   // Add additional structured data
   return {
@@ -121,13 +117,13 @@ export async function generateMetadata(
     other: {
       'application/ld+json': JSON.stringify([webAppJsonLd, breadcrumbJsonLd])
     }
-  }
+  };
 }
 
-export default function WebToPdfLayout({ children }: Props) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-800 text-gray-100">
       {children}
     </div>
-  )
+  );
 } 

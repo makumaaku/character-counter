@@ -5,36 +5,13 @@ import { useDropzone } from 'react-dropzone'
 import { jsPDF } from 'jspdf'
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid'
 import Button from '@/components/ui/button'
-
-type Translations = {
-  title: string
-  description: string
-  form: {
-    upload: {
-      label: string
-      button: string
-      dragDrop: string
-    }
-    convert: string
-  }
-  result: {
-    download: string
-  }
-  status: {
-    processing: string
-    noFile: string
-  }
-  error: {
-    fileType: string
-    fileSize: string
-  }
-}
+import { PdfToolsPngToPdfMessages } from '@/lib/i18n/types'
 
 type Props = {
-  translations: Translations
+  messages: PdfToolsPngToPdfMessages
 }
 
-export default function PngToPdfClient({ translations }: Props) {
+export default function PngToPdfClient({ messages }: Props) {
   const [files, setFiles] = useState<File[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
@@ -49,19 +26,19 @@ export default function PngToPdfClient({ translations }: Props) {
     // Validate file types
     const invalidFiles = acceptedFiles.filter(file => !file.type.includes('image/png'))
     if (invalidFiles.length > 0) {
-      setError(translations.error.fileType)
+      setError(messages.error.fileType)
       return
     }
     
     // Validate file size (20MB total limit)
     const totalSize = acceptedFiles.reduce((sum, file) => sum + file.size, 0)
     if (totalSize > 20 * 1024 * 1024) {
-      setError(translations.error.fileSize)
+      setError(messages.error.fileSize)
       return
     }
     
     setFiles(acceptedFiles)
-  }, [translations.error.fileType, translations.error.fileSize])
+  }, [messages.error.fileType, messages.error.fileSize])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ 
     onDrop,
@@ -73,7 +50,7 @@ export default function PngToPdfClient({ translations }: Props) {
   // Convert PNG to PDF
   const convertToPdf = async () => {
     if (files.length === 0) {
-      setError(translations.status.noFile)
+      setError(messages.status.noFile)
       return
     }
 
@@ -165,12 +142,12 @@ export default function PngToPdfClient({ translations }: Props) {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-4">{translations.title}</h1>
-        <p className="text-xl text-gray-300">{translations.description}</p>
+        <h1 className="text-3xl font-bold mb-4">{messages.title}</h1>
+        <p className="text-xl text-gray-300">{messages.description}</p>
       </div>
 
       <div className="bg-gray-700 rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">{translations.form.upload.label}</h2>
+        <h2 className="text-xl font-semibold mb-4">{messages.form.upload.label}</h2>
         
         <div 
           {...getRootProps()} 
@@ -180,9 +157,9 @@ export default function PngToPdfClient({ translations }: Props) {
         >
           <input {...getInputProps()} />
           {isDragActive ? (
-            <p className="text-blue-300">{translations.form.upload.dragDrop}</p>
+            <p className="text-blue-300">{messages.form.upload.dragDrop}</p>
           ) : (
-            <p>{translations.form.upload.button}</p>
+            <p>{messages.form.upload.button}</p>
           )}
           
           {files.length > 0 && (
@@ -217,7 +194,7 @@ export default function PngToPdfClient({ translations }: Props) {
               : 'bg-blue-600 hover:bg-blue-700'
           }`}
         >
-          {isProcessing ? translations.status.processing : translations.form.convert}
+          {isProcessing ? messages.status.processing : messages.form.convert}
         </Button>
       </div>
 
@@ -230,7 +207,7 @@ export default function PngToPdfClient({ translations }: Props) {
             variant="purple"
           >
             <ArrowDownTrayIcon className="w-5 h-5 mr-2" />
-            {translations.result.download}
+            {messages.result.download}
           </Button>
         </div>
       )}

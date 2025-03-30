@@ -11,25 +11,6 @@
         "label": "ウェブサイトURL",
         "placeholder": "https://example.com ",
         "button": "PDFに変換"
-      },
-      "options": {
-        "label": "PDF設定",
-        "format": {
-          "label": "用紙サイズ",
-          "a4": "A4",
-          "letter": "レター",
-          "legal": "リーガル"
-        },
-        "orientation": {
-          "label": "向き",
-          "portrait": "縦向き",
-          "landscape": "横向き"
-        },
-        "scale": {
-          "label": "スケール",
-          "default": "デフォルト（1）",
-          "fit": "ページに合わせる"
-        }
       }
     },
     "result": {

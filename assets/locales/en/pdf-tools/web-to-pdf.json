@@ -11,25 +11,6 @@
       "label": "Website URL",
       "placeholder": "https://example.com ",
       "button": "Convert to PDF"
-    },
-    "options": {
-      "label": "PDF Options",
-      "format": {
-        "label": "Paper Format",
-        "a4": "A4",
-        "letter": "Letter",
-        "legal": "Legal"
-      },
-      "orientation": {
-        "label": "Orientation",
-        "portrait": "Portrait",
-        "landscape": "Landscape"
-      },
-      "scale": {
-        "label": "Scale",
-        "default": "Default (1)",
-        "fit": "Fit to Page"
-      }
     }
   },
   "result": {

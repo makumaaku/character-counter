@@ -1,11 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { translate, getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
 import HeicToPdfClient from './components/HeicToPdfClient'
+import { Language, PdfToolsHeicToPdfMessages } from '@/lib/i18n/types'
 
+type Props = {
+  params: { lang: string }
+}
 
-export default async function HeicToPdf({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
-
-  // Get translations
+export default async function HeicToPdf({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/heic-to-pdf');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
@@ -21,22 +28,28 @@ export default async function HeicToPdf({ params }: { params: Promise<{ lang: st
     conversionError,
     successMessage
   ] = await Promise.all([
-    translate(lang, 'heicToPdf.title'),
-    translate(lang, 'heicToPdf.description'),
-    translate(lang, 'heicToPdf.form.upload.label'),
-    translate(lang, 'heicToPdf.form.upload.button'),
-    translate(lang, 'heicToPdf.form.upload.dragDrop'),
-    translate(lang, 'heicToPdf.form.convert'),
-    translate(lang, 'heicToPdf.result.download'),
-    translate(lang, 'heicToPdf.status.processing'),
-    translate(lang, 'heicToPdf.status.noFile'),
-    translate(lang, 'heicToPdf.error.fileType'),
-    translate(lang, 'heicToPdf.error.fileSize'),
-    translate(lang, 'heicToPdf.error.conversion'),
-    translate(lang, 'heicToPdf.success.message')
-  ])
+    translate(lang, 'pdfTools.heicToPdf.title'),
+    translate(lang, 'pdfTools.heicToPdf.description'),
+    translate(lang, 'pdfTools.heicToPdf.form.upload.label'),
+    translate(lang, 'pdfTools.heicToPdf.form.upload.button'),
+    translate(lang, 'pdfTools.heicToPdf.form.upload.dragDrop'),
+    translate(lang, 'pdfTools.heicToPdf.form.convert'),
+    translate(lang, 'pdfTools.heicToPdf.result.download'),
+    translate(lang, 'pdfTools.heicToPdf.status.processing'),
+    translate(lang, 'pdfTools.heicToPdf.status.noFile'),
+    translate(lang, 'pdfTools.heicToPdf.error.fileType'),
+    translate(lang, 'pdfTools.heicToPdf.error.fileSize'),
+    translate(lang, 'pdfTools.heicToPdf.error.conversion'),
+    translate(lang, 'pdfTools.heicToPdf.success.message')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsHeicToPdfMessages = {
+    meta: {
+      title: '', // layout.tsxで使用しているため、ここでは空文字を設定
+      description: '',
+      keywords: ''
+    },
     title,
     description,
     form: {
@@ -62,7 +75,7 @@ export default async function HeicToPdf({ params }: { params: Promise<{ lang: st
     success: {
       message: successMessage
     }
-  }
+  };
 
-  return <HeicToPdfClient translations={translations} />
+  return <HeicToPdfClient messages={messages} />
 } 

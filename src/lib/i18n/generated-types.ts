@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-03-30T07:56:27.681Z
+// Generated at: 2025-03-30T09:27:07.921Z
 
 export interface CommonMessages {
   meta: {
@@ -1684,25 +1684,6 @@ export interface PdfToolsWebToPdfMessages {
       label: string;
       placeholder: string;
       button: string;
-    };
-    options: {
-      label: string;
-      format: {
-        label: string;
-        a4: string;
-        letter: string;
-        legal: string;
-      };
-      orientation: {
-        label: string;
-        portrait: string;
-        landscape: string;
-      };
-      scale: {
-        label: string;
-        default: string;
-        fit: string;
-      };
     };
   };
   result: {

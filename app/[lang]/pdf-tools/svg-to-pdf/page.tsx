@@ -1,13 +1,25 @@
 import { translate } from '@/lib/i18n/server'
 import SvgToPdfClient from './components/SvgToPdfClient'
+import { getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
+import { Language, PdfToolsSvgToPdfMessages } from '@/lib/i18n/types'
 
-export default async function SvgToPdf({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function SvgToPdf({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/svg-to-pdf');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     uploadLabel,
     uploadButton,
     dragDropText,
@@ -18,20 +30,29 @@ export default async function SvgToPdf({ params }: { params: Promise<{ lang: str
     fileTypeError,
     fileSizeError
   ] = await Promise.all([
-    translate(lang, 'svgToPdf.title'),
-    translate(lang, 'svgToPdf.description'),
-    translate(lang, 'svgToPdf.form.upload.label'),
-    translate(lang, 'svgToPdf.form.upload.button'),
-    translate(lang, 'svgToPdf.form.upload.dragDrop'),
-    translate(lang, 'svgToPdf.form.convert'),
-    translate(lang, 'svgToPdf.result.download'),
-    translate(lang, 'svgToPdf.status.processing'),
-    translate(lang, 'svgToPdf.status.noFile'),
-    translate(lang, 'svgToPdf.error.fileType'),
-    translate(lang, 'svgToPdf.error.fileSize')
-  ])
+    translate(lang, 'pdfTools.svgToPdf.title'),
+    translate(lang, 'pdfTools.svgToPdf.description'),
+    translate(lang, 'pdfTools.svgToPdf.meta.title'),
+    translate(lang, 'pdfTools.svgToPdf.meta.description'),
+    translate(lang, 'pdfTools.svgToPdf.meta.keywords'),
+    translate(lang, 'pdfTools.svgToPdf.form.upload.label'),
+    translate(lang, 'pdfTools.svgToPdf.form.upload.button'),
+    translate(lang, 'pdfTools.svgToPdf.form.upload.dragDrop'),
+    translate(lang, 'pdfTools.svgToPdf.form.convert'),
+    translate(lang, 'pdfTools.svgToPdf.result.download'),
+    translate(lang, 'pdfTools.svgToPdf.status.processing'),
+    translate(lang, 'pdfTools.svgToPdf.status.noFile'),
+    translate(lang, 'pdfTools.svgToPdf.error.fileType'),
+    translate(lang, 'pdfTools.svgToPdf.error.fileSize')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsSvgToPdfMessages = {
+    meta: {
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
+    },
     title,
     description,
     form: {
@@ -53,11 +74,7 @@ export default async function SvgToPdf({ params }: { params: Promise<{ lang: str
       fileType: fileTypeError,
       fileSize: fileSizeError
     }
-  }
+  };
 
-  return (
-    <div>
-      <SvgToPdfClient translations={translations} />
-    </div>
-  )
+  return <SvgToPdfClient messages={messages} />
 } 

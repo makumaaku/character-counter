@@ -1,10 +1,19 @@
 import { translate } from '@/lib/i18n/server'
 import WebToPdfClient from './components/WebToPdfClient'
+import { getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
+import { Language, PdfToolsWebToPdfMessages } from '@/lib/i18n/types'
 
-export default async function WebToPdf({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function WebToPdf({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/web-to-pdf');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
@@ -25,27 +34,33 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     previewErrorText,
     previewPageOfText
   ] = await Promise.all([
-    translate(lang, 'webToPdf.title'),
-    translate(lang, 'webToPdf.description'),
-    translate(lang, 'webToPdf.form.url.label'),
-    translate(lang, 'webToPdf.form.url.placeholder'),
-    translate(lang, 'webToPdf.form.url.button'),
-    translate(lang, 'webToPdf.result.download'),
-    translate(lang, 'webToPdf.result.preview'),
-    translate(lang, 'webToPdf.status.processing'),
-    translate(lang, 'webToPdf.status.noUrl'),
-    translate(lang, 'webToPdf.status.success'),
-    translate(lang, 'webToPdf.error.invalidUrl'),
-    translate(lang, 'webToPdf.error.conversionFailed'),
-    translate(lang, 'webToPdf.error.networkError'),
-    translate(lang, 'webToPdf.error.timeout'),
-    translate(lang, 'webToPdf.loading'),
-    translate(lang, 'webToPdf.preview.loading'),
-    translate(lang, 'webToPdf.preview.error'),
-    translate(lang, 'webToPdf.preview.pageOf')
+    translate(lang, 'pdfTools.webToPdf.title'),
+    translate(lang, 'pdfTools.webToPdf.description'),
+    translate(lang, 'pdfTools.webToPdf.form.url.label'),
+    translate(lang, 'pdfTools.webToPdf.form.url.placeholder'),
+    translate(lang, 'pdfTools.webToPdf.form.url.button'),
+    translate(lang, 'pdfTools.webToPdf.result.download'),
+    translate(lang, 'pdfTools.webToPdf.result.preview'),
+    translate(lang, 'pdfTools.webToPdf.status.processing'),
+    translate(lang, 'pdfTools.webToPdf.status.noUrl'),
+    translate(lang, 'pdfTools.webToPdf.status.success'),
+    translate(lang, 'pdfTools.webToPdf.error.invalidUrl'),
+    translate(lang, 'pdfTools.webToPdf.error.conversionFailed'),
+    translate(lang, 'pdfTools.webToPdf.error.networkError'),
+    translate(lang, 'pdfTools.webToPdf.error.timeout'),
+    translate(lang, 'pdfTools.webToPdf.loading'),
+    translate(lang, 'pdfTools.webToPdf.preview.loading'),
+    translate(lang, 'pdfTools.webToPdf.preview.error'),
+    translate(lang, 'pdfTools.webToPdf.preview.pageOf')
   ])
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsWebToPdfMessages = {
+    meta: {
+      title: title,
+      description: description,
+      keywords: ''
+    },
     title,
     description,
     form: {
@@ -53,7 +68,7 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
         label: urlLabel,
         placeholder: urlPlaceholder,
         button: convertButton
-      }
+      },
     },
     result: {
       download: downloadButton,
@@ -78,5 +93,5 @@ export default async function WebToPdf({ params }: { params: Promise<{ lang: str
     }
   }
 
-  return <WebToPdfClient translations={translations} lang={lang} />
+  return <WebToPdfClient messages={messages} lang={lang} />
 } 
