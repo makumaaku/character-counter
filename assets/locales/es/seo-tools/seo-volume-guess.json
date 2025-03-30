@@ -13,19 +13,19 @@
     "analyze": "Analizar"
   },
   "result": {
-    "volume-score": "Predicción de volumen de búsqueda",
+    "volumeScore": "Predicción de volumen de búsqueda",
     "suggestions": "sugerencias",
-    "all-suggestions": "Todos los candidatos de sugerencia",
-    "score-description-1": "Volumen muy bajo. Esta es una palabra clave de nicho.",
-    "score-description-2": "Volumen bajo. Podría haber menos competencia.",
-    "score-description-3": "Volumen medio. Una palabra clave equilibrada.",
-    "score-description-4": "Volumen alto. Esta es una palabra clave popular.",
-    "score-description-5": "Volumen muy alto. Esta palabra clave tiene una competencia intensa."
+    "allSuggestions": "Todos los candidatos de sugerencia",
+    "scoreDescription1": "Volumen muy bajo. Esta es una palabra clave de nicho.",
+    "scoreDescription2": "Volumen bajo. Podría haber menos competencia.",
+    "scoreDescription3": "Volumen medio. Una palabra clave equilibrada.",
+    "scoreDescription4": "Volumen alto. Esta es una palabra clave popular.",
+    "scoreDescription5": "Volumen muy alto. Esta palabra clave tiene una competencia intensa."
   },
   "error": {
-    "empty-keyword": "Por favor, introduce una palabra clave",
+    "emptyKeyword": "Por favor, introduce una palabra clave",
     "unknown": "Ha ocurrido un error. Por favor, inténtalo de nuevo.",
-    "api-error": "Ha ocurrido un error en la API. Por favor, inténtalo más tarde."
+    "apiError": "Ha ocurrido un error en la API. Por favor, inténtalo más tarde."
   },
   "country": {
     "selector": "Selecciona el país objetivo",

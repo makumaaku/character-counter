@@ -1,6 +1,6 @@
 import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import WordGeneratorClient from './components/WordGeneratorClient'
-import { Language } from '@/lib/i18n/types'
+import { Language, WordGenWordGeneratorMessages } from '@/lib/i18n/types'
 
 type Props = {
   params: { lang: string }
@@ -22,8 +22,8 @@ export default async function WordGenerator({ params }: Props) {
     formLengthLabel,
     formLengthMin,
     formLengthMax,
-    formPatternLabel,
-    formPatternPlaceholder,
+    // formPatternLabel,
+    // formPatternPlaceholder,
     formCountLabel,
     formCountPlaceholder,
     formGenerate,
@@ -143,115 +143,112 @@ export default async function WordGenerator({ params }: Props) {
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
-  const messages = {
-    wordGen: {
-      wordGenerator: {
-        title,
-        description,
-        form: {
-          length: {
-            label: formLengthLabel,
-            min: formLengthMin,
-            max: formLengthMax
-          },
-          pattern: {
-            label: formPatternLabel,
-            placeholder: formPatternPlaceholder
-          },
-          count: {
-            label: formCountLabel,
-            placeholder: formCountPlaceholder
-          },
-          generate: formGenerate,
-          clear: formClear
+  const messages: WordGenWordGeneratorMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
+    title,
+    description,
+    form: {
+      length: {
+        label: formLengthLabel,
+        min: formLengthMin,
+        max: formLengthMax
+      },
+      count: {
+        label: formCountLabel,
+        placeholder: formCountPlaceholder
+      },
+      generate: formGenerate,
+      clear: formClear
+    },
+    result: {
+      title: resultTitle,
+      empty: resultEmpty,
+      copy: resultCopy,
+      copied: resultCopied,
+      download: resultDownload,
+      downloaded: resultDownloaded
+    },
+    about: {
+      catchphrase: aboutCatchphrase,
+      introduction: aboutIntroduction,
+      features: {
+        title: aboutFeaturesTitle,
+        oneClick: {
+          title: aboutFeaturesOneClickTitle,
+          description: aboutFeaturesOneClickDesc
         },
-        result: {
-          title: resultTitle,
-          empty: resultEmpty,
-          copy: resultCopy,
-          copied: resultCopied,
-          download: resultDownload,
-          downloaded: resultDownloaded
+        database: {
+          title: aboutFeaturesDatabaseTitle,
+          description: aboutFeaturesDatabaseDesc
         },
-        about: {
-          catchphrase: aboutCatchphrase,
-          introduction: aboutIntroduction,
-          features: {
-            title: aboutFeaturesTitle,
-            oneClick: {
-              title: aboutFeaturesOneClickTitle,
-              description: aboutFeaturesOneClickDesc
-            },
-            database: {
-              title: aboutFeaturesDatabaseTitle,
-              description: aboutFeaturesDatabaseDesc
-            },
-            design: {
-              title: aboutFeaturesDesignTitle,
-              description: aboutFeaturesDesignDesc
-            }
+        design: {
+          title: aboutFeaturesDesignTitle,
+          description: aboutFeaturesDesignDesc
+        }
+      },
+      useCases: {
+        title: aboutUseCasesTitle,
+        scenes: {
+          title: aboutUseCasesScenesTitle,
+          writer: aboutUseCasesScenesWriter,
+          designer: aboutUseCasesScenesDesigner,
+          brainstorming: aboutUseCasesScenesBS
+        },
+        testimonials: {
+          title: aboutUseCasesTestimonialsTitle,
+          writer: {
+            name: aboutUseCasesTestimonialsWriterName,
+            quote: aboutUseCasesTestimonialsWriterQuote
           },
-          useCases: {
-            title: aboutUseCasesTitle,
-            scenes: {
-              title: aboutUseCasesScenesTitle,
-              writer: aboutUseCasesScenesWriter,
-              designer: aboutUseCasesScenesDesigner,
-              brainstorming: aboutUseCasesScenesBS
-            },
-            testimonials: {
-              title: aboutUseCasesTestimonialsTitle,
-              writer: {
-                name: aboutUseCasesTestimonialsWriterName,
-                quote: aboutUseCasesTestimonialsWriterQuote
-              },
-              designer: {
-                name: aboutUseCasesTestimonialsDesignerName,
-                quote: aboutUseCasesTestimonialsDesignerQuote
-              }
-            }
-          },
-          technical: {
-            title: aboutTechnicalTitle,
-            algorithm: {
-              title: aboutTechnicalAlgorithmTitle,
-              description: aboutTechnicalAlgorithmDesc
-            },
-            database: {
-              title: aboutTechnicalDatabaseTitle,
-              description: aboutTechnicalDatabaseDesc
-            },
-            performance: {
-              title: aboutTechnicalPerformanceTitle,
-              description: aboutTechnicalPerformanceDesc
-            }
-          },
-          faq: {
-            title: aboutFaqTitle,
-            questions: {
-              free: {
-                question: aboutFaqQuestionsFree,
-                answer: aboutFaqAnswersFree
-              },
-              words: {
-                question: aboutFaqQuestionsWords,
-                answer: aboutFaqAnswersWords
-              },
-              commercial: {
-                question: aboutFaqQuestionsCommercial,
-                answer: aboutFaqAnswersCommercial
-              },
-              mobile: {
-                question: aboutFaqQuestionsMobile,
-                answer: aboutFaqAnswersMobile
-              }
-            }
-          },
-          conclusion: {
-            title: aboutConclusionTitle,
-            description: aboutConclusionDesc
+          designer: {
+            name: aboutUseCasesTestimonialsDesignerName,
+            quote: aboutUseCasesTestimonialsDesignerQuote
           }
         }
+      },
+      technical: {
+        title: aboutTechnicalTitle,
+        algorithm: {
+          title: aboutTechnicalAlgorithmTitle,
+          description: aboutTechnicalAlgorithmDesc
+        },
+        database: {
+          title: aboutTechnicalDatabaseTitle,
+          description: aboutTechnicalDatabaseDesc
+        },
+        performance: {
+          title: aboutTechnicalPerformanceTitle,
+          description: aboutTechnicalPerformanceDesc
+        }
+      },
+      faq: {
+        title: aboutFaqTitle,
+        questions: {
+          free: {
+            question: aboutFaqQuestionsFree,
+            answer: aboutFaqAnswersFree
+          },
+          words: {
+            question: aboutFaqQuestionsWords,
+            answer: aboutFaqAnswersWords
+          },
+          commercial: {
+            question: aboutFaqQuestionsCommercial,
+            answer: aboutFaqAnswersCommercial
+          },
+          mobile: {
+            question: aboutFaqQuestionsMobile,
+            answer: aboutFaqAnswersMobile
+          }
+        }
+      },
+      conclusion: {
+        title: aboutConclusionTitle,
+        description: aboutConclusionDesc
       }
     }
   };

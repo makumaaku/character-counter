@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run generate-types && next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap --config next-sitemap.config.cjs"
+    "postbuild": "next-sitemap --config next-sitemap.config.cjs",
+    "generate-types": "node --loader ts-node/esm src/lib/i18n/type-generator.ts assets/locales AllMessages src/lib/i18n/generated-types.ts"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
@@ -57,6 +58,7 @@
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "type": "module"

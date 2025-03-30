@@ -13,19 +13,19 @@
       "analyze": "分析する"
     },
     "result": {
-      "volume-score": "検索ボリューム予測",
+      "volumeScore": "検索ボリューム予測",
       "suggestions": "件のサジェスト",
-      "all-suggestions": "すべてのサジェスト候補",
-      "score-description-1": "非常に低いボリューム。ニッチなキーワードです。",
-      "score-description-2": "低いボリューム。競合は少ないかもしれません。",
-      "score-description-3": "中程度のボリューム。バランスの取れたキーワードです。",
-      "score-description-4": "高いボリューム。人気のあるキーワードです。",
-      "score-description-5": "非常に高いボリューム。競争が激しいキーワードです。"
+      "allSuggestions": "すべてのサジェスト候補",
+      "scoreDescription1": "非常に低いボリューム。ニッチなキーワードです。",
+      "scoreDescription2": "低いボリューム。競合は少ないかもしれません。",
+      "scoreDescription3": "中程度のボリューム。バランスの取れたキーワードです。",
+      "scoreDescription4": "高いボリューム。人気のあるキーワードです。",
+      "scoreDescription5": "非常に高いボリューム。競争が激しいキーワードです。"
     },
     "error": {
-      "empty-keyword": "キーワードを入力してください",
+      "emptyKeyword": "キーワードを入力してください",
       "unknown": "エラーが発生しました。もう一度お試しください。",
-      "api-error": "APIエラーが発生しました。しばらく経ってからお試しください。"
+      "apiError": "APIエラーが発生しました。しばらく経ってからお試しください。"
     },
     "country": {
       "selector": "検索対象の国を選択",

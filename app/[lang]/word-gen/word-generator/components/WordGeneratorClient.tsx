@@ -5,6 +5,7 @@ import wordsData from '../../../../../assets/words/words.json'
 import DownloadButton from '../../components/DownloadButton'
 import { Button } from '@/components/ui/button'
 import CopyButton from '@/components/CopyButton'
+import { WordGenWordGeneratorMessages } from '@/lib/i18n/generated-types'
 
 // words.jsonの型定義
 type WordsData = {
@@ -13,123 +14,10 @@ type WordsData = {
 
 const words: WordsData = wordsData
 
-// メッセージの型定義
-export type WordGeneratorMessages = {
-  wordGen: {
-    wordGenerator: {
-      title: string;
-      description: string;
-      form: {
-        length: {
-          label: string;
-          min: string;
-          max: string;
-        }
-        pattern: {
-          label: string;
-          placeholder: string;
-        }
-        count: {
-          label: string;
-          placeholder: string;
-        }
-        generate: string;
-        clear: string;
-      }
-      result: {
-        title: string;
-        empty: string;
-        copy: string;
-        copied: string;
-        download: string;
-        downloaded: string;
-      }
-      about: {
-        catchphrase: string;
-        introduction: string;
-        features: {
-          title: string;
-          oneClick: {
-            title: string;
-            description: string;
-          }
-          database: {
-            title: string;
-            description: string;
-          }
-          design: {
-            title: string;
-            description: string;
-          }
-        }
-        useCases: {
-          title: string;
-          scenes: {
-            title: string;
-            writer: string;
-            designer: string;
-            brainstorming: string;
-          }
-          testimonials: {
-            title: string;
-            writer: {
-              name: string;
-              quote: string;
-            }
-            designer: {
-              name: string;
-              quote: string;
-            }
-          }
-        }
-        technical: {
-          title: string;
-          algorithm: {
-            title: string;
-            description: string;
-          }
-          database: {
-            title: string;
-            description: string;
-          }
-          performance: {
-            title: string;
-            description: string;
-          }
-        }
-        faq: {
-          title: string;
-          questions: {
-            free: {
-              question: string;
-              answer: string;
-            }
-            words: {
-              question: string;
-              answer: string;
-            }
-            commercial: {
-              question: string;
-              answer: string;
-            }
-            mobile: {
-              question: string;
-              answer: string;
-            }
-          }
-        }
-        conclusion: {
-          title: string;
-          description: string;
-        }
-      }
-    }
-  }
-}
 
 // PropsインターフェースにWordGeneratorMessagesを追加
 interface WordGeneratorClientProps {
-  messages: WordGeneratorMessages;
+  messages: WordGenWordGeneratorMessages;
 }
 
 export default function WordGeneratorClient({ messages }: WordGeneratorClientProps) {
@@ -139,7 +27,7 @@ export default function WordGeneratorClient({ messages }: WordGeneratorClientPro
   const [maxLength, setMaxLength] = useState(10) 
   
   // propsからメッセージを取得
-  const { title, description, form, result, about } = messages.wordGen.wordGenerator;
+  const { title, description, form, result, about } = messages;
 
   const generateWords = () => {
     let filteredWords = words.words.filter(word => 

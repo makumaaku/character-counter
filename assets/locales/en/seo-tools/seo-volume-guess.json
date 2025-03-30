@@ -13,19 +13,19 @@
     "analyze": "Analyze"
   },
   "result": {
-    "volume-score": "Search Volume Prediction",
+    "volumeScore": "Search Volume Prediction",
     "suggestions": "suggestions",
-    "all-suggestions": "All Suggestion Candidates",
-    "score-description-1": "Very low volume. This is a niche keyword.",
-    "score-description-2": "Low volume. There might be less competition.",
-    "score-description-3": "Medium volume. A balanced keyword.",
-    "score-description-4": "High volume. This is a popular keyword.",
-    "score-description-5": "Very high volume. This keyword has intense competition."
+    "allSuggestions": "All Suggestion Candidates",
+    "scoreDescription1": "Very low volume. This is a niche keyword.",
+    "scoreDescription2": "Low volume. There might be less competition.",
+    "scoreDescription3": "Medium volume. A balanced keyword.",
+    "scoreDescription4": "High volume. This is a popular keyword.",
+    "scoreDescription5": "Very high volume. This keyword has intense competition."
   },
   "error": {
-    "empty-keyword": "Please enter a keyword",
+    "emptyKeyword": "Please enter a keyword",
     "unknown": "An error occurred. Please try again.",
-    "api-error": "API error occurred. Please try again later."
+    "apiError": "API error occurred. Please try again later."
   },
   "country": {
     "selector": "Select target country",
