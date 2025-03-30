@@ -108,8 +108,16 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
         return combinedMessages;
       } else {
         // トップレベルのツールの場合
-        const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
-        toolMessages = toolModule.default || {};
+       
+        try{
+          const toolModule = await import(`../../../assets/locales/${lang}/${toolName}.json`);
+          toolMessages = toolModule.default || {};
+        }
+        catch{
+           // ツールカテゴリのトップページの場合
+          const categoryModule = await import(`../../../assets/locales/${lang}/${toolName}/common.json`);
+          toolMessages = categoryModule.default || {};
+        }
         
         const combinedMessages = {
           ...baseMessages,

@@ -2,39 +2,52 @@
 
 import { useState } from 'react';
 import { useParams, usePathname } from 'next/navigation';
-import { translate } from '@/lib/i18n/client';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
 import Footer from '@/components/Footer';
 
-type Props = {
-  children: React.ReactNode;
+// レイアウト用メッセージインターフェース
+interface CharacterCounterLayoutMessages {
+  title: string;
+  sidebar: {
+    function: string;
+    usecase: string;
+    faq: string;
+    aboutUs: string;
+    contact: string;
+    privacy: string;
+    column: string;
+  };
 }
 
-export default function CharacterCounterLayout({ children }: Props) {
+type Props = {
+  children: React.ReactNode;
+  messages?: CharacterCounterLayoutMessages;
+}
+
+export default function CharacterCounterLayout({ children, messages }: Props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const params = useParams();
   const pathname = usePathname();
   const lang = params.lang as string;
-  const t = (key: string) => translate(lang, key);
+  
   // 文字数カウンターのトップページかどうかを判断
   const isCharacterCounterTop = pathname === `/${lang}/character-counter`;
 
   const navigationItems = [
-    { name: t('characterCounter.sidebar.function'), path: `/character-counter/function` },
-    { name: t('characterCounter.sidebar.usecase'), path: `/character-counter/usecase` },
-    { name: t('characterCounter.sidebar.faq'), path: `/character-counter/faq` },
-    { name: t('characterCounter.sidebar.aboutUs'), path: `/character-counter/about-us` },
-    { name: t('characterCounter.sidebar.contact'), path: `/character-counter/contact` },
-    { name: t('characterCounter.sidebar.privacy'), path: `/character-counter/privacy` },
-    // { name: t('characterCounter.sidebar.plan'), path: `/character-counter/plan` },
-    { name: t('characterCounter.sidebar.column'), path: `/character-counter/column` },
+    { name: messages?.sidebar.function || 'Function', path: `/character-counter/function` },
+    { name: messages?.sidebar.usecase || 'Use Case', path: `/character-counter/usecase` },
+    { name: messages?.sidebar.faq || 'FAQ', path: `/character-counter/faq` },
+    { name: messages?.sidebar.aboutUs || 'About Us', path: `/character-counter/about-us` },
+    { name: messages?.sidebar.contact || 'Contact', path: `/character-counter/contact` },
+    { name: messages?.sidebar.privacy || 'Privacy', path: `/character-counter/privacy` },
+    { name: messages?.sidebar.column || 'Column', path: `/character-counter/column` },
   ];
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      <Header title={ t('characterCounter.title')} homeLink={`/${lang}/character-counter`} isH1={isCharacterCounterTop}>
+      <Header title={messages?.title || 'Character Counter'} homeLink={`/${lang}/character-counter`} isH1={isCharacterCounterTop}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"
