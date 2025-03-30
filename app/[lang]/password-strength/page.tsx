@@ -1,10 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { translate, loadToolMessages } from '@/lib/i18n/server'
+import { Language, PasswordStrengthMessages } from '@/lib/i18n/types'
 import PasswordStrengthClient from './components/PasswordStrengthClient'
 
-export default async function PasswordStrength({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: Promise<{ lang: string }>
+}
 
-  // パスワード強度測定に必要な翻訳を取得
+export default async function PasswordStrength({ params }: Props) {
+  const { lang } = await params;
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'password-strength');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
@@ -75,7 +83,13 @@ export default async function PasswordStrength({ params }: { params: Promise<{ l
     translate(lang, 'passwordStrength.passwordHidden')
   ])
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PasswordStrengthMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     passwordLabel,
@@ -118,7 +132,7 @@ export default async function PasswordStrength({ params }: { params: Promise<{ l
         <h1 className="text-3xl font-bold mb-4">{title}</h1>
         <p className="text-gray-300">{description}</p>
       </div>
-      <PasswordStrengthClient translations={translations} />
+      <PasswordStrengthClient messages={messages} />
     </div>
   )
 } 

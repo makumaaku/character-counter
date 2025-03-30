@@ -5,45 +5,9 @@ import { analyzePassword, StrengthLevel, estimateCrackTime } from './passwordUti
 import PasswordInput from './PasswordInput';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import PasswordSuggestions from './PasswordSuggestions';
+import { PasswordStrengthMessages } from '@/lib/i18n/types';
 
-type Translations = {
-  title: string;
-  description: string;
-  passwordLabel: string;
-  strengthLabel: string;
-  strengthLevel: {
-    veryWeak: string;
-    weak: string;
-    medium: string;
-    strong: string;
-    veryStrong: string;
-  };
-  timeToCrack: string;
-  timeUnits: {
-    instantly: string;
-    seconds: string;
-    minutes: string;
-    hours: string;
-    days: string;
-    months: string;
-    years: string;
-    centuries: string;
-    impossible: string;
-  };
-  suggestions: {
-    title: string;
-    addLength: string;
-    addNumbers: string;
-    addSymbols: string;
-    addUppercase: string;
-    addLowercase: string;
-    avoidCommon: string;
-  };
-  passwordVisible: string;
-  passwordHidden: string;
-};
-
-export default function PasswordStrengthClient({ translations }: { translations: Translations }) {
+export default function PasswordStrengthClient({ messages }: { messages: PasswordStrengthMessages }) {
   const [password, setPassword] = useState('');
   const [analysis, setAnalysis] = useState(analyzePassword(''));
 
@@ -56,15 +20,15 @@ export default function PasswordStrengthClient({ translations }: { translations:
   const getStrengthLevelText = () => {
     switch (analysis.strengthLevel) {
       case StrengthLevel.VERY_WEAK:
-        return translations.strengthLevel.veryWeak;
+        return messages.strengthLevel.veryWeak;
       case StrengthLevel.WEAK:
-        return translations.strengthLevel.weak;
+        return messages.strengthLevel.weak;
       case StrengthLevel.MEDIUM:
-        return translations.strengthLevel.medium;
+        return messages.strengthLevel.medium;
       case StrengthLevel.STRONG:
-        return translations.strengthLevel.strong;
+        return messages.strengthLevel.strong;
       case StrengthLevel.VERY_STRONG:
-        return translations.strengthLevel.veryStrong;
+        return messages.strengthLevel.veryStrong;
       default:
         return '';
     }
@@ -72,23 +36,23 @@ export default function PasswordStrengthClient({ translations }: { translations:
 
   // 解読時間のテキストを取得
   const getTimeToCrackText = () => {
-    const timeWithUnits = estimateCrackTime(analysis.entropy, translations.timeUnits);
-    return translations.timeToCrack.replace('{{time}}', timeWithUnits);
+    const timeWithUnits = estimateCrackTime(analysis.entropy, messages.timeUnits);
+    return messages.timeToCrack.replace('{{time}}', timeWithUnits);
   };
 
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-700">
         <label htmlFor="password" className="block text-xl font-medium mb-2">
-          {translations.passwordLabel}
+          {messages.passwordLabel}
         </label>
 
         <PasswordInput
           password={password}
           setPassword={setPassword}
-          placeholder={translations.passwordLabel}
-          visibleText={translations.passwordVisible}
-          hiddenText={translations.passwordHidden}
+          placeholder={messages.passwordLabel}
+          visibleText={messages.passwordVisible}
+          hiddenText={messages.passwordHidden}
         />
 
         {/* 強度メーターを表示 */}
@@ -96,7 +60,7 @@ export default function PasswordStrengthClient({ translations }: { translations:
           score={analysis.score}
           strengthLevel={analysis.strengthLevel}
           strengthLevelText={getStrengthLevelText()}
-          strengthLabel={translations.strengthLabel}
+          strengthLabel={messages.strengthLabel}
         />
 
         {/* 解読時間を表示（パスワードが入力されている場合のみ） */}
@@ -110,7 +74,7 @@ export default function PasswordStrengthClient({ translations }: { translations:
         {password && (
           <PasswordSuggestions
             analysis={analysis}
-            translations={translations.suggestions}
+            translations={messages.suggestions}
           />
         )}
       </div>
