@@ -1,7 +1,8 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -41,19 +42,33 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // Load sentence-generator translations
+  await loadToolMessages(lang as Language, 'word-gen/sentence-generator');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'wordGen.sentenceGenerator.meta.title'),
+    translate(lang, 'wordGen.sentenceGenerator.meta.description'),
+    translate(lang, 'wordGen.sentenceGenerator.meta.keywords'),
+  ]);
 
+  // Common metadata
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('sentenceGenerator.meta.title'),
-    "description": t('sentenceGenerator.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/sentence-generator`,
     "publisher": {
       "@type": "Organization",
@@ -84,23 +99,17 @@ export async function generateMetadata(
     ],
     "isAccessibleForFree": true,
     "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-    "keywords": [
-      "sentence generator",
-      "writing practice",
-      "language learning",
-      "grammar tool",
-      "sentence creation",
-      "writing aid"
-    ]
+    "keywords": keywords ? keywords.split(',') : []
   };
 
-  const metadata = getCommonMetadata(
+  // Get common metadata
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('sentenceGenerator.meta.title'),
-      description: t('sentenceGenerator.meta.description'),
-      keywords: t('sentenceGenerator.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/word-gen/sentence-generator`,
     }
   );
@@ -113,6 +122,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
-  return <>{children}</>;
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  
+  return (
+    <div className="layout-container">
+      {children}
+    </div>
+  );
 } 

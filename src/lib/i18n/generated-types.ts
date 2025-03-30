@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-03-30T02:32:47.102Z
+// Generated at: 2025-03-30T04:11:00.771Z
 
 export interface CommonMessages {
   meta: {
@@ -1878,7 +1878,6 @@ export interface WordGenNameGeneratorMessages {
       label: string;
     };
     generate: string;
-    copy: string;
   };
   result: {
     title: string;

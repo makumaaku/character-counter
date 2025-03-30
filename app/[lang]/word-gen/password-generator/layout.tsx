@@ -3,7 +3,6 @@ import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import { loadToolMessages, translate } from '@/lib/i18n/server';
 import { Language } from '@/lib/i18n/types';
-import Script from 'next/script';
 
 type Props = {
   children: React.ReactNode;
@@ -47,7 +46,16 @@ export async function generateMetadata(
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'word-gen/password-generator');
   
-  const t = (key: string) => translate(lang, key);
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'wordGen.passwordGenerator.meta.title'),
+    translate(lang, 'wordGen.passwordGenerator.meta.description'),
+    translate(lang, 'wordGen.passwordGenerator.meta.keywords')
+  ]);
 
   const commonMeta = {
     siteName: SITE_CONFIG.siteName,
@@ -58,8 +66,8 @@ export async function generateMetadata(
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": await t('wordGen.passwordGenerator.meta.title'),
-    "description": await t('wordGen.passwordGenerator.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/password-generator`,
     "publisher": {
       "@type": "Organization",
@@ -90,27 +98,19 @@ export async function generateMetadata(
     ],
     "isAccessibleForFree": true,
     "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-    "keywords": [
-      "password generator",
-      "secure password",
-      "strong password",
-      "password creation",
-      "security tool",
-      "password safety"
-    ]
+    "keywords": keywords.split(',')
   };
 
   const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: await t('wordGen.passwordGenerator.meta.title'),
-      description: await t('wordGen.passwordGenerator.meta.description'),
-      keywords: await t('wordGen.passwordGenerator.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/word-gen/password-generator`,
     }
   );
-
 
   return {
     ...metadata,
@@ -120,98 +120,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children, params }: Props) {
-  const pram = await params;
-  const lang = pram.lang;
-
-  // クライアントコンポーネントで使用する翻訳を取得
-  const [
-    title,
-    description,
-    catchphrase,
-    intro,
-    featuresTitle,
-    easyOperationTitle,
-    easyOperationDescription,
-    customizationTitle,
-    customizationDescription,
-    securityTitle,
-    securityDescription,
-    generatedPassword,
-    copyButton,
-    copied,
-    passwordLength,
-    uppercaseLabel,
-    lowercaseLabel,
-    numbersLabel,
-    symbolsLabel,
-    generateButton
-  ] = await Promise.all([
-    translate(lang, 'wordGen.passwordGenerator.title'),
-    translate(lang, 'wordGen.passwordGenerator.description'),
-    translate(lang, 'wordGen.passwordGenerator.catchphrase'),
-    translate(lang, 'wordGen.passwordGenerator.intro'),
-    translate(lang, 'wordGen.passwordGenerator.features.title'),
-    translate(lang, 'wordGen.passwordGenerator.features.easyOperation.title'),
-    translate(lang, 'wordGen.passwordGenerator.features.easyOperation.description'),
-    translate(lang, 'wordGen.passwordGenerator.features.customization.title'),
-    translate(lang, 'wordGen.passwordGenerator.features.customization.description'),
-    translate(lang, 'wordGen.passwordGenerator.features.security.title'),
-    translate(lang, 'wordGen.passwordGenerator.features.security.description'),
-    translate(lang, 'wordGen.passwordGenerator.generatedPassword'),
-    translate(lang, 'wordGen.common.copyButton'),
-    translate(lang, 'wordGen.common.copied'),
-    translate(lang, 'wordGen.passwordGenerator.passwordLength'),
-    translate(lang, 'wordGen.passwordGenerator.characterTypes.uppercase'),
-    translate(lang, 'wordGen.passwordGenerator.characterTypes.lowercase'),
-    translate(lang, 'wordGen.passwordGenerator.characterTypes.numbers'),
-    translate(lang, 'wordGen.passwordGenerator.characterTypes.symbols'),
-    translate(lang, 'wordGen.common.generateButton')
-  ]);
-
-  const messages = {
-    title,
-    description,
-    catchphrase,
-    intro,
-    features: {
-      title: featuresTitle,
-      easyOperation: {
-        title: easyOperationTitle,
-        description: easyOperationDescription
-      },
-      customization: {
-        title: customizationTitle,
-        description: customizationDescription
-      },
-      security: {
-        title: securityTitle,
-        description: securityDescription
-      }
-    },
-    generatedPassword,
-    copyButton,
-    copied,
-    passwordLength,
-    characterTypes: {
-      uppercase: uppercaseLabel,
-      lowercase: lowercaseLabel,
-      numbers: numbersLabel,
-      symbols: symbolsLabel
-    },
-    generateButton
-  };
-
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  
   return (
-    <>
-      <Script
-        id="messages"
-        type="application/json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(messages),
-        }}
-      />
+    <div className="layout-container">
       {children}
-    </>
+    </div>
   );
 } 

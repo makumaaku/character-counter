@@ -88,9 +88,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     keywords
   ] = await Promise.all([
-    translate(lang, 'toolName.meta.title'),
-    translate(lang, 'toolName.meta.description'),
-    translate(lang, 'toolName.meta.keywords')
+    translate(lang, 'categoryName.toolName.meta.title'),
+    translate(lang, 'categoryName.toolName.meta.description'),
+    translate(lang, 'categoryName.toolName.meta.keywords')
   ]);
 
   // 共通のメタデータ情報を設定
@@ -161,7 +161,10 @@ type Props = {
   params: { lang: string }
 }
 
-export default async function ToolPage({ params }: Props) {  
+export default async function ToolPage({ params }: Props) {
+   // 翻訳をロード
+  await loadToolMessages(lang as Language, 'tool-name');
+    
   // サーバーコンポーネントで翻訳を並列取得
   const [
     title,

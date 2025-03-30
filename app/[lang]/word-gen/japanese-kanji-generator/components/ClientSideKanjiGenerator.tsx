@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { WordGenJapaneseKanjiGeneratorMessages } from '@/lib/i18n/types';
 
 // クライアントコンポーネントを動的にインポート
 const KanjiGenerator = dynamic(
@@ -20,30 +21,24 @@ const DownloadButton = dynamic(
 );
 
 interface ClientSideKanjiGeneratorProps {
-  generateButtonText: string;
-  loadingText: string;
-  jpgButtonText: string;
-  pngButtonText: string;
-  copyButtonText?: string;
-  copiedText?: string;
-  noImageText?: string;
-  fontLoadingText?: string;
+  messages: WordGenJapaneseKanjiGeneratorMessages;
 }
 
-export default function ClientSideKanjiGenerator({ 
-  generateButtonText, 
-  loadingText,
-  jpgButtonText,
-  pngButtonText,
-  copyButtonText = "Copy Kanji",
-  copiedText = "Copied",
-  noImageText = "No image generated yet",
-  fontLoadingText = "Loading font..."
-}: ClientSideKanjiGeneratorProps) {
+export default function ClientSideKanjiGenerator({ messages }: ClientSideKanjiGeneratorProps) {
   const [kanji, setKanji] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [isLoadingFont, setIsLoadingFont] = useState(false);
+
+  // messagesから必要な翻訳を取得
+  const { 
+    generate,
+    download,
+    copy,
+    display,
+    font,
+    error
+  } = messages;
 
   const loadFont = async (): Promise<boolean> => {
     if (isFontLoaded) return true; // すでにロードされていれば何もしない
@@ -60,8 +55,8 @@ export default function ClientSideKanjiGenerator({
       setIsFontLoaded(true);
       setIsLoadingFont(false);
       return true;
-    } catch (error) {
-      console.error('フォントロードエラー:', error);
+    } catch (err) {
+      console.error('フォントロードエラー:', err);
       setIsLoadingFont(false);
       return false;
     }
@@ -74,6 +69,7 @@ export default function ClientSideKanjiGenerator({
     if (!isFontLoaded) {
       const success = await loadFont();
       if (!success) {
+        console.error(error.generation);
         setIsGenerating(false);
         return; // フォントのロードに失敗した場合は中断
       }
@@ -90,28 +86,28 @@ export default function ClientSideKanjiGenerator({
     <>
       {isLoadingFont && (
         <div className="mb-4 text-center text-blue-500 font-bold">
-          {fontLoadingText}
+          {font.loading}
         </div>
       )}
       
       <KanjiGenerator
         onGenerateKanji={handleGenerateKanji}
         isGenerating={isGenerating || isLoadingFont}
-        generateButtonText={generateButtonText}
-        loadingText={isLoadingFont ? fontLoadingText : loadingText}
+        generateButtonText={generate.button}
+        loadingText={isLoadingFont ? font.loading : generate.loading}
       />
       
       <KanjiDisplay 
         kanji={kanji} 
-        copyButtonText={copyButtonText}
-        copiedText={copiedText}
-        noImageText={noImageText}
+        copyButtonText={copy.button}
+        copiedText={copy.success}
+        noImageText={display.noImage}
       />
       
       <DownloadButton
         kanji={kanji}
-        jpgButtonText={jpgButtonText}
-        pngButtonText={pngButtonText}
+        jpgButtonText={download.jpg}
+        pngButtonText={download.png}
       />
     </>
   );

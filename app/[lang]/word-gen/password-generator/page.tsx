@@ -1,19 +1,25 @@
-import { translate } from '@/lib/i18n/server'
-import { Language } from '@/lib/i18n/types'
-import { loadToolMessages } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import PasswordGeneratorClient from './components/PasswordGeneratorClient'
+import { Language, WordGenPasswordGeneratorMessages } from '@/lib/i18n/types'
 
-export default async function PasswordGeneratorPage({ params }: { params: Promise<{ lang: string }> }) {
-  const pram = await params;
-  const lang = pram.lang;
+type Props = {
+  params: { lang: string }
+}
+
+export default async function PasswordGeneratorPage({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
 
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'word-gen/password-generator');
 
   // 必要な翻訳を一括で取得
   const [
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     title,
-    description,
+    description_title,
+    description_intro,
     catchphrase,
     intro,
     featuresTitle,
@@ -56,8 +62,12 @@ export default async function PasswordGeneratorPage({ params }: { params: Promis
     symbolsLabel,
     generateButton
   ] = await Promise.all([
+    translate(lang, 'wordGen.passwordGenerator.meta.title'),
+    translate(lang, 'wordGen.passwordGenerator.meta.description'),
+    translate(lang, 'wordGen.passwordGenerator.meta.keywords'),
     translate(lang, 'wordGen.passwordGenerator.title'),
-    translate(lang, 'wordGen.passwordGenerator.description'),
+    translate(lang, 'wordGen.passwordGenerator.description.title'),
+    translate(lang, 'wordGen.passwordGenerator.description.intro'),
     translate(lang, 'wordGen.passwordGenerator.catchphrase'),
     translate(lang, 'wordGen.passwordGenerator.intro'),
     translate(lang, 'wordGen.passwordGenerator.features.title'),
@@ -101,9 +111,18 @@ export default async function PasswordGeneratorPage({ params }: { params: Promis
     translate(lang, 'wordGen.common.generateButton')
   ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: WordGenPasswordGeneratorMessages = {
+    meta: {
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
+    },
     title,
-    description,
+    description: {
+      title: description_title,
+      intro: description_intro
+    },
     catchphrase,
     intro,
     features: {
@@ -185,5 +204,5 @@ export default async function PasswordGeneratorPage({ params }: { params: Promis
     generateButton
   };
 
-  return <PasswordGeneratorClient translations={translations} />;
+  return <PasswordGeneratorClient messages={messages} />;
 } 

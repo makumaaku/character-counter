@@ -10,8 +10,7 @@
     "count": {
       "label": "Number of names"
     },
-    "generate": "Generate Names",
-    "copy": "Copy"
+    "generate": "Generate Names"
   },
   "result": {
     "title": "Generated Names",
