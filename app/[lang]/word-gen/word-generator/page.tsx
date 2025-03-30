@@ -10,7 +10,6 @@ export default async function WordGenerator({ params }: Props) {
   const lang = await getLanguageFromParams(params);
   
   // 翻訳をロード
-  await loadToolMessages(lang as Language, 'word-gen');
   await loadToolMessages(lang as Language, 'word-gen/word-generator');
   
   // サーバーコンポーネントで翻訳を取得
