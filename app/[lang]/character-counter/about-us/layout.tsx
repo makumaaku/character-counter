@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -38,19 +39,40 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/about-us');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    publisherDescription,
+    articleHeadline,
+    articleDescription,
+    articleBody,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.aboutUs.meta.title'),
+    translate(lang, 'characterCounter.aboutUs.meta.description'),
+    translate(lang, 'characterCounter.aboutUs.meta.keywords'),
+    translate(lang, 'characterCounter.aboutUs.meta.publisher.description'),
+    translate(lang, 'characterCounter.aboutUs.meta.article.headline'),
+    translate(lang, 'characterCounter.aboutUs.meta.article.description'),
+    translate(lang, 'characterCounter.aboutUs.meta.article.body'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": t('characterCounter.aboutUs.meta.title'),
-    "description": t('characterCounter.aboutUs.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/about-us`,
     "publisher": {
       "@type": "Organization",
@@ -61,14 +83,14 @@ export async function generateMetadata(
         "width": SITE_CONFIG.logo.width,
         "height": SITE_CONFIG.logo.height
       },
-      "description": t('characterCounter.aboutUs.meta.publisher.description'),
+      "description": publisherDescription,
       "foundingDate": "2023",
     },
     "mainEntity": {
       "@type": "Article",
-      "headline": t('characterCounter.aboutUs.meta.article.headline'),
-      "description": t('characterCounter.aboutUs.meta.article.description'),
-      "articleBody": t('characterCounter.aboutUs.meta.article.body')
+      "headline": articleHeadline,
+      "description": articleDescription,
+      "articleBody": articleBody
     }
   };
 
@@ -76,9 +98,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.aboutUs.meta.title'),
-      description: t('characterCounter.aboutUs.meta.description'),
-      keywords: t('characterCounter.aboutUs.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/about-us`,
     }
   );

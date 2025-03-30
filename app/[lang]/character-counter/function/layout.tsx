@@ -51,9 +51,6 @@ export async function generateMetadata(
     step2Text,
     step3Title,
     step3Text,
-    siteName,
-    publisher,
-    logoAlt
   ] = await Promise.all([
     translate(lang, 'characterCounter.function.meta.title'),
     translate(lang, 'characterCounter.function.meta.description'),
@@ -65,15 +62,13 @@ export async function generateMetadata(
     translate(lang, 'characterCounter.function.howToUse.step2.text'),
     translate(lang, 'characterCounter.function.howToUse.step3.title'),
     translate(lang, 'characterCounter.function.howToUse.step3.text'),
-    translate(lang, SITE_CONFIG.siteName),
-    translate(lang, SITE_CONFIG.publisher),
     translate(lang, 'common.meta.logoAlt')
   ]);
 
   const commonMeta = {
-    siteName,
-    publisher,
-    logoAlt,
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {

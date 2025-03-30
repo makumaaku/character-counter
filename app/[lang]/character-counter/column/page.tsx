@@ -2,10 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import matter from 'gray-matter';
-import { translate } from '@/lib/i18n/server';
+import { getLanguageFromParams, loadToolMessages, translate } from '@/lib/i18n/server';
+import { Language, CharacterCounterColumnMessages } from '@/lib/i18n/types';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 interface ColumnData {
@@ -13,8 +14,7 @@ interface ColumnData {
   slug: string;
 }
 
-async function getColumnData(lang: string): Promise<ColumnData[]> {
-  console.log(lang)
+async function getColumnData(): Promise<ColumnData[]> {
   const columnsDirectory = path.join(process.cwd(), `assets/mdx/character-counter`);
   const fileNames = fs.readdirSync(columnsDirectory);
 
@@ -35,15 +35,33 @@ async function getColumnData(lang: string): Promise<ColumnData[]> {
 }
 
 export default async function ColumnList(props: Props) {
-  const params = await props.params;
-  const lang = params.lang;
-  const t = (key: string) => translate(lang, key);
-  const columnData = await getColumnData(lang);
+  const lang = await getLanguageFromParams(props.params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/column');
+  
+  // 並列で翻訳を取得
+  const [title] = await Promise.all([
+    translate(lang, 'characterCounter.column.title')
+  ]);
+  
+  // 翻訳をオブジェクトに格納
+  const messages: CharacterCounterColumnMessages = {
+    title,
+    description: '', // ページ内では使用されていない
+    meta: {
+      title: '', // ここではメタデータを使用しない
+      description: '',
+      keywords: ''
+    }
+  };
+  
+  const columnData = await getColumnData();
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen flex flex-col">
       <main className="flex-grow max-w-4xl w-full mx-auto px-4 py-10">
-        <h1 className="text-2xl font-bold mb-8">{t('characterCounter.column.title')}</h1>        
+        <h1 className="text-2xl font-bold mb-8">{messages.title}</h1>        
         <ul>
           {columnData.map(({ title, slug }) => (
             <li key={slug} className="bg-gray-700 p-6 rounded-lg mt-6">

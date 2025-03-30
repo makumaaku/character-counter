@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -33,19 +34,32 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/privacy');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.privacy.meta.title'),
+    translate(lang, 'characterCounter.privacy.meta.description'),
+    translate(lang, 'characterCounter.privacy.meta.keywords'), 
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "PrivacyPolicy",
-    "name": t('characterCounter.privacy.meta.title'),
-    "description": t('characterCounter.privacy.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/privacy`,
     "publisher": {
       "@type": "Organization",
@@ -66,9 +80,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.privacy.meta.title'),
-      description: t('characterCounter.privacy.meta.description'),
-      keywords: t('characterCounter.privacy.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/privacy`,
     }
   );

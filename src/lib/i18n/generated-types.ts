@@ -2577,7 +2577,6 @@ export interface WordGenWordGeneratorMessages {
 
 export interface AllMessages {
   common?: CommonMessages;
-  characterCounter?: CharacterCounterMessages;
   countryData?: CountryDataMessages;
   numberQuiz?: NumberQuizMessages;
   passwordStrength?: PasswordStrengthMessages;

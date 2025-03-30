@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -42,19 +43,40 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/plan');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    freePlanTitle,
+    freePlanDescription,
+    proPlanTitle,
+    proPlanDescription,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.plan.meta.title'),
+    translate(lang, 'characterCounter.plan.meta.description'),
+    translate(lang, 'characterCounter.plan.meta.keywords'),
+    translate(lang, 'characterCounter.plan.free.title'),
+    translate(lang, 'characterCounter.plan.free.description'),
+    translate(lang, 'characterCounter.plan.pro.title'),
+    translate(lang, 'characterCounter.plan.pro.description'), 
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": t('characterCounter.plan.meta.title'),
-    "description": t('characterCounter.plan.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/plan`,
     "publisher": {
       "@type": "Organization",
@@ -72,16 +94,16 @@ export async function generateMetadata(
       "offers": [
         {
           "@type": "Offer",
-          "name": t('characterCounter.plan.free.title'),
-          "description": t('characterCounter.plan.free.description'),
+          "name": freePlanTitle,
+          "description": freePlanDescription,
           "price": "0",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
         },
         {
           "@type": "Offer",
-          "name": t('characterCounter.plan.pro.title'),
-          "description": t('characterCounter.plan.pro.description'),
+          "name": proPlanTitle,
+          "description": proPlanDescription,
           "price": "9.99",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
@@ -94,9 +116,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.plan.meta.title'),
-      description: t('characterCounter.plan.meta.description'),
-      keywords: t('characterCounter.plan.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/plan`,
     }
   );
