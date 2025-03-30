@@ -250,8 +250,6 @@ export default async function WordGenerator({ params }: Props) {
   };
 
   return (
-    <div className="text-gray-100 font-sans">
-      <WordGeneratorClient messages={messages} />
-    </div>
+    <WordGeneratorClient messages={messages} />
   );
 } 

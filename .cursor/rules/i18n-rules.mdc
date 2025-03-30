@@ -9,8 +9,8 @@ alwaysApply: true
 - Next.jsのi18n機能を使用し、URLパスベースの言語切り替えを実装
 - デフォルト言語は英語（en）
 - 現在対応言語：英語（en）、日本語（ja）、スペイン語（es）
-- 新規機能追加の際に既存のkeyは削除しない
-- クライアントコンポーネントではNextの`Script`タグと`useMessages`フックを使用して翻訳を取得
+- 自動生成した型定義ファイルを使用して型安全に翻訳を管理
+- サーバーコンポーネントで翻訳を取得し、Props経由でクライアントコンポーネントに渡す
 
 ## 実装ルール
 
@@ -54,7 +54,24 @@ alwaysApply: true
 }
 ```
 
-### 4. レイアウトファイル（layout.tsx）の実装
+### 4. 型定義の自動生成
+多言語JSONファイルからTypeScript型定義を自動生成します：
+
+```bash
+npm run generate-types
+```
+
+このコマンドは`package.json`に以下のように定義されています：
+
+```json
+"generate-types": "node --loader ts-node/esm src/lib/i18n/type-generator.ts assets/locales AllMessages src/lib/i18n/generated-types.ts"
+```
+
+- このスクリプトは`assets/locales`ディレクトリのJSONファイルから型定義を生成し、`src/lib/i18n/generated-types.ts`に書き出します
+- 生成された型は`src/lib/i18n/types.ts`からエクスポートされます
+- プロジェクトのビルド時(`npm run build`)に自動実行されます
+
+### 5. レイアウトファイル（layout.tsx）の実装
 レイアウトファイルでは以下の作業を行います：
 
 1. メタデータの生成
@@ -106,179 +123,107 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   );
 
   return {
-    ...metadther: {
+    ...metadata,
+    other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 }
 ```
 
-2. クライアントコンポーネントで使用する翻訳の準備
-サーバーコンポーネント側で文字列情報をすべて一括で取得し、NextJSの`Script`タグに`messages`として渡します。並列処理を使用してパフォーマンスを向上させます。
+2. レイアウト関数
+レイアウト関数はシンプルに子コンポーネントをラップするだけの役割となります：
 
 ```tsx
-export default async function Layout({ children, params }: Props) {
-  const { lang } = await params;
+export default async function Layout({ children, params }: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
+  const { lang } = params;
   
-  // 翻訳をロード
-  await loadToolMessages(lang as Language, 'tool-name');
-
-  // 並列で翻訳を一括取得
-  const [
-    title,
-    label1,
-    label2,
-    // 必要な翻訳キーをすべて取得
-    // ...その他の翻訳
-  ] = await Promise.all([
-    translate(lang, 'toolName.title'),
-    translate(lang, 'toolName.ui.label1'),
-    translate(lang, 'toolName.ui.label2'),
-    // 必要な翻訳キーを追加
-  ]);
-
-  // クライアントコンポーネントに渡す翻訳データ
-  const messages = {
-    toolName: {
-      title,
-      ui: {
-        label1,
-        label2
-      }
-      // ...その他の翻訳
-    }
-  };
-
-  // スクリプトIDは親子ページの衝突を避けるためにユニークな値を設定
-  const scriptId = "tool-name-messages";
-
   return (
-    <>
-      {/* クライアントコンポーネントで使用する翻訳をスクリプトタグで埋め込み */}
-      <Script
-        id={scriptId}
-        type="application/json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(messages),
-        }}
-      />
-      <div className="layout-container">
-        <Header title={title} homeLink={`/${lang}/tool-path`} />
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="layout-container">
+      {children}
+    </div>
   );
 }
 ```
 
-### 5. ページファイル（page.tsx）の実装
+### 6. ページファイル（page.tsx）の実装
+ページコンポーネントでは、サーバーサイドで翻訳を取得し、それをクライアントコンポーネントにpropsとして渡します：
+
 ```tsx
-import ToolComponent from './components/ToolComponent';
-import { getLanguageFromParams } from '@/lib/i18n/server';
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
+import ToolClient from './components/ToolClient'
+import { Language, ToolMessages } from '@/lib/i18n/types'
 
 type Props = {
   params: { lang: string }
 }
 
-export default async function ToolPage({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+export default async function ToolPage({ params }: Props) {  
+  // サーバーコンポーネントで翻訳を並列取得
+  const [
+    title,
+    description,
+    buttonLabel,
+    // 必要な翻訳キーをすべて追加
+    // ...その他の翻訳
+  ] = await Promise.all([
+    translate(lang, 'toolName.title'),
+    translate(lang, 'toolName.description'),
+    translate(lang, 'toolName.ui.buttonLabel'),
+    // 必要な翻訳キーをすべて追加
+  ]);
+
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ToolMessages = {
+    title,
+    description,
+    ui: {
+      buttonLabel
+    },
+    // 他の翻訳をオブジェクトの構造に合わせて設定
+  };
 
   return (
-    <div className="container">
-      <ToolComponent />
-    </div>
+   <ToolClient messages={messages} />
   );
 }
 ```
 
-### 6. クライアントコンポーネントでの翻訳の使用
-クライアントコンポーネントでは、`useMessages`フックを使用して翻訳を取得します。このとき、親子レイアウトの衝突を避けるために適切なスクリプトIDを指定します：
+### 7. クライアントコンポーネントでの翻訳の使用
+クライアントコンポーネントでは、propsから受け取った翻訳オブジェクトを使用します：
 
 ```tsx
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useMessages } from '@/hooks/useMessages';
+import { useState } from 'react'
+import { ToolMessages } from '@/lib/i18n/types'
 
-// メッセージの型定義（TypeScriptの型安全性のため）
-type ToolMessages = {
-  toolName: {
-    title: string;
-    ui: {
-      label1: string;
-      label2: string;
-    }
-  }
+// PropsインターフェースにToolMessagesを追加
+interface ToolClientProps {
+  messages: ToolMessages;
 }
 
-export default function ToolComponent() {
-  // スクリプトIDを指定して翻訳を取得
-  const messages = useMessages<ToolMessages>('tool-name-messages');
-
-  if (!messages) {
-    return <div>Loading translations...</div>;
-  }
-
+export default function ToolClient({ messages }: ToolClientProps) {
+  // messagesから必要な翻訳を取得
+  const { title, description, ui } = messages;
+  
   return (
     <div>
-      <h1>{messages.toolName.title}</h1>
-      <div>
-        <label>{messages.toolName.ui.label1}</label>
-        {/* その他のUIコンポーネント */}
-   
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <button>{ui.buttonLabel}</button>
     </div>
   );
 }
 ```
-
-### 7. 親子レイアウトでのScript IDの衝突防止
-
-Next.jsのネストされたレイアウト構造では、親レイアウト（例：`word-gen/layout.tsx`）と子レイアウト（例：`word-gen/word-card-generator/layout.tsx`）の両方がScriptタグを使用すると、同じID（）を持つタグが複数存在する状況が発生します。
-
-この場合、`document.getElementById('messages')`は最初に見つかったScriptタグを取得するため、クライアントコンポーネントが意図しないメッセージを読み込む可能性があります。
-
-**対策：固有のID名を使用する**
-
-1. レイアウトファイル（layout.tsx）では、ツール固有のIDを使用します：
-
-```tsx
-// 例：word-gen/word-card-generator/layout.tsx
-<Script
-  id="word-card-generator-messages" // ツール名を含む固有ID
-  type="application/json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify(messages),
-  }}
-/>
-```
-
-2. クライアントコンポーネントでは、そのIDを指定してuseMessagesを使用します：
-
-```tsx
-// 例：WordCardGeneratorClient.tsx
-const messages = useMessages<WordCardGeneratorMessages>('word-card-generator-messages');
-```
-
-**命名規則**：
-- 単一階層のツール: `{tool-name}-messages`
-  例: `number-quiz-messages`
-- ネストされたツール: `{parent-category}-{tool-name}-messages`
-  例: `word-gen-word-card-generator-messages`
-
-この方法により、親レイアウトと子レイアウトのScriptタグが互いに干渉せず、各コンポーネントが正しいメッセージを取得できます。
 
 ### 8. 翻訳の並列処理
 翻訳処理のパフォーマンスを向上させるため、`Promise.all`を使用して並列処理を行います：
 
 ```typescript
-// 非推奨：逐次的な翻訳処理
-const title = await translate(lang, 'page.title');
-const description = await translate(lang, 'page.description');
-const button = await translate(lang, 'page.button');
-
 // 推奨：Promise.allを使用した並列処理
 const [title, description, button] = await Promise.all([
   translate(lang, 'page.title'),
@@ -345,38 +290,32 @@ export type Language = 'en' | 'ja' | 'es' | 'new_lang';
 5. 言語切り替えコンポーネントに新しい言語を追加
 
 ### 10. メッセージ型定義のベストプラクティス
-翻訳メッセージの型定義は、クライアントコンポーネントでの型安全性を確保するために重要です：
+型定義は`npm run generate-types`コマンドで自動生成されますが、以下の命名規則に従います：
+
+- トップレベルのツール: `[ToolName]Messages`
+  例: `NumberQuizMessages`
+- カテゴリ内のツール: `[CategoryName][ToolName]Messages`
+  例: `WordGenWordGeneratorMessages`
+- カテゴリの共通メッセージ: `[CategoryName]CommonMessages`
+  例: `WordGenCommonMessages`
+
+これらの型は以下のようにインポートできます：
+
+```typescript
+import { WordGenWordGeneratorMessages } from '@/lib/i18n/types';
+```
+
+クライアントコンポーネントでの使用例：
 
 ```tsx
-// 型定義の例（number-quizの場合）
-type NumberQuizMessages = {
-  numberQuiz: {
-    game: {
-      title: string;
-      difficulty: {
-        label: string;
-        easy: string;
-        normal: string;
-        hard: string;
-      },
-      buttons: {
-        newGame: string;
-        checkSolution: string;
-      },
-      messages: {
-        correct: string;
-        incorrect: string;
-        complete: string;
-      }
-    }
-  }
+interface ToolClientProps {
+  messages: WordGenWordGeneratorMessages;
 }
 
-// 使用例
-const messages = useMessages<NumberQuizMessages>('number-quiz-messages');
-if (messages) {
-  // 型安全な方法でメッセージにアクセス可能
-  const title = messages.numberQuiz.game.title;
+export default function ToolClient({ messages }: ToolClientProps) {
+  // 型安全に翻訳にアクセス可能
+  const { title, description } = messages;
+  return <h1>{title}</h1>;
 }
 ```
 
@@ -390,22 +329,20 @@ if (messages) {
 }
 ```
 - SEO対策として、各ページのメタデータも多言語対応
-- レイアウトファイルで翻訳データを準備し、クライアントコンポーネントで使用
-- Script IDの衝突を防ぐため、親子レイアウトでは固有のIDを指定
+- ビルド前に必ず`npm run generate-types`を実行して型定義を最新化（`npm run build`では自動実行）
+- 翻訳キーを削除・変更する場合は、各言語ファイルで一貫して行う
 
 ### 12. 重要なユーティリティ関数
 | 関数名 | 用途 | パス |
 |-----|---|---|
-| `loadToolMessages` | ツール固有の翻訳をロード | `@/lib/i18n/server` |
+| `loadToolMessages` | ツール固有の翻訳をロード | `@/libver` |
 | `translate` | サーバーコンポーネントでの翻訳取得 | `@/lib/i18n/server` |
 | `getLanguageFromParams` | パラメータから言語情報を取得 | `@/lib/i18n/server` |
-| `getAvailableLanguages` | 利用可能な言語一覧を取得 | `@/lib/i18n/server` |
-| `useMessages` | クライアントコンポーネントでの翻訳取得 | `@/hooks/useMessages` |
-
+| `getAvailableLanguages` | 利用可能な言語一覧を取得 | `@/lib/i18n/
 ### 13. 実装例
-number-quizとword-gen/word-card-generatorの実装を参考にしてください。特に以下のファイルが参考になります：
+word-generatorの実装を参考にしてください：
 
-- `app/[lang]/number-quiz/layout.tsx` - 単一階層のツール実装
-- `app/[lang]/number-quiz/components/SudokuGame.tsx` - 単一階層のクライアントコンポーネント実装
-- `app/[lang]/word-gen/word-card-generator/layout.tsx` - 親子階層のツール実装
-- `app/[lang]/word-gen/word-card-generator/components/WordCardGeneratorClient.tsx` - 親子階層のクライアントコンポーネント実装 
+- `app/[lang]/word-gen/word-generator/layout.tsx` - メタデータの生成とレイアウト
+- `app/[lang]/word-gen/word-generator/page.tsx` - サーバーコンポーネントでの翻訳取得とクライアントコンポーネントへの受け渡し
+- `app/[lang]/word-gen/word-generator/components/WordGeneratorClient.tsx` - クライアントコンポーネントでのprops経由での翻訳利用
+``` 
