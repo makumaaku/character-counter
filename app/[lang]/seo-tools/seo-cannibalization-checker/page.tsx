@@ -1,42 +1,91 @@
-import { translate } from '@/lib/i18n/server';
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server';
+import { Language, SeoToolsSeoCannibalizationCheckerMessages } from '@/lib/i18n/types';
 import SEOCannibalizationChecker from './components/SEOCannibalizationChecker';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function SEOCannibalizationCheckerPage({ params }: Props) {
-  const { lang } = await params;
+  const lang = await getLanguageFromParams(params);
   
-  const translations = {
-    title: translate(lang, 'seoCannibalizationChecker.title'),
-    description: translate(lang, 'seoCannibalizationChecker.description'),
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'seo-tools/seo-cannibalization-checker');
+  
+  // サーバーコンポーネントで翻訳を並列取得
+  const [
+    title,
+    description,
+    domainLabel,
+    domainPlaceholder,
+    domainHelp,
+    keywordLabel,
+    keywordPlaceholder,
+    keywordHelp,
+    buttonCheck,
+    buttonProcessing,
+    resultTitle,
+    resultDescription,
+    resultOpenButton,
+    errorEmptyDomain,
+    errorInvalidDomain,
+    errorEmptyKeyword,
+    errorGeneric
+  ] = await Promise.all([
+    translate(lang, 'seoTools.seoCannibalizationChecker.title'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.description'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.domain.label'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.domain.placeholder'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.domain.help'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.keyword.label'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.keyword.placeholder'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.keyword.help'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.button.check'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.button.processing'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.result.title'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.result.description'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.result.openButton'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.error.emptyDomain'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.error.invalidDomain'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.error.emptyKeyword'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.error.generic')
+  ]);
+
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: SeoToolsSeoCannibalizationCheckerMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
+    title,
+    description,
     domain: {
-      label: translate(lang, 'seoCannibalizationChecker.domain.label'),
-      placeholder: translate(lang, 'seoCannibalizationChecker.domain.placeholder'),
-      help: translate(lang, 'seoCannibalizationChecker.domain.help')
+      label: domainLabel,
+      placeholder: domainPlaceholder,
+      help: domainHelp
     },
     keyword: {
-      label: translate(lang, 'seoCannibalizationChecker.keyword.label'),
-      placeholder: translate(lang, 'seoCannibalizationChecker.keyword.placeholder'),
-      help: translate(lang, 'seoCannibalizationChecker.keyword.help')
+      label: keywordLabel,
+      placeholder: keywordPlaceholder,
+      help: keywordHelp
     },
     button: {
-      check: translate(lang, 'seoCannibalizationChecker.button.check'),
-      processing: translate(lang, 'seoCannibalizationChecker.button.processing')
+      check: buttonCheck,
+      processing: buttonProcessing
     },
     result: {
-      title: translate(lang, 'seoCannibalizationChecker.result.title'),
-      description: translate(lang, 'seoCannibalizationChecker.result.description'),
-      openButton: translate(lang, 'seoCannibalizationChecker.result.openButton')
+      title: resultTitle,
+      description: resultDescription,
+      openButton: resultOpenButton
     },
     error: {
-      emptyDomain: translate(lang, 'seoCannibalizationChecker.error.emptyDomain'),
-      invalidDomain: translate(lang, 'seoCannibalizationChecker.error.invalidDomain'),
-      emptyKeyword: translate(lang, 'seoCannibalizationChecker.error.emptyKeyword'),
-      generic: translate(lang, 'seoCannibalizationChecker.error.generic')
+      emptyDomain: errorEmptyDomain,
+      invalidDomain: errorInvalidDomain,
+      emptyKeyword: errorEmptyKeyword,
+      generic: errorGeneric
     }
   };
   
-  return <SEOCannibalizationChecker translations={translations} />;
+  return <SEOCannibalizationChecker messages={messages} />;
 } 

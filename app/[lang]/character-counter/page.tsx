@@ -1,7 +1,6 @@
 import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server';
 import { CharacterCounterClient } from './components/CharacterCounterClient';
-import { Language } from '@/lib/i18n/types';
-import { CharacterCounterMessages } from '@/lib/i18n/types';
+import { CharacterCounterCommonMessages, Language } from '@/lib/i18n/types';
 
 type Props = {
   params: { lang: string }
@@ -39,6 +38,7 @@ export default async function CharacterCounter({ params }: Props) {
     sidebarAboutUs,
     sidebarContact,
     sidebarPrivacy,
+    sidebarPlan,
     sidebarColumn,
     // Hero section
     heroTitle,
@@ -78,7 +78,11 @@ export default async function CharacterCounter({ params }: Props) {
     faqQuestionsUsageQuestion,
     faqQuestionsUsageAnswer,
     faqQuestionsCountingQuestion,
-    faqQuestionsCountingAnswer
+    faqQuestionsCountingAnswer,
+    faqQuestionsLanguagesQuestion,
+    faqQuestionsLanguagesAnswer,
+    faqQuestionsPricingQuestion,
+    faqQuestionsPricingAnswer
   ] = await Promise.all([
     translate(lang, 'characterCounter.title'),
     translate(lang, 'characterCounter.description'),
@@ -104,6 +108,7 @@ export default async function CharacterCounter({ params }: Props) {
     translate(lang, 'characterCounter.sidebar.aboutUs'),
     translate(lang, 'characterCounter.sidebar.contact'),
     translate(lang, 'characterCounter.sidebar.privacy'),
+    translate(lang, 'characterCounter.sidebar.plan'),
     translate(lang, 'characterCounter.sidebar.column'),
     // Hero section
     translate(lang, 'characterCounter.content.hero.title'),
@@ -143,11 +148,15 @@ export default async function CharacterCounter({ params }: Props) {
     translate(lang, 'characterCounter.content.faq.questions.usage.question'),
     translate(lang, 'characterCounter.content.faq.questions.usage.answer'),
     translate(lang, 'characterCounter.content.faq.questions.counting.question'),
-    translate(lang, 'characterCounter.content.faq.questions.counting.answer')
+    translate(lang, 'characterCounter.content.faq.questions.counting.answer'),
+    translate(lang, 'characterCounter.content.faq.questions.languages.question'),
+    translate(lang, 'characterCounter.content.faq.questions.languages.answer'),
+    translate(lang, 'characterCounter.content.faq.questions.pricing.question'),
+    translate(lang, 'characterCounter.content.faq.questions.pricing.answer')
   ]);
   
   // 翻訳をオブジェクトにまとめる
-  const messages: CharacterCounterMessages = {
+  const messages: CharacterCounterCommonMessages = {
     title,
     description,
     placeholder,
@@ -173,6 +182,7 @@ export default async function CharacterCounter({ params }: Props) {
       aboutUs: sidebarAboutUs,
       contact: sidebarContact,
       privacy: sidebarPrivacy,
+      plan: sidebarPlan,
       column: sidebarColumn
     },
     content: {
@@ -251,6 +261,14 @@ export default async function CharacterCounter({ params }: Props) {
           counting: {
             question: faqQuestionsCountingQuestion,
             answer: faqQuestionsCountingAnswer
+          },
+          languages: {
+            question: faqQuestionsLanguagesQuestion,
+            answer: faqQuestionsLanguagesAnswer
+          },
+          pricing: {
+            question: faqQuestionsPricingQuestion,
+            answer: faqQuestionsPricingAnswer
           }
         }
       }

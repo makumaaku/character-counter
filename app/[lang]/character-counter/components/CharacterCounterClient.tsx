@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { CharacterCounterMessages } from '@/lib/i18n/types';
+import { CharacterCounterCommonMessages } from '@/lib/i18n/types';
 
 interface CharacterCounterClientProps {
-  messages: CharacterCounterMessages;
+  messages: CharacterCounterCommonMessages;
 }
 
 export function CharacterCounterClient({ messages }: CharacterCounterClientProps) {

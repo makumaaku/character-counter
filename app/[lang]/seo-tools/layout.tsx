@@ -166,9 +166,9 @@ export async function generateMetadata(
 
 export default async function Layout({ children, params }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
   
   // seo-tools用の翻訳をロード
   await loadToolMessages(lang as Language, 'seo-tools');

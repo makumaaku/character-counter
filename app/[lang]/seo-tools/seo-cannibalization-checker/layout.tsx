@@ -42,10 +42,10 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { lang } = await params;
   
-  // Load SEO tools translations
+  // 翻訳をロード
   await loadToolMessages(lang as Language, 'seo-tools/seo-cannibalization-checker');
   
-  // Get translations in parallel
+  // 並列で翻訳を取得
   const [
     title,
     description,
@@ -56,12 +56,14 @@ export async function generateMetadata(
     translate(lang, 'seoTools.seoCannibalizationChecker.meta.keywords')
   ]);
 
+  // Common metadata
   const commonMeta = {
     siteName: SITE_CONFIG.siteName,
     publisher: SITE_CONFIG.publisher,
     logoAlt: SITE_CONFIG.logoAlt,
   };
 
+  // JSON-LD data
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -95,6 +97,7 @@ export async function generateMetadata(
     "browserRequirements": "Requires a modern web browser with JavaScript enabled"
   };
 
+  // Get common metadata
   const metadata = await getCommonMetadata(
     lang,
     commonMeta,
