@@ -3,29 +3,10 @@
 import { useState, FormEvent } from 'react'
 import { ClockIcon, LightBulbIcon, DocumentTextIcon, ArrowPathIcon } from '@heroicons/react/24/outline'
 import Button from '@/components/ui/button'
+import { SeoToolsPageSpeedCheckerMessages } from '@/lib/i18n/types'
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    input: {
-      url: string
-      analyzeButton: string
-    }
-    results: {
-      loading: string
-      loadTime: string
-      resources: string
-      suggestions: string
-    }
-    error: {
-      invalidUrl: string
-      fetchFailed: string
-    }
-    status: {
-      noUrl: string
-    }
-  }
+  messages: SeoToolsPageSpeedCheckerMessages
 }
 
 type ResourceInfo = {
@@ -42,7 +23,7 @@ type PerformanceResult = {
   canAccessDetailedInfo: boolean
 }
 
-export default function PageSpeedCheckerClient({ translations }: Props) {
+export default function PageSpeedCheckerClient({ messages }: Props) {
   const [url, setUrl] = useState<string>('')
   const [analyzing, setAnalyzing] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
@@ -70,12 +51,12 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
     e.preventDefault()
     
     if (!url) {
-      setError(translations.status.noUrl)
+      setError(messages.status.noUrl)
       return
     }
     
     if (!isValidUrl(url)) {
-      setError(translations.error.invalidUrl)
+      setError(messages.error.invalidUrl)
       return
     }
     
@@ -158,7 +139,7 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
         const performanceData = analyzePerformance(loadTime, url, [], false)
         setResult(performanceData)
       } else {
-        setError(translations.error.fetchFailed)
+        setError(messages.error.fetchFailed)
       }
     } finally {
       setAnalyzing(false)
@@ -296,17 +277,18 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
   }
   
   const openPageSpeedInsights = () => {
-    if (!url) return
-    window.open(`https://pagespeed.web.dev/report?url=${encodeURIComponent(url)}`, '_blank')
+    if (url) {
+      window.open(`https://pagespeed.web.dev/report?url=${encodeURIComponent(url)}`, '_blank')
+    }
   }
 
   return (
     <div className="bg-gray-800 text-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 py-10">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-4">{translations.title}</h1>
+          <h1 className="text-4xl font-bold mb-4">{messages.title}</h1>
           <p className="text-xl text-gray-300">
-            {translations.description}
+            {messages.description}
           </p>
         </div>
 
@@ -314,7 +296,7 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="url" className="block text-lg font-medium mb-2">
-                {translations.input.url}
+                {messages.input.url}
               </label>
               <div className="flex">
                 <input
@@ -330,12 +312,9 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
                   disabled={analyzing}
                   variant="purple"
                 >
-                  {analyzing ? translations.results.loading : translations.input.analyzeButton}
+                  {analyzing ? messages.results.loading : messages.input.analyzeButton}
                 </Button>
               </div>
-              {error && (
-                <p className="mt-2 text-red-400">{error}</p>
-              )}
               <p className="mt-2 text-sm text-gray-400">
                 注意: ブラウザのセキュリティ制約により、正確な測定ができない場合があります。
               </p>
@@ -347,7 +326,7 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
           <div className="bg-gray-700 rounded-lg p-6 mb-8 text-center">
             <div className="animate-pulse">
               <ClockIcon className="h-12 w-12 mx-auto mb-4 text-blue-400" />
-              <p className="text-xl">{translations.results.loading}</p>
+              <p className="text-xl">{messages.results.loading}</p>
             </div>
           </div>
         )}
@@ -357,72 +336,76 @@ export default function PageSpeedCheckerClient({ translations }: Props) {
             <div>
               <h2 className="text-2xl font-bold mb-4 flex items-center">
                 <ClockIcon className="h-6 w-6 mr-2 text-blue-400" />
-                {translations.results.loadTime}
+                {messages.results.loadTime}
               </h2>
               <div className="bg-gray-600 rounded-lg p-4">
-                <p className="text-3xl font-bold text-center">
-                  {formatTime(result.loadTime)}
-                </p>
-                <p className="text-center text-gray-400 mt-2">
-                  (初期接続時間のみ - 実際のページ読み込み時間はこれより長い場合があります)
-                </p>
-                <div className="mt-4 flex justify-center">
-                  <Button
-                    onClick={openPageSpeedInsights}
-                    variant="purple"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200 flex items-center"
-                  >
-                    <ArrowPathIcon className="h-5 w-5 mr-2" />
-                    Google PageSpeed Insightsで詳細分析
-                  </Button>
+                <p className="text-2xl font-bold mb-1">{(result.loadTime / 1000).toFixed(2)}s</p>
+                <div className="w-full bg-gray-700 rounded-full h-2.5">
+                  <div 
+                    className={`h-2.5 rounded-full ${result.loadTime < 1000 ? 'bg-green-500' : result.loadTime < 3000 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                    style={{ width: `${Math.min(100, result.loadTime / 50)}%` }}
+                  ></div>
                 </div>
               </div>
             </div>
 
             {result.resources.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold mb-4 flex items-center">
-                  <DocumentTextIcon className="h-6 w-6 mr-2 text-green-400" />
-                  検出されたリソース
+                <h2 className="text-2xl font-bold mt-8 mb-4 flex items-center">
+                  <DocumentTextIcon className="h-6 w-6 mr-2 text-purple-400" />
+                  {messages.results.resources}
                 </h2>
-                <div className="bg-gray-600 rounded-lg p-4 overflow-x-auto">
-                  <table className="min-w-full">
-                    <thead>
-                      <tr className="border-b border-gray-500">
-                        <th className="px-4 py-2 text-left">ファイル名</th>
-                        <th className="px-4 py-2 text-left">タイプ</th>
-                        <th className="px-4 py-2 text-left">サイズ</th>
-                        <th className="px-4 py-2 text-left">読み込み時間</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {result.resources.map((resource, index) => (
-                        <tr key={index} className="border-b border-gray-700">
-                          <td className="px-4 py-2 truncate max-w-[200px]">{resource.name}</td>
-                          <td className="px-4 py-2">{resource.type}</td>
-                          <td className="px-4 py-2">{formatSize(resource.size)}</td>
-                          <td className="px-4 py-2">{formatTime(resource.time)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="bg-gray-600 rounded-lg p-4">
+                  <div className="space-y-3">
+                    {result.resources.slice(0, 5).map((resource, index) => (
+                      <div key={index} className="flex justify-between items-center bg-gray-700 p-3 rounded">
+                        <div className="flex-1">
+                          <div className="font-medium truncate">{resource.name}</div>
+                          <div className="text-sm text-gray-400">{resource.type}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-medium">{formatSize(resource.size)}</div>
+                          <div className="text-sm text-gray-400">{formatTime(resource.time)}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
 
             <div>
-              <h2 className="text-2xl font-bold mb-4 flex items-center">
+              <h2 className="text-2xl font-bold mt-8 mb-4 flex items-center">
                 <LightBulbIcon className="h-6 w-6 mr-2 text-yellow-400" />
-                {translations.results.suggestions}
+                {messages.results.suggestions}
               </h2>
               <div className="bg-gray-600 rounded-lg p-4">
-                <ul className="list-disc pl-5 space-y-4">
+                <div className="space-y-4">
                   {result.suggestions.map((suggestion, index) => (
-                    <li key={index} className="whitespace-pre-line">{suggestion}</li>
+                    <div key={index} className="bg-gray-700 p-4 rounded">
+                      {suggestion.split('\n').map((line, i) => (
+                        <p key={i} className={line.trim().startsWith('-') ? 'pl-4 text-sm' : ''}>{line}</p>
+                      ))}
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
+
+            <div className="mt-6 text-center">
+              <Button variant="ghost" onClick={() => openPageSpeedInsights()}>
+                <span className="flex items-center">
+                  <ArrowPathIcon className="h-5 w-5 mr-2" />
+                  Try Google PageSpeed Insights
+                </span>
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-900/30 text-red-200 p-4 rounded-lg mt-6">
+            <p>{error}</p>
           </div>
         )}
       </div>

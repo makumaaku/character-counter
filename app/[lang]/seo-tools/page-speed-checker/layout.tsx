@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -40,19 +41,33 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // ツール固有の翻訳をロード
+  await loadToolMessages(lang as Language, 'seo-tools');
+  await loadToolMessages(lang as Language, 'seo-tools/page-speed-checker');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'seoTools.pageSpeedChecker.meta.title'),
+    translate(lang, 'seoTools.pageSpeedChecker.meta.description'),
+    translate(lang, 'seoTools.pageSpeedChecker.meta.keywords')
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('pageSpeedChecker.meta.title'),
-    "description": t('pageSpeedChecker.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-speed-checker`,
     "publisher": {
       "@type": "Organization",
@@ -83,37 +98,28 @@ export async function generateMetadata(
     "browserRequirements": "Requires a modern web browser with JavaScript enabled"
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('pageSpeedChecker.meta.title'),
-      description: t('pageSpeedChecker.meta.description'),
-      keywords: t('pageSpeedChecker.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-speed-checker`,
     }
   );
 
   return {
     ...metadata,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-speed-checker`,
-      languages: {
-        'en': `${SITE_CONFIG.baseURL}/en/seo-tools/page-speed-checker`,
-        'ja': `${SITE_CONFIG.baseURL}/ja/seo-tools/page-speed-checker`,
-        'x-default': `${SITE_CONFIG.baseURL}/en/seo-tools/page-speed-checker`
-      }
-    },
     other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
   };
 }
 
-export default function Layout({
-  children,
-}: {
+export default async function Layout({ children }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  
+  return <div className="layout-container">{children}</div>;
 } 

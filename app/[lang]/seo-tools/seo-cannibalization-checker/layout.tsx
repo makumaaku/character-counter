@@ -1,31 +1,72 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  featureList: string[];
+  isAccessibleForFree: boolean;
+  browserRequirements: string;
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
-  const commonT = (key: string) => translate(lang, key);
+  
+  // Load SEO tools translations
+  await loadToolMessages(lang as Language, 'seo-tools/seo-cannibalization-checker');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'seoTools.seoCannibalizationChecker.meta.title'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.meta.description'),
+    translate(lang, 'seoTools.seoCannibalizationChecker.meta.keywords')
+  ]);
 
   const commonMeta = {
-    siteName: commonT('common.meta.siteName'),
-    publisher: commonT('common.meta.publisher'),
-    logoAlt: commonT('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('seoCannibalizationChecker.meta.title'),
-    "description": t('seoCannibalizationChecker.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/seo-cannibalization-checker`,
     "publisher": {
       "@type": "Organization",
@@ -54,13 +95,13 @@ export async function generateMetadata(
     "browserRequirements": "Requires a modern web browser with JavaScript enabled"
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('seoCannibalizationChecker.meta.title'),
-      description: t('seoCannibalizationChecker.meta.description'),
-      keywords: t('seoCannibalizationChecker.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/seo-tools/seo-cannibalization-checker`,
     }
   );
@@ -73,6 +114,8 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
-  return <>{children}</>;
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  return <div className="layout-container">{children}</div>;
 } 
