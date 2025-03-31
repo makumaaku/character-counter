@@ -3,11 +3,12 @@ import PdfToEpubClient from './components/PdfToEpubClient'
 import { Language, PdfToolsPdfToEpubMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PdfToEpub({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-epub');

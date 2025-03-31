@@ -3,11 +3,12 @@ import { Language, SeoToolsSeoCannibalizationCheckerMessages } from '@/lib/i18n/
 import SEOCannibalizationChecker from './components/SEOCannibalizationChecker';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function SEOCannibalizationCheckerPage({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'seo-tools/seo-cannibalization-checker');

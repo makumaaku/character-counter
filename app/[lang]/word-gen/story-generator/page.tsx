@@ -3,11 +3,12 @@ import StoryGeneratorClient from './components/StoryGeneratorClient'
 import { Language, WordGenStoryGeneratorMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function StoryGenerator({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'word-gen/story-generator');

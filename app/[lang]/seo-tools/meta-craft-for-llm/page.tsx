@@ -3,11 +3,12 @@ import MetaCraftClient from './components/MetaCraftClient'
 import { Language, SeoToolsMetaCraftForLlmMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function MetaCraftForLlm({ params }: Props) {
-  const lang = await getLanguageFromParams(params)
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'seo-tools/meta-craft-for-llm')

@@ -3,11 +3,12 @@ import QRCodeGenerator from './components/QRCodeGenerator';
 import { Language, QrGenerationMessages } from '@/lib/i18n/types';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function QRGenerationPage({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'qr-generation');

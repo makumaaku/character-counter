@@ -1,13 +1,14 @@
-import { translate, loadToolMessages } from '@/lib/i18n/server'
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server'
 import CountryDataClient from './components/CountryDataClient'
 import { Language } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function CountryDataPage({ params }: Props) {
-  const { lang } = params;
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'country-data');

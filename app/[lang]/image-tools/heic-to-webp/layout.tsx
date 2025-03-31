@@ -81,15 +81,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function HeicToWebpLayout({ children, params }: {
+export default async function HeicToWebpLayout({ children }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const { lang } = params;
-  
-  // Load translations
-  await loadToolMessages(lang as Language, 'image-tools/heic-to-webp');
-  
   return (
     <div className="layout-container">
       {children}

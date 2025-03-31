@@ -119,15 +119,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children, params }: {
+export default async function Layout({ children }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const { lang } = params;
-  
-  // Load translations
-  await loadToolMessages(lang as Language, 'image-tools/jpg-to-png');
-  
   return (
     <>
       {children}

@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 type Props = {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
 type JsonLdType = {
@@ -38,7 +38,8 @@ type JsonLdType = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'character-counter/column');

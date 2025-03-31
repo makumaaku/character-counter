@@ -1,13 +1,14 @@
-import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { Language, NumberQuizMessages } from '@/lib/i18n/types';
 import SudokuGame from './components/SudokuGame';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function NumberQuizPage({ params }: Props) {
-  const lang = params.lang;
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'number-quiz');
