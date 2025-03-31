@@ -12,10 +12,6 @@
       "min": "Longitud Mínima",
       "max": "Longitud Máxima"
     },
-    "pattern": {
-      "label": "Patrón de Palabra",
-      "placeholder": "Ingrese patrón (ej: 'con*')"
-    },
     "count": {
       "label": "Número de Palabras",
       "placeholder": "Ingrese número de palabras a generar"

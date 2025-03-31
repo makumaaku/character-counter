@@ -28,16 +28,16 @@ export async function generateMetadata(
  
   // 共通のメタデータを取得
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logoAlt),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const page = 'home';
   // ページ固有のメタデータを取得
-  const title = t(`${page}.meta.title`);
-  const description = t(`${page}.meta.description`);
-  const keywords = t(`${page}.meta.keywords`);
+  const title = await t(`${page}.meta.title`);
+  const description = await t(`${page}.meta.description`);
+  const keywords = await t(`${page}.meta.keywords`);
 
   // JSON-LDの生成
   const jsonLd = {
