@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "SVG to PNG Converter - Free Online Image Conversion Tool",
+    "description": "Convert SVG vector images to PNG format online with transparency. Free, fast, and easy to use with instant preview and download options.",
+    "keywords": "svg to png, svg converter, image converter, free converter, online image tool, vector image converter, transparency"
+  },
+  "title": "SVG to PNG Converter",
+  "description": "Convert SVG vector images to PNG format with transparency",
+  "form": {
+    "upload": {
+      "label": "Upload SVG Image(s)",
+      "button": "Select Files",
+      "dragDrop": "Drag & drop SVG files here or click to browse",
+      "limitText": "Maximum file size: 20MB (up to 100MB total)"
+    },
+    "convert": "Convert to PNG"
+  },
+  "result": {
+    "download": "Download PNG",
+    "downloadAll": "Download All PNGs",
+    "preview": "Preview",
+    "selectedFiles": "files selected"
+  },
+  "status": {
+    "processing": "Processing...",
+    "noFile": "No file selected",
+    "success": "Conversion Complete!",
+    "browserProcessing": "All processing is done in your browser. Files are never uploaded to any server."
+  },
+  "error": {
+    "fileType": "Only SVG files are allowed",
+    "fileSize": "File size is too large",
+    "conversionFailed": "Conversion failed"
+  }
+}

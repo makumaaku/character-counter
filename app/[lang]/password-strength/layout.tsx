@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
-import { translate } from '@/lib/i18n/server'
+import { translate, loadToolMessages } from '@/lib/i18n/server'
 import { SITE_CONFIG } from '@/constants/constants'
 import { getCommonMetadata } from '@/lib/metadata'
+import { Language } from '@/lib/i18n/types'
 
 import PasswordStrengthLayout from './components/PasswordStrengthLayout'
 
@@ -34,8 +35,21 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const title = translate(lang, 'passwordStrength.title')
-  const description = translate(lang, 'passwordStrength.description')
+  
+  // password-strength用の翻訳をロード
+  await loadToolMessages(lang as Language, 'password-strength');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'passwordStrength.meta.title'),
+    translate(lang, 'passwordStrength.meta.description'),
+    translate(lang, 'passwordStrength.meta.keywords')
+  ]);
+
   const url = `${SITE_CONFIG.baseURL}/${lang}/password-strength`
 
   // JSON-LDデータの構築
@@ -49,7 +63,7 @@ export async function generateMetadata({
     inLanguage: lang,
     publisher: {
       '@type': 'Organization',
-      name: translate(lang, SITE_CONFIG.siteName),
+      name: SITE_CONFIG.siteName,
       url: SITE_CONFIG.baseURL,
     },
     mainEntity: {
@@ -60,18 +74,18 @@ export async function generateMetadata({
   }
 
   const commonMeta = {
-    siteName: translate(lang, SITE_CONFIG.siteName),
-    publisher: translate(lang, SITE_CONFIG.publisher),
-    logoAlt: translate(lang, 'common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   }
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
       title,
       description,
-      keywords: translate(lang, 'passwordStrength.meta.keywords'),
+      keywords,
       url,
     }
   )
@@ -84,9 +98,23 @@ export async function generateMetadata({
   }
 }
 
-export default function Layout({ children }: Props) {
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  
+  // password-strength用の翻訳をロード
+  await loadToolMessages(lang as Language, 'password-strength');
+
+  // タイトルを取得
+  const title = await translate(lang, 'passwordStrength.title');
+
   return (
-    <PasswordStrengthLayout>
+    <PasswordStrengthLayout title={title}>
       {children}
     </PasswordStrengthLayout>
   )

@@ -5,9 +5,10 @@ import CopyButton from './CopyButton'
 interface HtmlViewerProps {
   title: string
   htmlContent: string
+  copyButtonText: string
 }
 
-export default function HtmlViewer({ title, htmlContent }: HtmlViewerProps) {
+export default function HtmlViewer({ title, htmlContent, copyButtonText }: HtmlViewerProps) {
 
   // HTMLをハイライト表示用にフォーマット
   const formattedHtml = htmlContent
@@ -21,7 +22,7 @@ export default function HtmlViewer({ title, htmlContent }: HtmlViewerProps) {
     <div className="bg-gray-700 rounded-lg p-4 shadow-md mb-6">
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-lg font-medium text-white">{title}</h3>
-        <CopyButton text={htmlContent} />
+        <CopyButton text={htmlContent} buttonText={copyButtonText} />
       </div>
       
       <div className="bg-gray-800 rounded-md p-3 overflow-auto">

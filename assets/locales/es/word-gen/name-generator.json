@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "title": "Generador de Nombres Aleatorios - Crea Nombres Creativos",
+    "description": "Genera nombres aleatorios para personajes, negocios o cualquier proyecto creativo. Nuestro generador crea nombres únicos y significativos al instante.",
+    "keywords": "generador de nombres,nombre aleatorio,nombre de personaje,nombre de negocio,nombres creativos"
+  },
+  "title": "Generador de Nombres Aleatorios",
+  "description": "Genera nombres únicos y creativos para tus proyectos",
+  "form": {
+    "count": {
+      "label": "Número de nombres"
+    },
+    "generate": "Generar Nombres",
+    "copy": "Copiar"
+  },
+  "result": {
+    "title": "Nombres Generados",
+    "empty": "Aquí aparecerán los nombres generados",
+    "copyTitle": "Copiar al portapapeles",
+    "copy": "Copiar",
+    "copied": "¡Copiado!"
+  },
+  "about": {
+    "catchphrase": "¡Descubre nombres únicos! Un generador de nombres aleatorios que crea soluciones de nombres distintivos",
+    "introduction": "El generador de nombres aleatorios es una herramienta que crea diversos nombres para personajes, negocios, apodos y más. Proporciona una amplia gama de opciones cuando te quedas sin ideas o buscas nuevos conceptos.",
+    "features": {
+      "title": "Características y Funcionalidades",
+      "oneClick": {
+        "title": "Generación de Nombres con Un Clic",
+        "description": "Con una simple operación de botón, aparecen nuevos nombres al instante. Prueba tantas veces como quieras para encontrar el nombre perfecto."
+      },
+      "patterns": {
+        "title": "Diversos Patrones de Nombres",
+        "description": "Presenta una amplia gama de géneros que incluyen nombres de fantasía, modernos y clásicos. Crea nombres que se adapten a tus necesidades específicas."
+      },
+      "categories": {
+        "title": "Salida Basada en Categorías",
+        "description": "Filtra por propósito, como nombres de personajes, nombres de empresas o nombres de mascotas, para encontrar fácilmente nombres que coincidan con tus objetivos."
+      }
+    },
+    "useCases": {
+      "title": "Casos de Uso y Ejemplos de Usuario",
+      "character": {
+        "title": "Creación de Personajes",
+        "description": "Genera nombres únicos para novelas y personajes de juegos."
+      },
+      "branding": {
+        "title": "Naming de Marca",
+        "description": "Obtén ideas innovadoras para nombres de empresas y productos."
+      },
+      "personal": {
+        "title": "Uso Personal",
+        "description": "Perfecto para crear nombres de usuario y apodos únicos."
+      }
+    },
+    "technical": {
+      "title": "Antecedentes Técnicos y Mecanismo",
+      "algorithm": {
+        "title": "Algoritmo de Generación Propietario",
+        "description": "Combina elementos aleatorios con patrones de base de datos para crear nombres naturales y atractivos."
+      },
+      "updates": {
+        "title": "Actualizaciones Regulares de Datos",
+        "description": "La base de datos se actualiza continuamente con las últimas tendencias y comentarios de los usuarios para proporcionar opciones de nombres frescos."
+      },
+      "responsive": {
+        "title": "Soporte Multi-Dispositivo",
+        "description": "El diseño responsive garantiza un uso cómodo desde cualquier dispositivo."
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes (FAQ)",
+      "commercial": {
+        "question": "¿Puedo usar los nombres generados comercialmente?",
+        "answer": "Sí, se permite el uso comercial según nuestros términos de servicio."
+      },
+      "categories": {
+        "question": "¿Puedo elegir categorías específicas de nombres?",
+        "answer": "Sí, proporcionamos opciones de filtrado para satisfacer tus necesidades específicas."
+      },
+      "retry": {
+        "question": "¿Qué pasa si no me gustan los nombres sugeridos?",
+        "answer": "Puedes hacer clic en el botón generar tantas veces como quieras hasta encontrar nombres que te encanten."
+      }
+    },
+    "conclusion": {
+      "title": "Conclusión",
+      "description": "El generador de nombres aleatorios crea nombres distintivos utilizando su algoritmo único, resolviendo desafíos de nomenclatura en contextos creativos y comerciales. Utiliza esta herramienta para encontrar el nombre perfecto para tu proyecto."
+    }
+  },
+  "useCases": {
+    "title": "Casos de Uso",
+    "creative": {
+      "title": "Escritura Creativa",
+      "description": "Genera nombres de personajes para historias, novelas y proyectos de escritura creativa."
+    },
+    "gaming": {
+      "title": "Juegos",
+      "description": "Crea nombres de personajes únicos para juegos de rol y videojuegos."
+    },
+    "testing": {
+      "title": "Pruebas",
+      "description": "Genera nombres de usuario de prueba para pruebas y desarrollo de software."
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "q1": {
+      "question": "¿Cómo se generan los nombres?",
+      "answer": "Los nombres se generan utilizando una combinación de patrones de nombres comunes y elementos creativos para garantizar la singularidad y la usabilidad."
+    },
+    "q2": {
+      "question": "¿Puedo usar estos nombres comercialmente?",
+      "answer": "Sí, todos los nombres generados son de uso gratuito para cualquier propósito, incluido el uso comercial."
+    },
+    "q3": {
+      "question": "¿Cuántos nombres puedo generar?",
+      "answer": "Puedes generar hasta 100 nombres a la vez, y no hay límite en la cantidad de veces que puedes usar el generador."
+    }
+  }
+} 

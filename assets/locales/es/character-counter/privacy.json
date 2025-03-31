@@ -1,0 +1,73 @@
+{
+  "title": "Política de Privacidad",
+  "introduction": "Esta política de privacidad explica cómo Boring Inc. ('nosotros', 'nos' o 'nuestro') recopila, utiliza y comparte información cuando utilizas nuestro contador de caracteres en línea ('Servicio'). Al acceder o utilizar el Servicio, aceptas los términos de esta política de privacidad.",
+  "collection": {
+    "title": "1. Información que recopilamos",
+    "text": {
+      "title": "1.1 Texto proporcionado por el usuario",
+      "description": "El texto introducido o pegado en el contador de caracteres no se almacena ni registra. El texto se procesa temporalmente en el servidor (o en el navegador, dependiendo de la implementación) para contar caracteres, y luego se descarta inmediatamente.<br /><br />El texto introducido no se utiliza para ningún otro propósito."
+    },
+    "log": {
+      "title": "1.2 Datos de registro",
+      "intro": "Como la mayoría de los servicios en línea, podemos recopilar automáticamente la siguiente información cuando accedes a nuestro Servicio:",
+      "items": {
+        "1": "Direcciones IP",
+        "2": "Tipo y versión del navegador",
+        "3": "Páginas visitadas y horarios de acceso"
+      },
+      "purpose": "Esta información ('Datos de registro') se utiliza para el mantenimiento, mejora y solución de problemas del servicio."
+    },
+    "cookies": {
+      "title": "1.3 Cookies y tecnologías similares",
+      "description": "Podemos utilizar cookies o tecnologías de seguimiento similares para mejorar la experiencia del usuario y analizar el tráfico del sitio.<br /><br />Las cookies no proporcionan información de identificación personal. Puedes desactivar las cookies en la configuración de tu navegador, pero esto puede afectar a algunas funcionalidades del Servicio."
+    }
+  },
+  "usage": {
+    "title": "2. Cómo utilizamos la información",
+    "intro": "La información recopilada se utiliza para los siguientes propósitos:",
+    "purposes": {
+      "1": "Provisión y mantenimiento del servicio – p. ej., conteo de caracteres y garantía de un funcionamiento fluido",
+      "2": "Mejora y personalización – Comprender patrones de uso y mejorar la interfaz y las características del sitio",
+      "3": "Análisis – Seguimiento del rendimiento del servicio y tendencias de uso"
+    },
+    "note": "Nunca vendemos, alquilamos o arrendamos tus datos (incluido el texto) a terceros."
+  },
+  "sharing": {
+    "title": "3. Compartir información",
+    "intro": "Nunca compartimos el texto ingresado con terceros. Sin embargo, los Datos de registro pueden compartirse en los siguientes casos:",
+    "cases": {
+      "1": "Proveedores de servicios: Terceros de confianza que ayudan con el alojamiento del sitio web, análisis y seguridad",
+      "2": "Razones legales o regulatorias: Cuando lo exija la ley, una orden judicial o para proteger nuestros derechos y propiedad"
+    }
+  },
+  "retention": {
+    "title": "4. Retención de datos",
+    "description": "No conservamos el texto introducido en el contador de caracteres.<br /><br />Los Datos de registro pueden almacenarse en servidores seguros o servicios en la nube durante el período necesario para cumplir con los propósitos descritos en esta política."
+  },
+  "children": {
+    "title": "5. Privacidad de los niños",
+    "description": "Nuestro contador de caracteres no está destinado a personas menores de 13 años. No recopilamos a sabiendas información personal de niños menores de 13 años. Si descubres información que puede haber sido recopilada de un niño, por favor contáctanos y la eliminaremos."
+  },
+  "security": {
+    "title": "6. Medidas de seguridad",
+    "description": "Implementamos medidas razonables para proteger la información recopilada contra acceso, alteración y destrucción no autorizados. Sin embargo, ningún método de transmisión o almacenamiento de datos es 100% seguro, y no podemos garantizar una seguridad absoluta."
+  },
+  "changes": {
+    "title": "7. Cambios en la política de privacidad",
+    "description": "Esta política de privacidad puede actualizarse periódicamente. Cuando ocurran cambios, actualizaremos la 'Fecha de vigencia' en esta página. Tu uso continuado del Servicio después de los cambios indica la aceptación de la política revisada."
+  },
+  "contact": {
+    "title": "8. Contáctanos",
+    "description": "Si tienes preguntas o inquietudes sobre esta política de privacidad o nuestras prácticas, por favor contáctanos en:<br /><br />Correo electrónico: support@boring-tool.com"
+  },
+  "meta": {
+    "title": "Política de Privacidad - Herramienta de Contador de Caracteres | Protección de Datos",
+    "description": "Descubre cómo manejamos tus datos al utilizar nuestra herramienta de contador de caracteres. La privacidad y la seguridad de los datos son nuestras principales prioridades.",
+    "keywords": "política de privacidad, seguridad de datos, privacidad contador de caracteres, privacidad análisis de texto, protección de datos",
+    "article": {
+      "headline": "Política de Privacidad de la Herramienta de Contador de Caracteres",
+      "description": "Conoce nuestras prácticas de protección de privacidad y manejo de datos al utilizar la herramienta de contador de caracteres.",
+      "body": "Nuestra herramienta de contador de caracteres procesa todo el texto localmente en tu navegador. Nunca almacenamos, recopilamos o transmitimos tus datos de texto. Tu privacidad y la seguridad de tus datos son nuestras principales prioridades."
+    }
+  }
+}

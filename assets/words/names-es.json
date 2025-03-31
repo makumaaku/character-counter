@@ -1,0 +1,38 @@
+{
+  "male_first_names": [
+    "Alejandro", "Álvaro", "Antonio", "Carlos", "Daniel", "David", "Diego", "Eduardo", "Emilio", "Enrique", 
+    "Fernando", "Francisco", "Gabriel", "Héctor", "Hugo", "Ignacio", "Javier", "Jorge", "José", "Juan", 
+    "Julio", "Luis", "Manuel", "Marco", "Martín", "Miguel", "Pablo", "Pedro", "Rafael", "Ramón", 
+    "Raúl", "Ricardo", "Roberto", "Rodrigo", "Rubén", "Salvador", "Santiago", "Sergio", "Tomás", "Vicente", 
+    "Víctor", "Adrián", "Alberto", "Alfonso", "Andrés", "Ángel", "Arturo", "Benjamín", "Benito", "Bernardo", 
+    "César", "Cristian", "Damián", "Darío", "Edgar", "Edmundo", "Esteban", "Ernesto", "Fabián", "Felipe", 
+    "Félix", "Germán", "Gilberto", "Gonzalo", "Gregorio", "Guillermo", "Gustavo", "Horacio", "Ismael", "Iván", 
+    "Jaime", "Joaquín", "Joel", "Jonás", "Jonathan", "Leonardo", "Lorenzo", "Marcelo", "Marcos", "Mario", 
+    "Mateo", "Mauricio", "Máximo", "Natanael", "Nicolás", "Octavio", "Omar", "Óscar", "Patricio", "Raúl", 
+    "Reynaldo", "Samuel", "Sebastián", "Teodoro", "Valentín", "Xavier"
+  ],
+  "female_first_names": [
+    "Adriana", "Alejandra", "Alicia", "Ana", "Andrea", "Ángela", "Antonia", "Beatriz", "Blanca", "Carmen", 
+    "Carolina", "Catalina", "Cecilia", "Clara", "Claudia", "Cristina", "Daniela", "Diana", "Elena", "Elisa", 
+    "Elizabeth", "Erica", "Esther", "Eva", "Fernanda", "Gabriela", "Gloria", "Inés", "Irene", "Isabel", 
+    "Juana", "Julia", "Laura", "Leticia", "Liliana", "Lorena", "Lourdes", "Lucía", "Luisa", "Luz", 
+    "María", "Maribel", "Marina", "Marta", "Mercedes", "Mónica", "Natalia", "Nuria", "Olga", "Patricia", 
+    "Paula", "Pilar", "Raquel", "Rocío", "Rosa", "Rosario", "Sandra", "Sara", "Silvia", "Sofía", 
+    "Soledad", "Sonia", "Susana", "Teresa", "Verónica", "Victoria", "Virginia", "Yolanda", "Alba", "Amparo", 
+    "Ángeles", "Belén", "Camila", "Carla", "Celia", "Consuelo", "Dolores", "Esperanza", "Eugenia", "Fátima", 
+    "Francisca", "Inmaculada", "Josefina", "Manuela", "Margarita", "Mariana", "Maricarmen", "Marisol", "Marta", "Milagros", 
+    "Miriam", "Natividad", "Noelia", "Paloma", "Pura", "Remedios", "Trinidad", "Valeria", "Vanesa"
+  ],
+  "last_names": [
+    "García", "Rodríguez", "González", "Fernández", "López", "Martínez", "Sánchez", "Pérez", "Gómez", "Martín", 
+    "Jiménez", "Ruiz", "Hernández", "Díaz", "Moreno", "Álvarez", "Romero", "Alonso", "Gutiérrez", "Navarro", 
+    "Torres", "Domínguez", "Vázquez", "Ramos", "Gil", "Ramírez", "Serrano", "Blanco", "Suárez", "Molina", 
+    "Morales", "Ortega", "Delgado", "Castro", "Ortiz", "Rubio", "Marín", "Sanz", "Núñez", "Iglesias", 
+    "Medina", "Garrido", "Santos", "Castillo", "Cortés", "Lozano", "Guerrero", "Cano", "Prieto", "Méndez", 
+    "Cruz", "Calvo", "Gallego", "Vidal", "León", "Herrera", "Márquez", "Peña", "Cabrera", "Flores", 
+    "Campos", "Vega", "Fuentes", "Carrasco", "Díez", "Caballero", "Reyes", "Nieto", "Aguilar", "Pascual", 
+    "Santana", "Herrero", "Montero", "Hidalgo", "Lorenzo", "Giménez", "Ibáñez", "Ferrer", "Durán", "Santiago", 
+    "Benítez", "Mora", "Vicente", "Vargas", "Arias", "Carmona", "Crespo", "Román", "Pastor", "Soto", 
+    "Sáez", "Velasco", "Moya", "Soler", "Parra", "Esteban", "Bravo", "Gallardo", "Rojas"
+  ]
+} 

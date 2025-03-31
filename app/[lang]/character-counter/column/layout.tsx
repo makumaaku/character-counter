@@ -1,11 +1,12 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { getLanguageFromParams, loadToolMessages, translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
+import { Language } from '@/lib/i18n/types';
 import { Metadata } from 'next';
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }
 
 type JsonLdType = {
@@ -37,20 +38,33 @@ type JsonLdType = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/column');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.column.meta.title'),
+    translate(lang, 'characterCounter.column.meta.description'),
+    translate(lang, 'characterCounter.column.meta.keywords'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": t('characterCounter.column.meta.title'),
-    "description": t('characterCounter.column.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/column`,
     "publisher": {
       "@type": "Organization",
@@ -76,9 +90,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.column.meta.title'),
-      description: t('characterCounter.column.meta.description'),
-      keywords: t('characterCounter.column.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/column`,
     }
   );

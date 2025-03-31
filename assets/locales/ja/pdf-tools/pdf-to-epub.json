@@ -1,0 +1,33 @@
+{
+    "meta": {
+      "title": "PDF to EPUB変換ツール - オンラインでPDFを電子書籍に変換",
+      "description": "PDFドキュメントをEPUB電子書籍形式に変換する無料オンラインツール。PDFを電子書籍リーダー用の読みやすい形式に変換。インストール不要。",
+      "keywords": "pdfからepub, pdfから電子書籍, pdfをepubに変換, pdf変換, オンラインpdf変換, 無料pdf変換, 電子書籍変換"
+    },
+    "title": "PDF to EPUB変換ツール",
+    "description": "PDFドキュメントを電子書籍リーダー用のEPUB形式に変換",
+    "form": {
+      "upload": {
+        "label": "PDFファイルをアップロード",
+        "button": "PDFファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択",
+        "dragging": "ここにドロップしてね！",
+        "instruction": "PDFファイルのみ対応しています",
+        "maxSize": "最大ファイルサイズ：20MB"
+      },
+      "convert": "EPUBに変換"
+    },
+    "result": {
+      "download": "EPUBをダウンロード",
+      "conversionComplete": "変換完了"
+    },
+    "status": {
+      "processing": "EPUBに変換中...",
+      "noFile": "ファイルが選択されていません",
+      "loading": "PDF処理エンジンを読み込み中..."
+    },
+    "error": {
+      "fileType": "PDFファイルをアップロードしてください",
+      "fileSize": "ファイルサイズが20MBの制限を超えています"
+    }
+  }

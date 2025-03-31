@@ -1,7 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
@@ -14,21 +15,34 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // country-data用の翻訳をロード
+  await loadToolMessages(lang as Language, 'country-data');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'countryData.meta.title'),
+    translate(lang, 'countryData.meta.description'),
+    translate(lang, 'countryData.meta.keywords')
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('countryData.meta.title'),
-    "description": t('countryData.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/country-data`,
     "publisher": {
       "@type": "Organization",
@@ -43,13 +57,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('countryData.meta.title'),
-      description: t('countryData.meta.description'),
-      keywords: t('countryData.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/country-data`,
     }
   );
@@ -64,59 +78,28 @@ export async function generateMetadata(
 
 export default async function CountryDataLayout({ children, params }: Props) {
   const { lang } = await params;
+  
+  // country-data用の翻訳をロード
+  await loadToolMessages(lang as Language, 'country-data');
 
-  const messages = {
-    countryData: {
-      title: translate(lang, 'countryData.title'),
-      states: {
-        loading: translate(lang, 'countryData.states.loading'),
-        error: translate(lang, 'countryData.states.error'),
-        noData: translate(lang, 'countryData.states.noData'),
-      },
-      search: {
-        label: translate(lang, 'countryData.search.label'),
-        placeholder: translate(lang, 'countryData.search.placeholder'),
-      },
-      filter: {
-        label: translate(lang, 'countryData.filter.label'),
-        allRegions: translate(lang, 'countryData.filter.allRegions'),
-      },
-      table: {
-        headers: {
-          name: translate(lang, 'countryData.table.headers.name'),
-          officialName: translate(lang, 'countryData.table.headers.officialName'),
-          area: translate(lang, 'countryData.table.headers.area'),
-          capital: translate(lang, 'countryData.table.headers.capital'),
-          languages: translate(lang, 'countryData.table.headers.languages'),
-          currency: translate(lang, 'countryData.table.headers.currency'),
-          region: translate(lang, 'countryData.table.headers.region'),
-          source: translate(lang, 'countryData.table.headers.source'),
-          lastUpdated: translate(lang, 'countryData.table.headers.lastUpdated'),
-        },
-      },
-    },
-  };
+  // 翻訳を一括で取得
+  const [
+    uiTitle
+  ] = await Promise.all([
+    translate(lang, 'countryData.ui.title')
+  ]);
 
   return (
-    <>
-      <script
-        id="messages"
-        type="application/json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(messages),
-        }}
-      />
-      <div className="flex flex-col min-h-screen bg-gray-800">
-        <Header title={translate(lang, 'countryData.ui.title')} homeLink={`/${lang}/country-data`}>
-          <div className="flex items-center gap-2">
-            {/* Left side content removed */}
-          </div>
-        </Header>
-        <main className="flex-1 bg-gray-800">
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="flex flex-col min-h-screen bg-gray-800">
+      <Header title={uiTitle} homeLink={`/${lang}/country-data`}>
+        <div className="flex items-center gap-2">
+          {/* Left side content removed */}
+        </div>
+      </Header>
+      <main className="flex-1 bg-gray-800">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
 } 

@@ -1,38 +1,34 @@
 'use client';
 
 import { useState } from 'react';
-import { useParams } from 'next/navigation';
-import { translate } from '@/lib/i18n/client';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
 import Footer from '@/components/Footer';
+import { WordGenCommonMessages } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
+  messages: WordGenCommonMessages;
+  lang: string;
 };
 
-export default function WordGenLayout({ children }: Props) {
+export default function WordGenLayout({ children, messages, lang }: Props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const params = useParams();
-  const lang = params.lang as string;
-  const t = (key: string) => translate(lang, key);
-
+  
   const navigationItems = [
-    { name: t('wordGen.tools.wordGenerator.title'), path: `/word-gen/word-generator` },
-    { name: t('wordGen.tools.wordCardGenerator.title'), path: `/word-gen/word-card-generator` },
-    { name: t('wordGen.tools.sentenceGenerator.title'), path: `/word-gen/sentence-generator` },
-    { name: t('wordGen.tools.nameGenerator.title'), path: `/word-gen/name-generator` },
-    { name: t('wordGen.tools.passwordGenerator.title'), path: `/word-gen/password-generator` },
-    { name: t('wordGen.tools.storyGenerator.title'), path: `/word-gen/story-generator` },
-    { name: t('wordGen.tools.japaneseKanjiGenerator.title'), path: `/word-gen/japanese-kanji-generator` },
-    
+    { name: messages.tools.wordGenerator.title, path: `/word-gen/word-generator` },
+    { name: messages.tools.wordCardGenerator.title, path: `/word-gen/word-card-generator` },
+    { name: messages.tools.sentenceGenerator.title, path: `/word-gen/sentence-generator` },
+    { name: messages.tools.nameGenerator.title, path: `/word-gen/name-generator` },
+    { name: messages.tools.passwordGenerator.title, path: `/word-gen/password-generator` },
+    { name: messages.tools.storyGenerator.title, path: `/word-gen/story-generator` },
+    { name: messages.tools.japaneseKanjiGenerator.title, path: `/word-gen/japanese-kanji-generator` },
   ];
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      {/* こちらは多言語対応の必要はない */}
-      <Header title={'Word Generation Tools'} homeLink={`/${lang}/word-gen`}>
+      <Header title={messages.title} homeLink={`/${lang}/word-gen`}>
         <button
           onClick={() => setIsSidebarOpen(true)}
           className="p-2 text-white"

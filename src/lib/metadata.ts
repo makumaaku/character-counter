@@ -1,7 +1,7 @@
 import { SITE_CONFIG } from '@/constants/constants';
 import { Metadata } from 'next';
 
-export const getCommonMetadata = (lang: string, commonMeta: {
+export const getCommonMetadata = async (lang: string, commonMeta: {
   siteName: string;
   publisher: string;
   logoAlt: string;
@@ -10,7 +10,7 @@ export const getCommonMetadata = (lang: string, commonMeta: {
   description: string;
   keywords: string;
   url: string;
-}): Metadata => {
+}): Promise<Metadata> => {
   return {
     metadataBase: new URL(SITE_CONFIG.baseURL),
     title: pageMeta.title,
@@ -34,6 +34,7 @@ export const getCommonMetadata = (lang: string, commonMeta: {
       languages: {
         'en': pageMeta.url.replace(`/${lang}/`, '/en/'),
         'ja': pageMeta.url.replace(`/${lang}/`, '/ja/'),
+        'es': pageMeta.url.replace(`/${lang}/`, '/es/'),
         'x-default': pageMeta.url.replace(`/${lang}/`, '/en/')
       }
     },

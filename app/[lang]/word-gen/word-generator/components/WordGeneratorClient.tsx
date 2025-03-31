@@ -5,6 +5,7 @@ import wordsData from '../../../../../assets/words/words.json'
 import DownloadButton from '../../components/DownloadButton'
 import { Button } from '@/components/ui/button'
 import CopyButton from '@/components/CopyButton'
+import { WordGenWordGeneratorMessages } from '@/lib/i18n/generated-types'
 
 // words.jsonの型定義
 type WordsData = {
@@ -13,110 +14,20 @@ type WordsData = {
 
 const words: WordsData = wordsData
 
-type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      length: {
-        label: string
-        min: string
-        max: string
-      }
-      pattern: {
-        label: string
-        placeholder: string
-      }
-      count: {
-        label: string
-        placeholder: string
-      }
-      generate: string
-      clear: string
-    }
-    result: {
-      title: string
-      empty: string
-      copy: string
-      copied: string
-      download: string
-      downloaded: string
-    }
-    about: {
-      catchphrase: string
-      introduction: string
-      features: {
-        title: string
-        oneClick: {
-          title: string
-          description: string
-        }
-        database: {
-          title: string
-          description: string
-        }
-        design: {
-          title: string
-          description: string
-        }
-      }
-      useCases: {
-        title: string
-        scenes: {
-          title: string
-          writer: string
-          designer: string
-          brainstorming: string
-        }
-        testimonials: {
-          title: string
-          writer: {
-            name: string
-            quote: string
-          }
-          designer: {
-            name: string
-            quote: string
-          }
-        }
-      }
-      technical: {
-        title: string
-        algorithm: {
-          title: string
-          description: string
-        }
-        database: {
-          title: string
-          description: string
-        }
-        performance: {
-          title: string
-          description: string
-        }
-      }
-      faq: {
-        title: string
-        questions: {
-          [key: string]: {
-            question: string
-            answer: string
-          }
-        }
-      }
-      conclusion: {
-        title: string
-        description: string
-      }
-    }
-  }
+
+// PropsインターフェースにWordGeneratorMessagesを追加
+interface WordGeneratorClientProps {
+  messages: WordGenWordGeneratorMessages;
 }
 
-export default function WordGeneratorClient({ translations }: Props) {
+export default function WordGeneratorClient({ messages }: WordGeneratorClientProps) {
   const [generatedWords, setGeneratedWords] = useState<string[]>([])
   const [wordCount, setWordCount] = useState<number>(10)
   const [minLength, setMinLength] = useState(3)
   const [maxLength, setMaxLength] = useState(10) 
+  
+  // propsからメッセージを取得
+  const { title, description, form, result, about } = messages;
 
   const generateWords = () => {
     let filteredWords = words.words.filter(word => 
@@ -140,21 +51,21 @@ export default function WordGeneratorClient({ translations }: Props) {
     <div className="min-h-screen bg-gray-800 text-white py-12">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">{translations.title}</h1>
+          <h1 className="text-4xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-gray-300">
-            {translations.description}
+            {description}
           </p>
         </div>
 
         <div className="bg-gray-700 rounded-lg p-6 mb-6">
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2">
-              {translations.form.length.label}
+              {form.length.label}
             </label>
             <div className="flex gap-4 max-w-md mx-auto">
               <div className="w-1/2">
                 <label className="block text-xs text-gray-400">
-                  {translations.form.length.min}
+                  {form.length.min}
                 </label>
                 <input
                   type="number"
@@ -171,7 +82,7 @@ export default function WordGeneratorClient({ translations }: Props) {
               </div>
               <div className="w-1/2">
                 <label className="block text-xs text-gray-400">
-                  {translations.form.length.max}
+                  {form.length.max}
                 </label>
                 <input
                   type="number"
@@ -191,7 +102,7 @@ export default function WordGeneratorClient({ translations }: Props) {
 
           <div className="mb-6">
             <label className="block text-sm font-medium mb-2">
-              {translations.form.count.label}
+              {form.count.label}
             </label>
             <div className="max-w-md mx-auto">
               <input
@@ -203,7 +114,7 @@ export default function WordGeneratorClient({ translations }: Props) {
                     setWordCount(value)
                   }
                 }}
-                placeholder={translations.form.count.placeholder}
+                placeholder={form.count.placeholder}
                 className="bg-gray-800 text-white px-3 py-2 rounded w-full"
                 min="1"
               />
@@ -215,7 +126,7 @@ export default function WordGeneratorClient({ translations }: Props) {
               onClick={generateWords}
               variant="purple"
             >
-              {translations.form.generate}
+              {form.generate}
             </Button>
             <Button
               onClick={() => {
@@ -226,141 +137,154 @@ export default function WordGeneratorClient({ translations }: Props) {
               }}
               variant="secondary"
             >
-              {translations.form.clear}
+              {form.clear}
             </Button>
           </div>
         </div>
 
         <div className="bg-gray-700 rounded-lg p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold">{translations.result.title}</h2>
+            <h2 className="text-xl font-bold">{result.title}</h2>
             {generatedWords.length > 0 && (
-              <div className="flex gap-2">
+              <div className="flex space-x-2">
                 <CopyButton
                   text={generatedWords.join('\n')}
                   variant="purple"
-                  copyText={translations.result.copy}
-                  toastText={translations.result.copied}
+                  copyText={result.copy}
+                  toastText={result.copied}
                 />
                 <DownloadButton
                   content={generatedWords.join('\n')}
                   filename="generated-words.txt"
                   variant="purple"
+                  downloadText={result.download}
+                  downloadedText={result.downloaded}
                 />
               </div>
             )}
           </div>
           {generatedWords.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {generatedWords.map((word, index) => (
                 <div
                   key={index}
-                  className="bg-gray-800 p-3 rounded text-center"
+                  className="bg-gray-800 p-4 rounded-lg hover:bg-purple-800 transition-colors"
                 >
-                  {word}
+                  <div className="text-xl">{word}</div>
+                  <div className="text-sm text-gray-400">{word.length} characters</div>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-gray-400">{translations.result.empty}</p>
+            <p className="text-gray-400">{result.empty}</p>
           )}
         </div>
-
+        
         {/* About Section */}
-        <div className="mt-16 space-y-12">
-          {/* Introduction */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">{translations.about.catchphrase}</h2>
-            <p className="text-lg text-gray-300">{translations.about.introduction}</p>
+        <div className="mt-12 bg-gray-700 p-8 rounded-lg">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-4">{about.catchphrase}</h2>
+            <p className="text-lg text-gray-300">{about.introduction}</p>
           </div>
-
+          
           {/* Features */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{translations.about.features.title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{translations.about.features.oneClick.title}</h3>
-                <p className="text-gray-300">{translations.about.features.oneClick.description}</p>
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{about.features.title}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{about.features.oneClick.title}</h4>
+                <p className="text-gray-300">{about.features.oneClick.description}</p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{translations.about.features.database.title}</h3>
-                <p className="text-gray-300">{translations.about.features.database.description}</p>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{about.features.database.title}</h4>
+                <p className="text-gray-300">{about.features.database.description}</p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{translations.about.features.design.title}</h3>
-                <p className="text-gray-300">{translations.about.features.design.description}</p>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{about.features.design.title}</h4>
+                <p className="text-gray-300">{about.features.design.description}</p>
               </div>
             </div>
           </div>
-
+          
           {/* Use Cases */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{translations.about.useCases.title}</h2>
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{about.useCases.title}</h3>
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4">{translations.about.useCases.scenes.title}</h3>
+              <h4 className="text-xl font-bold mb-4">{about.useCases.scenes.title}</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gray-600 p-6 rounded-lg">
-                  <p className="text-gray-300">{translations.about.useCases.scenes.writer}</p>
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <p className="text-gray-300">{about.useCases.scenes.writer}</p>
                 </div>
-                <div className="bg-gray-600 p-6 rounded-lg">
-                  <p className="text-gray-300">{translations.about.useCases.scenes.designer}</p>
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <p className="text-gray-300">{about.useCases.scenes.designer}</p>
                 </div>
-                <div className="bg-gray-600 p-6 rounded-lg">
-                  <p className="text-gray-300">{translations.about.useCases.scenes.brainstorming}</p>
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <p className="text-gray-300">{about.useCases.scenes.brainstorming}</p>
                 </div>
               </div>
             </div>
+            
             <div>
-              <h3 className="text-xl font-semibold mb-4">{translations.about.useCases.testimonials.title}</h3>
+              <h4 className="text-xl font-bold mb-4">{about.useCases.testimonials.title}</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-600 p-6 rounded-lg">
-                  <p className="text-lg font-medium mb-2">{translations.about.useCases.testimonials.writer.name}</p>
-                  <p className="text-gray-300 italic">{translations.about.useCases.testimonials.writer.quote}</p>
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <blockquote className="italic text-gray-300 mb-4">&ldquo;{about.useCases.testimonials.writer.quote}&rdquo;</blockquote>
+                  <p className="text-right">— {about.useCases.testimonials.writer.name}</p>
                 </div>
-                <div className="bg-gray-600 p-6 rounded-lg">
-                  <p className="text-lg font-medium mb-2">{translations.about.useCases.testimonials.designer.name}</p>
-                  <p className="text-gray-300 italic">{translations.about.useCases.testimonials.designer.quote}</p>
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <blockquote className="italic text-gray-300 mb-4">&ldquo;{about.useCases.testimonials.designer.quote}&rdquo;</blockquote>
+                  <p className="text-right">— {about.useCases.testimonials.designer.name}</p>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Technical Background */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{translations.about.technical.title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{translations.about.technical.algorithm.title}</h3>
-                <p className="text-gray-300">{translations.about.technical.algorithm.description}</p>
+          
+          {/* Technical Details */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{about.technical.title}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{about.technical.algorithm.title}</h4>
+                <p className="text-gray-300">{about.technical.algorithm.description}</p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{translations.about.technical.database.title}</h3>
-                <p className="text-gray-300">{translations.about.technical.database.description}</p>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{about.technical.database.title}</h4>
+                <p className="text-gray-300">{about.technical.database.description}</p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{translations.about.technical.performance.title}</h3>
-                <p className="text-gray-300">{translations.about.technical.performance.description}</p>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h4 className="text-xl font-bold mb-3">{about.technical.performance.title}</h4>
+                <p className="text-gray-300">{about.technical.performance.description}</p>
               </div>
             </div>
           </div>
-
+          
           {/* FAQ */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{translations.about.faq.title}</h2>
-            <div className="space-y-6">
-              {Object.entries(translations.about.faq.questions).map(([key, question]) => (
-                <div key={key} className="bg-gray-600 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-3">{question.question}</h3>
-                  <p className="text-gray-300">{question.answer}</p>
-                </div>
-              ))}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6">{about.faq.title}</h3>
+            <div className="divide-y divide-gray-600">
+              <div className="py-4">
+                <h4 className="text-xl font-bold mb-2">{about.faq.questions.free.question}</h4>
+                <p className="text-gray-300">{about.faq.questions.free.answer}</p>
+              </div>
+              <div className="py-4">
+                <h4 className="text-xl font-bold mb-2">{about.faq.questions.words.question}</h4>
+                <p className="text-gray-300">{about.faq.questions.words.answer}</p>
+              </div>
+              <div className="py-4">
+                <h4 className="text-xl font-bold mb-2">{about.faq.questions.commercial.question}</h4>
+                <p className="text-gray-300">{about.faq.questions.commercial.answer}</p>
+              </div>
+              <div className="py-4">
+                <h4 className="text-xl font-bold mb-2">{about.faq.questions.mobile.question}</h4>
+                <p className="text-gray-300">{about.faq.questions.mobile.answer}</p>
+              </div>
             </div>
           </div>
-
+          
           {/* Conclusion */}
-          <div className="bg-gray-700 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">{translations.about.conclusion.title}</h2>
-            <p className="text-lg text-gray-300">{translations.about.conclusion.description}</p>
+          <div>
+            <h3 className="text-2xl font-bold mb-4">{about.conclusion.title}</h3>
+            <p className="text-lg text-gray-300">{about.conclusion.description}</p>
           </div>
         </div>
       </div>

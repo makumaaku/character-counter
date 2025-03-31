@@ -1,33 +1,71 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import Script from 'next/script';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-jpg');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'imageTools.heicToJpg.meta.title'),
+    translate(lang, 'imageTools.heicToJpg.meta.description'),
+    translate(lang, 'imageTools.heicToJpg.meta.keywords')
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logoAlt),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('heicToJpg.meta.title'),
-    "description": t('heicToJpg.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-jpg`,
     "applicationCategory": "Utility",
     "operatingSystem": "Any",
@@ -49,13 +87,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('heicToJpg.meta.title'),
-      description: t('heicToJpg.meta.description'),
-      keywords: t('heicToJpg.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/heic-to-jpg`,
     }
   );
@@ -68,23 +106,18 @@ export async function generateMetadata(
   };
 }
 
-export default function HeicToJpgLayout({ children }: Props) {
+export default async function HeicToJpgLayout({ children, params }: {
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-jpg');
+  
   return (
-    <>
+    <div className="layout-container">
       {children}
-      <Script id="json-ld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "HEIC to JPG Converter",
-        "description": "Convert HEIC images to JPG format online with preview and batch conversion support.",
-        "applicationCategory": "Utility",
-        "operatingSystem": "Any",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
-      }) }} />
-    </>
-  )
+    </div>
+  );
 } 

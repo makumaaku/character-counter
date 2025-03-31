@@ -6,6 +6,7 @@ import { pdfjs } from 'react-pdf'
 import { saveAs } from 'file-saver'
 import { CloudArrowUpIcon, DocumentIcon } from '@heroicons/react/24/outline'
 import Button from '@/components/ui/button'
+import { PdfToolsPdfToWordMessages } from '@/lib/i18n/types'
 
 // PDFJSをグローバルに設定
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
@@ -25,38 +26,7 @@ declare global {
 }
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-        dragging: string
-        instruction: string
-        maxSize: string
-      }
-      format: {
-        label: string
-        docx: string
-        doc: string
-      }
-      convert: string
-    }
-    result: {
-      download: string
-    }
-    status: {
-      processing: string
-      noFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-    }
-    loading: string
-  }
+  translations: PdfToolsPdfToWordMessages
 }
 
 type OutputFormat = 'docx' | 'doc'

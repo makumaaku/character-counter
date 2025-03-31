@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -34,19 +35,47 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/function');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    howToTitle,
+    step1Title,
+    step1Text,
+    step2Title,
+    step2Text,
+    step3Title,
+    step3Text,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.function.meta.title'),
+    translate(lang, 'characterCounter.function.meta.description'),
+    translate(lang, 'characterCounter.function.meta.keywords'),
+    translate(lang, 'characterCounter.function.meta.howTo.title'),
+    translate(lang, 'characterCounter.function.howToUse.step1.title'),
+    translate(lang, 'characterCounter.function.howToUse.step1.text'),
+    translate(lang, 'characterCounter.function.howToUse.step2.title'),
+    translate(lang, 'characterCounter.function.howToUse.step2.text'),
+    translate(lang, 'characterCounter.function.howToUse.step3.title'),
+    translate(lang, 'characterCounter.function.howToUse.step3.text'),
+    translate(lang, 'common.meta.logoAlt')
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": t('characterCounter.function.meta.title'),
-    "description": t('characterCounter.function.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/function`,
     "publisher": {
       "@type": "Organization",
@@ -55,22 +84,22 @@ export async function generateMetadata(
     },
     "mainEntity": {
       "@type": "HowTo",
-      "name": t('characterCounter.function.meta.howTo.title'),
+      "name": howToTitle,
       "step": [
         {
           "@type": "HowToStep",
-          "name": t('characterCounter.function.howToUse.step1.title'),
-          "text": t('characterCounter.function.howToUse.step1.text')
+          "name": step1Title,
+          "text": step1Text
         },
         {
           "@type": "HowToStep",
-          "name": t('characterCounter.function.howToUse.step2.title'),
-          "text": t('characterCounter.function.howToUse.step2.text')
+          "name": step2Title,
+          "text": step2Text
         },
         {
           "@type": "HowToStep",
-          "name": t('characterCounter.function.howToUse.step3.title'),
-          "text": t('characterCounter.function.howToUse.step3.text')
+          "name": step3Title,
+          "text": step3Text
         }
       ]
     }
@@ -80,9 +109,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.function.meta.title'),
-      description: t('characterCounter.function.meta.description'),
-      keywords: t('characterCounter.function.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/function`,
     }
   );
@@ -96,9 +125,9 @@ export async function generateMetadata(
 }
 
 export default function Layout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <>

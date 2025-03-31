@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "PDF Tools - Convert, Edit, and Manage PDF Files",
+    "description": "Free online PDF tools to convert, edit, and manage PDF files. No installation required, works directly in your browser.",
+    "keywords": "pdf tools, pdf converter, pdf to jpg, pdf editor, online pdf tools, free pdf tools"
+  },
+  "title": "PDF Tools",
+  "description": "Free online tools to convert, edit, and manage PDF files",
+  "tools": {
+    "pdfToJpg": {
+      "title": "PDF to JPG Converter",
+      "description": "Convert PDF pages to JPG images with adjustable quality"
+    },
+    "jpgToPdf": {
+      "title": "JPG to PDF Converter",
+      "description": "Convert JPG images to PDF documents with customizable settings"
+    },
+    "webToPdf": {
+      "title": "Web to PDF Converter",
+      "description": "Convert any web page to a PDF document with a single click"
+    },
+    "pdfToWord": {
+      "title": "PDF to Word Converter",
+      "description": "Convert PDF documents to editable Word files easily"
+    },
+    "pdfToPng": {
+      "title": "PDF to PNG Converter",
+      "description": "Convert PDF pages to high-quality PNG images with transparency support"
+    },
+    "pngToPdf": {
+      "title": "PNG to PDF Converter",
+      "description": "Convert PNG images to PDF documents with customizable settings"
+    },
+    "svgToPdf": {
+      "title": "SVG to PDF Converter",
+      "description": "Convert SVG vector graphics to PDF documents with high quality"
+    },
+    "pdfToEpub": {
+      "title": "PDF to EPUB Converter",
+      "description": "Convert PDF documents to EPUB eBook format for e-readers"
+    },
+    "heicToPdf": {
+      "title": "HEIC to PDF Converter",
+      "description": "Convert HEIC images to PDF documents with high quality"
+    }
+  }
+}

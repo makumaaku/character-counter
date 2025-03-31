@@ -1,0 +1,51 @@
+{
+    "meta": {
+      "title": "Page Structure Checker - SEO Tools",
+      "description": "Analyze your webpage's structure including title, description, and heading hierarchy to ensure proper SEO optimization",
+      "keywords": "page structure, heading structure, seo checker, h1 tag, title tag, meta description"
+    },
+    "title": "Page Structure Checker",
+    "description": "Check if your webpage has a proper structure with appropriate title, description, and heading tags hierarchy",
+    "form": {
+      "urlLabel": "Enter URL to analyze",
+      "urlPlaceholder": "https://example.com",
+      "analyzing": "Analyzing...",
+      "analyze": "Analyze",
+      "example": "Example"
+    },
+    "error": {
+      "title": "Error",
+      "urlRequired": "Please enter a URL to analyze",
+      "invalidUrl": "Please enter a valid URL (including http:// or https://)",
+      "fetchFailed": "Failed to analyze the page",
+      "networkError": "Network error - please check your connection",
+      "serverError": "Server error occurred during analysis",
+      "timeoutError": "The request timed out - the server might be busy",
+      "parsingError": "Failed to parse the page structure"
+    },
+    "metaTitle": "Meta Information",
+    "headingStructure": "Heading Structure",
+    "issues": "Issues Found",
+    "noTitle": "No title found",
+    "noDescription": "No description found",
+    "noCanonical": "No canonical URL found",
+    "noHeadings": "No heading tags found in the page",
+    "warning": "Warning",
+    "analysis": "Analysis",
+    "good": "Found",
+    "missing": "Missing",
+    "present": "Present",
+    "tag": "tag",
+    "count": "count",
+    "hierarchyIssue": "h2-h6: hierarchy-issue",
+    "noTitle": "The page does not have a title tag",
+    "noDescription": "The page does not have a meta description",
+    "noH1": "The page does not have an h1 tag",
+    "multipleH1": "The page has multiple h1 tags (should only have one)",
+    "skippedLevel": "Heading level hierarchy is incorrect.",
+    "issueFound": "Issue Found",
+    "hierarchyIssueMessage": "Hierarchy Issue",
+    "recommended": "Recommended",
+    "importantForSeo": "Important for SEO",
+    "headings": "Headings"
+  }

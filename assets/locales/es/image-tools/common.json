@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Convertidores de imágenes - Herramientas gratuitas de conversión de imágenes",
+    "description": "Convierte imágenes entre diferentes formatos con nuestras herramientas gratuitas en línea. Herramientas de conversión de imágenes simples, rápidas y seguras para todas tus necesidades.",
+    "keywords": "convertidor de imágenes, herramientas de imagen, jpg a png, png a jpg, convertidor de formato de imagen, convertidor de imágenes gratis"
+  },
+  "title": "Convertidores de imágenes",
+  "description": "Herramientas gratuitas en línea para convertir imágenes entre diferentes formatos",
+  "tools": {
+    "jpgToPng": {
+      "title": "Convertidor de JPG a PNG",
+      "description": "Convierte imágenes JPG a formato PNG con soporte de transparencia"
+    },
+    "pngToJpg": {
+      "title": "Convertidor de PNG a JPG",
+      "description": "Convierte imágenes PNG a formato JPG fácilmente"
+    },
+    "heicToJpg": {
+      "title": "Convertidor de HEIC a JPG",
+      "description": "Convierte imágenes HEIC a formato JPG con vista previa"
+    },
+    "heicToPng": {
+      "title": "Convertidor de HEIC a PNG",
+      "description": "Convierte archivos HEIC a formato PNG con vista previa"
+    },
+    "heicToWebp": {
+      "title": "Convertidor de HEIC a WebP",
+      "description": "Convierte archivos HEIC a formato WebP con vista previa"
+    },
+    "jpgToWebp": {
+      "title": "Convertidor de JPG a WebP",
+      "description": "Convierte imágenes JPG a formato WebP para un mejor rendimiento web"
+    },
+    "pngToWebp": {
+      "title": "Convertidor de PNG a WebP",
+      "description": "Convierte imágenes PNG a formato WebP para un mejor rendimiento web"
+    },
+    "svgToJpg": {
+      "title": "Convertidor de SVG a JPG",
+      "description": "Convierte imágenes vectoriales SVG a formato JPG"
+    },
+    "svgToPng": {
+      "title": "Convertidor de SVG a PNG",
+      "description": "Convierte imágenes vectoriales SVG a formato PNG con transparencia"
+    },
+    "svgToWebp": {
+      "title": "Convertidor de SVG a WebP",
+      "description": "Convierte imágenes vectoriales SVG a formato WebP optimizado para visualización web"
+    }
+  }
+} 

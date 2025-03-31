@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { translate } from '@/lib/i18n/client'
 
 type PageStructureResult = {
   title: string | null
@@ -16,21 +15,52 @@ type PageStructureResult = {
     type: 'error' | 'warning'
     message: string
   }[]
-  errorMessage?: string,
-  error :{
-    title: string,
-    urlRequired: string,
-    invalidUrl: string,
-    fetchFailed: string,
-    networkError: string,
-    serverError: string,
-    timeoutError: string,
-    parsingError: string,
+  errorMessage?: string
+}
+
+interface PageStructureCheckerClientProps {
+  lang: string
+  messages: {
+    title: string
+    description: string
+    form: {
+      urlLabel: string
+      urlPlaceholder: string
+      analyzing: string
+      analyze: string
+      example: string
+    }
+    error: {
+      title: string
+      urlRequired: string
+      invalidUrl: string
+      fetchFailed: string
+      networkError: string
+      serverError: string
+      timeoutError: string
+      parsingError: string
+    }
+    issues: string
+    metaTitle: string
+    analysis: string
+    good: string
+    missing: string
+    issueFound: string
+    recommended: string
+    importantForSeo: string
+    noTitle: string
+    headingsStructure: string
+    headingsExplanation: string
+    headingsMissing: string
+    headingsLevelsTitle: string
+    contentStructureTitle: string
+    contentStructureExplanation: string
+    viewHeadings: string
+    headingIssue: string
   }
 }
 
-export default function PageStructureCheckerClient({ lang }: { lang: string }) {
-  const t = (key: string) => translate(lang, key)
+export default function PageStructureCheckerClient({ lang, messages }: PageStructureCheckerClientProps) {
   const [url, setUrl] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -46,14 +76,14 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
 
     try {
       if (!url) {
-        throw new Error(t('page-structure-checker.error.url-required'))
+        throw new Error(messages.error.urlRequired)
       }
 
       // URLの形式チェック
       try {
         new URL(url)
       } catch {
-        throw new Error(t('page-structure-checker.error.invalid-url'))
+        throw new Error(messages.error.invalidUrl)
       }
 
       // デバッグ情報
@@ -73,7 +103,7 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
         console.log(statusInfo)
 
         if (!response.ok) {
-          let errorMessage = t('page-structure-checker.error.fetch-failed')
+          let errorMessage = messages.error.fetchFailed
           
           try {
             const errorData = await response.json()
@@ -112,7 +142,7 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
         // fetch APIのエラー
         console.error('Fetch error:', fetchError)
         if (fetchError instanceof TypeError && fetchError.message.includes('Failed to fetch')) {
-          throw new Error(t('page-structure-checker.error.network-error'))
+          throw new Error(messages.error.networkError)
         }
         throw fetchError
       }
@@ -128,13 +158,13 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
       <form onSubmit={handleSubmit} className="mb-8">
         <div className="mb-4">
           <label htmlFor="url" className="block mb-2 text-lg font-medium">
-            {t('page-structure-checker.form.url-label')}
+            {messages.form.urlLabel}
           </label>
           <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="text"
               id="url"
-              placeholder={t('page-structure-checker.form.url-placeholder')}
+              placeholder={messages.form.urlPlaceholder}
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               className="flex-1 bg-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -144,18 +174,18 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
               disabled={isLoading}
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg disabled:opacity-50 transition-colors"
             >
-              {isLoading ? t('page-structure-checker.form.analyzing') : t('page-structure-checker.form.analyze')}
+              {isLoading ? messages.form.analyzing : messages.form.analyze}
             </button>
           </div>
           <p className="text-sm text-gray-300 mt-2">
-            {t('page-structure-checker.form.example')}: https://example.com
+            {messages.form.example}: https://example.com
           </p>
         </div>
       </form>
 
       {error && (
         <div className="bg-red-900/30 border border-red-500 text-red-300 p-4 rounded-lg mb-6">
-          <h3 className="font-bold text-lg mb-2">{t('page-structure-checker.error.title')}</h3>
+          <h3 className="font-bold text-lg mb-2">{messages.error.title}</h3>
           <p>{error}</p>
           {debugInfo && (
             <div className="mt-4 p-3 bg-gray-800 rounded overflow-auto text-xs">
@@ -171,7 +201,7 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
           {/* エラーメッセージがある場合に表示 */}
           {result.errorMessage && (
             <div className="bg-red-900/30 border border-red-500 text-red-300 p-4 rounded-lg mb-6">
-              <h3 className="font-bold text-lg mb-2">{t('page-structure-checker.error.title')}</h3>
+              <h3 className="font-bold text-lg mb-2">{messages.error.title}</h3>
               <p>{result.errorMessage}</p>
             </div>
           )}
@@ -180,7 +210,7 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
           {result.issues && result.issues.length > 0 && (
             <div className="bg-gray-800 rounded-lg p-4">
               <h2 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">
-                {t('page-structure-checker.issues')}
+                {messages.issues}
               </h2>
               <div className="space-y-2">
                 <ul className="list-none space-y-2">
@@ -197,32 +227,32 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
           {/* Meta Information セクション - 2番目に表示 */}
           <div className="bg-gray-800 rounded-lg p-4">
             <h2 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">
-              {t('page-structure-checker.meta-title')}
+              {messages.metaTitle}
             </h2>
             
             {/* メタ情報の分析結果 */}
             <div className="mb-6 p-3 bg-gray-700 rounded-lg">
-              <h3 className="font-semibold text-lg mb-3">{t('page-structure-checker.analysis')}</h3>
+              <h3 className="font-semibold text-lg mb-3">{messages.analysis}</h3>
               <div className="space-y-2">
                 <div className="flex items-center">
                   <span className={`inline-block w-4 h-4 rounded-full mr-2 ${result.title ? 'bg-green-500' : 'bg-red-500'}`}></span>
                   <span>
-                    Title: {result.title ? t('page-structure-checker.good') : t('page-structure-checker.missing')}
-                    {!result.title && <span className="ml-2 text-red-300 font-bold">🚫 {t('page-structure-checker.issue-found')}</span>}
+                    Title: {result.title ? messages.good : messages.missing}
+                    {!result.title && <span className="ml-2 text-red-300 font-bold">🚫 {messages.issueFound}</span>}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className={`inline-block w-4 h-4 rounded-full mr-2 ${result.description ? 'bg-green-500' : 'bg-red-500'}`}></span>
                   <span>
-                    Description: {result.description ? t('page-structure-checker.good') : t('page-structure-checker.missing')}
-                    {!result.description && <span className="ml-2 text-red-300 font-bold">🚫 {t('page-structure-checker.issue-found')}</span>}
+                    Description: {result.description ? messages.good : messages.missing}
+                    {!result.description && <span className="ml-2 text-red-300 font-bold">🚫 {messages.issueFound}</span>}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <span className={`inline-block w-4 h-4 rounded-full mr-2 ${result.canonicalUrl ? 'bg-green-500' : 'bg-yellow-500'}`}></span>
                   <span>
-                    Canonical URL: {result.canonicalUrl ? t('page-structure-checker.good') : t('page-structure-checker.missing')}
-                    {!result.canonicalUrl && <span className="ml-2 text-yellow-300 font-bold">⚠️ {t('page-structure-checker.recommended')}</span>}
+                    Canonical URL: {result.canonicalUrl ? messages.good : messages.missing}
+                    {!result.canonicalUrl && <span className="ml-2 text-yellow-300 font-bold">⚠️ {messages.recommended}</span>}
                   </span>
                 </div>
               </div>
@@ -233,144 +263,105 @@ export default function PageStructureCheckerClient({ lang }: { lang: string }) {
               <div className={!result.title ? 'relative border-l-4 border-red-500 pl-3' : ''}>
                 <h3 className="font-semibold text-lg flex items-center">
                   Title
-                  {!result.title && <span className="ml-2 text-sm text-red-300 font-bold">{t('page-structure-checker.important-for-seo')}</span>}
+                  {!result.title && <span className="ml-2 text-sm text-red-300 font-bold">{messages.importantForSeo}</span>}
                 </h3>
                 {result.title ? (
                   <p className="text-green-300 break-words">{result.title}</p>
                 ) : (
-                  <p className="text-red-400">{t('no-title')}</p>
+                  <p className="text-red-400">{messages.noTitle}</p>
                 )}
               </div>
 
               <div className={!result.description ? 'relative border-l-4 border-red-500 pl-3' : ''}>
                 <h3 className="font-semibold text-lg flex items-center">
                   Description
-                  {!result.description && <span className="ml-2 text-sm text-red-300 font-bold">{t('page-structure-checker.important-for-seo')}</span>}
+                  {!result.description && <span className="ml-2 text-sm text-red-300 font-bold">{messages.importantForSeo}</span>}
                 </h3>
                 {result.description ? (
                   <p className="text-green-300 break-words">{result.description}</p>
                 ) : (
-                  <p className="text-red-400">{t('no-description')}</p>
+                  <p className="text-red-400">{messages.missing}</p>
                 )}
               </div>
-              
+
               <div className={!result.canonicalUrl ? 'relative border-l-4 border-yellow-500 pl-3' : ''}>
                 <h3 className="font-semibold text-lg flex items-center">
                   Canonical URL
-                  {!result.canonicalUrl && <span className="ml-2 text-sm text-yellow-300 font-bold">{t('page-structure-checker.recommended')}</span>}
+                  {!result.canonicalUrl && <span className="ml-2 text-sm text-yellow-300 font-bold">{messages.recommended}</span>}
                 </h3>
                 {result.canonicalUrl ? (
                   <p className="text-green-300 break-words">{result.canonicalUrl}</p>
                 ) : (
-                  <p className="text-yellow-400">{t('no-canonical')}</p>
+                  <p className="text-yellow-300">{messages.missing}</p>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Heading Structure セクション - 最後に表示 */}
+          {/* Headings Structure セクション - 3番目に表示 */}
           <div className="bg-gray-800 rounded-lg p-4">
             <h2 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">
-              {t('page-structure-checker.heading-structure')}
+              {messages.headingsStructure}
             </h2>
             
-            {/* 見出し構造の分析結果 */}
-            <div className="mb-6 p-3 bg-gray-700 rounded-lg">
-              <h3 className="font-semibold text-lg mb-3">{t('page-structure-checker.analysis')}</h3>
-              <div className="space-y-2">
-                {result.headings && result.headings.length > 0 ? (
-                  <>
-                    <div className="flex items-center">
-                      <span className={`inline-block w-4 h-4 rounded-full mr-2 ${result.headings.some(h => h.level === 1) ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                      <span>
-                        h1: {result.headings.some(h => h.level === 1) ? t('page-structure-checker.present') : t('page-structure-checker.missing')}
-                        {!result.headings.some(h => h.level === 1) && <span className="ml-2 text-red-300 font-bold">🚫 {t('page-structure-checker.no-h1')}</span>}
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className={`inline-block w-4 h-4 rounded-full mr-2 ${result.headings.filter(h => h.level === 1).length <= 1 ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                      <span>
-                        h1 {t('page-structure-checker.count')}: {result.headings.filter(h => h.level === 1).length}
-                        {result.headings.filter(h => h.level === 1).length > 1 && <span className="ml-2 text-red-300 font-bold">🚫 {t('page-structure-checker.multiple-h1')}</span>}
-                      </span>
-                    </div>
-                    
-                    {/* 見出し階層の問題がある場合、1行のみ表示 */}
-                    {[2, 3, 4, 5, 6].some(level => {
-                      const hasCurrentLevel = result.headings.some(h => h.level === level);
-                      const hasPreviousLevel = result.headings.some(h => h.level === level - 1);
-                      return hasCurrentLevel && !hasPreviousLevel;
-                    }) && (
-                      <div className="flex items-center">
-                        <span className="inline-block w-4 h-4 rounded-full bg-yellow-500 mr-2"></span>
-                        <span>
-                          {t('page-structure-checker.hierarchy-issue-message')} <span className="text-yellow-300 font-bold">⚠️</span>
-                        </span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="flex items-center">
-                    <span className="inline-block w-4 h-4 rounded-full bg-red-500 mr-2"></span>
-                    <span>
-                      {t('page-structure-checker.no-headings')}
-                      <span className="ml-2 text-red-300 font-bold">🚫 {t('page-structure-checker.issue-found')}</span>
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
+            <p className="text-gray-300 mb-4">
+              {messages.headingsExplanation}
+            </p>
             
-            {/* 見出し構造の詳細 - 階層構造の問題が分かるように表示 */}
-            <div className={(!result.headings || result.headings.length === 0 || 
-                             !result.headings.some(h => h.level === 1) || 
-                             result.headings.filter(h => h.level === 1).length > 1) 
-                             ? 'relative border-l-4 border-red-500 pl-3' : ''}>
-              {result.headings && result.headings.length > 0 ? (
-                <div className="space-y-3">
-                  {result.headings.map((heading, index) => {
-                    // 現在の見出しレベルと前のレベルの差を計算
-                    const previousHeading = index > 0 ? result.headings[index - 1] : null;
-                    const levelSkip = previousHeading ? heading.level - previousHeading.level > 1 : false;
-                    
-                    // 階層の問題 (h1→h3 のようにスキップがある場合)
-                    const hasHierarchyIssue = levelSkip || 
-                      (heading.level > 1 && !result.headings.some(h => h.level === heading.level - 1));
-                    
-                    return (
-                      <div 
-                        key={index} 
-                        className={`flex items-start ${heading.level === 1 && result.headings.filter(h => h.level === 1).length > 1 ? 'bg-red-900/30 p-2 rounded' : ''}`}
-                        style={{ marginLeft: `${(heading.level - 1) * 20}px` }}
-                      >
-                        <span className={`bg-gray-700 text-gray-300 px-2 py-1 rounded-md mr-3 font-mono 
-                                        ${heading.level === 1 && result.headings.filter(h => h.level === 1).length > 1 ? 'border border-red-500' : ''}
-                                        ${hasHierarchyIssue ? 'border border-yellow-500' : ''}`}>
-                          {heading.tag}
-                          {(heading.level === 1 && result.headings.filter(h => h.level === 1).length > 1) && 
-                            <span className="text-red-300 ml-1">🚫</span>
-                          }
-                          {hasHierarchyIssue && 
-                            <span className="text-yellow-300 ml-1">⚠️</span>
-                          }
-                        </span>
-                        <span className="break-words">{heading.text}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div>
-                  <h3 className="font-semibold text-lg flex items-center">
-                    {t('page-structure-checker.headings')}
-                    <span className="ml-2 text-sm text-red-300 font-bold">{t('page-structure-checker.important-for-seo')}</span>
-                  </h3>
-                  <p className="text-red-400">
-                    {t('page-structure-checker.no-headings')}
+            {result.headings && result.headings.length > 0 ? (
+              <div className="space-y-4">
+                {/* 見出しレベルの説明 */}
+                <div className="p-3 bg-gray-700 rounded-lg mb-4">
+                  <h3 className="font-semibold text-lg mb-3">{messages.headingsLevelsTitle}</h3>
+                  <p className="text-gray-300 mb-2">
+                    {messages.contentStructureTitle}
+                  </p>
+                  <p className="text-gray-300">
+                    {messages.contentStructureExplanation}
                   </p>
                 </div>
-              )}
-            </div>
+                
+                {/* 見出し一覧 */}
+                <div className="p-3 bg-gray-700 rounded-lg">
+                  <h3 className="font-semibold text-lg mb-3">{messages.viewHeadings}</h3>
+                  <ul className="space-y-2">
+                    {result.headings.map((heading, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className={`rounded-md px-2 text-xs font-bold mr-2 mt-1 ${
+                          heading.level === 1 ? 'bg-purple-600 text-white' :
+                          heading.level === 2 ? 'bg-blue-600 text-white' :
+                          heading.level === 3 ? 'bg-green-600 text-white' :
+                          heading.level === 4 ? 'bg-yellow-600 text-white' :
+                          heading.level === 5 ? 'bg-orange-600 text-white' :
+                          'bg-red-600 text-white'
+                        }`}>
+                          {heading.tag}
+                        </span>
+                        <span 
+                          className={
+                            (heading.level === 1 && !result.headings.some(h => h.level === 2)) || 
+                            (heading.level === 2 && index < result.headings.length - 1 && result.headings[index + 1].level > 3) ?
+                            'text-yellow-300' : 'text-white'
+                          }
+                        >
+                          {heading.text}
+                          {(heading.level === 1 && !result.headings.some(h => h.level === 2)) && 
+                            <span className="text-yellow-300 text-xs block">⚠️ {messages.headingIssue}</span>
+                          }
+                          {(heading.level === 2 && index < result.headings.length - 1 && result.headings[index + 1].level > 3) && 
+                            <span className="text-yellow-300 text-xs block">⚠️ {messages.headingIssue}</span>
+                          }
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <div className="p-3 bg-gray-700 rounded-lg">
+                <p className="text-yellow-300">{messages.headingsMissing}</p>
+              </div>
+            )}
           </div>
         </div>
       )}

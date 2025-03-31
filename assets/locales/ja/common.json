@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "logoAlt": "Boring Tools ロゴ"
+  },
+  "header": {
+    "home": "ホーム",
+    "tools": "ツール",
+    "about": "サイトについて",
+    "contact": "お問い合わせ"
+  },
+  "menu": "メニュー",
+  "footer": {
+    "copyright": "© 2024 Boring Tools. All rights reserved.",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー"
+  },
+  "error": {
+    "general": "エラーが発生しました",
+    "notFound": "ページが見つかりません",
+    "serverError": "サーバーエラー"
+  }
+} 

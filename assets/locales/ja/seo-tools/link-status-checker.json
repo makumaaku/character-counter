@@ -1,0 +1,43 @@
+{
+    "meta": {
+      "title": "リンクステータスチェッカー - ボーリングツール",
+      "description": "リンクステータスチェッカーは、指定されたURLが有効かどうかを確認するためのツールです。",
+      "keywords": "リンクステータスチェッカー, URLチェック, リンクチェック"
+    },
+    "title": "リンクステータスチェッカー",
+    "description": "指定されたURLが有効かどうかを確認",
+    "form": {
+      "url": {
+        "label": "URL",
+        "placeholder": "ウェブサイトのURLを入力"
+      },
+      "button": {
+        "check": "チェック",
+        "checking": "チェック中..."
+      }
+    },
+    "results": {
+      "title": "リンク",
+      "status": "ステータス",
+      "processing_url": "URLを解析中...",
+      "checking_links": "リンクをチェック中...",
+      "total_links_checked": "合計 {{count}} リンクをチェックしました"
+    },
+    "errors": {
+      "general": "エラーが発生しました",
+      "timeout": "リクエストがタイムアウトしました。サーバーの応答に時間がかかりすぎています。",
+      "network": "ネットワークエラーが発生しました。接続を確認して再試行してください。",
+      "invalid_url": "無効なURL形式です。有効なURLを入力してください。"
+    },
+    "placeholder": "URLを入力してください",
+    "emptyState": "URLを入力するとステータスが表示されます",
+    "sidebar": {
+      "function": "機能",
+      "usecase": "活用事例",
+      "faq": "よくある質問",
+      "aboutUs": "私たちについて",
+      "contact": "お問い合わせ",
+      "privacy": "プライバシーポリシー",
+      "plan": "料金プラン"
+    }
+  }

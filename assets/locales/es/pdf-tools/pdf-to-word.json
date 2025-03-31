@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Convertidor de PDF a Word - Convierte PDFs a documentos editables",
+    "description": "Herramienta gratuita en línea para convertir documentos PDF a archivos Word editables. Extrae texto y formato de PDFs para una fácil edición. Sin necesidad de instalación.",
+    "keywords": "pdf a word, pdf a docx, convertir pdf a word, convertidor pdf, convertidor pdf en línea, convertidor pdf gratis"
+  },
+  "title": "Convertidor de PDF a Word",
+  "description": "Convierte documentos PDF a archivos Word editables",
+  "form": {
+    "upload": {
+      "label": "Subir archivo PDF",
+      "button": "Arrastra y suelta archivo PDF aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivo PDF aquí o haz clic para explorar",
+      "dragging": "Arrastra y suelta archivo PDF aquí o haz clic para explorar",
+      "instruction": "Arrastra y suelta archivo PDF aquí, o haz clic para seleccionar",
+      "maxSize": "Tamaño máximo de archivo: 20MB"
+    },
+    "format": {
+      "label": "Formato de salida",
+      "docx": "DOCX",
+      "doc": "DOC"
+    },
+    "convert": "Convertir a Word"
+  },
+  "result": {
+    "download": "Descargar documento Word"
+  },
+  "status": {
+    "processing": "Procesando...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Por favor, sube un archivo PDF",
+    "fileSize": "El tamaño del archivo excede el límite de 20MB"
+  },
+  "loading": "Cargando bibliotecas necesarias..."
+}

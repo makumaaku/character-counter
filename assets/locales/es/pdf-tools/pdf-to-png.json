@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Convertidor de PDF a PNG - Convierte PDF a imágenes PNG transparentes",
+    "description": "Herramienta gratuita en línea para convertir documentos PDF a imágenes PNG con soporte de transparencia. Convierte cada página a una imagen PNG separada de alta calidad. Sin necesidad de instalación.",
+    "keywords": "pdf a png, pdf a imagen, convertir pdf a png, convertidor pdf, png transparente, convertidor pdf en línea, convertidor pdf gratis"
+  },
+  "title": "Convertidor de PDF a PNG",
+  "description": "Convierte páginas PDF a imágenes PNG de alta calidad con soporte de transparencia",
+  "form": {
+    "upload": {
+      "label": "Subir archivo PDF",
+      "button": "Arrastra y suelta un archivo PDF aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar"
+    },
+    "quality": {
+      "label": "Calidad de imagen",
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta"
+    },
+    "convert": "Convertir a PNG"
+  },
+  "result": {
+    "downloadAll": "Descargar todo",
+    "download": "Descargar"
+  },
+  "status": {
+    "processing": "Procesando...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Por favor, sube un archivo PDF",
+    "fileSize": "El tamaño del archivo excede el límite de 20MB"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Características y uso",
+  "keyFeatures": {
+    "title": "Características principales",
+    "charCount": {
+      "title": "① Contador de caracteres",
+      "description": "Cuenta el número de caracteres en el cuadro de entrada."
+    },
+    "inputBox": {
+      "title": "② Cuadro de entrada",
+      "description": "Ingresa o pega el texto que deseas analizar en este cuadro."
+    },
+    "lineCount": {
+      "title": "③ Contador de líneas",
+      "description": "Cuenta el número de saltos de línea en tu texto."
+    },
+    "wordCount": {
+      "title": "④ Contador de palabras",
+      "description": "Cuenta palabras en texto separado por espacios, perfecto para inglés y otros idiomas delimitados por espacios."
+    },
+    "byteCount": {
+      "title": "⑤ Contador de bytes (soporte multibyte)",
+      "description": "Cuenta el número de bytes, con soporte completo para caracteres multibyte como texto en japonés."
+    },
+    "copyButton": {
+      "title": "⑥ Botón de copiar",
+      "description": "Copia el texto actual en el cuadro de entrada con un solo clic. Perfecto para transferir rápidamente texto editado."
+    },
+    "stringSearch": {
+      "title": "⑦ Búsqueda de cadenas y contador de ocurrencias",
+      "description": "Cuenta cuántas veces aparece una cadena específica en tu texto. Útil para análisis de densidad de palabras clave SEO."
+    }
+  },
+  "howToUse": {
+    "title": "Cómo usar - Pasos simples",
+    "step1": {
+      "title": "1. Ingresar texto",
+      "description": "Copia y pega texto en el área de entrada o escribe y edita directamente.<br />Nota: Simplemente escribir contará instantáneamente el número de caracteres, líneas, palabras (solo inglés) y bytes (compatible con multibyte).",
+      "text": "Copia y pega texto en el área de entrada o escribe y edita directamente."
+    },
+    "step2": {
+      "title": "2. Resultados en tiempo real",
+      "description": "A medida que escribes, varios conteos se muestran en tiempo real, permitiéndote verificarlos instantáneamente.",
+      "text": "A medida que escribes, varios conteos se muestran en tiempo real, permitiéndote verificarlos instantáneamente."
+    },
+    "step3": {
+      "title": "3. Utilizar resultados",
+      "description": "Los resultados pueden copiarse usando el botón de copiar.<br />Utiliza los números mostrados como referencia para publicaciones en redes sociales, textos publicitarios, trabajos académicos y más.",
+      "text": "Los resultados pueden copiarse usando el botón de copiar. Utiliza los números mostrados como referencia para publicaciones en redes sociales, textos publicitarios, trabajos académicos y más."
+    }
+  },
+  "meta": {
+    "title": "Características y uso - Herramienta de contador de caracteres | Contador de texto en línea gratis",
+    "description": "Aprende a usar nuestra herramienta gratuita de contador de caracteres. Cuenta caracteres, palabras, líneas instantáneamente. Perfecto para publicaciones en redes sociales, redacción de contenido y optimización SEO.",
+    "keywords": "características del contador de caracteres, uso del contador de texto, herramienta de conteo de palabras, tutorial de conteo de caracteres, contador de texto en línea",
+    "howTo": {
+      "title": "Cómo usar la herramienta de contador de caracteres"
+    }
+  }
+}

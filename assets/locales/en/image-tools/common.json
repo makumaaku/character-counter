@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Image Converters - Free Online Image Conversion Tools",
+    "description": "Convert images between different formats with our free online tools. Simple, fast, and secure image conversion tools for all your needs.",
+    "keywords": "image converter, image tools, jpg to png, png to jpg, image format converter, free image converter"
+  },
+  "title": "Image Converters",
+  "description": "Free online tools to convert images between different formats",
+  "tools": {
+    "jpgToPng": {
+      "title": "JPG to PNG Converter",
+      "description": "Convert JPG images to PNG format with transparency support"
+    },
+    "pngToJpg": {
+      "title": "PNG to JPG Converter",
+      "description": "Convert PNG images to JPG format easily"
+    },
+    "heicToJpg": {
+      "title": "HEIC to JPG Converter",
+      "description": "Convert HEIC images to JPG format with preview"
+    },
+    "heicToPng": {
+      "title": "HEIC to PNG Converter",
+      "description": "Convert HEIC files to PNG format with preview"
+    },
+    "heicToWebp": {
+      "title": "HEIC to WebP Converter",
+      "description": "Convert HEIC files to WebP format with preview"
+    },
+    "jpgToWebp": {
+      "title": "JPG to WebP Converter",
+      "description": "Convert JPG images to WebP format for better web performance"
+    },
+    "pngToWebp": {
+      "title": "PNG to WebP Converter",
+      "description": "Convert PNG images to WebP format for better web performance"
+    },
+    "svgToJpg": {
+      "title": "SVG to JPG Converter",
+      "description": "Convert SVG vector images to JPG format"
+    },
+    "svgToPng": {
+      "title": "SVG to PNG Converter",
+      "description": "Convert SVG vector images to PNG format with transparency"
+    },
+    "svgToWebp": {
+      "title": "SVG to WebP Converter",
+      "description": "Convert SVG vector images to WebP format optimized for web display"
+    }
+  }
+}

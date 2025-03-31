@@ -6,40 +6,12 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import Button from '@/components/ui/button'
+import { PdfToolsPdfToJpgMessages } from '@/lib/i18n/types'
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-      }
-      quality: {
-        label: string
-        low: string
-        medium: string
-        high: string
-      }
-      convert: string
-    }
-    result: {
-      downloadAll: string
-      download: string
-    }
-    status: {
-      processing: string
-      noFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-    }
-  }
+  messages: PdfToolsPdfToJpgMessages
 }
 
 type ImageQuality = 'low' | 'medium' | 'high'
@@ -48,7 +20,7 @@ type ConvertedImage = {
   pageNumber: number
 }
 
-export default function PdfToJpgClient({ translations }: Props) {
+export default function PdfToJpgClient({ messages }: Props) {
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [numPages, setNumPages] = useState<number | null>(null)
   const [quality, setQuality] = useState<ImageQuality>('medium')
@@ -104,18 +76,18 @@ export default function PdfToJpgClient({ translations }: Props) {
     
     // Check if file is PDF
     if (file.type !== 'application/pdf') {
-      setError(translations.error.fileType)
+      setError(messages.error.fileType)
       return
     }
     
     // Check file size (max 20MB)
     if (file.size > 20 * 1024 * 1024) {
-      setError(translations.error.fileSize)
+      setError(messages.error.fileSize)
       return
     }
     
     setPdfFile(file)
-  }, [translations.error.fileType, translations.error.fileSize])
+  }, [messages.error.fileType, messages.error.fileSize])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -212,8 +184,8 @@ export default function PdfToJpgClient({ translations }: Props) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">{translations.title}</h1>
-        <p className="text-gray-300">{translations.description}</p>
+        <h1 className="text-3xl font-bold mb-2">{messages.title}</h1>
+        <p className="text-gray-300">{messages.description}</p>
       </div>
 
       {!isPdfJsReady && !error ? (
@@ -227,7 +199,7 @@ export default function PdfToJpgClient({ translations }: Props) {
         <div className="bg-gray-700 rounded-lg p-6 mb-8">
           <div className="mb-6">
             <label className="block text-gray-300 mb-2">
-              {translations.form.upload.label}
+              {messages.form.upload.label}
             </label>
             <div
               {...getRootProps()}
@@ -238,8 +210,8 @@ export default function PdfToJpgClient({ translations }: Props) {
               <input {...getInputProps()} />
               <p className="text-gray-300 mb-2">
                 {isDragActive
-                  ? translations.form.upload.dragDrop
-                  : translations.form.upload.button}
+                  ? messages.form.upload.dragDrop
+                  : messages.form.upload.button}
               </p>
               {pdfFile && (
                 <p className="text-green-400 mt-2">
@@ -253,7 +225,7 @@ export default function PdfToJpgClient({ translations }: Props) {
           {pdfFile && (
             <div className="mb-6">
               <label className="block text-gray-300 mb-2">
-                {translations.form.quality.label}
+                {messages.form.quality.label}
               </label>
               <div className="flex space-x-4">
                 <Button
@@ -265,7 +237,7 @@ export default function PdfToJpgClient({ translations }: Props) {
                       : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                   }`}
                 >
-                  {translations.form.quality.low}
+                  {messages.form.quality.low}
                 </Button>
                 <Button
                   type="button"
@@ -276,7 +248,7 @@ export default function PdfToJpgClient({ translations }: Props) {
                       : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                   }`}
                 >
-                  {translations.form.quality.medium}
+                  {messages.form.quality.medium}
                 </Button>
                 <Button
                   type="button"
@@ -287,7 +259,7 @@ export default function PdfToJpgClient({ translations }: Props) {
                       : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                   }`}
                 >
-                  {translations.form.quality.high}
+                  {messages.form.quality.high}
                 </Button>
               </div>
             </div>
@@ -300,7 +272,7 @@ export default function PdfToJpgClient({ translations }: Props) {
               disabled={isConverting}
               variant="purple"
             >
-              {isConverting ? translations.status.processing : translations.form.convert}
+              {isConverting ? messages.status.processing : messages.form.convert}
             </Button>
           )}
         </div>
@@ -336,7 +308,7 @@ export default function PdfToJpgClient({ translations }: Props) {
               onClick={downloadAllImages}
               variant="purple"
             >
-              {translations.result.downloadAll}
+              {messages.result.downloadAll}
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -358,7 +330,7 @@ export default function PdfToJpgClient({ translations }: Props) {
                     onClick={() => downloadImage(image.dataUrl, image.pageNumber)}
                     className="w-full bg-purple-600 hover:bg-purple-700 text-white py-1 px-3 rounded text-sm"
                   >
-                    {translations.result.download}
+                    {messages.result.download}
                   </Button>
                 </div>
               </div>

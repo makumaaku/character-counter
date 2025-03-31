@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "文字生成ツール - さまざまな種類のテキストを作成",
+    "description": "パスワード、名前、文章など、さまざまな種類のテキストを生成するツールコレクション。",
+    "keywords": "文字生成,テキスト生成,パスワード生成,名前生成,文章生成"
+  },
+  "common": {
+    "copyButton": "コピー",
+    "copied": "コピーしました！",
+    "generateButton": "生成",
+    "downloadButton": "ダウンロード",
+    "resetButton": "リセット",
+    "settings": "設定",
+    "preview": "プレビュー",
+    "result": "結果",
+    "length": "長さ",
+    "options": "オプション",
+    "customize": "カスタマイズ"
+  },
+  "title": "単語生成ツール",
+  "description": "さまざまな種類の単語やテキストを生成するツールコレクション",
+  "tools": {
+    "wordGenerator": {
+      "title": "単語ジェネレーター",
+      "description": "お好みに合わせてランダムな単語を生成"
+    },
+    "wordCardGenerator": {
+      "title": "単語カードジェネレーター",
+      "description": "単語とその定義でフラッシュカードを作成"
+    },
+    "sentenceGenerator": {
+      "title": "文章ジェネレーター",
+      "description": "様々な目的に応じてランダムな文章を生成"
+    },
+    "nameGenerator": {
+      "title": "名前ジェネレーター",
+      "description": "キャラクターやビジネスのためのランダムな名前を生成"
+    },
+    "passwordGenerator": {
+      "title": "パスワードジェネレーター",
+      "description": "安全でランダムなパスワードを作成"
+    },
+    "storyGenerator": {
+      "title": "ストーリージェネレーター",
+      "description": "ランダムなストーリーのプロットやシナリオを生成"
+    },
+    "japaneseKanjiGenerator": {
+      "title": "漢字ジェネレーター",
+      "description": "ランダムな漢字を生成"
+    }
+  }
+} 

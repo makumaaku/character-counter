@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Herramientas de generación de palabras - Crea varios tipos de texto",
+    "description": "Colección de herramientas para generar varios tipos de texto incluyendo contraseñas, nombres, frases y más.",
+    "keywords": "generador de palabras,generador de texto,generador de contraseñas,generador de nombres,generador de frases"
+  },
+  "common": {
+    "copyButton": "Copiar",
+    "copied": "¡Copiado!",
+    "generateButton": "Generar",
+    "downloadButton": "Descargar",
+    "resetButton": "Reiniciar",
+    "settings": "Configuración",
+    "preview": "Vista previa",
+    "result": "Resultado",
+    "length": "Longitud",
+    "options": "Opciones",
+    "customize": "Personalizar"
+  },
+  "title": "Herramientas de generación de palabras",
+  "description": "Crea varios tipos de palabras y texto con nuestra colección de herramientas de generación",
+  "tools": {
+    "wordGenerator": {
+      "title": "Generador de palabras",
+      "description": "Genera palabras aleatorias basadas en tus preferencias"
+    },
+    "wordCardGenerator": {
+      "title": "Generador de tarjetas de palabras",
+      "description": "Crea tarjetas con palabras y sus definiciones"
+    },
+    "sentenceGenerator": {
+      "title": "Generador de frases",
+      "description": "Genera frases aleatorias para varios propósitos"
+    },
+    "nameGenerator": {
+      "title": "Generador de nombres",
+      "description": "Genera nombres aleatorios para personajes o negocios"
+    },
+    "passwordGenerator": {
+      "title": "Generador de contraseñas",
+      "description": "Crea contraseñas seguras y aleatorias"
+    },
+    "storyGenerator": {
+      "title": "Generador de historias",
+      "description": "Genera tramas e escenarios de historias aleatorias"
+    },
+    "japaneseKanjiGenerator": {
+      "title": "Generador de Kanji japonés",
+      "description": "Genera caracteres Kanji japoneses aleatorios"
+    }
+  }
+} 

@@ -1,13 +1,24 @@
-import { translate } from '@/lib/i18n/server'
+import { translate, getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
 import PdfToEpubClient from './components/PdfToEpubClient'
+import { Language, PdfToolsPdfToEpubMessages } from '@/lib/i18n/types'
 
-export default async function PdfToEpub({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function PdfToEpub({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-epub');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     uploadLabel,
     uploadButton,
     dragDropText,
@@ -20,26 +31,37 @@ export default async function PdfToEpub({ params }: { params: Promise<{ lang: st
     noFileText,
     fileTypeError,
     fileSizeError,
-    loadingText
+    loadingText,
+    conversionCompleteText
   ] = await Promise.all([
-    translate(lang, 'pdfToEpub.title'),
-    translate(lang, 'pdfToEpub.description'),
-    translate(lang, 'pdfToEpub.form.upload.label'),
-    translate(lang, 'pdfToEpub.form.upload.button'),
-    translate(lang, 'pdfToEpub.form.upload.dragDrop'),
-    translate(lang, 'pdfToEpub.form.upload.dragging'),
-    translate(lang, 'pdfToEpub.form.upload.instruction'),
-    translate(lang, 'pdfToEpub.form.upload.maxSize'),
-    translate(lang, 'pdfToEpub.form.convert'),
-    translate(lang, 'pdfToEpub.result.download'),
-    translate(lang, 'pdfToEpub.status.processing'),
-    translate(lang, 'pdfToEpub.status.noFile'),
-    translate(lang, 'pdfToEpub.error.fileType'),
-    translate(lang, 'pdfToEpub.error.fileSize'),
-    translate(lang, 'pdfToEpub.status.loading')
-  ])
+    translate(lang, 'pdfTools.pdfToEpub.title'),
+    translate(lang, 'pdfTools.pdfToEpub.description'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.title'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.description'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.keywords'),
+    translate(lang, 'pdfTools.pdfToEpub.form.upload.label'),
+    translate(lang, 'pdfTools.pdfToEpub.form.upload.button'),
+    translate(lang, 'pdfTools.pdfToEpub.form.upload.dragDrop'),
+    translate(lang, 'pdfTools.pdfToEpub.form.upload.dragging'),
+    translate(lang, 'pdfTools.pdfToEpub.form.upload.instruction'),
+    translate(lang, 'pdfTools.pdfToEpub.form.upload.maxSize'),
+    translate(lang, 'pdfTools.pdfToEpub.form.convert'),
+    translate(lang, 'pdfTools.pdfToEpub.result.download'),
+    translate(lang, 'pdfTools.pdfToEpub.status.processing'),
+    translate(lang, 'pdfTools.pdfToEpub.status.noFile'),
+    translate(lang, 'pdfTools.pdfToEpub.error.fileType'),
+    translate(lang, 'pdfTools.pdfToEpub.error.fileSize'),
+    translate(lang, 'pdfTools.pdfToEpub.status.loading'),
+    translate(lang, 'pdfTools.pdfToEpub.result.conversionComplete')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsPdfToEpubMessages = {
+    meta: {
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
+    },
     title,
     description,
     form: {
@@ -54,18 +76,19 @@ export default async function PdfToEpub({ params }: { params: Promise<{ lang: st
       convert: convertButton
     },
     result: {
-      download: downloadButton
+      download: downloadButton,
+      conversionComplete: conversionCompleteText
     },
     status: {
       processing: processingText,
-      noFile: noFileText
+      noFile: noFileText,
+      loading: loadingText
     },
     error: {
       fileType: fileTypeError,
       fileSize: fileSizeError
-    },
-    loading: loadingText
-  }
+    }
+  };
 
-  return <PdfToEpubClient translations={translations} />
+  return <PdfToEpubClient messages={messages} />
 } 

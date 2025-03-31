@@ -1,13 +1,17 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import JpgToWebpClient from './components/JpgToWebpClient'
+import { Language, ImageToolsJpgToWebpMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function JpgToWebp({ params }: Props) {
-  const { lang } = await params
-
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/jpg-to-webp');
+  
   // 翻訳を取得
   const [
     title,
@@ -21,29 +25,31 @@ export default async function JpgToWebp({ params }: Props) {
     processingText,
     noFileText,
     fileTypeError,
-    fileSizeError
+    fileSizeError,
+    uploadLimit
   ] = await Promise.all([
-    translate(lang, 'jpgToWebp.title'),
-    translate(lang, 'jpgToWebp.description'),
-    translate(lang, 'jpgToWebp.form.upload.label'),
-    translate(lang, 'jpgToWebp.form.upload.button'),
-    translate(lang, 'jpgToWebp.form.upload.dragDrop'),
-    translate(lang, 'jpgToWebp.form.convert'),
-    translate(lang, 'jpgToWebp.result.download'),
-    translate(lang, 'jpgToWebp.result.downloadAll'),
-    translate(lang, 'jpgToWebp.status.processing'),
-    translate(lang, 'jpgToWebp.status.noFile'),
-    translate(lang, 'jpgToWebp.error.fileType'),
-    translate(lang, 'jpgToWebp.error.fileSize')
-  ])
+    translate(lang, 'imageTools.jpgToWebp.title'),
+    translate(lang, 'imageTools.jpgToWebp.description'),
+    translate(lang, 'imageTools.jpgToWebp.form.upload.label'),
+    translate(lang, 'imageTools.jpgToWebp.form.upload.button'),
+    translate(lang, 'imageTools.jpgToWebp.form.upload.dragDrop'),
+    translate(lang, 'imageTools.jpgToWebp.form.convert'),
+    translate(lang, 'imageTools.jpgToWebp.result.download'),
+    translate(lang, 'imageTools.jpgToWebp.result.downloadAll'),
+    translate(lang, 'imageTools.jpgToWebp.status.processing'),
+    translate(lang, 'imageTools.jpgToWebp.status.noFile'),
+    translate(lang, 'imageTools.jpgToWebp.error.fileType'),
+    translate(lang, 'imageTools.jpgToWebp.error.fileSize'),
+    translate(lang, 'imageTools.jpgToWebp.upload.limit')
+  ]);
 
-  // 最大ファイルサイズのメッセージ
-  // 翻訳キーがない場合はデフォルト値を使用する
-  const uploadLimit = translate(lang, 'jpgToWebp.upload.limit') === 'jpgToWebp.upload.limit'
-    ? 'Maximum file size: 10MB per file'
-    : translate(lang, 'jpgToWebp.upload.limit');
-
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsJpgToWebpMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     upload: {
@@ -69,7 +75,7 @@ export default async function JpgToWebp({ params }: Props) {
       fileType: fileTypeError,
       fileSize: fileSizeError
     }
-  }
+  };
 
-  return <JpgToWebpClient translations={translations} />
+  return <JpgToWebpClient translations={messages} />
 } 

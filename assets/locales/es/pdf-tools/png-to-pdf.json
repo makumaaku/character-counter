@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "Convertidor de PNG a PDF - Convierte imágenes a PDF en línea",
+    "description": "Herramienta gratuita en línea para convertir imágenes PNG a documentos PDF. Combina múltiples imágenes en un solo PDF con ajustes personalizables. Sin necesidad de instalación.",
+    "keywords": "png a pdf, imagen a pdf, convertir png a pdf, convertidor de imágenes, convertidor de imágenes en línea, convertidor de imágenes gratis"
+  },
+  "title": "Convertidor de PNG a PDF",
+  "description": "Convierte imágenes PNG a documentos PDF con ajustes personalizables",
+  "form": {
+    "upload": {
+      "label": "Subir archivos PNG",
+      "button": "Arrastra y suelta archivos PNG aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivos aquí o haz clic para explorar"
+    },
+    "convert": "Convertir a PDF"
+  },
+  "result": {
+    "download": "Descargar PDF"
+  },
+  "status": {
+    "processing": "Procesando...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Por favor, sube solo archivos PNG",
+    "fileSize": "El tamaño total de archivos excede el límite de 20MB"
+  }
+}

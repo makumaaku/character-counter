@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { saveAs } from 'file-saver'
 import Button from '@/components/ui/button';
+import { PdfToolsJpgToPdfMessages } from '@/lib/i18n/types'
 
 // Define the PDF-lib global type
 declare global {
@@ -34,40 +35,12 @@ interface PDFImage {
 }
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-      }
-      quality: {
-        label: string
-        low: string
-        medium: string
-        high: string
-      }
-      convert: string
-    }
-    result: {
-      download: string
-    }
-    status: {
-      processing: string
-      noFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-    }
-  }
+  messages: PdfToolsJpgToPdfMessages
 }
 
 type ImageQuality = 'low' | 'medium' | 'high'
 
-export default function JpgToPdfClient({ translations }: Props) {
+export default function JpgToPdfClient({ messages }: Props) {
   const [imageFiles, setImageFiles] = useState<File[]>([])
   const [quality, setQuality] = useState<ImageQuality>('medium')
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
@@ -130,19 +103,19 @@ export default function JpgToPdfClient({ translations }: Props) {
     )
     
     if (validFiles.length !== acceptedFiles.length) {
-      setError(translations.error.fileType)
+      setError(messages.error.fileType)
       return
     }
     
     // Check total file size (max 20MB)
     const totalSize = validFiles.reduce((sum, file) => sum + file.size, 0)
     if (totalSize > 20 * 1024 * 1024) {
-      setError(translations.error.fileSize)
+      setError(messages.error.fileSize)
       return
     }
     
     setImageFiles(validFiles)
-  }, [translations.error.fileType, translations.error.fileSize])
+  }, [messages.error.fileType, messages.error.fileSize])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -271,8 +244,8 @@ export default function JpgToPdfClient({ translations }: Props) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">{translations.title}</h1>
-        <p className="text-gray-300">{translations.description}</p>
+        <h1 className="text-3xl font-bold mb-2">{messages.title}</h1>
+        <p className="text-gray-300">{messages.description}</p>
       </div>
 
       {!isPdfLibReady && !error ? (
@@ -286,7 +259,7 @@ export default function JpgToPdfClient({ translations }: Props) {
         <div className="bg-gray-700 rounded-lg p-6 mb-8">
           <div className="mb-6">
             <label className="block text-gray-300 mb-2">
-              {translations.form.upload.label}
+              {messages.form.upload.label}
             </label>
             <div
               {...getRootProps()}
@@ -297,8 +270,8 @@ export default function JpgToPdfClient({ translations }: Props) {
               <input {...getInputProps()} multiple />
               <p className="text-gray-300 mb-2">
                 {isDragActive
-                  ? translations.form.upload.dragDrop
-                  : translations.form.upload.button}
+                  ? messages.form.upload.dragDrop
+                  : messages.form.upload.button}
               </p>
               {imageFiles.length > 0 && (
                 <p className="text-green-400 mt-2">
@@ -312,7 +285,7 @@ export default function JpgToPdfClient({ translations }: Props) {
           {imageFiles.length > 0 && (
             <div className="mb-6">
               <label className="block text-gray-300 mb-2">
-                {translations.form.quality.label}
+                {messages.form.quality.label}
               </label>
               <div className="flex space-x-4">
                 <Button
@@ -324,7 +297,7 @@ export default function JpgToPdfClient({ translations }: Props) {
                       : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                   }`}
                 >
-                  {translations.form.quality.low}
+                  {messages.form.quality.low}
                 </Button>
                 <Button
                   type="button"
@@ -335,7 +308,7 @@ export default function JpgToPdfClient({ translations }: Props) {
                       : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                   }`}
                 >
-                  {translations.form.quality.medium}
+                  {messages.form.quality.medium}
                 </Button>
                 <Button
                   type="button"
@@ -346,7 +319,7 @@ export default function JpgToPdfClient({ translations }: Props) {
                       : 'bg-gray-600 text-gray-300 hover:bg-gray-500'
                   }`}
                 >
-                  {translations.form.quality.high}
+                  {messages.form.quality.high}
                 </Button>
               </div>
             </div>
@@ -359,7 +332,7 @@ export default function JpgToPdfClient({ translations }: Props) {
               disabled={isConverting}
               className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isConverting ? translations.status.processing : translations.form.convert}
+              {isConverting ? messages.status.processing : messages.form.convert}
             </Button>
           )}
         </div>
@@ -406,7 +379,7 @@ export default function JpgToPdfClient({ translations }: Props) {
               onClick={downloadPdf}
               className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
             >
-              {translations.result.download}
+              {messages.result.download}
             </button>
           </div>
           <div className="bg-gray-700 rounded-lg overflow-hidden">

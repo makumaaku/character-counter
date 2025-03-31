@@ -7,40 +7,10 @@ import JSZip from 'jszip'
 import FileUploadArea from '@/components/FileUploadArea'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-
-type Translations = {
-  title: string
-  description: string
-  form: {
-    upload: {
-      label: string
-      button: string
-      dragDrop: string
-      limitText: string
-    }
-    convert: string
-  }
-  result: {
-    download: string
-    downloadAll: string
-    preview: string
-    selectedFiles: string
-  }
-  status: {
-    processing: string
-    noFile: string
-    success: string
-    browserProcessing: string
-  }
-  error: {
-    fileType: string
-    fileSize: string
-    conversionFailed: string
-  }
-}
+import { ImageToolsSvgToPngMessages } from '@/lib/i18n/types'
 
 type Props = {
-  translations: Translations
+  translations: ImageToolsSvgToPngMessages
 }
 
 type ConvertedFile = {

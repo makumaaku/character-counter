@@ -1,0 +1,31 @@
+{
+    "meta": {
+      "title": "JPGからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "JPG画像をオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "JPGからPNG, JPEGからPNG, 画像変換, 無料変換, オンライン画像ツール"
+    },
+    "title": "JPGからPNGへの変換",
+    "description": "JPG画像を透過対応のPNG形式に変換",
+    "upload": {
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "form": {
+      "upload": {
+        "label": "JPG画像をアップロード",
+        "button": "ファイルを選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "PNGに変換"
+    },
+    "result": {
+      "download": "PNGをダウンロード"
+    },
+    "status": {
+      "processing": "変換中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "JPG/JPEGファイルのみ対応しています",
+      "fileSize": "ファイルサイズは10MB未満である必要があります"
+    }
+  }

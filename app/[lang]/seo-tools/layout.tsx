@@ -1,8 +1,9 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import SeoToolsLayout from './components/SeoToolsLayout';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -43,23 +44,69 @@ type JsonLdType = {
   }[];
 }
 
+// レイアウトメッセージの型定義
+type LayoutMessages = {
+  title: string;
+  pageSpeedChecker: {
+    title: string;
+  };
+  linkStatusChecker: {
+    title: string;
+  };
+  seoCannibalizationChecker: {
+    title: string;
+  };
+  seoVolumeGuess: {
+    title: string;
+  };
+  pageStructureChecker: {
+    title: string;
+  };
+  metaCraftForLlm: {
+    title: string;
+  };
+};
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // Load SEO tools translations
+  await loadToolMessages(lang as Language, 'seo-tools');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords,
+    pageSpeedCheckerTitle,
+    pageSpeedCheckerDescription,
+    seoCannibalizationCheckerTitle,
+    seoCannibalizationCheckerDescription
+  ] = await Promise.all([
+    translate(lang, 'seoTools.meta.title'),
+    translate(lang, 'seoTools.meta.description'),
+    translate(lang, 'seoTools.meta.keywords'),
+    translate(lang, 'seoTools.tools.pageSpeedChecker.title'),
+    translate(lang, 'seoTools.tools.pageSpeedChecker.description'),
+    translate(lang, 'seoTools.tools.seoCannibalizationChecker.title'),
+    translate(lang, 'seoTools.tools.seoCannibalizationChecker.description')
+  ]);
 
+  // Common metadata
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt
   };
 
+  // JSON-LD data
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('seoTools.meta.title'),
-    "description": t('seoTools.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools`,
     "publisher": {
       "@type": "Organization",
@@ -89,27 +136,28 @@ export async function generateMetadata(
     "hasPart": [
       {
         "@type": "WebApplication",
-        "name": t('pageSpeedChecker.meta.title'),
-        "description": t('pageSpeedChecker.meta.description'),
+        "name": pageSpeedCheckerTitle,
+        "description": pageSpeedCheckerDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-speed-checker`
       },
       {
         "@type": "WebApplication",
-        "name": t('seoCannibalizationChecker.meta.title'),
-        "description": t('seoCannibalizationChecker.meta.description'),
+        "name": seoCannibalizationCheckerTitle,
+        "description": seoCannibalizationCheckerDescription,
         "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/seo-cannibalization-checker`
       }
       // 将来的に他のSEOツールを追加する場合はここに追加
     ]
   };
 
-  const metadata = getCommonMetadata(
+  // Get common metadata
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('seoTools.meta.title'),
-      description: t('seoTools.meta.description'),
-      keywords: t('seoTools.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/seo-tools`,
     }
   );
@@ -122,9 +170,60 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
+export default async function Layout({ children, params }: {
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  
+  // seo-tools用の翻訳をロード
+  await loadToolMessages(lang as Language, 'seo-tools');
+  
+  // サイドバー用の翻訳を取得
+  const [
+    seoToolsTitle,
+    pageSpeedCheckerTitle,
+    linkStatusCheckerTitle,
+    seoCannibalizationCheckerTitle,
+    seoVolumeGuessTitle,
+    pageStructureCheckerTitle,
+    metaCraftForLlmTitle
+  ] = await Promise.all([
+    translate(lang, 'seoTools.title'),
+    translate(lang, 'seoTools.tools.pageSpeedChecker.title'),
+    translate(lang, 'seoTools.tools.linkStatusChecker.title'),
+    translate(lang, 'seoTools.tools.seoCannibalizationChecker.title'),
+    translate(lang, 'seoTools.tools.seoVolumeGuess.title'),
+    translate(lang, 'seoTools.tools.pageStructureChecker.title'),
+    translate(lang, 'seoTools.tools.metaCraftForLlm.title')
+  ]);
+  
+  // SeoToolsLayoutに渡すメッセージオブジェクト
+  // 自動生成された型定義に部分的に沿った構造
+  const layoutMessages: LayoutMessages = {
+    title: seoToolsTitle,
+    pageSpeedChecker: {
+      title: pageSpeedCheckerTitle
+    },
+    linkStatusChecker: {
+      title: linkStatusCheckerTitle
+    },
+    seoCannibalizationChecker: {
+      title: seoCannibalizationCheckerTitle
+    },
+    seoVolumeGuess: {
+      title: seoVolumeGuessTitle
+    },
+    pageStructureChecker: {
+      title: pageStructureCheckerTitle
+    },
+    metaCraftForLlm: {
+      title: metaCraftForLlmTitle
+    }
+  };
+  
   return (
-    <SeoToolsLayout>
+    <SeoToolsLayout messages={layoutMessages}>
       {children}
     </SeoToolsLayout>
   );

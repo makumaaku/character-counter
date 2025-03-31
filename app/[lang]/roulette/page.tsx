@@ -1,112 +1,224 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { getLanguageFromParams } from '@/lib/i18n/server';
 import RouletteClient from './components/RouletteClient';
+import { Language, RouletteMessages } from '@/lib/i18n/types';
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function RoulettePage({ params }: Props) {
-  const { lang } = await params;
+  const lang = await getLanguageFromParams(params);
   
-  const translations = {
-    title: translate(lang, 'roulette.title'),
+  // ツール固有の翻訳をロード
+  await loadToolMessages(lang as Language, 'roulette');
+  
+  // 翻訳キーの配列を定義
+  const [
+    title,
+    spinButton,
+    spinningButton,
+    editButton,
+    saveButton,
+    cancelButton,
+    selectedText,
+    placeholderText,
+    heroTitle,
+    heroDescription,
+    heroDarkMode,
+    howToTitle,
+    inputTitle,
+    inputDescription,
+    inputNote,
+    spinTitle,
+    spinDescription,
+    spinNote,
+    resultTitle,
+    resultDescription,
+    resultNote,
+    testimonialsTitle,
+    teacherName,
+    teacherComment,
+    teamName,
+    teamComment,
+    familyName,
+    familyComment,
+    featuresTitle,
+    easyTitle,
+    easyDescription,
+    fairTitle,
+    fairDescription,
+    visualTitle,
+    visualDescription,
+    freeTitle,
+    freeDescription,
+    faqTitle,
+    whatQuestion,
+    whatAnswer,
+    usageQuestion,
+    usageAnswer,
+    saveQuestion,
+    saveAnswer,
+    limitQuestion,
+    limitAnswer,
+    mobileQuestion,
+    mobileAnswer,
+  ] = await Promise.all([
+    translate(lang, 'roulette.title'),
+    translate(lang, 'roulette.buttons.spin'),
+    translate(lang, 'roulette.buttons.spinning'),
+    translate(lang, 'roulette.buttons.edit'),
+    translate(lang, 'roulette.buttons.save'),
+    translate(lang, 'roulette.buttons.cancel'),
+    translate(lang, 'roulette.result.selected'),
+    translate(lang, 'roulette.result.placeholder'),
+    translate(lang, 'roulette.content.hero.title'),
+    translate(lang, 'roulette.content.hero.description'),
+    translate(lang, 'roulette.content.hero.darkMode'),
+    translate(lang, 'roulette.content.howTo.title'),
+    translate(lang, 'roulette.content.howTo.steps.input.title'),
+    translate(lang, 'roulette.content.howTo.steps.input.description'),
+    translate(lang, 'roulette.content.howTo.steps.input.note'),
+    translate(lang, 'roulette.content.howTo.steps.spin.title'),
+    translate(lang, 'roulette.content.howTo.steps.spin.description'),
+    translate(lang, 'roulette.content.howTo.steps.spin.note'),
+    translate(lang, 'roulette.content.howTo.steps.result.title'),
+    translate(lang, 'roulette.content.howTo.steps.result.description'),
+    translate(lang, 'roulette.content.howTo.steps.result.note'),
+    translate(lang, 'roulette.content.testimonials.title'),
+    translate(lang, 'roulette.content.testimonials.users.teacher.name'),
+    translate(lang, 'roulette.content.testimonials.users.teacher.comment'),
+    translate(lang, 'roulette.content.testimonials.users.team.name'),
+    translate(lang, 'roulette.content.testimonials.users.team.comment'),
+    translate(lang, 'roulette.content.testimonials.users.family.name'),
+    translate(lang, 'roulette.content.testimonials.users.family.comment'),
+    translate(lang, 'roulette.content.features.title'),
+    translate(lang, 'roulette.content.features.items.easy.title'),
+    translate(lang, 'roulette.content.features.items.easy.description'),
+    translate(lang, 'roulette.content.features.items.fair.title'),
+    translate(lang, 'roulette.content.features.items.fair.description'),
+    translate(lang, 'roulette.content.features.items.visual.title'),
+    translate(lang, 'roulette.content.features.items.visual.description'),
+    translate(lang, 'roulette.content.features.items.free.title'),
+    translate(lang, 'roulette.content.features.items.free.description'),
+    translate(lang, 'roulette.content.faq.title'),
+    translate(lang, 'roulette.content.faq.questions.what.question'),
+    translate(lang, 'roulette.content.faq.questions.what.answer'),
+    translate(lang, 'roulette.content.faq.questions.usage.question'),
+    translate(lang, 'roulette.content.faq.questions.usage.answer'),
+    translate(lang, 'roulette.content.faq.questions.save.question'),
+    translate(lang, 'roulette.content.faq.questions.save.answer'),
+    translate(lang, 'roulette.content.faq.questions.limit.question'),
+    translate(lang, 'roulette.content.faq.questions.limit.answer'),
+    translate(lang, 'roulette.content.faq.questions.mobile.question'),
+    translate(lang, 'roulette.content.faq.questions.mobile.answer'),
+  ]);
+
+  // 型付けされた翻訳オブジェクトを作成
+  const translations: RouletteMessages = {
+    title,
+    meta: {
+      title: '',
+      description: '',
+      keywords: ''
+    },
     buttons: {
-      spin: translate(lang, 'roulette.buttons.spin'),
-      spinning: translate(lang, 'roulette.buttons.spinning'),
-      edit: translate(lang, 'roulette.buttons.edit'),
-      save: translate(lang, 'roulette.buttons.save'),
-      cancel: translate(lang, 'roulette.buttons.cancel'),
+      spin: spinButton,
+      spinning: spinningButton,
+      edit: editButton,
+      save: saveButton,
+      cancel: cancelButton,
     },
     result: {
-      selected: translate(lang, 'roulette.result.selected'),
-      placeholder: translate(lang, 'roulette.result.placeholder'),
+      selected: selectedText,
+      placeholder: placeholderText,
     },
     content: {
       hero: {
-        title: translate(lang, 'roulette.content.hero.title'),
-        description: translate(lang, 'roulette.content.hero.description'),
-        darkMode: translate(lang, 'roulette.content.hero.darkMode'),
+        title: heroTitle,
+        description: heroDescription,
+        darkMode: heroDarkMode,
       },
       howTo: {
-        title: translate(lang, 'roulette.content.howTo.title'),
+        title: howToTitle,
         steps: {
           input: {
-            title: translate(lang, 'roulette.content.howTo.steps.input.title'),
-            description: translate(lang, 'roulette.content.howTo.steps.input.description'),
-            note: translate(lang, 'roulette.content.howTo.steps.input.note'),
+            title: inputTitle,
+            description: inputDescription,
+            note: inputNote,
           },
           spin: {
-            title: translate(lang, 'roulette.content.howTo.steps.spin.title'),
-            description: translate(lang, 'roulette.content.howTo.steps.spin.description'),
-            note: translate(lang, 'roulette.content.howTo.steps.spin.note'),
+            title: spinTitle,
+            description: spinDescription,
+            note: spinNote,
           },
           result: {
-            title: translate(lang, 'roulette.content.howTo.steps.result.title'),
-            description: translate(lang, 'roulette.content.howTo.steps.result.description'),
-            note: translate(lang, 'roulette.content.howTo.steps.result.note'),
+            title: resultTitle,
+            description: resultDescription,
+            note: resultNote,
           },
         },
       },
       testimonials: {
-        title: translate(lang, 'roulette.content.testimonials.title'),
+        title: testimonialsTitle,
         users: {
           teacher: {
-            name: translate(lang, 'roulette.content.testimonials.users.teacher.name'),
-            comment: translate(lang, 'roulette.content.testimonials.users.teacher.comment'),
+            name: teacherName,
+            comment: teacherComment,
           },
           team: {
-            name: translate(lang, 'roulette.content.testimonials.users.team.name'),
-            comment: translate(lang, 'roulette.content.testimonials.users.team.comment'),
+            name: teamName,
+            comment: teamComment,
           },
           family: {
-            name: translate(lang, 'roulette.content.testimonials.users.family.name'),
-            comment: translate(lang, 'roulette.content.testimonials.users.family.comment'),
+            name: familyName,
+            comment: familyComment,
           },
         },
       },
       features: {
-        title: translate(lang, 'roulette.content.features.title'),
+        title: featuresTitle,
         items: {
           easy: {
-            title: translate(lang, 'roulette.content.features.items.easy.title'),
-            description: translate(lang, 'roulette.content.features.items.easy.description'),
+            title: easyTitle,
+            description: easyDescription,
           },
           fair: {
-            title: translate(lang, 'roulette.content.features.items.fair.title'),
-            description: translate(lang, 'roulette.content.features.items.fair.description'),
+            title: fairTitle,
+            description: fairDescription,
           },
           visual: {
-            title: translate(lang, 'roulette.content.features.items.visual.title'),
-            description: translate(lang, 'roulette.content.features.items.visual.description'),
+            title: visualTitle,
+            description: visualDescription,
           },
           free: {
-            title: translate(lang, 'roulette.content.features.items.free.title'),
-            description: translate(lang, 'roulette.content.features.items.free.description'),
+            title: freeTitle,
+            description: freeDescription,
           },
         },
       },
       faq: {
-        title: translate(lang, 'roulette.content.faq.title'),
+        title: faqTitle,
         questions: {
           what: {
-            question: translate(lang, 'roulette.content.faq.questions.what.question'),
-            answer: translate(lang, 'roulette.content.faq.questions.what.answer'),
+            question: whatQuestion,
+            answer: whatAnswer,
           },
           usage: {
-            question: translate(lang, 'roulette.content.faq.questions.usage.question'),
-            answer: translate(lang, 'roulette.content.faq.questions.usage.answer'),
+            question: usageQuestion,
+            answer: usageAnswer,
           },
           save: {
-            question: translate(lang, 'roulette.content.faq.questions.save.question'),
-            answer: translate(lang, 'roulette.content.faq.questions.save.answer'),
+            question: saveQuestion,
+            answer: saveAnswer,
           },
           limit: {
-            question: translate(lang, 'roulette.content.faq.questions.limit.question'),
-            answer: translate(lang, 'roulette.content.faq.questions.limit.answer'),
+            question: limitQuestion,
+            answer: limitAnswer,
           },
           mobile: {
-            question: translate(lang, 'roulette.content.faq.questions.mobile.question'),
-            answer: translate(lang, 'roulette.content.faq.questions.mobile.answer'),
+            question: mobileQuestion,
+            answer: mobileAnswer,
           },
         },
       },

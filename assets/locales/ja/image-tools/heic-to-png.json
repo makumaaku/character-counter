@@ -1,0 +1,32 @@
+{
+    "meta": {
+      "title": "HEICからPNGへの変換 - 無料オンライン画像変換ツール",
+      "description": "HEICファイルをオンラインでPNG形式に変換。無料で、高速、簡単に使えて、即時プレビューとダウンロードオプション付き。",
+      "keywords": "heic から png, heic 変換, iphone 写真変換, 画像変換, png変換, 無料変換"
+    },
+    "title": "HEICからPNGへの変換",
+    "description": "HEICファイルをPNG形式に変換（プレビュー表示付き）",
+    "upload": {
+      "title": "HEICファイルをアップロード",
+      "dragndrop": "HEICファイルをここにドラッグ＆ドロップするか、クリックして参照",
+      "button": "ファイルを参照",
+      "limit": "最大ファイルサイズ：ファイルあたり10MB"
+    },
+    "convert": {
+      "button": "PNGに変換",
+      "processing": "変換中...",
+      "download": "PNGをダウンロード",
+      "downloadAll": "すべてダウンロード（ZIP）",
+      "converted": "{{count}}個のファイルを変換しました"
+    },
+    "preview": {
+      "title": "プレビューとダウンロード",
+      "nofiles": "変換されたファイルがありません"
+    },
+    "error": {
+      "invalidFormat": "HEICファイルのみ対応しています",
+      "tooLarge": "ファイルが大きすぎます（最大10MB）",
+      "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
+      "failed": "変換に失敗しました。もう一度お試しください。"
+    }
+  }

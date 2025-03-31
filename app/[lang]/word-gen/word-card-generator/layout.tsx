@@ -1,5 +1,6 @@
-import { translate } from '@/lib/i18n/client';
 import { SITE_CONFIG } from '@/constants/constants';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
@@ -41,19 +42,33 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // word-card-generator用の翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen/word-card-generator');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'wordCardGenerator.meta.title'),
+    translate(lang, 'wordCardGenerator.meta.description'),
+    translate(lang, 'wordCardGenerator.meta.keywords')
+  ]);
 
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('wordCardGenerator.meta.title'),
-    "description": t('wordCardGenerator.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/word-card-generator`,
     "publisher": {
       "@type": "Organization",
@@ -84,23 +99,16 @@ export async function generateMetadata(
     ],
     "isAccessibleForFree": true,
     "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-    "keywords": [
-      "word cards",
-      "vocabulary cards",
-      "flashcards",
-      "language learning",
-      "study tools",
-      "educational cards"
-    ]
+    "keywords": keywords.split(',')
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('wordCardGenerator.meta.title'),
-      description: t('wordCardGenerator.meta.description'),
-      keywords: t('wordCardGenerator.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/word-gen/word-card-generator`,
     }
   );
@@ -114,5 +122,11 @@ export async function generateMetadata(
 }
 
 export default async function Layout({ children }: Props) {
-  return <>{children}</>;
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-800">
+      <main className="flex-1 bg-gray-800">
+        {children}
+      </main>
+    </div>
+  );
 } 

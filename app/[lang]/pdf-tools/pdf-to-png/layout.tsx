@@ -1,32 +1,47 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import Script from 'next/script';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  const lang = await getLanguageFromParams(params);
+  
+  // PDF to PNG 用の翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-png');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.pdfToPng.meta.title'),
+    translate(lang, 'pdfTools.pdfToPng.meta.description'),
+    translate(lang, 'pdfTools.pdfToPng.meta.keywords')
+  ]);
 
   // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('pdfToPng.meta.title'),
-    "description": t('pdfToPng.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-png`,
     "publisher": {
       "@type": "Organization",
@@ -58,13 +73,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('pdfToPng.meta.title'),
-      description: t('pdfToPng.meta.description'),
-      keywords: t('pdfToPng.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-png`,
     }
   );
@@ -77,6 +92,20 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
-  return children;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Script 
+        src="/pdfjs/pdf.mjs"
+        strategy="beforeInteractive"
+        id="pdf-lib"
+      />
+      <Script 
+        src="/pdfjs/pdf.worker.mjs"
+        strategy="beforeInteractive"
+        id="pdf-worker"
+      />
+      {children}
+    </>
+  );
 } 

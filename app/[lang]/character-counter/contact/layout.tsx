@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -36,23 +37,42 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/contact');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    jsonLdName,
+    jsonLdDescription,
+    jsonLdOrgName,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.contact.meta.title'),
+    translate(lang, 'characterCounter.contact.meta.description'),
+    translate(lang, 'characterCounter.contact.meta.keywords'),
+    translate(lang, 'characterCounter.contact.meta.jsonLd.name'),
+    translate(lang, 'characterCounter.contact.meta.jsonLd.description'),
+    translate(lang, 'characterCounter.contact.meta.jsonLd.organization.name'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": t('characterCounter.contact.meta.title'),
-    "description": t('characterCounter.contact.meta.description'),
+    "name": jsonLdName || title,
+    "description": jsonLdDescription || description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/contact`,
     "publisher": {
       "@type": "Organization",
-      "name": commonMeta.siteName,
+      "name": jsonLdOrgName || commonMeta.siteName,
       "logo": {
         "@type": "ImageObject",
         "url": `${SITE_CONFIG.baseURL}${SITE_CONFIG.logo.url}`,
@@ -63,7 +83,7 @@ export async function generateMetadata(
     "mainEntity": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "availableLanguage": ["en", "ja"],
+      "availableLanguage": ["en", "ja", "es"],
       "email": "support@boring-tool.com"
     }
   };
@@ -72,9 +92,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.contact.meta.title'),
-      description: t('characterCounter.contact.meta.description'),
-      keywords: t('characterCounter.contact.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/contact`,
     }
   );

@@ -2,66 +2,31 @@
 
 import { ReactNode, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { translate } from '@/lib/i18n/client'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 
-type Props = {
-  children: ReactNode
+type NavigationItem = {
+  name: string;
+  path: string;
 }
 
-export default function PdfToolsLayout({ children }: Props) {
+type Props = {
+  children: ReactNode;
+  navigationItems: NavigationItem[];
+  title: string;
+}
+
+export default function PdfToolsLayout({ children, navigationItems, title }: Props) {
   const params = useParams()
   const lang = params.lang as string
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  
-  // List of PDF tools for the sidebar
-  const navigationItems = [
-    {
-      name: translate(lang, 'pdfTools.tools.pdfToJpg.title'),
-      path: `/pdf-tools/pdf-to-jpg`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.jpgToPdf.title'),
-      path: `/pdf-tools/jpg-to-pdf`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.webToPdf.title'),
-      path: `/pdf-tools/web-to-pdf`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.pdfToWord.title'),
-      path: `/pdf-tools/pdf-to-word`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.pdfToPng.title'),
-      path: `/pdf-tools/pdf-to-png`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.pngToPdf.title'),
-      path: `/pdf-tools/png-to-pdf`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.svgToPdf.title'),
-      path: `/pdf-tools/svg-to-pdf`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.pdfToEpub.title'),
-      path: `/pdf-tools/pdf-to-epub`
-    },
-    {
-      name: translate(lang, 'pdfTools.tools.heicToPdf.title'),
-      path: `/pdf-tools/heic-to-pdf`
-    }
-    // Add more PDF tools here as they become available
-  ]
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800 text-gray-100">
       <Header 
-        title={translate(lang, 'pdfTools.title')} 
+        title={title} 
         homeLink={`/${lang}/pdf-tools`}
       >
         <button

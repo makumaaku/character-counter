@@ -1,0 +1,118 @@
+{
+    "meta": {
+      "title": "Free Character Counter | easy to use , free to use",
+      "description": "Our free and reliable tool allows you to instantly check character count, line count, and byte count in real-time! Perfect for social media posts, essays, advertising copy, and more.",
+      "keywords": "character counter, word counter, text counter, online counter"
+    },
+    "title": "Character Counter",
+    "description": "Free online character counter tool. Count characters, words, and lines in your text instantly.",
+    "placeholder": "Enter text",
+    "charCount": "Character count",
+    "lineCount": "Line count",
+    "wordCount": "Word count",
+    "byteCount": "Byte count",
+    "searchString": "Search string",
+    "enterSearchString": "Enter search string",
+    "occurrences": "Occurrences",
+    "searchResultPreview": "Search result preview",
+    "copyText": "Copy text",
+    "copied": "Copied!",
+    "sidebar": {
+      "function": "Features",
+      "usecase": "Use cases",
+      "faq": "FAQ",
+      "aboutUs": "About us",
+      "contact": "Contact",
+      "privacy": "Privacy policy",
+      "plan": "Pricing plans",
+      "column": "Articles"
+    },
+    "content": {
+      "hero": {
+        "title": "Easy & Simple! High-performance Character Counter (Free)",
+        "description": "Our free and reliable tool allows you to instantly check character count, line count, and byte count in real-time! Perfect for social media posts, essays, advertising copy, and more.",
+        "darkMode": "※ Dark mode supported for eye-friendly design!"
+      },
+      "howTo": {
+        "title": "Easy Steps to Use",
+        "steps": {
+          "input": {
+            "title": "Enter Text",
+            "description": "Copy & paste or directly type and edit your text in the input area.",
+            "note": "※ As you input, character count, line count, word count (English only), and byte count (multibyte supported) are instantly counted."
+          },
+          "realtime": {
+            "title": "Check Results in Real-time",
+            "description": "Various metrics are displayed in real-time as you type, allowing for immediate verification."
+          },
+          "utilize": {
+            "title": "Utilize Results",
+            "description": "Results can be copied using the copy button. Use the displayed metrics for social media posts, ad copy, thesis writing, and more."
+          }
+        }
+      },
+      "testimonials": {
+        "title": "User Testimonials",
+        "users": {
+          "writer": {
+            "name": "Writer John",
+            "comment": "This character counter is simple yet powerful, significantly improving my work efficiency. It's helpful to be able to count words in English text."
+          },
+          "social": {
+            "name": "Social Media Manager Sarah",
+            "comment": "The real-time counting feature is convenient. I use it to check text while modifying article content or verifying text for social media posts with character limits!"
+          },
+          "marketer": {
+            "name": "Web Marketer Mike",
+            "comment": "The feature to see how many times a specific character appears is very useful! I use it to check how many times SEO keywords appear on competitors' pages."
+          }
+        }
+      },
+      "features": {
+        "title": "Service Features & Benefits",
+        "items": {
+          "easy": {
+            "title": "Easy and simple operation for anyone to use immediately",
+            "description": "Just input text, and character count, line count, and byte count are calculated in real-time, displaying accurate results."
+          },
+          "accurate": {
+            "title": "High-performance calculation engine with confident accuracy",
+            "description": "Supports complex text and multiple languages. In addition to character count, it can simultaneously count line count, word count (English only), and byte count (multibyte supported)."
+          },
+          "free": {
+            "title": "Use the free version with peace of mind without worrying about cost!",
+            "description": "Designed to be used for free with peace of mind, and the pro plan also supports high-end features."
+          },
+          "darkMode": {
+            "title": "Eye-friendly design with dark mode support",
+            "description": "Equipped with eye-friendly dark mode functionality. Can be used comfortably during nighttime or long work sessions."
+          }
+        }
+      },
+      "faq": {
+        "title": "FAQ - Frequently Asked Questions",
+        "questions": {
+          "what": {
+            "question": "What is a character counter?",
+            "answer": "A character counter is a tool that instantly calculates the number of characters in the input text and displays accurate results. This helps prevent counting errors in manual work and enables efficient text creation and editing."
+          },
+          "usage": {
+            "question": "What scenarios can it be used in?",
+            "answer": "Main use cases are as follows:\nWriting & blog posts: Used to adhere to specified character count guidelines when creating articles.\nSocial media posts: Utilized to verify optimal length for posts with character limits, such as Twitter and advertising copy.\nSEO optimization: Used to manage article volume and adjust composition for search engine optimization."
+          },
+          "counting": {
+            "question": "How are full-width and half-width characters counted?",
+            "answer": "While specifications vary by application, they are generally designed to properly recognize and accurately count both full-width and half-width characters. Many can count special symbols and line breaks as well. We recommend checking the specifications before use."
+          },
+          "languages": {
+            "question": "Does it support multiple languages?",
+            "answer": "Many character counters support not only Japanese but also English and other languages. They are designed to handle characters and symbols accurately for each language, making them suitable for international use."
+          },
+          "pricing": {
+            "question": "What's the difference between free and paid versions?",
+            "answer": "While it varies by application, generally there are the following differences:\nFree version: Basic character counting functionality is available. Often limited to simple features.\nPaid version: Typically offers additional features such as advanced statistical information (word count, line count, counting of spaces and symbols, etc.), customization features, integration with other tools, and ad-free experience."
+          }
+        }
+      }
+    }
+  }

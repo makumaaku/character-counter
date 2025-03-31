@@ -1,31 +1,80 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  featureList: string[];
+  keywords: string[];
+  applicationSubCategory: string;
+  aggregateRating: {
+    "@type": string;
+    ratingValue: string;
+    ratingCount: string;
+    bestRating: string;
+    worstRating: string;
+  };
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'seo-tools/meta-craft-for-llm');
+  
+  // 翻訳を並列取得
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'seoTools.metaCraftForLlm.meta.title'),
+    translate(lang, 'seoTools.metaCraftForLlm.meta.description'),
+    translate(lang, 'seoTools.metaCraftForLlm.meta.keywords'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // ページ固有のJSON-LDを定義
-  const jsonLd = {
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('metaCraftForLlm.meta.title'),
-    "description": t('metaCraftForLlm.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/meta-craft-for-llm`,
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
@@ -45,15 +94,7 @@ export async function generateMetadata(
       "LLM optimization",
       "AI-ready metadata creation"
     ],
-    "keywords": [
-      "LLM SEO tool",
-      "AI metadata generator",
-      "SEO for language models",
-      "JSON-LD generator",
-      "schema.org generator",
-      "meta tags for LLM",
-      "structured data for AI"
-    ],
+    "keywords": keywords.split(','),
     "applicationSubCategory": "AITool",
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -123,13 +164,13 @@ export async function generateMetadata(
   };
 
   // 共通のメタデータを取得
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('metaCraftForLlm.meta.title'),
-      description: t('metaCraftForLlm.meta.description') + " Optimized for AI and language models, this tool helps your content get cited in LLM responses.",
-      keywords: t('metaCraftForLlm.meta.keywords') + ", LLM optimization, AI metadata, structured data for language models, chatGPT optimization",
+      title,
+      description: description + " Optimized for AI and language models, this tool helps your content get cited in LLM responses.",
+      keywords: keywords + ", LLM optimization, AI metadata, structured data for language models, chatGPT optimization",
       url: `${SITE_CONFIG.baseURL}/${lang}/seo-tools/meta-craft-for-llm`,
     }
   );
@@ -142,10 +183,13 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  
   return (
-    <>
+    <div className="layout-container">
       {children}
-    </>
+    </div>
   );
 } 

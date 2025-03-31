@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useParams } from 'next/navigation'
-import { translate } from '@/lib/i18n/client'
 import { Button } from '@/components/ui/button'
 
 type DownloadButtonProps = {
@@ -11,6 +9,8 @@ type DownloadButtonProps = {
   className?: string
   variant?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'purple'
   disabled?: boolean
+  downloadText?: string
+  downloadedText?: string
 }
 
 export default function DownloadButton({ 
@@ -18,11 +18,11 @@ export default function DownloadButton({
   filename,
   variant = 'secondary',
   className = "",
-  disabled = false
+  disabled = false,
+  downloadText = "Download",
+  downloadedText = "Downloaded!"
 }: DownloadButtonProps) {
   const [downloaded, setDownloaded] = useState(false)
-  const params = useParams()
-  const lang = params.lang as string
 
   const handleDownload = () => {
     if (disabled || !content) return;
@@ -58,10 +58,7 @@ export default function DownloadButton({
       className={className}
       disabled={disabled || !content}
     >
-      {downloaded 
-        ? translate(lang, 'common.download.downloaded') 
-        : translate(lang, 'common.download.button')
-      }
+      {downloaded ? downloadedText : downloadText}
     </Button>
   )
 } 

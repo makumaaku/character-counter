@@ -1,30 +1,74 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": "Offer";
+    price: string;
+    priceCurrency: string;
+  };
+  featureList: string[];
+  isAccessibleForFree: boolean;
+  browserRequirements: string;
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // Load image-tools translations
+  await loadToolMessages(lang as Language, 'image-tools/jpg-to-png');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'imageTools.jpgToPng.meta.title'),
+    translate(lang, 'imageTools.jpgToPng.meta.description'),
+    translate(lang, 'imageTools.jpgToPng.meta.keywords')
+  ]);
 
+  // Common metadata
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt
   };
 
-  const jsonLd = {
+  // JSON-LD data
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('jpgToPng.meta.title'),
-    "description": t('jpgToPng.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/jpg-to-png`,
     "publisher": {
       "@type": "Organization",
@@ -55,13 +99,14 @@ export async function generateMetadata(
     "browserRequirements": "Requires a modern web browser with JavaScript enabled"
   };
 
-  const metadata = getCommonMetadata(
+  // Get common metadata
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('jpgToPng.meta.title'),
-      description: t('jpgToPng.meta.description'),
-      keywords: t('jpgToPng.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/jpg-to-png`,
     }
   );
@@ -74,7 +119,15 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
+export default async function Layout({ children, params }: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
+  const { lang } = params;
+  
+  // Load translations
+  await loadToolMessages(lang as Language, 'image-tools/jpg-to-png');
+  
   return (
     <>
       {children}

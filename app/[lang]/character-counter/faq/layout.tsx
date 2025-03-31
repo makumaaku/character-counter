@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -43,39 +44,68 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/faq');
+
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    general_q1_question,
+    general_q1_answer,
+    general_q2_question,
+    general_q2_answer,
+    technical_q3_question,
+    technical_q3_answer,
+    technical_q4_question,
+    technical_q4_answer,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.faq.meta.title'),
+    translate(lang, 'characterCounter.faq.meta.description'),
+    translate(lang, 'characterCounter.faq.meta.keywords'),
+    translate(lang, 'characterCounter.faq.general.q1.question'),
+    translate(lang, 'characterCounter.faq.general.q1.answer'),
+    translate(lang, 'characterCounter.faq.general.q2.question'),
+    translate(lang, 'characterCounter.faq.general.q2.answer'),
+    translate(lang, 'characterCounter.faq.technical.q3.question'),
+    translate(lang, 'characterCounter.faq.technical.q3.answer'),
+    translate(lang, 'characterCounter.faq.technical.q4.question'),
+    translate(lang, 'characterCounter.faq.technical.q4.answer'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   // Get FAQ questions from translations
   const questions: FAQQuestion[] = [
     {
-      question: t('characterCounter.faq.general.q1.question'),
-      answer: t('characterCounter.faq.general.q1.answer')
+      question: general_q1_question,
+      answer: general_q1_answer
     },
     {
-      question: t('characterCounter.faq.general.q2.question'),
-      answer: t('characterCounter.faq.general.q2.answer')
+      question: general_q2_question,
+      answer: general_q2_answer
     },
     {
-      question: t('characterCounter.faq.technical.q3.question'),
-      answer: t('characterCounter.faq.technical.q3.answer')
+      question: technical_q3_question,
+      answer: technical_q3_answer
     },
     {
-      question: t('characterCounter.faq.technical.q4.question'),
-      answer: t('characterCounter.faq.technical.q4.answer')
+      question: technical_q4_question,
+      answer: technical_q4_answer
     }
   ];
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "name": t('characterCounter.faq.meta.title'),
-    "description": t('characterCounter.faq.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/faq`,
     "publisher": {
       "@type": "Organization",
@@ -101,9 +131,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.faq.meta.title'),
-      description: t('characterCounter.faq.meta.description'),
-      keywords: t('characterCounter.faq.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/faq`,
     }
   );

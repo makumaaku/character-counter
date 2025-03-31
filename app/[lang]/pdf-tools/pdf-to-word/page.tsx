@@ -1,13 +1,25 @@
 import { translate } from '@/lib/i18n/server'
 import PdfToWordClient from './components/PdfToWordClient'
+import { getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
+import { Language, PdfToolsPdfToWordMessages } from '@/lib/i18n/types'
 
-export default async function PdfToWord({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function PdfToWord({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-word');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     uploadLabel,
     uploadButton,
     dragDropText,
@@ -25,27 +37,36 @@ export default async function PdfToWord({ params }: { params: Promise<{ lang: st
     fileSizeError,
     loadingText
   ] = await Promise.all([
-    translate(lang, 'pdfToWord.title'),
-    translate(lang, 'pdfToWord.description'),
-    translate(lang, 'pdfToWord.form.upload.label'),
-    translate(lang, 'pdfToWord.form.upload.button'),
-    translate(lang, 'pdfToWord.form.upload.dragDrop'),
-    translate(lang, 'pdfToWord.form.upload.dragging'),
-    translate(lang, 'pdfToWord.form.upload.instruction'),
-    translate(lang, 'pdfToWord.form.upload.maxSize'),
-    translate(lang, 'pdfToWord.form.format.label'),
-    translate(lang, 'pdfToWord.form.format.docx'),
-    translate(lang, 'pdfToWord.form.format.doc'),
-    translate(lang, 'pdfToWord.form.convert'),
-    translate(lang, 'pdfToWord.result.download'),
-    translate(lang, 'pdfToWord.status.processing'),
-    translate(lang, 'pdfToWord.status.noFile'),
-    translate(lang, 'pdfToWord.error.fileType'),
-    translate(lang, 'pdfToWord.error.fileSize'),
-    translate(lang, 'pdfToWord.loading')
-  ])
+    translate(lang, 'pdfTools.pdfToWord.title'),
+    translate(lang, 'pdfTools.pdfToWord.description'),
+    translate(lang, 'pdfTools.pdfToWord.meta.title'),
+    translate(lang, 'pdfTools.pdfToWord.meta.description'),
+    translate(lang, 'pdfTools.pdfToWord.meta.keywords'),
+    translate(lang, 'pdfTools.pdfToWord.form.upload.label'),
+    translate(lang, 'pdfTools.pdfToWord.form.upload.button'),
+    translate(lang, 'pdfTools.pdfToWord.form.upload.dragDrop'),
+    translate(lang, 'pdfTools.pdfToWord.form.upload.dragging'),
+    translate(lang, 'pdfTools.pdfToWord.form.upload.instruction'),
+    translate(lang, 'pdfTools.pdfToWord.form.upload.maxSize'),
+    translate(lang, 'pdfTools.pdfToWord.form.format.label'),
+    translate(lang, 'pdfTools.pdfToWord.form.format.docx'),
+    translate(lang, 'pdfTools.pdfToWord.form.format.doc'),
+    translate(lang, 'pdfTools.pdfToWord.form.convert'),
+    translate(lang, 'pdfTools.pdfToWord.result.download'),
+    translate(lang, 'pdfTools.pdfToWord.status.processing'),
+    translate(lang, 'pdfTools.pdfToWord.status.noFile'),
+    translate(lang, 'pdfTools.pdfToWord.error.fileType'),
+    translate(lang, 'pdfTools.pdfToWord.error.fileSize'),
+    translate(lang, 'pdfTools.pdfToWord.loading')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsPdfToWordMessages = {
+    meta: {
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
+    },
     title,
     description,
     form: {
@@ -76,7 +97,7 @@ export default async function PdfToWord({ params }: { params: Promise<{ lang: st
       fileSize: fileSizeError
     },
     loading: loadingText
-  }
+  };
 
-  return <PdfToWordClient translations={translations} />
+  return <PdfToWordClient translations={messages} />
 } 

@@ -1,12 +1,16 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import SvgToPngClient from './components/SvgToPngClient'
+import { Language, ImageToolsSvgToPngMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function SvgToPng({ params }: Props) {
-  const { lang } = await params
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/svg-to-png');
 
   // 翻訳を取得
   const [
@@ -29,27 +33,33 @@ export default async function SvgToPng({ params }: Props) {
     conversionFailedError,
     selectedFilesText
   ] = await Promise.all([
-    translate(lang, 'svgToPng.title'),
-    translate(lang, 'svgToPng.description'),
-    translate(lang, 'svgToPng.form.upload.label'),
-    translate(lang, 'svgToPng.form.upload.button'),
-    translate(lang, 'svgToPng.form.upload.dragDrop'),
-    translate(lang, 'svgToPng.form.upload.limitText'),
-    translate(lang, 'svgToPng.form.convert'),
-    translate(lang, 'svgToPng.result.download'),
-    translate(lang, 'svgToPng.result.downloadAll'),
-    translate(lang, 'svgToPng.result.preview'),
-    translate(lang, 'svgToPng.status.processing'),
-    translate(lang, 'svgToPng.status.noFile'),
-    translate(lang, 'svgToPng.status.success'),
-    translate(lang, 'svgToPng.status.browserProcessing'),
-    translate(lang, 'svgToPng.error.fileType'),
-    translate(lang, 'svgToPng.error.fileSize'),
-    translate(lang, 'svgToPng.error.conversionFailed'),
-    translate(lang, 'svgToPng.result.selectedFiles')
+    translate(lang, 'imageTools.svgToPng.title'),
+    translate(lang, 'imageTools.svgToPng.description'),
+    translate(lang, 'imageTools.svgToPng.form.upload.label'),
+    translate(lang, 'imageTools.svgToPng.form.upload.button'),
+    translate(lang, 'imageTools.svgToPng.form.upload.dragDrop'),
+    translate(lang, 'imageTools.svgToPng.form.upload.limitText'),
+    translate(lang, 'imageTools.svgToPng.form.convert'),
+    translate(lang, 'imageTools.svgToPng.result.download'),
+    translate(lang, 'imageTools.svgToPng.result.downloadAll'),
+    translate(lang, 'imageTools.svgToPng.result.preview'),
+    translate(lang, 'imageTools.svgToPng.status.processing'),
+    translate(lang, 'imageTools.svgToPng.status.noFile'),
+    translate(lang, 'imageTools.svgToPng.status.success'),
+    translate(lang, 'imageTools.svgToPng.status.browserProcessing'),
+    translate(lang, 'imageTools.svgToPng.error.fileType'),
+    translate(lang, 'imageTools.svgToPng.error.fileSize'),
+    translate(lang, 'imageTools.svgToPng.error.conversionFailed'),
+    translate(lang, 'imageTools.svgToPng.result.selectedFiles')
   ])
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsSvgToPngMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     form: {
@@ -80,5 +90,5 @@ export default async function SvgToPng({ params }: Props) {
     }
   }
 
-  return <SvgToPngClient translations={translations} />
+  return <SvgToPngClient translations={messages} />
 } 

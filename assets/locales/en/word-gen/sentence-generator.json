@@ -1,0 +1,89 @@
+{
+  "title": "Random Sentence Generator",
+  "description": "Generate random sentences with customizable structure",
+  "meta": {
+    "title": "Random Sentence Generator - Boring Tool",
+    "description": "Generate random sentences with customizable structure using our free online sentence generator. Perfect for language learning, writing practice, and content creation.",
+    "keywords": "sentence generator, random sentence, writing tool, creative writing, content creation"
+  },
+  "form": {
+    "count": {
+      "label": "Number of sentences"
+    },
+    "generate": "Generate Sentences",
+    "copy": "Copy"
+  },
+  "result": {
+    "empty": "Generated sentences will appear here",
+    "copyTitle": "Copy to clipboard",
+    "copied": "Copied!"
+  },
+  "detailedContent": {
+    "catchphrase": "Need inspiration for your writing? Open new doors to storytelling with our randomly generated sentences!",
+    "introduction": "The Random Sentence Generator is a tool that provides inspiration for writing and creative activities by generating random sentences. It can be used in various scenarios such as blog writing, storytelling, speech preparation, and more.",
+    "features": {
+      "title": "Features and Characteristics",
+      "easyOperation": {
+        "title": "Easy Sentence Generation",
+        "description": "New sentences are generated and displayed instantly with just one touch. Ideas flow effortlessly one after another."
+      },
+      "patterns": {
+        "title": "Diverse Sentence Patterns",
+        "description": "We offer various styles of sentences including casual conversation, narrative, and formal writing. Find the perfect sentence for your needs."
+      },
+      "customization": {
+        "title": "Customizable Output",
+        "description": "Select the length and style of generated sentences to match your specific requirements and preferences."
+      }
+    },
+    "useCases": {
+      "title": "Use Cases and User Examples",
+      "writer": {
+        "title": "Writer's Block Solutions",
+        "description": "When you're stuck in your writing, new sentences can help get your story moving again."
+      },
+      "creative": {
+        "title": "Creative Inspiration",
+        "description": "Get unique sentences as seeds for your creative work, whether it's novels, poetry, or other forms of writing."
+      },
+      "education": {
+        "title": "Educational Applications",
+        "description": "Use it for practicing sentence structure or as writing prompts in educational settings."
+      }
+    },
+    "technical": {
+      "title": "Technical Background and Mechanism",
+      "nlp": {
+        "title": "Natural Language Processing Technology",
+        "description": "Using advanced NLP algorithms to generate grammatically correct sentences while maintaining content consistency."
+      },
+      "database": {
+        "title": "Extensive Style Database",
+        "description": "Our database includes various writing styles and genres to provide diverse sentence patterns."
+      },
+      "performance": {
+        "title": "High-Performance Design",
+        "description": "Optimized for speed to ensure a smooth, stress-free user experience."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "quality": {
+        "question": "What is the quality of the generated sentences?",
+        "answer": "We use NLP technology to ensure grammatically correct and natural-sounding sentences."
+      },
+      "commercial": {
+        "question": "Can I use this for commercial purposes?",
+        "answer": "Yes, commercial use is permitted under our terms of service. Please check the terms page for details."
+      },
+      "style": {
+        "question": "Can I change the style of the sentences?",
+        "answer": "Yes, you can adjust the style and length using our customization features."
+      }
+    },
+    "conclusion": {
+      "title": "Conclusion",
+      "description": "The Random Sentence Generator is the perfect tool for all creators who need writing inspiration. With its simple operation and diverse writing styles, it brings fresh perspectives to your writing activities. Try it out and expand your writing horizons."
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Convertidor de JPG a PDF - Convierte imágenes a PDF en línea",
+    "description": "Herramienta gratuita en línea para convertir imágenes JPG a documentos PDF. Combina múltiples imágenes en un solo PDF con ajustes personalizables. Sin necesidad de instalación.",
+    "keywords": "jpg a pdf, imagen a pdf, convertir jpg a pdf, convertidor de imágenes, convertidor de imágenes en línea, convertidor de imágenes gratis"
+  },
+  "title": "Convertidor de JPG a PDF",
+  "description": "Convierte imágenes JPG a documentos PDF con ajustes personalizables",
+  "form": {
+    "upload": {
+      "label": "Subir archivos de imagen",
+      "button": "Arrastra y suelta archivos de imagen aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivos aquí o haz clic para explorar"
+    },
+    "quality": {
+      "label": "Calidad del PDF",
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta"
+    },
+    "convert": "Convertir a PDF"
+  },
+  "result": {
+    "download": "Descargar PDF"
+  },
+  "status": {
+    "processing": "Procesando...",
+    "noFile": "Ningún archivo seleccionado"
+  },
+  "error": {
+    "fileType": "Por favor, sube solo archivos JPG o PNG",
+    "fileSize": "El tamaño total de archivos excede el límite de 20MB"
+  }
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Language } from '@/lib/i18n/types';
+import { Language, SeoToolsSeoVolumeGuessMessages } from '@/lib/i18n/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,31 +18,12 @@ type SuggestResult = {
   country: CountryCode;
 };
 
-type TranslationKeys = {
-  placeholder: string;
-  analyzeButton: string;
-  volumeScore: string;
-  suggestions: string;
-  allSuggestions: string;
-  errorEmptyKeyword: string;
-  errorUnknown: string;
-  scoreDescriptions: Record<number, string>;
-  countrySelector: string;
-  countryResult: string;
-  countries: Record<CountryCode, string>;
-  notice?: {
-    title: string;
-    language: string;
-    location: string;
-  };
-};
-
 type Props = {
   lang: Language;
-  translations: TranslationKeys;
+  messages: SeoToolsSeoVolumeGuessMessages;
 };
 
-export default function SEOVolumeGuessForm({ lang, translations }: Props) {
+export default function SEOVolumeGuessForm({ lang, messages }: Props) {
   const [keyword, setKeyword] = useState('');
   const [country, setCountry] = useState<CountryCode>(lang === 'ja' ? 'jp' : 'us'); // デフォルトは言語に応じて設定
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +33,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
   // キーワード分析を実行する関数
   const analyzeKeyword = async (searchKeyword: string, targetCountry: CountryCode) => {
     if (!searchKeyword.trim()) {
-      setError(translations.errorEmptyKeyword);
+      setError(messages.error.emptyKeyword);
       return;
     }
     
@@ -63,7 +44,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
       const result = await analyzeSEOVolume(searchKeyword, lang, targetCountry);
       setResult(result);
     } catch (error) {
-      setError(error instanceof Error ? error.message : translations.errorUnknown);
+      setError(error instanceof Error ? error.message : messages.error.unknown);
     } finally {
       setIsLoading(false);
     }
@@ -97,15 +78,36 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
       ));
   };
 
+  // スコア説明のマッピング
+  const scoreDescriptions: Record<number, string> = {
+    1: messages.result.scoreDescription1,
+    2: messages.result.scoreDescription2,
+    3: messages.result.scoreDescription3,
+    4: messages.result.scoreDescription4,
+    5: messages.result.scoreDescription5
+  };
+  
+  // 国名のマッピング
+  const countries: Record<CountryCode, string> = {
+    jp: messages.country.japan,
+    us: messages.country.us,
+    gb: messages.country.uk,
+    au: messages.country.australia,
+    ca: messages.country.canada,
+    de: messages.country.germany,
+    fr: messages.country.france,
+    in: messages.country.india
+  };
+
   return (
     <div>
       {/* 注意事項の表示 */}
-      {translations.notice && (
+      {messages.notice && (
         <div className="mb-8 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-md">
-          <h3 className="text-lg font-medium text-white mb-2">{translations.notice.title}</h3>
+          <h3 className="text-lg font-medium text-white mb-2">{messages.notice.title}</h3>
           <ul className="list-disc pl-5 space-y-2">
-            <li className="text-gray-300 text-sm">{translations.notice.language}</li>
-            <li className="text-gray-300 text-sm">{translations.notice.location}</li>
+            <li className="text-gray-300 text-sm">{messages.notice.language}</li>
+            <li className="text-gray-300 text-sm">{messages.notice.location}</li>
           </ul>
         </div>
       )}
@@ -116,7 +118,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
             type="text"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            placeholder={translations.placeholder}
+            placeholder={messages.input.placeholder}
             className="flex-1 bg-gray-700 text-white border-gray-600 placeholder-gray-400"
             disabled={isLoading}
           />
@@ -124,7 +126,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="sm:w-1/2">
               <label htmlFor="country-select" className="block mb-2 text-sm font-medium text-white">
-                {translations.countrySelector}
+                {messages.country.selector}
               </label>
               <select
                 id="country-select"
@@ -133,7 +135,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
                 className="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 disabled={isLoading}
               >
-                {Object.entries(translations.countries).map(([code, name]) => (
+                {Object.entries(countries).map(([code, name]) => (
                   <option key={code} value={code}>
                     {name}
                   </option>
@@ -143,7 +145,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
             
             <div className="sm:w-1/2 flex items-end">
               <Button type="submit" variant="purple" disabled={isLoading} className="w-full">
-                {isLoading ? <LoadingDots /> : translations.analyzeButton}
+                {isLoading ? <LoadingDots /> : messages.button.analyze}
               </Button>
             </div>
           </div>
@@ -160,16 +162,16 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
         <div className="space-y-6">
           <Card className="bg-gray-700 border border-gray-600">
             <CardContent className="pt-6">
-              <h2 className="text-xl font-semibold mb-2 text-white">{translations.volumeScore}</h2>
+              <h2 className="text-xl font-semibold mb-2 text-white">{messages.result.volumeScore}</h2>
               <div className="flex items-center mb-4">
                 <div className="mr-2">{renderStars(result.volumeScore)}</div>
                 <span className="text-sm text-gray-300">
-                  ({result.suggestions.length} {translations.suggestions})
+                  ({result.suggestions.length} {messages.result.suggestions})
                 </span>
               </div>
-              <p className="text-sm text-gray-300">{translations.scoreDescriptions[result.volumeScore]}</p>
+              <p className="text-sm text-gray-300">{scoreDescriptions[result.volumeScore]}</p>
               <p className="text-sm text-gray-300 mt-2">
-                {translations.countryResult.replace('{country}', translations.countries[result.country])}
+                {messages.country.result.replace('{country}', countries[result.country])}
               </p>
               
               {/* 翻訳されたキーワードの表示 */}
@@ -183,7 +185,7 @@ export default function SEOVolumeGuessForm({ lang, translations }: Props) {
 
           <Card className="bg-gray-700 border border-gray-600">
             <CardContent className="pt-6">
-              <h2 className="text-xl font-semibold mb-2 text-white">{translations.allSuggestions}</h2>
+              <h2 className="text-xl font-semibold mb-2 text-white">{messages.result.allSuggestions}</h2>
               <div className="max-h-60 overflow-y-auto">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
                   {result.suggestions.map((suggestion, index) => (

@@ -1,31 +1,47 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import Script from 'next/script';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
-
+  const lang = await getLanguageFromParams(params);
+  
+  // PDF to EPUB 用の翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools');
+  await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-epub');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'pdfTools.pdfToEpub.meta.title'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.description'),
+    translate(lang, 'pdfTools.pdfToEpub.meta.keywords')
+  ]);
+  
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t('common.meta.siteName'),
-    publisher: t('common.meta.publisher'),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('pdfToEpub.meta.title'),
-    "description": t('pdfToEpub.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-epub`,
     "publisher": {
       "@type": "Organization",
@@ -55,13 +71,14 @@ export async function generateMetadata(
     "browserRequirements": "Requires a modern web browser with JavaScript enabled"
   };
 
-  const metadata = getCommonMetadata(
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('pdfToEpub.meta.title'),
-      description: t('pdfToEpub.meta.description'),
-      keywords: t('pdfToEpub.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/pdf-tools/pdf-to-epub`,
     }
   );
@@ -74,7 +91,7 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Script 

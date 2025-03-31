@@ -1,11 +1,12 @@
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: { lang: string };
 }
 
 type JsonLdType = {
@@ -33,25 +34,41 @@ type JsonLdType = {
   };
   isAccessibleForFree: boolean;
   browserRequirements: string;
+  keywords: string[];
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  const { lang } = params;
+  
+  // Load svg-to-jpg translations
+  await loadToolMessages(lang as Language, 'image-tools/svg-to-jpg');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'imageTools.svgToJpg.meta.title'),
+    translate(lang, 'imageTools.svgToJpg.meta.description'),
+    translate(lang, 'imageTools.svgToJpg.meta.keywords'),
+  ]);
 
+  // Common metadata
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt
   };
 
+  // JSON-LD data
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('svgToJpg.meta.title'),
-    "description": t('svgToJpg.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/svg-to-jpg`,
     "publisher": {
       "@type": "Organization",
@@ -71,16 +88,18 @@ export async function generateMetadata(
       "priceCurrency": "USD"
     },
     "isAccessibleForFree": true,
-    "browserRequirements": "Requires a modern web browser with JavaScript enabled"
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+    "keywords": keywords.split(',')
   };
 
-  const metadata = getCommonMetadata(
+  // Get common metadata
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('svgToJpg.meta.title'),
-      description: t('svgToJpg.meta.description'),
-      keywords: t('svgToJpg.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/svg-to-jpg`,
     }
   );
@@ -93,6 +112,12 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
-  return children;
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="layout-container">
+      {children}
+    </div>
+  );
 } 

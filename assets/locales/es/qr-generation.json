@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "Generador de códigos QR - Crea códigos QR en línea",
+    "description": "Genera códigos QR en línea para URLs, texto, información de contacto y más. Herramienta gratuita y fácil de usar para generar códigos QR.",
+    "keywords": "código qr, generador, herramienta en línea, url a qr, texto a qr"
+  },
+  "title": "Generador de códigos QR",
+  "description": "Genera códigos QR a partir de texto, URLs o cualquier dato",
+  "ui": {
+    "inputLabel": "Ingresa contenido para tu código QR",
+    "placeholder": "https://example.com o cualquier texto",
+    "generateButton": "Generar código QR",
+    "downloadButton": "Descargar código QR",
+    "copyButton": "Copiar texto",
+    "contentTypeLabel": "Tipo de contenido",
+    "contentTypes": {
+      "text": "Texto",
+      "url": "URL",
+      "email": "Correo electrónico",
+      "phone": "Teléfono"
+    },
+    "colorLabel": "Color del código QR",
+    "bgColorLabel": "Color de fondo",
+    "sizeLabel": "Tamaño",
+    "errorCorrection": "Corrección de errores",
+    "errorCorrectionLevels": {
+      "L": "Bajo (7%)",
+      "M": "Medio (15%)",
+      "Q": "Cuartil (25%)",
+      "H": "Alto (30%)"
+    },
+    "successMessage": "¡Código QR generado con éxito!",
+    "errorMessage": "Error al generar el código QR. Por favor, inténtalo de nuevo.",
+    "emptyState": "Ingresa texto para generar un código QR"
+  },
+  "features": {
+    "qrGeneration": "Generación de códigos QR",
+    "textToQr": "Conversión de texto a código QR",
+    "urlToQr": "Conversión de URL a código QR",
+    "preview": "Vista previa en tiempo real",
+    "free": "Gratis para usar",
+    "noRegistration": "No requiere registro",
+    "browserRequirements": "Requiere un navegador moderno con JavaScript habilitado"
+  }
+} 

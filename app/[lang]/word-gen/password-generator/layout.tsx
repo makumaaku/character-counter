@@ -1,7 +1,8 @@
-import { translate } from '@/lib/i18n/client';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { loadToolMessages, translate } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -41,19 +42,32 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen/password-generator');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'wordGen.passwordGenerator.meta.title'),
+    translate(lang, 'wordGen.passwordGenerator.meta.description'),
+    translate(lang, 'wordGen.passwordGenerator.meta.keywords')
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
-
+  
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('passwordGenerator.meta.title'),
-    "description": t('passwordGenerator.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/password-generator`,
     "publisher": {
       "@type": "Organization",
@@ -84,23 +98,16 @@ export async function generateMetadata(
     ],
     "isAccessibleForFree": true,
     "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-    "keywords": [
-      "password generator",
-      "secure password",
-      "strong password",
-      "password creation",
-      "security tool",
-      "password safety"
-    ]
+    "keywords": keywords.split(',')
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('passwordGenerator.meta.title'),
-      description: t('passwordGenerator.meta.description'),
-      keywords: t('passwordGenerator.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/word-gen/password-generator`,
     }
   );
@@ -113,6 +120,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
-  return <>{children}</>;
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  
+  return (
+    <div className="layout-container">
+      {children}
+    </div>
+  );
 } 

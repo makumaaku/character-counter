@@ -1,17 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { useParams } from 'next/navigation'
-import { translate } from '@/lib/i18n/client'
 import { ClipboardIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 interface CopyButtonProps {
   text: string
+  buttonText: string
 }
 
-export default function CopyButton({ text }: CopyButtonProps) {
-  const params = useParams()
-  const lang = params.lang as string
+export default function CopyButton({ text, buttonText }: CopyButtonProps) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -40,7 +37,7 @@ export default function CopyButton({ text }: CopyButtonProps) {
       ) : (
         <>
           <ClipboardIcon className="h-4 w-4" />
-          <span>{translate(lang, 'metaCraftForLlm.copy.button')}</span>
+          <span>{buttonText}</span>
         </>
       )}
     </button>

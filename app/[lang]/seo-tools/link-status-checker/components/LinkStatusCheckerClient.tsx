@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { translate } from '@/lib/i18n/server';
 import Button from '@/components/ui/button';
+import { SeoToolsLinkStatusCheckerMessages } from '@/lib/i18n/types';
 
 type Props = {
   lang: string;
+  messages: SeoToolsLinkStatusCheckerMessages;
 };
 
 // リンクの型定義を更新
@@ -15,13 +16,18 @@ type LinkStatus = {
   errorMessage?: string;
 };
 
-export default function LinkStatusCheckerForm({ lang }: Props) {
+export default function LinkStatusCheckerClient({ lang, messages }: Props) {
   const [url, setUrl] = useState('');
   const [links, setLinks] = useState<LinkStatus[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [sortedLinks, setSortedLinks] = useState<LinkStatus[]>([]);
   const [progress, setProgress] = useState(0); // 進行状況を追跡
+
+  // 翻訳されたメッセージを使用
+  const totalLinksCheckedMessage = (count: number) => {
+    return messages.results.total_links_checked.replace('{{count}}', count.toString());
+  };
 
   useEffect(() => {
     if (links.length > 0) {
@@ -93,16 +99,16 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
         // Handle specific error types
         if (data.error) {
           if (data.error.includes('timeout') || data.error.includes('too long') || response.status === 504) {
-            setError(translate(lang, 'link-status-checker.errors.timeout'));
+            setError(messages.errors.timeout);
           } else if (data.error.includes('network') || data.error.includes('ENOTFOUND') || data.error.includes('resolve host')) {
-            setError(translate(lang, 'link-status-checker.errors.network'));
+            setError(messages.errors.network);
           } else if (data.error.includes('URL') || data.error.includes('url')) {
-            setError(translate(lang, 'link-status-checker.errors.invalid_url'));
+            setError(messages.errors.invalid_url);
           } else {
             setError(data.error);
           }
         } else {
-          setError(translate(lang, 'link-status-checker.errors.general'));
+          setError(messages.errors.general);
         }
         setProgress(100); // エラー時も処理完了
       }
@@ -111,25 +117,25 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       
       // Handle fetch abort (timeout)
       if (error instanceof DOMException && error.name === 'AbortError') {
-        setError(translate(lang, 'link-status-checker.errors.timeout'));
+        setError(messages.errors.timeout);
         setProgress(100); // タイムアウト時も処理完了
         return;
       }
       
       if (error instanceof Error) {
         if (error.message.includes('JSON')) {
-          setError(translate(lang, 'link-status-checker.errors.general'));
+          setError(messages.errors.general);
         } else if (error.message.includes('timeout') || error.message.includes('abort') || error.message.includes('Gateway Timeout')) {
-          setError(translate(lang, 'link-status-checker.errors.timeout'));
+          setError(messages.errors.timeout);
         } else if (error.message.includes('network') || error.message.includes('fetch')) {
-          setError(translate(lang, 'link-status-checker.errors.network'));
+          setError(messages.errors.network);
         } else if (error.message.includes('URL')) {
-          setError(translate(lang, 'link-status-checker.errors.invalid_url'));
+          setError(messages.errors.invalid_url);
         } else {
-          setError(error.message || translate(lang, 'link-status-checker.errors.general'));
+          setError(error.message || messages.errors.general);
         }
       } else {
-        setError(translate(lang, 'link-status-checker.errors.general'));
+        setError(messages.errors.general);
       }
       setProgress(100); // エラー時も処理完了
     } finally {
@@ -150,7 +156,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="url" className="block text-sm font-medium text-gray-300">
-            {translate(lang, 'link-status-checker.form.url.label')}
+            {messages.form.url.label}
           </label>
           <div className="mt-1">
             <input
@@ -162,7 +168,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
               className="appearance-none block w-full px-3 py-2 border border-gray-700 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm bg-gray-800 text-white"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              placeholder={translate(lang, 'link-status-checker.form.url.placeholder')}
+              placeholder={messages.form.url.placeholder}
               disabled={loading}
             />
           </div>
@@ -176,8 +182,8 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
             disabled={loading}
           >
             {loading 
-              ? translate(lang, 'link-status-checker.form.button.checking') 
-              : translate(lang, 'link-status-checker.form.button.check')}
+              ? messages.form.button.checking 
+              : messages.form.button.check}
           </Button>
         </div>
       </form>
@@ -186,7 +192,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       {loading && (
         <div className="mt-4">
           <div className="text-center text-gray-300 mb-2">
-            {translate(lang, 'link-status-checker.form.button.checking')}...
+            {messages.form.button.checking}...
           </div>
           <div className="w-full bg-gray-700 rounded-full h-2.5">
             <div 
@@ -195,7 +201,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
             ></div>
           </div>
           <div className="text-center text-gray-400 text-sm mt-1">
-            {progress < 50 ? 'URLを解析中...' : 'リンクをチェック中...'}
+            {progress < 50 ? messages.results.processing_url : messages.results.checking_links}
           </div>
         </div>
       )}
@@ -211,10 +217,10 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
       {sortedLinks.length > 0 && (
         <div className="mt-4">
           <h2 className="text-lg font-medium text-gray-300">
-            {translate(lang, 'link-status-checker.results.title')}:
+            {messages.results.title}:
           </h2>
           <div className="text-sm text-gray-400 mb-2">
-            合計 {sortedLinks.length} リンクをチェックしました
+            {totalLinksCheckedMessage(sortedLinks.length)}
           </div>
           <ul className="mt-2 space-y-1">
             {sortedLinks.map((link, index) => (
@@ -232,7 +238,7 @@ export default function LinkStatusCheckerForm({ lang }: Props) {
                   {link.url}
                 </a>
                 <span className={`ml-2 ${getStatusColor(link.status)}`}>
-                  {translate(lang, 'link-status-checker.results.status')}: {link.status}
+                  {messages.results.status}: {link.status}
                   {link.errorMessage && link.status >= 400 && (
                     <span className="ml-2 text-red-400">({link.errorMessage})</span>
                   )}

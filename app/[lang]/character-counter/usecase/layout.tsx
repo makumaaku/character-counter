@@ -1,7 +1,8 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -12,20 +13,39 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'character-counter/usecase');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords,
+    articleHeadline,
+    articleDescription,
+    articleBody,
+  ] = await Promise.all([
+    translate(lang, 'characterCounter.usecase.meta.title'),
+    translate(lang, 'characterCounter.usecase.meta.description'),
+    translate(lang, 'characterCounter.usecase.meta.keywords'),
+    translate(lang, 'characterCounter.usecase.meta.article.headline'),
+    translate(lang, 'characterCounter.usecase.meta.article.description'),
+    translate(lang, 'characterCounter.usecase.meta.article.body'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": t('characterCounter.usecase.meta.article.headline'),
-    "description": t('characterCounter.usecase.meta.article.description'),
-    "articleBody": t('characterCounter.usecase.meta.article.body'),
+    "headline": articleHeadline,
+    "description": articleDescription,
+    "articleBody": articleBody,
     "url": `${SITE_CONFIG.baseURL}/${lang}/character-counter/usecase`,
     "publisher": {
       "@type": "Organization",
@@ -50,9 +70,9 @@ export async function generateMetadata(
     lang,
     commonMeta,
     {
-      title: t('characterCounter.usecase.meta.title'),
-      description: t('characterCounter.usecase.meta.description'),
-      keywords: t('characterCounter.usecase.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/character-counter/usecase`,
     }
   );

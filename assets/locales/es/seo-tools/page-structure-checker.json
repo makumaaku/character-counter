@@ -1,0 +1,51 @@
+{
+    "meta": {
+      "title": "Verificador de Estructura de Página - Herramientas SEO",
+      "description": "Analiza la estructura de tu página web incluyendo título, descripción y jerarquía de encabezados para asegurar una optimización SEO adecuada",
+      "keywords": "estructura de página, estructura de encabezados, verificador seo, etiqueta h1, etiqueta de título, meta descripción"
+    },
+    "title": "Verificador de Estructura de Página",
+    "description": "Verifica si tu página web tiene una estructura adecuada con título, descripción y etiquetas de encabezado apropiadas",
+    "form": {
+      "urlLabel": "Ingresa URL para analizar",
+      "urlPlaceholder": "https://example.com",
+      "analyzing": "Analizando...",
+      "analyze": "Analizar",
+      "example": "Ejemplo"
+    },
+    "error": {
+      "title": "Error",
+      "urlRequired": "Por favor ingresa una URL para analizar",
+      "invalidUrl": "Por favor ingresa una URL válida (incluyendo http:// o https://)",
+      "fetchFailed": "No se pudo analizar la página",
+      "networkError": "Error de red - por favor verifica tu conexión",
+      "serverError": "Ocurrió un error del servidor durante el análisis",
+      "timeoutError": "La solicitud expiró - el servidor podría estar ocupado",
+      "parsingError": "No se pudo analizar la estructura de la página"
+    },
+    "metaTitle": "Información Meta",
+    "headingStructure": "Estructura de Encabezados",
+    "issues": "Problemas Encontrados",
+    "noTitle": "No se encontró título",
+    "noDescription": "No se encontró descripción",
+    "noCanonical": "No se encontró URL canónica",
+    "noHeadings": "No se encontraron etiquetas de encabezado en la página",
+    "warning": "Advertencia",
+    "analysis": "Análisis",
+    "good": "Encontrado",
+    "missing": "Faltante",
+    "present": "Presente",
+    "tag": "etiqueta",
+    "count": "cantidad",
+    "hierarchyIssue": "h2-h6: problema-de-jerarquía",
+    "noTitle": "La página no tiene una etiqueta de título",
+    "noDescription": "La página no tiene una meta descripción",
+    "noH1": "La página no tiene una etiqueta h1",
+    "multipleH1": "La página tiene múltiples etiquetas h1 (debería tener solo una)",
+    "skippedLevel": "La jerarquía de niveles de encabezado es incorrecta.",
+    "issueFound": "Problema Encontrado",
+    "hierarchyIssueMessage": "Problema de Jerarquía",
+    "recommended": "Recomendado",
+    "importantForSeo": "Importante para SEO",
+    "headings": "Encabezados"
+  } 

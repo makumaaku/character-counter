@@ -1,0 +1,28 @@
+{
+    "meta": {
+      "title": "PNG to PDF変換ツール - オンラインで画像をPDFに変換",
+      "description": "PNG画像をPDFドキュメントに変換する無料オンラインツール。複数の画像を1つのPDFにまとめてカスタマイズ可能。インストール不要。",
+      "keywords": "pngからpdf, 画像からpdf, pngをpdfに変換, 画像変換, オンライン画像変換, 無料画像変換"
+    },
+    "title": "PNG to PDF変換ツール",
+    "description": "PNG画像をカスタマイズ可能な設定でPDFドキュメントに変換",
+    "form": {
+      "upload": {
+        "label": "PNGファイルをアップロード",
+        "button": "PNGファイルをここにドラッグ＆ドロップ、またはクリックして選択",
+        "dragDrop": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+      },
+      "convert": "PDFに変換"
+    },
+    "result": {
+      "download": "PDFをダウンロード"
+    },
+    "status": {
+      "processing": "処理中...",
+      "noFile": "ファイルが選択されていません"
+    },
+    "error": {
+      "fileType": "PNGファイルのみをアップロードしてください",
+      "fileSize": "ファイルサイズの合計が20MB制限を超えています"
+    }
+  }

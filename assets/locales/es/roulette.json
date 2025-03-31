@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "title": "Ruleta Aleatoria - Herramienta Gratuita para Tomar Decisiones",
+    "description": "Toma decisiones aleatorias con nuestra ruleta en línea gratuita. Perfecta para actividades en clase, decisiones de equipo o juegos familiares. ¡Fácil de usar, justa y divertida!",
+    "keywords": "ruleta aleatoria, herramienta de decisión, ruleta en línea, selector aleatorio, herramienta para clase, tomador de decisiones en equipo"
+  },
+  "title": "Ruleta Aleatoria",
+  "buttons": {
+    "spin": "Girar",
+    "spinning": "Girando...",
+    "edit": "Editar Items",
+    "save": "Guardar",
+    "cancel": "Cancelar"
+  },
+  "result": {
+    "selected": "Seleccionado:",
+    "placeholder": "¡Haz clic en 'Girar' para comenzar!"
+  },
+  "content": {
+    "hero": {
+      "title": "Toma Decisiones Aleatorias con Estilo",
+      "description": "Nuestra ruleta te ayuda a tomar decisiones aleatorias de forma rápida y justa. ¡Perfecta para actividades en clase, decisiones de equipo o juegos familiares!",
+      "darkMode": "Modo Oscuro"
+    },
+    "howTo": {
+      "title": "Cómo Usar",
+      "steps": {
+        "input": {
+          "title": "1. Ingresa tus Items",
+          "description": "Haz clic en 'Editar Items' e ingresa tus opciones, una por línea",
+          "note": "Puedes agregar hasta 20 items"
+        },
+        "spin": {
+          "title": "2. Gira la Ruleta",
+          "description": "Haz clic en el botón 'Girar' o presiona la barra espaciadora",
+          "note": "Observa la ruleta girar con animaciones vibrantes"
+        },
+        "result": {
+          "title": "3. Obtén tu Resultado",
+          "description": "La ruleta se detendrá en una selección aleatoria",
+          "note": "Los resultados son completamente aleatorios y justos"
+        }
+      }
+    },
+    "testimonials": {
+      "title": "Lo que Dice la Gente",
+      "users": {
+        "teacher": {
+          "name": "María, Profesora",
+          "comment": "¡Perfecta para elegir estudiantes al azar en clase!"
+        },
+        "team": {
+          "name": "Carlos, Líder de Equipo",
+          "comment": "La usamos para actividades de team building."
+        },
+        "family": {
+          "name": "Ana, Madre",
+          "comment": "¡Genial para hacer divertidas las decisiones familiares!"
+        }
+      }
+    },
+    "features": {
+      "title": "Características",
+      "items": {
+        "easy": {
+          "title": "Fácil de Usar",
+          "description": "Interfaz simple, sin registro requerido"
+        },
+        "fair": {
+          "title": "Resultados Justos",
+          "description": "Selección verdaderamente aleatoria cada vez"
+        },
+        "visual": {
+          "title": "Atractivo Visual",
+          "description": "Hermosas animaciones y colores"
+        },
+        "free": {
+          "title": "Siempre Gratis",
+          "description": "Sin costos ocultos ni funciones premium"
+        }
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "questions": {
+        "what": {
+          "question": "¿Qué es la Ruleta Aleatoria?",
+          "answer": "Es una herramienta gratuita en línea que te ayuda a hacer selecciones aleatorias girando una ruleta colorida."
+        },
+        "usage": {
+          "question": "¿Cómo se usa?",
+          "answer": "Simplemente ingresa tus items, haz clic en 'Girar' y espera el resultado. Puedes editar los items en cualquier momento."
+        },
+        "save": {
+          "question": "¿Puedo guardar mi ruleta?",
+          "answer": "Actualmente, los items se almacenan en el almacenamiento local de tu navegador para tu próxima visita."
+        },
+        "limit": {
+          "question": "¿Hay un límite en el número de items?",
+          "answer": "Sí, puedes agregar hasta 20 items para un rendimiento y visibilidad óptimos."
+        },
+        "mobile": {
+          "question": "¿Funciona en dispositivos móviles?",
+          "answer": "Sí, la ruleta es completamente responsive y funciona en todos los dispositivos."
+        }
+      }
+    }
+  }
+} 

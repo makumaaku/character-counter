@@ -9,38 +9,13 @@ import { saveAs } from 'file-saver'
 import 'react-pdf/dist/esm/Page/TextLayer.css'
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css'
 import Button from '@/components/ui/button'
+import { PdfToolsPdfToEpubMessages } from '@/lib/i18n/types'
 
 // PDFJSのワーカーを設定
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs'
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-        dragging: string
-        instruction: string
-        maxSize: string
-      }
-      convert: string
-    }
-    result: {
-      download: string
-    }
-    status: {
-      processing: string
-      noFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-    }
-    loading: string
-  }
+  messages: PdfToolsPdfToEpubMessages
 }
 
 // テキストアイテムの型定義
@@ -77,7 +52,7 @@ type ExtractedPageContent = {
   items: TextItem[]
 }
 
-export default function PdfToEpubClient({ translations }: Props) {
+export default function PdfToEpubClient({ messages }: Props) {
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [numPages, setNumPages] = useState<number | null>(null)
   const [convertedEpub, setConvertedEpub] = useState<Blob | null>(null)
@@ -127,19 +102,19 @@ export default function PdfToEpubClient({ translations }: Props) {
     
     // ファイルがPDFかチェック
     if (file.type !== 'application/pdf') {
-      setError(translations.error.fileType)
+      setError(messages.error.fileType)
       return
     }
     
     // ファイルサイズチェック (最大20MB)
     if (file.size > 20 * 1024 * 1024) {
-      setError(translations.error.fileSize)
+      setError(messages.error.fileSize)
       return
     }
     
     setPdfFile(file)
     pagesContentRef.current = []
-  }, [translations.error.fileType, translations.error.fileSize])
+  }, [messages.error.fileType, messages.error.fileSize])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -572,13 +547,13 @@ li {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">{translations.title}</h1>
-        <p className="text-gray-300">{translations.description}</p>
+        <h1 className="text-3xl font-bold mb-2">{messages.title}</h1>
+        <p className="text-gray-300">{messages.description}</p>
       </div>
 
       {!isPdfJsReady && !error ? (
         <div className="bg-gray-700 rounded-lg p-6 mb-8 text-center">
-          <p className="text-gray-300 mb-2">{translations.loading}</p>
+          <p className="text-gray-300 mb-2">{messages.status.loading}</p>
           <div className="w-full flex justify-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
           </div>
@@ -587,7 +562,7 @@ li {
         <div className="bg-gray-700 rounded-lg p-6 mb-8">
           <div className="mb-6">
             <label className="block text-gray-300 mb-2">
-              {translations.form.upload.label}
+              {messages.form.upload.label}
             </label>
             <div
               {...getRootProps()}
@@ -598,10 +573,10 @@ li {
               <input {...getInputProps()} />
               <p className="text-gray-300 mb-2">
                 {isDragActive
-                  ? translations.form.upload.dragging
-                  : translations.form.upload.instruction}
+                  ? messages.form.upload.dragging
+                  : messages.form.upload.instruction}
               </p>
-              <p className="text-gray-400 text-sm">{translations.form.upload.maxSize}</p>
+              <p className="text-gray-400 text-sm">{messages.form.upload.maxSize}</p>
               {pdfFile && (
                 <p className="text-green-400 mt-2">
                   {pdfFile.name} ({(pdfFile.size / 1024 / 1024).toFixed(2)} MB)
@@ -618,7 +593,7 @@ li {
               disabled={isConverting}
               variant="purple"
             >
-              {isConverting ? translations.status.processing : translations.form.convert}
+              {isConverting ? messages.status.processing : messages.form.convert}
             </Button>
           )}
 
@@ -657,12 +632,12 @@ li {
       {convertedEpub && (
         <div className="mt-8">
           <div className="bg-gray-700 rounded-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Conversion Complete</h2>
+            <h2 className="text-xl font-bold mb-4">{messages.result.conversionComplete}</h2>
             <Button
               onClick={downloadEpub}
               variant="purple"
             >
-              {translations.result.download}
+              {messages.result.download}
             </Button>
           </div>
         </div>

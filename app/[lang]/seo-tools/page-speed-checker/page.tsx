@@ -1,10 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import PageSpeedCheckerClient from './components/PageSpeedCheckerClient'
+import { Language, SeoToolsPageSpeedCheckerMessages } from '@/lib/i18n/types'
 
-export default async function PageSpeedChecker({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // 翻訳を取得
+export default async function PageSpeedChecker({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'seo-tools/page-speed-checker');
+  
+  // サーバーコンポーネントで翻訳を取得
   const [
     title,
     description,
@@ -18,20 +26,26 @@ export default async function PageSpeedChecker({ params }: { params: Promise<{ l
     resultSuggestionsLabel,
     noUrlText
   ] = await Promise.all([
-    translate(lang, 'pageSpeedChecker.title'),
-    translate(lang, 'pageSpeedChecker.description'),
-    translate(lang, 'pageSpeedChecker.input.url'),
-    translate(lang, 'pageSpeedChecker.input.analyzeButton'),
-    translate(lang, 'pageSpeedChecker.results.loading'),
-    translate(lang, 'pageSpeedChecker.error.invalidUrl'),
-    translate(lang, 'pageSpeedChecker.error.fetchFailed'),
-    translate(lang, 'pageSpeedChecker.results.loadTime'),
-    translate(lang, 'pageSpeedChecker.results.resources'),
-    translate(lang, 'pageSpeedChecker.results.suggestions'),
-    translate(lang, 'pageSpeedChecker.status.noUrl')
-  ])
+    translate(lang, 'seoTools.pageSpeedChecker.title'),
+    translate(lang, 'seoTools.pageSpeedChecker.description'),
+    translate(lang, 'seoTools.pageSpeedChecker.input.url'),
+    translate(lang, 'seoTools.pageSpeedChecker.input.analyzeButton'),
+    translate(lang, 'seoTools.pageSpeedChecker.results.loading'),
+    translate(lang, 'seoTools.pageSpeedChecker.error.invalidUrl'),
+    translate(lang, 'seoTools.pageSpeedChecker.error.fetchFailed'),
+    translate(lang, 'seoTools.pageSpeedChecker.results.loadTime'),
+    translate(lang, 'seoTools.pageSpeedChecker.results.resources'),
+    translate(lang, 'seoTools.pageSpeedChecker.results.suggestions'),
+    translate(lang, 'seoTools.pageSpeedChecker.status.noUrl')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: SeoToolsPageSpeedCheckerMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     input: {
@@ -51,7 +65,7 @@ export default async function PageSpeedChecker({ params }: { params: Promise<{ l
     status: {
       noUrl: noUrlText
     }
-  }
+  };
 
-  return <PageSpeedCheckerClient translations={translations} />
+  return <PageSpeedCheckerClient messages={messages} />
 } 

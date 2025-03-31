@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Word Generation Tools - Create Various Types of Text",
+    "description": "Collection of tools for generating various types of text including passwords, names, sentences and more.",
+    "keywords": "word generator,text generator,password generator,name generator,sentence generator"
+  },
+  "common": {
+    "copyButton": "Copy",
+    "copied": "Copied!",
+    "generateButton": "Generate",
+    "downloadButton": "Download",
+    "resetButton": "Reset",
+    "settings": "Settings",
+    "preview": "Preview",
+    "result": "Result",
+    "length": "Length",
+    "options": "Options",
+    "customize": "Customize"
+  },
+  "title": "Word Generation Tools",
+  "description": "Create various types of words and text with our collection of generation tools",
+  "tools": {
+    "wordGenerator": {
+      "title": "Word Generator",
+      "description": "Generate random words based on your preferences"
+    },
+    "wordCardGenerator": {
+      "title": "Word Card Generator",
+      "description": "Create flashcards with words and their definitions"
+    },
+    "sentenceGenerator": {
+      "title": "Sentence Generator",
+      "description": "Generate random sentences for various purposes"
+    },
+    "nameGenerator": {
+      "title": "Name Generator",
+      "description": "Generate random names for characters or businesses"
+    },
+    "passwordGenerator": {
+      "title": "Password Generator",
+      "description": "Create secure and random passwords"
+    },
+    "storyGenerator": {
+      "title": "Story Generator",
+      "description": "Generate random story plots and scenarios"
+    },
+    "japaneseKanjiGenerator": {
+      "title": "Japanese Kanji Generator",
+      "description": "Generate random Japanese kanji characters"
+    }
+  }
+} 

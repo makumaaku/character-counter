@@ -1,0 +1,67 @@
+{
+  "title": "Preguntas frecuentes",
+  "general": {
+    "title": "Preguntas generales",
+    "q1": {
+      "question": "P1. ¿Qué es una aplicación de conteo de caracteres?",
+      "answer": "R: Una aplicación de conteo de caracteres es una herramienta que calcula instantáneamente el número de caracteres en el texto ingresado y muestra resultados precisos. Esto evita errores de conteo manual y permite una creación y edición eficiente de texto."
+    },
+    "q2": {
+      "question": "P2. ¿En qué escenarios se puede utilizar?",
+      "intro": "R: Los principales escenarios de uso son:",
+      "uses": {
+        "1": "Redacción/publicación de blogs",
+        "2": "Publicación en redes sociales",
+        "3": "Optimización SEO",
+        "4": "Creación de textos publicitarios"
+      },
+      "answer": "Los principales escenarios de uso incluyen: Redacción/publicación de blogs, publicación en redes sociales, optimización SEO y creación de textos publicitarios."
+    }
+  },
+  "technical": {
+    "title": "Preguntas técnicas",
+    "q3": {
+      "question": "P3. ¿Cómo se cuentan los caracteres de ancho completo y medio ancho?",
+      "answer": "R: Tanto los caracteres de ancho completo como de medio ancho son reconocidos correctamente y contados con precisión. Los símbolos especiales y saltos de línea también son contados."
+    },
+    "q4": {
+      "question": "P4. ¿Es compatible con múltiples idiomas?",
+      "answer": "R: Sí, la aplicación es compatible con múltiples idiomas, incluidos el japonés y el inglés, con un manejo adecuado de caracteres y símbolos para cada idioma."
+    }
+  },
+  "features": {
+    "title": "Características y uso",
+    "q5": {
+      "question": "P5. ¿Qué características incluye?",
+      "intro": "R: Nuestro contador de caracteres incluye:",
+      "features": {
+        "1": "Conteo de caracteres en tiempo real",
+        "2": "Conteo de líneas",
+        "3": "Conteo de palabras",
+        "4": "Conteo de bytes",
+        "5": "Funcionalidad de búsqueda de cadenas",
+        "6": "Soporte para modo oscuro"
+      }
+    },
+    "q6": {
+      "question": "P6. ¿Se requiere registro?",
+      "answer": "R: No, nuestras funciones básicas están disponibles sin registro. Sin embargo, algunas funciones premium pueden requerir una cuenta de usuario."
+    }
+  },
+  "privacy": {
+    "title": "Privacidad y seguridad",
+    "q7": {
+      "question": "P7. ¿Están seguros mis datos de texto?",
+      "answer": "R: Sí, todo el procesamiento de texto se realiza localmente en tu navegador. No almacenamos ni transmitimos tus datos de texto a ningún servidor."
+    },
+    "q8": {
+      "question": "P8. ¿Recopilan algún dato de usuario?",
+      "answer": "R: Solo recopilamos estadísticas de uso anónimas para mejorar nuestro servicio. No se recopilan datos personales ni contenido de texto."
+    }
+  },
+  "meta": {
+    "title": "FAQ - Herramienta de contador de caracteres | Preguntas frecuentes",
+    "description": "Encuentra respuestas a preguntas frecuentes sobre nuestra herramienta de contador de caracteres. Aprende sobre características, uso y consejos de solución de problemas.",
+    "keywords": "faq contador de caracteres, preguntas contador de texto, ayuda conteo de palabras, tutorial conteo de caracteres, guía análisis de texto"
+  }
+}

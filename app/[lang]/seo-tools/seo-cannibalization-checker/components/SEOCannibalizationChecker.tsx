@@ -2,40 +2,13 @@
 
 import Button from '@/components/ui/button';
 import { useState } from 'react';
+import { SeoToolsSeoCannibalizationCheckerMessages } from '@/lib/i18n/types';
 
 interface SEOCannibalizationCheckerProps {
-  translations: {
-    title: string;
-    description: string;
-    domain: {
-      label: string;
-      placeholder: string;
-      help: string;
-    };
-    keyword: {
-      label: string;
-      placeholder: string;
-      help: string;
-    };
-    button: {
-      check: string;
-      processing: string;
-    };
-    result: {
-      title: string;
-      description: string;
-      openButton: string;
-    };
-    error: {
-      emptyDomain: string;
-      invalidDomain: string;
-      emptyKeyword: string;
-      generic: string;
-    };
-  };
+  messages: SeoToolsSeoCannibalizationCheckerMessages;
 }
 
-export default function SEOCannibalizationChecker({ translations }: SEOCannibalizationCheckerProps) {
+export default function SEOCannibalizationChecker({ messages }: SEOCannibalizationCheckerProps) {
   const [domain, setDomain] = useState('');
   const [keyword, setKeyword] = useState('');
   const [searchUrl, setSearchUrl] = useState('');
@@ -52,17 +25,17 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
     setError('');
     
     if (!domain) {
-      setError(translations.error.emptyDomain);
+      setError(messages.error.emptyDomain);
       return;
     }
     
     if (!isValidDomain(domain)) {
-      setError(translations.error.invalidDomain);
+      setError(messages.error.invalidDomain);
       return;
     }
     
     if (!keyword.trim()) {
-      setError(translations.error.emptyKeyword);
+      setError(messages.error.emptyKeyword);
       return;
     }
     
@@ -78,7 +51,7 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
       setSearchUrl(googleSearchUrl);
       setIsProcessing(false);
     } catch {
-      setError(translations.error.generic);
+      setError(messages.error.generic);
       setIsProcessing(false);
     }
   };
@@ -87,9 +60,9 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
     <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-4">{translations.title}</h1>
+          <h1 className="text-4xl font-bold mb-4">{messages.title}</h1>
           <p className="text-xl text-gray-300 mb-6">
-            {translations.description}
+            {messages.description}
           </p>
         </div>
 
@@ -97,32 +70,32 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="domain" className="block text-lg mb-2">
-                {translations.domain.label}
+                {messages.domain.label}
               </label>
               <input
                 type="text"
                 id="domain"
                 className="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-white"
-                placeholder={translations.domain.placeholder}
+                placeholder={messages.domain.placeholder}
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
               />
-              <p className="text-sm text-gray-400 mt-1">{translations.domain.help}</p>
+              <p className="text-sm text-gray-400 mt-1">{messages.domain.help}</p>
             </div>
 
             <div className="mb-6">
               <label htmlFor="keyword" className="block text-lg mb-2">
-                {translations.keyword.label}
+                {messages.keyword.label}
               </label>
               <input
                 type="text"
                 id="keyword"
                 className="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-white"
-                placeholder={translations.keyword.placeholder}
+                placeholder={messages.keyword.placeholder}
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
               />
-              <p className="text-sm text-gray-400 mt-1">{translations.keyword.help}</p>
+              <p className="text-sm text-gray-400 mt-1">{messages.keyword.help}</p>
             </div>
 
             {error && (
@@ -137,16 +110,16 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
               variant="purple"
               className="w-full"
             >
-              {isProcessing ? translations.button.processing : translations.button.check}
+              {isProcessing ? messages.button.processing : messages.button.check}
             </Button>
           </form>
         </div>
 
         {searchUrl && (
           <div className="bg-gray-700 rounded-lg p-6">
-            <h2 className="text-2xl font-bold mb-4">{translations.result.title}</h2>
+            <h2 className="text-2xl font-bold mb-4">{messages.result.title}</h2>
             <p className="mb-6 text-gray-300">
-              {translations.result.description}
+              {messages.result.description}
             </p>
             <a
               href={searchUrl}
@@ -154,7 +127,7 @@ export default function SEOCannibalizationChecker({ translations }: SEOCannibali
               rel="noopener noreferrer"
               className="block w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-bold text-lg text-center transition duration-200"
             >
-              {translations.result.openButton}
+              {messages.result.openButton}
             </a>
           </div>
         )}

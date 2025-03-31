@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Herramienta de Predicción de Volumen SEO | Estima fácilmente el volumen de búsqueda de palabras clave",
+    "description": "Una herramienta gratuita que recopila sugerencias de palabras clave y puntúa el volumen de búsqueda estimado.",
+    "keywords": "SEO,volumen de búsqueda,análisis de palabras clave,sugerencias"
+  },
+  "title": "Herramienta de Predicción de Volumen SEO",
+  "description": "Solo introduce una palabra clave, y predeciremos el volumen SEO a partir de las sugerencias de Google.",
+  "input": {
+    "placeholder": "Introduce una palabra clave (ej., ramen, clases de inglés)"
+  },
+  "button": {
+    "analyze": "Analizar"
+  },
+  "result": {
+    "volumeScore": "Predicción de volumen de búsqueda",
+    "suggestions": "sugerencias",
+    "allSuggestions": "Todos los candidatos de sugerencia",
+    "scoreDescription1": "Volumen muy bajo. Esta es una palabra clave de nicho.",
+    "scoreDescription2": "Volumen bajo. Podría haber menos competencia.",
+    "scoreDescription3": "Volumen medio. Una palabra clave equilibrada.",
+    "scoreDescription4": "Volumen alto. Esta es una palabra clave popular.",
+    "scoreDescription5": "Volumen muy alto. Esta palabra clave tiene una competencia intensa."
+  },
+  "error": {
+    "emptyKeyword": "Por favor, introduce una palabra clave",
+    "unknown": "Ha ocurrido un error. Por favor, inténtalo de nuevo.",
+    "apiError": "Ha ocurrido un error en la API. Por favor, inténtalo más tarde."
+  },
+  "country": {
+    "selector": "Selecciona el país objetivo",
+    "result": "Resultados para {country}",
+    "japan": "Japón",
+    "us": "Estados Unidos",
+    "uk": "Reino Unido",
+    "australia": "Australia",
+    "canada": "Canadá",
+    "germany": "Alemania",
+    "france": "Francia",
+    "india": "India"
+  },
+  "notice": {
+    "title": "Notas de uso",
+    "language": "Al buscar palabras clave japonesas en otros países, se traducen automáticamente al idioma de ese país (ej., 'パン' → 'pan'). Esto funciona para un conjunto limitado de palabras clave comunes.",
+    "location": "Los resultados pueden verse influenciados por tu ubicación geográfica. Por ejemplo, si accedes desde España, es posible que sigas viendo resultados orientados al español independientemente de la configuración del país."
+  }
+}

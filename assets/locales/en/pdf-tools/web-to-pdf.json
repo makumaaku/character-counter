@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Web to PDF Converter - Convert Web Pages to PDF Online",
+    "description": "Free online tool to convert web pages to PDF documents. Simply enter a URL and convert any website to a downloadable PDF file. No installation required.",
+    "keywords": "web to pdf, website to pdf, convert web page to pdf, url to pdf, online pdf converter, free pdf converter"
+  },
+  "title": "Web to PDF Converter",
+  "description": "Convert any web page to a PDF document with a single click",
+  "form": {
+    "url": {
+      "label": "Website URL",
+      "placeholder": "https://example.com ",
+      "button": "Convert to PDF"
+    }
+  },
+  "result": {
+    "download": "Download PDF",
+    "preview": "Preview PDF"
+  },
+  "status": {
+    "processing": "Converting web page to PDF...",
+    "noUrl": "Please enter a valid URL",
+    "success": "Conversion successful!"
+  },
+  "error": {
+    "invalidUrl": "Invalid URL. Please enter a valid website address.",
+    "conversionFailed": "Conversion failed. Please try again.",
+    "networkError": "Network error. Please check your connection and try again.",
+    "timeout": "The conversion is taking longer than expected. Complex websites may take over a minute to convert. Please wait..."
+  },
+  "loading": "Loading PDF converter...",
+  "preview": {
+    "loading": "Loading PDF preview...",
+    "error": "Failed to load preview",
+    "pageOf": "Page {current} of {total}"
+  }
+}

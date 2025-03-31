@@ -1,0 +1,51 @@
+{
+    "meta": {
+      "title": "画像変換ツール - 無料オンライン画像変換",
+      "description": "無料のオンラインツールで画像を様々な形式に変換できます。シンプル、高速、安全な画像変換ツールがあなたのニーズに応えます。",
+      "keywords": "画像変換, 画像ツール, JPGからPNG, PNGからJPG, 画像フォーマット変換, 無料画像変換"
+    },
+    "title": "画像変換ツール",
+    "description": "様々な形式の画像を変換する無料オンラインツール",
+    "tools": {
+      "jpgToPng": {
+        "title": "JPGからPNGへの変換",
+        "description": "JPG画像を透過対応のPNG形式に変換"
+      },
+      "pngToJpg": {
+        "title": "PNGからJPGへの変換",
+        "description": "PNG画像をJPG形式に簡単に変換"
+      },
+      "heicToJpg": {
+        "title": "HEICからJPGへの変換",
+        "description": "HEICファイルをJPGフォーマットに変換"
+      },
+      "heicToPng": {
+        "title": "HEICからPNGへの変換",
+        "description": "HEICファイルをPNG形式に変換"
+      },
+      "heicToWebp": {
+        "title": "HEICからWebPへの変換",
+        "description": "HEICファイルをWebP形式に変換"
+      },
+      "jpgToWebp": {
+        "title": "JPGからWebPへの変換",
+        "description": "JPG画像をウェブ表示に最適化されたWebP形式に変換"
+      },
+      "pngToWebp": {
+        "title": "PNGからWebPへの変換",
+        "description": "PNG画像をウェブ表示に最適化されたWebP形式に変換"
+      },
+      "svgToJpg": {
+        "title": "SVGからJPGへの変換",
+        "description": "SVGベクター画像をJPG形式に変換"
+      },
+      "svgToPng": {
+        "title": "SVGからPNGへの変換",
+        "description": "SVGベクター画像を透過対応のPNG形式に変換"
+      },
+      "svgToWebp": {
+        "title": "SVGからWebPへの変換",
+        "description": "SVGベクター画像をウェブ表示に最適化されたWebP形式に変換"
+      }
+    }
+  }

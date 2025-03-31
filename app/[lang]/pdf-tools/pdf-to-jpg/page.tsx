@@ -1,13 +1,26 @@
 import { translate } from '@/lib/i18n/server'
 import PdfToJpgClient from './components/PdfToJpgClient'
+import { getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
+import { Language, PdfToolsPdfToJpgMessages } from '@/lib/i18n/types'
 
-export default async function PdfToJpg({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function PdfToJpg({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'pdf-tools');
+  await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-jpg');
+  
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     uploadLabel,
     uploadButton,
     dragDropText,
@@ -23,25 +36,34 @@ export default async function PdfToJpg({ params }: { params: Promise<{ lang: str
     fileTypeError,
     fileSizeError
   ] = await Promise.all([
-    translate(lang, 'pdfToJpg.title'),
-    translate(lang, 'pdfToJpg.description'),
-    translate(lang, 'pdfToJpg.form.upload.label'),
-    translate(lang, 'pdfToJpg.form.upload.button'),
-    translate(lang, 'pdfToJpg.form.upload.dragDrop'),
-    translate(lang, 'pdfToJpg.form.quality.label'),
-    translate(lang, 'pdfToJpg.form.quality.low'),
-    translate(lang, 'pdfToJpg.form.quality.medium'),
-    translate(lang, 'pdfToJpg.form.quality.high'),
-    translate(lang, 'pdfToJpg.form.convert'),
-    translate(lang, 'pdfToJpg.result.downloadAll'),
-    translate(lang, 'pdfToJpg.result.download'),
-    translate(lang, 'pdfToJpg.status.processing'),
-    translate(lang, 'pdfToJpg.status.noFile'),
-    translate(lang, 'pdfToJpg.error.fileType'),
-    translate(lang, 'pdfToJpg.error.fileSize')
-  ])
+    translate(lang, 'pdfTools.pdfToJpg.title'),
+    translate(lang, 'pdfTools.pdfToJpg.description'),
+    translate(lang, 'pdfTools.pdfToJpg.meta.title'),
+    translate(lang, 'pdfTools.pdfToJpg.meta.description'),
+    translate(lang, 'pdfTools.pdfToJpg.meta.keywords'),
+    translate(lang, 'pdfTools.pdfToJpg.form.upload.label'),
+    translate(lang, 'pdfTools.pdfToJpg.form.upload.button'),
+    translate(lang, 'pdfTools.pdfToJpg.form.upload.dragDrop'),
+    translate(lang, 'pdfTools.pdfToJpg.form.quality.label'),
+    translate(lang, 'pdfTools.pdfToJpg.form.quality.low'),
+    translate(lang, 'pdfTools.pdfToJpg.form.quality.medium'),
+    translate(lang, 'pdfTools.pdfToJpg.form.quality.high'),
+    translate(lang, 'pdfTools.pdfToJpg.form.convert'),
+    translate(lang, 'pdfTools.pdfToJpg.result.downloadAll'),
+    translate(lang, 'pdfTools.pdfToJpg.result.download'),
+    translate(lang, 'pdfTools.pdfToJpg.status.processing'),
+    translate(lang, 'pdfTools.pdfToJpg.status.noFile'),
+    translate(lang, 'pdfTools.pdfToJpg.error.fileType'),
+    translate(lang, 'pdfTools.pdfToJpg.error.fileSize')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: PdfToolsPdfToJpgMessages = {
+    meta: {
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
+    },
     title,
     description,
     form: {
@@ -70,7 +92,7 @@ export default async function PdfToJpg({ params }: { params: Promise<{ lang: str
       fileType: fileTypeError,
       fileSize: fileSizeError
     }
-  }
+  };
 
-  return <PdfToJpgClient translations={translations} />
+  return <PdfToJpgClient messages={messages} />
 } 

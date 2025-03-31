@@ -1,30 +1,73 @@
 import { Metadata } from 'next'
 import { SITE_CONFIG } from '@/constants/constants'
-import { translate } from '@/lib/i18n/server'
+import { translate, loadToolMessages } from '@/lib/i18n/server'
 import { getCommonMetadata } from '@/lib/metadata'
+import { Language } from '@/lib/i18n/types'
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }
 
+type JsonLdType = {
+  "@context": "https://schema.org";
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  publisher: {
+    "@type": "Organization";
+    name: string;
+    logo: {
+      "@type": "ImageObject";
+      url: string;
+      width: number;
+      height: number;
+    };
+  };
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    "@type": string;
+    price: string;
+    priceCurrency: string;
+  };
+  featureList: string[];
+  isAccessibleForFree: boolean;
+}
+
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key)
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'seo-tools/page-structure-checker');
+  
+  // 並列で翻訳を取得
+  const [
+    title,
+    description,
+    keywords
+  ] = await Promise.all([
+    translate(lang, 'seoTools.pageStructureChecker.meta.title'),
+    translate(lang, 'seoTools.pageStructureChecker.meta.description'),
+    translate(lang, 'seoTools.pageStructureChecker.meta.keywords')
+  ]);
 
+  // 共通のメタデータ情報を設定
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logoAlt),
-  }
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
+  };
 
-  const jsonLd = {
+  // ページ固有のJSON-LDを定義
+  const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('page-structure-checker.meta.title'),
-    "description": t('page-structure-checker.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-structure-checker`,
     "applicationCategory": "WebApplication",
     "operatingSystem": "Any",
@@ -51,31 +94,30 @@ export async function generateMetadata(
       "No registration required"
     ],
     "isAccessibleForFree": true
-  }
+  };
 
-  const metadata = getCommonMetadata(
+  // 共通のメタデータを取得
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('page-structure-checker.meta.title'),
-      description: t('page-structure-checker.meta.description'),
-      keywords: t('page-structure-checker.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/seo-tools/page-structure-checker`,
     }
-  )
+  );
 
   return {
     ...metadata,
     other: {
       'application/ld+json': JSON.stringify(jsonLd)
     }
-  }
+  };
 }
 
-export default async function PageStructureCheckerLayout({
-  children
-}: {
+export default async function Layout({ children }: {
   children: React.ReactNode;
 }) {
-  return children
+  return <div className="layout-container">{children}</div>;
 } 

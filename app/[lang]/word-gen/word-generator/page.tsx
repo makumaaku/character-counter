@@ -1,29 +1,38 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import WordGeneratorClient from './components/WordGeneratorClient'
+import { Language, WordGenWordGeneratorMessages } from '@/lib/i18n/types'
 
-export default async function WordGenerator({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations including about section
+export default async function WordGenerator({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'word-gen/word-generator');
+  
+  // サーバーコンポーネントで翻訳を取得
   const [
+    // タイトルと説明
     title,
     description,
-    lengthLabel,
-    lengthMin,
-    lengthMax,
-    patternLabel,
-    patternPlaceholder,
-    countLabel,
-    countPlaceholder,
-    generateButton,
-    clearButton,
+    // フォームの要素
+    formLengthLabel,
+    formLengthMin,
+    formLengthMax,
+    formCountLabel,
+    formCountPlaceholder,
+    formGenerate,
+    formClear,
+    // 結果セクション
     resultTitle,
     resultEmpty,
     resultCopy,
     resultCopied,
     resultDownload,
     resultDownloaded,
-    // About section translations
+    // About section
     aboutCatchphrase,
     aboutIntroduction,
     aboutFeaturesTitle,
@@ -33,6 +42,7 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     aboutFeaturesDatabaseDesc,
     aboutFeaturesDesignTitle,
     aboutFeaturesDesignDesc,
+    // Use cases
     aboutUseCasesTitle,
     aboutUseCasesScenesTitle,
     aboutUseCasesScenesWriter,
@@ -43,6 +53,7 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     aboutUseCasesTestimonialsWriterQuote,
     aboutUseCasesTestimonialsDesignerName,
     aboutUseCasesTestimonialsDesignerQuote,
+    // Technical
     aboutTechnicalTitle,
     aboutTechnicalAlgorithmTitle,
     aboutTechnicalAlgorithmDesc,
@@ -50,6 +61,7 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     aboutTechnicalDatabaseDesc,
     aboutTechnicalPerformanceTitle,
     aboutTechnicalPerformanceDesc,
+    // FAQ
     aboutFaqTitle,
     aboutFaqQuestionsFree,
     aboutFaqAnswersFree,
@@ -59,85 +71,93 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
     aboutFaqAnswersCommercial,
     aboutFaqQuestionsMobile,
     aboutFaqAnswersMobile,
+    // Conclusion
     aboutConclusionTitle,
-    aboutConclusionDesc,
+    aboutConclusionDesc
   ] = await Promise.all([
-    translate(lang, 'wordGenerator.title'),
-    translate(lang, 'wordGenerator.description'),
-    translate(lang, 'wordGenerator.form.length.label'),
-    translate(lang, 'wordGenerator.form.length.min'),
-    translate(lang, 'wordGenerator.form.length.max'),
-    translate(lang, 'wordGenerator.form.pattern.label'),
-    translate(lang, 'wordGenerator.form.pattern.placeholder'),
-    translate(lang, 'wordGenerator.form.count.label'),
-    translate(lang, 'wordGenerator.form.count.placeholder'),
-    translate(lang, 'wordGenerator.form.generate'),
-    translate(lang, 'wordGenerator.form.clear'),
-    translate(lang, 'wordGenerator.result.title'),
-    translate(lang, 'wordGenerator.result.empty'),
-    translate(lang, 'wordGenerator.result.copy'),
-    translate(lang, 'wordGenerator.result.copied'),
-    translate(lang, 'wordGenerator.result.download'),
-    translate(lang, 'wordGenerator.result.downloaded'),
-    // About section translations
-    translate(lang, 'wordGenerator.about.catchphrase'),
-    translate(lang, 'wordGenerator.about.introduction'),
-    translate(lang, 'wordGenerator.about.features.title'),
-    translate(lang, 'wordGenerator.about.features.oneClick.title'),
-    translate(lang, 'wordGenerator.about.features.oneClick.description'),
-    translate(lang, 'wordGenerator.about.features.database.title'),
-    translate(lang, 'wordGenerator.about.features.database.description'),
-    translate(lang, 'wordGenerator.about.features.design.title'),
-    translate(lang, 'wordGenerator.about.features.design.description'),
-    translate(lang, 'wordGenerator.about.useCases.title'),
-    translate(lang, 'wordGenerator.about.useCases.scenes.title'),
-    translate(lang, 'wordGenerator.about.useCases.scenes.writer'),
-    translate(lang, 'wordGenerator.about.useCases.scenes.designer'),
-    translate(lang, 'wordGenerator.about.useCases.scenes.brainstorming'),
-    translate(lang, 'wordGenerator.about.useCases.testimonials.title'),
-    translate(lang, 'wordGenerator.about.useCases.testimonials.writer.name'),
-    translate(lang, 'wordGenerator.about.useCases.testimonials.writer.quote'),
-    translate(lang, 'wordGenerator.about.useCases.testimonials.designer.name'),
-    translate(lang, 'wordGenerator.about.useCases.testimonials.designer.quote'),
-    translate(lang, 'wordGenerator.about.technical.title'),
-    translate(lang, 'wordGenerator.about.technical.algorithm.title'),
-    translate(lang, 'wordGenerator.about.technical.algorithm.description'),
-    translate(lang, 'wordGenerator.about.technical.database.title'),
-    translate(lang, 'wordGenerator.about.technical.database.description'),
-    translate(lang, 'wordGenerator.about.technical.performance.title'),
-    translate(lang, 'wordGenerator.about.technical.performance.description'),
-    translate(lang, 'wordGenerator.about.faq.title'),
-    translate(lang, 'wordGenerator.about.faq.questions.free.question'),
-    translate(lang, 'wordGenerator.about.faq.questions.free.answer'),
-    translate(lang, 'wordGenerator.about.faq.questions.words.question'),
-    translate(lang, 'wordGenerator.about.faq.questions.words.answer'),
-    translate(lang, 'wordGenerator.about.faq.questions.commercial.question'),
-    translate(lang, 'wordGenerator.about.faq.questions.commercial.answer'),
-    translate(lang, 'wordGenerator.about.faq.questions.mobile.question'),
-    translate(lang, 'wordGenerator.about.faq.questions.mobile.answer'),
-    translate(lang, 'wordGenerator.about.conclusion.title'),
-    translate(lang, 'wordGenerator.about.conclusion.description'),
-  ])
+    // タイトルと説明
+    translate(lang, 'wordGen.wordGenerator.title'),
+    translate(lang, 'wordGen.wordGenerator.description'),
+    // フォームの要素
+    translate(lang, 'wordGen.wordGenerator.form.length.label'),
+    translate(lang, 'wordGen.wordGenerator.form.length.min'),
+    translate(lang, 'wordGen.wordGenerator.form.length.max'),
+    translate(lang, 'wordGen.wordGenerator.form.count.label'),
+    translate(lang, 'wordGen.wordGenerator.form.count.placeholder'),
+    translate(lang, 'wordGen.wordGenerator.form.generate'),
+    translate(lang, 'wordGen.wordGenerator.form.clear'),
+    // 結果セクション
+    translate(lang, 'wordGen.wordGenerator.result.title'),
+    translate(lang, 'wordGen.wordGenerator.result.empty'),
+    translate(lang, 'wordGen.wordGenerator.result.copy'),
+    translate(lang, 'wordGen.wordGenerator.result.copied'),
+    translate(lang, 'wordGen.wordGenerator.result.download'),
+    translate(lang, 'wordGen.wordGenerator.result.downloaded'),
+    // About section
+    translate(lang, 'wordGen.wordGenerator.about.catchphrase'),
+    translate(lang, 'wordGen.wordGenerator.about.introduction'),
+    translate(lang, 'wordGen.wordGenerator.about.features.title'),
+    translate(lang, 'wordGen.wordGenerator.about.features.oneClick.title'),
+    translate(lang, 'wordGen.wordGenerator.about.features.oneClick.description'),
+    translate(lang, 'wordGen.wordGenerator.about.features.database.title'),
+    translate(lang, 'wordGen.wordGenerator.about.features.database.description'),
+    translate(lang, 'wordGen.wordGenerator.about.features.design.title'),
+    translate(lang, 'wordGen.wordGenerator.about.features.design.description'),
+    // Use cases
+    translate(lang, 'wordGen.wordGenerator.about.useCases.title'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.scenes.title'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.scenes.writer'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.scenes.designer'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.scenes.brainstorming'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.testimonials.title'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.testimonials.writer.name'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.testimonials.writer.quote'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.testimonials.designer.name'),
+    translate(lang, 'wordGen.wordGenerator.about.useCases.testimonials.designer.quote'),
+    // Technical
+    translate(lang, 'wordGen.wordGenerator.about.technical.title'),
+    translate(lang, 'wordGen.wordGenerator.about.technical.algorithm.title'),
+    translate(lang, 'wordGen.wordGenerator.about.technical.algorithm.description'),
+    translate(lang, 'wordGen.wordGenerator.about.technical.database.title'),
+    translate(lang, 'wordGen.wordGenerator.about.technical.database.description'),
+    translate(lang, 'wordGen.wordGenerator.about.technical.performance.title'),
+    translate(lang, 'wordGen.wordGenerator.about.technical.performance.description'),
+    // FAQ
+    translate(lang, 'wordGen.wordGenerator.about.faq.title'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.free.question'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.free.answer'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.words.question'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.words.answer'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.commercial.question'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.commercial.answer'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.mobile.question'),
+    translate(lang, 'wordGen.wordGenerator.about.faq.questions.mobile.answer'),
+    // Conclusion
+    translate(lang, 'wordGen.wordGenerator.about.conclusion.title'),
+    translate(lang, 'wordGen.wordGenerator.about.conclusion.description')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: WordGenWordGeneratorMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     form: {
       length: {
-        label: lengthLabel,
-        min: lengthMin,
-        max: lengthMax,
-      },
-      pattern: {
-        label: patternLabel,
-        placeholder: patternPlaceholder,
+        label: formLengthLabel,
+        min: formLengthMin,
+        max: formLengthMax
       },
       count: {
-        label: countLabel,
-        placeholder: countPlaceholder,
+        label: formCountLabel,
+        placeholder: formCountPlaceholder
       },
-      generate: generateButton,
-      clear: clearButton,
+      generate: formGenerate,
+      clear: formClear
     },
     result: {
       title: resultTitle,
@@ -145,7 +165,7 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
       copy: resultCopy,
       copied: resultCopied,
       download: resultDownload,
-      downloaded: resultDownloaded,
+      downloaded: resultDownloaded
     },
     about: {
       catchphrase: aboutCatchphrase,
@@ -154,16 +174,16 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
         title: aboutFeaturesTitle,
         oneClick: {
           title: aboutFeaturesOneClickTitle,
-          description: aboutFeaturesOneClickDesc,
+          description: aboutFeaturesOneClickDesc
         },
         database: {
           title: aboutFeaturesDatabaseTitle,
-          description: aboutFeaturesDatabaseDesc,
+          description: aboutFeaturesDatabaseDesc
         },
         design: {
           title: aboutFeaturesDesignTitle,
-          description: aboutFeaturesDesignDesc,
-        },
+          description: aboutFeaturesDesignDesc
+        }
       },
       useCases: {
         title: aboutUseCasesTitle,
@@ -171,62 +191,64 @@ export default async function WordGenerator({ params }: { params: Promise<{ lang
           title: aboutUseCasesScenesTitle,
           writer: aboutUseCasesScenesWriter,
           designer: aboutUseCasesScenesDesigner,
-          brainstorming: aboutUseCasesScenesBS,
+          brainstorming: aboutUseCasesScenesBS
         },
         testimonials: {
           title: aboutUseCasesTestimonialsTitle,
           writer: {
             name: aboutUseCasesTestimonialsWriterName,
-            quote: aboutUseCasesTestimonialsWriterQuote,
+            quote: aboutUseCasesTestimonialsWriterQuote
           },
           designer: {
             name: aboutUseCasesTestimonialsDesignerName,
-            quote: aboutUseCasesTestimonialsDesignerQuote,
-          },
-        },
+            quote: aboutUseCasesTestimonialsDesignerQuote
+          }
+        }
       },
       technical: {
         title: aboutTechnicalTitle,
         algorithm: {
           title: aboutTechnicalAlgorithmTitle,
-          description: aboutTechnicalAlgorithmDesc,
+          description: aboutTechnicalAlgorithmDesc
         },
         database: {
           title: aboutTechnicalDatabaseTitle,
-          description: aboutTechnicalDatabaseDesc,
+          description: aboutTechnicalDatabaseDesc
         },
         performance: {
           title: aboutTechnicalPerformanceTitle,
-          description: aboutTechnicalPerformanceDesc,
-        },
+          description: aboutTechnicalPerformanceDesc
+        }
       },
       faq: {
         title: aboutFaqTitle,
         questions: {
           free: {
             question: aboutFaqQuestionsFree,
-            answer: aboutFaqAnswersFree,
+            answer: aboutFaqAnswersFree
           },
           words: {
             question: aboutFaqQuestionsWords,
-            answer: aboutFaqAnswersWords,
+            answer: aboutFaqAnswersWords
           },
           commercial: {
             question: aboutFaqQuestionsCommercial,
-            answer: aboutFaqAnswersCommercial,
+            answer: aboutFaqAnswersCommercial
           },
           mobile: {
             question: aboutFaqQuestionsMobile,
-            answer: aboutFaqAnswersMobile,
-          },
-        },
+            answer: aboutFaqAnswersMobile
+          }
+        }
       },
       conclusion: {
         title: aboutConclusionTitle,
-        description: aboutConclusionDesc,
-      },
-    },
-  }
+        description: aboutConclusionDesc
+      }
+    }
+  };
 
-  return <WordGeneratorClient translations={translations} />
+  return (
+    <WordGeneratorClient messages={messages} />
+  );
 } 

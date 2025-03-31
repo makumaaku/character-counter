@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Country Area comparison data",
+    "description": "Comprehensive list of world countries with detailed information including official names, capitals, languages, and more.",
+    "keywords": "world countries, country data, capitals, languages, currencies, regions"
+  },
+  "ui": {
+    "title": "World Country Data",
+    "searchLabel": "Search by keyword:",
+    "filterLabel": "Region Filter:",
+    "noData": "No matching data found",
+    "loading": "Loading...",
+    "error": "Failed to load data. Please try reloading.",
+    "allRegions": "All",
+    "tableHeaders": {
+      "name": "Name",
+      "officialName": "Official Name",
+      "area": "Area (km²)",
+      "capital": "Capital",
+      "languages": "Language(s)",
+      "currency": "Currency",
+      "region": "Region",
+      "source": "Source",
+      "lastUpdated": "Last Update"
+    }
+  },
+  "title": "Country Area comparison data",
+  "states": {
+    "loading": "Loading...",
+    "error": "An error occurred while fetching data",
+    "noData": "No matching countries found"
+  },
+  "search": {
+    "label": "Search",
+    "placeholder": "Search by name, capital, language, etc..."
+  },
+  "filter": {
+    "label": "Filter by Region",
+    "allRegions": "All Regions"
+  },
+  "table": {
+    "headers": {
+      "name": "Country Name",
+      "officialName": "Official Name",
+      "area": "Area (km²)",
+      "capital": "Capital",
+      "languages": "Languages",
+      "currency": "Currency",
+      "region": "Region",
+      "source": "Data Source",
+      "lastUpdated": "Last Updated"
+    }
+  }
+} 

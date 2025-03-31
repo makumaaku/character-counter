@@ -1,0 +1,118 @@
+{
+    "meta": {
+      "title": "Contador de caracteres gratuito",
+      "description": "Nuestra herramienta gratuita y confiable te permite verificar instantáneamente el recuento de caracteres, líneas y bytes en tiempo real. ¡Perfecta para publicaciones en redes sociales, ensayos, textos publicitarios y más!",
+      "keywords": "contador de caracteres, contador de palabras, contador de texto, contador en línea"
+    },
+    "title": "Contador de caracteres",
+    "description": "Cuenta caracteres, palabras y líneas en tu texto",
+    "placeholder": "Ingresa texto",
+    "charCount": "Cantidad de caracteres",
+    "lineCount": "Cantidad de líneas",
+    "wordCount": "Cantidad de palabras",
+    "byteCount": "Cantidad de bytes",
+    "searchString": "Buscar texto",
+    "enterSearchString": "Ingresa texto para buscar",
+    "occurrences": "Ocurrencias",
+    "searchResultPreview": "Vista previa de resultados de búsqueda",
+    "copyText": "Copiar texto",
+    "copied": "¡Copiado!",
+    "sidebar": {
+      "function": "Funciones",
+      "usecase": "Casos de uso",
+      "faq": "Preguntas frecuentes",
+      "aboutUs": "Sobre nosotros",
+      "contact": "Contacto",
+      "privacy": "Política de privacidad",
+      "plan": "Planes de precios",
+      "column": "Artículos"
+    },
+    "content": {
+      "hero": {
+        "title": "¡Fácil y simple! Contador de caracteres de alto rendimiento (Gratis)",
+        "description": "Nuestra herramienta gratuita y confiable te permite verificar instantáneamente el recuento de caracteres, líneas y bytes en tiempo real. ¡Perfecta para publicaciones en redes sociales, ensayos, textos publicitarios y más!",
+        "darkMode": "※ ¡Modo oscuro compatible para un diseño amigable con la vista!"
+      },
+      "howTo": {
+        "title": "Pasos sencillos para usar",
+        "steps": {
+          "input": {
+            "title": "Ingresa texto",
+            "description": "Copia y pega o escribe y edita directamente tu texto en el área de entrada.",
+            "note": "※ A medida que escribes, se cuentan instantáneamente los caracteres, líneas, palabras y bytes (compatible con multibyte)."
+          },
+          "realtime": {
+            "title": "Verifica resultados en tiempo real",
+            "description": "Varias métricas se muestran en tiempo real mientras escribes, permitiendo una verificación inmediata."
+          },
+          "utilize": {
+            "title": "Utiliza los resultados",
+            "description": "Los resultados pueden copiarse usando el botón de copiar. Utiliza las métricas mostradas para publicaciones en redes sociales, textos publicitarios, redacción de tesis y más."
+          }
+        }
+      },
+      "testimonials": {
+        "title": "Testimonios de usuarios",
+        "users": {
+          "writer": {
+            "name": "Escritor Carlos",
+            "comment": "Este contador de caracteres es simple pero potente, mejorando significativamente mi eficiencia de trabajo. Es útil poder contar palabras en textos en español."
+          },
+          "social": {
+            "name": "Gerente de Redes Sociales María",
+            "comment": "La función de conteo en tiempo real es muy conveniente. Lo uso para verificar texto mientras modifico contenido de artículos o compruebo texto para publicaciones en redes sociales con límites de caracteres."
+          },
+          "marketer": {
+            "name": "Especialista en Marketing Web Javier",
+            "comment": "¡La función para ver cuántas veces aparece un carácter específico es muy útil! La uso para comprobar cuántas veces aparecen las palabras clave SEO en las páginas de los competidores."
+          }
+        }
+      },
+      "features": {
+        "title": "Características y beneficios del servicio",
+        "items": {
+          "easy": {
+            "title": "Operación fácil y simple para que cualquiera pueda usar inmediatamente",
+            "description": "Solo ingresa texto, y el recuento de caracteres, líneas y bytes se calcula en tiempo real, mostrando resultados precisos."
+          },
+          "accurate": {
+            "title": "Motor de cálculo de alto rendimiento con precisión confiable",
+            "description": "Compatible con textos complejos y múltiples idiomas. Además del recuento de caracteres, puede contar simultáneamente líneas, palabras y bytes (compatible con multibyte)."
+          },
+          "free": {
+            "title": "¡Usa la versión gratuita con tranquilidad sin preocuparte por el costo!",
+            "description": "Diseñado para usarse de forma gratuita con tranquilidad, y el plan profesional también admite funciones avanzadas."
+          },
+          "darkMode": {
+            "title": "Diseño amigable para la vista con soporte de modo oscuro",
+            "description": "Equipado con funcionalidad de modo oscuro amigable para la vista. Puede usarse cómodamente durante la noche o sesiones largas de trabajo."
+          }
+        }
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "questions": {
+          "what": {
+            "question": "¿Qué es un contador de caracteres?",
+            "answer": "Un contador de caracteres es una herramienta que calcula instantáneamente el número de caracteres en el texto ingresado y muestra resultados precisos. Esto ayuda a prevenir errores de conteo en el trabajo manual y permite una creación y edición de texto eficiente."
+          },
+          "usage": {
+            "question": "¿En qué escenarios se puede utilizar?",
+            "answer": "Los principales casos de uso son los siguientes:\nEscritura y publicaciones de blog: Se utiliza para cumplir con las pautas específicas de recuento de caracteres al crear artículos.\nPublicaciones en redes sociales: Se utiliza para verificar la longitud óptima para publicaciones con límites de caracteres, como Twitter y textos publicitarios.\nOptimización SEO: Se utiliza para gestionar el volumen de artículos y ajustar la composición para la optimización de motores de búsqueda."
+          },
+          "counting": {
+            "question": "¿Cómo se cuentan los caracteres de ancho completo y medio ancho?",
+            "answer": "Aunque las especificaciones varían según la aplicación, generalmente están diseñadas para reconocer y contar con precisión tanto los caracteres de ancho completo como los de medio ancho. Muchos pueden contar también símbolos especiales y saltos de línea. Recomendamos verificar las especificaciones antes de usar."
+          },
+          "languages": {
+            "question": "¿Admite múltiples idiomas?",
+            "answer": "Muchos contadores de caracteres admiten no solo español, sino también inglés y otros idiomas. Están diseñados para manejar caracteres y símbolos con precisión para cada idioma, lo que los hace adecuados para uso internacional."
+          },
+          "pricing": {
+            "question": "¿Cuál es la diferencia entre las versiones gratuita y de pago?",
+            "answer": "Aunque varía según la aplicación, generalmente hay las siguientes diferencias:\nVersión gratuita: La funcionalidad básica de conteo de caracteres está disponible. A menudo se limita a características simples.\nVersión de pago: Normalmente ofrece características adicionales como información estadística avanzada (recuento de palabras, recuento de líneas, conteo de espacios y símbolos, etc.), características de personalización, integración con otras herramientas y experiencia sin anuncios."
+          }
+        }
+      }
+    }
+  }

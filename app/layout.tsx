@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { loadToolMessages, translate } from '@/lib/i18n/server';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,22 +22,24 @@ type Props = {
 export async function generateMetadata(
   props: Props,
 ): Promise<Metadata> {
+
+  await loadToolMessages('en','/');
+  
   const params = await props.params;
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
  
   // 共通のメタデータを取得
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t(SITE_CONFIG.logoAlt),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
-  const page = 'home';
   // ページ固有のメタデータを取得
-  const title = t(`${page}.meta.title`);
-  const description = t(`${page}.meta.description`);
-  const keywords = t(`${page}.meta.keywords`);
+  const title = await t(`meta.title`);
+  const description = await t(`meta.description`);
+  const keywords = await t(`meta.keywords`);
 
   // JSON-LDの生成
   const jsonLd = {

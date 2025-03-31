@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "PDF to EPUB Converter - Convert PDF to eBook Online",
+    "description": "Free online tool to convert PDF documents to EPUB eBook format. Convert your PDFs to readable eBooks for your e-reader. No installation required.",
+    "keywords": "pdf to epub, pdf to ebook, convert pdf to epub, pdf converter, online pdf converter, free pdf converter, ebook converter"
+  },
+  "title": "PDF to EPUB Converter",
+  "description": "Convert PDF documents to EPUB eBook format for e-readers",
+  "form": {
+    "upload": {
+      "label": "Upload PDF File",
+      "button": "Drag & drop a PDF file here, or click to select",
+      "dragDrop": "Drag & drop file here or click to browse",
+      "dragging": "Drop it right here!",
+      "instruction": "Only PDF files are supported",
+      "maxSize": "Maximum file size: 20MB"
+    },
+    "convert": "Convert to EPUB"
+  },
+  "result": {
+    "download": "Download EPUB",
+    "conversionComplete": "Conversion Complete"
+  },
+  "status": {
+    "processing": "Converting to EPUB...",
+    "noFile": "No file selected",
+    "loading": "Loading PDF processor..."
+  },
+  "error": {
+    "fileType": "Please upload a PDF file",
+    "fileSize": "File size exceeds 20MB limit"
+  }
+}

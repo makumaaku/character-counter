@@ -1,0 +1,47 @@
+{
+    "meta": {
+      "title": "PDFツール - PDFファイルの変換、編集、管理",
+      "description": "無料のオンラインPDFツールでPDFファイルを変換、編集、管理できます。インストール不要で、ブラウザ上で直接動作します。",
+      "keywords": "pdfツール, pdf変換, pdfからjpg, pdfエディタ, オンラインpdfツール, 無料pdfツール"
+    },
+    "title": "PDFツール",
+    "description": "PDFファイルを変換、編集、管理するための無料オンラインツール",
+    "tools": {
+      "pdfToJpg": {
+        "title": "PDFからJPGへの変換",
+        "description": "PDFページを調整可能な品質でJPG画像に変換"
+      },
+      "jpgToPdf": {
+        "title": "JPGからPDFへの変換",
+        "description": "JPG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
+      },
+      "webToPdf": {
+        "title": "WebページからPDFへの変換",
+        "description": "ワンクリックで任意のWebページをPDFドキュメントに変換"
+      },
+      "pdfToWord": {
+        "title": "PDFからWordへの変換",
+        "description": "PDFドキュメントを編集可能なWordファイルに簡単に変換"
+      },
+      "pdfToPng": {
+        "title": "PDFからPNGへの変換",
+        "description": "PDFページを透過対応の高品質PNG画像に変換"
+      },
+      "pngToPdf": {
+        "title": "PNGからPDFへの変換",
+        "description": "PNG画像をカスタマイズ可能な設定でPDFドキュメントに変換"
+      },
+      "svgToPdf": {
+        "title": "SVGからPDFへの変換",
+        "description": "SVGベクターグラフィックを高品質でPDFドキュメントに変換"
+      },
+      "pdfToEpub": {
+        "title": "PDFからEPUBへの変換",
+        "description": "PDFドキュメントを電子書籍リーダー用のEPUB形式に変換"
+      },
+      "heicToPdf": {
+        "title": "HEICからPDFへの変換",
+        "description": "HEIC画像を高品質でPDFドキュメントに変換"
+      }
+    }
+  }

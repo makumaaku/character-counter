@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Comprobador de Estado de Enlaces - Herramienta gratuita de validación masiva de URLs",
+    "description": "Comprueba el estado de múltiples URLs a la vez. Herramienta gratuita en línea para validación masiva de URLs, detección de códigos de estado HTTP y verificación de enlaces en tiempo real. No requiere registro.",
+    "keywords": "comprobador de enlaces, validador de URL, comprobación masiva de URL, estado HTTP, buscador de enlaces rotos, monitoreo de sitios web"
+  },
+  "title": "Comprobador de Estado de Enlaces SEO",
+  "description": "Introduce una URL para comprobar sus enlaces y estado.",
+  "form": {
+    "url": {
+      "label": "URL",
+      "placeholder": "Introduce la URL del sitio web"
+    },
+    "button": {
+      "check": "Comprobar",
+      "checking": "Comprobando..."
+    }
+  },
+  "results": {
+    "title": "Enlaces",
+    "status": "Estado",
+    "processing_url": "Procesando URL...",
+    "checking_links": "Comprobando enlaces...",
+    "total_links_checked": "Total de {{count}} enlaces comprobados"
+  },
+  "errors": {
+    "general": "Ha ocurrido un error",
+    "timeout": "La solicitud ha caducado. El servidor tardó demasiado en responder.",
+    "network": "Error de red. Por favor, comprueba tu conexión e inténtalo de nuevo.",
+    "invalid_url": "Formato de URL inválido. Por favor, introduce una URL válida."
+  }
+}

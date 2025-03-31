@@ -7,6 +7,7 @@ import heicConvert from "heic-convert/browser"
 import FileUploadArea from '@/components/FileUploadArea'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { ImageToolsHeicToJpgMessages } from '@/lib/i18n/types'
 
 type ConvertedFile = {
   originalFile: File
@@ -18,39 +19,10 @@ type ConvertedFile = {
 }
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    upload: {
-      limit: string
-    }
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-      }
-      convert: string
-    }
-    result: {
-      download: string
-      downloadAll: string
-    }
-    status: {
-      processing: string
-      noFile: string
-      success: string
-      convertingFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-      conversion: string
-    }
-  }
+  messages: ImageToolsHeicToJpgMessages
 }
 
-export default function HeicToJpgClient({ translations }: Props) {
+export default function HeicToJpgClient({ messages }: Props) {
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
@@ -83,7 +55,7 @@ export default function HeicToJpgClient({ translations }: Props) {
 
   const convertToJpg = async () => {
     if (selectedFiles.length === 0) {
-      setError(translations.status.noFile)
+      setError(messages.status.noFile)
       return
     }
 
@@ -174,7 +146,7 @@ export default function HeicToJpgClient({ translations }: Props) {
       }
     } catch (err) {
       console.error('Conversion error:', err)
-      setError(translations.error.conversion.replace('{error}', String(err)))
+      setError(messages.error.conversion.replace('{error}', String(err)))
     } finally {
       setIsProcessing(false)
     }
@@ -261,16 +233,16 @@ export default function HeicToJpgClient({ translations }: Props) {
 
   return (
     <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold text-white mb-4">{translations.title}</h1>
-      <p className="text-gray-300 mb-6">{translations.description}</p>
+      <h1 className="text-2xl font-bold text-white mb-4">{messages.title}</h1>
+      <p className="text-gray-300 mb-6">{messages.description}</p>
 
       {/* 共通のファイルアップロードエリアコンポーネント */}
       <div className="mb-6">
         <FileUploadArea
-          title={translations.form.upload.label}
-          dragDropText={translations.form.upload.dragDrop}
-          limitText={translations.upload.limit}
-          buttonText={translations.form.upload.button}
+          title={messages.form.upload.label}
+          dragDropText={messages.form.upload.dragDrop}
+          limitText={messages.upload.limit}
+          buttonText={messages.form.upload.button}
           accept=".heic"
           multiple={true}
           maxSizeMB={10}
@@ -288,7 +260,7 @@ export default function HeicToJpgClient({ translations }: Props) {
           isLoading={isProcessing}
           variant="purple"
         >
-          {isProcessing ? translations.status.processing : translations.form.convert}
+          {isProcessing ? messages.status.processing : messages.form.convert}
         </Button>
         
         {error && (
@@ -311,7 +283,7 @@ export default function HeicToJpgClient({ translations }: Props) {
                 variant="purple"
                 size="sm"
               >
-                {translations.result.downloadAll}
+                {messages.result.downloadAll}
               </Button>
             )}
           </div>
@@ -323,14 +295,14 @@ export default function HeicToJpgClient({ translations }: Props) {
                   <div className="h-40 flex items-center justify-center text-gray-400">
                     <div className="flex flex-col items-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-2"></div>
-                      <span>{translations.status.convertingFile.replace('{filename}', file.originalFile.name)}</span>
+                      <span>{messages.status.convertingFile.replace('{filename}', file.originalFile.name)}</span>
                     </div>
                   </div>
                 ) : file.status === 'error' ? (
                   <div className="h-40 flex items-center justify-center p-3 text-red-300 text-center">
                     <div>
                       <div className="text-3xl mb-2">⚠️</div>
-                      <div>{translations.error.conversion.replace('{error}', file.error || '')}</div>
+                      <div>{messages.error.conversion.replace('{error}', file.error || '')}</div>
                     </div>
                   </div>
                 ) : (
@@ -353,7 +325,7 @@ export default function HeicToJpgClient({ translations }: Props) {
                         size="sm"
                         className="mt-2 w-full"
                       >
-                        {translations.result.download}
+                        {messages.result.download}
                       </Button>
                     </div>
                   </div>
@@ -364,7 +336,7 @@ export default function HeicToJpgClient({ translations }: Props) {
           
           {convertedCount > 0 && (
             <p className="mt-4 text-center text-gray-400">
-              {translations.status.success}
+              {messages.status.success}
             </p>
           )}
         </div>

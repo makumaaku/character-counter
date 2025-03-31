@@ -4,40 +4,10 @@ import { useState, useRef, useEffect } from 'react'
 import Script from 'next/script'
 import Image from 'next/image'
 import Button from '@/components/ui/button'
+import { PdfToolsWebToPdfMessages } from '@/lib/i18n/types'
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      url: {
-        label: string
-        placeholder: string
-        button: string
-      }
-    }
-    result: {
-      download: string
-      preview: string
-    }
-    status: {
-      processing: string
-      noUrl: string
-      success: string
-    }
-    error: {
-      invalidUrl: string
-      conversionFailed: string
-      networkError: string
-      timeout?: string
-    }
-    loading?: string
-    preview?: {
-      loading: string
-      error: string
-      pageOf: string
-    }
-  }
+  messages: PdfToolsWebToPdfMessages
   lang: string
 }
 
@@ -64,7 +34,7 @@ interface PDFViewport {
   height: number;
 }
 
-export default function WebToPdfClient({ translations, lang }: Props) {
+export default function WebToPdfClient({ messages, lang }: Props) {
   const [url, setUrl] = useState<string>('')
   const [isConverting, setIsConverting] = useState<boolean>(false)
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
@@ -114,12 +84,12 @@ export default function WebToPdfClient({ translations, lang }: Props) {
     }
 
     if (!url) {
-      setError(translations.status.noUrl)
+      setError(messages.status.noUrl)
       return
     }
 
     if (!isValidUrl(url)) {
-      setError(translations.error.invalidUrl)
+      setError(messages.error.invalidUrl)
       return
     }
 
@@ -169,7 +139,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
       generatePdfThumbnail(blobUrl)
     } catch (error) {
       console.error('Conversion error:', error)
-      setError(translations.error.conversionFailed)
+      setError(messages.error.conversionFailed)
     } finally {
       setIsConverting(false)
       setTimeoutWarning(false)
@@ -222,7 +192,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
       }
     } catch (error) {
       console.error('PDF thumbnail generation error:', error)
-      setPreviewError(translations.preview?.error || 'Failed to generate preview')
+      setPreviewError(messages.preview?.error || 'Failed to generate preview')
     } finally {
       setPreviewLoading(false)
     }
@@ -291,7 +261,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
       }
     } catch (error) {
       console.error('PDF rendering error:', error)
-      setPreviewError(translations.preview?.error || 'Failed to preview PDF')
+      setPreviewError(messages.preview?.error || 'Failed to preview PDF')
     } finally {
       setPreviewLoading(false)
     }
@@ -354,8 +324,8 @@ export default function WebToPdfClient({ translations, lang }: Props) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'HowTo',
-            'name': translations.title,
-            'description': translations.description,
+            'name': messages.title,
+            'description': messages.description,
             'step': [
               {
                 '@type': 'HowToStep',
@@ -394,8 +364,8 @@ export default function WebToPdfClient({ translations, lang }: Props) {
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">{translations.title}</h1>
-        <p className="text-gray-300">{translations.description}</p>
+        <h1 className="text-3xl font-bold mb-4">{messages.title}</h1>
+        <p className="text-gray-300">{messages.description}</p>
       </div>
 
       {/* Main content */}
@@ -404,7 +374,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
           {/* URL Input */}
           <div>
             <label htmlFor="url" className="block text-sm font-medium text-gray-300 mb-2">
-              {translations.form.url.label}
+              {messages.form.url.label}
             </label>
             <div className="flex flex-col sm:flex-row gap-2">
               <input
@@ -412,7 +382,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                 id="url"
                 value={url}
                 onChange={handleUrlChange}
-                placeholder={translations.form.url.placeholder}
+                placeholder={messages.form.url.placeholder}
                 className="flex-grow px-4 py-2 bg-gray-800 border border-gray-600 rounded-md sm:rounded-l-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
                 disabled={isConverting}
               />
@@ -425,7 +395,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                 }`}
                 disabled={isConverting}
               >
-                {isConverting ? translations.status.processing : translations.form.url.button}
+                {isConverting ? messages.status.processing : messages.form.url.button}
               </Button>
             </div>
           </div>
@@ -441,7 +411,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
               ></div>
             </div>
             <div className="flex justify-between items-center mt-2">
-              <p className="text-gray-300 text-sm">{translations.status.processing}</p>
+              <p className="text-gray-300 text-sm">{messages.status.processing}</p>
               <p className="text-gray-300 text-sm">{progress}%</p>
             </div>
             <div className="flex justify-center mt-4">
@@ -452,7 +422,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
             {timeoutWarning && (
               <div className="mt-4 p-3 bg-yellow-900/50 border border-yellow-700 text-yellow-100 rounded-md">
                 <p className="text-sm">
-                  {translations.error.timeout || '変換に時間がかかっています。複雑なウェブサイトの場合は、完了までに1分以上かかることがあります。しばらくお待ちください...'}
+                  {messages.error.timeout || '変換に時間がかかっています。複雑なウェブサイトの場合は、完了までに1分以上かかることがあります。しばらくお待ちください...'}
                 </p>
               </div>
             )}
@@ -471,7 +441,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
         <div className="bg-purple-900/40 border border-purple-700 text-purple-100 px-4 py-3 rounded-md mb-6">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-              <p className="mb-3 sm:mb-0">{translations.status.success}</p>
+              <p className="mb-3 sm:mb-0">{messages.status.success}</p>
               <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                 <Button
                   onClick={togglePreview}
@@ -497,7 +467,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" 
                     />
                   </svg>
-                  {translations.result.preview || 'Preview PDF'}
+                  {messages.result.preview || 'Preview PDF'}
                 </Button>
                 <a
                   href={pdfUrl}
@@ -520,7 +490,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
                     />
                   </svg>
-                  {translations.result.download}
+                  {messages.result.download}
                 </a>
               </div>
             </div>
@@ -539,7 +509,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity rounded-md">
                     <div className="bg-purple-600 text-white px-3 py-2 rounded-md">
-                      {translations.result.preview || 'Preview PDF'}
+                      {messages.result.preview || 'Preview PDF'}
                     </div>
                   </div>
                 </div>
@@ -553,7 +523,7 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                   {previewLoading && (
                     <div className="flex flex-col items-center justify-center py-6">
                       <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-400 mb-2"></div>
-                      <p className="text-gray-300">{translations.preview?.loading || 'Loading preview...'}</p>
+                      <p className="text-gray-300">{messages.preview?.loading || 'Loading preview...'}</p>
                     </div>
                   )}
                   
@@ -579,8 +549,8 @@ export default function WebToPdfClient({ translations, lang }: Props) {
                       </Button>
                       
                       <span className="text-gray-300">
-                        {translations.preview?.pageOf ? 
-                          translations.preview.pageOf.replace('{current}', pageNum.toString()).replace('{total}', numPages?.toString() || '') : 
+                        {messages.preview?.pageOf ? 
+                          messages.preview.pageOf.replace('{current}', pageNum.toString()).replace('{total}', numPages?.toString() || '') : 
                           `Page ${pageNum} of ${numPages}`}
                       </span>
                       

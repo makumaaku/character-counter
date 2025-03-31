@@ -5,38 +5,13 @@ import { useDropzone } from 'react-dropzone'
 import { saveAs } from 'file-saver'
 import { useParams } from 'next/navigation'
 import Button from '@/components/ui/button'
+import { PdfToolsHeicToPdfMessages } from '@/lib/i18n/types'
 
 type Props = {
-  translations: {
-    title: string
-    description: string
-    form: {
-      upload: {
-        label: string
-        button: string
-        dragDrop: string
-      }
-      convert: string
-    }
-    result: {
-      download: string
-    }
-    status: {
-      processing: string
-      noFile: string
-    }
-    error: {
-      fileType: string
-      fileSize: string
-      conversion: string
-    }
-    success: {
-      message: string
-    }
-  }
+  messages: PdfToolsHeicToPdfMessages
 }
 
-export default function HeicToPdfClient({ translations }: Props) {
+export default function HeicToPdfClient({ messages }: Props) {
   const params = useParams()
   const lang = params.lang as string
   const [heicFile, setHeicFile] = useState<File | null>(null)
@@ -58,18 +33,18 @@ export default function HeicToPdfClient({ translations }: Props) {
     
     // Check if file is HEIC
     if (!file.name.toLowerCase().endsWith('.heic')) {
-      setError(translations.error.fileType)
+      setError(messages.error.fileType)
       return
     }
     
     // Check file size (max 20MB)
     if (file.size > 20 * 1024 * 1024) {
-      setError(translations.error.fileSize)
+      setError(messages.error.fileSize)
       return
     }
     
     setHeicFile(file)
-  }, [translations.error.fileType, translations.error.fileSize])
+  }, [messages.error.fileType, messages.error.fileSize])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -124,7 +99,7 @@ export default function HeicToPdfClient({ translations }: Props) {
       saveAs(blob, `${heicFile.name.replace('.heic', '')}.pdf`)
     } catch (err) {
       console.error('Error during conversion:', err)
-      setError(translations.error.conversion)
+      setError(messages.error.conversion)
     } finally {
       setIsConverting(false)
     }
@@ -133,14 +108,14 @@ export default function HeicToPdfClient({ translations }: Props) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">{translations.title}</h1>
-        <p className="text-gray-300">{translations.description}</p>
+        <h1 className="text-3xl font-bold mb-2">{messages.title}</h1>
+        <p className="text-gray-300">{messages.description}</p>
       </div>
 
       <div className="bg-gray-700 rounded-lg p-6 mb-8">
         <div className="mb-6">
           <label className="block text-gray-300 mb-2">
-            {translations.form.upload.label}
+            {messages.form.upload.label}
           </label>
           <div
             {...getRootProps()}
@@ -151,8 +126,8 @@ export default function HeicToPdfClient({ translations }: Props) {
             <input {...getInputProps()} />
             <p className="text-gray-300 mb-2">
               {isDragActive
-                ? translations.form.upload.dragDrop
-                : translations.form.upload.button}
+                ? messages.form.upload.dragDrop
+                : messages.form.upload.button}
             </p>
             {heicFile && (
               <p className="text-green-400 mt-2">
@@ -169,7 +144,7 @@ export default function HeicToPdfClient({ translations }: Props) {
             disabled={isConverting}
             variant="purple"
           >
-            {isConverting ? translations.status.processing : translations.form.convert}
+            {isConverting ? messages.status.processing : messages.form.convert}
           </Button>
         )}
         
@@ -187,7 +162,7 @@ export default function HeicToPdfClient({ translations }: Props) {
         
         {conversionSuccess && (
           <div className="mt-4 p-4 bg-green-800 bg-opacity-20 border border-green-600 rounded-lg">
-            <p className="text-green-400 text-center">{translations.success.message}</p>
+            <p className="text-green-400 text-center">{messages.success.message}</p>
           </div>
         )}
       </div>
@@ -206,7 +181,7 @@ export default function HeicToPdfClient({ translations }: Props) {
             onClick={() => saveAs(pdfBlob, `${heicFile?.name.replace('.heic', '')}.pdf`)}
             variant="purple"
           >
-            {translations.result.download}
+            {messages.result.download}
           </Button>
         </div>
       )}

@@ -1,10 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import HeicToJpgClient from './components/HeicToJpgClient'
+import { Language, ImageToolsHeicToJpgMessages } from '@/lib/i18n/types'
 
-export default async function HeicToJpg({ params }: { params: Promise<{ lang: string }> }) {
-  const { lang } = await params
+type Props = {
+  params: { lang: string }
+}
 
-  // Get translations
+export default async function HeicToJpg({ params }: Props) {
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/heic-to-jpg');
+
+  // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
     description,
@@ -23,25 +31,31 @@ export default async function HeicToJpg({ params }: { params: Promise<{ lang: st
     fileSizeError,
     conversionError
   ] = await Promise.all([
-    translate(lang, 'heicToJpg.title'),
-    translate(lang, 'heicToJpg.description'),
-    translate(lang, 'heicToJpg.form.upload.label'),
-    translate(lang, 'heicToJpg.form.upload.button'),
-    translate(lang, 'heicToJpg.form.upload.dragDrop'),
-    translate(lang, 'heicToJpg.upload.limit'),
-    translate(lang, 'heicToJpg.form.convert'),
-    translate(lang, 'heicToJpg.result.download'),
-    translate(lang, 'heicToJpg.result.downloadAll'),
-    translate(lang, 'heicToJpg.status.processing'),
-    translate(lang, 'heicToJpg.status.noFile'),
-    translate(lang, 'heicToJpg.status.success'),
-    translate(lang, 'heicToJpg.status.convertingFile'),
-    translate(lang, 'heicToJpg.error.fileType'),
-    translate(lang, 'heicToJpg.error.fileSize'),
-    translate(lang, 'heicToJpg.error.conversion')
-  ])
+    translate(lang, 'imageTools.heicToJpg.title'),
+    translate(lang, 'imageTools.heicToJpg.description'),
+    translate(lang, 'imageTools.heicToJpg.form.upload.label'),
+    translate(lang, 'imageTools.heicToJpg.form.upload.button'),
+    translate(lang, 'imageTools.heicToJpg.form.upload.dragDrop'),
+    translate(lang, 'imageTools.heicToJpg.upload.limit'),
+    translate(lang, 'imageTools.heicToJpg.form.convert'),
+    translate(lang, 'imageTools.heicToJpg.result.download'),
+    translate(lang, 'imageTools.heicToJpg.result.downloadAll'),
+    translate(lang, 'imageTools.heicToJpg.status.processing'),
+    translate(lang, 'imageTools.heicToJpg.status.noFile'),
+    translate(lang, 'imageTools.heicToJpg.status.success'),
+    translate(lang, 'imageTools.heicToJpg.status.convertingFile'),
+    translate(lang, 'imageTools.heicToJpg.error.fileType'),
+    translate(lang, 'imageTools.heicToJpg.error.fileSize'),
+    translate(lang, 'imageTools.heicToJpg.error.conversion')
+  ]);
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsHeicToJpgMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     upload: {
@@ -70,7 +84,7 @@ export default async function HeicToJpg({ params }: { params: Promise<{ lang: st
       fileSize: fileSizeError,
       conversion: conversionError
     }
-  }
+  };
 
-  return <HeicToJpgClient translations={translations} />
+  return <HeicToJpgClient messages={messages} />
 } 

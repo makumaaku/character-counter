@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "QR Code Generator - Create QR Codes Online",
+    "description": "Generate QR codes online for URLs, text, contact information and more. Free and easy to use QR code generator tool.",
+    "keywords": "qr code, generator, online tool, url to qr, text to qr"
+  },
+  "title": "QR Code Generator",
+  "description": "Generate QR codes from text, URLs, or any data",
+  "ui": {
+    "inputLabel": "Enter content for your QR code",
+    "placeholder": "https://example.com or any text",
+    "generateButton": "Generate QR Code",
+    "downloadButton": "Download QR Code",
+    "copyButton": "Copy Text",
+    "contentTypeLabel": "Content Type",
+    "contentTypes": {
+      "text": "Text",
+      "url": "URL",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "colorLabel": "QR Code Color",
+    "bgColorLabel": "Background Color",
+    "sizeLabel": "Size",
+    "errorCorrection": "Error Correction",
+    "errorCorrectionLevels": {
+      "L": "Low (7%)",
+      "M": "Medium (15%)",
+      "Q": "Quartile (25%)",
+      "H": "High (30%)"
+    },
+    "successMessage": "QR code generated successfully!",
+    "errorMessage": "Failed to generate QR code. Please try again.",
+    "emptyState": "Enter some text to generate a QR code"
+  },
+  "features": {
+    "qrGeneration": "QR code generation",
+    "textToQr": "Text to QR code conversion",
+    "urlToQr": "URL to QR code conversion",
+    "preview": "Real-time QR code preview",
+    "free": "Free to use",
+    "noRegistration": "No registration required",
+    "browserRequirements": "Requires a modern web browser with JavaScript enabled"
+  }
+} 

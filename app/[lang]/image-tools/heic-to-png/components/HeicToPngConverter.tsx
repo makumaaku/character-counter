@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver';
 import heicConvert from "heic-convert/browser";
 import FileUploadArea from '@/components/FileUploadArea';
 import { Button } from '@/components/ui/button';
+import { ImageToolsHeicToPngMessages } from '@/lib/i18n/types';
 
 // heic-convert の型定義
 interface HeicConvertOptions {
@@ -31,37 +32,8 @@ type ConvertedImage = {
 // type DoneImage = Omit<ConvertedImage, 'status'> & { status: 'done' };
 // type ErrorImage = Omit<ConvertedImage, 'status'> & { status: 'error', error: string };
 
-// 翻訳タイプ定義
-type TranslationsType = {
-  title: string;
-  description: string;
-  upload: {
-    title: string;
-    dragndrop: string;
-    limit: string;
-    button: string;
-  };
-  convert: {
-    button: string;
-    processing: string;
-    download: string;
-    downloadAll: string;
-    converted: string;
-  };
-  preview: {
-    title: string;
-    nofiles: string;
-  };
-  error: {
-    noFiles: string;
-    invalidFormat: string;
-    tooLarge: string;
-    failed: string;
-  };
-};
-
 type HeicToPngConverterProps = {
-  translations: TranslationsType;
+  translations: ImageToolsHeicToPngMessages;
 };
 
 // propsからtranslationsを受け取る

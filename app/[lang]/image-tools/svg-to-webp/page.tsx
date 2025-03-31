@@ -1,14 +1,18 @@
-import { translate } from '@/lib/i18n/server'
+import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import SvgToWebpClient from './components/SvgToWebpClient'
+import { Language, ImageToolsSvgToWebpMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export default async function SvgToWebp({ params }: Props) {
-  const { lang } = await params
-
-  // 翻訳を取得
+  const lang = await getLanguageFromParams(params);
+  
+  // 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/svg-to-webp');
+  
+  // サーバーコンポーネントで翻訳を取得
   const [
     title,
     description,
@@ -29,27 +33,33 @@ export default async function SvgToWebp({ params }: Props) {
     conversionFailedError,
     selectedFilesText
   ] = await Promise.all([
-    translate(lang, 'svgToWebp.title'),
-    translate(lang, 'svgToWebp.description'),
-    translate(lang, 'svgToWebp.form.upload.label'),
-    translate(lang, 'svgToWebp.form.upload.button'),
-    translate(lang, 'svgToWebp.form.upload.dragDrop'),
-    translate(lang, 'svgToWebp.form.upload.limitText'),
-    translate(lang, 'svgToWebp.form.convert'),
-    translate(lang, 'svgToWebp.result.download'),
-    translate(lang, 'svgToWebp.result.downloadAll'),
-    translate(lang, 'svgToWebp.result.preview'),
-    translate(lang, 'svgToWebp.status.processing'),
-    translate(lang, 'svgToWebp.status.noFile'),
-    translate(lang, 'svgToWebp.status.success'),
-    translate(lang, 'svgToWebp.status.browserProcessing'),
-    translate(lang, 'svgToWebp.error.fileType'),
-    translate(lang, 'svgToWebp.error.fileSize'),
-    translate(lang, 'svgToWebp.error.conversionFailed'),
-    translate(lang, 'svgToWebp.result.selectedFiles')
+    translate(lang, 'imageTools.svgToWebp.title'),
+    translate(lang, 'imageTools.svgToWebp.description'),
+    translate(lang, 'imageTools.svgToWebp.form.upload.label'),
+    translate(lang, 'imageTools.svgToWebp.form.upload.button'),
+    translate(lang, 'imageTools.svgToWebp.form.upload.dragDrop'),
+    translate(lang, 'imageTools.svgToWebp.form.upload.limitText'),
+    translate(lang, 'imageTools.svgToWebp.form.convert'),
+    translate(lang, 'imageTools.svgToWebp.result.download'),
+    translate(lang, 'imageTools.svgToWebp.result.downloadAll'),
+    translate(lang, 'imageTools.svgToWebp.result.preview'),
+    translate(lang, 'imageTools.svgToWebp.status.processing'),
+    translate(lang, 'imageTools.svgToWebp.status.noFile'),
+    translate(lang, 'imageTools.svgToWebp.status.success'),
+    translate(lang, 'imageTools.svgToWebp.status.browserProcessing'),
+    translate(lang, 'imageTools.svgToWebp.error.fileType'),
+    translate(lang, 'imageTools.svgToWebp.error.fileSize'),
+    translate(lang, 'imageTools.svgToWebp.error.conversionFailed'),
+    translate(lang, 'imageTools.svgToWebp.result.selectedFiles')
   ])
 
-  const translations = {
+  // クライアントコンポーネントに渡す翻訳オブジェクトを作成
+  const messages: ImageToolsSvgToWebpMessages = {
+    meta: {
+      title: "",
+      description: "",
+      keywords: ""
+    },
     title,
     description,
     form: {
@@ -80,5 +90,5 @@ export default async function SvgToWebp({ params }: Props) {
     }
   }
 
-  return <SvgToWebpClient translations={translations} />
+  return <SvgToWebpClient translations={messages} />
 } 

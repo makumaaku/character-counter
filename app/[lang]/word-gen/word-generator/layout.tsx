@@ -1,7 +1,8 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -41,19 +42,35 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // Load word-generator translations
+  await loadToolMessages(lang as Language, 'word-gen');
+  await loadToolMessages(lang as Language, 'word-gen/word-generator');
+  
+  // Get translations in parallel
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'wordGen.wordGenerator.meta.title'),
+    translate(lang, 'wordGen.wordGenerator.meta.description'),
+    translate(lang, 'wordGen.wordGenerator.meta.keywords'),
+  ]);
 
+  // Common metadata
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt
   };
 
+  // JSON-LD data
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('wordGenerator.meta.title'),
-    "description": t('wordGenerator.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/word-gen/word-generator`,
     "publisher": {
       "@type": "Organization",
@@ -84,22 +101,17 @@ export async function generateMetadata(
     ],
     "isAccessibleForFree": true,
     "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-    "keywords": [
-      "word generator",
-      "random word",
-      "word creation",
-      "vocabulary tool",
-      "creative writing"
-    ]
+    "keywords": keywords.split(',')
   };
 
-  const metadata = getCommonMetadata(
+  // Get common metadata
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('wordGenerator.meta.title'),
-      description: t('wordGenerator.meta.description'),
-      keywords: t('wordGenerator.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/word-gen/word-generator`,
     }
   );
@@ -112,6 +124,19 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children }: Props) {
-  return <>{children}</>;
+export default async function Layout({ children, params }: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
+  const { lang } = params;
+  
+  // Load translations
+  await loadToolMessages(lang as Language, 'word-gen');
+  await loadToolMessages(lang as Language, 'word-gen/word-generator');
+  
+  return (
+    <div className="layout-container">
+      {children}
+    </div>
+  );
 } 

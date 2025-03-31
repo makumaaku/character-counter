@@ -1,7 +1,8 @@
-import { translate } from '@/lib/i18n/client';
+import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
+import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
@@ -39,19 +40,32 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { lang } = await params;
-  const t = (key: string) => translate(lang, key);
+  
+  // SVG to PNG 翻訳をロード
+  await loadToolMessages(lang as Language, 'image-tools/svg-to-png');
+  
+  // 翻訳を並列で取得
+  const [
+    title,
+    description,
+    keywords,
+  ] = await Promise.all([
+    translate(lang, 'imageTools.svgToPng.meta.title'),
+    translate(lang, 'imageTools.svgToPng.meta.description'),
+    translate(lang, 'imageTools.svgToPng.meta.keywords'),
+  ]);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": t('svgToPng.meta.title'),
-    "description": t('svgToPng.meta.description'),
+    "name": title,
+    "description": description,
     "url": `${SITE_CONFIG.baseURL}/${lang}/image-tools/svg-to-png`,
     "publisher": {
       "@type": "Organization",
@@ -74,13 +88,13 @@ export async function generateMetadata(
     "isAccessibleForFree": true
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
-      title: t('svgToPng.meta.title'),
-      description: t('svgToPng.meta.description'),
-      keywords: t('svgToPng.meta.keywords'),
+      title,
+      description,
+      keywords,
       url: `${SITE_CONFIG.baseURL}/${lang}/image-tools/svg-to-png`,
     }
   );
@@ -93,10 +107,13 @@ export async function generateMetadata(
   };
 }
 
-export default function Layout({ children }: Props) {
+export default async function Layout({ children }: {
+  children: React.ReactNode;
+}) {
+  
   return (
-    <>
+    <div className="layout-container">
       {children}
-    </>
+    </div>
   );
 } 

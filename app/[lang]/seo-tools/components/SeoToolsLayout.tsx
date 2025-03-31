@@ -2,17 +2,40 @@
 
 import { ReactNode, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { translate } from '@/lib/i18n/client'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 
+// layoutMessagesの型を、親コンポーネントで定義されているものと同じにする
+type LayoutMessages = {
+  title: string;
+  pageSpeedChecker: {
+    title: string;
+  };
+  linkStatusChecker: {
+    title: string;
+  };
+  seoCannibalizationChecker: {
+    title: string;
+  };
+  seoVolumeGuess: {
+    title: string;
+  };
+  pageStructureChecker: {
+    title: string;
+  };
+  metaCraftForLlm: {
+    title: string;
+  };
+};
+
 type Props = {
-  children: ReactNode
+  children: ReactNode;
+  messages: LayoutMessages;
 }
 
-export default function SeoToolsLayout({ children }: Props) {
+export default function SeoToolsLayout({ children, messages }: Props) {
   const params = useParams()
   const lang = params.lang as string
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -20,24 +43,28 @@ export default function SeoToolsLayout({ children }: Props) {
   // SEOツールのリスト（サイドバー用）
   const navigationItems = [
     {
-      name: translate(lang, 'page-structure-checker.title'),
-      path: `/seo-tools/page-structure-checker`
-    },
-    {
-      name: translate(lang, 'pageSpeedChecker.title'),
+      name: messages.pageSpeedChecker.title,
       path: `/seo-tools/page-speed-checker`
     },
     {
-      name: translate(lang, 'link-status-checker.title'),
+      name: messages.linkStatusChecker.title,
       path: `/seo-tools/link-status-checker`
     },
     {
-      name: translate(lang, 'seoCannibalizationChecker.title'),
+      name: messages.seoCannibalizationChecker.title,
       path: `/seo-tools/seo-cannibalization-checker`
     },
     {
-      name: translate(lang, 'seoVolumeGuess.title'),
+      name: messages.seoVolumeGuess.title,
       path: `/seo-tools/seo-volume-guess`
+    },
+    {
+      name: messages.pageStructureChecker.title,
+      path: `/seo-tools/page-structure-checker`
+    },
+    {
+      name: messages.metaCraftForLlm.title,
+      path: `/seo-tools/meta-craft-for-llm`
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]
@@ -45,7 +72,7 @@ export default function SeoToolsLayout({ children }: Props) {
   return (
     <div className="flex flex-col min-h-screen bg-gray-800 text-gray-100">
       <Header 
-        title={translate(lang, 'seoTools.title')} 
+        title={messages.title} 
         homeLink={`/${lang}/seo-tools`}
       >
         <button

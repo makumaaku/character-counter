@@ -1,0 +1,85 @@
+{
+  "title": "Plans",
+  "description": "You can use all basic features of our character counter app with free registration. For advanced features, consider upgrading to our premium version.",
+  "pricing": {
+    "title": "Pricing",
+    "free": "Free Version: $0",
+    "monthly": "Monthly Plan: $4.80",
+    "annual": "Annual Plan: $39.80 (31% OFF compared to monthly plan!)"
+  },
+  "comparison": {
+    "title": "Free vs Premium Comparison",
+    "feature": "Feature",
+    "free": "Free",
+    "premium": "Premium",
+    "features": {
+      "charCount": "Character Count",
+      "counts": "Line, Word & Byte Count",
+      "search": "String Search",
+      "darkMode": "Dark Mode",
+      "ads": "Advertisements",
+      "export": "Word & PDF Export",
+      "api": "API Integration"
+    },
+    "yes": "Yes",
+    "no": "No"
+  },
+  "premiumFeatures": {
+    "title": "Premium Features",
+    "basic": {
+      "title": "Basic Features",
+      "description": "All basic features available in the free version are of course available in the premium version:",
+      "features": {
+        "1": "Real-time counting of characters, lines, words, and bytes",
+        "2": "String search functionality",
+        "3": "Dark mode toggle"
+      }
+    },
+    "adFree": {
+      "title": "Ad-Free Experience",
+      "description": "Advertisements are removed, providing a more comfortable user experience."
+    },
+    "export": {
+      "title": "Word & PDF Export",
+      "description": "Export counting results and input text together to Word or PDF files."
+    },
+    "api": {
+      "title": "API Integration",
+      "description": "All features of our service are available via API. Please contact us through the inquiry form for API usage."
+    }
+  },
+  "subscriptions": {
+    "title": "Monthly and Annual Plans",
+    "monthly": {
+      "title": "Monthly Plan",
+      "description": "Pay monthly with no long-term commitment. Perfect for trying out premium features."
+    },
+    "annual": {
+      "title": "Annual Plan",
+      "description": "More economical pricing structure, recommended for long-term usage."
+    },
+    "note": "For detailed pricing and plan information, please check our dedicated pricing page."
+  },
+  "meta": {
+    "title": "Plans & Pricing - Character Counter Tool | Free & Premium Features",
+    "description": "Explore our character counter tool plans and pricing. Choose between free and premium features to enhance your text analysis experience.",
+    "keywords": "character counter pricing, text analysis plans, free text counter, online tool pricing, character count features",
+    "product": {
+      "description": "A comprehensive text analysis tool with character counting, word counting, and more features",
+      "offers": {
+        "free": {
+          "name": "Free Plan",
+          "description": "Basic features with advertisements"
+        },
+        "monthly": {
+          "name": "Monthly Premium Plan",
+          "description": "All features with monthly billing"
+        },
+        "annual": {
+          "name": "Annual Premium Plan",
+          "description": "All features with annual billing (31% discount)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "Convertidor de PDF a EPUB - Convierte PDF a eBook en línea",
+    "description": "Herramienta gratuita en línea para convertir documentos PDF a formato de eBook EPUB. Convierte tus PDFs a libros electrónicos legibles para tu lector electrónico. Sin necesidad de instalación.",
+    "keywords": "pdf a epub, pdf a ebook, convertir pdf a epub, convertidor pdf, convertidor pdf en línea, convertidor pdf gratis, convertidor de ebook"
+  },
+  "title": "Convertidor de PDF a EPUB",
+  "description": "Convierte documentos PDF a formato de libro electrónico EPUB para lectores electrónicos",
+  "form": {
+    "upload": {
+      "label": "Subir archivo PDF",
+      "button": "Arrastra y suelta un archivo PDF aquí, o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar",
+      "dragging": "¡Suéltalo aquí mismo!",
+      "instruction": "Solo se admiten archivos PDF",
+      "maxSize": "Tamaño máximo de archivo: 20MB"
+    },
+    "convert": "Convertir a EPUB"
+  },
+  "result": {
+    "download": "Descargar EPUB",
+    "conversionComplete": "Conversión Completada"
+  },
+  "status": {
+    "processing": "Convirtiendo a EPUB...",
+    "noFile": "Ningún archivo seleccionado",
+    "loading": "Cargando procesador de PDF..."
+  },
+  "error": {
+    "fileType": "Por favor, sube un archivo PDF",
+    "fileSize": "El tamaño del archivo excede el límite de 20MB"
+  }
+}
