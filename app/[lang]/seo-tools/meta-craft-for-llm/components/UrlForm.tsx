@@ -1,17 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useParams } from 'next/navigation'
-import { translate } from '@/lib/i18n/client'
 
 interface UrlFormProps {
   onSubmit: (url: string) => void
   isLoading: boolean
+  messages: {
+    label: string
+    placeholder: string
+    button: string
+  }
 }
 
-export default function UrlForm({ onSubmit, isLoading }: UrlFormProps) {
-  const params = useParams()
-  const lang = params.lang as string
+export default function UrlForm({ onSubmit, isLoading, messages }: UrlFormProps) {
   const [url, setUrl] = useState<string>('')
   const [error, setError] = useState<string>('')
 
@@ -38,14 +39,14 @@ export default function UrlForm({ onSubmit, isLoading }: UrlFormProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="url" className="block text-lg font-medium text-gray-200 mb-2">
-            {translate(lang, 'metaCraftForLlm.url.label')}
+            {messages.label}
           </label>
           <div className="flex flex-col md:flex-row gap-3">
             <input
               type="text"
               id="url"
               className="flex-grow px-4 py-3 bg-gray-800 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder={translate(lang, 'metaCraftForLlm.url.placeholder')}
+              placeholder={messages.placeholder}
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               disabled={isLoading}
@@ -59,9 +60,7 @@ export default function UrlForm({ onSubmit, isLoading }: UrlFormProps) {
               }`}
               disabled={isLoading}
             >
-              {isLoading
-                ? translate(lang, 'metaCraftForLlm.loading')
-                : translate(lang, 'metaCraftForLlm.url.button')}
+              {isLoading ? 'Loading...' : messages.button}
             </button>
           </div>
         </div>

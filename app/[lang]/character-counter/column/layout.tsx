@@ -48,22 +48,16 @@ export async function generateMetadata(
     title,
     description,
     keywords,
-    siteName,
-    publisher,
-    logoAlt
   ] = await Promise.all([
     translate(lang, 'characterCounter.column.meta.title'),
     translate(lang, 'characterCounter.column.meta.description'),
     translate(lang, 'characterCounter.column.meta.keywords'),
-    translate(lang, SITE_CONFIG.siteName),
-    translate(lang, SITE_CONFIG.publisher),
-    translate(lang, 'common.meta.logoAlt')
   ]);
 
   const commonMeta = {
-    siteName,
-    publisher,
-    logoAlt,
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {
