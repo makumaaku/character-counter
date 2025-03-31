@@ -23,7 +23,11 @@ export default async function SeoTools({ params }: Props) {
     seoCannibalizationCheckerTitle,
     seoCannibalizationCheckerDescription,
     seoVolumeGuessTitle,
-    seoVolumeGuessDescription
+    seoVolumeGuessDescription,
+    pageStructureCheckerTitle,
+    pageStructureCheckerDescription,
+    metaCraftForLlmTitle,
+    metaCraftForLlmDescription
   ] = await Promise.all([
     translate(lang, 'seoTools.title'),
     translate(lang, 'seoTools.description'),
@@ -33,8 +37,12 @@ export default async function SeoTools({ params }: Props) {
     translate(lang, 'seoTools.tools.linkStatusChecker.description'),
     translate(lang, 'seoTools.tools.seoCannibalizationChecker.title'),
     translate(lang, 'seoTools.tools.seoCannibalizationChecker.description'),
-    translate(lang, 'seoTools.seoVolumeGuess.title'),
-    translate(lang, 'seoTools.seoVolumeGuess.description')
+    translate(lang, 'seoTools.tools.seoVolumeGuess.title'),
+    translate(lang, 'seoTools.tools.seoVolumeGuess.description'),
+    translate(lang, 'seoTools.tools.pageStructureChecker.title'),
+    translate(lang, 'seoTools.tools.pageStructureChecker.description'),
+    translate(lang, 'seoTools.tools.metaCraftForLlm.title'),
+    translate(lang, 'seoTools.tools.metaCraftForLlm.description')
   ])
   
   // SeoToolsCommonMessagesの構造に合わせてmessagesオブジェクトを作成
@@ -63,6 +71,18 @@ export default async function SeoTools({ params }: Props) {
       seoCannibalizationChecker: {
         title: seoCannibalizationCheckerTitle,
         description: seoCannibalizationCheckerDescription
+      },
+      seoVolumeGuess: {
+        title: seoVolumeGuessTitle,
+        description: seoVolumeGuessDescription
+      },
+      pageStructureChecker: {
+        title: pageStructureCheckerTitle,
+        description: pageStructureCheckerDescription
+      },
+      metaCraftForLlm: {
+        title: metaCraftForLlmTitle,
+        description: metaCraftForLlmDescription
       }
     },
     seoVolumeGuess: {
@@ -95,6 +115,18 @@ export default async function SeoTools({ params }: Props) {
       description: messages.seoVolumeGuess.description,
       path: `/${lang}/seo-tools/seo-volume-guess`,
       icon: "📊"
+    },
+    {
+      title: messages.tools.pageStructureChecker.title,
+      description: messages.tools.pageStructureChecker.description,
+      path: `/${lang}/seo-tools/page-structure-checker`,
+      icon: "📋"
+    },
+    {
+      title: messages.tools.metaCraftForLlm.title,
+      description: messages.tools.metaCraftForLlm.description,
+      path: `/${lang}/seo-tools/meta-craft-for-llm`,
+      icon: "🤖"
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]

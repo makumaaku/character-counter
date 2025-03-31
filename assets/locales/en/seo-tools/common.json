@@ -18,6 +18,18 @@
     "seoCannibalizationChecker": {
       "title": "SEO Cannibalization Checker",
       "description": "Check for keyword cannibalization (competition) within your site"
+    },
+    "seoVolumeGuess": {
+      "title": "SEO Volume Prediction Tool",
+      "description": "Just enter a keyword, and we'll predict SEO volume from Google suggestions."
+    },
+    "pageStructureChecker": {
+     "title": "Page Structure Checker",
+      "description": "Check if your webpage has a proper structure with appropriate title, description, and heading tags hierarchy"
+    },
+    "metaCraftForLlm": {
+     "title": "Meta Craft for LLM",
+     "description": "Generate and display SEO code for LLMs by entering a website URL"
     }
   }
 }

@@ -22,6 +22,12 @@ type LayoutMessages = {
   seoVolumeGuess: {
     title: string;
   };
+  pageStructureChecker: {
+    title: string;
+  };
+  metaCraftForLlm: {
+    title: string;
+  };
 };
 
 type Props = {
@@ -51,6 +57,14 @@ export default function SeoToolsLayout({ children, messages }: Props) {
     {
       name: messages.seoVolumeGuess.title,
       path: `/seo-tools/seo-volume-guess`
+    },
+    {
+      name: messages.pageStructureChecker.title,
+      path: `/seo-tools/page-structure-checker`
+    },
+    {
+      name: messages.metaCraftForLlm.title,
+      path: `/seo-tools/meta-craft-for-llm`
     }
     // 将来的に他のSEOツールを追加する場合はここに追加
   ]

@@ -18,6 +18,18 @@
       "seoCannibalizationChecker": {
         "title": "SEOカニバリゼーションチェッカー",
         "description": "サイト内でのキーワード競合（カニバリゼーション）をチェック"
-      }
+      },
+      "seoVolumeGuess": {
+        "title": "SEOボリューム予測ツール",
+        "description": "キーワードを入力するだけで、GoogleサジェストからSEOボリュームを予測します。"
+      },
+      "pageStructureChecker": {
+       "title": "ページ構造チェッカー",
+       "description": "ウェブページが適切なタイトル、説明、見出しタグの階層を持つ適切な構造を持っているかをチェックします"
+      },
+      "metaCraftForLlm": {
+        "title": "Meta Craft for LLM",
+        "description": "ウェブサイトのURLを入力したら、LLM向けのSEOコードを生成し表示するツール"
     }
+  }
   }

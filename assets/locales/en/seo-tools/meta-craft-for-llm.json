@@ -1,0 +1,45 @@
+{
+    "meta": {
+      "title": "Meta Craft for LLM - SEO Code Generator for LLMs",
+      "description": "Automatically generate SEO code for LLMs by simply entering a URL. Easily create titles, meta descriptions, OGP, and JSON-LD.",
+      "keywords": "meta tag generator, SEO, LLM, OpenGraph, JSON-LD, Twitter Card, structured data"
+    },
+    "title": "Meta Craft for LLM",
+    "description": "Generate and display SEO code for LLMs by entering a website URL",
+    "url": {
+      "label": "URL to Analyze",
+      "placeholder": "https://example.com",
+      "button": "Analyze"
+    },
+    "result": {
+      "title": "Generated Meta Information",
+      "titleTag": "Title Tag",
+      "metaDescription": "Meta Description",
+      "ogTags": "OGP Tags",
+      "twitterTags": "Twitter Card",
+      "jsonLd": "JSON-LD",
+      "jsonLdImportance": "Critical Element for LLM SEO",
+      "jsonLdDescription": "JSON-LD provides structured data that helps search engines and LLMs understand your content. It is the most important SEO element for LLMs, clearly communicating the context and relationships in your content.",
+      "otherElements": "Other SEO Elements"
+    },
+    "copy": {
+      "button": "Copy"
+    },
+    "error": {
+      "fetch": "An error occurred while fetching the URL",
+      "parsing": "An error occurred while parsing the HTML"
+    },
+    "loading": "Processing...",
+    "seoInfo": {
+      "title": "JSON-LD Structured Data and SEO for LLMs",
+      "description": "JSON-LD is structured data compliant with Schema.org, serving as a critical component for search engines and AI to understand your content. To ensure proper recognition by Large Language Models, consider the following points:",
+      "points": [
+        "Choose appropriate @type values like WebPage or WebApplication",
+        "Accurately describe basic properties like name, description, and url",
+        "Utilize FAQPage schema to structure questions and answers",
+        "Clearly define publisher and organization information",
+        "Combine multiple schemas to provide rich information"
+      ],
+      "conclusion": "By implementing proper structured data, LLMs can understand your content more deeply, increasing the likelihood of being cited in search results and AI responses."
+    }
+  }

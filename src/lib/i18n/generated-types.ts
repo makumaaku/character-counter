@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-03-30T09:45:56.568Z
+// Generated at: 2025-03-31T00:31:14.063Z
 
 export interface CommonMessages {
   meta: {
@@ -13,6 +13,7 @@ export interface CommonMessages {
     about: string;
     contact: string;
   };
+  menu: string;
   footer: {
     copyright: string;
     terms: string;
@@ -1731,6 +1732,18 @@ export interface SeoToolsCommonMessages {
       title: string;
       description: string;
     };
+    seoVolumeGuess: {
+      title: string;
+      description: string;
+    };
+    pageStructureChecker: {
+      title: string;
+      description: string;
+    };
+    metaCraftForLlm: {
+      title: string;
+      description: string;
+    };
   };
 }
 
@@ -1767,6 +1780,46 @@ export interface SeoToolsLinkStatusCheckerMessages {
   };
 }
 
+export interface SeoToolsMetaCraftForLlmMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  description: string;
+  url: {
+    label: string;
+    placeholder: string;
+    button: string;
+  };
+  result: {
+    title: string;
+    titleTag: string;
+    metaDescription: string;
+    ogTags: string;
+    twitterTags: string;
+    jsonLd: string;
+    jsonLdImportance: string;
+    jsonLdDescription: string;
+    otherElements: string;
+  };
+  copy: {
+    button: string;
+  };
+  error: {
+    fetch: string;
+    parsing: string;
+  };
+  loading: string;
+  seoInfo: {
+    title: string;
+    description: string;
+    points: string[];
+    conclusion: string;
+  };
+}
+
 export interface SeoToolsPageSpeedCheckerMessages {
   meta: {
     title: string;
@@ -1792,6 +1845,56 @@ export interface SeoToolsPageSpeedCheckerMessages {
   status: {
     noUrl: string;
   };
+}
+
+export interface SeoToolsPageStructureCheckerMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  description: string;
+  form: {
+    urlLabel: string;
+    urlPlaceholder: string;
+    analyzing: string;
+    analyze: string;
+    example: string;
+  };
+  error: {
+    title: string;
+    urlRequired: string;
+    invalidUrl: string;
+    fetchFailed: string;
+    networkError: string;
+    serverError: string;
+    timeoutError: string;
+    parsingError: string;
+  };
+  metaTitle: string;
+  headingStructure: string;
+  issues: string;
+  noTitle: string;
+  noDescription: string;
+  noCanonical: string;
+  noHeadings: string;
+  warning: string;
+  analysis: string;
+  good: string;
+  missing: string;
+  present: string;
+  tag: string;
+  count: string;
+  hierarchyIssue: string;
+  noH1: string;
+  multipleH1: string;
+  skippedLevel: string;
+  issueFound: string;
+  hierarchyIssueMessage: string;
+  recommended: string;
+  importantForSeo: string;
+  headings: string;
 }
 
 export interface SeoToolsSeoCannibalizationCheckerMessages {
@@ -2609,7 +2712,9 @@ export interface AllMessages {
   seoTools?: {
     common?: SeoToolsCommonMessages;
     linkStatusChecker?: SeoToolsLinkStatusCheckerMessages;
+    metaCraftForLlm?: SeoToolsMetaCraftForLlmMessages;
     pageSpeedChecker?: SeoToolsPageSpeedCheckerMessages;
+    pageStructureChecker?: SeoToolsPageStructureCheckerMessages;
     seoCannibalizationChecker?: SeoToolsSeoCannibalizationCheckerMessages;
     seoVolumeGuess?: SeoToolsSeoVolumeGuessMessages;
   };

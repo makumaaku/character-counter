@@ -18,6 +18,18 @@
     "seoCannibalizationChecker": {
       "title": "Comprobador de canibalización SEO",
       "description": "Comprueba la canibalización de palabras clave (competencia) dentro de tu sitio"
+    },
+    "seoVolumeGuess": {
+     "title": "Herramienta de Predicción de Volumen SEO",
+     "description": "Solo introduce una palabra clave, y predeciremos el volumen SEO a partir de las sugerencias de Google."
+    },
+    "pageStructureChecker": {
+      "title": "Comprobador de estructura de página",
+      "description": "Comprueba si tu página web tiene una estructura adecuada con títulos, descripciones y jerarquía de encabezados"
+    },
+    "metaCraftForLlm": {
+      "title": "Meta Craft for LLM",
+      "description": "Genera y muestra código SEO para LLMs introduciendo una URL de sitio web"
     }
   }
 }

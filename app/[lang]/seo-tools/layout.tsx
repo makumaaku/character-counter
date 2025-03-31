@@ -59,6 +59,12 @@ type LayoutMessages = {
   seoVolumeGuess: {
     title: string;
   };
+  pageStructureChecker: {
+    title: string;
+  };
+  metaCraftForLlm: {
+    title: string;
+  };
 };
 
 export async function generateMetadata(
@@ -179,13 +185,17 @@ export default async function Layout({ children, params }: {
     pageSpeedCheckerTitle,
     linkStatusCheckerTitle,
     seoCannibalizationCheckerTitle,
-    seoVolumeGuessTitle
+    seoVolumeGuessTitle,
+    pageStructureCheckerTitle,
+    metaCraftForLlmTitle
   ] = await Promise.all([
     translate(lang, 'seoTools.title'),
     translate(lang, 'seoTools.tools.pageSpeedChecker.title'),
     translate(lang, 'seoTools.tools.linkStatusChecker.title'),
     translate(lang, 'seoTools.tools.seoCannibalizationChecker.title'),
-    translate(lang, 'seoTools.seoVolumeGuess.title')
+    translate(lang, 'seoTools.tools.seoVolumeGuess.title'),
+    translate(lang, 'seoTools.tools.pageStructureChecker.title'),
+    translate(lang, 'seoTools.tools.metaCraftForLlm.title')
   ]);
   
   // SeoToolsLayoutに渡すメッセージオブジェクト
@@ -203,6 +213,12 @@ export default async function Layout({ children, params }: {
     },
     seoVolumeGuess: {
       title: seoVolumeGuessTitle
+    },
+    pageStructureChecker: {
+      title: pageStructureCheckerTitle
+    },
+    metaCraftForLlm: {
+      title: metaCraftForLlmTitle
     }
   };
   

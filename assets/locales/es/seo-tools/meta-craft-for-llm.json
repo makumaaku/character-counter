@@ -1,0 +1,45 @@
+{
+    "meta": {
+      "title": "Meta Craft para LLM - Generador de Código SEO para LLMs",
+      "description": "Genera automáticamente código SEO para LLMs simplemente ingresando una URL. Crea fácilmente títulos, meta descripciones, OGP y JSON-LD.",
+      "keywords": "generador de meta etiquetas, SEO, LLM, OpenGraph, JSON-LD, Twitter Card, datos estructurados"
+    },
+    "title": "Meta Craft para LLM",
+    "description": "Genera y muestra código SEO para LLMs ingresando la URL de un sitio web",
+    "url": {
+      "label": "URL para Analizar",
+      "placeholder": "https://example.com",
+      "button": "Analizar"
+    },
+    "result": {
+      "title": "Información Meta Generada",
+      "titleTag": "Etiqueta de Título",
+      "metaDescription": "Meta Descripción",
+      "ogTags": "Etiquetas OGP",
+      "twitterTags": "Twitter Card",
+      "jsonLd": "JSON-LD",
+      "jsonLdImportance": "Elemento Crítico para SEO de LLM",
+      "jsonLdDescription": "JSON-LD proporciona datos estructurados que ayudan a los motores de búsqueda y LLMs a entender tu contenido. Es el elemento SEO más importante para LLMs, comunicando claramente el contexto y las relaciones en tu contenido.",
+      "otherElements": "Otros Elementos SEO"
+    },
+    "copy": {
+      "button": "Copiar"
+    },
+    "error": {
+      "fetch": "Ocurrió un error al obtener la URL",
+      "parsing": "Ocurrió un error al analizar el HTML"
+    },
+    "loading": "Procesando...",
+    "seoInfo": {
+      "title": "Datos Estructurados JSON-LD y SEO para LLMs",
+      "description": "JSON-LD son datos estructurados compatibles con Schema.org, sirviendo como un componente crítico para que los motores de búsqueda y la IA entiendan tu contenido. Para asegurar un reconocimiento adecuado por los Modelos de Lenguaje Grande, considera los siguientes puntos:",
+      "points": [
+        "Elige valores @type apropiados como WebPage o WebApplication",
+        "Describe con precisión propiedades básicas como nombre, descripción y url",
+        "Utiliza el esquema FAQPage para estructurar preguntas y respuestas",
+        "Define claramente la información del editor y la organización",
+        "Combina múltiples esquemas para proporcionar información rica"
+      ],
+      "conclusion": "Al implementar datos estructurados adecuados, los LLMs pueden entender tu contenido más profundamente, aumentando la probabilidad de ser citado en resultados de búsqueda y respuestas de IA."
+    }
+  } 
