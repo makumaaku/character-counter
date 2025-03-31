@@ -21,7 +21,6 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
   try {
     let commonMessages = {};
     let metaMessages = {};
-    const legacyMessages = {};
 
     // 新しいディレクトリ構造から読み込み試行
     try {
@@ -35,14 +34,6 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
     } catch {
     }
 
-    // 既存の大きなJSONファイルからのフォールバック
-    // try {
-    //   const legacyModule = await import(`../../../assets/locales/${lang}.json`);
-    //   legacyMessages = legacyModule.default || {};
-    // } catch {
-      
-    // }
-
     // 既に読み込まれているか確認
     if (messages.has(lang)) {
       return messages.get(lang)!;
@@ -50,11 +41,9 @@ export async function loadMessagesByLang(lang: Language): Promise<Messages> {
 
     // 新しい構造と既存構造をマージ（新しい構造を優先）
     const initialMessages: Messages = {
-      ...legacyMessages,
       common: commonMessages,
-      ...metaMessages,
+      meta: metaMessages,  // metaを独立したキーとして追加
     };
-
     // メッセージをキャッシュ
     messages.set(lang, initialMessages);
     return initialMessages;
@@ -168,24 +157,6 @@ export function extractAndLogWordGenKeys(locale: Language = 'en'): void {
   // メッセージを取得
   const allMessages = getMessages(locale);
   console.log(allMessages)
-  
-  // // wordGenで始まるキーを探す
-  // const wordGenKeys: Record<string, MessageValue> = {};
-  
-  // // トップレベルのwordGenキーをチェック
-  // if (allMessages.wordGen) {
-  //   wordGenKeys.wordGen = allMessages.wordGen;
-  // }
-  
-  // // ネストされたキーも確認
-  // Object.entries(allMessages).forEach(([key, value]) => {
-  //   if (key.startsWith('wordGen')) {
-  //     wordGenKeys[key] = value;
-  //   }
-  // });
-  
-  // // 結果を出力
-  // console.warn('Found wordGen keys:', wordGenKeys);
 }
 
 export async function translate(lang: string, key: string, toolName?: string): Promise<string> {
@@ -203,7 +174,7 @@ export async function translate(lang: string, key: string, toolName?: string): P
   const actualToolName = toolName || keys[0];
   
   // ツールのメッセージをロード
-  await loadToolMessages(locale, actualToolName);
+    await loadToolMessages(locale, actualToolName);
   
   // メッセージを取得
   let value: unknown = getMessages(locale);

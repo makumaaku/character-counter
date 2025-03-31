@@ -33,11 +33,10 @@ export async function generateMetadata(
     logoAlt: SITE_CONFIG.logoAlt,
   };
 
-  const page = 'home';
   // ページ固有のメタデータを取得
-  const title = await t(`${page}.meta.title`);
-  const description = await t(`${page}.meta.description`);
-  const keywords = await t(`${page}.meta.keywords`);
+  const title = await t(`meta.title`);
+  const description = await t(`meta.description`);
+  const keywords = await t(`meta.keywords`);
 
   // JSON-LDの生成
   const jsonLd = {
