@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
+import { loadToolMessages, translate } from '@/lib/i18n/server';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +22,9 @@ type Props = {
 export async function generateMetadata(
   props: Props,
 ): Promise<Metadata> {
+
+  await loadToolMessages('en','/');
+  
   const params = await props.params;
   const lang = params.lang;
   const t = (key: string) => translate(lang, key);
