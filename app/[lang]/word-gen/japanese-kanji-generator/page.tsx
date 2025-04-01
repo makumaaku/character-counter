@@ -79,8 +79,8 @@ export default async function JapaneseKanjiGenerator({ params }: Props) {
   };
 
   return (
-    <div className="bg-gray-800 text-gray-100 font-sans min-h-screen">
-      <main className="max-w-4xl mx-auto px-4 py-10">
+    <div className="bg-gray-800 text-gray-100 font-sans min-h-screen overflow-x-hidden">
+      <main className="max-w-4xl mx-auto px-4 py-10 overflow-hidden">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold mb-4">
             {title}
@@ -90,7 +90,7 @@ export default async function JapaneseKanjiGenerator({ params }: Props) {
           </p>
         </div>
 
-        <div className="bg-gray-700 rounded-lg p-8 shadow-xl">
+        <div className="bg-gray-700 rounded-lg p-6 sm:p-8 shadow-xl">
           <ClientSideKanjiGenerator messages={messages} />
         </div>
       </main>

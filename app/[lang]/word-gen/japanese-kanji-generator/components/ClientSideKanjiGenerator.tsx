@@ -83,7 +83,7 @@ export default function ClientSideKanjiGenerator({ messages }: ClientSideKanjiGe
   };
 
   return (
-    <>
+    <div className="w-full overflow-hidden">
       {isLoadingFont && (
         <div className="mb-4 text-center text-blue-500 font-bold">
           {font.loading}
@@ -109,6 +109,6 @@ export default function ClientSideKanjiGenerator({ messages }: ClientSideKanjiGe
         jpgButtonText={download.jpg}
         pngButtonText={download.png}
       />
-    </>
+    </div>
   );
 } 

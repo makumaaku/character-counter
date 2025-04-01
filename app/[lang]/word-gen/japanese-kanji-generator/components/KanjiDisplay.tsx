@@ -1,7 +1,34 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CopyButton from '@/components/CopyButton';
+
+// ウィンドウサイズを取得するカスタムフック
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+  });
+
+  useEffect(() => {
+    // ウィンドウのリサイズをハンドリングする関数
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+      });
+    }
+    
+    // イベントリスナーを追加
+    window.addEventListener('resize', handleResize);
+    
+    // 初回マウント時にもサイズを設定
+    handleResize();
+    
+    // クリーンアップ関数
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  return windowSize;
+}
 
 interface KanjiDisplayProps {
   kanji: string | null;
@@ -16,7 +43,6 @@ interface KanjiDisplayProps {
 
 export default function KanjiDisplay({
   kanji,
-  size = 512,
   backgroundColor = '#ffffff',
   textColor = '#000000',
   fontFamily = 'Yuji Mai',
@@ -25,6 +51,11 @@ export default function KanjiDisplay({
   noImageText = '画像が生成されていません'
 }: KanjiDisplayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { width } = useWindowSize();
+  const baseSize = 512;
+  
+  // モバイル画面では画面幅に合わせてサイズを調整
+  const adjustedSize = width < baseSize ? (width - 48)*0.7 : Math.min(width * 0.7, baseSize);
 
   useEffect(() => {
     if (!kanji || !canvasRef.current) return;
@@ -34,12 +65,12 @@ export default function KanjiDisplay({
     if (!ctx) return;
 
     // キャンバスのサイズを設定
-    canvas.width = size;
-    canvas.height = size;
+    canvas.width = adjustedSize;
+    canvas.height = adjustedSize;
 
     // 背景を描画
     ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, size, size);
+    ctx.fillRect(0, 0, adjustedSize, adjustedSize);
 
     // 漢字を描画
     ctx.fillStyle = textColor;
@@ -47,29 +78,29 @@ export default function KanjiDisplay({
     ctx.textBaseline = 'middle';
 
     // 漢字のサイズを調整 (キャンバスサイズの約70%)
-    const fontSize = Math.floor(size * 0.7);
+    const fontSize = Math.floor(adjustedSize * 0.7);
     ctx.font = `${fontSize}px ${fontFamily}`;
 
     // 漢字を中央に描画
-    ctx.fillText(kanji, size / 2, size / 2);
-  }, [kanji, size, backgroundColor, textColor, fontFamily]);
+    ctx.fillText(kanji, adjustedSize / 2, adjustedSize / 2);
+  }, [kanji, adjustedSize, backgroundColor, textColor, fontFamily]);
 
   return (
-    <div className="flex flex-col items-center mt-8 mb-8">
+    <div className="flex flex-col items-center mt-8 mb-8 w-full overflow-hidden">
       <div className="border-4 border-purple-300 rounded-lg overflow-hidden shadow-lg bg-white">
         {kanji ? (
           <canvas 
             ref={canvasRef} 
-            width={size} 
-            height={size}
+            width={adjustedSize} 
+            height={adjustedSize}
             className="max-w-full"
           />
         ) : (
           <div 
-            style={{ width: size, height: size }} 
+            style={{ width: adjustedSize, height: adjustedSize }} 
             className="flex items-center justify-center bg-purple-50 text-purple-400"
           >
-            <span className="text-2xl">{noImageText}</span>
+            <span className="text-xl">{noImageText}</span>
           </div>
         )}
       </div>
