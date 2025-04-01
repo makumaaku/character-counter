@@ -8,7 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
-    "generate-types": "node --loader ts-node/esm src/lib/i18n/type-generator.ts assets/locales AllMessages src/lib/i18n/generated-types.ts"
+    "generate-types": "node --loader ts-node/esm src/lib/i18n/type-generator.ts assets/locales AllMessages src/lib/i18n/generated-types.ts",
+    "i18n-validate": "node --loader ts-node/esm src/scripts/validate-i18n.ts",
+    "i18n-report": "node --loader ts-node/esm src/scripts/i18n-report.ts",
+    "i18n-fix": "node --loader ts-node/esm src/scripts/i18n-fix-helper.ts",
+    "i18n": "npm run i18n-validate && npm run i18n-fix ja && npm run i18n-fix es && npm run i18n-fix ru && npm run i18n-fix zh && npm run i18n-report",
+    "precommit": "npm run i18n",
+    "prepare": "husky"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
@@ -56,6 +62,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "husky": "^9.1.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
