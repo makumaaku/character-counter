@@ -53,7 +53,7 @@ module.exports = {
     for (const path of paths) {
       
       // サポートしている言語の配列
-      const languages = ['ja', 'en', 'es', 'ru'];
+      const languages = ['ja', 'en', 'es', /*'ru'*/];
       
       // 各言語ごとにパスを追加するよ〜
       for (const lang of languages) {

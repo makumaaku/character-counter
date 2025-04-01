@@ -8,7 +8,7 @@ const LANGUAGES: { [key in Language]: string } = {
   en: 'English',
   ja: '日本語',
   es: 'Español',
-  ru: 'Русский',
+  // ru: 'Русский',
   // 新しい言語を追加する場合は、ここに追加するだけで良い
   // 例: fr: 'Français',
   // 例: zh: '中文',

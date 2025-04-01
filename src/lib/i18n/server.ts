@@ -202,7 +202,7 @@ export async function translate(lang: string, key: string, toolName?: string): P
 
 // 利用可能な言語一覧を取得
 export function getAvailableLanguages(): Language[] {
-  return ['en', 'ja', 'es', 'ru'];
+  return ['en', 'ja', 'es', /*'ru'*/];
 }
 
 // パラメータから言語を取得する関数
@@ -211,7 +211,7 @@ export async function getLanguageFromParams(params: { lang: string } | Promise<{
   const langParam = resolvedParams.lang;
   
   // 有効な言語かチェック
-  if (['en', 'ja', 'es', 'ru'].includes(langParam)) {
+  if (['en', 'ja', 'es', /*'ru'*/].includes(langParam)) {
     return langParam as Language;
   }
   
