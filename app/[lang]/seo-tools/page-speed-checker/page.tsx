@@ -25,12 +25,14 @@ export default async function PageSpeedChecker({ params }: Props) {
     resultLoadTimeLabel,
     resultResourcesLabel,
     resultSuggestionsLabel,
-    noUrlText
+    noUrlText,
+    securityNote
   ] = await Promise.all([
     translate(lang, 'seoTools.pageSpeedChecker.title'),
     translate(lang, 'seoTools.pageSpeedChecker.description'),
     translate(lang, 'seoTools.pageSpeedChecker.input.url'),
     translate(lang, 'seoTools.pageSpeedChecker.input.analyzeButton'),
+    translate(lang, 'seoTools.pageSpeedChecker.input.securityNote'),
     translate(lang, 'seoTools.pageSpeedChecker.results.loading'),
     translate(lang, 'seoTools.pageSpeedChecker.error.invalidUrl'),
     translate(lang, 'seoTools.pageSpeedChecker.error.fetchFailed'),
@@ -51,7 +53,8 @@ export default async function PageSpeedChecker({ params }: Props) {
     description,
     input: {
       url: inputLabel,
-      analyzeButton: analyzeButton
+      analyzeButton: analyzeButton,
+      securityNote: securityNote
     },
     results: {
       loading: loadingText,

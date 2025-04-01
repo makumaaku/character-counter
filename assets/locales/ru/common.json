@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "logoAlt": "Логотип Boring Tools"
+  },
+  "siteName": "Boring Tools",
+  "publisher": "Boring Inc.",
+  "header": {
+    "home": "Главная",
+    "tools": "Инструменты",
+    "about": "О нас",
+    "contact": "Контакты"
+  },
+  "menu": "Меню",
+  "footer": {
+    "copyright": "© 2024 Boring Tools. Все права защищены.",
+    "terms": "Условия использования",
+    "privacy": "Политика конфиденциальности"
+  },
+  "error": {
+    "general": "Произошла ошибка",
+    "notFound": "Страница не найдена",
+    "serverError": "Ошибка сервера"
+  }
+} 

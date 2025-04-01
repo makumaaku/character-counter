@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-const locales = ['en', 'ja', 'es'];
+const locales = ['en', 'ja', 'es', 'ru'];
 const defaultLocale = 'en';
 const rootPath = '/';
 
