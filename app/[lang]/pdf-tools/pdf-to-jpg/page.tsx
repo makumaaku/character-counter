@@ -4,14 +4,14 @@ import { getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server'
 import { Language, PdfToolsPdfToJpgMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PdfToJpg({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
-  await loadToolMessages(lang as Language, 'pdf-tools');
   await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-jpg');
   
   // サーバーコンポーネントで翻訳を並列取得

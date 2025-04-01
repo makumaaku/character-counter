@@ -3,11 +3,12 @@ import PngToJpgClient from './components/PngToJpgClient'
 import { Language, ImageToolsPngToJpgMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PngToJpg({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'image-tools/png-to-jpg');

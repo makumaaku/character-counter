@@ -1,4 +1,4 @@
-import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
@@ -224,12 +224,10 @@ export async function generateMetadata(
 
 export default async function Layout({ children, params }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = params;
-  
-  // 翻訳をロード
-  await loadToolMessages(lang as Language, 'pdf-tools');
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // PDFツールのタイトルと各ツールのタイトルを並列で取得
   const [

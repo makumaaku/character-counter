@@ -51,31 +51,19 @@ module.exports = {
     const result = [];
 
     for (const path of paths) {
-      result.push({
-        loc: `${config.siteUrl}/ja/${path}`,
-        lastmod: new Date().toISOString(),
-        changefreq: 'daily',
-        priority: 0.7,
-        // alternateRefs: [
-        //   {
-        //     href: `${config.siteUrl}/en/${path}`,
-        //     hreflang: 'en',
-        //   },
-        // ],
-      });
-
-      result.push({
-        loc: `${config.siteUrl}/en/${path}`,
-        lastmod: new Date().toISOString(),
-        changefreq: 'daily',
-        priority: 0.7,
-        // alternateRefs: [
-        //   {
-        //     hreflang: 'ja',
-        //     href: `${config.siteUrl}/ja/${path}`,
-        //   },
-        // ],
-      });
+      
+      // サポートしている言語の配列
+      const languages = ['ja', 'en', 'es'];
+      
+      // 各言語ごとにパスを追加するよ〜
+      for (const lang of languages) {
+        result.push({
+          loc: `${config.siteUrl}/${lang}/${path}`,
+          lastmod: new Date().toISOString(),
+          changefreq: 'daily',
+          priority: 0.7,
+        });
+      }
     }
 
     return result;

@@ -1,5 +1,4 @@
 import { SITE_CONFIG } from '@/constants/constants';
-import { translate } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import fs from 'fs';
@@ -56,12 +55,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { lang, slug } = await params;
   const { title, description, keywords, publishedTime } = await getColumn(slug, lang);
-  const t = (key: string) => translate(lang, key);
 
   const commonMeta = {
-    siteName: t(SITE_CONFIG.siteName),
-    publisher: t(SITE_CONFIG.publisher),
-    logoAlt: t('common.meta.logoAlt'),
+    siteName: SITE_CONFIG.siteName,
+    publisher: SITE_CONFIG.publisher,
+    logoAlt: SITE_CONFIG.logoAlt,
   };
 
   const jsonLd: JsonLdType = {

@@ -3,11 +3,12 @@ import JpgToPdfClient from './components/JpgToPdfClient'
 import { Language, PdfToolsJpgToPdfMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function JpgToPdf({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'pdf-tools/jpg-to-pdf');

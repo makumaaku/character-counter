@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-03-31T00:58:01.631Z
+// Generated at: 2025-04-01T00:20:47.384Z
 
 export interface CommonMessages {
   meta: {
@@ -1874,6 +1874,12 @@ export interface SeoToolsPageStructureCheckerMessages {
   };
   metaTitle: string;
   headingStructure: string;
+  headingsStructure: string;
+  headingsExplanation: string;
+  headingsLevelsTitle: string;
+  contentStructureTitle: string;
+  contentStructureExplanation: string;
+  viewHeadings: string;
   issues: string;
   noTitle: string;
   noDescription: string;
@@ -1887,6 +1893,7 @@ export interface SeoToolsPageStructureCheckerMessages {
   tag: string;
   count: string;
   hierarchyIssue: string;
+  headingIssue: string;
   noH1: string;
   multipleH1: string;
   skippedLevel: string;

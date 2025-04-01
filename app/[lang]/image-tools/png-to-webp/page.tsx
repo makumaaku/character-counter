@@ -3,11 +3,12 @@ import PngToWebpClient from './components/PngToWebpClient'
 import { Language, ImageToolsPngToWebpMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PngToWebp({ params }: Props) {
-  const lang = await getLanguageFromParams(params)
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'image-tools/png-to-webp');

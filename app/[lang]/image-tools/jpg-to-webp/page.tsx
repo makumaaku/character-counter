@@ -3,11 +3,12 @@ import JpgToWebpClient from './components/JpgToWebpClient'
 import { Language, ImageToolsJpgToWebpMessages } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function JpgToWebp({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'image-tools/jpg-to-webp');

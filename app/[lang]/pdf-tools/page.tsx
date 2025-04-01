@@ -3,11 +3,12 @@ import ToolCard from '@/components/ToolCard'
 import { Language } from '@/lib/i18n/types'
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PdfTools({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'pdf-tools');
@@ -20,10 +21,8 @@ export default async function PdfTools({ params }: Props) {
     pdfToJpgDescription,
     jpgToPdfTitle,
     jpgToPdfDescription,
-    webToPdfTitle,
-    webToPdfDescription,
-    pdfToWordTitle,
-    pdfToWordDescription,
+    // pdfToWordTitle,
+    // pdfToWordDescription,
     pdfToPngTitle,
     pdfToPngDescription,
     pngToPdfTitle,
@@ -41,8 +40,6 @@ export default async function PdfTools({ params }: Props) {
     translate(lang, 'pdfTools.tools.pdfToJpg.description'),
     translate(lang, 'pdfTools.tools.jpgToPdf.title'),
     translate(lang, 'pdfTools.tools.jpgToPdf.description'),
-    translate(lang, 'pdfTools.tools.webToPdf.title'),
-    translate(lang, 'pdfTools.tools.webToPdf.description'),
     translate(lang, 'pdfTools.tools.pdfToWord.title'),
     translate(lang, 'pdfTools.tools.pdfToWord.description'),
     translate(lang, 'pdfTools.tools.pdfToPng.title'),
@@ -70,18 +67,18 @@ export default async function PdfTools({ params }: Props) {
       path: `/${lang}/pdf-tools/jpg-to-pdf`,
       icon: "📄"
     },
-    {
-      title: webToPdfTitle,
-      description: webToPdfDescription,
-      path: `/${lang}/pdf-tools/web-to-pdf`,
-      icon: "🌐"
-    },
-    {
-      title: pdfToWordTitle,
-      description: pdfToWordDescription,
-      path: `/${lang}/pdf-tools/pdf-to-word`,
-      icon: "📝"
-    },
+    // {
+    //   title: webToPdfTitle,
+    //   description: webToPdfDescription,
+    //   path: `/${lang}/pdf-tools/web-to-pdf`,
+    //   icon: "🌐"
+    // },
+    // {
+    //   title: pdfToWordTitle,
+    //   description: pdfToWordDescription,
+    //   path: `/${lang}/pdf-tools/pdf-to-word`,
+    //   icon: "📝"
+    // },
     {
       title: pdfToPngTitle,
       description: pdfToPngDescription,

@@ -1,4 +1,5 @@
-import { translate } from '@/lib/i18n/server'
+import { loadToolMessages, translate } from '@/lib/i18n/server'
+import { Language } from '@/lib/i18n/types'
 import * as cheerio from 'cheerio'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -18,6 +19,7 @@ export async function POST(request: NextRequest) {
   // 言語パラメータを取得
   const pathname = request.nextUrl.pathname
   const lang = pathname.split('/')[1] || 'en'
+  await loadToolMessages(lang as Language, 'seo-tools/page-structure-checker')
   const t = (key: string) => translate(lang, key)
 
   // CORS対策のヘッダーを設定
@@ -124,7 +126,7 @@ export async function POST(request: NextRequest) {
       if (!title) {
         issues.push({
           type: 'error',
-          message: t('page-structure-checker.no-title')
+          message: await t('seoTools.pageStructureChecker.noTitle')
         })
       }
 
@@ -132,7 +134,7 @@ export async function POST(request: NextRequest) {
       if (!description) {
         issues.push({
           type: 'error',
-          message: t('page-structure-checker.no-description')
+          message: await t('seoTools.pageStructureChecker.noDescription')
         })
       }
 
@@ -140,7 +142,7 @@ export async function POST(request: NextRequest) {
       if (!canonicalUrl) {
         issues.push({
           type: 'warning',
-          message: t('page-structure-checker.no-canonical')
+          message: await t('seoTools.pageStructureChecker.noCanonical')
         })
       }
 
@@ -150,12 +152,12 @@ export async function POST(request: NextRequest) {
       if (h1Count === 0) {
         issues.push({
           type: 'error',
-          message: t('page-structure-checker.no-h1')
+          message: await t('seoTools.pageStructureChecker.noH1')
         })
       } else if (h1Count > 1) {
         issues.push({
           type: 'error',
-          message: t('page-structure-checker.multiple-h1')
+          message: await t('seoTools.pageStructureChecker.multipleH1')
         })
       }
 
@@ -166,7 +168,7 @@ export async function POST(request: NextRequest) {
         if (usedLevels.has(i) && !usedLevels.has(i - 1)) {
           issues.push({
             type: 'warning',
-            message: t('page-structure-checker.skipped-level')
+            message: await t('seoTools.pageStructureChecker.skippedLevel')
           })
         }
       }

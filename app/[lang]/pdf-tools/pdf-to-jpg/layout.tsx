@@ -7,7 +7,7 @@ import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata(
@@ -16,7 +16,6 @@ export async function generateMetadata(
   const lang = await getLanguageFromParams(params);
   
   // PDF to JPG 用の翻訳をロード
-  await loadToolMessages(lang as Language, 'pdf-tools');
   await loadToolMessages(lang as Language, 'pdf-tools/pdf-to-jpg');
   
   // 翻訳を並列で取得

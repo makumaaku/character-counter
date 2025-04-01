@@ -7,14 +7,15 @@ import Header from '@/components/Header';
 import { Language } from '@/lib/i18n/types';
 
 type Props = {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
   children: React.ReactNode;
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // ツール固有の翻訳をロード
   await loadToolMessages(lang as Language, 'roulette');
@@ -83,9 +84,10 @@ export default async function RouletteLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   const title = await translate(lang, 'roulette.title');
 
   return (

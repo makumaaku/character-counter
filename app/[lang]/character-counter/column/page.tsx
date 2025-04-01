@@ -6,7 +6,7 @@ import { getLanguageFromParams, loadToolMessages, translate } from '@/lib/i18n/s
 import { Language, CharacterCounterColumnMessages } from '@/lib/i18n/types';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 interface ColumnData {
@@ -35,7 +35,8 @@ async function getColumnData(): Promise<ColumnData[]> {
 }
 
 export default async function ColumnList(props: Props) {
-  const lang = await getLanguageFromParams(props.params);
+  const param = await props.params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'character-counter/column');

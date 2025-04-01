@@ -3,11 +3,12 @@ import ClientSideKanjiGenerator from './components/ClientSideKanjiGenerator';
 import { Language, WordGenJapaneseKanjiGeneratorMessages } from '@/lib/i18n/types';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function JapaneseKanjiGenerator({ params }: Props) {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
   await loadToolMessages(lang as Language, 'word-gen/japanese-kanji-generator');

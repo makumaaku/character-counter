@@ -6,13 +6,14 @@ import { Language } from '@/lib/i18n/types';
 
 type Props = {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const lang = await getLanguageFromParams(params);
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // SVG to PDF 用の翻訳をロード
   await loadToolMessages(lang as Language, 'pdf-tools/svg-to-pdf');

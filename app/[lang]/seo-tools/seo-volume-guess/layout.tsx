@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Language } from '@/lib/i18n/types';
@@ -36,7 +36,8 @@ type JsonLdType = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // Load SEO tools translations
   await loadToolMessages(lang as Language, 'seo-tools');
@@ -129,15 +130,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children, params }: {
+export default async function Layout({ children }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const { lang } = params;
-  
-  // Load translations
-  await loadToolMessages(lang as Language, 'seo-tools');
-  await loadToolMessages(lang as Language, 'seo-tools/seo-volume-guess');
   
   return (
     <>{children}</>

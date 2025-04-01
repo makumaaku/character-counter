@@ -26,6 +26,12 @@
     },
     "metaTitle": "メタ要素",
     "headingStructure": "見出し構造",
+    "headingsStructure": "見出し構造の分析",
+    "headingsExplanation": "適切に構造化された見出しは、検索エンジンがコンテンツの構成を理解し、ユーザー体験を向上させるのに役立ちます",
+    "headingsLevelsTitle": "見出しレベル",
+    "contentStructureTitle": "コンテンツ構造",
+    "contentStructureExplanation": "適切なコンテンツ階層はSEOとアクセシビリティの両方に不可欠です",
+    "viewHeadings": "すべての見出しを表示",
     "issues": "見つかった問題",
     "noTitle": "タイトルが見つかりません",
     "noDescription": "説明が見つかりません",
@@ -39,9 +45,8 @@
     "tag": "タグ",
     "count": "の数",
     "hierarchyIssue": "階層構造に問題があります。指摘箇所を確認してください。",
+    "headingIssue": "見出し構造に問題が検出されました",
     "h2h6HierarchyIssue": "階層構造に問題あり",
-    "noTitle": "ページにタイトルタグがありません",
-    "no-description": "ページにメタディスクリプションがありません",
     "noH1": "ページにh1タグがありません",
     "multipleH1": "ページに複数のh1タグがあります（1つだけにする必要があります）",
     "skippedLevel": "見出しレベルの階層が正しくありません。",
@@ -53,5 +58,5 @@
     "emptyDomain": "ドメインを入力してください",
     "invalidDomain": "有効なドメインを入力してください",
     "emptyKeyword": "キーワードを入力してください",
-      "generic": "エラーが発生しました。もう一度お試しください。"
-    }
+    "generic": "エラーが発生しました。もう一度お試しください。"
+}

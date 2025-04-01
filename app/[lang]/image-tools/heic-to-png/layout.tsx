@@ -1,4 +1,4 @@
-import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { translate, loadToolMessages, getLanguageFromParams } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
@@ -37,10 +37,10 @@ type JsonLdType = {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-  const { lang } = await params;
+  const param = await params;
+  const lang = await getLanguageFromParams(param);
   
   // 翻訳をロード
-  await loadToolMessages(lang as Language, 'image-tools');
   await loadToolMessages(lang as Language, 'image-tools/heic-to-png');
   
   // 並列で翻訳を取得
@@ -107,14 +107,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children, params }: {
+export default async function Layout({ children }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const { lang } = params;
-  
-  // 翻訳をロード
-  await loadToolMessages(lang as Language, 'image-tools/heic-to-png');
   
   return (
     <div className="layout-container">
