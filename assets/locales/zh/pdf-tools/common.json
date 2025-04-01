@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "PDF工具 - 转换、编辑和管理PDF文件",
+    "description": "免费在线PDF工具，用于转换、编辑和管理PDF文件。无需安装，直接在浏览器中使用。",
+    "keywords": "pdf工具, pdf转换器, pdf转jpg, pdf编辑器, 在线pdf工具, 免费pdf工具"
+  },
+  "title": "PDF工具",
+  "description": "免费在线工具，用于转换、编辑和管理PDF文件",
+  "tools": {
+    "pdfToJpg": {
+      "title": "PDF转JPG转换器",
+      "description": "将PDF页面转换为可调整质量的JPG图像"
+    },
+    "jpgToPdf": {
+      "title": "JPG转PDF转换器",
+      "description": "将JPG图像转换为具有可自定义设置的PDF文档"
+    },
+    "webToPdf": {
+      "title": "网页转PDF转换器",
+      "description": "只需一键即可将任何网页转换为PDF文档"
+    },
+    "pdfToWord": {
+      "title": "PDF转Word转换器",
+      "description": "轻松将PDF文档转换为可编辑的Word文件"
+    },
+    "pdfToPng": {
+      "title": "PDF转PNG转换器",
+      "description": "将PDF页面转换为支持透明度的高质量PNG图像"
+    },
+    "pngToPdf": {
+      "title": "PNG转PDF转换器",
+      "description": "将PNG图像转换为具有可自定义设置的PDF文档"
+    },
+    "svgToPdf": {
+      "title": "SVG转PDF转换器",
+      "description": "将SVG矢量图形转换为高质量的PDF文档"
+    },
+    "pdfToEpub": {
+      "title": "PDF转EPUB转换器",
+      "description": "将PDF文档转换为电子阅读器使用的EPUB电子书格式"
+    },
+    "heicToPdf": {
+      "title": "HEIC转PDF转换器",
+      "description": "将HEIC图像转换为高质量的PDF文档"
+    }
+  }
+} 

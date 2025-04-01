@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "SVG转PDF转换器 - 在线将矢量图形转换为PDF",
+    "description": "免费在线工具，将SVG矢量图形转换为PDF文档。在PDF输出中保持高质量和可缩放性。无需安装。",
+    "keywords": "svg转pdf, 矢量图转pdf, 转换svg为pdf, svg转换器, 在线svg转换器, 免费svg转换器"
+  },
+  "title": "SVG转PDF转换器",
+  "description": "将SVG矢量图形转换为高质量的PDF文档",
+  "form": {
+    "upload": {
+      "label": "上传SVG文件",
+      "button": "拖放SVG文件到此处，或点击选择",
+      "dragDrop": "拖放文件到此处或点击浏览"
+    },
+    "convert": "转换为PDF"
+  },
+  "result": {
+    "download": "下载PDF"
+  },
+  "status": {
+    "processing": "处理中...",
+    "noFile": "未选择文件"
+  },
+  "error": {
+    "fileType": "请上传SVG文件",
+    "fileSize": "文件大小超过10MB限制"
+  }
+} 

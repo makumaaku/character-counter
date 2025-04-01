@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "JPG转WebP转换器 - 免费在线图像转换工具",
+    "description": "在线将JPG图像转换为WebP格式。免费、快速且易于使用，提供即时预览和下载选项。",
+    "keywords": "jpg转webp, jpeg转webp, 图像转换器, 免费转换器, 在线图像工具, 网页优化"
+  },
+  "title": "JPG转WebP转换器",
+  "description": "将JPG图像转换为WebP格式，以获得更好的Web性能和更小的文件大小",
+  "upload": {
+    "limit": "最大文件大小：每个文件10MB"
+  },
+  "form": {
+    "upload": {
+      "label": "上传JPG图像",
+      "button": "选择文件",
+      "dragDrop": "拖放文件到这里或点击浏览"
+    },
+    "convert": "转换为WebP"
+  },
+  "result": {
+    "download": "下载WebP",
+    "downloadAll": "下载所有WebP"
+  },
+  "status": {
+    "processing": "转换中...",
+    "noFile": "未选择文件"
+  },
+  "error": {
+    "fileType": "只允许JPG/JPEG文件",
+    "fileSize": "文件大小必须小于10MB"
+  }
+} 

@@ -1,0 +1,45 @@
+{
+    "meta": {
+      "title": "LLM元标签生成器 - 用于LLM的SEO代码生成器",
+      "description": "通过简单输入URL自动生成LLM的SEO代码。轻松创建标题、元描述、OGP和JSON-LD。",
+      "keywords": "元标签生成器, SEO, LLM, OpenGraph, JSON-LD, Twitter卡片, 结构化数据"
+    },
+    "title": "LLM元标签生成器",
+    "description": "通过输入网站URL生成和显示用于LLM的SEO代码",
+    "url": {
+      "label": "要分析的URL",
+      "placeholder": "https://example.com",
+      "button": "分析"
+    },
+    "result": {
+      "title": "生成的元信息",
+      "titleTag": "标题标签",
+      "metaDescription": "元描述",
+      "ogTags": "OGP标签",
+      "twitterTags": "Twitter卡片",
+      "jsonLd": "JSON-LD",
+      "jsonLdImportance": "LLM SEO的关键元素",
+      "jsonLdDescription": "JSON-LD提供结构化数据，帮助搜索引擎和LLM理解您的内容。它是LLM最重要的SEO元素，清晰地传达内容的上下文和关系。",
+      "otherElements": "其他SEO元素"
+    },
+    "copy": {
+      "button": "复制"
+    },
+    "error": {
+      "fetch": "获取URL时出错",
+      "parsing": "解析HTML时出错"
+    },
+    "loading": "处理中...",
+    "seoInfo": {
+      "title": "JSON-LD结构化数据和LLM的SEO",
+      "description": "JSON-LD是符合Schema.org的结构化数据，是搜索引擎和AI理解您内容的关键组件。为确保大型语言模型正确识别，请考虑以下几点：",
+      "points": [
+        "选择适当的@type值，如WebPage或WebApplication",
+        "准确描述基本属性，如name、description和url",
+        "利用FAQPage架构来构建问题和答案",
+        "清晰定义发布者和组织信息",
+        "组合多个架构以提供丰富信息"
+      ],
+      "conclusion": "通过实施适当的结构化数据，LLM可以更深入地理解您的内容，增加在搜索结果和AI回应中被引用的可能性。"
+    }
+} 

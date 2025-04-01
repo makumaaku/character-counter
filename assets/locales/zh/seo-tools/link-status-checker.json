@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "链接状态检查器 - 免费批量URL验证工具",
+    "description": "一次检查多个URL的状态。免费在线工具，用于批量URL验证、HTTP状态码检测和实时链接检查。无需注册。",
+    "keywords": "链接检查器, URL验证器, 批量URL检查, HTTP状态, 死链接查找器, 网站监控"
+  },
+  "title": "SEO链接状态检查器",
+  "description": "输入URL以检查其链接和状态。",
+  "form": {
+    "url": {
+      "label": "URL",
+      "placeholder": "输入网站URL"
+    },
+    "button": {
+      "check": "检查",
+      "checking": "检查中..."
+    }
+  },
+  "results": {
+    "title": "链接",
+    "status": "状态",
+    "processing_url": "处理URL中...",
+    "checking_links": "检查链接中...",
+    "total_links_checked": "共检查了{{count}}个链接"
+  },
+  "errors": {
+    "general": "发生错误",
+    "timeout": "请求超时。服务器响应时间过长。",
+    "network": "网络错误。请检查您的连接并重试。",
+    "invalid_url": "无效的URL格式。请输入有效的URL。"
+  }
+} 

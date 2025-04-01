@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "logoAlt": "无聊工具标志"
+  },
+  "siteName": "无聊工具",
+  "publisher": "无聊公司",
+  "header": {
+    "home": "首页",
+    "tools": "工具",
+    "about": "关于",
+    "contact": "联系我们"
+  },
+  "menu": "菜单",
+  "footer": {
+    "copyright": "© 2024 无聊工具。保留所有权利。",
+    "terms": "服务条款",
+    "privacy": "隐私政策"
+  },
+  "error": {
+    "general": "发生错误",
+    "notFound": "找不到页面",
+    "serverError": "服务器错误"
+  }
+} 

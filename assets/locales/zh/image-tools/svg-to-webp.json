@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "SVG转WebP转换器 - 免费在线图像转换工具",
+    "description": "在线将SVG矢量图像转换为WebP格式。免费、快速且易于使用，提供即时预览和下载选项。",
+    "keywords": "svg转webp, svg转换器, 图像转换器, 免费转换器, 在线图像工具, 矢量图像转换器, webp转换"
+  },
+  "title": "SVG转WebP转换器",
+  "description": "将SVG矢量图像转换为针对Web显示优化的WebP格式",
+  "form": {
+    "upload": {
+      "label": "上传SVG图像",
+      "button": "选择文件",
+      "dragDrop": "拖放SVG文件到这里或点击浏览",
+      "limitText": "最大文件大小：20MB（总计最多100MB）"
+    },
+    "convert": "转换为WebP"
+  },
+  "result": {
+    "download": "下载WebP",
+    "downloadAll": "下载所有WebP",
+    "preview": "预览",
+    "selectedFiles": "已选择文件"
+  },
+  "status": {
+    "processing": "处理中...",
+    "noFile": "未选择文件",
+    "success": "转换完成！",
+    "browserProcessing": "所有处理都在您的浏览器中完成。文件从不上传到任何服务器。"
+  },
+  "error": {
+    "fileType": "只允许SVG文件",
+    "fileSize": "文件大小过大",
+    "conversionFailed": "转换失败"
+  }
+} 

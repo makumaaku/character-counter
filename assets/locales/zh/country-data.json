@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "国家面积比较数据",
+    "description": "世界各国详细信息的综合列表，包括官方名称、首都、语言等。",
+    "keywords": "世界国家, 国家数据, 首都, 语言, 货币, 地区"
+  },
+  "ui": {
+    "title": "世界国家数据",
+    "searchLabel": "关键词搜索：",
+    "filterLabel": "地区筛选：",
+    "noData": "未找到匹配数据",
+    "loading": "加载中...",
+    "error": "数据加载失败。请尝试重新加载。",
+    "allRegions": "全部",
+    "tableHeaders": {
+      "name": "名称",
+      "officialName": "官方名称",
+      "area": "面积 (平方公里)",
+      "capital": "首都",
+      "languages": "语言",
+      "currency": "货币",
+      "region": "地区",
+      "source": "来源",
+      "lastUpdated": "最后更新"
+    }
+  },
+  "title": "国家面积比较数据",
+  "states": {
+    "loading": "加载中...",
+    "error": "获取数据时发生错误",
+    "noData": "未找到匹配的国家"
+  },
+  "search": {
+    "label": "搜索",
+    "placeholder": "按名称、首都、语言等搜索..."
+  },
+  "filter": {
+    "label": "按地区筛选",
+    "allRegions": "所有地区"
+  },
+  "table": {
+    "headers": {
+      "name": "国家名称",
+      "officialName": "官方名称",
+      "area": "面积 (平方公里)",
+      "capital": "首都",
+      "languages": "语言",
+      "currency": "货币",
+      "region": "地区",
+      "source": "数据来源",
+      "lastUpdated": "最后更新"
+    }
+  }
+} 

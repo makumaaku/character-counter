@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "title": "页面速度检查器 - 网站性能分析工具",
+    "description": "使用我们免费的页面速度检查工具分析您网站的加载速度、资源使用情况，并获取性能改进建议。",
+    "keywords": "页面速度检查器, 网站性能, 加载速度, 性能优化, 资源分析"
+  },
+  "title": "页面速度检查器",
+  "description": "分析网站加载速度并获得性能改进建议",
+  "input": {
+    "url": "网站URL",
+    "analyzeButton": "分析",
+    "securityNote": "注意：浏览器安全限制可能会影响准确测量。"
+  },
+  "results": {
+    "loading": "分析中...",
+    "loadTime": "页面加载时间",
+    "resources": "按大小排序的顶部资源",
+    "suggestions": "性能建议"
+  },
+  "error": {
+    "invalidUrl": "请输入有效的URL（例如：https://example.com）",
+    "fetchFailed": "无法分析页面。请检查URL并重试。"
+  },
+  "status": {
+    "noUrl": "请输入要分析的URL"
+  }
+} 

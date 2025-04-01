@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "网页转PDF转换器 - 在线将网页转换为PDF",
+    "description": "免费在线工具，将网页转换为PDF文档。只需输入URL，即可将任何网站转换为可下载的PDF文件。无需安装。",
+    "keywords": "网页转pdf, 网站转pdf, 转换网页为pdf, url转pdf, 在线pdf转换器, 免费pdf转换器"
+  },
+  "title": "网页转PDF转换器",
+  "description": "只需一键即可将任何网页转换为PDF文档",
+  "form": {
+    "url": {
+      "label": "网站URL",
+      "placeholder": "https://example.com ",
+      "button": "转换为PDF"
+    }
+  },
+  "result": {
+    "download": "下载PDF",
+    "preview": "预览PDF"
+  },
+  "status": {
+    "processing": "正在将网页转换为PDF...",
+    "noUrl": "请输入有效的URL",
+    "success": "转换成功！"
+  },
+  "error": {
+    "invalidUrl": "无效的URL。请输入有效的网站地址。",
+    "conversionFailed": "转换失败。请重试。",
+    "networkError": "网络错误。请检查您的连接并重试。",
+    "timeout": "转换耗时超过预期。复杂的网站可能需要超过一分钟才能转换。请等待..."
+  },
+  "loading": "正在加载PDF转换器...",
+  "preview": {
+    "loading": "正在加载PDF预览...",
+    "error": "加载预览失败",
+    "pageOf": "第{current}页，共{total}页"
+  }
+} 

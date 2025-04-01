@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "SEO搜索量预测工具 | 轻松估算关键词搜索量",
+    "description": "一个免费工具，收集关键词建议并评估预计搜索量。",
+    "keywords": "SEO,搜索量,关键词分析,建议"
+  },
+  "title": "SEO搜索量预测工具",
+  "description": "只需输入关键词，我们将根据Google建议预测SEO搜索量。",
+  "input": {
+    "placeholder": "输入关键词（例如：拉面、英语课程）"
+  },
+  "button": {
+    "analyze": "分析"
+  },
+  "result": {
+    "volumeScore": "搜索量预测",
+    "suggestions": "建议",
+    "allSuggestions": "所有建议候选词",
+    "scoreDescription1": "非常低的搜索量。这是一个利基关键词。",
+    "scoreDescription2": "低搜索量。可能竞争较少。",
+    "scoreDescription3": "中等搜索量。一个平衡的关键词。",
+    "scoreDescription4": "高搜索量。这是一个热门关键词。",
+    "scoreDescription5": "非常高的搜索量。这个关键词竞争激烈。"
+  },
+  "error": {
+    "emptyKeyword": "请输入关键词",
+    "unknown": "发生错误。请重试。",
+    "apiError": "API错误。请稍后重试。"
+  },
+  "country": {
+    "selector": "选择目标国家",
+    "result": "{country}的结果",
+    "japan": "日本",
+    "us": "美国",
+    "uk": "英国",
+    "australia": "澳大利亚",
+    "canada": "加拿大",
+    "germany": "德国",
+    "france": "法国",
+    "india": "印度"
+  },
+  "notice": {
+    "title": "使用说明",
+    "language": "在其他国家搜索日语关键词时，它们会自动翻译成该国家的语言（例如，'パン'→'bread'）。这适用于有限的常见关键词集。",
+    "location": "结果可能受您地理位置的影响。例如，如果您从日本访问，无论国家设置如何，您可能仍会看到面向日本的结果。"
+  }
+} 
