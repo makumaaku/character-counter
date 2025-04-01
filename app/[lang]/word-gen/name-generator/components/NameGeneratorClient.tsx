@@ -137,6 +137,8 @@ export default function NameGeneratorClient({ messages, lang }: Props) {
               <DownloadButton
                 content={generatedNames.join('\n')}
                 filename="generated-names.txt"
+                downloadText={result.download}
+                downloadedText={result.downloaded}
               />
             </div>
           )}

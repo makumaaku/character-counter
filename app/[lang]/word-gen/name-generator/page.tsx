@@ -27,6 +27,8 @@ export default async function NameGenerator({ params }: Props) {
     resultCopy,
     resultCopied,
     resultCopyTitle,
+    resultDownload,
+    resultDownloaded,
     // About section
     aboutCatchphrase,
     aboutIntroduction,
@@ -78,6 +80,8 @@ export default async function NameGenerator({ params }: Props) {
     translate(lang, 'wordGen.nameGenerator.result.copy'),
     translate(lang, 'wordGen.nameGenerator.result.copied'),
     translate(lang, 'wordGen.nameGenerator.result.copyTitle'),
+    translate(lang, 'wordGen.nameGenerator.result.download', 'Download'),
+    translate(lang, 'wordGen.nameGenerator.result.downloaded', 'Downloaded!'),
     // About section
     translate(lang, 'wordGen.nameGenerator.about.catchphrase'),
     translate(lang, 'wordGen.nameGenerator.about.introduction'),
@@ -138,7 +142,9 @@ export default async function NameGenerator({ params }: Props) {
       empty: resultEmpty,
       copy: resultCopy,
       copied: resultCopied,
-      copyTitle: resultCopyTitle
+      copyTitle: resultCopyTitle,
+      download: resultDownload,
+      downloaded: resultDownloaded
     },
     about: {
       catchphrase: aboutCatchphrase,
