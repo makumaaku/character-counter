@@ -8,7 +8,8 @@
   "description": "Analiza la velocidad de carga del sitio web y obtén sugerencias de mejora de rendimiento",
   "input": {
     "url": "URL del sitio web",
-    "analyzeButton": "Analizar"
+    "analyzeButton": "Analizar",
+    "securityNote": "Nota: Las restricciones de seguridad del navegador pueden impedir mediciones precisas."
   },
   "results": {
     "loading": "Analizando...",

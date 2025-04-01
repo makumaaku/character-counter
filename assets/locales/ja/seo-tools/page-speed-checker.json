@@ -8,7 +8,8 @@
     "description": "ウェブサイトの読み込み速度を分析し、パフォーマンス改善の提案を取得",
     "input": {
       "url": "ウェブサイトURL",
-      "analyzeButton": "分析"
+      "analyzeButton": "分析",
+      "securityNote": "注意: ブラウザのセキュリティ制約により、正確な測定ができない場合があります。"
     },
     "results": {
       "loading": "分析中...",

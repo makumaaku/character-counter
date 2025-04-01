@@ -316,7 +316,7 @@ export default function PageSpeedCheckerClient({ messages }: Props) {
                 </Button>
               </div>
               <p className="mt-2 text-sm text-gray-400">
-                注意: ブラウザのセキュリティ制約により、正確な測定ができない場合があります。
+                {messages.input.securityNote}
               </p>
             </div>
           </form>

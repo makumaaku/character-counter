@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-01T00:20:47.384Z
+// Generated at: 2025-04-01T00:44:18.629Z
 
 export interface CommonMessages {
   meta: {
@@ -1831,6 +1831,7 @@ export interface SeoToolsPageSpeedCheckerMessages {
   input: {
     url: string;
     analyzeButton: string;
+    securityNote: string;
   };
   results: {
     loading: string;

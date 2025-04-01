@@ -8,7 +8,8 @@
   "description": "Analyze website loading speed and get performance improvement suggestions",
   "input": {
     "url": "Website URL",
-    "analyzeButton": "Analyze"
+    "analyzeButton": "Analyze",
+    "securityNote": "Note: Browser security restrictions may prevent accurate measurements."
   },
   "results": {
     "loading": "Analyzing...",
