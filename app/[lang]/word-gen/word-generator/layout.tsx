@@ -124,15 +124,9 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children, params }: {
+export default async function Layout({ children }: {
   children: React.ReactNode;
-  params: { lang: string };
 }) {
-  const { lang } = params;
-  
-  // Load translations
-  await loadToolMessages(lang as Language, 'word-gen');
-  await loadToolMessages(lang as Language, 'word-gen/word-generator');
   
   return (
     <div className="layout-container">
