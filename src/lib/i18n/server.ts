@@ -142,7 +142,7 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
 export function getLanguageFromPath(pathname: string): Language {
   // パスから言語を抽出
   const match = pathname.match(/^\/([a-z]{2})/);
-  if (match && ['en', 'ja', 'es'].includes(match[1])) {
+  if (match && ['en', 'ja', 'es', 'ru'].includes(match[1])) {
     return match[1] as Language;
   }
   return 'en'; // デフォルト言語
@@ -202,7 +202,7 @@ export async function translate(lang: string, key: string, toolName?: string): P
 
 // 利用可能な言語一覧を取得
 export function getAvailableLanguages(): Language[] {
-  return ['en', 'ja', 'es'];
+  return ['en', 'ja', 'es', 'ru'];
 }
 
 // パラメータから言語を取得する関数
@@ -211,7 +211,7 @@ export async function getLanguageFromParams(params: { lang: string } | Promise<{
   const langParam = resolvedParams.lang;
   
   // 有効な言語かチェック
-  if (['en', 'ja', 'es'].includes(langParam)) {
+  if (['en', 'ja', 'es', 'ru'].includes(langParam)) {
     return langParam as Language;
   }
   
