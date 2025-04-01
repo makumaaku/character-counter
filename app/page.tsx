@@ -106,12 +106,12 @@ export default function Home() {
             <li>
               <Link href="/pdf-tools/png-to-pdf" className="text-white hover:underline ml-4">PNG to PDF Converter</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/pdf-tools/web-to-pdf" className="text-white hover:underline ml-4">Web to PDF Converter</Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link href="/pdf-tools/pdf-to-word" className="text-white hover:underline ml-4">PDF to Word Converter</Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/pdf-tools/svg-to-pdf" className="text-white hover:underline ml-4">SVG to PDF Converter</Link>
             </li>

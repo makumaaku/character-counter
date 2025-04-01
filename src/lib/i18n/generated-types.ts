@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-01T02:20:22.783Z
+// Generated at: 2025-04-01T15:35:28.824Z
 
 export interface CommonMessages {
   meta: {
