@@ -6,11 +6,6 @@ export type Messages = Record<string, MessageValue>;
 // 言語ごとのメッセージを動的に管理するマップ
 const messages = new Map<Language, Messages>();
 
-// 新しい言語のメッセージを追加するためのヘルパー関数
-export function registerMessages(locale: Language, messageData: Messages): void {
-  messages.set(locale, messageData);
-}
-
  // マッピングにないツール名の場合はキャメルケースに変換する関数
  const kebabToCamel = (kebab: string): string => {
   return kebab.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
@@ -137,15 +132,6 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
     // エラーの場合は基本メッセージを返す
     return await loadMessagesByLang(lang);
   }
-}
-
-export function getLanguageFromPath(pathname: string): Language {
-  // パスから言語を抽出
-  const match = pathname.match(/^\/([a-z]{2})/);
-  if (match && ['en', 'ja', 'es', 'ru', 'zh'].includes(match[1])) {
-    return match[1] as Language;
-  }
-  return 'en'; // デフォルト言語
 }
 
 export function getMessages(locale: Language = 'en'): Messages {

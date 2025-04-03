@@ -71,7 +71,7 @@ export async function generateMetadata(
     "isAccessibleForFree": true
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
