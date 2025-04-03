@@ -10,6 +10,7 @@ import { Bars3Icon } from '@heroicons/react/24/solid'
 type NavigationItem = {
   name: string;
   path: string;
+  translatedName?: string;
 }
 
 type Props = {
