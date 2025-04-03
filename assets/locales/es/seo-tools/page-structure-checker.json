@@ -21,7 +21,14 @@
       "networkError": "Error de red - por favor verifica tu conexión",
       "serverError": "Ocurrió un error del servidor durante el análisis",
       "timeoutError": "La solicitud expiró - el servidor podría estar ocupado",
-      "parsingError": "No se pudo analizar la estructura de la página"
+      "parsingError": "No se pudo analizar la estructura de la página",
+      "invalidJson": "Solicitud inválida: No se pudo analizar el cuerpo JSON",
+      "fetchWithStatus": "Error al obtener la página: {status} {statusText}",
+      "emptyHtml": "Respuesta HTML vacía desde la URL de destino",
+      "timeout": "La solicitud expiró. La página podría ser demasiado grande o no estar disponible",
+      "fetchError": "Error de obtención: {message}",
+      "unknownFetchError": "Ocurrió un error de obtención desconocido",
+      "unknownServerError": "Ocurrió un error de servidor desconocido"
     },
     "metaTitle": "Información Meta",
     "headingStructure": "Estructura de Encabezados",

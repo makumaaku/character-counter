@@ -32,7 +32,10 @@ export default async function JpgToPdf({ params }: Props) {
     processingText,
     noFileText,
     fileTypeError,
-    fileSizeError
+    fileSizeError,
+    previewTitle,
+    imageSelectedText,
+    imagesSelectedText
   ] = await Promise.all([
     translate(lang, 'pdfTools.jpgToPdf.title'),
     translate(lang, 'pdfTools.jpgToPdf.description'),
@@ -51,7 +54,10 @@ export default async function JpgToPdf({ params }: Props) {
     translate(lang, 'pdfTools.jpgToPdf.status.processing'),
     translate(lang, 'pdfTools.jpgToPdf.status.noFile'),
     translate(lang, 'pdfTools.jpgToPdf.error.fileType'),
-    translate(lang, 'pdfTools.jpgToPdf.error.fileSize')
+    translate(lang, 'pdfTools.jpgToPdf.error.fileSize'),
+    translate(lang, 'pdfTools.jpgToPdf.preview.title'),
+    translate(lang, 'pdfTools.jpgToPdf.preview.imageSelected'),
+    translate(lang, 'pdfTools.jpgToPdf.preview.imagesSelected')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -87,6 +93,11 @@ export default async function JpgToPdf({ params }: Props) {
     error: {
       fileType: fileTypeError,
       fileSize: fileSizeError
+    },
+    preview: {
+      title: previewTitle,
+      imageSelected: imageSelectedText,
+      imagesSelected: imagesSelectedText
     }
   };
 

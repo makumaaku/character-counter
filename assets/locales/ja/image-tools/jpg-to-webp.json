@@ -17,7 +17,12 @@
       },
       "convert": "WebPに変換"
     },
+    "preview": {
+      "title": "プレビュー",
+      "filesSelected": "{count}個のファイルが選択されました"
+    },
     "result": {
+      "title": "変換結果",
       "download": "WebPをダウンロード",
       "downloadAll": "すべてのWebPをダウンロード"
     },

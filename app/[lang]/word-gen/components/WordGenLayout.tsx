@@ -11,9 +11,10 @@ type Props = {
   children: React.ReactNode;
   messages: WordGenCommonMessages;
   lang: string;
+  menuText?: string;
 };
 
-export default function WordGenLayout({ children, messages, lang }: Props) {
+export default function WordGenLayout({ children, messages, lang, menuText = "Menu" }: Props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   const navigationItems = [
@@ -43,6 +44,7 @@ export default function WordGenLayout({ children, messages, lang }: Props) {
           onClose={() => setIsSidebarOpen(false)} 
           navigationItems={navigationItems}
           lang={lang}
+          menuText={menuText}
         />
         <main className="flex-1 px-4 lg:px-8">
           {children}

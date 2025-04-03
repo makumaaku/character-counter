@@ -17,7 +17,12 @@
     },
     "convert": "转换为WebP"
   },
+  "preview": {
+    "title": "预览",
+    "filesSelected": "已选择{count}个文件"
+  },
   "result": {
+    "title": "转换结果",
     "download": "下载WebP",
     "downloadAll": "下载所有WebP"
   },

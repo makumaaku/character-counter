@@ -27,7 +27,11 @@
     },
     "error": {
       "fetch": "获取URL时出错",
-      "parsing": "解析HTML时出错"
+      "parsing": "解析HTML时出错",
+      "urlRequired": "需要URL",
+      "invalidUrl": "无效的URL",
+      "fetchFailed": "获取URL失败",
+      "fetchWithStatus": "获取URL失败: {status} {statusText}"
     },
     "loading": "处理中...",
     "seoInfo": {

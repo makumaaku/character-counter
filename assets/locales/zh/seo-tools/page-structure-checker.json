@@ -21,7 +21,14 @@
       "networkError": "网络错误 - 请检查您的连接",
       "serverError": "分析过程中发生服务器错误",
       "timeoutError": "请求超时 - 服务器可能繁忙",
-      "parsingError": "无法解析页面结构"
+      "parsingError": "无法解析页面结构",
+      "invalidJson": "无效请求：无法解析JSON正文",
+      "fetchWithStatus": "获取页面失败：{status} {statusText}",
+      "emptyHtml": "目标URL返回空HTML响应",
+      "timeout": "请求超时。页面可能太大或不可用",
+      "fetchError": "获取错误：{message}",
+      "unknownFetchError": "发生未知获取错误",
+      "unknownServerError": "发生未知服务器错误"
     },
     "metaTitle": "元信息",
     "headingStructure": "标题结构",

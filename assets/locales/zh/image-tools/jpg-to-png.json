@@ -18,7 +18,9 @@
     "convert": "转换为PNG"
   },
   "result": {
-    "download": "下载PNG"
+    "download": "下载PNG",
+    "convertedResult": "已转换的PNG",
+    "downloadAll": "下载所有PNG"
   },
   "status": {
     "processing": "转换中...",
@@ -27,5 +29,10 @@
   "error": {
     "fileType": "只允许JPG/JPEG文件",
     "fileSize": "文件大小必须小于10MB"
+  },
+  "preview": {
+    "title": "预览",
+    "fileSelected": "已选择{count}个文件",
+    "filesSelected": "已选择{count}个文件"
   }
 } 

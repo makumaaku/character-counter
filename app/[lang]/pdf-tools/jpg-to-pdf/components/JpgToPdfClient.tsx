@@ -242,7 +242,7 @@ export default function JpgToPdfClient({ messages }: Props) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="w-full max-w-4xl mx-auto px-4 py-8 overflow-x-hidden">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">{messages.title}</h1>
         <p className="text-gray-300">{messages.description}</p>
@@ -268,18 +268,18 @@ export default function JpgToPdfClient({ messages }: Props) {
               }`}
             >
               <input {...getInputProps()} multiple />
-              <p className="text-gray-300 mb-2">
+              <p className="text-gray-300 mb-2 break-words">
                 {isDragActive
                   ? messages.form.upload.dragDrop
                   : messages.form.upload.button}
               </p>
               {imageFiles.length > 0 && (
-                <p className="text-green-400 mt-2">
+                <p className="text-green-400 mt-2 break-words">
                   {imageFiles.length} {imageFiles.length === 1 ? 'image' : 'images'} selected
                 </p>
               )}
             </div>
-            {error && <p className="text-red-400 mt-2">{error}</p>}
+            {error && <p className="text-red-400 mt-2 break-words">{error}</p>}
           </div>
 
           {imageFiles.length > 0 && (
@@ -287,7 +287,7 @@ export default function JpgToPdfClient({ messages }: Props) {
               <label className="block text-gray-300 mb-2">
                 {messages.form.quality.label}
               </label>
-              <div className="flex space-x-4">
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
                 <Button
                   type="button"
                   onClick={() => setQuality('low')}
@@ -340,9 +340,11 @@ export default function JpgToPdfClient({ messages }: Props) {
 
       {/* Image Previews */}
       {imageFiles.length > 0 && (
-        <div className="mt-8" ref={imagePreviewsRef}>
-          <h2 className="text-xl font-bold mb-4">
-            {imageFiles.length} {imageFiles.length === 1 ? 'Image' : 'Images'} Selected
+        <div className="mt-8 w-full overflow-hidden" ref={imagePreviewsRef}>
+          <h2 className="text-xl font-bold mb-4 break-words">
+            {imageFiles.length === 1 
+              ? `${imageFiles.length} ${messages.form?.upload?.label || 'Image'}`
+              : `${imageFiles.length} ${messages.form?.upload?.label || 'Images'}`}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {imageFiles.map((file, index) => (
@@ -352,7 +354,7 @@ export default function JpgToPdfClient({ messages }: Props) {
                   <img
                     src={URL.createObjectURL(file)}
                     alt={`Image ${index + 1}`}
-                    className="w-full h-auto"
+                    className="w-full h-auto max-w-full"
                   />
                   <div className="absolute top-2 left-2 bg-gray-800 text-white text-sm px-2 py-1 rounded">
                     {`Image ${index + 1}`}
@@ -373,8 +375,8 @@ export default function JpgToPdfClient({ messages }: Props) {
       {/* PDF Preview */}
       {pdfUrl && (
         <div className="mt-8">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold">PDF Generated</h2>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+            <h2 className="text-xl font-bold mb-2 sm:mb-0 break-words">PDF Generated</h2>
             <button
               onClick={downloadPdf}
               className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded"
@@ -385,7 +387,7 @@ export default function JpgToPdfClient({ messages }: Props) {
           <div className="bg-gray-700 rounded-lg overflow-hidden">
             <iframe
               src={pdfUrl}
-              className="w-full h-[500px] border-0"
+              className="w-full h-[500px] border-0 max-w-full"
               title="PDF Preview"
             />
           </div>

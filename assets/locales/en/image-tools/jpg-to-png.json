@@ -18,7 +18,9 @@
     "convert": "Convert to PNG"
   },
   "result": {
-    "download": "Download PNG"
+    "download": "Download PNG",
+    "convertedResult": "Converted PNG",
+    "downloadAll": "Download All PNGs"
   },
   "status": {
     "processing": "Converting...",
@@ -27,5 +29,10 @@
   "error": {
     "fileType": "Only JPG/JPEG files are allowed",
     "fileSize": "File size must be less than 10MB"
+  },
+  "preview": {
+    "title": "Preview",
+    "fileSelected": "{count} file selected",
+    "filesSelected": "{count} files selected"
   }
 }

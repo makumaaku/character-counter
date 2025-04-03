@@ -17,7 +17,12 @@
     },
     "convert": "Convert to WebP"
   },
+  "preview": {
+    "title": "Preview",
+    "filesSelected": "{count} file(s) selected"
+  },
   "result": {
+    "title": "Conversion Results",
     "download": "Download WebP",
     "downloadAll": "Download All WebPs"
   },

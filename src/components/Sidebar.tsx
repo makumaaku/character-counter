@@ -15,9 +15,10 @@ interface SidebarProps {
   onClose: () => void;
   navigationItems: NavigationItem[];
   lang?: string;
+  menuText?: string;
 }
 
-export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en' }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en', menuText = 'Menu' }: SidebarProps) {
   const pathname = usePathname();
 
   // 現在のパスと言語を考慮したアクティブ状態の判定
@@ -44,7 +45,7 @@ export default function Sidebar({ isOpen, onClose, navigationItems, lang = 'en' 
         } transition-transform duration-300 ease-in-out border-r border-gray-700 bg-gray-800 text-gray-100 z-50`}
       >
         <div className="flex justify-between items-center p-4">
-          <h2 className="text-xl font-bold">{'Menu'}</h2>
+          <h2 className="text-xl font-bold">{menuText}</h2>
           <button
             onClick={onClose}
             className="p-2 rounded-md hover:bg-gray-700"

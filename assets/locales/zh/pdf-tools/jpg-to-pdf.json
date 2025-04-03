@@ -30,5 +30,10 @@
   "error": {
     "fileType": "请仅上传JPG或PNG文件",
     "fileSize": "总文件大小超过20MB限制"
+  },
+  "preview": {
+    "title": "预览",
+    "imageSelected": "已选择{count}张图片",
+    "imagesSelected": "已选择{count}张图片"
   }
 } 

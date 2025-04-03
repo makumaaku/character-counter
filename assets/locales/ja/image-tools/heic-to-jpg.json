@@ -19,7 +19,8 @@
     },
     "result": {
       "download": "JPGをダウンロード",
-      "downloadAll": "すべてダウンロード"
+      "downloadAll": "すべてダウンロード",
+      "preview": "プレビュー"
     },
     "status": {
       "processing": "変換中...",
@@ -31,5 +32,8 @@
       "fileType": "HEICファイルのみ対応しています",
       "fileSize": "ファイルサイズは10MB以下にしてください",
       "conversion": "ファイル変換エラー: {error}"
+    },
+    "preview": {
+      "filesSelected": "個のファイルを選択"
     }
   }

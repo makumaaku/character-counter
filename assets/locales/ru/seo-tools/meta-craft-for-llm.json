@@ -27,7 +27,11 @@
     },
     "error": {
       "fetch": "Произошла ошибка при загрузке URL",
-      "parsing": "Произошла ошибка при анализе HTML"
+      "parsing": "Произошла ошибка при анализе HTML",
+      "urlRequired": "Требуется URL",
+      "invalidUrl": "Недействительный URL",
+      "fetchFailed": "Не удалось загрузить URL",
+      "fetchWithStatus": "Не удалось загрузить URL: {status} {statusText}"
     },
     "loading": "Обработка...",
     "seoInfo": {

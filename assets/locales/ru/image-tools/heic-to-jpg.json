@@ -19,7 +19,8 @@
   },
   "result": {
     "download": "Скачать JPG",
-    "downloadAll": "Скачать все JPG"
+    "downloadAll": "Скачать все JPG",
+    "preview": "Предпросмотр"
   },
   "status": {
     "processing": "Конвертация...",
@@ -31,5 +32,8 @@
     "fileType": "Разрешены только файлы HEIC",
     "fileSize": "Размер файла должен быть меньше 10МБ",
     "conversion": "Ошибка конвертации файла: {error}"
+  },
+  "preview": {
+    "filesSelected": "файлов выбрано"
   }
 }

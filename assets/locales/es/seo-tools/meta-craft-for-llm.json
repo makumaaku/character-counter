@@ -27,7 +27,11 @@
     },
     "error": {
       "fetch": "Ocurrió un error al obtener la URL",
-      "parsing": "Ocurrió un error al analizar el HTML"
+      "parsing": "Ocurrió un error al analizar el HTML",
+      "urlRequired": "Se requiere una URL",
+      "invalidUrl": "URL inválida",
+      "fetchFailed": "Error al obtener la URL",
+      "fetchWithStatus": "Error al obtener la URL: {status} {statusText}"
     },
     "loading": "Procesando...",
     "seoInfo": {

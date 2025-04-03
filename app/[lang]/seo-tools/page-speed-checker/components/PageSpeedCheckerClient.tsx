@@ -155,107 +155,119 @@ export default function PageSpeedCheckerClient({ messages }: Props) {
     
     // 読み込み時間に基づく提案
     if (loadTime > 3000) {
-      suggestions.push(`⚠️ ページの読み込みに${(loadTime / 1000).toFixed(2)}秒かかっています。3秒以内を目指してください。`)
+      suggestions.push((messages.analysis?.loadTime.slow || `⚠️ Page loading took ${(loadTime / 1000).toFixed(2)} seconds. Aim for under 3 seconds.`).replace('{{seconds}}', (loadTime / 1000).toFixed(2)))
     } else if (loadTime > 1000) {
-      suggestions.push(`⚠️ ページの初期接続時間は${(loadTime / 1000).toFixed(2)}秒です。1秒以内を目指すとユーザー体験が向上します。`)
+      suggestions.push((messages.analysis?.loadTime.medium || `⚠️ Initial connection time is ${(loadTime / 1000).toFixed(2)} seconds. Aim for under 1 second for better user experience.`).replace('{{seconds}}', (loadTime / 1000).toFixed(2)))
     } else {
-      suggestions.push(`✅ ページの初期接続時間は${(loadTime).toFixed(0)}ミリ秒です。この点は良好です！`)
+      suggestions.push((messages.analysis?.loadTime.fast || `✅ Initial connection time is ${loadTime.toFixed(0)} milliseconds. This is good!`).replace('{{milliseconds}}', loadTime.toFixed(0)))
     }
     
     // リソース分析に基づく提案（可能な場合）
     if (resources.length > 0) {
       const totalSize = resources.reduce((sum, r) => sum + r.size, 0)
-      suggestions.push(`📊 検出されたリソースの総サイズ: ${formatSize(totalSize)}`)
+      suggestions.push((messages.analysis?.resources.totalSize || `📊 Total size of detected resources: ${formatSize(totalSize)}`).replace('{{size}}', formatSize(totalSize)))
       
       // 大きな画像の検出
       const largeImages = resources.filter(r => r.type === 'img' && r.size > 200000)
       if (largeImages.length > 0) {
-        suggestions.push(`⚠️ ${largeImages.length}個の大きな画像が見つかりました（200KB超）。以下のファイルの圧縮を検討してください：
-        ${largeImages.slice(0, 3).map(img => `- ${img.name}: ${formatSize(img.size)}`).join('\n        ')}${largeImages.length > 3 ? '\n        - その他...' : ''}`)
+        const filesList = largeImages.slice(0, 3).map(img => `- ${img.name}: ${formatSize(img.size)}`).join('\n        ')
+        const othersText = largeImages.length > 3 ? `\n        ${messages.analysis?.resources.others || '- Others...'}` : ''
+        suggestions.push((messages.analysis?.resources.largeImages || 
+          `⚠️ Found ${largeImages.length} large images (over 200KB). Consider compressing the following files:\n        {{files}}`)
+          .replace('{{count}}', largeImages.length.toString())
+          .replace('{{files}}', filesList + othersText))
       }
       
       // 多数のJSファイル
       const jsFiles = resources.filter(r => r.type === 'script')
       if (jsFiles.length > 10) {
-        suggestions.push(`⚠️ ${jsFiles.length}個のJavaScriptファイルが読み込まれています。以下のファイルの結合を検討してください：
-        ${jsFiles.slice(0, 3).map(js => `- ${js.name}: ${formatSize(js.size)}`).join('\n        ')}${jsFiles.length > 3 ? '\n        - その他...' : ''}`)
+        const filesList = jsFiles.slice(0, 3).map(js => `- ${js.name}: ${formatSize(js.size)}`).join('\n        ')
+        const othersText = jsFiles.length > 3 ? `\n        ${messages.analysis?.resources.others || '- Others...'}` : ''
+        suggestions.push((messages.analysis?.resources.manyJs || 
+          `⚠️ ${jsFiles.length} JavaScript files are loaded. Consider combining the following files:\n        {{files}}`)
+          .replace('{{count}}', jsFiles.length.toString())
+          .replace('{{files}}', filesList + othersText))
       }
       
       // 読み込み時間が長いリソース
       const slowResources = resources.filter(r => r.time > 500)
       if (slowResources.length > 0) {
-        suggestions.push(`⚠️ ${slowResources.length}個のリソースの読み込みに500ms以上かかっています。以下のファイルの最適化を検討してください：
-        ${slowResources.slice(0, 3).map(res => `- ${res.name}: ${formatTime(res.time)}`).join('\n        ')}${slowResources.length > 3 ? '\n        - その他...' : ''}`)
+        const filesList = slowResources.slice(0, 3).map(res => `- ${res.name}: ${formatTime(res.time)}`).join('\n        ')
+        const othersText = slowResources.length > 3 ? `\n        ${messages.analysis?.resources.others || '- Others...'}` : ''
+        suggestions.push((messages.analysis?.resources.slowResources || 
+          `⚠️ ${slowResources.length} resources took over 500ms to load. Consider optimizing the following files:\n        {{files}}`)
+          .replace('{{count}}', slowResources.length.toString())
+          .replace('{{files}}', filesList + othersText))
       }
     }
     
     // 同一オリジンでない場合の注意
     if (!canAccessDetailedInfo) {
-      suggestions.push(`ℹ️ セキュリティ制約により、クロスオリジンのリソースの詳細情報を取得できません。より詳細な分析には、以下の方法を試してください：
-      1. Google PageSpeed Insightsで分析する: https://pagespeed.web.dev/
-      2. Chrome DevToolsのNetworkタブで分析する
-      3. Lighthouseを使用して詳細なパフォーマンスレポートを生成する`)
+      suggestions.push(messages.analysis?.security || `ℹ️ Due to security constraints, we cannot access detailed information about cross-origin resources. For a more detailed analysis, try:
+      1. Analyze with Google PageSpeed Insights: https://pagespeed.web.dev/
+      2. Analyze with Chrome DevTools Network tab
+      3. Generate a detailed performance report using Lighthouse`)
     }
     
     // 画像最適化に関する詳細な提案
-    suggestions.push(`📊 画像最適化: 画像は通常、ウェブページの総ダウンロードサイズの50-80%を占めています。${domain}のページで大きな画像を使用している場合：
-    - WebPやAVIF形式を使用すると、JPEGやPNGと比較して30-50%のファイルサイズ削減が可能です
-    - 画像の遅延読み込み（Lazy Loading）を実装して、初期表示に必要ない画像の読み込みを遅らせましょう
-    - 適切なサイズの画像を提供するために、srcset属性を使用してレスポンシブ画像を実装しましょう
-    - 画像圧縮ツール（TinyPNG、Squooshなど）を使用して、品質をほとんど損なわずに画像を圧縮しましょう`)
+    suggestions.push((messages.analysis?.imageOptimization || `📊 Image Optimization: Images typically account for 50-80% of a web page's total download size. If you're using large images on ${domain} pages:
+    - Using WebP or AVIF formats can reduce file sizes by 30-50% compared to JPEG or PNG
+    - Implement lazy loading for images to delay loading images that aren't needed for initial display
+    - Implement responsive images using the srcset attribute to provide appropriately sized images
+    - Use image compression tools (like TinyPNG, Squoosh) to compress images with minimal quality loss`).replace('{{domain}}', domain))
     
     // JavaScriptの最適化に関する詳細な提案
-    suggestions.push(`⚡ JavaScript最適化: JavaScriptの実行はレンダリングをブロックし、ページの読み込み時間を大幅に増加させる可能性があります：
-    - コード分割（Code Splitting）を実装して、必要なJavaScriptのみを読み込むようにしましょう
-    - 重要でないスクリプトには defer または async 属性を使用しましょう
-    - 未使用のJavaScriptコードを削除するためにツリーシェイキングを活用しましょう
-    - 大きなサードパーティライブラリの使用を最小限に抑えましょう
-    - JavaScriptバンドルを最小化し、圧縮しましょう`)
+    suggestions.push(messages.analysis?.javascriptOptimization || `⚡ JavaScript Optimization: JavaScript execution can block rendering and significantly increase page load times:
+    - Implement code splitting to load only the JavaScript that's needed
+    - Use defer or async attributes for non-critical scripts
+    - Utilize tree shaking to remove unused JavaScript code
+    - Minimize use of large third-party libraries
+    - Minify and compress JavaScript bundles`)
     
     // CSSの最適化に関する詳細な提案
-    suggestions.push(`🎨 CSS最適化: レンダリングブロッキングリソースを減らすことでページの表示速度が向上します：
-    - クリティカルCSSをインライン化して、初期表示に必要なスタイルを即座に適用しましょう
-    - 未使用のCSSを削除して、CSSファイルのサイズを削減しましょう
-    - CSSファイルを最小化し、圧縮しましょう
-    - メディアクエリを使用して、デバイスに必要なCSSのみを読み込むようにしましょう
-    - CSSアニメーションよりもtransformとopacityプロパティを優先して使用しましょう`)
+    suggestions.push(messages.analysis?.cssOptimization || `🎨 CSS Optimization: Reducing render-blocking resources improves page display speed:
+    - Inline critical CSS to apply essential styles immediately for initial display
+    - Remove unused CSS to reduce CSS file size
+    - Minify and compress CSS files
+    - Use media queries to load only the CSS needed for the device
+    - Prefer using transform and opacity properties over CSS animations`)
     
     // フォントの最適化に関する提案
-    suggestions.push(`📝 Webフォント最適化: カスタムフォントはページの読み込み時間に大きな影響を与えることがあります：
-    - font-display: swap を使用して、フォントの読み込み中にシステムフォントを表示しましょう
-    - 必要なフォントウェイトとスタイルのみを読み込みましょう
-    - WOFFまたはWOFF2フォント形式を使用して、ファイルサイズを削減しましょう
-    - 可能であれば、システムフォントを使用することを検討しましょう`)
+    suggestions.push(messages.analysis?.fontOptimization || `📝 Web Font Optimization: Custom fonts can significantly impact page load time:
+    - Use font-display: swap to show system fonts while loading custom fonts
+    - Load only the font weights and styles you need
+    - Use WOFF or WOFF2 font formats to reduce file size
+    - Consider using system fonts when possible`)
     
     // サーバーとネットワークの最適化に関する提案
-    suggestions.push(`🌐 サーバー/ネットワーク最適化: サーバーのレスポンス時間とコンテンツ配信を改善しましょう：
-    - コンテンツ配信ネットワーク（CDN）を使用して、ユーザーに近い場所からコンテンツを配信しましょう
-    - HTTPキャッシュヘッダーを適切に設定して、リピートビジットでのパフォーマンスを向上させましょう
-    - GZIPまたはBrotli圧縮を有効にして、転送されるデータ量を削減しましょう
-    - HTTP/2またはHTTP/3を使用して、複数のリクエストを効率的に処理しましょう
-    - DNSプリフェッチ、プリコネクト、プリロードなどのリソースヒントを使用して、重要なリソースの読み込みを最適化しましょう`)
+    suggestions.push(messages.analysis?.serverOptimization || `🌐 Server/Network Optimization: Improve server response time and content delivery:
+    - Use a Content Delivery Network (CDN) to serve content from locations closer to users
+    - Set proper HTTP cache headers to improve performance for repeat visits
+    - Enable GZIP or Brotli compression to reduce data transferred
+    - Use HTTP/2 or HTTP/3 to handle multiple requests efficiently
+    - Use resource hints like DNS prefetch, preconnect, and preload to optimize loading of critical resources`)
     
     // モバイルパフォーマンスに関する提案
-    suggestions.push(`📱 モバイルパフォーマンス: モバイルユーザーは通常、より制約のあるデバイスとネットワーク条件で閲覧しています：
-    - モバイルファーストのアプローチを採用して、モバイルユーザー向けに最適化しましょう
-    - タッチターゲットのサイズを適切に設定して（少なくとも48x48ピクセル）、ユーザビリティを向上させましょう
-    - ビューポートを適切に設定して、モバイルデバイスでの表示を最適化しましょう
-    - 複雑なアニメーションや重いインタラクションを減らして、低スペックデバイスでのパフォーマンスを向上させましょう`)
+    suggestions.push(messages.analysis?.mobileOptimization || `📱 Mobile Performance: Mobile users typically browse on more constrained devices and network conditions:
+    - Adopt a mobile-first approach to optimize for mobile users
+    - Set proper touch target sizes (at least 48x48 pixels) to improve usability
+    - Configure the viewport properly to optimize display on mobile devices
+    - Reduce complex animations and heavy interactions to improve performance on low-spec devices`)
     
     // Core Web Vitalsに関する提案
-    suggestions.push(`📊 Core Web Vitals: Googleのランキング要因として重要な指標を改善しましょう：
-    - LCP（Largest Contentful Paint）: メインコンテンツの読み込み時間を2.5秒以内に抑えましょう
-    - FID（First Input Delay）: ユーザーの最初のインタラクションへの応答時間を100ミリ秒以内に抑えましょう
-    - CLS（Cumulative Layout Shift）: 視覚的な安定性を確保し、予期しないレイアウトシフトを防ぎましょう
-    - これらの指標を測定するために、Google PageSpeed InsightsやChrome User Experience Reportを使用しましょう`)
+    suggestions.push(messages.analysis?.coreWebVitals || `📊 Core Web Vitals: Improve these metrics that are important ranking factors for Google:
+    - LCP (Largest Contentful Paint): Keep main content loading time under 2.5 seconds
+    - FID (First Input Delay): Keep response time to user's first interaction under 100ms
+    - CLS (Cumulative Layout Shift): Ensure visual stability and prevent unexpected layout shifts
+    - Use Google PageSpeed Insights and Chrome User Experience Report to measure these metrics`)
     
     // 具体的なツールの推奨
-    suggestions.push(`🛠️ 推奨ツール: より詳細な分析と改善のために、以下のツールを使用することをお勧めします：
-    - Google PageSpeed Insights: 詳細なパフォーマンス分析とCore Web Vitalsの測定
-    - Lighthouse: ブラウザ内でのパフォーマンス、アクセシビリティ、SEO、ベストプラクティスの分析
-    - WebPageTest: 様々な条件下でのパフォーマンステスト
-    - Chrome DevTools: ネットワーク、パフォーマンス、メモリの詳細な分析
-    - GTmetrix: ページの読み込み時間と最適化の機会の分析`)
+    suggestions.push(messages.analysis?.recommendedTools || `🛠️ Recommended Tools: For more detailed analysis and improvement, we recommend using these tools:
+    - Google PageSpeed Insights: Detailed performance analysis and Core Web Vitals measurement
+    - Lighthouse: In-browser analysis of performance, accessibility, SEO, and best practices
+    - WebPageTest: Performance testing under various conditions
+    - Chrome DevTools: Detailed analysis of network, performance, and memory
+    - GTmetrix: Analysis of page load time and optimization opportunities`)
     
     return {
       loadTime,
@@ -396,7 +408,7 @@ export default function PageSpeedCheckerClient({ messages }: Props) {
               <Button variant="ghost" onClick={() => openPageSpeedInsights()}>
                 <span className="flex items-center">
                   <ArrowPathIcon className="h-5 w-5 mr-2" />
-                  Try Google PageSpeed Insights
+                  {messages.analysis?.tryPageSpeedInsights || "Try Google PageSpeed Insights"}
                 </span>
               </Button>
             </div>

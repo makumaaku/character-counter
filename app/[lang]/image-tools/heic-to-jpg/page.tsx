@@ -24,6 +24,8 @@ export default async function HeicToJpg({ params }: Props) {
     convertButton,
     downloadButton,
     downloadAllButton,
+    previewText,
+    filesSelectedText,
     processingText,
     noFileText,
     successText,
@@ -41,6 +43,8 @@ export default async function HeicToJpg({ params }: Props) {
     translate(lang, 'imageTools.heicToJpg.form.convert'),
     translate(lang, 'imageTools.heicToJpg.result.download'),
     translate(lang, 'imageTools.heicToJpg.result.downloadAll'),
+    translate(lang, 'imageTools.heicToJpg.result.preview'),
+    translate(lang, 'imageTools.heicToJpg.preview.filesSelected'),
     translate(lang, 'imageTools.heicToJpg.status.processing'),
     translate(lang, 'imageTools.heicToJpg.status.noFile'),
     translate(lang, 'imageTools.heicToJpg.status.success'),
@@ -72,7 +76,11 @@ export default async function HeicToJpg({ params }: Props) {
     },
     result: {
       download: downloadButton,
-      downloadAll: downloadAllButton
+      downloadAll: downloadAllButton,
+      preview: previewText
+    },
+    preview: {
+      filesSelected: filesSelectedText
     },
     status: {
       processing: processingText,

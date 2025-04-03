@@ -23,7 +23,13 @@
     "serverError": "分析中にサーバーエラーが発生しました",
     "timeoutError": "リクエストがタイムアウトしました - サーバーがビジー状態かもしれません",
     "parsingError": "ページ構造の解析に失敗しました",
-    "networkError": "ネットワークエラーが発生しました - インターネット接続を確認して再試行してください"
+    "networkError": "ネットワークエラーが発生しました - インターネット接続を確認して再試行してください",
+    "invalidJson": "無効なリクエスト: JSONボディを解析できませんでした",
+    "fetchWithStatus": "ページの取得に失敗しました: {status} {statusText}",
+    "emptyHtml": "ターゲットURLからの空のHTMLレスポンス",
+    "fetchError": "取得エラー: {message}",
+    "unknownFetchError": "不明な取得エラーが発生しました",
+    "unknownServerError": "不明なサーバーエラーが発生しました"
   },
   "metaTitle": "メタ要素",
   "headingStructure": "見出し構造",

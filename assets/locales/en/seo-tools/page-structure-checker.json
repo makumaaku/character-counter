@@ -21,7 +21,14 @@
       "networkError": "Network error - please check your connection",
       "serverError": "Server error occurred during analysis",
       "timeoutError": "The request timed out - the server might be busy",
-      "parsingError": "Failed to parse the page structure"
+      "parsingError": "Failed to parse the page structure",
+      "invalidJson": "Invalid request: Could not parse JSON body",
+      "fetchWithStatus": "Failed to fetch page: {status} {statusText}",
+      "emptyHtml": "Empty HTML response from the target URL",
+      "timeout": "Request timed out. The page might be too large or unavailable",
+      "fetchError": "Fetch error: {message}",
+      "unknownFetchError": "Unknown fetch error occurred",
+      "unknownServerError": "Unknown server error occurred"
     },
     "metaTitle": "Meta Information",
     "headingStructure": "Heading Structure",

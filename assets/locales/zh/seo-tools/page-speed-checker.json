@@ -23,5 +23,29 @@
   },
   "status": {
     "noUrl": "请输入要分析的URL"
+  },
+  "analysis": {
+    "loadTime": {
+      "slow": "⚠️ 页面加载耗时 {{seconds}} 秒。目标应低于3秒。",
+      "medium": "⚠️ 初始连接时间为 {{seconds}} 秒。为获得更好的用户体验，目标应低于1秒。",
+      "fast": "✅ 初始连接时间为 {{milliseconds}} 毫秒。这很好！"
+    },
+    "resources": {
+      "totalSize": "📊 检测到的资源总大小：{{size}}",
+      "largeImages": "⚠️ 发现 {{count}} 个大型图片（超过200KB）。请考虑压缩以下文件：\n        {{files}}",
+      "manyJs": "⚠️ 加载了 {{count}} 个JavaScript文件。请考虑合并以下文件：\n        {{files}}",
+      "slowResources": "⚠️ {{count}} 个资源加载时间超过500ms。请考虑优化以下文件：\n        {{files}}",
+      "others": "- 其他..."
+    },
+    "security": "ℹ️ 由于安全限制，我们无法访问跨域资源的详细信息。如需更详细的分析，请尝试：\n      1. 使用Google PageSpeed Insights进行分析：https://pagespeed.web.dev/\n      2. 使用Chrome DevTools的Network标签进行分析\n      3. 使用Lighthouse生成详细的性能报告",
+    "imageOptimization": "📊 图片优化：图片通常占网页总下载大小的50-80%。如果您在 {{domain}} 页面上使用大型图片：\n    - 使用WebP或AVIF格式可以比JPEG或PNG减少30-50%的文件大小\n    - 实现图片懒加载（Lazy Loading）来延迟加载初始显示不需要的图片\n    - 使用srcset属性实现响应式图片，提供适当大小的图片\n    - 使用图片压缩工具（如TinyPNG、Squoosh等）在几乎不损失质量的情况下压缩图片",
+    "javascriptOptimization": "⚡ JavaScript优化：JavaScript执行会阻塞渲染并显著增加页面加载时间：\n    - 实现代码分割（Code Splitting）以仅加载所需的JavaScript\n    - 对非关键脚本使用defer或async属性\n    - 利用树摇（tree shaking）移除未使用的JavaScript代码\n    - 最小化使用大型第三方库\n    - 最小化并压缩JavaScript包",
+    "cssOptimization": "🎨 CSS优化：减少渲染阻塞资源可提高页面显示速度：\n    - 内联关键CSS以立即应用初始显示所需的基本样式\n    - 移除未使用的CSS以减小CSS文件大小\n    - 最小化并压缩CSS文件\n    - 使用媒体查询仅加载设备所需的CSS\n    - 优先使用transform和opacity属性而非CSS动画",
+    "fontOptimization": "📝 Web字体优化：自定义字体会显著影响页面加载时间：\n    - 使用font-display: swap在加载自定义字体时显示系统字体\n    - 只加载您需要的字体粗细和样式\n    - 使用WOFF或WOFF2字体格式减小文件大小\n    - 可能的情况下考虑使用系统字体",
+    "serverOptimization": "🌐 服务器/网络优化：改善服务器响应时间和内容交付：\n    - 使用内容分发网络（CDN）从更靠近用户的位置提供内容\n    - 设置适当的HTTP缓存头以提高重复访问的性能\n    - 启用GZIP或Brotli压缩以减少传输的数据量\n    - 使用HTTP/2或HTTP/3高效处理多个请求\n    - 使用资源提示如DNS预取、预连接和预加载来优化关键资源的加载",
+    "mobileOptimization": "📱 移动设备性能：移动用户通常在更受限的设备和网络条件下浏览：\n    - 采用移动优先的方法为移动用户进行优化\n    - 设置适当的触摸目标大小（至少48x48像素）以提高可用性\n    - 正确配置视口以优化移动设备上的显示\n    - 减少复杂动画和重交互以提高低配设备上的性能",
+    "coreWebVitals": "📊 核心网页指标：改善这些对Google排名影响重要的指标：\n    - LCP（最大内容绘制）：将主要内容加载时间控制在2.5秒以内\n    - FID（首次输入延迟）：将用户首次交互的响应时间控制在100毫秒以内\n    - CLS（累积布局偏移）：确保视觉稳定性并防止意外的布局偏移\n    - 使用Google PageSpeed Insights和Chrome用户体验报告来测量这些指标",
+    "recommendedTools": "🛠️ 推荐工具：如需更详细的分析和改进，我们推荐使用这些工具：\n    - Google PageSpeed Insights：详细的性能分析和核心网页指标测量\n    - Lighthouse：浏览器内对性能、可访问性、SEO和最佳实践的分析\n    - WebPageTest：在各种条件下进行性能测试\n    - Chrome DevTools：对网络、性能和内存的详细分析\n    - GTmetrix：分析页面加载时间和优化机会",
+    "tryPageSpeedInsights": "使用 Google PageSpeed Insights 分析"
   }
 } 

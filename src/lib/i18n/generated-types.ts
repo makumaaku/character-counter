@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-01T16:34:54.559Z
+// Generated at: 2025-04-03T18:18:40.199Z
 
 export interface CommonMessages {
   meta: {
@@ -1008,6 +1008,7 @@ export interface ImageToolsHeicToJpgMessages {
   result: {
     download: string;
     downloadAll: string;
+    preview: string;
   };
   status: {
     processing: string;
@@ -1019,6 +1020,9 @@ export interface ImageToolsHeicToJpgMessages {
     fileType: string;
     fileSize: string;
     conversion: string;
+  };
+  preview: {
+    filesSelected: string;
   };
 }
 
@@ -1135,6 +1139,8 @@ export interface ImageToolsJpgToPngMessages {
   };
   result: {
     download: string;
+    convertedResult: string;
+    downloadAll: string;
   };
   status: {
     processing: string;
@@ -1143,6 +1149,11 @@ export interface ImageToolsJpgToPngMessages {
   error: {
     fileType: string;
     fileSize: string;
+  };
+  preview: {
+    title: string;
+    fileSelected: string;
+    filesSelected: string;
   };
 }
 
@@ -1165,7 +1176,12 @@ export interface ImageToolsJpgToWebpMessages {
     };
     convert: string;
   };
+  preview: {
+    title: string;
+    filesSelected: string;
+  };
   result: {
+    title: string;
     download: string;
     downloadAll: string;
   };
@@ -1233,7 +1249,12 @@ export interface ImageToolsPngToWebpMessages {
     };
     convert: string;
   };
+  preview: {
+    title: string;
+    filesSelected: string;
+  };
   result: {
+    title: string;
     download: string;
     downloadAll: string;
   };
@@ -1468,6 +1489,11 @@ export interface PdfToolsJpgToPdfMessages {
   error: {
     fileType: string;
     fileSize: string;
+  };
+  preview: {
+    title: string;
+    imageSelected: string;
+    imagesSelected: string;
   };
 }
 
@@ -1810,6 +1836,10 @@ export interface SeoToolsMetaCraftForLlmMessages {
   error: {
     fetch: string;
     parsing: string;
+    urlRequired: string;
+    invalidUrl: string;
+    fetchFailed: string;
+    fetchWithStatus: string;
   };
   loading: string;
   seoInfo: {
@@ -1846,6 +1876,30 @@ export interface SeoToolsPageSpeedCheckerMessages {
   status: {
     noUrl: string;
   };
+  analysis: {
+    loadTime: {
+      slow: string;
+      medium: string;
+      fast: string;
+    };
+    resources: {
+      totalSize: string;
+      largeImages: string;
+      manyJs: string;
+      slowResources: string;
+      others: string;
+    };
+    security: string;
+    imageOptimization: string;
+    javascriptOptimization: string;
+    cssOptimization: string;
+    fontOptimization: string;
+    serverOptimization: string;
+    mobileOptimization: string;
+    coreWebVitals: string;
+    recommendedTools: string;
+    tryPageSpeedInsights: string;
+  };
 }
 
 export interface SeoToolsPageStructureCheckerMessages {
@@ -1872,6 +1926,13 @@ export interface SeoToolsPageStructureCheckerMessages {
     serverError: string;
     timeoutError: string;
     parsingError: string;
+    invalidJson: string;
+    fetchWithStatus: string;
+    emptyHtml: string;
+    timeout: string;
+    fetchError: string;
+    unknownFetchError: string;
+    unknownServerError: string;
   };
   metaTitle: string;
   headingStructure: string;

@@ -19,7 +19,8 @@
   },
   "result": {
     "download": "下载JPG",
-    "downloadAll": "下载所有JPG"
+    "downloadAll": "下载所有JPG",
+    "preview": "预览"
   },
   "status": {
     "processing": "转换中...",
@@ -31,5 +32,8 @@
     "fileType": "只允许HEIC文件",
     "fileSize": "文件大小必须小于10MB",
     "conversion": "转换文件出错：{error}"
+  },
+  "preview": {
+    "filesSelected": "个文件已选择"
   }
 } 

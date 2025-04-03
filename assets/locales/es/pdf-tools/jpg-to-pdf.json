@@ -30,5 +30,10 @@
   "error": {
     "fileType": "Por favor, sube solo archivos JPG o PNG",
     "fileSize": "El tamaño total de archivos excede el límite de 20MB"
+  },
+  "preview": {
+    "title": "Vista previa",
+    "imageSelected": "{count} imagen seleccionada",
+    "imagesSelected": "{count} imágenes seleccionadas"
   }
 }

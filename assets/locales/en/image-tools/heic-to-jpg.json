@@ -19,7 +19,8 @@
   },
   "result": {
     "download": "Download JPG",
-    "downloadAll": "Download All JPGs"
+    "downloadAll": "Download All JPGs",
+    "preview": "Preview"
   },
   "status": {
     "processing": "Converting...",
@@ -31,5 +32,8 @@
     "fileType": "Only HEIC files are allowed",
     "fileSize": "File size must be less than 10MB",
     "conversion": "Error converting file: {error}"
+  },
+  "preview": {
+    "filesSelected": "files selected"
   }
 }

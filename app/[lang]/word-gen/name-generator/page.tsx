@@ -80,8 +80,8 @@ export default async function NameGenerator({ params }: Props) {
     translate(lang, 'wordGen.nameGenerator.result.copy'),
     translate(lang, 'wordGen.nameGenerator.result.copied'),
     translate(lang, 'wordGen.nameGenerator.result.copyTitle'),
-    translate(lang, 'wordGen.nameGenerator.result.download', 'Download'),
-    translate(lang, 'wordGen.nameGenerator.result.downloaded', 'Downloaded!'),
+    translate(lang, 'wordGen.nameGenerator.result.download'),
+    translate(lang, 'wordGen.nameGenerator.result.downloaded'),
     // About section
     translate(lang, 'wordGen.nameGenerator.about.catchphrase'),
     translate(lang, 'wordGen.nameGenerator.about.introduction'),
