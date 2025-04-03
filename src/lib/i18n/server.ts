@@ -1,4 +1,4 @@
-import { Language } from './types';
+import { Language, locales } from './types';
 
 export type MessageValue = string | string[] | { [key: string]: MessageValue };
 export type Messages = Record<string, MessageValue>;
@@ -159,7 +159,7 @@ export function extractAndLogWordGenKeys(locale: Language = 'en'): void {
   console.log(allMessages)
 }
 
-export async function translate(lang: string, key: string, toolName?: string): Promise<string> {
+export async function translate(lang: string, key: string): Promise<string> {
   const locale = lang as Language;
   
   // メッセージをロード（必要な場合）
@@ -169,12 +169,6 @@ export async function translate(lang: string, key: string, toolName?: string): P
 
   // キーを分割して解析
   const keys = key.split('.');
-  
-  // ツール名が指定されていない場合は、最初のキーをツール名として使用
-  const actualToolName = toolName || keys[0];
-  
-  // ツールのメッセージをロード
-    await loadToolMessages(locale, actualToolName);
   
   // メッセージを取得
   let value: unknown = getMessages(locale);
@@ -199,19 +193,13 @@ export async function translate(lang: string, key: string, toolName?: string): P
 
   return value;
 }
-
-// 利用可能な言語一覧を取得
-export function getAvailableLanguages(): Language[] {
-  return ['en', 'ja', 'es', 'ru', 'zh'];
-}
-
 // パラメータから言語を取得する関数
 export async function getLanguageFromParams(params: { lang: string } | Promise<{ lang: string }>): Promise<Language> {
   const resolvedParams = await Promise.resolve(params);
   const langParam = resolvedParams.lang;
   
   // 有効な言語かチェック
-  if (['en', 'ja', 'es', 'ru', 'zh'].includes(langParam)) {
+  if (locales.includes(langParam)) {
     return langParam as Language;
   }
   

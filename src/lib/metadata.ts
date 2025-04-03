@@ -31,10 +31,12 @@ export const getCommonMetadata = async (lang: string, commonMeta: {
     },
     alternates: {
       canonical: pageMeta.url,
-      languages: {
+      languages: { 
         'en': pageMeta.url.replace(`/${lang}/`, '/en/'),
         'ja': pageMeta.url.replace(`/${lang}/`, '/ja/'),
         'es': pageMeta.url.replace(`/${lang}/`, '/es/'),
+        'ru': pageMeta.url.replace(`/${lang}/`, '/ru/'),
+        'zh': pageMeta.url.replace(`/${lang}/`, '/zh/'),
         'x-default': pageMeta.url.replace(`/${lang}/`, '/en/')
       }
     },
