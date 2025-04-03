@@ -66,7 +66,7 @@ export async function generateMetadata(
     "dateModified": "2024-02-18"
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {

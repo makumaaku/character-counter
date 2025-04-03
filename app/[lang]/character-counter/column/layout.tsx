@@ -87,7 +87,7 @@ export async function generateMetadata(
     }
   };
 
-  const metadata = getCommonMetadata(
+  const metadata = await getCommonMetadata(
     lang,
     commonMeta,
     {
