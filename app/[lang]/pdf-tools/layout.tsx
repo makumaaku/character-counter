@@ -234,8 +234,8 @@ export default async function Layout({ children, params }: {
     pdfToolsTitle,
     pdfToJpgTitle,
     jpgToPdfTitle,
-    webToPdfTitle,
-    pdfToWordTitle,
+    // webToPdfTitle,
+    // pdfToWordTitle,
     pdfToPngTitle,
     pngToPdfTitle,
     svgToPdfTitle,
@@ -245,8 +245,8 @@ export default async function Layout({ children, params }: {
     translate(lang, 'pdfTools.title'),
     translate(lang, 'pdfTools.tools.pdfToJpg.title'),
     translate(lang, 'pdfTools.tools.jpgToPdf.title'),
-    translate(lang, 'pdfTools.tools.webToPdf.title'),
-    translate(lang, 'pdfTools.tools.pdfToWord.title'),
+    // translate(lang, 'pdfTools.tools.webToPdf.title'),
+    // translate(lang, 'pdfTools.tools.pdfToWord.title'),
     translate(lang, 'pdfTools.tools.pdfToPng.title'),
     translate(lang, 'pdfTools.tools.pngToPdf.title'),
     translate(lang, 'pdfTools.tools.svgToPdf.title'),
@@ -258,39 +258,39 @@ export default async function Layout({ children, params }: {
   const navigationItems = [
     {
       name: pdfToJpgTitle,
-      path: `/${lang}/pdf-tools/pdf-to-jpg`
+      path: `/pdf-tools/pdf-to-jpg`
     },
     {
       name: jpgToPdfTitle,
-      path: `/${lang}/pdf-tools/jpg-to-pdf`
+      path: `/pdf-tools/jpg-to-pdf`
     },
-    {
-      name: webToPdfTitle,
-      path: `/${lang}/pdf-tools/web-to-pdf`
-    },
-    {
-      name: pdfToWordTitle,
-      path: `/${lang}/pdf-tools/pdf-to-word`
-    },
+    // {
+    //   name: webToPdfTitle,
+    //   path: `/pdf-tools/web-to-pdf`
+    // },
+    // {
+    //   name: pdfToWordTitle,
+    //   path: `/pdf-tools/pdf-to-word`
+    // },
     {
       name: pdfToPngTitle,
-      path: `/${lang}/pdf-tools/pdf-to-png`
+      path: `/pdf-tools/pdf-to-png`
     },
     {
       name: pngToPdfTitle,
-      path: `/${lang}/pdf-tools/png-to-pdf`
+      path: `/pdf-tools/png-to-pdf`
     },
     {
       name: svgToPdfTitle,
-      path: `/${lang}/pdf-tools/svg-to-pdf`
+      path: `/pdf-tools/svg-to-pdf`
     },
     {
       name: pdfToEpubTitle,
-      path: `/${lang}/pdf-tools/pdf-to-epub`
+      path: `/pdf-tools/pdf-to-epub`
     },
     {
       name: heicToPdfTitle,
-      path: `/${lang}/pdf-tools/heic-to-pdf`
+      path: `/pdf-tools/heic-to-pdf`
     }
   ];
   
