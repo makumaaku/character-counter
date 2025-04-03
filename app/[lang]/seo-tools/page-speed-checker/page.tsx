@@ -19,6 +19,7 @@ export default async function PageSpeedChecker({ params }: Props) {
     description,
     inputLabel,
     analyzeButton,
+    securityNote,
     loadingText,
     errorInvalidUrl,
     errorFetchFailed,
@@ -26,7 +27,25 @@ export default async function PageSpeedChecker({ params }: Props) {
     resultResourcesLabel,
     resultSuggestionsLabel,
     noUrlText,
-    securityNote
+    // 分析メッセージの翻訳
+    loadTimeSlow,
+    loadTimeMedium,
+    loadTimeFast,
+    resourcesTotalSize,
+    resourcesLargeImages,
+    resourcesManyJs,
+    resourcesSlowResources,
+    resourcesOthers,
+    securityMessage,
+    imageOptimization,
+    javascriptOptimization,
+    cssOptimization,
+    fontOptimization,
+    serverOptimization,
+    mobileOptimization,
+    coreWebVitals,
+    recommendedTools,
+    tryPageSpeedInsights
   ] = await Promise.all([
     translate(lang, 'seoTools.pageSpeedChecker.title'),
     translate(lang, 'seoTools.pageSpeedChecker.description'),
@@ -39,7 +58,26 @@ export default async function PageSpeedChecker({ params }: Props) {
     translate(lang, 'seoTools.pageSpeedChecker.results.loadTime'),
     translate(lang, 'seoTools.pageSpeedChecker.results.resources'),
     translate(lang, 'seoTools.pageSpeedChecker.results.suggestions'),
-    translate(lang, 'seoTools.pageSpeedChecker.status.noUrl')
+    translate(lang, 'seoTools.pageSpeedChecker.status.noUrl'),
+    // 分析メッセージの翻訳
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.loadTime.slow'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.loadTime.medium'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.loadTime.fast'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.resources.totalSize'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.resources.largeImages'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.resources.manyJs'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.resources.slowResources'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.resources.others'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.security'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.imageOptimization'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.javascriptOptimization'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.cssOptimization'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.fontOptimization'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.serverOptimization'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.mobileOptimization'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.coreWebVitals'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.recommendedTools'),
+    translate(lang, 'seoTools.pageSpeedChecker.analysis.tryPageSpeedInsights')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -68,6 +106,30 @@ export default async function PageSpeedChecker({ params }: Props) {
     },
     status: {
       noUrl: noUrlText
+    },
+    analysis: {
+      loadTime: {
+        slow: loadTimeSlow,
+        medium: loadTimeMedium,
+        fast: loadTimeFast
+      },
+      resources: {
+        totalSize: resourcesTotalSize,
+        largeImages: resourcesLargeImages,
+        manyJs: resourcesManyJs,
+        slowResources: resourcesSlowResources,
+        others: resourcesOthers
+      },
+      security: securityMessage,
+      imageOptimization: imageOptimization,
+      javascriptOptimization: javascriptOptimization,
+      cssOptimization: cssOptimization,
+      fontOptimization: fontOptimization,
+      serverOptimization: serverOptimization,
+      mobileOptimization: mobileOptimization,
+      coreWebVitals: coreWebVitals,
+      recommendedTools: recommendedTools,
+      tryPageSpeedInsights: tryPageSpeedInsights
     }
   };
 

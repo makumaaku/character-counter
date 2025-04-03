@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "HEIC转PNG转换器 | 免费在线图像转换器",
+    "description": "免费在线将HEIC图像转换为PNG格式。易于使用，无需注册。适用于所有设备，包括iPhone、iPad和Mac。",
+    "keywords": "heic转png, heic转换器, 转换heic, iphone照片转换器, 图像转换器, png转换器, 免费转换器"
+  },
+  "title": "HEIC转PNG转换器",
+  "description": "轻松将HEIC图像转换为PNG格式",
+  "upload": {
+    "title": "上传HEIC文件",
+    "dragndrop": "拖放HEIC文件到这里或点击浏览",
+    "button": "浏览文件",
+    "limit": "最大文件大小：每个文件10MB"
+  },
+  "form": {
+    "upload": {
+      "label": "上传HEIC文件",
+      "button": "浏览文件",
+      "dragDrop": "拖放HEIC文件到这里或点击浏览"
+    },
+    "convert": "转换为PNG"
+  },
+  "convert": {
+    "button": "转换为PNG",
+    "processing": "转换中...",
+    "download": "下载PNG",
+    "downloadAll": "下载所有（ZIP）",
+    "converted": "{{count}}个文件成功转换"
+  },
+  "preview": {
+    "title": "预览与下载",
+    "nofiles": "没有要显示的已转换文件"
+  },
+  "error": {
+    "invalidFormat": "仅支持HEIC文件",
+    "tooLarge": "文件太大（最大10MB）",
+    "noFiles": "请至少上传一个HEIC文件",
+    "failed": "转换失败。请重试。"
+  }
+} 

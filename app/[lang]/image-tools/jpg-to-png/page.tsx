@@ -22,11 +22,16 @@ export default async function JpgToPng({ params }: Props) {
     dragDropText,
     convertButton,
     downloadButton,
+    convertedResultText,
+    downloadAllText,
     processingText,
     noFileText,
     fileTypeError,
     fileSizeError,
-    uploadLimit
+    uploadLimit,
+    previewTitle,
+    fileSelectedText,
+    filesSelectedText
   ] = await Promise.all([
     translate(lang, 'imageTools.jpgToPng.title'),
     translate(lang, 'imageTools.jpgToPng.description'),
@@ -35,11 +40,16 @@ export default async function JpgToPng({ params }: Props) {
     translate(lang, 'imageTools.jpgToPng.form.upload.dragDrop'),
     translate(lang, 'imageTools.jpgToPng.form.convert'),
     translate(lang, 'imageTools.jpgToPng.result.download'),
+    translate(lang, 'imageTools.jpgToPng.result.convertedResult'),
+    translate(lang, 'imageTools.jpgToPng.result.downloadAll'),
     translate(lang, 'imageTools.jpgToPng.status.processing'),
     translate(lang, 'imageTools.jpgToPng.status.noFile'),
     translate(lang, 'imageTools.jpgToPng.error.fileType'),
     translate(lang, 'imageTools.jpgToPng.error.fileSize'),
-    translate(lang, 'imageTools.jpgToPng.upload.limit')
+    translate(lang, 'imageTools.jpgToPng.upload.limit'),
+    translate(lang, 'imageTools.jpgToPng.preview.title'),
+    translate(lang, 'imageTools.jpgToPng.preview.fileSelected'),
+    translate(lang, 'imageTools.jpgToPng.preview.filesSelected')
   ])
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -63,7 +73,9 @@ export default async function JpgToPng({ params }: Props) {
       convert: convertButton
     },
     result: {
-      download: downloadButton
+      download: downloadButton,
+      convertedResult: convertedResultText,
+      downloadAll: downloadAllText
     },
     status: {
       processing: processingText,
@@ -72,6 +84,11 @@ export default async function JpgToPng({ params }: Props) {
     error: {
       fileType: fileTypeError,
       fileSize: fileSizeError
+    },
+    preview: {
+      title: previewTitle,
+      fileSelected: fileSelectedText,
+      filesSelected: filesSelectedText
     }
   }
 

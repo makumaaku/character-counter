@@ -229,6 +229,9 @@ export default async function Layout({ children, params }: {
   const param = await params;
   const lang = await getLanguageFromParams(param);
   
+  // 先にPDFツール用の翻訳をロード（確実に翻訳を読み込む）
+  await loadToolMessages(lang as Language, 'pdf-tools');
+  
   // PDFツールのタイトルと各ツールのタイトルを並列で取得
   const [
     pdfToolsTitle,
@@ -254,43 +257,52 @@ export default async function Layout({ children, params }: {
     translate(lang, 'pdfTools.tools.heicToPdf.title')
   ]);
   
-  // ナビゲーション項目の配列を作成
+  // ナビゲーション項目の配列を作成（明示的にtranslatedNameプロパティを追加）
   const navigationItems = [
     {
-      name: pdfToJpgTitle,
-      path: `/pdf-tools/pdf-to-jpg`
+      name: "PDF to JPG",
+      path: `/pdf-tools/pdf-to-jpg`,
+      translatedName: pdfToJpgTitle
     },
     {
-      name: jpgToPdfTitle,
-      path: `/pdf-tools/jpg-to-pdf`
+      name: "JPG to PDF",
+      path: `/pdf-tools/jpg-to-pdf`,
+      translatedName: jpgToPdfTitle
     },
     // {
-    //   name: webToPdfTitle,
-    //   path: `/pdf-tools/web-to-pdf`
+    //   name: "Web to PDF",
+    //   path: `/pdf-tools/web-to-pdf`,
+    //   translatedName: webToPdfTitle
     // },
     // {
-    //   name: pdfToWordTitle,
-    //   path: `/pdf-tools/pdf-to-word`
+    //   name: "PDF to Word",
+    //   path: `/pdf-tools/pdf-to-word`,
+    //   translatedName: pdfToWordTitle
     // },
     {
-      name: pdfToPngTitle,
-      path: `/pdf-tools/pdf-to-png`
+      name: "PDF to PNG",
+      path: `/pdf-tools/pdf-to-png`,
+      translatedName: pdfToPngTitle
     },
     {
-      name: pngToPdfTitle,
-      path: `/pdf-tools/png-to-pdf`
+      name: "PNG to PDF",
+      path: `/pdf-tools/png-to-pdf`,
+      translatedName: pngToPdfTitle
     },
     {
-      name: svgToPdfTitle,
-      path: `/pdf-tools/svg-to-pdf`
+      name: "SVG to PDF",
+      path: `/pdf-tools/svg-to-pdf`,
+      translatedName: svgToPdfTitle
     },
     {
-      name: pdfToEpubTitle,
-      path: `/pdf-tools/pdf-to-epub`
+      name: "PDF to EPUB",
+      path: `/pdf-tools/pdf-to-epub`,
+      translatedName: pdfToEpubTitle
     },
     {
-      name: heicToPdfTitle,
-      path: `/pdf-tools/heic-to-pdf`
+      name: "HEIC to PDF",
+      path: `/pdf-tools/heic-to-pdf`,
+      translatedName: heicToPdfTitle
     }
   ];
   

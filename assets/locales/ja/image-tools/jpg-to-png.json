@@ -18,7 +18,9 @@
       "convert": "PNGに変換"
     },
     "result": {
-      "download": "PNGをダウンロード"
+      "download": "PNGをダウンロード",
+      "convertedResult": "変換後のPNG",
+      "downloadAll": "全てのPNGをダウンロード"
     },
     "status": {
       "processing": "変換中...",
@@ -27,5 +29,10 @@
     "error": {
       "fileType": "JPG/JPEGファイルのみ対応しています",
       "fileSize": "ファイルサイズは10MB未満である必要があります"
+    },
+    "preview": {
+      "title": "プレビュー",
+      "fileSelected": "{count}個のファイルが選択されました",
+      "filesSelected": "{count}個のファイルが選択されました"
     }
   }

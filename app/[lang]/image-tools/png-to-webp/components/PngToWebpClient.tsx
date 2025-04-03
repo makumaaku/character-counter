@@ -219,9 +219,9 @@ export default function PngToWebpClient({ translations }: Props) {
 
       {selectedFiles.length > 0 && !convertedFiles.length && (
         <div className="mt-6 bg-gray-700 p-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">プレビュー</h2>
+          <h2 className="text-xl font-semibold mb-2">{translations.preview.title}</h2>
           <p className="text-gray-300 mb-2">
-            {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
+            {translations.preview.filesSelected.replace('{count}', selectedFiles.length.toString())}
           </p>
           <button
             onClick={convertToWebp}
@@ -236,7 +236,7 @@ export default function PngToWebpClient({ translations }: Props) {
       {convertedFiles.length > 0 && (
         <div className="mt-6 bg-gray-700 p-4 rounded-lg">
           <div className="flex justify-between mb-4">
-            <h2 className="text-xl font-semibold">変換結果</h2>
+            <h2 className="text-xl font-semibold">{translations.result.title}</h2>
             {convertedFiles.filter(f => f.status === 'done').length > 0 && (
               <button
                 onClick={downloadAllWebps}

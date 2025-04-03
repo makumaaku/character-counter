@@ -1,0 +1,55 @@
+{
+  "title": "联系我们",
+  "description": "我们重视您的反馈，并随时准备帮助解答您关于我们字符计数工具的任何问题或疑虑。",
+  "form": {
+    "name": {
+      "label": "姓名",
+      "placeholder": "您的姓名"
+    },
+    "email": {
+      "label": "电子邮件",
+      "placeholder": "your.email@example.com"
+    },
+    "subject": {
+      "label": "主题",
+      "placeholder": "选择一个主题",
+      "options": {
+        "general": "一般咨询",
+        "technical": "技术支持",
+        "billing": "账单问题",
+        "feature": "功能请求",
+        "other": "其他"
+      }
+    },
+    "message": {
+      "label": "留言",
+      "placeholder": "请描述您的问题或疑虑"
+    },
+    "submit": "发送消息"
+  },
+  "otherWays": {
+    "title": "其他联系方式",
+    "email": "电子邮件",
+    "businessHours": "工作时间",
+    "businessHoursValue": "周一至周五，上午9:00-下午6:00（GMT）",
+    "responseTime": "我们通常在24个工作小时内回复所有咨询。"
+  },
+  "meta": {
+    "title": "联系我们 - 字符计数工具 | 支持和咨询",
+    "description": "有关我们字符计数工具的任何问题，请联系我们的支持团队。我们随时为您的文本分析需求提供帮助。",
+    "keywords": "字符计数器联系, 文本计数器支持, 单词计数帮助, 联系表单, 客户服务",
+    "jsonLd": {
+      "name": "联系字符计数器支持",
+      "description": "字符计数工具支持和咨询的联系页面",
+      "organization": {
+        "name": "字符计数工具",
+        "email": "support@character-counter.com",
+        "availableLanguage": [
+          "英语",
+          "日语"
+        ],
+        "hoursAvailable": "周一至周五 09:00-18:00"
+      }
+    }
+  }
+} 

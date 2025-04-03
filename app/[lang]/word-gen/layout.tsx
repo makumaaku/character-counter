@@ -202,6 +202,8 @@ export default async function Layout({ children, params }: Props) {
   
   // word-gen用の翻訳をロード
   await loadToolMessages(lang as Language, 'word-gen');
+  // 共通翻訳をロード
+  await loadToolMessages(lang as Language, 'common');
 
   // クライアントコンポーネント用の翻訳を準備
   const [
@@ -213,7 +215,8 @@ export default async function Layout({ children, params }: Props) {
     nameGeneratorTitle,
     passwordGeneratorTitle,
     storyGeneratorTitle,
-    japaneseKanjiGeneratorTitle
+    japaneseKanjiGeneratorTitle,
+    menuText // menuテキストの翻訳を取得
   ] = await Promise.all([
     translate(lang, 'wordGen.title'),
     translate(lang, 'wordGen.description'),
@@ -223,7 +226,8 @@ export default async function Layout({ children, params }: Props) {
     translate(lang, 'wordGen.tools.nameGenerator.title'),
     translate(lang, 'wordGen.tools.passwordGenerator.title'),
     translate(lang, 'wordGen.tools.storyGenerator.title'),
-    translate(lang, 'wordGen.tools.japaneseKanjiGenerator.title')
+    translate(lang, 'wordGen.tools.japaneseKanjiGenerator.title'),
+    translate(lang, 'common.menu') // menu用の翻訳キー
   ]);
 
   const messages: WordGenCommonMessages = {
@@ -280,7 +284,7 @@ export default async function Layout({ children, params }: Props) {
   };
 
   return (
-    <WordGenLayout messages={messages} lang={lang}>
+    <WordGenLayout messages={messages} lang={lang} menuText={menuText}>
       {children}
     </WordGenLayout>
   );

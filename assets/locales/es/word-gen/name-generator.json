@@ -18,7 +18,9 @@
     "empty": "Aquí aparecerán los nombres generados",
     "copyTitle": "Copiar al portapapeles",
     "copy": "Copiar",
-    "copied": "¡Copiado!"
+    "copied": "¡Copiado!",
+    "download": "Descargar",
+    "downloaded": "¡Descargado!"
   },
   "about": {
     "catchphrase": "¡Descubre nombres únicos! Un generador de nombres aleatorios que crea soluciones de nombres distintivos",

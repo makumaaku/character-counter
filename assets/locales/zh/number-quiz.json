@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "数独游戏",
+    "description": "挑战我们的数独益智游戏。从多个难度级别中选择，提高您的逻辑思维能力。",
+    "keywords": "数独, 数字谜题, 脑力训练, 逻辑游戏"
+  },
+  "title": "数字位置",
+  "game": {
+    "title": "数独",
+    "difficulty": {
+      "label": "难度",
+      "easy": "简单",
+      "normal": "普通",
+      "hard": "困难"
+    },
+    "buttons": {
+      "newGame": "新游戏",
+      "checkSolution": "检查解答"
+    },
+    "messages": {
+      "correct": "正确！做得好！",
+      "incorrect": "不正确。继续尝试！",
+      "complete": "恭喜！您已解决谜题！"
+    }
+  }
+} 

@@ -17,7 +17,9 @@
     "empty": "Generated names will appear here",
     "copyTitle": "Copy to clipboard",
     "copy": "Copy",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "download": "Download",
+    "downloaded": "Downloaded!"
   },
   "about": {
     "catchphrase": "Discover unique names! A random name generator that creates distinctive naming solutions",

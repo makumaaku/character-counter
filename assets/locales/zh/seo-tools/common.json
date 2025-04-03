@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "SEO工具 - 网站优化工具",
+    "description": "免费在线SEO工具，用于分析和优化您的网站性能。无需安装，直接在浏览器中使用。",
+    "keywords": "seo工具, 网站优化, 页面速度检查器, seo分析, 免费seo工具"
+  },
+  "title": "SEO工具",
+  "description": "免费在线工具，用于分析和优化您的网站性能",
+  "tools": {
+    "pageSpeedChecker": {
+      "title": "页面速度检查器",
+      "description": "分析网站加载速度并获得性能改进建议"
+    },
+    "linkStatusChecker": {
+      "title": "链接状态检查器",
+      "description": "检查网页上所有链接的状态，查找断开的链接"
+    },
+    "seoCannibalizationChecker": {
+      "title": "SEO关键词蚕食检查器",
+      "description": "检查您网站内的关键词蚕食（竞争）情况"
+    },
+    "seoVolumeGuess": {
+      "title": "SEO搜索量预测工具",
+      "description": "只需输入关键词，我们将根据Google建议预测SEO搜索量"
+    },
+    "pageStructureChecker": {
+     "title": "页面结构检查器",
+      "description": "检查您的网页是否具有适当的结构，包括标题、描述和标题标签层次结构"
+    },
+    "metaCraftForLlm": {
+     "title": "LLM元标签生成器",
+     "description": "通过输入网站URL生成和显示用于LLM的SEO代码"
+    }
+  }
+} 

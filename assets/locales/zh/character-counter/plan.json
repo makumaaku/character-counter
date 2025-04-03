@@ -1,0 +1,85 @@
+{
+  "title": "套餐",
+  "description": "您可以通过免费注册使用我们字符计数应用的所有基本功能。对于高级功能，请考虑升级到我们的高级版本。",
+  "pricing": {
+    "title": "定价",
+    "free": "免费版：$0",
+    "monthly": "月度计划：$4.80",
+    "annual": "年度计划：$39.80（比月度计划优惠31%！）"
+  },
+  "comparison": {
+    "title": "免费版与高级版比较",
+    "feature": "功能",
+    "free": "免费",
+    "premium": "高级",
+    "features": {
+      "charCount": "字符计数",
+      "counts": "行数、单词和字节计数",
+      "search": "字符串搜索",
+      "darkMode": "深色模式",
+      "ads": "广告",
+      "export": "Word和PDF导出",
+      "api": "API集成"
+    },
+    "yes": "是",
+    "no": "否"
+  },
+  "premiumFeatures": {
+    "title": "高级功能",
+    "basic": {
+      "title": "基本功能",
+      "description": "免费版中提供的所有基本功能当然在高级版中也可用：",
+      "features": {
+        "1": "字符、行、单词和字节的实时计数",
+        "2": "字符串搜索功能",
+        "3": "深色模式切换"
+      }
+    },
+    "adFree": {
+      "title": "无广告体验",
+      "description": "去除广告，提供更舒适的用户体验。"
+    },
+    "export": {
+      "title": "Word和PDF导出",
+      "description": "将计数结果和输入文本一起导出为Word或PDF文件。"
+    },
+    "api": {
+      "title": "API集成",
+      "description": "我们服务的所有功能均可通过API使用。请通过咨询表单与我们联系了解API使用情况。"
+    }
+  },
+  "subscriptions": {
+    "title": "月度和年度计划",
+    "monthly": {
+      "title": "月度计划",
+      "description": "每月支付，无长期承诺。非常适合尝试高级功能。"
+    },
+    "annual": {
+      "title": "年度计划",
+      "description": "更经济的定价结构，推荐长期使用。"
+    },
+    "note": "有关详细定价和计划信息，请查看我们的专用定价页面。"
+  },
+  "meta": {
+    "title": "套餐和定价 - 字符计数工具 | 免费和高级功能",
+    "description": "探索我们的字符计数工具套餐和定价。在免费和高级功能之间选择，以增强您的文本分析体验。",
+    "keywords": "字符计数器定价, 文本分析计划, 免费文本计数器, 在线工具定价, 字符计数功能",
+    "product": {
+      "description": "一种全面的文本分析工具，具有字符计数、单词计数等更多功能",
+      "offers": {
+        "free": {
+          "name": "免费计划",
+          "description": "带广告的基本功能"
+        },
+        "monthly": {
+          "name": "月度高级计划",
+          "description": "月度计费的所有功能"
+        },
+        "annual": {
+          "name": "年度高级计划",
+          "description": "年度计费的所有功能（31%折扣）"
+        }
+      }
+    }
+  }
+} 

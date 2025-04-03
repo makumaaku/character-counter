@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "JPG转PDF转换器 - 在线将图像转换为PDF",
+    "description": "免费在线工具，将JPG图像转换为PDF文档。将多张图像合并为具有可自定义设置的单个PDF。无需安装。",
+    "keywords": "jpg转pdf, 图像转pdf, 转换jpg为pdf, 图像转换器, 在线图像转换器, 免费图像转换器"
+  },
+  "title": "JPG转PDF转换器",
+  "description": "将JPG图像转换为具有可自定义设置的PDF文档",
+  "form": {
+    "upload": {
+      "label": "上传图像文件",
+      "button": "拖放图像文件到此处，或点击选择",
+      "dragDrop": "拖放文件到此处或点击浏览"
+    },
+    "quality": {
+      "label": "PDF质量",
+      "low": "低",
+      "medium": "中",
+      "high": "高"
+    },
+    "convert": "转换为PDF"
+  },
+  "result": {
+    "download": "下载PDF"
+  },
+  "status": {
+    "processing": "处理中...",
+    "noFile": "未选择文件"
+  },
+  "error": {
+    "fileType": "请仅上传JPG或PNG文件",
+    "fileSize": "总文件大小超过20MB限制"
+  },
+  "preview": {
+    "title": "预览",
+    "imageSelected": "已选择{count}张图片",
+    "imagesSelected": "已选择{count}张图片"
+  }
+} 

@@ -15,6 +15,10 @@ export default async function WordCardGenerator({ params }: Props) {
   
   // サーバーコンポーネントで翻訳を並列取得
   const [
+    // メタ情報
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     // タイトルと説明
     title,
     description,
@@ -77,6 +81,10 @@ export default async function WordCardGenerator({ params }: Props) {
     useCasesWriting,
     useCasesEsl
   ] = await Promise.all([
+    // メタ情報
+    translate(lang, 'wordGen.wordCardGenerator.meta.title'),
+    translate(lang, 'wordGen.wordCardGenerator.meta.description'),
+    translate(lang, 'wordGen.wordCardGenerator.meta.keywords'),
     // タイトルと説明
     translate(lang, 'wordGen.wordCardGenerator.title'),
     translate(lang, 'wordGen.wordCardGenerator.description'),
@@ -143,9 +151,9 @@ export default async function WordCardGenerator({ params }: Props) {
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
   const messages: WordGenWordCardGeneratorMessages = {
     meta: {
-      title: "",
-      description: "",
-      keywords: ""
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
     },
     title,
     description,

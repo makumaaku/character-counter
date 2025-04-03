@@ -218,9 +218,11 @@ export default function JpgToPngClient({ translations }: Props) {
 
       {selectedFiles.length > 0 && !convertedFiles.length && (
         <div className="mt-6 bg-gray-700 p-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">プレビュー</h2>
+          <h2 className="text-xl font-semibold mb-2">{translations.preview.title}</h2>
           <p className="text-gray-300 mb-2">
-            {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
+            {selectedFiles.length === 1 
+              ? translations.preview.fileSelected.replace('{count}', selectedFiles.length.toString()) 
+              : translations.preview.filesSelected.replace('{count}', selectedFiles.length.toString())}
           </p>
           <Button
             onClick={convertToPng}
@@ -236,7 +238,7 @@ export default function JpgToPngClient({ translations }: Props) {
 
       {convertedFiles.length > 0 && (
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">変換後のPNG</h2>
+          <h2 className="text-2xl font-bold mb-4">{translations.result.convertedResult}</h2>
           
           {convertedFiles.filter(file => file.status === 'done').length > 1 && (
             <div className="mb-4">
@@ -245,7 +247,7 @@ export default function JpgToPngClient({ translations }: Props) {
                 onClick={downloadAllPngs}
                 variant="primary"
               >
-                全てのPNGをダウンロード
+                {translations.result.downloadAll}
               </Button>
             </div>
           )}

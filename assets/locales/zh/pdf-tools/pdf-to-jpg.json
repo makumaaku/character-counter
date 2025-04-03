@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "PDF转JPG转换器 - 在线将PDF转换为图像",
+    "description": "免费在线工具，将PDF文档转换为JPG图像。将每页转换为具有可调整质量的单独图像。无需安装。",
+    "keywords": "pdf转jpg, pdf转图像, 转换pdf为jpg, pdf转换器, 在线pdf转换器, 免费pdf转换器"
+  },
+  "title": "PDF转JPG转换器",
+  "description": "将PDF页面转换为可调整质量的JPG图像",
+  "form": {
+    "upload": {
+      "label": "上传PDF文件",
+      "button": "拖放PDF文件到此处，或点击选择",
+      "dragDrop": "拖放文件到此处或点击浏览"
+    },
+    "quality": {
+      "label": "图像质量",
+      "low": "低",
+      "medium": "中",
+      "high": "高"
+    },
+    "convert": "转换为JPG"
+  },
+  "result": {
+    "downloadAll": "下载全部",
+    "download": "下载"
+  },
+  "status": {
+    "processing": "处理中...",
+    "noFile": "未选择文件"
+  },
+  "error": {
+    "fileType": "请上传PDF文件",
+    "fileSize": "文件大小超过20MB限制"
+  }
+} 

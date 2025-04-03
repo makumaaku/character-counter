@@ -33,9 +33,10 @@ type LayoutMessages = {
 type Props = {
   children: ReactNode;
   messages: LayoutMessages;
+  menuText?: string;
 }
 
-export default function SeoToolsLayout({ children, messages }: Props) {
+export default function SeoToolsLayout({ children, messages, menuText = "Menu" }: Props) {
   const params = useParams()
   const lang = params.lang as string
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -90,6 +91,7 @@ export default function SeoToolsLayout({ children, messages }: Props) {
           onClose={() => setIsSidebarOpen(false)} 
           navigationItems={navigationItems}
           lang={lang}
+          menuText={menuText}
         />
         <main className="flex-1 px-4 lg:px-8">
           {children}

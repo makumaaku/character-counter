@@ -71,10 +71,11 @@ export default function SentenceGeneratorClient({ messages, lang }: Props) {
   return (
     <>
       <div className="mb-6">
-        <label className="block text-sm font-medium mb-2">
+        <label htmlFor="sentence-count" className="block text-sm font-medium mb-2">
           {form.count.label}
         </label>
         <input
+          id="sentence-count"
           type="number"
           value={sentenceCount}
           onChange={(e) => {
@@ -99,6 +100,7 @@ export default function SentenceGeneratorClient({ messages, lang }: Props) {
           className="bg-gray-800 text-white px-3 py-2 rounded w-32"
           min="1"
           max="20"
+          aria-label={form.count.label}
         />
       </div>
       
@@ -106,6 +108,7 @@ export default function SentenceGeneratorClient({ messages, lang }: Props) {
         onClick={generateSentences}
         variant="purple"
         size="lg"
+        aria-label={form.generate}
       >
         {form.generate}
       </Button>
@@ -132,11 +135,13 @@ export default function SentenceGeneratorClient({ messages, lang }: Props) {
               toastText={result.copied}
               variant="purple"
               className="px-4 py-2"
+              aria-label={form.copy}
             />
             <DownloadButton
               content={generatedSentences.join('\n')}
               filename="generated-sentences.txt"
               variant='purple'
+              aria-label="Download generated sentences"
             />
           </div>
         )}

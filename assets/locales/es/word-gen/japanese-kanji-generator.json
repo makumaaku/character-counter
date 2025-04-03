@@ -1,32 +1,32 @@
 {
   "meta": {
-    "title": "Japanese Kanji Generator - Create Random Kanji Images",
-    "description": "A tool that automatically generates Japanese kanji characters. Randomly create one character and download it as a 512 x 512px jpg or png image.",
-    "keywords": "kanji generator, kanji creation, kanji image, Japanese, random kanji"
+    "title": "Generador de Kanji Japonés - Crea Imágenes Aleatorias de Kanji",
+    "description": "Una herramienta que genera automáticamente caracteres kanji japoneses. Crea aleatoriamente un carácter y descárgalo como imagen jpg o png de 512 x 512px.",
+    "keywords": "generador de kanji, creación de kanji, imagen de kanji, japonés, kanji aleatorio"
   },
-  "title": "Japanese Kanji Generator",
-  "description": "A tool that automatically generates Japanese kanji characters. Randomly create one character and download it as a 512 x 512px jpg or png image.",
+  "title": "Generador de Kanji Japonés",
+  "description": "Una herramienta que genera automáticamente caracteres kanji japoneses. Crea aleatoriamente un carácter y descárgalo como imagen jpg o png de 512 x 512px.",
   "generate": {
-    "button": "Generate Kanji",
-    "loading": "Generating..."
+    "button": "Generar Kanji",
+    "loading": "Generando..."
   },
   "download": {
-    "button": "Download Image",
-    "jpg": "Download as JPG",
-    "png": "Download as PNG"
+    "button": "Descargar Imagen",
+    "jpg": "Descargar como JPG",
+    "png": "Descargar como PNG"
   },
   "copy": {
-    "button": "Copy Kanji",
-    "success": "✓ Copied"
+    "button": "Copiar Kanji",
+    "success": "✓ Copiado"
   },
   "display": {
-    "noImage": "No image generated yet"
+    "noImage": "Aún no se ha generado ninguna imagen"
   },
   "error": {
-    "generation": "An error occurred while generating the kanji. Please try again.",
-    "download": "An error occurred while downloading. Please try again."
+    "generation": "Ocurrió un error al generar el kanji. Por favor, inténtalo de nuevo.",
+    "download": "Ocurrió un error durante la descarga. Por favor, inténtalo de nuevo."
   },
   "font": {
-    "loading": "Now loading..."
+    "loading": "Cargando..."
   }
 }

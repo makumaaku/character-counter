@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "图像转换器 - 免费在线图像转换工具",
+    "description": "使用我们的免费在线工具在不同格式之间转换图像。为您的所有需求提供简单、快速和安全的图像转换工具。",
+    "keywords": "图像转换器, 图像工具, jpg转png, png转jpg, 图像格式转换器, 免费图像转换器"
+  },
+  "title": "图像转换器",
+  "description": "免费在线工具，可在不同格式之间转换图像",
+  "tools": {
+    "jpgToPng": {
+      "title": "JPG转PNG转换器",
+      "description": "将JPG图像转换为支持透明度的PNG格式"
+    },
+    "pngToJpg": {
+      "title": "PNG转JPG转换器",
+      "description": "轻松将PNG图像转换为JPG格式"
+    },
+    "heicToJpg": {
+      "title": "HEIC转JPG转换器",
+      "description": "将HEIC图像转换为带预览的JPG格式"
+    },
+    "heicToPng": {
+      "title": "HEIC转PNG转换器",
+      "description": "将HEIC文件转换为带预览的PNG格式"
+    },
+    "heicToWebp": {
+      "title": "HEIC转WebP转换器",
+      "description": "将HEIC文件转换为带预览的WebP格式"
+    },
+    "jpgToWebp": {
+      "title": "JPG转WebP转换器",
+      "description": "将JPG图像转换为WebP格式，以获得更好的Web性能"
+    },
+    "pngToWebp": {
+      "title": "PNG转WebP转换器",
+      "description": "将PNG图像转换为WebP格式，以获得更好的Web性能"
+    },
+    "svgToJpg": {
+      "title": "SVG转JPG转换器",
+      "description": "将SVG矢量图像转换为JPG格式"
+    },
+    "svgToPng": {
+      "title": "SVG转PNG转换器",
+      "description": "将SVG矢量图像转换为具有透明度的PNG格式"
+    },
+    "svgToWebp": {
+      "title": "SVG转WebP转换器",
+      "description": "将SVG矢量图像转换为针对Web显示优化的WebP格式"
+    }
+  }
+} 

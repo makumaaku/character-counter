@@ -88,6 +88,11 @@ export default async function RouletteLayout({
 }) {
   const param = await params;
   const lang = await getLanguageFromParams(param);
+  
+  // ツール固有の翻訳をロード
+  await loadToolMessages(lang as Language, 'roulette');
+  
+  // ページタイトルを取得（多言語対応）
   const title = await translate(lang, 'roulette.title');
 
   return (

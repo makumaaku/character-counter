@@ -31,5 +31,10 @@
     "error": {
       "fileType": "JPGまたはPNGファイルのみをアップロードしてください",
       "fileSize": "合計ファイルサイズが20MBの制限を超えています"
+    },
+    "preview": {
+      "title": "プレビュー",
+      "imageSelected": "{count}枚の画像が選択されました",
+      "imagesSelected": "{count}枚の画像が選択されました"
     }
   }

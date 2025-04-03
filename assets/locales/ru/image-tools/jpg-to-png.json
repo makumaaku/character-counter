@@ -18,7 +18,9 @@
     "convert": "Конвертировать в PNG"
   },
   "result": {
-    "download": "Скачать PNG"
+    "download": "Скачать PNG",
+    "convertedResult": "Конвертированный PNG",
+    "downloadAll": "Скачать все PNG"
   },
   "status": {
     "processing": "Конвертация...",
@@ -27,5 +29,10 @@
   "error": {
     "fileType": "Разрешены только файлы JPG/JPEG",
     "fileSize": "Размер файла должен быть меньше 10МБ"
+  },
+  "preview": {
+    "title": "Предпросмотр",
+    "fileSelected": "{count} файл выбран",
+    "filesSelected": "{count} файлов выбрано"
   }
 }

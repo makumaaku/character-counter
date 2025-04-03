@@ -95,18 +95,20 @@ export default function NameGeneratorClient({ messages, lang }: Props) {
   return (
     <div>
       <div className="mb-6">
-        <label htmlFor="nameCount" className="block text-sm font-medium mb-2">
-          {form.count.label}
-        </label>
-        <input
-          type="number"
-          id="nameCount"
-          min="1"
-          max="100"
-          value={nameCount}
-          onChange={(e) => setNameCount(Math.min(100, Math.max(1, parseInt(e.target.value) || 1)))}
-          className="bg-gray-800 text-white px-3 py-2 rounded w-32 mr-4"
-        />
+        <div className="mb-4">
+          <label htmlFor="nameCount" className="block text-sm font-medium mb-2">
+            {form.count.label}
+          </label>
+          <input
+            type="number"
+            id="nameCount"
+            min="1"
+            max="100"
+            value={nameCount}
+            onChange={(e) => setNameCount(Math.min(100, Math.max(1, parseInt(e.target.value) || 1)))}
+            className="bg-gray-800 text-white px-3 py-2 rounded w-32"
+          />
+        </div>
         <button
           onClick={generateNames}
           disabled={loading || !!error}
@@ -137,6 +139,8 @@ export default function NameGeneratorClient({ messages, lang }: Props) {
               <DownloadButton
                 content={generatedNames.join('\n')}
                 filename="generated-names.txt"
+                downloadText={result.download}
+                downloadedText={result.downloaded}
               />
             </div>
           )}

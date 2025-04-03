@@ -1,12 +1,20 @@
+import { getLanguageFromParams, loadToolMessages, translate } from '@/lib/i18n/server';
+import { Language } from '@/lib/i18n/types';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
-  try {
-    const { url } = await request.json();
+export async function POST(request: NextRequest, { params }: { params: Promise<{ lang: string }> }) {
 
+  const lang = await getLanguageFromParams(params);
+  await loadToolMessages(lang as Language, 'seo-tools/meta-craft-for-llm');
+  try {
+    
+    const t = (key: string) => translate(lang, key);
+    
+    const { url } = await request.json();
     if (!url) {
+      const errorMessage = await t('error.urlRequired');
       return NextResponse.json(
-        { error: 'URL is required' },
+        { error: errorMessage },
         { status: 400 }
       );
     }
@@ -15,8 +23,9 @@ export async function POST(request: NextRequest) {
     try {
       new URL(url);
     } catch {
+      const errorMessage = await t('error.invalidUrl');
       return NextResponse.json(
-        { error: 'Invalid URL' },
+        { error: errorMessage },
         { status: 400 }
       );
     }
@@ -30,8 +39,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
+      const errorTemplate = await t('error.fetchWithStatus');
+      const errorMessage = errorTemplate.replace('{status}', response.status.toString()).replace('{statusText}', response.statusText);
       return NextResponse.json(
-        { error: `Failed to fetch URL: ${response.status} ${response.statusText}` },
+        { error: errorMessage },
         { status: response.status }
       );
     }
@@ -41,8 +52,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ html });
   } catch (error) {
     console.error('Error fetching URL:', error);
+    const lang = await getLanguageFromParams(params);
+    const errorMessage = await translate(lang as Language, 'seoTools.metaCraftForLlm.error.fetchFailed');
     return NextResponse.json(
-      { error: 'Failed to fetch URL' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

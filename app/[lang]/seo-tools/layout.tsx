@@ -1,9 +1,9 @@
-import { translate, loadToolMessages } from '@/lib/i18n/server';
+import { loadToolMessages, translate } from '@/lib/i18n/server';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import SeoToolsLayout from './components/SeoToolsLayout';
 import { Language } from '@/lib/i18n/types';
+import SeoToolsLayout from './components/SeoToolsLayout';
 
 type Props = {
   children: React.ReactNode;
@@ -43,29 +43,6 @@ type JsonLdType = {
     url: string;
   }[];
 }
-
-// レイアウトメッセージの型定義
-type LayoutMessages = {
-  title: string;
-  pageSpeedChecker: {
-    title: string;
-  };
-  linkStatusChecker: {
-    title: string;
-  };
-  seoCannibalizationChecker: {
-    title: string;
-  };
-  seoVolumeGuess: {
-    title: string;
-  };
-  pageStructureChecker: {
-    title: string;
-  };
-  metaCraftForLlm: {
-    title: string;
-  };
-};
 
 export async function generateMetadata(
   { params }: Props
@@ -170,24 +147,24 @@ export async function generateMetadata(
   };
 }
 
-export default async function Layout({ children, params }: {
-  children: React.ReactNode;
-  params: Promise<{ lang: string }>;
-}) {
+export default async function Layout({ children, params }: Props) {
   const { lang } = await params;
   
   // seo-tools用の翻訳をロード
   await loadToolMessages(lang as Language, 'seo-tools');
-  
-  // サイドバー用の翻訳を取得
+  // 共通翻訳もロード
+  await loadToolMessages(lang as Language, 'common');
+
+  // クライアントコンポーネント用の翻訳を準備
   const [
-    seoToolsTitle,
+    title,
     pageSpeedCheckerTitle,
     linkStatusCheckerTitle,
     seoCannibalizationCheckerTitle,
     seoVolumeGuessTitle,
     pageStructureCheckerTitle,
-    metaCraftForLlmTitle
+    metaCraftForLlmTitle,
+    menuText // menuテキストの翻訳を取得
   ] = await Promise.all([
     translate(lang, 'seoTools.title'),
     translate(lang, 'seoTools.tools.pageSpeedChecker.title'),
@@ -195,13 +172,13 @@ export default async function Layout({ children, params }: {
     translate(lang, 'seoTools.tools.seoCannibalizationChecker.title'),
     translate(lang, 'seoTools.tools.seoVolumeGuess.title'),
     translate(lang, 'seoTools.tools.pageStructureChecker.title'),
-    translate(lang, 'seoTools.tools.metaCraftForLlm.title')
+    translate(lang, 'seoTools.tools.metaCraftForLlm.title'),
+    translate(lang, 'common.menu') // menu用の翻訳キー
   ]);
-  
+
   // SeoToolsLayoutに渡すメッセージオブジェクト
-  // 自動生成された型定義に部分的に沿った構造
-  const layoutMessages: LayoutMessages = {
-    title: seoToolsTitle,
+  const messages = {
+    title,
     pageSpeedChecker: {
       title: pageSpeedCheckerTitle
     },
@@ -221,9 +198,12 @@ export default async function Layout({ children, params }: {
       title: metaCraftForLlmTitle
     }
   };
-  
+
   return (
-    <SeoToolsLayout messages={layoutMessages}>
+    <SeoToolsLayout 
+      messages={messages}
+      menuText={menuText} // menuTextを渡す
+    >
       {children}
     </SeoToolsLayout>
   );

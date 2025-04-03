@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "SVG转JPG转换器 - 免费在线图像转换工具",
+    "description": "在线将SVG矢量图像转换为JPG格式。免费、快速且易于使用，提供即时预览和下载选项。",
+    "keywords": "svg转jpg, svg转换器, 图像转换器, 免费转换器, 在线图像工具, 矢量图像转换器"
+  },
+  "title": "SVG转JPG转换器",
+  "description": "将SVG矢量图像转换为JPG格式",
+  "form": {
+    "upload": {
+      "label": "上传SVG图像",
+      "button": "选择文件",
+      "dragDrop": "拖放SVG文件到这里或点击浏览",
+      "limitText": "最大文件大小：20MB（总计最多100MB）"
+    },
+    "convert": "转换为JPG"
+  },
+  "result": {
+    "download": "下载JPG",
+    "downloadAll": "下载所有JPG",
+    "preview": "预览",
+    "selectedFiles": "已选择文件"
+  },
+  "status": {
+    "processing": "转换中...",
+    "noFile": "未选择文件",
+    "success": "转换成功！",
+    "browserProcessing": "处理在您的浏览器中完成，速度可能因设备而异"
+  },
+  "error": {
+    "fileType": "只允许SVG文件",
+    "fileSize": "文件大小必须小于20MB",
+    "conversionFailed": "转换失败"
+  }
+} 

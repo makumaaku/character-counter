@@ -52,9 +52,9 @@ export async function generateMetadata(
     description,
     keywords
   ] = await Promise.all([
-    translate(lang, 'wordCardGenerator.meta.title'),
-    translate(lang, 'wordCardGenerator.meta.description'),
-    translate(lang, 'wordCardGenerator.meta.keywords')
+    translate(lang, 'wordGen.wordCardGenerator.meta.title'),
+    translate(lang, 'wordGen.wordCardGenerator.meta.description'),
+    translate(lang, 'wordGen.wordCardGenerator.meta.keywords')
   ]);
 
   // 共通のメタデータ情報を設定

@@ -1,7 +1,7 @@
+import { locales } from '@/lib/i18n/types';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-const locales = ['en', 'ja', 'es', 'ru'];
 const defaultLocale = 'en';
 const rootPath = '/';
 

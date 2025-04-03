@@ -243,6 +243,7 @@ export default function HeicToJpgClient({ messages }: Props) {
           dragDropText={messages.form.upload.dragDrop}
           limitText={messages.upload.limit}
           buttonText={messages.form.upload.button}
+          selectedFilesText={messages.preview.filesSelected.replace('{count}', '')}
           accept=".heic"
           multiple={true}
           maxSizeMB={10}
@@ -274,7 +275,7 @@ export default function HeicToJpgClient({ messages }: Props) {
       {(convertedFiles.length > 0 || isProcessing) && (
         <div className="bg-gray-700 p-4 rounded-lg">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-white">プレビュー</h2>
+            <h2 className="text-xl font-semibold text-white">{messages.result.preview}</h2>
             
             {convertedCount > 0 && (
               <Button

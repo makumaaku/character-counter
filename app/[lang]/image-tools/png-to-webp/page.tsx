@@ -27,7 +27,10 @@ export default async function PngToWebp({ params }: Props) {
     noFileText,
     fileTypeError,
     fileSizeError,
-    uploadLimit
+    uploadLimit,
+    previewTitle,
+    previewFilesSelected,
+    resultTitle
   ] = await Promise.all([
     translate(lang, 'imageTools.pngToWebp.title'),
     translate(lang, 'imageTools.pngToWebp.description'),
@@ -41,7 +44,10 @@ export default async function PngToWebp({ params }: Props) {
     translate(lang, 'imageTools.pngToWebp.status.noFile'),
     translate(lang, 'imageTools.pngToWebp.error.fileType'),
     translate(lang, 'imageTools.pngToWebp.error.fileSize'),
-    translate(lang, 'imageTools.pngToWebp.upload.limit')
+    translate(lang, 'imageTools.pngToWebp.upload.limit'),
+    translate(lang, 'imageTools.pngToWebp.preview.title'),
+    translate(lang, 'imageTools.pngToWebp.preview.filesSelected'),
+    translate(lang, 'imageTools.pngToWebp.result.title')
   ])
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -64,7 +70,12 @@ export default async function PngToWebp({ params }: Props) {
       },
       convert: convertButton
     },
+    preview: {
+      title: previewTitle,
+      filesSelected: previewFilesSelected
+    },
     result: {
+      title: resultTitle,
       download: downloadButton,
       downloadAll: downloadAllButton
     },

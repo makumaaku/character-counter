@@ -40,8 +40,9 @@ export async function POST(request: NextRequest) {
       reqData = await request.json()
     } catch {
       console.error('Failed to parse request JSON:')
+      const errorMessage = await t('seoTools.pageStructureChecker.error.invalidJson');
       return NextResponse.json(
-        { error: 'Invalid request: Could not parse JSON body' },
+        { error: errorMessage },
         { status: 400, headers: corsHeaders }
       )
     }
@@ -49,8 +50,9 @@ export async function POST(request: NextRequest) {
     const { url } = reqData
 
     if (!url) {
+      const errorMessage = await t('seoTools.pageStructureChecker.error.urlRequired');
       return NextResponse.json(
-        { error: 'URL is required' },
+        { error: errorMessage },
         { status: 400, headers: corsHeaders }
       )
     }
@@ -59,8 +61,9 @@ export async function POST(request: NextRequest) {
     try {
       new URL(url)
     } catch {
+      const errorMessage = await t('seoTools.pageStructureChecker.error.invalidUrl');
       return NextResponse.json(
-        { error: 'Invalid URL format' },
+        { error: errorMessage },
         { status: 400, headers: corsHeaders }
       )
     }
@@ -83,8 +86,10 @@ export async function POST(request: NextRequest) {
       clearTimeout(timeoutId)
 
       if (!response.ok) {
+        const errorTemplate = await t('seoTools.pageStructureChecker.error.fetchWithStatus');
+        const errorMessage = errorTemplate.replace('{status}', response.status.toString()).replace('{statusText}', response.statusText);
         return NextResponse.json(
-          { error: `Failed to fetch page: ${response.status} ${response.statusText}` },
+          { error: errorMessage },
           { status: 500, headers: corsHeaders }
         )
       }
@@ -93,8 +98,9 @@ export async function POST(request: NextRequest) {
       
       // HTMLが空の場合はエラーを返す
       if (!html || html.trim() === '') {
+        const errorMessage = await t('seoTools.pageStructureChecker.error.emptyHtml');
         return NextResponse.json(
-          { error: 'Empty HTML response from the target URL' },
+          { error: errorMessage },
           { status: 500, headers: corsHeaders }
         )
       }
@@ -189,27 +195,36 @@ export async function POST(request: NextRequest) {
       
       if (fetchError instanceof Error) {
         if (fetchError.name === 'AbortError') {
+          const errorMessage = await t('seoTools.pageStructureChecker.error.timeout');
           return NextResponse.json(
-            { error: 'Request timed out. The page might be too large or unavailable' },
+            { error: errorMessage },
             { status: 408, headers: corsHeaders }
           )
         }
+        const errorTemplate = await t('seoTools.pageStructureChecker.error.fetchError');
+        const errorMessage = errorTemplate.replace('{message}', fetchError.message);
         return NextResponse.json(
-          { error: `Fetch error: ${fetchError.message}` },
+          { error: errorMessage },
           { status: 500, headers: corsHeaders }
         )
       }
       
+      const errorMessage = await t('seoTools.pageStructureChecker.error.unknownFetchError');
       return NextResponse.json(
-        { error: 'Unknown fetch error occurred' },
+        { error: errorMessage },
         { status: 500, headers: corsHeaders }
       )
     }
   } catch (error) {
     console.error('Error analyzing page structure:', error)
     
+    const errorTemplate = await t('seoTools.pageStructureChecker.error.serverError');
+    const errorMessage = error instanceof Error 
+      ? errorTemplate.replace('{message}', error.message)
+      : await t('seoTools.pageStructureChecker.error.unknownServerError');
+    
     return NextResponse.json(
-      { error: error instanceof Error ? `Server error: ${error.message}` : 'Unknown server error occurred' },
+      { error: errorMessage },
       { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
     )
   }

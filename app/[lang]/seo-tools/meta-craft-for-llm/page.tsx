@@ -21,6 +21,10 @@ export default async function MetaCraftForLlm({ params }: Props) {
     loading,
     errorFetch,
     errorParsing,
+    errorUrlRequired,
+    errorInvalidUrl,
+    errorFetchFailed,
+    errorFetchWithStatus,
     resultTitle,
     jsonLd,
     jsonLdImportance,
@@ -46,6 +50,10 @@ export default async function MetaCraftForLlm({ params }: Props) {
     translate(lang, 'seoTools.metaCraftForLlm.loading'),
     translate(lang, 'seoTools.metaCraftForLlm.error.fetch'),
     translate(lang, 'seoTools.metaCraftForLlm.error.parsing'),
+    translate(lang, 'seoTools.metaCraftForLlm.error.urlRequired'),
+    translate(lang, 'seoTools.metaCraftForLlm.error.invalidUrl'),
+    translate(lang, 'seoTools.metaCraftForLlm.error.fetchFailed'),
+    translate(lang, 'seoTools.metaCraftForLlm.error.fetchWithStatus'),
     translate(lang, 'seoTools.metaCraftForLlm.result.title'),
     translate(lang, 'seoTools.metaCraftForLlm.result.jsonLd'),
     translate(lang, 'seoTools.metaCraftForLlm.result.jsonLdImportance'),
@@ -99,7 +107,11 @@ export default async function MetaCraftForLlm({ params }: Props) {
     },
     error: {
       fetch: errorFetch,
-      parsing: errorParsing
+      parsing: errorParsing,
+      urlRequired: errorUrlRequired,
+      invalidUrl: errorInvalidUrl,
+      fetchFailed: errorFetchFailed,
+      fetchWithStatus: errorFetchWithStatus
     },
     loading,
     seoInfo: {

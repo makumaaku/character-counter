@@ -23,5 +23,29 @@
   },
   "status": {
     "noUrl": "Please enter a URL to analyze"
+  },
+  "analysis": {
+    "loadTime": {
+      "slow": "⚠️ Page loading took {{seconds}} seconds. Aim for under 3 seconds.",
+      "medium": "⚠️ Initial connection time is {{seconds}} seconds. Aim for under 1 second for better user experience.",
+      "fast": "✅ Initial connection time is {{milliseconds}} milliseconds. This is good!"
+    },
+    "resources": {
+      "totalSize": "📊 Total size of detected resources: {{size}}",
+      "largeImages": "⚠️ Found {{count}} large images (over 200KB). Consider compressing the following files:\n        {{files}}",
+      "manyJs": "⚠️ {{count}} JavaScript files are loaded. Consider combining the following files:\n        {{files}}",
+      "slowResources": "⚠️ {{count}} resources took over 500ms to load. Consider optimizing the following files:\n        {{files}}",
+      "others": "- Others..."
+    },
+    "security": "ℹ️ Due to security constraints, we cannot access detailed information about cross-origin resources. For a more detailed analysis, try:\n      1. Analyze with Google PageSpeed Insights: https://pagespeed.web.dev/\n      2. Analyze with Chrome DevTools Network tab\n      3. Generate a detailed performance report using Lighthouse",
+    "imageOptimization": "📊 Image Optimization: Images typically account for 50-80% of a web page's total download size. If you're using large images on {{domain}} pages:\n    - Using WebP or AVIF formats can reduce file sizes by 30-50% compared to JPEG or PNG\n    - Implement lazy loading for images to delay loading images that aren't needed for initial display\n    - Implement responsive images using the srcset attribute to provide appropriately sized images\n    - Use image compression tools (like TinyPNG, Squoosh) to compress images with minimal quality loss",
+    "javascriptOptimization": "⚡ JavaScript Optimization: JavaScript execution can block rendering and significantly increase page load times:\n    - Implement code splitting to load only the JavaScript that's needed\n    - Use defer or async attributes for non-critical scripts\n    - Utilize tree shaking to remove unused JavaScript code\n    - Minimize use of large third-party libraries\n    - Minify and compress JavaScript bundles",
+    "cssOptimization": "🎨 CSS Optimization: Reducing render-blocking resources improves page display speed:\n    - Inline critical CSS to apply essential styles immediately for initial display\n    - Remove unused CSS to reduce CSS file size\n    - Minify and compress CSS files\n    - Use media queries to load only the CSS needed for the device\n    - Prefer using transform and opacity properties over CSS animations",
+    "fontOptimization": "📝 Web Font Optimization: Custom fonts can significantly impact page load time:\n    - Use font-display: swap to show system fonts while loading custom fonts\n    - Load only the font weights and styles you need\n    - Use WOFF or WOFF2 font formats to reduce file size\n    - Consider using system fonts when possible",
+    "serverOptimization": "🌐 Server/Network Optimization: Improve server response time and content delivery:\n    - Use a Content Delivery Network (CDN) to serve content from locations closer to users\n    - Set proper HTTP cache headers to improve performance for repeat visits\n    - Enable GZIP or Brotli compression to reduce data transferred\n    - Use HTTP/2 or HTTP/3 to handle multiple requests efficiently\n    - Use resource hints like DNS prefetch, preconnect, and preload to optimize loading of critical resources",
+    "mobileOptimization": "📱 Mobile Performance: Mobile users typically browse on more constrained devices and network conditions:\n    - Adopt a mobile-first approach to optimize for mobile users\n    - Set proper touch target sizes (at least 48x48 pixels) to improve usability\n    - Configure the viewport properly to optimize display on mobile devices\n    - Reduce complex animations and heavy interactions to improve performance on low-spec devices",
+    "coreWebVitals": "📊 Core Web Vitals: Improve these metrics that are important ranking factors for Google:\n    - LCP (Largest Contentful Paint): Keep main content loading time under 2.5 seconds\n    - FID (First Input Delay): Keep response time to user's first interaction under 100ms\n    - CLS (Cumulative Layout Shift): Ensure visual stability and prevent unexpected layout shifts\n    - Use Google PageSpeed Insights and Chrome User Experience Report to measure these metrics",
+    "recommendedTools": "🛠️ Recommended Tools: For more detailed analysis and improvement, we recommend using these tools:\n    - Google PageSpeed Insights: Detailed performance analysis and Core Web Vitals measurement\n    - Lighthouse: In-browser analysis of performance, accessibility, SEO, and best practices\n    - WebPageTest: Performance testing under various conditions\n    - Chrome DevTools: Detailed analysis of network, performance, and memory\n    - GTmetrix: Analysis of page load time and optimization opportunities",
+    "tryPageSpeedInsights": "Try Google PageSpeed Insights"
   }
 }

@@ -27,7 +27,11 @@
     },
     "error": {
       "fetch": "An error occurred while fetching the URL",
-      "parsing": "An error occurred while parsing the HTML"
+      "parsing": "An error occurred while parsing the HTML",
+      "urlRequired": "URL is required",
+      "invalidUrl": "Invalid URL",
+      "fetchFailed": "Failed to fetch URL",
+      "fetchWithStatus": "Failed to fetch URL: {status} {statusText}"
     },
     "loading": "Processing...",
     "seoInfo": {

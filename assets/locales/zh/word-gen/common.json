@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "文字生成工具 - 创建各种类型的文本",
+    "description": "文字生成工具集合，可生成包括密码、名称、句子等各种类型的文本。",
+    "keywords": "文字生成器,文本生成器,密码生成器,名称生成器,句子生成器"
+  },
+  "common": {
+    "copyButton": "复制",
+    "copied": "已复制！",
+    "generateButton": "生成",
+    "downloadButton": "下载",
+    "resetButton": "重置",
+    "settings": "设置",
+    "preview": "预览",
+    "result": "结果",
+    "length": "长度",
+    "options": "选项",
+    "customize": "自定义"
+  },
+  "title": "文字生成工具",
+  "description": "使用我们的生成工具集合创建各种类型的词语和文本",
+  "tools": {
+    "wordGenerator": {
+      "title": "词语生成器",
+      "description": "根据您的偏好生成随机词语"
+    },
+    "wordCardGenerator": {
+      "title": "单词卡生成器",
+      "description": "创建带有单词及其定义的闪卡"
+    },
+    "sentenceGenerator": {
+      "title": "句子生成器",
+      "description": "为各种目的生成随机句子"
+    },
+    "nameGenerator": {
+      "title": "名称生成器",
+      "description": "为角色或企业生成随机名称"
+    },
+    "passwordGenerator": {
+      "title": "密码生成器",
+      "description": "创建安全且随机的密码"
+    },
+    "storyGenerator": {
+      "title": "故事生成器",
+      "description": "生成随机故事情节和场景"
+    },
+    "japaneseKanjiGenerator": {
+      "title": "日语汉字生成器",
+      "description": "生成随机日语汉字"
+    }
+  }
+} 

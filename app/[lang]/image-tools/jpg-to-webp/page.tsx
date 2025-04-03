@@ -23,6 +23,9 @@ export default async function JpgToWebp({ params }: Props) {
     convertButton,
     downloadButton,
     downloadAllButton,
+    previewTitle,
+    previewFilesSelected,
+    resultTitle,
     processingText,
     noFileText,
     fileTypeError,
@@ -37,6 +40,9 @@ export default async function JpgToWebp({ params }: Props) {
     translate(lang, 'imageTools.jpgToWebp.form.convert'),
     translate(lang, 'imageTools.jpgToWebp.result.download'),
     translate(lang, 'imageTools.jpgToWebp.result.downloadAll'),
+    translate(lang, 'imageTools.jpgToWebp.preview.title'),
+    translate(lang, 'imageTools.jpgToWebp.preview.filesSelected'),
+    translate(lang, 'imageTools.jpgToWebp.result.title'),
     translate(lang, 'imageTools.jpgToWebp.status.processing'),
     translate(lang, 'imageTools.jpgToWebp.status.noFile'),
     translate(lang, 'imageTools.jpgToWebp.error.fileType'),
@@ -64,7 +70,12 @@ export default async function JpgToWebp({ params }: Props) {
       },
       convert: convertButton
     },
+    preview: {
+      title: previewTitle,
+      filesSelected: previewFilesSelected
+    },
     result: {
+      title: resultTitle,
       download: downloadButton,
       downloadAll: downloadAllButton
     },

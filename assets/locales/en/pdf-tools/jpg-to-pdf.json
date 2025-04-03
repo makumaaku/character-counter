@@ -30,5 +30,10 @@
   "error": {
     "fileType": "Please upload JPG or PNG files only",
     "fileSize": "Total file size exceeds 20MB limit"
+  },
+  "preview": {
+    "title": "Preview",
+    "imageSelected": "{count} Image Selected",
+    "imagesSelected": "{count} Images Selected"
   }
 }

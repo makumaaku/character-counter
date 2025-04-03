@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "SEO关键词蚕食检查器 | Boring Tools",
+    "description": "检查特定关键词是否在您网站的多个页面上竞争。轻松识别SEO关键词蚕食问题。",
+    "keywords": "SEO,关键词蚕食,关键词竞争,SEO工具,搜索引擎优化"
+  },
+  "title": "SEO关键词蚕食检查器",
+  "description": "输入域名和关键词，检查网站内的关键词蚕食（竞争）情况。",
+  "domain": {
+    "label": "域名",
+    "placeholder": "例如：example.com",
+    "help": "协议（http://或https://）是可选的"
+  },
+  "keyword": {
+    "label": "关键词",
+    "placeholder": "输入要检查的关键词",
+    "help": "您可以搜索多个词"
+  },
+  "button": {
+    "check": "立即检查",
+    "processing": "处理中..."
+  },
+  "result": {
+    "title": "搜索结果",
+    "description": "点击下面的链接查看Google搜索结果。如果显示多个页面，可能正在发生关键词蚕食。",
+    "openButton": "打开Google搜索结果"
+  },
+  "error": {
+    "emptyDomain": "请输入域名",
+    "invalidDomain": "请输入有效的域名",
+    "emptyKeyword": "请输入关键词",
+    "generic": "发生错误。请重试。"
+  }
+} 

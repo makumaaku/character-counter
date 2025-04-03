@@ -1,4 +1,4 @@
-import { Language } from './types';
+import { Language, locales } from './types';
 
 export type MessageValue = string | string[] | { [key: string]: MessageValue };
 export type Messages = Record<string, MessageValue>;
@@ -134,16 +134,6 @@ export async function loadToolMessages(lang: Language, toolName: string): Promis
   }
 }
 
-export function getLanguageFromPath(pathname: string): Language {
-  // パスから言語を抽出
-  const match = pathname.match(/^\/([a-z]{2})/);
-  if (match && ['en', 'ja', 'es', 'ru'].includes(match[1])) {
-    return match[1] as Language;
-  }
-  return 'en'; // デフォルト言語
-}
-
-
 export function getMessages(locale: Language = 'en'): Messages {
   return messages.get(locale) || messages.get('en')!;
 }
@@ -195,7 +185,7 @@ export async function getLanguageFromParams(params: { lang: string } | Promise<{
   const langParam = resolvedParams.lang;
   
   // 有効な言語かチェック
-  if (['en', 'ja', 'es', /*'ru'*/].includes(langParam)) {
+  if (locales.includes(langParam)) {
     return langParam as Language;
   }
   

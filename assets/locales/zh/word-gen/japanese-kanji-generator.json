@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "日语汉字生成器 - 创建随机汉字图像",
+    "description": "一个自动生成日语汉字的工具。随机创建一个字符并将其下载为512 x 512像素的jpg或png图像。",
+    "keywords": "汉字生成器,汉字创建,汉字图像,日语,随机汉字"
+  },
+  "title": "日语汉字生成器",
+  "description": "一个自动生成日语汉字的工具。随机创建一个字符并将其下载为512 x 512像素的jpg或png图像。",
+  "generate": {
+    "button": "生成汉字",
+    "loading": "生成中..."
+  },
+  "download": {
+    "button": "下载图像",
+    "jpg": "下载为JPG",
+    "png": "下载为PNG"
+  },
+  "copy": {
+    "button": "复制汉字",
+    "success": "✓ 已复制"
+  },
+  "display": {
+    "noImage": "尚未生成图像"
+  },
+  "error": {
+    "generation": "生成汉字时发生错误。请重试。",
+    "download": "下载时发生错误。请重试。"
+  },
+  "font": {
+    "loading": "加载中..."
+  }
+} 

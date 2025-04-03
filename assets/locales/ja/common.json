@@ -18,5 +18,7 @@
     "general": "エラーが発生しました",
     "notFound": "ページが見つかりません",
     "serverError": "サーバーエラー"
-  }
-} 
+  },
+  "siteName": "Boring Tools",
+  "publisher": "Boring Inc."
+}

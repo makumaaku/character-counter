@@ -17,7 +17,12 @@
     },
     "convert": "Конвертировать в WebP"
   },
+  "preview": {
+    "title": "Предпросмотр",
+    "filesSelected": "Выбрано файлов: {count}"
+  },
   "result": {
+    "title": "Результаты конвертации",
     "download": "Скачать WebP",
     "downloadAll": "Скачать все WebP"
   },
