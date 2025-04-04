@@ -1,0 +1,63 @@
+variable_replacements:
+  - "@xxx = ツールカテゴリ名（例：pdf-tools）"
+  - "@yyy = ツール名（例：jpg-to-pdf）"
+  - "@zzz = 機能の概要（例：JPG画像をPDFに変換する）"
+
+description: "@xxx/@yyyディレクトリに@zzzするツールを作成します"  
+
+prerequisites:
+  - "global.mdcに従って作業を進める"
+  - "作業中のコマンドは自動で実行する"
+  - "実装完了後に動作確認とその結果を報告としてまとめて提示する"
+
+feature_requirements:
+  - "@zzz機能を実装" 
+
+project_structure:
+  - "app/[lang]/@xxx/@yyy/ ディレクトリを作成"
+  - "layout.tsx, page.tsx, components/ディレクトリを作成"
+  - "components/@YyyClient.tsx をクライアントコンポーネントとして実装"
+
+integration_requirements:
+  - "サイトのトップページからのリンクを追加"
+  - "@xxxジャンルのトップページに@yyyカードセクションを追加（存在しない場合は新規作成）"
+  - "ジャンルのサイドバー（layout.tsx）にメニュー項目を追加"
+
+ui_ux_requirements:
+  - "boring-tools.comの他のツールのUIを参考に、一貫性のあるデザインで実装"
+  - "レスポンシブ対応（モバイル、タブレット、デスクトップ）。特にSP版を考慮したデザインを実装"
+  - "処理中のローディング表示を実装"
+  - "エラー状態の視覚的なフィードバックを提供"
+  - "アクセシビリティに配慮したUI実装（aria属性、キーボード操作など）"
+
+i18n_requirements:
+  - ".cursor/rules/i18n-rules.mdcに忠実に従い実装"
+  - "assets/localesディレクトリに存在するフォルダの言語を多言語対応サポートする"
+  - "assets/locales/{lang}/@xxx/@yyy.jsonファイルを作成"
+  - "必要な翻訳キー構造はその他jsonファイルを注意深く参考にしながら実装する"
+  - "サーバーコンポーネント(page.tsx)で翻訳を取得し、クライアントコンポーネントにprops,messagesで渡す"
+  - "翻訳のロード:"
+    - "page.tsxとlayout.tsxの両方で以下の言語ロード処理を実装する:"
+    - "await loadToolMessages(lang as Language, '@xxx/@yyy');"
+    - "ロードパスはカテゴリとツール名を「/」で連結したパス形式を使用"
+    - "例: pdf-toolsカテゴリのjpg-to-pdfツールなら 'pdf-tools/jpg-to-pdf'"
+    - "言語ロードは必ずメタデータ取得や翻訳取得の前に実行する"
+  - "独自の型定義:"
+    - "src/lib/i18n/types.tsのLanguage型で対応言語を確認"
+    - "生成された型定義は@xxxカテゴリ名と@yyyツール名からsrc/lib/i18n/type-generator.tsに自動生成される。こちらを必ず使用する。"
+    - "例: PdfToolsJpgToPdfMessages型を使用"
+
+seo_requirements:
+  - ".cursor/rules/seo-rules.mdcのルールに忠実に従って実装"
+
+performance_requirements:
+  - "適切なlazy loadingの実装"
+  - "必要最小限のコンポーネント再レンダリング"
+
+testing_checklist:
+  - "モバイル表示の動作確認"
+  - "エラー処理の動作確認"
+
+reference_examples:
+  - "app/[lang]/pdf-tools/jpg-to-pdf/ のディレクトリ構造とコード"
+  - "assets/locales/en/pdf-tools/jpg-to-pdf.json の翻訳ファイル構造"
