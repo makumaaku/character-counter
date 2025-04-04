@@ -2,7 +2,6 @@ import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { Language, PrivacyPolicyMessages } from '@/lib/i18n/types';
 import PrivacyPolicyClient from './components/PrivacyPolicyClient';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 type Props = {
   params: { lang: string }
@@ -49,7 +48,6 @@ export default async function PrivacyPolicyPage({ params }: Props) {
           contactText={contactText as string}
         />
       </main>
-      <Footer />
     </>
   );
 } 

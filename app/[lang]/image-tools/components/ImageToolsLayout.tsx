@@ -2,7 +2,6 @@
 
 import { ReactNode, useState } from 'react'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { ImageToolsCommonMessages } from '@/lib/i18n/types'
@@ -86,8 +85,6 @@ export default function ImageToolsLayout({ children, messages, lang }: Props) {
           {children}
         </main>
       </div>
-      
-      <Footer />
     </div>
   )
 } 

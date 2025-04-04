@@ -2,7 +2,6 @@ import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { Language, AboutMessages } from '@/lib/i18n/types';
 import AboutClient from './components/AboutClient';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 type Props = {
   params: { lang: string }
@@ -42,7 +41,6 @@ export default async function AboutPage({ params }: Props) {
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         <AboutClient messages={messages} lang={lang} copyright={copyright as string} />
       </main>
-      <Footer />
     </>
   );
 } 

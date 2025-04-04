@@ -3,7 +3,6 @@
 import { ReactNode } from 'react'
 import { useParams } from 'next/navigation'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 
 type Props = {
   children: ReactNode
@@ -25,9 +24,7 @@ export default function PasswordStrengthLayout({ children, title }: Props) {
         <main className="flex-1 px-4 lg:px-8 py-6">
           {children}
         </main>
-      </div>
-      
-      <Footer />
+      </div> 
     </div>
   )
 } 

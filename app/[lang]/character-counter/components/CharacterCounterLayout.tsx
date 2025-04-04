@@ -5,7 +5,6 @@ import { useParams, usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
-import Footer from '@/components/Footer';
 
 // レイアウト用メッセージインターフェース
 interface CharacterCounterLayoutMessages {
@@ -67,7 +66,6 @@ export default function CharacterCounterLayout({ children, messages }: Props) {
           {children}
         </main>
       </div>
-      <Footer />
     </div>
   );
 } 

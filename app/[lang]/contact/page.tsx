@@ -2,7 +2,6 @@ import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { Language, ContactMessages } from '@/lib/i18n/types';
 import ContactClient from './components/ContactClient';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 type Props = {
   params: Promise<{ lang: string }>
@@ -46,7 +45,6 @@ export default async function ContactPage({ params }: Props) {
           submittingText={submittingText as string}
         />
       </main>
-      <Footer />
     </>
   );
 } 

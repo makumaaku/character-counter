@@ -2,8 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
+
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative h-auto w-full pb-20">
       <Image
         src="/hp_bg.jpg"
         alt="Background"
@@ -21,7 +22,7 @@ export default function Home() {
           priority
         />
       </div>
-      <div className="flex flex-col items-center justify-center min-h-screen z-10 pb-10">
+      <div className="flex flex-col items-center justify-center min-h-content z-10 pb-10">
         <div className="mt-10">
           <h1 className="text-white text-2xl font-bold text-center">Boring Tools</h1>
           <ul className="mt-4">

@@ -1,4 +1,3 @@
-import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { SITE_CONFIG } from '@/constants/constants';
 import { translate, loadToolMessages } from '@/lib/i18n/server';
@@ -99,7 +98,6 @@ export default async function CountryDataLayout({ children, params }: Props) {
       <main className="flex-1 bg-gray-800">
         {children}
       </main>
-      <Footer />
     </div>
   );
 } 
