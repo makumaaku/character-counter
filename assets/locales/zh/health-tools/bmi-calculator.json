@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "BMI计算器 - 检查您的身体质量指数",
+    "description": "使用我们的易用计算器计算您的身体质量指数（BMI）。根据您的身高判断您的体重是否处于健康范围内。",
+    "keywords": "BMI计算器,身体质量指数,体重计算器,健康检查,体重,健身计算器,健康工具"
+  },
+  "title": "BMI计算器",
+  "description": "根据您的身高和体重计算身体质量指数，检查您是否处于健康体重范围内",
+  "form": {
+    "height": {
+      "label": "身高",
+      "cm": "厘米",
+      "feet": "英尺",
+      "inches": "英寸",
+      "placeholder": "输入您的身高"
+    },
+    "weight": {
+      "label": "体重",
+      "kg": "公斤",
+      "lbs": "磅",
+      "placeholder": "输入您的体重"
+    },
+    "calculate": "计算BMI",
+    "reset": "重置",
+    "units": {
+      "label": "单位",
+      "metric": "公制 (厘米/公斤)",
+      "imperial": "英制 (英尺/磅)"
+    }
+  },
+  "result": {
+    "title": "您的BMI结果",
+    "bmi": "您的BMI是",
+    "empty": "输入您的身高和体重计算BMI",
+    "categories": {
+      "underweight": "体重过轻",
+      "underweightDesc": "BMI低于18.5",
+      "normal": "正常体重",
+      "normalDesc": "BMI在18.5至24.9之间",
+      "overweight": "超重",
+      "overweightDesc": "BMI在25至29.9之间",
+      "obese": "肥胖",
+      "obeseDesc": "BMI为30或更高"
+    }
+  },
+  "about": {
+    "whatIsBmi": {
+      "title": "什么是BMI？",
+      "description": "身体质量指数（BMI）是从一个人的质量（体重）和身高中计算出的值。BMI定义为体重除以身高的平方，单位为kg/m²。"
+    },
+    "howToCalculate": {
+      "title": "如何计算BMI？",
+      "description": "BMI使用公式计算：BMI = 体重(kg) / (身高(m))²。对于使用英制单位的人，公式是：BMI = (体重(磅) * 703) / (身高(英寸))²。"
+    },
+    "limitations": {
+      "title": "BMI的局限性",
+      "description": "虽然BMI是一个识别成人潜在体重问题的有用工具，但它有局限性。它不考虑肌肉质量、骨密度或体脂分布等因素。运动员可能因肌肉质量而非体脂而有较高的BMI。"
+    },
+    "healthyRange": {
+      "title": "健康的BMI范围",
+      "description": "对于大多数成人，BMI在18.5到24.9之间被认为是健康的。BMI低于18.5表示体重过轻，25-29.9表示超重，30或以上表示肥胖。"
+    },
+    "whatToDo": {
+      "title": "如何处理您的BMI结果",
+      "description": "如果您的BMI超出健康范围，请考虑咨询医疗专业人士以获得个性化建议。请记住，BMI只是健康的一个指标，应与其他因素一起考虑。"
+    }
+  }
+} 

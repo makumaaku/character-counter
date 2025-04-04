@@ -35,6 +35,27 @@ export default function Home() {
               <Link href="/password-strength" className="text-white hover:underline">Password Strength Checker</Link>
             </li>
             <li>
+              <Link href="/health-tools" className="text-white hover:underline font-bold">Health Tools</Link>
+            </li>
+            <li>
+              <Link href="/health-tools/bmi-calculator" className="text-white hover:underline ml-4">BMI Calculator</Link>
+            </li>
+            <li>
+              <Link href="/health-tools/calorie-counter" className="text-white hover:underline ml-4">Calorie Counter</Link>
+            </li>
+            <li>
+              <Link href="/health-tools/heart-rate-zones" className="text-white hover:underline ml-4">Heart Rate Zones</Link>
+            </li>
+            <li>
+              <Link href="/health-tools/water-intake-calculator" className="text-white hover:underline ml-4">Water Intake Calculator</Link>
+            </li>
+            <li>
+              <Link href="/health-tools/sleep-calculator" className="text-white hover:underline ml-4">Sleep Calculator</Link>
+            </li>
+            <li>
+              <Link href="/health-tools/stress-level-test" className="text-white hover:underline ml-4">Stress Level Test</Link>
+            </li>
+            <li>
               <Link href="/word-gen" className="text-white hover:underline font-bold">Word Generation Tools</Link>
             </li>
             <li>
