@@ -1,0 +1,69 @@
+variable_replacements:
+  - "@xxx = ツールカテゴリ名（例：ai-tools）"
+  - "@yyy = カテゴリの概要（例：AI関連の便利ツール集）"
+
+description: "@xxx用のディレクトリを作成し、カテゴリのトップページと共通コンポーネントを実装します"  
+
+prerequisites:
+  - "global.mdcに従って作業を進める"
+  - "作業中のコマンドは自動で実行する"
+  - "実装完了後に動作確認とその結果を報告としてまとめて提示する"
+
+feature_requirements:
+  - "@xxxカテゴリのトップページを実装" 
+  - "カテゴリ内の複数ツールを表示するカードセクションを実装" 
+  - "サイドバーナビゲーションを実装"
+
+project_structure:
+  - "app/[lang]/@xxx/ ディレクトリを作成"
+  - "layout.tsx, page.tsx, components/ディレクトリを作成"
+  - "components/@XxxLayout.tsx をクライアントコンポーネントとして実装"
+
+integration_requirements:
+  - "サイトのトップページにカテゴリのリンクを追加"
+  - "既存のカテゴリリストの適切な位置に新カテゴリを追加"
+
+ui_ux_requirements:
+  - "boring-tools.comの他のカテゴリページのUIを参考に、一貫性のあるデザインで実装"
+  - "レスポンシブ対応（モバイル、タブレット、デスクトップ）で実装"
+  - "カテゴリ内のツールをカードグリッド形式で表示"
+  - "サイドバーメニューに各ツールへのリンクを追加"
+  - "アクセシビリティに配慮したUI実装（aria属性、キーボード操作など）"
+
+i18n_requirements:
+  - ".cursor/rules/i18n-rules.mdcに忠実に従い実装"
+  - "assets/localesディレクトリに存在するフォルダの言語を多言語対応サポートする"
+  - "assets/locales/{lang}/@xxx/common.jsonファイルを作成"
+  - "必要な翻訳キー構造はその他のカテゴリcommon.jsonファイルを参考にしながら実装する"
+  - "翻訳のロード:"
+    - "page.tsxとlayout.tsxの両方で以下の言語ロード処理を実装する:"
+    - "await loadToolMessages(lang as Language, '@xxx');"
+    - "ロードパスはカテゴリ名のみを指定"
+    - "例: ai-toolsカテゴリなら 'ai-tools'"
+    - "言語ロードは必ずメタデータ取得や翻訳取得の前に実行する"
+  - "カテゴリレベルの翻訳構造:"
+    - "meta: タイトル、説明、キーワード"
+    - "title: カテゴリ名"
+    - "description: カテゴリ説明"
+    - "tools: カテゴリ内の各ツールの情報（title, description）"
+
+seo_requirements:
+  - ".cursor/rules/seo-rules.mdcのルールに忠実に従って実装"
+  - "カテゴリページ用のJSON-LDを設定（WebApplication型）"
+  - "hasPart属性にカテゴリ内の各ツールを子アプリケーションとして定義"
+
+performance_requirements:
+  - "翻訳の並列取得（Promise.all使用）"
+  - "適切なlazy loadingの実装"
+
+testing_checklist:
+  - "トップページからのリンク動作確認"
+  - "サイドバーナビゲーションの動作確認"
+  - "各言語への切り替え時の翻訳表示確認"
+  - "モバイル表示の動作確認"
+
+reference_examples:
+  - "app/[lang]/pdf-tools/ のディレクトリ構造とコード"
+  - "app/[lang]/image-tools/ のディレクトリ構造とコード"
+  - "app/[lang]/word-gen/ のディレクトリ構造とコード"
+  - "assets/locales/en/pdf-tools/common.json の翻訳ファイル構造"
