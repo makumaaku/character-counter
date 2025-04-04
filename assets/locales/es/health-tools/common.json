@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Herramientas de Salud - Utilidades Útiles para la Salud y el Bienestar",
+    "description": "Colección de herramientas útiles para la salud y el bienestar que te ayudarán a monitorear y mejorar tu bienestar.",
+    "keywords": "herramientas de salud,calculadora de salud,herramientas de bienestar,calculadora de IMC,contador de calorías,rastreador de salud"
+  },
+  "common": {
+    "copyButton": "Copiar",
+    "copied": "¡Copiado!",
+    "generateButton": "Generar",
+    "downloadButton": "Descargar",
+    "resetButton": "Reiniciar",
+    "settings": "Configuración",
+    "preview": "Vista previa",
+    "result": "Resultado",
+    "options": "Opciones",
+    "customize": "Personalizar"
+  },
+  "title": "Herramientas de Salud",
+  "description": "Herramientas útiles para la salud y el bienestar que te ayudarán a monitorear y mejorar tu bienestar",
+  "tools": {
+    "bmiCalculator": {
+      "title": "Calculadora de IMC",
+      "description": "Calcula tu Índice de Masa Corporal basado en altura y peso"
+    },
+    "calorieCounter": {
+      "title": "Contador de Calorías",
+      "description": "Monitorea tu ingesta calórica diaria con nuestra calculadora simple"
+    },
+    "heartRateZones": {
+      "title": "Zonas de Frecuencia Cardíaca",
+      "description": "Calcula tus zonas de frecuencia cardíaca objetivo para entrenamientos efectivos"
+    },
+    "waterIntakeCalculator": {
+      "title": "Calculadora de Ingesta de Agua",
+      "description": "Determina cuánta agua debes beber diariamente según tu tipo de cuerpo"
+    },
+    "sleepCalculator": {
+      "title": "Calculadora de Sueño",
+      "description": "Encuentra la hora óptima para acostarte según cuándo necesitas despertar"
+    },
+    "stressLevelTest": {
+      "title": "Prueba de Nivel de Estrés",
+      "description": "Evaluación rápida para determinar tus niveles actuales de estrés"
+    }
+  }
+} 

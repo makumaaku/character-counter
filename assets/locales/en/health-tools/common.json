@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Health Tools - Useful Health and Wellness Utilities",
+    "description": "Collection of useful health and wellness tools to help you monitor and improve your wellbeing.",
+    "keywords": "health tools,health calculator,wellness tools,bmi calculator,calorie counter,health tracker"
+  },
+  "common": {
+    "copyButton": "Copy",
+    "copied": "Copied!",
+    "generateButton": "Generate",
+    "downloadButton": "Download",
+    "resetButton": "Reset",
+    "settings": "Settings",
+    "preview": "Preview",
+    "result": "Result",
+    "options": "Options",
+    "customize": "Customize"
+  },
+  "title": "Health Tools",
+  "description": "Useful health and wellness tools to help you monitor and improve your wellbeing",
+  "tools": {
+    "bmiCalculator": {
+      "title": "BMI Calculator",
+      "description": "Calculate your Body Mass Index based on height and weight"
+    },
+    "calorieCounter": {
+      "title": "Calorie Counter",
+      "description": "Track your daily caloric intake with our simple calculator"
+    },
+    "heartRateZones": {
+      "title": "Heart Rate Zones",
+      "description": "Calculate your target heart rate zones for effective workouts"
+    },
+    "waterIntakeCalculator": {
+      "title": "Water Intake Calculator",
+      "description": "Determine how much water you should drink daily based on your body type"
+    },
+    "sleepCalculator": {
+      "title": "Sleep Calculator",
+      "description": "Find the optimal bedtime based on when you need to wake up"
+    },
+    "stressLevelTest": {
+      "title": "Stress Level Test",
+      "description": "Quick assessment to determine your current stress levels"
+    }
+  }
+} 

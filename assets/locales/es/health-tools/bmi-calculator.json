@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "Calculadora de IMC - Comprueba tu Índice de Masa Corporal",
+    "description": "Calcula tu Índice de Masa Corporal (IMC) con nuestra calculadora fácil de usar. Descubre si tu peso está en el rango saludable según tu altura.",
+    "keywords": "calculadora de IMC,índice de masa corporal,calculadora de peso,chequeo de salud,peso corporal,calculadora de fitness,herramienta de salud"
+  },
+  "title": "Calculadora de IMC",
+  "description": "Calcula tu Índice de Masa Corporal basado en tu altura y peso para comprobar si estás en un rango de peso saludable",
+  "form": {
+    "height": {
+      "label": "Altura",
+      "cm": "cm",
+      "feet": "pies",
+      "inches": "pulgadas",
+      "placeholder": "Introduce tu altura"
+    },
+    "weight": {
+      "label": "Peso",
+      "kg": "kg",
+      "lbs": "libras",
+      "placeholder": "Introduce tu peso"
+    },
+    "calculate": "Calcular IMC",
+    "reset": "Reiniciar",
+    "units": {
+      "label": "Unidades",
+      "metric": "Métrico (cm/kg)",
+      "imperial": "Imperial (pies/libras)"
+    }
+  },
+  "result": {
+    "title": "Tu Resultado de IMC",
+    "bmi": "Tu IMC es",
+    "empty": "Introduce tu altura y peso para calcular tu IMC",
+    "categories": {
+      "underweight": "Bajo peso",
+      "underweightDesc": "IMC menor de 18.5",
+      "normal": "Peso normal",
+      "normalDesc": "IMC entre 18.5 y 24.9",
+      "overweight": "Sobrepeso",
+      "overweightDesc": "IMC entre 25 y 29.9",
+      "obese": "Obesidad",
+      "obeseDesc": "IMC de 30 o mayor"
+    }
+  },
+  "about": {
+    "whatIsBmi": {
+      "title": "¿Qué es el IMC?",
+      "description": "El Índice de Masa Corporal (IMC) es un valor derivado de la masa (peso) y altura de una persona. El IMC se define como la masa corporal dividida por el cuadrado de la altura corporal, y se expresa en unidades de kg/m²."
+    },
+    "howToCalculate": {
+      "title": "¿Cómo se calcula el IMC?",
+      "description": "El IMC se calcula usando la fórmula: IMC = peso(kg) / (altura(m))². Para aquellos que usan unidades imperiales, la fórmula es: IMC = (peso(libras) * 703) / (altura(pulgadas))²."
+    },
+    "limitations": {
+      "title": "Limitaciones del IMC",
+      "description": "Aunque el IMC es una herramienta útil para identificar posibles problemas de peso en adultos, tiene limitaciones. No tiene en cuenta factores como la masa muscular, densidad ósea o distribución de grasa corporal. Los atletas pueden tener un IMC alto debido a la masa muscular en lugar de la grasa corporal."
+    },
+    "healthyRange": {
+      "title": "Rango de IMC Saludable",
+      "description": "Un IMC de 18.5 a 24.9 se considera saludable para la mayoría de los adultos. Un IMC por debajo de 18.5 indica bajo peso, 25-29.9 indica sobrepeso, y 30 o más indica obesidad."
+    },
+    "whatToDo": {
+      "title": "Qué hacer con tu resultado de IMC",
+      "description": "Si tu IMC cae fuera del rango saludable, considera consultar a un profesional de la salud para obtener consejos personalizados. Recuerda que el IMC es solo un indicador de salud y debe considerarse junto con otros factores."
+    }
+  }
+} 

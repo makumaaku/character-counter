@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-03T18:18:40.199Z
+// Generated at: 2025-04-04T18:35:39.608Z
 
 export interface CommonMessages {
   meta: {
@@ -930,6 +930,123 @@ export interface CharacterCounterUsecaseMessages {
       headline: string;
       description: string;
       body: string;
+    };
+  };
+}
+
+export interface HealthToolsCommonMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  common: {
+    copyButton: string;
+    copied: string;
+    generateButton: string;
+    downloadButton: string;
+    resetButton: string;
+    settings: string;
+    preview: string;
+    result: string;
+    options: string;
+    customize: string;
+  };
+  title: string;
+  description: string;
+  tools: {
+    bmiCalculator: {
+      title: string;
+      description: string;
+    };
+    calorieCounter: {
+      title: string;
+      description: string;
+    };
+    heartRateZones: {
+      title: string;
+      description: string;
+    };
+    waterIntakeCalculator: {
+      title: string;
+      description: string;
+    };
+    sleepCalculator: {
+      title: string;
+      description: string;
+    };
+    stressLevelTest: {
+      title: string;
+      description: string;
+    };
+  };
+}
+
+export interface HealthToolsBmiCalculatorMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  description: string;
+  form: {
+    height: {
+      label: string;
+      cm: string;
+      feet: string;
+      inches: string;
+      placeholder: string;
+    };
+    weight: {
+      label: string;
+      kg: string;
+      lbs: string;
+      placeholder: string;
+    };
+    calculate: string;
+    reset: string;
+    units: {
+      label: string;
+      metric: string;
+      imperial: string;
+    };
+  };
+  result: {
+    title: string;
+    bmi: string;
+    empty: string;
+    categories: {
+      underweight: string;
+      underweightDesc: string;
+      normal: string;
+      normalDesc: string;
+      overweight: string;
+      overweightDesc: string;
+      obese: string;
+      obeseDesc: string;
+    };
+  };
+  about: {
+    whatIsBmi: {
+      title: string;
+      description: string;
+    };
+    howToCalculate: {
+      title: string;
+      description: string;
+    };
+    limitations: {
+      title: string;
+      description: string;
+    };
+    healthyRange: {
+      title: string;
+      description: string;
+    };
+    whatToDo: {
+      title: string;
+      description: string;
     };
   };
 }
@@ -2754,6 +2871,10 @@ export interface AllMessages {
     plan?: CharacterCounterPlanMessages;
     privacy?: CharacterCounterPrivacyMessages;
     usecase?: CharacterCounterUsecaseMessages;
+  };
+  healthTools?: {
+    common?: HealthToolsCommonMessages;
+    bmiCalculator?: HealthToolsBmiCalculatorMessages;
   };
   imageTools?: {
     common?: ImageToolsCommonMessages;

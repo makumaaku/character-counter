@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "ヘルスツール - 便利な健康管理ユーティリティ",
+    "description": "健康状態を監視・改善するのに役立つ便利な健康管理ツールコレクション。",
+    "keywords": "健康ツール,健康計算機,ウェルネスツール,BMI計算機,カロリーカウンター,健康トラッカー"
+  },
+  "common": {
+    "copyButton": "コピー",
+    "copied": "コピーしました！",
+    "generateButton": "生成",
+    "downloadButton": "ダウンロード",
+    "resetButton": "リセット",
+    "settings": "設定",
+    "preview": "プレビュー",
+    "result": "結果",
+    "options": "オプション",
+    "customize": "カスタマイズ"
+  },
+  "title": "ヘルスツール",
+  "description": "健康状態を監視・改善するのに役立つ便利な健康管理ツール",
+  "tools": {
+    "bmiCalculator": {
+      "title": "BMI計算機",
+      "description": "身長と体重に基づいてボディマス指数を計算"
+    },
+    "calorieCounter": {
+      "title": "カロリーカウンター",
+      "description": "シンプルな計算機で毎日のカロリー摂取量を追跡"
+    },
+    "heartRateZones": {
+      "title": "心拍ゾーン計算機",
+      "description": "効果的なワークアウトのための目標心拍ゾーンを計算"
+    },
+    "waterIntakeCalculator": {
+      "title": "水分摂取量計算機",
+      "description": "体型に基づいて1日に必要な水分摂取量を判定"
+    },
+    "sleepCalculator": {
+      "title": "睡眠計算機",
+      "description": "起床時間に基づいて最適な就寝時間を見つける"
+    },
+    "stressLevelTest": {
+      "title": "ストレスレベルテスト",
+      "description": "現在のストレスレベルを素早く評価"
+    }
+  }
+} 
