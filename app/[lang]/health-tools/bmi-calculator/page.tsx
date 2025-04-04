@@ -1,6 +1,6 @@
 import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
-import BmiCalculatorClient from './components/BmiCalculatorClient'
 import { Language, HealthToolsBmiCalculatorMessages } from '@/lib/i18n/types'
+import BmiCalculatorClient from './components/BmiCalculatorClient';
 
 type Props = {
   params: Promise<{ lang: string }>
