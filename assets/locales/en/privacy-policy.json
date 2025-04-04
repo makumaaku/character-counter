@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Privacy Policy | Boring Tools",
+    "description": "Privacy policy for Boring Tools - learn how we handle and protect your data.",
+    "keywords": "privacy policy, data protection, personal information, boring tools, privacy"
+  },
+  "title": "Privacy Policy",
+  "content": {
+    "intro": "At Boring Tools, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.",
+    "collection": "Information We Collect",
+    "collectionText": "We may collect information about you in a variety of ways. The information we may collect via the Website includes:",
+    "collectionItems": [
+      "Personal Data: Personally identifiable information, such as your name and email address, that you voluntarily give to us when you register or when you choose to participate in various activities related to the Website.",
+      "Derivative Data: Information our servers automatically collect when you access the Website, such as your IP address, browser type, operating system, access times, and the pages you have viewed.",
+      "Cookies Data: Data collected through cookies and similar technologies to enhance your experience on our website."
+    ],
+    "usage": "How We Use Your Information",
+    "usageText": "We may use the information we collect about you for various purposes, including to:",
+    "usageItems": [
+      "Provide, operate, and maintain our website",
+      "Improve, personalize, and expand our website",
+      "Understand and analyze how you use our website",
+      "Develop new products, services, features, and functionality"
+    ],
+    "sharing": "Disclosure of Your Information",
+    "sharingText": "We may share information we have collected about you in certain situations. Your information may be disclosed as follows:",
+    "sharingItems": [
+      "By Law or to Protect Rights: If we believe the release of information about you is necessary to respond to legal process.",
+      "Third-Party Service Providers: We may share your information with third parties that perform services for us or on our behalf.",
+      "Marketing Communications: With your consent, or with an opportunity for you to withdraw consent, we may share your information with third parties for marketing purposes."
+    ],
+    "security": "Security of Your Information",
+    "securityText": "We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse."
+  },
+  "updated": "Last Updated: April 1, 2024"
+} 

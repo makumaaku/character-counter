@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "About Us | Boring Tools",
+    "description": "Learn about Boring Tools, our mission, and the team behind our simple yet powerful web tools.",
+    "keywords": "about us, boring tools, company, mission, team, web tools"
+  },
+  "title": "About Us",
+  "content": {
+    "intro": "Welcome to Boring Tools, where we make the boring parts of your online life simple and efficient.",
+    "mission": {
+      "title": "Our Mission",
+      "text": "At Boring Tools, we believe that everyday online tasks shouldn't be complicated. Our mission is to create straightforward, user-friendly tools that solve common problems without unnecessary complexity. We focus on simplicity, efficiency, and accessibility."
+    },
+    "story": {
+      "title": "Our Story",
+      "text": "Boring Tools was founded in 2022 by a group of developers who were tired of flashy but ineffective web tools. We wanted to create solutions that just work – without ads, without sign-ups, and without tracking. What started as a small collection of utilities has grown into a comprehensive suite of tools used by millions of people worldwide."
+    },
+    "values": {
+      "title": "Our Values",
+      "list": [
+        {
+          "heading": "Simplicity",
+          "text": "We eliminate complexity and focus on what matters."
+        },
+        {
+          "heading": "Privacy",
+          "text": "We respect your data and privacy. No unnecessary tracking or data collection."
+        },
+        {
+          "heading": "Accessibility",
+          "text": "Our tools are designed to be usable by everyone, regardless of technical skill or ability."
+        },
+        {
+          "heading": "Quality",
+          "text": "We're committed to creating reliable, high-quality tools that work consistently."
+        }
+      ]
+    },
+    "team": {
+      "title": "Our Team",
+      "text": "We're a diverse team of developers, designers, and problem-solvers based around the world. United by our passion for creating useful tools, we work together to make the web a more efficient place."
+    },
+    "contact": {
+      "text": "Have questions or want to learn more about us?",
+      "button": "Get in Touch"
+    }
+  }
+} 

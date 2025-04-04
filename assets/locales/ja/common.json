@@ -12,7 +12,9 @@
   "footer": {
     "copyright": "© 2024 Boring Tools. All rights reserved.",
     "terms": "利用規約",
-    "privacy": "プライバシーポリシー"
+    "privacy": "プライバシーポリシー",
+    "about": "会社概要",
+    "contact": "お問い合わせ"
   },
   "error": {
     "general": "エラーが発生しました",

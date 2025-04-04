@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Contact Us | Boring Tools",
+    "description": "Get in touch with the Boring Tools team. We're here to help with any questions or feedback.",
+    "keywords": "contact, support, help, boring tools, feedback, questions"
+  },
+  "title": "Contact Us",
+  "content": {
+    "intro": "We'd love to hear from you! If you have any questions, feedback, or just want to say hello, please use the form below or reach out to us directly.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your.email@example.com",
+      "subjectPlaceholder": "What is this regarding?",
+      "messagePlaceholder": "Type your message here...",
+      "success": "Your message has been sent successfully!",
+      "error": "There was an error sending your message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "email": "Email: support@boringtools.com",
+      "hours": "Support hours: Monday - Friday, 9am - 5pm (GMT)",
+      "response": "We aim to respond to all inquiries within 24-48 hours during business days."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "text": "Before contacting us, you might want to check our FAQ section for quick answers to common questions.",
+      "button": "View FAQs"
+    }
+  }
+} 

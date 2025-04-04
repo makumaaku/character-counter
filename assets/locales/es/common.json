@@ -14,7 +14,9 @@
   "footer": {
     "copyright": "© 2024 Boring Tools. Todos los derechos reservados.",
     "terms": "Términos de servicio",
-    "privacy": "Política de privacidad"
+    "privacy": "Política de privacidad",
+    "about": "Sobre nosotros",
+    "contact": "Contacto"
   },
   "error": {
     "general": "Ocurrió un error",

@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-03T18:18:40.199Z
+// Generated at: 2025-04-03T19:08:25.879Z
 
 export interface CommonMessages {
   meta: {
@@ -18,6 +18,8 @@ export interface CommonMessages {
     copyright: string;
     terms: string;
     privacy: string;
+    about: string;
+    contact: string;
   };
   error: {
     general: string;
@@ -33,6 +35,77 @@ export interface MetaMessages {
   siteName: string;
   publisher: string;
   logoAlt: string;
+}
+
+export interface AboutMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  content: {
+    intro: string;
+    mission: {
+      title: string;
+      text: string;
+    };
+    story: {
+      title: string;
+      text: string;
+    };
+    values: {
+      title: string;
+      list: {
+        heading: string;
+        text: string;
+      }[];
+    };
+    team: {
+      title: string;
+      text: string;
+    };
+    contact: {
+      text: string;
+      button: string;
+    };
+  };
+}
+
+export interface ContactMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  content: {
+    intro: string;
+    form: {
+      name: string;
+      email: string;
+      subject: string;
+      message: string;
+      submit: string;
+      namePlaceholder: string;
+      emailPlaceholder: string;
+      subjectPlaceholder: string;
+      messagePlaceholder: string;
+      success: string;
+      error: string;
+    };
+    info: {
+      title: string;
+      email: string;
+      hours: string;
+      response: string;
+    };
+    faq: {
+      title: string;
+      text: string;
+      button: string;
+    };
+  };
 }
 
 export interface CountryDataMessages {
@@ -157,6 +230,30 @@ export interface PasswordStrengthMessages {
   };
   passwordVisible: string;
   passwordHidden: string;
+}
+
+export interface PrivacyPolicyMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  content: {
+    intro: string;
+    collection: string;
+    collectionText: string;
+    collectionItems: string[];
+    usage: string;
+    usageText: string;
+    usageItems: string[];
+    sharing: string;
+    sharingText: string;
+    sharingItems: string[];
+    security: string;
+    securityText: string;
+  };
+  updated: string;
 }
 
 export interface QrGenerationMessages {
@@ -2739,9 +2836,12 @@ export interface WordGenWordGeneratorMessages {
 
 export interface AllMessages {
   common?: CommonMessages;
+  about?: AboutMessages;
+  contact?: ContactMessages;
   countryData?: CountryDataMessages;
   numberQuiz?: NumberQuizMessages;
   passwordStrength?: PasswordStrengthMessages;
+  privacyPolicy?: PrivacyPolicyMessages;
   qrGeneration?: QrGenerationMessages;
   roulette?: RouletteMessages;
   characterCounter?: {
