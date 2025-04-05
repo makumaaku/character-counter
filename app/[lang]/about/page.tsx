@@ -32,7 +32,7 @@ export default async function AboutPage({ params }: Props) {
       keywords: ""
     },
     title,
-    content: JSON.parse(content as string)
+    content
   };
 
   return (

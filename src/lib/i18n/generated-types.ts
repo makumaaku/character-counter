@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-05T01:47:25.807Z
+// Generated at: 2025-04-05T02:11:50.414Z
 
 export interface CommonMessages {
   meta: {
@@ -44,32 +44,7 @@ export interface AboutMessages {
     keywords: string;
   };
   title: string;
-  content: {
-    intro: string;
-    mission: {
-      title: string;
-      text: string;
-    };
-    story: {
-      title: string;
-      text: string;
-    };
-    values: {
-      title: string;
-      list: {
-        heading: string;
-        text: string;
-      }[];
-    };
-    team: {
-      title: string;
-      text: string;
-    };
-    contact: {
-      text: string;
-      button: string;
-    };
-  };
+  content: string;
 }
 
 export interface ContactMessages {
@@ -538,74 +513,6 @@ export interface CharacterCounterCommonMessages {
   };
 }
 
-export interface CharacterCounterAboutUsMessages {
-  title: string;
-  ourStory: {
-    title: string;
-    content: string;
-  };
-  ourMission: {
-    title: string;
-    intro: string;
-    points: {
-      1: string;
-      2: string;
-      3: string;
-      4: string;
-    };
-  };
-  tool: {
-    title: string;
-    description: string;
-    features: {
-      1: string;
-      2: string;
-      3: string;
-      4: string;
-      5: string;
-    };
-  };
-  values: {
-    title: string;
-    simplicity: {
-      title: string;
-      content: string;
-    };
-    privacy: {
-      title: string;
-      content: string;
-    };
-    accessibility: {
-      title: string;
-      content: string;
-    };
-    innovation: {
-      title: string;
-      content: string;
-    };
-  };
-  contact: {
-    title: string;
-    description: string;
-    email: string;
-    twitter: string;
-    github: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-    publisher: {
-      description: string;
-    };
-    article: {
-      headline: string;
-      description: string;
-      body: string;
-    };
-  };
-}
-
 export interface CharacterCounterColumnMessages {
   title: string;
   description: string;
@@ -880,80 +787,6 @@ export interface CharacterCounterPlanMessages {
           description: string;
         };
       };
-    };
-  };
-}
-
-export interface CharacterCounterPrivacyMessages {
-  title: string;
-  introduction: string;
-  collection: {
-    title: string;
-    text: {
-      title: string;
-      description: string;
-    };
-    log: {
-      title: string;
-      intro: string;
-      items: {
-        1: string;
-        2: string;
-        3: string;
-      };
-      purpose: string;
-    };
-    cookies: {
-      title: string;
-      description: string;
-    };
-  };
-  usage: {
-    title: string;
-    intro: string;
-    purposes: {
-      1: string;
-      2: string;
-      3: string;
-    };
-    note: string;
-  };
-  sharing: {
-    title: string;
-    intro: string;
-    cases: {
-      1: string;
-      2: string;
-    };
-  };
-  retention: {
-    title: string;
-    description: string;
-  };
-  children: {
-    title: string;
-    description: string;
-  };
-  security: {
-    title: string;
-    description: string;
-  };
-  changes: {
-    title: string;
-    description: string;
-  };
-  contact: {
-    title: string;
-    description: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-    article: {
-      headline: string;
-      description: string;
-      body: string;
     };
   };
 }
@@ -2853,16 +2686,12 @@ export interface AllMessages {
   roulette?: RouletteMessages;
   characterCounter?: {
     common?: CharacterCounterCommonMessages;
-    aboutUs?: CharacterCounterAboutUsMessages;
     column?: CharacterCounterColumnMessages;
     contact?: CharacterCounterContactMessages;
     faq?: CharacterCounterFaqMessages;
     function?: CharacterCounterFunctionMessages;
     plan?: CharacterCounterPlanMessages;
-    privacy?: CharacterCounterPrivacyMessages;
     usecase?: CharacterCounterUsecaseMessages;
-  };
-  healthTools?: {
   };
   imageTools?: {
     common?: ImageToolsCommonMessages;

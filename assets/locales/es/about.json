@@ -1,48 +1,9 @@
 {
   "meta": {
     "title": "Sobre Nosotros | Boring Tools",
-    "description": "Conozca Boring Tools, nuestra misión y el equipo detrás de nuestras herramientas web simples pero potentes.",
-    "keywords": "sobre nosotros, boring tools, empresa, misión, equipo, herramientas web"
+    "description": "Conoce Boring, inc., nuestras herramientas que hacen una sola cosa—bien, y el equipo detrás de nuestras sencillas pero poderosas utilidades web.",
+    "keywords": "sobre nosotros, boring inc, empresa, misión, equipo, herramientas web, utilidades"
   },
   "title": "Sobre Nosotros",
-  "content": {
-    "intro": "Bienvenido a Boring Tools, donde hacemos las partes aburridas de tu vida en línea simples y eficientes.",
-    "mission": {
-      "title": "Nuestra Misión",
-      "text": "En Boring Tools, creemos que las tareas diarias en línea no deberían ser complicadas. Nuestra misión es crear herramientas sencillas y fáciles de usar que resuelvan problemas comunes sin complejidad innecesaria. Nos centramos en la simplicidad, la eficiencia y la accesibilidad."
-    },
-    "story": {
-      "title": "Nuestra Historia",
-      "text": "Boring Tools fue fundada en 2022 por un grupo de desarrolladores cansados de herramientas web llamativas pero ineficaces. Queríamos crear soluciones que simplemente funcionen - sin anuncios, sin registros y sin seguimiento. Lo que comenzó como una pequeña colección de utilidades se ha convertido en un conjunto completo de herramientas utilizadas por millones de personas en todo el mundo."
-    },
-    "values": {
-      "title": "Nuestros Valores",
-      "list": [
-        {
-          "heading": "Simplicidad",
-          "text": "Eliminamos la complejidad y nos enfocamos en lo que importa."
-        },
-        {
-          "heading": "Privacidad",
-          "text": "Respetamos tus datos y privacidad. Sin seguimiento ni recopilación de datos innecesarios."
-        },
-        {
-          "heading": "Accesibilidad",
-          "text": "Nuestras herramientas están diseñadas para ser utilizadas por todos, independientemente de sus habilidades o capacidades técnicas."
-        },
-        {
-          "heading": "Calidad",
-          "text": "Estamos comprometidos a crear herramientas confiables y de alta calidad que funcionen de manera consistente."
-        }
-      ]
-    },
-    "team": {
-      "title": "Nuestro Equipo",
-      "text": "Somos un equipo diverso de desarrolladores, diseñadores y solucionadores de problemas ubicados en todo el mundo. Unidos por nuestra pasión por crear herramientas útiles, trabajamos juntos para hacer de la web un lugar más eficiente."
-    },
-    "contact": {
-      "text": "¿Tienes preguntas o quieres saber más sobre nosotros?",
-      "button": "Contáctanos"
-    }
-  }
+  "content": "En Boring, inc., creamos herramientas que hacen una sola cosa—bien.\nNo creemos en palabras de moda, hype de capital de riesgo o reinventar la rueda. Creemos en herramientas pequeñas, útiles y enfocadas que resuelven problemas específicamente molestos, de manera silenciosa y eficiente. Sin flujos de incorporación. Sin chatbots preguntando cómo te va el día. Solo herramientas que funcionan.\nNuestra misión es crear una colección de utilidades en línea que se sientan como un soplo de aire fresco en un mundo lleno de aplicaciones infladas y expectativas exageradas. Ya sea contar caracteres, redimensionar imágenes o convertir formatos de archivo oscuros en formatos aún más oscuros—estamos aquí para eso.\n\n## ¿Por qué \"Boring\"?\n\nPorque no estamos tratando de interrumpir nada. No estamos aquí para gamificar la productividad, ni tokenizar PDFs, ni lanzar otro envoltorio de IA para algo que funcionaba bien hace 10 años. Estamos aquí para ser aburridos—a propósito. De hecho, eso es lo que nos hace emocionantes (irónicamente).\nLas herramientas aburridas son rápidas. Predecibles. Confiables. Las abres, las usas, te vas. Como un microondas. O un tenedor. O un muy buen editor de texto.\n\n## Quiénes Somos\n\nSomos un pequeño equipo de tres personas:\n- Shinnosuke, el productor relajado que puede hacer de todo excepto relajarse.\n- Senri, el mago SEO y planeswalker de MTG que sueña en backlinks.\n- Maaku, el monje silencioso del código, que escribe cinco líneas mientras otros parpadean una vez.\n\nEnviamos rápido, nos mantenemos ligeros y creemos que la utilidad siempre debe superar a la novedad.\n\n## Nuestras Herramientas\n\nActualmente mantenemos una colección creciente de conversores y editores simples:\n- Contadores de caracteres\n- Generadores de códigos QR\n- Conversores de formatos de archivo (PDF ⇄ todo)\n- Herramientas de imagen y texto\n- Y docenas más en camino.\n\nCada herramienta vive en su propio rincón tranquilo de la web—pequeña, limpia y útil.\nNo te rastreamos. No te vendemos de más. No te hacemos iniciar sesión para contar letras.\nSolo hacemos herramientas."
 } 

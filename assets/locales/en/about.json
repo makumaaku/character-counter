@@ -1,48 +1,9 @@
 {
   "meta": {
     "title": "About Us | Boring Tools",
-    "description": "Learn about Boring Tools, our mission, and the team behind our simple yet powerful web tools.",
-    "keywords": "about us, boring tools, company, mission, team, web tools"
+    "description": "Learn about Boring, inc., our tools that do one thing—well, and the team behind our simple yet powerful web utilities.",
+    "keywords": "about us, boring inc, company, mission, team, web tools, utility tools"
   },
   "title": "About Us",
-  "content": {
-    "intro": "Welcome to Boring Tools, where we make the boring parts of your online life simple and efficient.",
-    "mission": {
-      "title": "Our Mission",
-      "text": "At Boring Tools, we believe that everyday online tasks shouldn't be complicated. Our mission is to create straightforward, user-friendly tools that solve common problems without unnecessary complexity. We focus on simplicity, efficiency, and accessibility."
-    },
-    "story": {
-      "title": "Our Story",
-      "text": "Boring Tools was founded in 2022 by a group of developers who were tired of flashy but ineffective web tools. We wanted to create solutions that just work – without ads, without sign-ups, and without tracking. What started as a small collection of utilities has grown into a comprehensive suite of tools used by millions of people worldwide."
-    },
-    "values": {
-      "title": "Our Values",
-      "list": [
-        {
-          "heading": "Simplicity",
-          "text": "We eliminate complexity and focus on what matters."
-        },
-        {
-          "heading": "Privacy",
-          "text": "We respect your data and privacy. No unnecessary tracking or data collection."
-        },
-        {
-          "heading": "Accessibility",
-          "text": "Our tools are designed to be usable by everyone, regardless of technical skill or ability."
-        },
-        {
-          "heading": "Quality",
-          "text": "We're committed to creating reliable, high-quality tools that work consistently."
-        }
-      ]
-    },
-    "team": {
-      "title": "Our Team",
-      "text": "We're a diverse team of developers, designers, and problem-solvers based around the world. United by our passion for creating useful tools, we work together to make the web a more efficient place."
-    },
-    "contact": {
-      "text": "Have questions or want to learn more about us?",
-      "button": "Get in Touch"
-    }
-  }
+  "content": "At Boring, inc., we build tools that do one thing—well.\nWe don't believe in buzzwords, VC hype, or reinventing the wheel. We believe in small, useful, focused tools that solve annoyingly specific problems, quietly and efficiently. No onboarding flows. No chatbots asking how your day is going. Just tools that work.\nOur mission is to create a collection of online utilities that feel like a breath of fresh air in a world filled with bloated apps and bloated expectations. Whether it's counting characters, resizing images, or converting obscure file formats into even more obscure file formats—we're here for it.\n\n## Why \"Boring\"?\n\nBecause we're not trying to disrupt anything. We're not here to gamify productivity, or tokenize PDFs, or launch yet another AI wrapper for something that worked fine 10 years ago. We're here to be boring—on purpose. In fact, that's what makes us exciting (ironically).\nBoring tools are fast. Predictable. Trustworthy. You open them, you use them, you leave. Like a microwave. Or a fork. Or a really good text editor.\n\n## Who We Are\n\nWe're a tiny three-person team:\n- Shinnosuke, the laid-back producer who can do everything except relax.\n- Senri, the SEO wizard and MTG planeswalker who dreams in backlinks.\n- Maaku, the silent monk of code, who writes five lines while others blink once.\n\nWe ship fast, stay light, and believe that utility should always beat novelty.\n\n## Our Tools\n\nWe currently maintain a growing collection of simple converters and editors:\n- Character counters\n- QR code generators\n- File format converters (PDF ⇄ everything)\n- Image and text tools\n- And dozens more on the way.\n\nEach tool lives in its own quiet corner of the web—small, clean, and useful.\nWe don't track you. We don't upsell you. We don't make you log in to count letters.\nWe just make tools."
 } 
