@@ -3,7 +3,6 @@
 import { ReactNode, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 
@@ -50,8 +49,6 @@ export default function PdfToolsLayout({ children, navigationItems, title }: Pro
           {children}
         </main>
       </div>
-      
-      <Footer />
     </div>
   )
 } 

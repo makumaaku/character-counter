@@ -5,7 +5,6 @@ import { useParams, usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
-import Footer from '@/components/Footer';
 
 // レイアウト用メッセージインターフェース
 interface CharacterCounterLayoutMessages {
@@ -14,9 +13,6 @@ interface CharacterCounterLayoutMessages {
     function: string;
     usecase: string;
     faq: string;
-    aboutUs: string;
-    contact: string;
-    privacy: string;
     column: string;
   };
 }
@@ -39,9 +35,6 @@ export default function CharacterCounterLayout({ children, messages }: Props) {
     { name: messages?.sidebar.function || 'Function', path: `/character-counter/function` },
     { name: messages?.sidebar.usecase || 'Use Case', path: `/character-counter/usecase` },
     { name: messages?.sidebar.faq || 'FAQ', path: `/character-counter/faq` },
-    { name: messages?.sidebar.aboutUs || 'About Us', path: `/character-counter/about-us` },
-    { name: messages?.sidebar.contact || 'Contact', path: `/character-counter/contact` },
-    { name: messages?.sidebar.privacy || 'Privacy', path: `/character-counter/privacy` },
     { name: messages?.sidebar.column || 'Column', path: `/character-counter/column` },
   ];
 
@@ -67,7 +60,6 @@ export default function CharacterCounterLayout({ children, messages }: Props) {
           {children}
         </main>
       </div>
-      <Footer />
     </div>
   );
 } 

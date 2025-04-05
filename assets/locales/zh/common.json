@@ -12,13 +12,18 @@
   },
   "menu": "菜单",
   "footer": {
-    "copyright": "© 2024 无聊工具。保留所有权利。",
     "terms": "服务条款",
-    "privacy": "隐私政策"
+    "privacy": "隐私政策",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "copyright": "© 2025 无聊公司。保留所有权利。"
   },
   "error": {
     "general": "发生错误",
     "notFound": "找不到页面",
     "serverError": "服务器错误"
+  },
+  "form": {
+    "submitting": "提交中..."
   }
 } 

@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import Sidebar from '@/components/Sidebar';
-import Footer from '@/components/Footer';
 import { WordGenCommonMessages } from '@/lib/i18n/types';
 
 type Props = {
@@ -50,7 +49,6 @@ export default function WordGenLayout({ children, messages, lang, menuText = "Me
           {children}
         </main>
       </div>
-      <Footer />
     </div>
   );
 } 

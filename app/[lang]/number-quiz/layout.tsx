@@ -1,4 +1,3 @@
-import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { SITE_CONFIG } from '@/constants/constants';
 import { translate, loadToolMessages } from '@/lib/i18n/server';
@@ -107,7 +106,6 @@ export default async function Layout({
       <main className="flex-1 bg-gray-800">
         {children}
       </main>
-      <Footer />
     </div>
   );
 } 

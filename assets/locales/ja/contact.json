@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "お問い合わせ | Boring Tools",
+    "description": "Boring Toolsチームにお問い合わせください。ご質問やフィードバックにお応えします。",
+    "keywords": "お問い合わせ, サポート, ヘルプ, boring tools, フィードバック, 質問"
+  },
+  "title": "お問い合わせ",
+  "content": {
+    "intro": "お問い合わせをお待ちしております！質問、フィードバック、またはただ挨拶をしたい場合は、以下のフォームをご利用いただくか、直接お問い合わせください。",
+    "form": {
+      "name": "お名前",
+      "email": "メールアドレス",
+      "subject": "件名",
+      "message": "メッセージ",
+      "submit": "メッセージを送信",
+      "namePlaceholder": "あなたのお名前",
+      "emailPlaceholder": "your.email@example.com",
+      "subjectPlaceholder": "どのような内容ですか？",
+      "messagePlaceholder": "ここにメッセージを入力してください...",
+      "success": "メッセージが正常に送信されました！",
+      "error": "メッセージの送信中にエラーが発生しました。もう一度お試しください。",
+      "requiredFieldsError": "必須項目をすべて入力してください。"
+    },
+    "info": {
+      "title": "連絡先情報",
+      "email": "メール: support@boringtools.com",
+      "hours": "サポート時間: 月曜日〜金曜日、午前9時〜午後5時（GMT）",
+      "response": "営業日中に24〜48時間以内にすべてのお問い合わせに回答することを目指しています。"
+    },
+    "faq": {
+      "title": "よくある質問",
+      "text": "お問い合わせの前に、よくある質問セクションで一般的な質問への回答を確認することをお勧めします。",
+      "button": "FAQを見る"
+    }
+  }
+} 

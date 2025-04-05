@@ -3,7 +3,6 @@
 import { ReactNode, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 
@@ -97,8 +96,6 @@ export default function SeoToolsLayout({ children, messages, menuText = "Menu" }
           {children}
         </main>
       </div>
-      
-      <Footer />
     </div>
   )
 } 

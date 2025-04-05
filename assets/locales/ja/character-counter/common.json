@@ -18,14 +18,11 @@
     "copyText": "テキストをコピー",
     "copied": "コピーしました！",
     "sidebar": {
-      "function": "機能",
-      "usecase": "活用事例",
+      "function": "機能紹介",
+      "usecase": "使用例",
       "faq": "よくある質問",
-      "aboutUs": "私たちについて",
-      "contact": "お問い合わせ",
-      "privacy": "プライバシーポリシー",
       "plan": "料金プラン",
-      "column": "記事一覧"
+      "column": "コラム"
     },
     "content": {
       "hero": {

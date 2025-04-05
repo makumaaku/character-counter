@@ -18,14 +18,11 @@
     "copyText": "复制文本",
     "copied": "已复制！",
     "sidebar": {
-      "function": "功能",
-      "usecase": "使用案例",
+      "function": "功能介绍",
+      "usecase": "使用场景",
       "faq": "常见问题",
-      "aboutUs": "关于我们",
-      "contact": "联系我们",
-      "privacy": "隐私政策",
-      "plan": "价格方案",
-      "column": "文章"
+      "plan": "价格计划",
+      "column": "专栏文章"
     },
     "content": {
       "hero": {

@@ -36,9 +36,6 @@ export default async function CharacterCounter({ params }: Props) {
     sidebarFunction,
     sidebarUsecase,
     sidebarFaq,
-    sidebarAboutUs,
-    sidebarContact,
-    sidebarPrivacy,
     sidebarPlan,
     sidebarColumn,
     // Hero section
@@ -106,9 +103,6 @@ export default async function CharacterCounter({ params }: Props) {
     translate(lang, 'characterCounter.sidebar.function'),
     translate(lang, 'characterCounter.sidebar.usecase'),
     translate(lang, 'characterCounter.sidebar.faq'),
-    translate(lang, 'characterCounter.sidebar.aboutUs'),
-    translate(lang, 'characterCounter.sidebar.contact'),
-    translate(lang, 'characterCounter.sidebar.privacy'),
     translate(lang, 'characterCounter.sidebar.plan'),
     translate(lang, 'characterCounter.sidebar.column'),
     // Hero section
@@ -180,9 +174,6 @@ export default async function CharacterCounter({ params }: Props) {
       function: sidebarFunction,
       usecase: sidebarUsecase,
       faq: sidebarFaq,
-      aboutUs: sidebarAboutUs,
-      contact: sidebarContact,
-      privacy: sidebarPrivacy,
       plan: sidebarPlan,
       column: sidebarColumn
     },

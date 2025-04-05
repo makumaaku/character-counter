@@ -1,7 +1,6 @@
 import { translate, loadToolMessages } from '@/lib/i18n/server';
 import { Language } from '@/lib/i18n/types';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { SITE_CONFIG } from '@/constants/constants';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
@@ -150,7 +149,6 @@ export default async function QRGenerationLayout({ children, params }: Props) {
       <main className="flex-1 px-4 lg:px-8">
         {children}
       </main>
-      <Footer />
     </div>
   );
 } 

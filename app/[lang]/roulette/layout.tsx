@@ -2,7 +2,6 @@ import { SITE_CONFIG } from '@/constants/constants';
 import { translate, getLanguageFromParams, loadToolMessages } from '@/lib/i18n/server';
 import { getCommonMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
-import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { Language } from '@/lib/i18n/types';
 
@@ -105,7 +104,6 @@ export default async function RouletteLayout({
       <main className="flex-1 bg-gray-800">
         {children}
       </main>
-      <Footer />
     </div>
   );
 } 

@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-04T18:35:39.608Z
+// Generated at: 2025-04-05T04:56:34.535Z
 
 export interface CommonMessages {
   meta: {
@@ -15,14 +15,19 @@ export interface CommonMessages {
   };
   menu: string;
   footer: {
-    copyright: string;
     terms: string;
     privacy: string;
+    about: string;
+    contact: string;
+    copyright: string;
   };
   error: {
     general: string;
     notFound: string;
     serverError: string;
+  };
+  form: {
+    submitting: string;
   };
 }
 
@@ -33,6 +38,53 @@ export interface MetaMessages {
   siteName: string;
   publisher: string;
   logoAlt: string;
+}
+
+export interface AboutMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  content: string;
+}
+
+export interface ContactMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  content: {
+    intro: string;
+    form: {
+      name: string;
+      email: string;
+      subject: string;
+      message: string;
+      submit: string;
+      namePlaceholder: string;
+      emailPlaceholder: string;
+      subjectPlaceholder: string;
+      messagePlaceholder: string;
+      success: string;
+      error: string;
+      requiredFieldsError: string;
+    };
+    info: {
+      title: string;
+      email: string;
+      hours: string;
+      response: string;
+    };
+    faq: {
+      title: string;
+      text: string;
+      button: string;
+    };
+  };
 }
 
 export interface CountryDataMessages {
@@ -157,6 +209,41 @@ export interface PasswordStrengthMessages {
   };
   passwordVisible: string;
   passwordHidden: string;
+}
+
+export interface PrivacyPolicyMessages {
+  meta: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  title: string;
+  content: {
+    intro: string;
+    collection: string;
+    collectionText: string;
+    collectionItems: string[];
+    usage: string;
+    usageText: string;
+    usageItems: string[];
+    cookies: string;
+    cookiesText: string;
+    sharing: string;
+    sharingText: string;
+    external: string;
+    externalText: string;
+    contact: string;
+    contactText: {
+      before: string;
+      link: string;
+      after: string;
+    };
+    policy: string;
+    policyText: string;
+    conclusion: string;
+    conclusionText: string;
+  };
+  updated: string;
 }
 
 export interface QrGenerationMessages {
@@ -338,9 +425,6 @@ export interface CharacterCounterCommonMessages {
     function: string;
     usecase: string;
     faq: string;
-    aboutUs: string;
-    contact: string;
-    privacy: string;
     plan: string;
     column: string;
   };
@@ -434,74 +518,6 @@ export interface CharacterCounterCommonMessages {
   };
 }
 
-export interface CharacterCounterAboutUsMessages {
-  title: string;
-  ourStory: {
-    title: string;
-    content: string;
-  };
-  ourMission: {
-    title: string;
-    intro: string;
-    points: {
-      1: string;
-      2: string;
-      3: string;
-      4: string;
-    };
-  };
-  tool: {
-    title: string;
-    description: string;
-    features: {
-      1: string;
-      2: string;
-      3: string;
-      4: string;
-      5: string;
-    };
-  };
-  values: {
-    title: string;
-    simplicity: {
-      title: string;
-      content: string;
-    };
-    privacy: {
-      title: string;
-      content: string;
-    };
-    accessibility: {
-      title: string;
-      content: string;
-    };
-    innovation: {
-      title: string;
-      content: string;
-    };
-  };
-  contact: {
-    title: string;
-    description: string;
-    email: string;
-    twitter: string;
-    github: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-    publisher: {
-      description: string;
-    };
-    article: {
-      headline: string;
-      description: string;
-      body: string;
-    };
-  };
-}
-
 export interface CharacterCounterColumnMessages {
   title: string;
   description: string;
@@ -509,59 +525,6 @@ export interface CharacterCounterColumnMessages {
     title: string;
     description: string;
     keywords: string;
-  };
-}
-
-export interface CharacterCounterContactMessages {
-  title: string;
-  description: string;
-  form: {
-    name: {
-      label: string;
-      placeholder: string;
-    };
-    email: {
-      label: string;
-      placeholder: string;
-    };
-    subject: {
-      label: string;
-      placeholder: string;
-      options: {
-        general: string;
-        technical: string;
-        billing: string;
-        feature: string;
-        other: string;
-      };
-    };
-    message: {
-      label: string;
-      placeholder: string;
-    };
-    submit: string;
-  };
-  otherWays: {
-    title: string;
-    email: string;
-    businessHours: string;
-    businessHoursValue: string;
-    responseTime: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-    jsonLd: {
-      name: string;
-      description: string;
-      organization: {
-        name: string;
-        email: string;
-        availableLanguage: string[];
-        hoursAvailable: string;
-      };
-    };
   };
 }
 
@@ -776,80 +739,6 @@ export interface CharacterCounterPlanMessages {
           description: string;
         };
       };
-    };
-  };
-}
-
-export interface CharacterCounterPrivacyMessages {
-  title: string;
-  introduction: string;
-  collection: {
-    title: string;
-    text: {
-      title: string;
-      description: string;
-    };
-    log: {
-      title: string;
-      intro: string;
-      items: {
-        1: string;
-        2: string;
-        3: string;
-      };
-      purpose: string;
-    };
-    cookies: {
-      title: string;
-      description: string;
-    };
-  };
-  usage: {
-    title: string;
-    intro: string;
-    purposes: {
-      1: string;
-      2: string;
-      3: string;
-    };
-    note: string;
-  };
-  sharing: {
-    title: string;
-    intro: string;
-    cases: {
-      1: string;
-      2: string;
-    };
-  };
-  retention: {
-    title: string;
-    description: string;
-  };
-  children: {
-    title: string;
-    description: string;
-  };
-  security: {
-    title: string;
-    description: string;
-  };
-  changes: {
-    title: string;
-    description: string;
-  };
-  contact: {
-    title: string;
-    description: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-    article: {
-      headline: string;
-      description: string;
-      body: string;
     };
   };
 }
@@ -2856,20 +2745,20 @@ export interface WordGenWordGeneratorMessages {
 
 export interface AllMessages {
   common?: CommonMessages;
+  about?: AboutMessages;
+  contact?: ContactMessages;
   countryData?: CountryDataMessages;
   numberQuiz?: NumberQuizMessages;
   passwordStrength?: PasswordStrengthMessages;
+  privacyPolicy?: PrivacyPolicyMessages;
   qrGeneration?: QrGenerationMessages;
   roulette?: RouletteMessages;
   characterCounter?: {
     common?: CharacterCounterCommonMessages;
-    aboutUs?: CharacterCounterAboutUsMessages;
     column?: CharacterCounterColumnMessages;
-    contact?: CharacterCounterContactMessages;
     faq?: CharacterCounterFaqMessages;
     function?: CharacterCounterFunctionMessages;
     plan?: CharacterCounterPlanMessages;
-    privacy?: CharacterCounterPrivacyMessages;
     usecase?: CharacterCounterUsecaseMessages;
   };
   healthTools?: {

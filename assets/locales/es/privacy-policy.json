@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "Política de Privacidad | Boring Tools",
+    "description": "Política de privacidad de Boring Tools - cómo manejamos y protegemos sus datos.",
+    "keywords": "política de privacidad, protección de datos, información personal, herramientas boring, privacidad"
+  },
+  "title": "Política de Privacidad",
+  "content": {
+    "intro": "Boring, inc. (en adelante, \"nosotros\") valoramos la privacidad de nuestros usuarios y tenemos como política limitar la información que recopilamos al mínimo necesario. Esta página explica cómo manejamos la información personal en boring-tool.com.",
+    "collection": "1. Información que recopilamos",
+    "collectionText": "Boring, inc. puede obtener y utilizar solo la siguiente información:",
+    "collectionItems": [
+      "Registros de acceso (información anónima del navegador, dispositivo utilizado, referente, etc.) *Se utiliza para mejorar el servicio. No incluye información que identifique personalmente.",
+      "Informes de errores e información de fallos *Puede recopilarse automáticamente de forma anónima para proporcionar un servicio más estable.",
+      "Contenido ingresado en el formulario de contacto *Limitado únicamente al contenido enviado voluntariamente."
+    ],
+    "usage": "2. Información que \"NO recopilamos\"",
+    "usageText": "No recopilamos ni almacenamos la siguiente información:",
+    "usageItems": [
+      "Texto, archivos o datos ingresados por el usuario (por ejemplo: los datos utilizados para el conteo de caracteres o la conversión de archivos no se guardan)",
+      "Información de inicio de sesión (no tenemos función de registro de cuenta)",
+      "Cookies de seguimiento para fines publicitarios o herramientas de análisis de terceros excesivas"
+    ],
+    "cookies": "3. Sobre las Cookies",
+    "cookiesText": "Algunos de nuestros servicios pueden utilizar cookies para mejorar la conveniencia. Sin embargo, no utilizamos cookies de \"publicidad de seguimiento (remarketing)\".",
+    "sharing": "4. Sobre el compartir datos",
+    "sharingText": "No vendemos, alquilamos ni proporcionamos información del usuario a terceros. (Excepto cuando lo soliciten instituciones legales por obligación)",
+    "external": "5. Colaboración con servicios externos",
+    "externalText": "Algunas herramientas pueden utilizar bibliotecas o APIs externas para mejorar la precisión de la conversión o análisis. Estos servicios no almacenan directamente la información del usuario.",
+    "contact": "6. Contacto",
+    "contactText": {
+      "before": "Para preguntas o consultas sobre privacidad, contáctenos a través de nuestra página de ",
+      "link": "Contacto",
+      "after": "."
+    },
+    "policy": "7. Revisión de políticas",
+    "policyText": "Esta política de privacidad puede modificarse sin previo aviso cuando sea necesario. Si continúa utilizando el servicio después de los cambios, se considerará que ha aceptado dichos cambios.",
+    "conclusion": "Conclusión: No estamos interesados en sus datos",
+    "conclusionText": "Boring, inc. aspira a proporcionar herramientas que \"se usan y ya está\". No necesitamos saber qué ha convertido o cuántos caracteres ha contado. Utilice nuestros servicios con tranquilidad y discreción."
+  },
+  "updated": "Última actualización: 1 de abril de 2025"
+} 

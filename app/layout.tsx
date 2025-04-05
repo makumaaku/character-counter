@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { SITE_CONFIG } from '@/constants/constants';
 import { loadToolMessages, translate } from '@/lib/i18n/server';
+import Footer from '@/components/Footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -142,7 +143,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <noscript>
           <iframe
@@ -152,7 +153,10 @@ export default async function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

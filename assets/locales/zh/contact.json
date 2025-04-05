@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "联系我们 | Boring Tools",
+    "description": "与Boring Tools团队取得联系。我们随时为您解答任何问题或提供反馈。",
+    "keywords": "联系, 支持, 帮助, boring tools, 反馈, 问题"
+  },
+  "title": "联系我们",
+  "content": {
+    "intro": "我们很乐意听取您的意见！如果您有任何问题、反馈或只是想打个招呼，请使用下面的表格或直接联系我们。",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮箱",
+      "subject": "主题",
+      "message": "留言",
+      "submit": "发送消息",
+      "namePlaceholder": "您的姓名",
+      "emailPlaceholder": "your.email@example.com",
+      "subjectPlaceholder": "这是关于什么的？",
+      "messagePlaceholder": "在此处输入您的消息...",
+      "success": "您的消息已成功发送！",
+      "error": "发送消息时出错。请重试。",
+      "requiredFieldsError": "请填写所有必填字段。"
+    },
+    "info": {
+      "title": "联系信息",
+      "email": "邮箱: support@boringtools.com",
+      "hours": "支持时间: 周一至周五，上午9点至下午5点（GMT）",
+      "response": "我们的目标是在工作日内24-48小时内回复所有咨询。"
+    },
+    "faq": {
+      "title": "常见问题",
+      "text": "在联系我们之前，您可能希望查看我们的常见问题部分，以快速获得常见问题的答案。",
+      "button": "查看常见问题"
+    }
+  }
+} 
