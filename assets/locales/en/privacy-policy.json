@@ -28,11 +28,15 @@
     "external": "5. Collaboration with External Services",
     "externalText": "Some tools may use external libraries or APIs to improve conversion or analysis accuracy. These services do not directly store user information.",
     "contact": "6. Contact",
-    "contactText": "For questions or consultations about privacy, please contact us at the following email address: privacy@boring-tool.com",
+    "contactText": {
+      "before": "For privacy-related questions or concerns, please contact us via our ",
+      "link": "Contact",
+      "after": " page."
+    },
     "policy": "7. Policy Revision",
     "policyText": "This privacy policy may be changed without notice when necessary. If you continue to use the service after changes, it is considered that you have agreed to these changes.",
     "conclusion": "Conclusion: We are not interested in your data",
     "conclusionText": "Boring, inc. aims to provide tools that are \"use and done\". We don't need to know what you converted or how many characters you counted. Please use our services with peace of mind and discretion."
   },
-  "updated": "Last Updated: April 1, 2024"
+  "updated": "Last Updated: April 1, 2025"
 } 

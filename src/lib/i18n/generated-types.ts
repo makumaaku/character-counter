@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-05T02:11:50.414Z
+// Generated at: 2025-04-05T04:41:37.761Z
 
 export interface CommonMessages {
   meta: {
@@ -15,16 +15,19 @@ export interface CommonMessages {
   };
   menu: string;
   footer: {
-    copyright: string;
     terms: string;
     privacy: string;
     about: string;
     contact: string;
+    copyright: string;
   };
   error: {
     general: string;
     notFound: string;
     serverError: string;
+  };
+  form: {
+    submitting: string;
   };
 }
 
@@ -68,6 +71,7 @@ export interface ContactMessages {
       messagePlaceholder: string;
       success: string;
       error: string;
+      requiredFieldsError: string;
     };
     info: {
       title: string;
@@ -229,7 +233,11 @@ export interface PrivacyPolicyMessages {
     external: string;
     externalText: string;
     contact: string;
-    contactText: string;
+    contactText: {
+      before: string;
+      link: string;
+      after: string;
+    };
     policy: string;
     policyText: string;
     conclusion: string;
@@ -417,9 +425,6 @@ export interface CharacterCounterCommonMessages {
     function: string;
     usecase: string;
     faq: string;
-    aboutUs: string;
-    contact: string;
-    privacy: string;
     plan: string;
     column: string;
   };
@@ -520,59 +525,6 @@ export interface CharacterCounterColumnMessages {
     title: string;
     description: string;
     keywords: string;
-  };
-}
-
-export interface CharacterCounterContactMessages {
-  title: string;
-  description: string;
-  form: {
-    name: {
-      label: string;
-      placeholder: string;
-    };
-    email: {
-      label: string;
-      placeholder: string;
-    };
-    subject: {
-      label: string;
-      placeholder: string;
-      options: {
-        general: string;
-        technical: string;
-        billing: string;
-        feature: string;
-        other: string;
-      };
-    };
-    message: {
-      label: string;
-      placeholder: string;
-    };
-    submit: string;
-  };
-  otherWays: {
-    title: string;
-    email: string;
-    businessHours: string;
-    businessHoursValue: string;
-    responseTime: string;
-  };
-  meta: {
-    title: string;
-    description: string;
-    keywords: string;
-    jsonLd: {
-      name: string;
-      description: string;
-      organization: {
-        name: string;
-        email: string;
-        availableLanguage: string[];
-        hoursAvailable: string;
-      };
-    };
   };
 }
 
@@ -2687,7 +2639,6 @@ export interface AllMessages {
   characterCounter?: {
     common?: CharacterCounterCommonMessages;
     column?: CharacterCounterColumnMessages;
-    contact?: CharacterCounterContactMessages;
     faq?: CharacterCounterFaqMessages;
     function?: CharacterCounterFunctionMessages;
     plan?: CharacterCounterPlanMessages;

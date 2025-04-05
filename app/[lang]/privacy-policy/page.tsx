@@ -4,11 +4,11 @@ import PrivacyPolicyClient from './components/PrivacyPolicyClient';
 import Header from '@/components/Header';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function PrivacyPolicyPage({ params }: Props) {
-  const { lang } = params;
+  const { lang } = await params;
   
   // プライバシーポリシー用の翻訳をロード
   await loadToolMessages(lang as Language, 'privacy-policy');
@@ -28,13 +28,14 @@ export default async function PrivacyPolicyPage({ params }: Props) {
     external,
     externalText,
     contact,
-    contactText,
+    contactTextBefore,
+    contactTextLink,
+    contactTextAfter,
     policy,
     policyText,
     conclusion,
     conclusionText,
-    updated,
-    contactLinkText
+    updated
   ] = await Promise.all([
     translate(lang, 'privacyPolicy.title'),
     translate(lang, 'privacyPolicy.content.intro'),
@@ -49,13 +50,14 @@ export default async function PrivacyPolicyPage({ params }: Props) {
     translate(lang, 'privacyPolicy.content.external'),
     translate(lang, 'privacyPolicy.content.externalText'),
     translate(lang, 'privacyPolicy.content.contact'),
-    translate(lang, 'privacyPolicy.content.contactText'),
+    translate(lang, 'privacyPolicy.content.contactText.before'),
+    translate(lang, 'privacyPolicy.content.contactText.link'),
+    translate(lang, 'privacyPolicy.content.contactText.after'),
     translate(lang, 'privacyPolicy.content.policy'),
     translate(lang, 'privacyPolicy.content.policyText'),
     translate(lang, 'privacyPolicy.content.conclusion'),
     translate(lang, 'privacyPolicy.content.conclusionText'),
-    translate(lang, 'privacyPolicy.updated'),
-    translate(lang, 'common.footer.contact')
+    translate(lang, 'privacyPolicy.updated')
   ]);
 
   // 配列アイテムを別々に取得
@@ -94,7 +96,11 @@ export default async function PrivacyPolicyPage({ params }: Props) {
       external,
       externalText,
       contact,
-      contactText,
+      contactText: {
+        before: contactTextBefore,
+        link: contactTextLink,
+        after: contactTextAfter,
+      },
       policy,
       policyText,
       conclusion,
@@ -110,7 +116,6 @@ export default async function PrivacyPolicyPage({ params }: Props) {
         <PrivacyPolicyClient 
           messages={messages} 
           lang={lang} 
-          contactText={contactLinkText as string}
         />
       </main>
     </>

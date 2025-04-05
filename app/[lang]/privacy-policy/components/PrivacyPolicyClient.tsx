@@ -7,10 +7,9 @@ import { PrivacyPolicyMessages } from '@/lib/i18n/generated-types';
 interface PrivacyPolicyClientProps {
   messages: PrivacyPolicyMessages;
   lang: string;
-  contactText?: string;
 }
 
-export default function PrivacyPolicyClient({ messages, lang, contactText = "Contact" }: PrivacyPolicyClientProps) {
+export default function PrivacyPolicyClient({ messages, lang }: PrivacyPolicyClientProps) {
   const { title, content, updated } = messages;
   
   return (
@@ -56,7 +55,15 @@ export default function PrivacyPolicyClient({ messages, lang, contactText = "Con
       
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">{content.contact}</h2>
-        <p className="mb-4 text-gray-300">{content.contactText}</p>
+        <p className="mb-4 text-gray-300">
+        <>
+              {content.contactText.before}
+              <Link href={`/${lang}/contact`} className="text-blue-400 hover:text-blue-300">
+                {content.contactText.link}
+              </Link>
+              {content.contactText.after}
+            </>
+        </p>
       </section>
       
       <section className="mb-8">
@@ -70,12 +77,6 @@ export default function PrivacyPolicyClient({ messages, lang, contactText = "Con
       </section>
       
       <p className="text-sm text-gray-400 mt-8">{updated}</p>
-      
-      <div className="mt-8 pt-4 border-t border-gray-700">
-        <Link href={`/${lang}/contact`} className="text-blue-400 hover:text-blue-300">
-          {contactText}
-        </Link>
-      </div>
     </div>
   );
 } 

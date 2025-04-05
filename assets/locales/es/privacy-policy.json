@@ -28,11 +28,15 @@
     "external": "5. Colaboración con servicios externos",
     "externalText": "Algunas herramientas pueden utilizar bibliotecas o APIs externas para mejorar la precisión de la conversión o análisis. Estos servicios no almacenan directamente la información del usuario.",
     "contact": "6. Contacto",
-    "contactText": "Para preguntas o consultas sobre privacidad, contáctenos en la siguiente dirección de correo electrónico: privacy@boring-tool.com",
+    "contactText": {
+      "before": "Para preguntas o consultas sobre privacidad, contáctenos a través de nuestra página de ",
+      "link": "Contacto",
+      "after": "."
+    },
     "policy": "7. Revisión de políticas",
     "policyText": "Esta política de privacidad puede modificarse sin previo aviso cuando sea necesario. Si continúa utilizando el servicio después de los cambios, se considerará que ha aceptado dichos cambios.",
     "conclusion": "Conclusión: No estamos interesados en sus datos",
     "conclusionText": "Boring, inc. aspira a proporcionar herramientas que \"se usan y ya está\". No necesitamos saber qué ha convertido o cuántos caracteres ha contado. Utilice nuestros servicios con tranquilidad y discreción."
   },
-  "updated": "Última actualización: 1 de abril de 2024"
+  "updated": "Última actualización: 1 de abril de 2025"
 } 

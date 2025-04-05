@@ -108,18 +108,12 @@ export default async function Layout({
     sidebarFunction,
     sidebarUsecase,
     sidebarFaq,
-    sidebarAboutUs,
-    sidebarContact,
-    sidebarPrivacy,
     sidebarColumn
   ] = await Promise.all([
     translate(lang, 'characterCounter.title'),
     translate(lang, 'characterCounter.sidebar.function'),
     translate(lang, 'characterCounter.sidebar.usecase'),
     translate(lang, 'characterCounter.sidebar.faq'),
-    translate(lang, 'characterCounter.sidebar.aboutUs'),
-    translate(lang, 'characterCounter.sidebar.contact'),
-    translate(lang, 'characterCounter.sidebar.privacy'),
     translate(lang, 'characterCounter.sidebar.column')
   ]);
 
@@ -130,9 +124,6 @@ export default async function Layout({
       function: sidebarFunction,
       usecase: sidebarUsecase,
       faq: sidebarFaq,
-      aboutUs: sidebarAboutUs,
-      contact: sidebarContact,
-      privacy: sidebarPrivacy,
       column: sidebarColumn
     }
   };

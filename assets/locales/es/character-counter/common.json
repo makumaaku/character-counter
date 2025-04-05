@@ -18,12 +18,9 @@
     "copyText": "Copiar texto",
     "copied": "¡Copiado!",
     "sidebar": {
-      "function": "Funciones",
+      "function": "Características",
       "usecase": "Casos de uso",
       "faq": "Preguntas frecuentes",
-      "aboutUs": "Sobre nosotros",
-      "contact": "Contacto",
-      "privacy": "Política de privacidad",
       "plan": "Planes de precios",
       "column": "Artículos"
     },

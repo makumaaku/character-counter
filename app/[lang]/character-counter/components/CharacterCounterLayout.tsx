@@ -13,9 +13,6 @@ interface CharacterCounterLayoutMessages {
     function: string;
     usecase: string;
     faq: string;
-    aboutUs: string;
-    contact: string;
-    privacy: string;
     column: string;
   };
 }
@@ -38,7 +35,6 @@ export default function CharacterCounterLayout({ children, messages }: Props) {
     { name: messages?.sidebar.function || 'Function', path: `/character-counter/function` },
     { name: messages?.sidebar.usecase || 'Use Case', path: `/character-counter/usecase` },
     { name: messages?.sidebar.faq || 'FAQ', path: `/character-counter/faq` },
-    { name: messages?.sidebar.contact || 'Contact', path: `/character-counter/contact` },
     { name: messages?.sidebar.column || 'Column', path: `/character-counter/column` },
   ];
 

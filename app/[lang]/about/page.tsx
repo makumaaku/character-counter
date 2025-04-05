@@ -4,11 +4,11 @@ import AboutClient from './components/AboutClient';
 import Header from '@/components/Header';
 
 type Props = {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 export default async function AboutPage({ params }: Props) {
-  const { lang } = params;
+  const { lang } = await params;
   
   // 会社概要用の翻訳をロード
   await loadToolMessages(lang as Language, 'about');
@@ -17,11 +17,9 @@ export default async function AboutPage({ params }: Props) {
   const [
     title,
     content,
-    copyright
   ] = await Promise.all([
     translate(lang, 'about.title'),
     translate(lang, 'about.content'),
-    translate(lang, 'common.footer.copyright')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -39,7 +37,7 @@ export default async function AboutPage({ params }: Props) {
     <>
       <Header title={title} homeLink={`/${lang}`} />
       <main className="container mx-auto px-4 py-8 max-w-4xl">
-        <AboutClient messages={messages} lang={lang} copyright={copyright as string} />
+        <AboutClient messages={messages} lang={lang}/>
       </main>
     </>
   );

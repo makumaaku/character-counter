@@ -17,7 +17,7 @@ const defaultTranslations: Record<Language, Messages> = {
         privacy: 'Privacy Policy',
         contact: 'Contact',
         about: 'About Us',
-        copyright: '© 2024 Boring Tools. All rights reserved.'
+        copyright: '© 2025 Boring Inc. All rights reserved.'
       },
       form: {
         submitting: 'Submitting...'
@@ -30,7 +30,7 @@ const defaultTranslations: Record<Language, Messages> = {
         privacy: 'プライバシーポリシー',
         contact: 'お問い合わせ',
         about: '会社概要',
-        copyright: '© 2024 Boring Tools. All rights reserved.'
+        copyright: '© 2025 Boring Inc. All rights reserved.'
       },
       form: {
         submitting: '送信中...'
@@ -43,7 +43,7 @@ const defaultTranslations: Record<Language, Messages> = {
         privacy: 'Política de privacidad',
         contact: 'Contacto',
         about: 'Sobre nosotros',
-        copyright: '© 2024 Boring Tools. Todos los derechos reservados.'
+        copyright: '© 2025 Boring Inc. Todos los derechos reservados.'
       },
       form: {
         submitting: 'Enviando...'
@@ -56,7 +56,7 @@ const defaultTranslations: Record<Language, Messages> = {
         privacy: 'Политика конфиденциальности',
         contact: 'Контакты',
         about: 'О нас',
-        copyright: '© 2024 Boring Tools. Все права защищены.'
+        copyright: '© 2025 Boring Inc. Все права защищены.'
       },
       form: {
         submitting: 'Отправка...'
@@ -69,7 +69,7 @@ const defaultTranslations: Record<Language, Messages> = {
         privacy: '隐私政策',
         contact: '联系我们',
         about: '关于我们',
-        copyright: '© 2024 无聊工具。保留所有权利。'
+        copyright: '© 2025 无聊公司。保留所有权利。'
       },
       form: {
         submitting: '提交中...'

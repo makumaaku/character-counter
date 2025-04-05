@@ -12,11 +12,11 @@
   },
   "menu": "Menu",
   "footer": {
-    "copyright": "© 2024 Boring Tools. All rights reserved.",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "about": "About Us",
-    "contact": "Contact"
+    "contact": "Contact",
+    "copyright": "© 2025 Boring Inc. All rights reserved."
   },
   "error": {
     "general": "An error occurred",

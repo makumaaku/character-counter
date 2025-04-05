@@ -38,7 +38,8 @@ export default async function ContactPage({ params }: Props) {
     faqTitle,
     faqText,
     faqButton,
-    submittingText
+    submittingText,
+    formRequiredFieldsError
   ] = await Promise.all([
     translate(lang, 'contact.title'),
     translate(lang, 'contact.meta.title'),
@@ -63,7 +64,8 @@ export default async function ContactPage({ params }: Props) {
     translate(lang, 'contact.content.faq.title'),
     translate(lang, 'contact.content.faq.text'),
     translate(lang, 'contact.content.faq.button'),
-    translate(lang, 'common.form.submitting')
+    translate(lang, 'common.form.submitting'),
+    translate(lang, 'contact.content.form.requiredFieldsError')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -87,7 +89,8 @@ export default async function ContactPage({ params }: Props) {
         subjectPlaceholder: formSubjectPlaceholder as string,
         messagePlaceholder: formMessagePlaceholder as string,
         success: formSuccess as string,
-        error: formError as string
+        error: formError as string,
+        requiredFieldsError: formRequiredFieldsError as string
       },
       info: {
         title: infoTitle as string,

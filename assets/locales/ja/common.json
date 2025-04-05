@@ -10,11 +10,11 @@
   },
   "menu": "メニュー",
   "footer": {
-    "copyright": "© 2024 Boring Tools. All rights reserved.",
     "terms": "利用規約",
     "privacy": "プライバシーポリシー",
     "about": "会社概要",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "copyright": "© 2025 Boring Inc. All rights reserved."
   },
   "error": {
     "general": "エラーが発生しました",
