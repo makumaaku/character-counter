@@ -14,7 +14,7 @@
   "footer": {
     "terms": "Términos de servicio",
     "privacy": "Política de privacidad",
-    "about": "Sobre nosotros",
+    "about": "Acerca de nosotros",
     "contact": "Contacto",
     "copyright": "© 2025 Boring Inc. Todos los derechos reservados."
   },
@@ -22,5 +22,8 @@
     "general": "Ocurrió un error",
     "notFound": "Página no encontrada",
     "serverError": "Error del servidor"
+  },
+  "form": {
+    "submitting": "Enviando..."
   }
 } 

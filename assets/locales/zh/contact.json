@@ -18,7 +18,8 @@
       "subjectPlaceholder": "这是关于什么的？",
       "messagePlaceholder": "在此处输入您的消息...",
       "success": "您的消息已成功发送！",
-      "error": "发送消息时出错。请重试。"
+      "error": "发送消息时出错。请重试。",
+      "requiredFieldsError": "请填写所有必填字段。"
     },
     "info": {
       "title": "联系信息",
