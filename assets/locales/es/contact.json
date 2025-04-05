@@ -1,12 +1,12 @@
 {
   "meta": {
-    "title": "Contáctanos | Boring Tools",
+    "title": "Contáctenos | Boring Tools",
     "description": "Ponte en contacto con el equipo de Boring Tools. Estamos aquí para ayudarte con cualquier pregunta o comentario.",
-    "keywords": "contacto, soporte, ayuda, boring tools, comentarios, preguntas"
+    "keywords": "contacto, soporte, ayuda, boring tools, feedback, preguntas"
   },
-  "title": "Contáctanos",
+  "title": "Contáctenos",
   "content": {
-    "intro": "¡Nos encantaría saber de ti! Si tienes alguna pregunta, comentario o simplemente quieres saludar, utiliza el formulario a continuación o comunícate con nosotros directamente.",
+    "intro": "¡Nos encantaría saber de ti! Si tienes alguna pregunta, comentario o simplemente quieres saludar, utiliza el formulario a continuación o ponte en contacto con nosotros directamente.",
     "form": {
       "name": "Nombre",
       "email": "Correo electrónico",
@@ -14,22 +14,23 @@
       "message": "Mensaje",
       "submit": "Enviar mensaje",
       "namePlaceholder": "Tu nombre",
-      "emailPlaceholder": "tu.email@ejemplo.com",
+      "emailPlaceholder": "tu.correo@ejemplo.com",
       "subjectPlaceholder": "¿De qué se trata?",
       "messagePlaceholder": "Escribe tu mensaje aquí...",
       "success": "¡Tu mensaje ha sido enviado con éxito!",
-      "error": "Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo."
+      "error": "Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.",
+      "requiredFieldsError": "Por favor, completa todos los campos requeridos."
     },
     "info": {
       "title": "Información de contacto",
       "email": "Correo: support@boringtools.com",
-      "hours": "Horario de soporte: Lunes a viernes, 9am - 5pm (GMT)",
-      "response": "Buscamos responder a todas las consultas dentro de 24-48 horas durante días laborables."
+      "hours": "Horario de soporte: Lunes - Viernes, 9am - 5pm (GMT)",
+      "response": "Nuestro objetivo es responder a todas las consultas dentro de las 24-48 horas durante días hábiles."
     },
     "faq": {
       "title": "Preguntas frecuentes",
-      "text": "Antes de contactarnos, podrías revisar nuestra sección de preguntas frecuentes para obtener respuestas rápidas a preguntas comunes.",
-      "button": "Ver FAQs"
+      "text": "Antes de contactarnos, es posible que desees consultar nuestra sección de preguntas frecuentes para obtener respuestas rápidas a preguntas comunes.",
+      "button": "Ver preguntas frecuentes"
     }
   }
 } 

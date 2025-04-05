@@ -21,6 +21,9 @@
     "notFound": "ページが見つかりません",
     "serverError": "サーバーエラー"
   },
+  "form": {
+    "submitting": "送信中..."
+  },
   "siteName": "Boring Tools",
   "publisher": "Boring Inc."
 }
