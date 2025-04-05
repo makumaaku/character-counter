@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "BMI計算機 - あなたの体格指数をチェック",
+    "description": "使いやすい計算機であなたの体格指数（BMI）を計算します。身長に基づいて体重が健康的な範囲内かどうかを確認できます。",
+    "keywords": "BMI計算機,体格指数,体重計算,健康チェック,体重,フィットネス計算機,健康ツール"
+  },
+  "title": "BMI計算機",
+  "description": "身長と体重に基づいて体格指数（BMI）を計算し、健康的な体重範囲内にあるかどうかをチェックします",
+  "form": {
+    "height": {
+      "label": "身長",
+      "cm": "cm",
+      "feet": "フィート",
+      "inches": "インチ",
+      "placeholder": "身長を入力してください"
+    },
+    "weight": {
+      "label": "体重",
+      "kg": "kg",
+      "lbs": "ポンド",
+      "placeholder": "体重を入力してください"
+    },
+    "calculate": "BMIを計算する",
+    "reset": "リセット",
+    "units": {
+      "label": "単位",
+      "metric": "メートル法 (cm/kg)",
+      "imperial": "ヤード・ポンド法 (ft/lbs)"
+    }
+  },
+  "result": {
+    "title": "あなたのBMI結果",
+    "bmi": "あなたのBMIは",
+    "empty": "BMIを計算するには身長と体重を入力してください",
+    "categories": {
+      "underweight": "低体重",
+      "underweightDesc": "BMI 18.5未満",
+      "normal": "普通体重",
+      "normalDesc": "BMI 18.5～24.9",
+      "overweight": "過体重",
+      "overweightDesc": "BMI 25～29.9",
+      "obese": "肥満",
+      "obeseDesc": "BMI 30以上"
+    }
+  },
+  "about": {
+    "whatIsBmi": {
+      "title": "BMIとは？",
+      "description": "体格指数（BMI）は、人の体重と身長から導き出される値です。BMIは体重を身長の二乗で割って計算され、単位はkg/m²で表されます。"
+    },
+    "howToCalculate": {
+      "title": "BMIの計算方法",
+      "description": "BMIは次の式で計算されます：BMI = 体重(kg) ÷ (身長(m))²。ヤード・ポンド法を使用する場合の式は：BMI = (体重(lbs) × 703) ÷ (身長(in))²です。"
+    },
+    "limitations": {
+      "title": "BMIの限界",
+      "description": "BMIは成人の潜在的な体重問題を特定するのに役立つツールですが、限界があります。筋肉量、骨密度、体脂肪分布などの要素を考慮していません。アスリートは体脂肪ではなく筋肉量のためにBMIが高くなる場合があります。"
+    },
+    "healthyRange": {
+      "title": "健康的なBMI範囲",
+      "description": "ほとんどの成人にとって、BMIが18.5から24.9の間は健康的と考えられています。BMIが18.5未満は低体重、25-29.9は過体重、30以上は肥満を示します。"
+    },
+    "whatToDo": {
+      "title": "BMI結果の活用方法",
+      "description": "BMIが健康的な範囲外の場合は、個別のアドバイスを得るために医療専門家に相談することを検討してください。BMIは健康の一指標にすぎず、他の要素と併せて考慮すべきことを忘れないでください。"
+    }
+  }
+} 
