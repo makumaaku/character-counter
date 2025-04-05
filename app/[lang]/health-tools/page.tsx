@@ -84,36 +84,36 @@ export default async function HealthTools({ params }: Props) {
       path: `/${lang}/health-tools/bmi-calculator`,
       icon: "📏"
     },
-    {
-      title: messages.tools.calorieCounter.title,
-      description: messages.tools.calorieCounter.description,
-      path: `/${lang}/health-tools/calorie-counter`,
-      icon: "🍽️"
-    },
-    {
-      title: messages.tools.heartRateZones.title,
-      description: messages.tools.heartRateZones.description,
-      path: `/${lang}/health-tools/heart-rate-zones`,
-      icon: "❤️"
-    },
-    {
-      title: messages.tools.waterIntakeCalculator.title,
-      description: messages.tools.waterIntakeCalculator.description,
-      path: `/${lang}/health-tools/water-intake-calculator`,
-      icon: "💧"
-    },
-    {
-      title: messages.tools.sleepCalculator.title,
-      description: messages.tools.sleepCalculator.description,
-      path: `/${lang}/health-tools/sleep-calculator`,
-      icon: "😴"
-    },
-    {
-      title: messages.tools.stressLevelTest.title,
-      description: messages.tools.stressLevelTest.description,
-      path: `/${lang}/health-tools/stress-level-test`,
-      icon: "🧠"
-    }
+    // {
+    //   title: messages.tools.calorieCounter.title,
+    //   description: messages.tools.calorieCounter.description,
+    //   path: `/${lang}/health-tools/calorie-counter`,
+    //   icon: "🍽️"
+    // },
+    // {
+    //   title: messages.tools.heartRateZones.title,
+    //   description: messages.tools.heartRateZones.description,
+    //   path: `/${lang}/health-tools/heart-rate-zones`,
+    //   icon: "❤️"
+    // },
+    // {
+    //   title: messages.tools.waterIntakeCalculator.title,
+    //   description: messages.tools.waterIntakeCalculator.description,
+    //   path: `/${lang}/health-tools/water-intake-calculator`,
+    //   icon: "💧"
+    // },
+    // {
+    //   title: messages.tools.sleepCalculator.title,
+    //   description: messages.tools.sleepCalculator.description,
+    //   path: `/${lang}/health-tools/sleep-calculator`,
+    //   icon: "😴"
+    // },
+    // {
+    //   title: messages.tools.stressLevelTest.title,
+    //   description: messages.tools.stressLevelTest.description,
+    //   path: `/${lang}/health-tools/stress-level-test`,
+    //   icon: "🧠"
+    // }
   ]
 
   return (

@@ -2,7 +2,6 @@
 
 import { ReactNode, useState } from 'react'
 import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Sidebar from '@/components/Sidebar'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { HealthToolsCommonMessages } from '@/lib/i18n/types'
@@ -22,26 +21,26 @@ export default function HealthToolsLayout({ children, messages, lang }: Props) {
       name: messages.tools.bmiCalculator.title,
       path: `/health-tools/bmi-calculator`
     },
-    {
-      name: messages.tools.calorieCounter.title,
-      path: `/health-tools/calorie-counter`
-    },
-    {
-      name: messages.tools.heartRateZones.title,
-      path: `/health-tools/heart-rate-zones`
-    },
-    {
-      name: messages.tools.waterIntakeCalculator.title,
-      path: `/health-tools/water-intake-calculator`
-    },
-    {
-      name: messages.tools.sleepCalculator.title,
-      path: `/health-tools/sleep-calculator`
-    },
-    {
-      name: messages.tools.stressLevelTest.title,
-      path: `/health-tools/stress-level-test`
-    }
+    // {
+    //   name: messages.tools.calorieCounter.title,
+    //   path: `/health-tools/calorie-counter`
+    // },
+    // {
+    //   name: messages.tools.heartRateZones.title,
+    //   path: `/health-tools/heart-rate-zones`
+    // },
+    // {
+    //   name: messages.tools.waterIntakeCalculator.title,
+    //   path: `/health-tools/water-intake-calculator`
+    // },
+    // {
+    //   name: messages.tools.sleepCalculator.title,
+    //   path: `/health-tools/sleep-calculator`
+    // },
+    // {
+    //   name: messages.tools.stressLevelTest.title,
+    //   path: `/health-tools/stress-level-test`
+    // }
   ]
 
   return (
@@ -70,8 +69,6 @@ export default function HealthToolsLayout({ children, messages, lang }: Props) {
           {children}
         </main>
       </div>
-      
-      <Footer />
     </div>
   )
 } 
