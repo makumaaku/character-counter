@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Sobre Nosotros | Boring Tools",
+    "description": "Conozca Boring Tools, nuestra misión y el equipo detrás de nuestras herramientas web simples pero potentes.",
+    "keywords": "sobre nosotros, boring tools, empresa, misión, equipo, herramientas web"
+  },
+  "title": "Sobre Nosotros",
+  "content": {
+    "intro": "Bienvenido a Boring Tools, donde hacemos las partes aburridas de tu vida en línea simples y eficientes.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "text": "En Boring Tools, creemos que las tareas diarias en línea no deberían ser complicadas. Nuestra misión es crear herramientas sencillas y fáciles de usar que resuelvan problemas comunes sin complejidad innecesaria. Nos centramos en la simplicidad, la eficiencia y la accesibilidad."
+    },
+    "story": {
+      "title": "Nuestra Historia",
+      "text": "Boring Tools fue fundada en 2022 por un grupo de desarrolladores cansados de herramientas web llamativas pero ineficaces. Queríamos crear soluciones que simplemente funcionen - sin anuncios, sin registros y sin seguimiento. Lo que comenzó como una pequeña colección de utilidades se ha convertido en un conjunto completo de herramientas utilizadas por millones de personas en todo el mundo."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "list": [
+        {
+          "heading": "Simplicidad",
+          "text": "Eliminamos la complejidad y nos enfocamos en lo que importa."
+        },
+        {
+          "heading": "Privacidad",
+          "text": "Respetamos tus datos y privacidad. Sin seguimiento ni recopilación de datos innecesarios."
+        },
+        {
+          "heading": "Accesibilidad",
+          "text": "Nuestras herramientas están diseñadas para ser utilizadas por todos, independientemente de sus habilidades o capacidades técnicas."
+        },
+        {
+          "heading": "Calidad",
+          "text": "Estamos comprometidos a crear herramientas confiables y de alta calidad que funcionen de manera consistente."
+        }
+      ]
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "text": "Somos un equipo diverso de desarrolladores, diseñadores y solucionadores de problemas ubicados en todo el mundo. Unidos por nuestra pasión por crear herramientas útiles, trabajamos juntos para hacer de la web un lugar más eficiente."
+    },
+    "contact": {
+      "text": "¿Tienes preguntas o quieres saber más sobre nosotros?",
+      "button": "Contáctanos"
+    }
+  }
+} 

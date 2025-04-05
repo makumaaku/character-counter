@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-03T19:08:25.879Z
+// Generated at: 2025-04-05T01:47:25.807Z
 
 export interface CommonMessages {
   meta: {
@@ -247,11 +247,18 @@ export interface PrivacyPolicyMessages {
     usage: string;
     usageText: string;
     usageItems: string[];
+    cookies: string;
+    cookiesText: string;
     sharing: string;
     sharingText: string;
-    sharingItems: string[];
-    security: string;
-    securityText: string;
+    external: string;
+    externalText: string;
+    contact: string;
+    contactText: string;
+    policy: string;
+    policyText: string;
+    conclusion: string;
+    conclusionText: string;
   };
   updated: string;
 }
@@ -2854,6 +2861,8 @@ export interface AllMessages {
     plan?: CharacterCounterPlanMessages;
     privacy?: CharacterCounterPrivacyMessages;
     usecase?: CharacterCounterUsecaseMessages;
+  };
+  healthTools?: {
   };
   imageTools?: {
     common?: ImageToolsCommonMessages;

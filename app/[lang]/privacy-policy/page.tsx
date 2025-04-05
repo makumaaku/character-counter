@@ -16,14 +16,59 @@ export default async function PrivacyPolicyPage({ params }: Props) {
   // サーバーコンポーネントで翻訳を並列取得
   const [
     title,
-    content,
+    intro,
+    collection,
+    collectionText,
+    usage,
+    usageText,
+    cookies,
+    cookiesText,
+    sharing,
+    sharingText,
+    external,
+    externalText,
+    contact,
+    contactText,
+    policy,
+    policyText,
+    conclusion,
+    conclusionText,
     updated,
-    contactText
+    contactLinkText
   ] = await Promise.all([
     translate(lang, 'privacyPolicy.title'),
-    translate(lang, 'privacyPolicy.content'),
+    translate(lang, 'privacyPolicy.content.intro'),
+    translate(lang, 'privacyPolicy.content.collection'),
+    translate(lang, 'privacyPolicy.content.collectionText'),
+    translate(lang, 'privacyPolicy.content.usage'),
+    translate(lang, 'privacyPolicy.content.usageText'),
+    translate(lang, 'privacyPolicy.content.cookies'),
+    translate(lang, 'privacyPolicy.content.cookiesText'),
+    translate(lang, 'privacyPolicy.content.sharing'),
+    translate(lang, 'privacyPolicy.content.sharingText'),
+    translate(lang, 'privacyPolicy.content.external'),
+    translate(lang, 'privacyPolicy.content.externalText'),
+    translate(lang, 'privacyPolicy.content.contact'),
+    translate(lang, 'privacyPolicy.content.contactText'),
+    translate(lang, 'privacyPolicy.content.policy'),
+    translate(lang, 'privacyPolicy.content.policyText'),
+    translate(lang, 'privacyPolicy.content.conclusion'),
+    translate(lang, 'privacyPolicy.content.conclusionText'),
     translate(lang, 'privacyPolicy.updated'),
     translate(lang, 'common.footer.contact')
+  ]);
+
+  // 配列アイテムを別々に取得
+  const collectionItems = await Promise.all([
+    translate(lang, 'privacyPolicy.content.collectionItems.0'),
+    translate(lang, 'privacyPolicy.content.collectionItems.1'),
+    translate(lang, 'privacyPolicy.content.collectionItems.2')
+  ]);
+
+  const usageItems = await Promise.all([
+    translate(lang, 'privacyPolicy.content.usageItems.0'),
+    translate(lang, 'privacyPolicy.content.usageItems.1'),
+    translate(lang, 'privacyPolicy.content.usageItems.2')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -34,7 +79,27 @@ export default async function PrivacyPolicyPage({ params }: Props) {
       keywords: ""
     },
     title,
-    content: JSON.parse(content as string),
+    content: {
+      intro,
+      collection,
+      collectionText,
+      collectionItems,
+      usage,
+      usageText,
+      usageItems,
+      cookies,
+      cookiesText,
+      sharing,
+      sharingText,
+      external,
+      externalText,
+      contact,
+      contactText,
+      policy,
+      policyText,
+      conclusion,
+      conclusionText
+    },
     updated
   };
 
@@ -45,7 +110,7 @@ export default async function PrivacyPolicyPage({ params }: Props) {
         <PrivacyPolicyClient 
           messages={messages} 
           lang={lang} 
-          contactText={contactText as string}
+          contactText={contactLinkText as string}
         />
       </main>
     </>

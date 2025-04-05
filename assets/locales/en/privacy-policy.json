@@ -6,31 +6,33 @@
   },
   "title": "Privacy Policy",
   "content": {
-    "intro": "At Boring Tools, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.",
-    "collection": "Information We Collect",
-    "collectionText": "We may collect information about you in a variety of ways. The information we may collect via the Website includes:",
+    "intro": "At Boring, inc. (hereinafter referred to as \"we\"), we value user privacy and have a policy of keeping collected information to a minimum. This page explains how we handle personal information on boring-tool.com.",
+    "collection": "1. Information We Collect",
+    "collectionText": "Boring, inc. may obtain and use only the following information:",
     "collectionItems": [
-      "Personal Data: Personally identifiable information, such as your name and email address, that you voluntarily give to us when you register or when you choose to participate in various activities related to the Website.",
-      "Derivative Data: Information our servers automatically collect when you access the Website, such as your IP address, browser type, operating system, access times, and the pages you have viewed.",
-      "Cookies Data: Data collected through cookies and similar technologies to enhance your experience on our website."
+      "Access logs (anonymized browser information, device used, referrer, etc.) *Used for service improvement. Does not include personally identifiable information.",
+      "Error reports and crash information *May be automatically collected anonymously to provide a more stable service.",
+      "Content entered in the contact form *Limited only to voluntarily submitted content."
     ],
-    "usage": "How We Use Your Information",
-    "usageText": "We may use the information we collect about you for various purposes, including to:",
+    "usage": "2. Information We \"DO NOT\" Collect",
+    "usageText": "We do not collect or store the following information:",
     "usageItems": [
-      "Provide, operate, and maintain our website",
-      "Improve, personalize, and expand our website",
-      "Understand and analyze how you use our website",
-      "Develop new products, services, features, and functionality"
+      "Text, files, or data entered by the user (e.g., data used for character counting or file conversion is not saved)",
+      "Login information (we don't have an account registration function)",
+      "Tracking cookies for advertising purposes or excessive third-party analytics tools"
     ],
-    "sharing": "Disclosure of Your Information",
-    "sharingText": "We may share information we have collected about you in certain situations. Your information may be disclosed as follows:",
-    "sharingItems": [
-      "By Law or to Protect Rights: If we believe the release of information about you is necessary to respond to legal process.",
-      "Third-Party Service Providers: We may share your information with third parties that perform services for us or on our behalf.",
-      "Marketing Communications: With your consent, or with an opportunity for you to withdraw consent, we may share your information with third parties for marketing purposes."
-    ],
-    "security": "Security of Your Information",
-    "securityText": "We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse."
+    "cookies": "3. About Cookies",
+    "cookiesText": "Some of our services may use cookies to improve convenience. However, we do not use so-called \"tracking advertising (remarketing)\" cookies.",
+    "sharing": "4. About Data Sharing",
+    "sharingText": "We do not sell, rent, or provide user information to third parties. (Except when requested by legal institutions according to obligations)",
+    "external": "5. Collaboration with External Services",
+    "externalText": "Some tools may use external libraries or APIs to improve conversion or analysis accuracy. These services do not directly store user information.",
+    "contact": "6. Contact",
+    "contactText": "For questions or consultations about privacy, please contact us at the following email address: privacy@boring-tool.com",
+    "policy": "7. Policy Revision",
+    "policyText": "This privacy policy may be changed without notice when necessary. If you continue to use the service after changes, it is considered that you have agreed to these changes.",
+    "conclusion": "Conclusion: We are not interested in your data",
+    "conclusionText": "Boring, inc. aims to provide tools that are \"use and done\". We don't need to know what you converted or how many characters you counted. Please use our services with peace of mind and discretion."
   },
   "updated": "Last Updated: April 1, 2024"
 } 
