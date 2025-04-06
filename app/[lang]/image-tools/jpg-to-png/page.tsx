@@ -263,12 +263,8 @@ export default async function JpgToPng({ params }: Props) {
   };
 
   return (
-    <PageContainer>
-      <h1 className="text-3xl font-bold mt-8 mb-4">{title}</h1>
-      <p className="text-gray-300 mb-8">{description}</p>
-      
-      <JpgToPngClient translations={messages} />
-      
+    <PageContainer>    
+      <JpgToPngClient translations={messages} />  
       <SeoText content={seoTextContent} />
     </PageContainer>
   )
