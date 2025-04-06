@@ -27,16 +27,15 @@ export function LanguageSwitcher() {
   ) || 'en';
 
   const handleLanguageChange = (newLang: Language) => {
+      // クッキーに言語設定を保存 (30日間有効)
+      setCookie('lang', newLang, { 
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/' 
+      });
     // 現在のパスから言語部分を抽出
     const pathWithoutLang = pathname.replace(/^\/[a-z]{2}/, '');
     const newPath = `/${newLang}${pathWithoutLang}`;
     router.push(newPath);
-
-    // クッキーに言語設定を保存 (30日間有効)
-    setCookie('lang', newLang, { 
-      maxAge: 30 * 24 * 60 * 60,
-      path: '/' 
-    });
   };
 
   return (
