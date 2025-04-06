@@ -88,7 +88,8 @@ export async function generateMetadata(
       "priceCurrency": "USD"
     },
     "featureList": [
-      "Convert JPG to PNG",
+      "Convert JPG to PNG with transparent background",
+      "High-quality image conversion",
       "Preview converted images",
       "Browser-based conversion",
       "Privacy-focused - no server uploads",

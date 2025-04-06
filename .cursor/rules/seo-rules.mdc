@@ -61,6 +61,8 @@ alternates: {
     'en': `${SITE_CONFIG.baseURL}/en`,
     'ja': `${SITE_CONFIG.baseURL}/ja`,
     'es': `${SITE_CONFIG.baseURL}/es`,
+    'ru': `${SITE_CONFIG.baseURL}/ru`,
+    'zh': `${SITE_CONFIG.baseURL}/zh`,
     'x-default': `${SITE_CONFIG.baseURL}/en`  // デフォルト言語（英語）のURLを指定
   },
 }

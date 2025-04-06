@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Convertidor de JPG a PNG - Herramienta gratuita de conversión de imágenes",
-    "description": "Convierte imágenes JPG a formato PNG en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
-    "keywords": "jpg a png, jpeg a png, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea"
+    "title": "Herramienta gratuita para convertir imágenes JPG a PNG con fondo transparente",
+    "description": "Convertidor JPG a PNG de alta calidad con soporte de transparencia. Convierte fácilmente imágenes a PNG en línea. Sin registro, gratuito y basado en navegador disponible para uso inmediato.",
+    "keywords": "jpg a png, jpeg a png, convertidor de imágenes, fondo transparente, transparencia png, convertidor gratuito, herramienta de imagen en línea"
   },
   "title": "Convertidor de JPG a PNG",
   "description": "Convierte imágenes JPG a formato PNG con soporte de transparencia",
@@ -13,26 +13,117 @@
     "upload": {
       "label": "Subir imagen JPG",
       "button": "Seleccionar archivo",
-      "dragDrop": "Arrastra y suelta el archivo aquí o haz clic para explorar"
+      "dragDrop": "Arrastra y suelta el archivo aquí o haz clic para explorar",
+      "limitText": "Tamaño máximo de archivo: 20MB (hasta 100MB en total)"
     },
     "convert": "Convertir a PNG"
   },
   "result": {
     "download": "Descargar PNG",
     "convertedResult": "PNG convertido",
-    "downloadAll": "Descargar todos los PNG"
+    "downloadAll": "Descargar todos los PNG",
+    "preview": "Vista previa"
   },
   "status": {
     "processing": "Convirtiendo...",
-    "noFile": "Ningún archivo seleccionado"
+    "noFile": "Ningún archivo seleccionado",
+    "success": "¡Conversión completa!",
+    "browserProcessing": "El procesamiento se realiza en tu navegador, por lo que la velocidad puede variar según tu dispositivo"
   },
   "error": {
     "fileType": "Solo se permiten archivos JPG/JPEG",
-    "fileSize": "El tamaño del archivo debe ser menor a 10MB"
+    "fileSize": "El tamaño del archivo debe ser menor a 10MB",
+    "conversionFailed": "La conversión falló. Por favor, inténtalo de nuevo"
   },
   "preview": {
     "title": "Vista previa",
     "fileSelected": "{count} archivo seleccionado",
     "filesSelected": "{count} archivos seleccionados"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Resumen",
+      "content": "El Convertidor de JPG a PNG es una herramienta en línea gratuita que transforma imágenes JPG en formato PNG de alta calidad. Con soporte especial para fondos transparentes (PNG transparente), es ampliamente utilizado para presentaciones, desarrollo web, trabajo de diseño y varias otras aplicaciones.\nNo requiere instalación: funciona completamente en tu navegador, lo que lo hace instantáneamente accesible tanto en PC como en smartphones."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Subir imagen",
+          "description": "Arrastra y suelta tu archivo JPG o haz clic en el botón 'Seleccionar archivo' para subirlo."
+        },
+        {
+          "title": "Conversión automática",
+          "description": "La conversión al formato PNG comienza automáticamente después de la carga. El procesamiento de transparencia de fondo también se maneja automáticamente."
+        },
+        {
+          "title": "Descargar imagen convertida",
+          "description": "Una vez completada la conversión, haz clic en el botón 'Descargar' para guardar tu imagen PNG."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Diseñador web A",
+          "comment": "A menudo necesito convertir JPG a PNG transparentes para banners de clientes, y esta herramienta ha sido un salvavidas. No es necesario iniciar software, puedo terminar rápidamente en mi navegador, lo cual es super conveniente."
+        },
+        {
+          "name": "Profesional de ventas B",
+          "comment": "Uso esta herramienta cuando necesito limpiar imágenes de iconos para presentaciones internas. Es maravilloso que incluso personas que no pueden usar software de edición de imágenes puedan usarla sin problemas."
+        },
+        {
+          "name": "Propietario de tienda online C",
+          "comment": "Esto me ayuda cuando quiero eliminar fondos de imágenes de productos para que se vean más limpias. El procesamiento automático de transparencia al convertir a PNG ha mejorado enormemente mi eficiencia de trabajo."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Soporte de transparencia de fondo",
+          "description": "La IA elimina automáticamente los fondos de las imágenes, guardándolas como PNG transparentes."
+        },
+        {
+          "title": "Sin instalación y completamente gratis",
+          "description": "Funciona enteramente en tu navegador. No se requieren descargas de software complicadas ni registros."
+        },
+        {
+          "title": "Conversión de alta calidad",
+          "description": "Mantiene la calidad de la imagen durante la conversión, produciendo imágenes PNG nítidas."
+        },
+        {
+          "title": "Soporte para múltiples dispositivos",
+          "description": "Compatible con PC, smartphones y tablets, permitiéndote usarlo en cualquier momento y lugar."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "¿Esta herramienta es realmente gratuita?",
+          "answer": "Sí, todas las funciones están disponibles de forma gratuita. No se requiere registro."
+        },
+        {
+          "question": "¿Puedo convertir varias imágenes a la vez?",
+          "answer": "Actualmente, admitimos la conversión una por una, pero planeamos agregar funcionalidad de procesamiento por lotes en el futuro."
+        },
+        {
+          "question": "¿Mis imágenes subidas se almacenan en su servidor?",
+          "answer": "No, las imágenes subidas se eliminan automáticamente después de la conversión, garantizando tu privacidad."
+        },
+        {
+          "question": "¿Qué debo hacer si la transparencia de fondo no funciona bien?",
+          "answer": "La transparencia puede ser difícil para imágenes con fondos complejos. Para mejores resultados, usa imágenes donde el sujeto y el fondo estén claramente separados."
+        },
+        {
+          "question": "¿Puedo usar esto en un smartphone?",
+          "answer": "Sí, puedes usarlo fácilmente desde cualquier navegador de smartphone, ya sea iOS o Android."
+        }
+      ]
+    }
   }
 }

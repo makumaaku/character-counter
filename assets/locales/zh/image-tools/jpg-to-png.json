@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "JPG转PNG转换器 - 免费在线图像转换工具",
-    "description": "在线将JPG图像转换为PNG格式。免费、快速且易于使用，提供即时预览和下载选项。",
-    "keywords": "jpg转png, jpeg转png, 图像转换器, 免费转换器, 在线图像工具"
+    "title": "免费工具将JPG图像转换为带透明背景的PNG格式",
+    "description": "高质量的JPG到PNG转换器，支持透明度。在线轻松将图像转换为PNG。无需注册，免费，基于浏览器的工具可立即使用。",
+    "keywords": "jpg转png, jpeg转png, 图像转换器, 透明背景, png透明度, 免费转换器, 在线图像工具"
   },
   "title": "JPG转PNG转换器",
   "description": "将JPG图像转换为支持透明度的PNG格式",
@@ -13,26 +13,117 @@
     "upload": {
       "label": "上传JPG图像",
       "button": "选择文件",
-      "dragDrop": "拖放文件到这里或点击浏览"
+      "dragDrop": "拖放文件到这里或点击浏览",
+      "limitText": "最大文件大小：20MB（总共最多100MB）"
     },
     "convert": "转换为PNG"
   },
   "result": {
     "download": "下载PNG",
     "convertedResult": "已转换的PNG",
-    "downloadAll": "下载所有PNG"
+    "downloadAll": "下载所有PNG",
+    "preview": "预览"
   },
   "status": {
     "processing": "转换中...",
-    "noFile": "未选择文件"
+    "noFile": "未选择文件",
+    "success": "转换完成！",
+    "browserProcessing": "处理在您的浏览器中进行，因此速度可能因您的设备而异"
   },
   "error": {
     "fileType": "只允许JPG/JPEG文件",
-    "fileSize": "文件大小必须小于10MB"
+    "fileSize": "文件大小必须小于10MB",
+    "conversionFailed": "转换失败。请重试"
   },
   "preview": {
     "title": "预览",
     "fileSelected": "已选择{count}个文件",
     "filesSelected": "已选择{count}个文件"
+  },
+  "seoText": {
+    "overview": {
+      "title": "概述",
+      "content": "JPG转PNG转换器是一款免费的在线工具，可将JPG图像转换为高质量的PNG格式。它特别支持透明背景（透明PNG），广泛用于演示文稿、网页开发、设计工作和各种其他应用。\n无需安装 - 完全在您的浏览器中运行，使其在PC和智能手机上都能立即访问。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传图像",
+          "description": "拖放您的JPG文件或点击\"选择文件\"按钮上传。"
+        },
+        {
+          "title": "自动转换",
+          "description": "上传后自动开始转换为PNG格式。背景透明处理也会自动进行。"
+        },
+        {
+          "title": "下载转换后的图像",
+          "description": "转换完成后，点击\"下载\"按钮保存您的PNG图像。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "网页设计师A",
+          "comment": "我经常需要将JPG转换为透明PNG用于客户横幅，这个工具真是救星。不需要启动软件 - 我可以在浏览器中快速完成，非常方便。"
+        },
+        {
+          "name": "销售专业人士B",
+          "comment": "我在需要为内部演示清理图标图像时使用这个工具。即使是不会使用图像编辑软件的人也能毫无问题地使用它，这真是太棒了。"
+        },
+        {
+          "name": "在线商店店主C",
+          "comment": "这帮助我在想要移除产品图像背景使其看起来更干净时。将JPG转换为PNG时的自动透明度处理大大提高了我的工作效率。"
+        }
+      ]
+    },
+    "features": {
+      "title": "特点和优势",
+      "items": [
+        {
+          "title": "背景透明度支持",
+          "description": "AI自动从图像中移除背景，将其保存为透明PNG。"
+        },
+        {
+          "title": "无需安装且完全免费",
+          "description": "完全在您的浏览器中运行。不需要复杂的软件下载或注册。"
+        },
+        {
+          "title": "高质量转换",
+          "description": "在转换过程中保持图像质量，生成清晰的PNG图像。"
+        },
+        {
+          "title": "多设备支持",
+          "description": "兼容PC、智能手机和平板电脑，让您随时随地使用。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题解答",
+      "questions": [
+        {
+          "question": "这个工具真的免费吗？",
+          "answer": "是的，所有功能都可以免费使用。无需注册。"
+        },
+        {
+          "question": "我可以一次转换多张图像吗？",
+          "answer": "目前，我们支持一次一张转换，但我们计划在未来添加批处理功能。"
+        },
+        {
+          "question": "我上传的图像会存储在您的服务器上吗？",
+          "answer": "不会，上传的图像在转换后会自动删除，确保您的隐私。"
+        },
+        {
+          "question": "如果背景透明度效果不好，我该怎么办？",
+          "answer": "对于复杂背景的图像，透明度可能会很困难。为了获得最佳效果，请使用主体和背景明确分离的图像。"
+        },
+        {
+          "question": "我可以在智能手机上使用它吗？",
+          "answer": "是的，您可以从任何智能手机浏览器轻松使用它，无论是iOS还是Android。"
+        }
+      ]
+    }
   }
 } 
