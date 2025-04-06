@@ -30,5 +30,91 @@
     "fileType": "Only PNG files are allowed",
     "fileSize": "File size must be less than 20MB",
     "conversionFailed": "Conversion failed, please try again"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "PNG to JPG Converter is a free online tool that converts transparent PNG images to high-quality JPG format. It's perfect for web development, print materials, and social media images where JPG format is required. No software installation needed - everything works right in your browser, making it accessible even for beginners."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload Image",
+          "description": "Drag & drop your PNG file or click 'Select Files' to upload."
+        },
+        {
+          "title": "Automatic Conversion",
+          "description": "The conversion to JPG begins automatically after upload."
+        },
+        {
+          "title": "Download JPG Image",
+          "description": "Once conversion is complete, click the 'Download' button to save your file."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Freelance Designer)",
+          "comment": "I often need to submit JPG files to clients, and this tool helps me convert PNG images quickly. The quality remains excellent too."
+        },
+        {
+          "name": "User B (Social Media Manager)",
+          "comment": "I need to post JPG images for social media regularly, and I use this tool almost daily. The simple interface is a time-saver."
+        },
+        {
+          "name": "User C (Student)",
+          "comment": "My school requires JPG format for report images. This tool helped me convert everything easily - it was a lifesaver!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "High-Quality Conversion",
+          "description": "Preserves the resolution and quality of your PNG images while converting to JPG format with minimal degradation. Perfect for business use and print materials where clear, detailed images are essential."
+        },
+        {
+          "title": "Automatic White Background",
+          "description": "Transparent areas in PNG images are automatically replaced with a white background, preventing issues with 'missing backgrounds' common in JPG format. This ensures your images look natural on websites and in documents."
+        },
+        {
+          "title": "No Software Required - Completely Free",
+          "description": "No need to install applications or create user accounts. With just an internet connection, anyone can start using it immediately. All features are provided free of charge, making it ideal for those who want to try it out."
+        },
+        {
+          "title": "Compatible with All Devices",
+          "description": "Access from PCs (Windows/Mac), smartphones (iPhone/Android), and tablets. Convert images easily whether you're at home or on the go."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Is this service free to use?",
+          "answer": "Yes, all features are completely free to use."
+        },
+        {
+          "question": "What happens to PNG images with transparent backgrounds?",
+          "answer": "When converted to JPG format, transparent areas automatically become white backgrounds."
+        },
+        {
+          "question": "Can I convert multiple images at once?",
+          "answer": "Currently, images are converted one at a time, but we're considering adding batch processing functionality in the future."
+        },
+        {
+          "question": "Can I use this on my smartphone?",
+          "answer": "Yes, you can access and use this tool from any smartphone browser."
+        },
+        {
+          "question": "Are my uploaded images stored on your server?",
+          "answer": "No. Your uploaded images are automatically deleted after conversion."
+        }
+      ]
+    }
   }
 }

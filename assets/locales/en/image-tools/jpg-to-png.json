@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "JPG to PNG Converter - Free Online Image Conversion Tool",
-    "description": "Convert JPG images to PNG format online. Free, fast, and easy to use with instant preview and download options.",
-    "keywords": "jpg to png, jpeg to png, image converter, free converter, online image tool"
+    "title": "Free Tool to Convert JPG Images to PNG with Transparent Background",
+    "description": "High-quality JPG to PNG converter with transparency support. Easily convert images to PNG online. No registration, free, browser-based tool available for immediate use.",
+    "keywords": "jpg to png, jpeg to png, image converter, transparent background, png transparency, free converter, online image tool"
   },
   "title": "JPG to PNG Converter",
   "description": "Convert JPG images to PNG format with transparency support",
@@ -13,26 +13,117 @@
     "upload": {
       "label": "Upload JPG Image",
       "button": "Select File",
-      "dragDrop": "Drag & drop file here or click to browse"
+      "dragDrop": "Drag & drop file here or click to browse",
+      "limitText": "Maximum file size: 20MB (up to 100MB total)"
     },
     "convert": "Convert to PNG"
   },
   "result": {
     "download": "Download PNG",
     "convertedResult": "Converted PNG",
-    "downloadAll": "Download All PNGs"
+    "downloadAll": "Download All PNGs",
+    "preview": "Preview"
   },
   "status": {
     "processing": "Converting...",
-    "noFile": "No file selected"
+    "noFile": "No file selected",
+    "success": "Conversion complete!",
+    "browserProcessing": "Processing is done in your browser, so speed may vary depending on your device"
   },
   "error": {
     "fileType": "Only JPG/JPEG files are allowed",
-    "fileSize": "File size must be less than 10MB"
+    "fileSize": "File size must be less than 10MB",
+    "conversionFailed": "Conversion failed. Please try again"
   },
   "preview": {
     "title": "Preview",
     "fileSelected": "{count} file selected",
     "filesSelected": "{count} files selected"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "JPG to PNG Converter is a free online tool that transforms JPG images into high-quality PNG format. With special support for transparent backgrounds (transparent PNG), it's widely used for presentations, web development, design work, and various other applications.\nNo installation required - works completely in your browser, making it instantly accessible on both PCs and smartphones."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload Image",
+          "description": "Drag & drop your JPG file or click the 'Select File' button to upload."
+        },
+        {
+          "title": "Automatic Conversion",
+          "description": "Conversion to PNG format starts automatically after upload. Background transparency processing is also handled automatically."
+        },
+        {
+          "title": "Download Converted Image",
+          "description": "Once conversion is complete, click the 'Download' button to save your PNG image."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Web Designer A",
+          "comment": "I often need to convert JPGs to transparent PNGs for client banners, and this tool has been a lifesaver. No need to launch software - I can quickly finish in my browser, which is super convenient."
+        },
+        {
+          "name": "Sales Professional B",
+          "comment": "I use this tool when I need to clean up icon images for internal presentations. It's wonderful that even people who can't use image editing software can use it without any issues."
+        },
+        {
+          "name": "Online Shop Owner C",
+          "comment": "This helps me when I want to remove backgrounds from product images to make them look cleaner. The automatic transparency processing when converting to PNG has greatly improved my work efficiency."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Background Transparency Support",
+          "description": "AI automatically removes backgrounds from images, saving them as transparent PNGs."
+        },
+        {
+          "title": "No Installation & Completely Free",
+          "description": "Works entirely in your browser. No complicated software downloads or registrations required."
+        },
+        {
+          "title": "High-Quality Conversion",
+          "description": "Maintains image quality during conversion, producing crisp PNG images."
+        },
+        {
+          "title": "Multiple Device Support",
+          "description": "Compatible with PCs, smartphones, and tablets, allowing you to use it anytime, anywhere."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Is this tool really free?",
+          "answer": "Yes, all features are available for free. No registration required."
+        },
+        {
+          "question": "Can I convert multiple images at once?",
+          "answer": "Currently, we support one-by-one conversion, but we plan to add batch processing functionality in the future."
+        },
+        {
+          "question": "Are my uploaded images stored on your server?",
+          "answer": "No, uploaded images are automatically deleted after conversion, ensuring your privacy."
+        },
+        {
+          "question": "What should I do if background transparency doesn't work well?",
+          "answer": "Transparency may be difficult for images with complex backgrounds. For best results, use images where the subject and background are clearly separated."
+        },
+        {
+          "question": "Can I use this on a smartphone?",
+          "answer": "Yes, you can easily use it from any smartphone browser, whether iOS or Android."
+        }
+      ]
+    }
   }
 }
