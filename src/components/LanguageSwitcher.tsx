@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { type Language } from '@/lib/i18n/types';
+import { setCookie } from 'cookies-next';
 
 // 言語設定
 const LANGUAGES: { [key in Language]: string } = {
@@ -30,6 +31,12 @@ export function LanguageSwitcher() {
     const pathWithoutLang = pathname.replace(/^\/[a-z]{2}/, '');
     const newPath = `/${newLang}${pathWithoutLang}`;
     router.push(newPath);
+
+    // クッキーに言語設定を保存 (30日間有効)
+    setCookie('lang', newLang, { 
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/' 
+    });
   };
 
   return (

@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-05T05:10:25.388Z
+// Generated at: 2025-04-06T08:31:59.290Z
 
 export interface CommonMessages {
   meta: {
@@ -1140,6 +1140,7 @@ export interface ImageToolsJpgToPngMessages {
       label: string;
       button: string;
       dragDrop: string;
+      limitText: string;
     };
     convert: string;
   };
@@ -1147,19 +1148,57 @@ export interface ImageToolsJpgToPngMessages {
     download: string;
     convertedResult: string;
     downloadAll: string;
+    preview: string;
   };
   status: {
     processing: string;
     noFile: string;
+    success: string;
+    browserProcessing: string;
   };
   error: {
     fileType: string;
     fileSize: string;
+    conversionFailed: string;
   };
   preview: {
     title: string;
     fileSelected: string;
     filesSelected: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
@@ -1233,6 +1272,40 @@ export interface ImageToolsPngToJpgMessages {
     fileType: string;
     fileSize: string;
     conversionFailed: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 

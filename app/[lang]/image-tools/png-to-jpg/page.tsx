@@ -161,96 +161,97 @@ export default async function PngToJpg({ params }: Props) {
       fileType: fileTypeError,
       fileSize: fileSizeError,
       conversionFailed: conversionFailedError
+    },
+    seoText: {
+      overview: {
+        title: seoOverviewTitle,
+        content: seoOverviewContent
+      },
+      howTo: {
+        title: seoHowToTitle,
+        steps: [
+          {
+            title: seoHowToStep1Title,
+            description: seoHowToStep1Desc
+          },
+          {
+            title: seoHowToStep2Title,
+            description: seoHowToStep2Desc
+          },
+          {
+            title: seoHowToStep3Title,
+            description: seoHowToStep3Desc
+          }
+        ]
+      },
+      testimonials: {
+        title: seoTestimonialsTitle,
+        users: [
+          {
+            name: seoTestimonialsUser1Name,
+            comment: seoTestimonialsUser1Comment
+          },
+          {
+            name: seoTestimonialsUser2Name,
+            comment: seoTestimonialsUser2Comment
+          },
+          {
+            name: seoTestimonialsUser3Name,
+            comment: seoTestimonialsUser3Comment
+          }
+        ]
+      },
+      features: {
+        title: seoFeaturesTitle,
+        items: [
+          {
+            title: seoFeaturesItem1Title,
+            description: seoFeaturesItem1Desc
+          },
+          {
+            title: seoFeaturesItem2Title,
+            description: seoFeaturesItem2Desc
+          },
+          {
+            title: seoFeaturesItem3Title,
+            description: seoFeaturesItem3Desc
+          },
+          {
+            title: seoFeaturesItem4Title,
+            description: seoFeaturesItem4Desc
+          }
+        ]
+      },
+      faq: {
+        title: seoFaqTitle,
+        questions: [
+          {
+            question: seoFaqQ1,
+            answer: seoFaqA1
+          },
+          {
+            question: seoFaqQ2,
+            answer: seoFaqA2
+          },
+          {
+            question: seoFaqQ3,
+            answer: seoFaqA3
+          },
+          {
+            question: seoFaqQ4,
+            answer: seoFaqA4
+          },
+          {
+            question: seoFaqQ5,
+            answer: seoFaqA5
+          }
+        ]
+      }
     }
   }
 
   // SEOテキスト用のデータを作成
-  const seoTextContent: SeoTextContent = {
-    overview: {
-      title: seoOverviewTitle,
-      content: seoOverviewContent
-    },
-    howTo: {
-      title: seoHowToTitle,
-      steps: [
-        {
-          title: seoHowToStep1Title,
-          description: seoHowToStep1Desc
-        },
-        {
-          title: seoHowToStep2Title,
-          description: seoHowToStep2Desc
-        },
-        {
-          title: seoHowToStep3Title,
-          description: seoHowToStep3Desc
-        }
-      ]
-    },
-    testimonials: {
-      title: seoTestimonialsTitle,
-      users: [
-        {
-          name: seoTestimonialsUser1Name,
-          comment: seoTestimonialsUser1Comment
-        },
-        {
-          name: seoTestimonialsUser2Name,
-          comment: seoTestimonialsUser2Comment
-        },
-        {
-          name: seoTestimonialsUser3Name,
-          comment: seoTestimonialsUser3Comment
-        }
-      ]
-    },
-    features: {
-      title: seoFeaturesTitle,
-      items: [
-        {
-          title: seoFeaturesItem1Title,
-          description: seoFeaturesItem1Desc
-        },
-        {
-          title: seoFeaturesItem2Title,
-          description: seoFeaturesItem2Desc
-        },
-        {
-          title: seoFeaturesItem3Title,
-          description: seoFeaturesItem3Desc
-        },
-        {
-          title: seoFeaturesItem4Title,
-          description: seoFeaturesItem4Desc
-        }
-      ]
-    },
-    faq: {
-      title: seoFaqTitle,
-      questions: [
-        {
-          question: seoFaqQ1,
-          answer: seoFaqA1
-        },
-        {
-          question: seoFaqQ2,
-          answer: seoFaqA2
-        },
-        {
-          question: seoFaqQ3,
-          answer: seoFaqA3
-        },
-        {
-          question: seoFaqQ4,
-          answer: seoFaqA4
-        },
-        {
-          question: seoFaqQ5,
-          answer: seoFaqA5
-        }
-      ]
-    }
-  }
+  const seoTextContent: SeoTextContent = messages.seoText;
 
   return (
     <PageContainer>

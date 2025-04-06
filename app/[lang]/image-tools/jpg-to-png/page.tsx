@@ -73,7 +73,11 @@ export default async function JpgToPng({ params }: Props) {
     seoFaqQ4,
     seoFaqA4,
     seoFaqQ5,
-    seoFaqA5
+    seoFaqA5,
+    // 追加した多言語対応
+    successText,
+    browserProcessingText,
+    conversionFailedText
   ] = await Promise.all([
     translate(lang, 'imageTools.jpgToPng.title'),
     translate(lang, 'imageTools.jpgToPng.description'),
@@ -131,7 +135,11 @@ export default async function JpgToPng({ params }: Props) {
     translate(lang, 'imageTools.jpgToPng.seoText.faq.questions.3.question'),
     translate(lang, 'imageTools.jpgToPng.seoText.faq.questions.3.answer'),
     translate(lang, 'imageTools.jpgToPng.seoText.faq.questions.4.question'),
-    translate(lang, 'imageTools.jpgToPng.seoText.faq.questions.4.answer')
+    translate(lang, 'imageTools.jpgToPng.seoText.faq.questions.4.answer'),
+    // 追加した多言語対応
+    translate(lang, 'imageTools.jpgToPng.status.success'),
+    translate(lang, 'imageTools.jpgToPng.status.browserProcessing'),
+    translate(lang, 'imageTools.jpgToPng.error.conversionFailed')
   ])
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -150,117 +158,123 @@ export default async function JpgToPng({ params }: Props) {
       upload: {
         label: uploadLabel,
         button: uploadButton,
-        dragDrop: dragDropText
+        dragDrop: dragDropText,
+        limitText: uploadLimit
       },
       convert: convertButton
     },
     result: {
       download: downloadButton,
       convertedResult: convertedResultText,
-      downloadAll: downloadAllText
+      downloadAll: downloadAllText,
+      preview: previewTitle
     },
     status: {
       processing: processingText,
-      noFile: noFileText
+      noFile: noFileText,
+      success: successText,
+      browserProcessing: browserProcessingText
     },
     error: {
       fileType: fileTypeError,
-      fileSize: fileSizeError
+      fileSize: fileSizeError,
+      conversionFailed: conversionFailedText
     },
     preview: {
       title: previewTitle,
       fileSelected: fileSelectedText,
       filesSelected: filesSelectedText
+    },
+    seoText: {
+      overview: {
+        title: seoOverviewTitle,
+        content: seoOverviewContent
+      },
+      howTo: {
+        title: seoHowToTitle,
+        steps: [
+          {
+            title: seoHowToStep1Title,
+            description: seoHowToStep1Desc
+          },
+          {
+            title: seoHowToStep2Title,
+            description: seoHowToStep2Desc
+          },
+          {
+            title: seoHowToStep3Title,
+            description: seoHowToStep3Desc
+          }
+        ]
+      },
+      testimonials: {
+        title: seoTestimonialsTitle,
+        users: [
+          {
+            name: seoTestimonialsUser1Name,
+            comment: seoTestimonialsUser1Comment
+          },
+          {
+            name: seoTestimonialsUser2Name,
+            comment: seoTestimonialsUser2Comment
+          },
+          {
+            name: seoTestimonialsUser3Name,
+            comment: seoTestimonialsUser3Comment
+          }
+        ]
+      },
+      features: {
+        title: seoFeaturesTitle,
+        items: [
+          {
+            title: seoFeaturesItem1Title,
+            description: seoFeaturesItem1Desc
+          },
+          {
+            title: seoFeaturesItem2Title,
+            description: seoFeaturesItem2Desc
+          },
+          {
+            title: seoFeaturesItem3Title,
+            description: seoFeaturesItem3Desc
+          },
+          {
+            title: seoFeaturesItem4Title,
+            description: seoFeaturesItem4Desc
+          }
+        ]
+      },
+      faq: {
+        title: seoFaqTitle,
+        questions: [
+          {
+            question: seoFaqQ1,
+            answer: seoFaqA1
+          },
+          {
+            question: seoFaqQ2,
+            answer: seoFaqA2
+          },
+          {
+            question: seoFaqQ3,
+            answer: seoFaqA3
+          },
+          {
+            question: seoFaqQ4,
+            answer: seoFaqA4
+          },
+          {
+            question: seoFaqQ5,
+            answer: seoFaqA5
+          }
+        ]
+      }
     }
   }
 
   // SEOテキスト用のデータを作成
-  const seoTextContent: SeoTextContent = {
-    overview: {
-      title: seoOverviewTitle,
-      content: seoOverviewContent
-    },
-    howTo: {
-      title: seoHowToTitle,
-      steps: [
-        {
-          title: seoHowToStep1Title,
-          description: seoHowToStep1Desc
-        },
-        {
-          title: seoHowToStep2Title,
-          description: seoHowToStep2Desc
-        },
-        {
-          title: seoHowToStep3Title,
-          description: seoHowToStep3Desc
-        }
-      ]
-    },
-    testimonials: {
-      title: seoTestimonialsTitle,
-      users: [
-        {
-          name: seoTestimonialsUser1Name,
-          comment: seoTestimonialsUser1Comment
-        },
-        {
-          name: seoTestimonialsUser2Name,
-          comment: seoTestimonialsUser2Comment
-        },
-        {
-          name: seoTestimonialsUser3Name,
-          comment: seoTestimonialsUser3Comment
-        }
-      ]
-    },
-    features: {
-      title: seoFeaturesTitle,
-      items: [
-        {
-          title: seoFeaturesItem1Title,
-          description: seoFeaturesItem1Desc
-        },
-        {
-          title: seoFeaturesItem2Title,
-          description: seoFeaturesItem2Desc
-        },
-        {
-          title: seoFeaturesItem3Title,
-          description: seoFeaturesItem3Desc
-        },
-        {
-          title: seoFeaturesItem4Title,
-          description: seoFeaturesItem4Desc
-        }
-      ]
-    },
-    faq: {
-      title: seoFaqTitle,
-      questions: [
-        {
-          question: seoFaqQ1,
-          answer: seoFaqA1
-        },
-        {
-          question: seoFaqQ2,
-          answer: seoFaqA2
-        },
-        {
-          question: seoFaqQ3,
-          answer: seoFaqA3
-        },
-        {
-          question: seoFaqQ4,
-          answer: seoFaqA4
-        },
-        {
-          question: seoFaqQ5,
-          answer: seoFaqA5
-        }
-      ]
-    }
-  };
+  const seoTextContent: SeoTextContent =messages.seoText
 
   return (
     <PageContainer>    
