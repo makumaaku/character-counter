@@ -30,5 +30,91 @@
     "fileType": "Solo se permiten archivos PNG",
     "fileSize": "El tamaño del archivo debe ser menor a 20MB",
     "conversionFailed": "La conversión falló, por favor intenta de nuevo"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de PNG a JPG es una herramienta en línea gratuita que convierte imágenes PNG con fondo transparente a formato JPG de alta calidad. Es perfecto para desarrollo web, materiales impresos e imágenes para redes sociales donde se requiere el formato JPG. No necesita instalación de software - todo funciona directamente en tu navegador, lo que lo hace accesible incluso para principiantes."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Subir imagen",
+          "description": "Arrastra y suelta tu archivo PNG o haz clic en 'Seleccionar archivos' para subir."
+        },
+        {
+          "title": "Conversión automática",
+          "description": "La conversión a JPG comienza automáticamente después de la carga."
+        },
+        {
+          "title": "Descargar imagen JPG",
+          "description": "Una vez completada la conversión, haz clic en el botón 'Descargar' para guardar tu archivo."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Diseñador freelance)",
+          "comment": "A menudo necesito enviar archivos JPG a clientes, y esta herramienta me ayuda a convertir imágenes PNG rápidamente. La calidad también se mantiene excelente."
+        },
+        {
+          "name": "Usuario B (Gestor de redes sociales)",
+          "comment": "Necesito publicar imágenes JPG para redes sociales regularmente, y uso esta herramienta casi a diario. La interfaz simple ahorra mucho tiempo."
+        },
+        {
+          "name": "Usuario C (Estudiante)",
+          "comment": "Mi escuela requiere formato JPG para las imágenes de los informes. ¡Esta herramienta me ayudó a convertir todo fácilmente - fue un salvavidas!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Conversión de alta calidad",
+          "description": "Preserva la resolución y calidad de tus imágenes PNG mientras las convierte a formato JPG con mínima degradación. Perfecto para uso empresarial y materiales impresos donde las imágenes claras y detalladas son esenciales."
+        },
+        {
+          "title": "Fondo blanco automático",
+          "description": "Las áreas transparentes en imágenes PNG se reemplazan automáticamente con un fondo blanco, evitando problemas con 'fondos faltantes' comunes en formato JPG. Esto asegura que tus imágenes se vean naturales en sitios web y documentos."
+        },
+        {
+          "title": "Sin software requerido - Completamente gratis",
+          "description": "No es necesario instalar aplicaciones ni crear cuentas de usuario. Con solo una conexión a internet, cualquiera puede comenzar a usarlo inmediatamente. Todas las funciones se proporcionan de forma gratuita, lo que lo hace ideal para quienes quieren probarlo."
+        },
+        {
+          "title": "Compatible con todos los dispositivos",
+          "description": "Accede desde PCs (Windows/Mac), smartphones (iPhone/Android) y tablets. Convierte imágenes fácilmente ya sea que estés en casa o en movimiento."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "¿Este servicio es gratuito?",
+          "answer": "Sí, todas las funciones son completamente gratuitas."
+        },
+        {
+          "question": "¿Qué sucede con las imágenes PNG con fondos transparentes?",
+          "answer": "Al convertirse a formato JPG, las áreas transparentes se convierten automáticamente en fondos blancos."
+        },
+        {
+          "question": "¿Puedo convertir varias imágenes a la vez?",
+          "answer": "Actualmente, las imágenes se convierten de una en una, pero estamos considerando agregar funcionalidad de procesamiento por lotes en el futuro."
+        },
+        {
+          "question": "¿Puedo usar esto en mi smartphone?",
+          "answer": "Sí, puedes acceder y usar esta herramienta desde cualquier navegador de smartphone."
+        },
+        {
+          "question": "¿Mis imágenes subidas se almacenan en su servidor?",
+          "answer": "No. Tus imágenes subidas se eliminan automáticamente después de la conversión."
+        }
+      ]
+    }
   }
 }
