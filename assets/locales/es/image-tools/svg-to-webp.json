@@ -1,35 +1,121 @@
 {
   "meta": {
-    "title": "Convertidor de SVG a WebP - Herramienta gratuita de conversión de imágenes",
-    "description": "Convierte imágenes vectoriales SVG a formato WebP en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
-    "keywords": "svg a webp, convertidor svg, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea, convertidor de imágenes vectoriales, conversión webp"
+    "title": "Convertidor de SVG a WebP | Herramienta gratuita para convertir imágenes SVG a formato WebP",
+    "description": "Convierte archivos SVG a formato WebP para reducir significativamente el tamaño del archivo manteniendo alta calidad. Ideal para optimización web con soporte de transparencia. Gratis y sin registro.",
+    "keywords": "svg a webp, conversión svg, conversión de imágenes, conversor gratuito, herramienta de imagen online, conversión de imágenes vectoriales, conversión webp"
   },
-  "title": "Convertidor de SVG a WebP",
-  "description": "Convierte imágenes vectoriales SVG a formato WebP optimizado para visualización web",
+  "title": "Conversión de SVG a WebP",
+  "description": "Convierte imágenes vectoriales SVG a formato WebP optimizado para web",
   "form": {
     "upload": {
-      "label": "Subir imagen(es) SVG",
-      "button": "Seleccionar archivos",
-      "dragDrop": "Arrastra y suelta archivos SVG aquí o haz clic para explorar",
+      "label": "Subir imagen SVG",
+      "button": "Elegir archivo",
+      "dragDrop": "Arrastra y suelta archivos SVG aquí o haz clic para seleccionar",
       "limitText": "Tamaño máximo de archivo: 20MB (hasta 100MB en total)"
     },
     "convert": "Convertir a WebP"
   },
   "result": {
     "download": "Descargar WebP",
-    "downloadAll": "Descargar todos los WebPs",
+    "downloadAll": "Descargar todos los WebP",
     "preview": "Vista previa",
-    "selectedFiles": "archivos seleccionados"
+    "selectedFiles": "Archivos seleccionados"
   },
   "status": {
-    "processing": "Procesando...",
+    "processing": "Convirtiendo...",
     "noFile": "Ningún archivo seleccionado",
-    "success": "¡Conversión completa!",
-    "browserProcessing": "Todo el procesamiento se realiza en tu navegador. Los archivos nunca se suben a ningún servidor."
+    "success": "¡Conversión completada!",
+    "browserProcessing": "El procesamiento se realiza en tu navegador, por lo que la velocidad puede variar según tu dispositivo"
   },
   "error": {
     "fileType": "Solo se permiten archivos SVG",
-    "fileSize": "El tamaño del archivo es demasiado grande",
+    "fileSize": "El tamaño del archivo debe ser menor de 20MB",
     "conversionFailed": "La conversión falló"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "SVG to WebP Converter es una herramienta gratuita en línea que convierte gráficos vectoriales escalables (SVG) en imágenes de formato WebP de alta compresión y alta calidad.\n WebP es un formato de imagen de próxima generación desarrollado por Google que reduce significativamente el tamaño del archivo en comparación con PNG y JPG mientras mantiene la calidad de la imagen. Es perfecto para acelerar los tiempos de carga de páginas web y optimizar el rendimiento de las aplicaciones. No requiere instalación: funciona directamente en tu navegador y es accesible para todos inmediatamente."
+    },
+    "howTo": {
+      "title": "Pasos sencillos de uso",
+      "steps": [
+        {
+          "title": "Sube la imagen SVG",
+          "description": "Arrastra y suelta tu archivo SVG o haz clic en \"Elegir archivo\" para subirlo."
+        },
+        {
+          "title": "Conversión automática a WebP",
+          "description": "Después de la carga, comienza inmediatamente la conversión a WebP de alta calidad. La transparencia se conserva."
+        },
+        {
+          "title": "Descarga la imagen convertida",
+          "description": "Haz clic en el botón \"Descargar\" para guardar tu imagen WebP."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Persona A (Diseñador UI/UX)",
+          "comment": "Convertí recursos de iconos SVG a WebP para implementación en aplicaciones. Los archivos ahora son más ligeros y el rendimiento mejoró. ¡También es genial que se conserve la transparencia!"
+        },
+        {
+          "name": "Persona B (Especialista en marketing web)",
+          "comment": "Quería convertir todas las imágenes de mi página de destino a WebP, así que usé esta herramienta. Las líneas finas de SVG se conservan perfectamente, ¡y los archivos son tan ligeros! Definitivamente la usaré de nuevo."
+        },
+        {
+          "name": "Persona C (Ilustrador)",
+          "comment": "Un cliente me pidió versiones WebP de los recursos SVG que entregué... ¡Esta herramienta hizo la conversión rápida y fácil!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Formato WebP optimizado para visualización web",
+          "description": "Aunque SVG es excelente para el formato vectorial escalable, algunos entornos no pueden mostrarlo correctamente. La conversión a WebP proporciona un formato de imagen ligero y altamente compatible que puede ser ampliamente utilizado."
+        },
+        {
+          "title": "Soporte de transparencia y conversión de alta calidad",
+          "description": "La herramienta preserva la información de transparencia y los detalles finos de tu SVG mientras lo convierte a un formato WebP ligero. Logotipos, botones e imágenes decorativas pueden usarse con confianza."
+        },
+        {
+          "title": "Completamente gratuito, sin instalación, listo para usar",
+          "description": "No se requiere inicio de sesión ni descarga de software. Cualquiera puede usarlo inmediatamente, y es completamente gratuito para convertir. La mínima cantidad de anuncios permite una operación sin estrés."
+        },
+        {
+          "title": "Soporte multidispositivo para conversión en cualquier lugar",
+          "description": "Compatible con PC, smartphone y tablet, permitiendo la conversión incluso en movimiento. Recomendado para desarrolladores web, desarrolladores de aplicaciones, diseñadores y muchos otros."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "¿Se degrada la calidad de imagen al convertir de SVG a WebP?",
+          "answer": "No, los SVG vectoriales se renderizan en alta resolución y se convierten a WebP preservando la mayor calidad posible."
+        },
+        {
+          "question": "¿Qué sucede con los fondos transparentes en SVG?",
+          "answer": "Si tu SVG original tiene configuraciones de transparencia, esa información de transparencia se conserva en la versión WebP."
+        },
+        {
+          "question": "¿Soporta todos los SVG?",
+          "answer": "Soporta SVG comunes, pero aquellos con animaciones o incrustaciones complejas de JavaScript pueden no convertirse correctamente."
+        },
+        {
+          "question": "¿Qué entornos soportan WebP?",
+          "answer": "WebP se puede mostrar en los principales navegadores modernos como Chrome, Edge y Safari. Para entornos más antiguos, recomendamos preparar imágenes de respaldo."
+        },
+        {
+          "question": "¿Es seguro?",
+          "answer": "Sí, los archivos de imagen cargados se eliminan automáticamente después de completar la conversión y no se almacenan en el servidor."
+        }
+      ]
+    }
   }
 }

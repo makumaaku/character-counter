@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "HEIC to PNG Converter | Free Online Image Converter",
-    "description": "Convert HEIC images to PNG format online for free. Easy to use, no registration needed. Works on all devices including iPhone, iPad, and Mac.",
+    "title": "HEIC to PNG Converter | Free Online Tool to Convert iPhone HEIC Images to High-Quality PNG",
+    "description": "Easily convert HEIC images from iPhone/iPad to PNG format. Supports transparency, perfect for web design and document creation. Free online tool, no registration required.",
     "keywords": "heic to png, heic converter, convert heic, iphone photo converter, image converter, png converter, free converter"
   },
   "title": "HEIC to PNG Converter",
@@ -36,5 +36,91 @@
     "tooLarge": "File is too large (maximum 10MB)",
     "noFiles": "Please upload at least one HEIC file",
     "failed": "Conversion failed. Please try again."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "HEIC to PNG Converter is a free online tool that transforms 'HEIC format' images taken with Apple devices into high-quality, transparency-supporting PNG format.\nBy converting HEIC files (which cannot be displayed on Windows or some applications) to the versatile PNG format, you can easily edit, share, and print them. This tool is widely used for image editing, web development, and business document creation."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload HEIC Image",
+          "description": "Drag & drop your HEIC format image or click 'Browse Files' to upload."
+        },
+        {
+          "title": "Automatic PNG Conversion",
+          "description": "After uploading, the image is automatically converted to high-quality PNG. Transparency is also supported."
+        },
+        {
+          "title": "Download Converted Image",
+          "description": "Download the converted PNG image with a single click and save it to your device."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Freelance Illustrator)",
+          "comment": "I import HEIC images from clients into Illustrator after converting them to PNG format using this tool. The transparency is preserved, which makes it very useful as a resource."
+        },
+        {
+          "name": "User B (Education Sector, Document Creator)",
+          "comment": "I had trouble with HEIC format images for school materials and presentations, but now I can use them without any issues after converting to PNG with this tool. The conversion is instant and very convenient."
+        },
+        {
+          "name": "User C (App Developer)",
+          "comment": "I use this tool to convert HEIC format resources since I want to keep all my app UI image assets in PNG format. I'm particularly happy with how the image quality doesn't degrade."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Convert to Transparency-Enabled PNG Format",
+          "description": "PNG supports transparent backgrounds, making it ideal for logos, icons, and design elements. Converting HEIC images directly to PNG makes it extremely convenient for scenarios requiring transparent backgrounds."
+        },
+        {
+          "title": "High-Quality Conversion Processing",
+          "description": "We convert to PNG format while preserving HEIC's beautiful color reproduction and sharpness as much as possible. You can use the converted images with confidence for web design or print materials."
+        },
+        {
+          "title": "Completely Free & No Registration Required",
+          "description": "This tool is completely free. The convenience of being able to start converting immediately without email registration or login is appealing. There are few ads and the operation is simple, so there's no stress."
+        },
+        {
+          "title": "Compatible with Smartphones, Tablets & PCs",
+          "description": "No problem accessing directly from iPhone or iPad. Multi-device compatibility allows you to convert images anywhere, anytime. Ideal for designers and business professionals."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. What is a HEIC image?",
+          "answer": "A. HEIC is a high-compression, high-quality image format used in Apple products. Since Windows and some services don't support it, converting to PNG makes it easier to handle."
+        },
+        {
+          "question": "Q2. Is transparency maintained?",
+          "answer": "A. If the original image contains transparency information, it will be automatically reflected. However, if there is no transparency in the image (like in photos), it will be PNG-converted as is."
+        },
+        {
+          "question": "Q3. Will the file size increase?",
+          "answer": "A. Since PNG is an uncompressed format, file sizes may be larger than HEIC, but image quality is preserved."
+        },
+        {
+          "question": "Q4. Can I convert multiple images simultaneously?",
+          "answer": "A. Currently, we support converting one image at a time, but we plan to add batch processing in the future."
+        },
+        {
+          "question": "Q5. Are uploaded images saved?",
+          "answer": "A. No, uploaded images are deleted from the server immediately after conversion. We consider security and privacy important."
+        }
+      ]
+    }
   }
 }

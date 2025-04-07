@@ -31,5 +31,91 @@
     "fileType": "Only SVG files are allowed",
     "fileSize": "File size is too large",
     "conversionFailed": "Conversion failed"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "SVG to PNG Converter is a free online tool that transforms scalable vector graphics (SVG) images into high-quality PNG format with transparency support.\nWhile SVG is commonly used for web and UI design, PNG format is more universal for image editing, social media posts, presentations, and printing. Our tool instantly converts SVG to PNG while maintaining resolution and transparency."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload SVG Files",
+          "description": "Drag & drop your SVG images or click 'Select Files' to upload."
+        },
+        {
+          "title": "Automatic PNG Conversion",
+          "description": "After uploading, conversion starts automatically, generating high-quality PNG images. Transparency is supported."
+        },
+        {
+          "title": "Download Converted Images",
+          "description": "Once the conversion is complete, click the 'Download' button to save your PNG images."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Designer at Web Development Agency",
+          "comment": "I received logos in SVG but needed them in PNG format. This tool converted them instantly with transparency intact, ready to use on our website!"
+        },
+        {
+          "name": "University Staff Creating Lecture Materials",
+          "comment": "PowerPoint doesn't always support SVG files, so I converted them to PNG with this tool. The slides now look perfect with the converted images."
+        },
+        {
+          "name": "E-commerce Marketing Specialist",
+          "comment": "For our printed product catalogs, SVG isn't usable. This tool helps me convert to PNG format. Both text and images convert beautifully."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "PNG Conversion with Transparency Preserved",
+          "description": "SVG transparent backgrounds and graphic structures are preserved in the converted PNG files. Perfect for logos, icons, and illustrations without compromising design flexibility."
+        },
+        {
+          "title": "High-Resolution Raster Output",
+          "description": "Although SVG is a vector format without fixed resolution, our tool produces high-resolution, crisp PNG images suitable for printing, document creation, and web use across all scenarios."
+        },
+        {
+          "title": "Completely Free Online Tool with No Registration",
+          "description": "No email registration or software installation required. Convert instantly in your browser. Free for everyone, making it useful in corporate environments, for freelancers, and in educational settings."
+        },
+        {
+          "title": "Multi-Device Compatibility",
+          "description": "Works smoothly on PC, smartphone, and tablet. Convert images regardless of your location or device, improving workflow efficiency anytime, anywhere."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. Will the transparent background of my SVG be preserved?",
+          "answer": "A. Yes, if your original SVG includes transparency, it will be maintained in the PNG output."
+        },
+        {
+          "question": "Q2. Can I set the PNG resolution myself?",
+          "answer": "A. Currently, the tool automatically selects the optimal resolution. We're considering adding a resolution selection feature in the future."
+        },
+        {
+          "question": "Q3. Does this work with all SVG files?",
+          "answer": "A. It works with standard SVG files, but complex SVGs containing JavaScript may not convert correctly."
+        },
+        {
+          "question": "Q4. Can I batch convert multiple files?",
+          "answer": "A. Currently, we support converting one file at a time. Batch processing is planned for a future update."
+        },
+        {
+          "question": "Q5. How secure are my uploaded SVG files?",
+          "answer": "A. All uploaded images are automatically deleted after conversion. They are never stored on our servers, ensuring your privacy."
+        }
+      ]
+    }
   }
 }

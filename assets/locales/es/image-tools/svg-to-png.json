@@ -31,5 +31,91 @@
     "fileType": "Solo se permiten archivos SVG",
     "fileSize": "El tamaño del archivo es demasiado grande",
     "conversionFailed": "La conversión falló"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de SVG a PNG es una herramienta gratuita en línea que transforma imágenes de gráficos vectoriales escalables (SVG) en formato PNG de alta calidad con soporte de transparencia.\nMientras que SVG se usa comúnmente para diseño web y de interfaz de usuario, el formato PNG es más universal para edición de imágenes, publicaciones en redes sociales, presentaciones e impresión. Nuestra herramienta convierte instantáneamente SVG a PNG manteniendo la resolución y la transparencia."
+    },
+    "howTo": {
+      "title": "Pasos sencillos de uso",
+      "steps": [
+        {
+          "title": "Sube archivos SVG",
+          "description": "Arrastra y suelta tus imágenes SVG o haz clic en 'Seleccionar archivos' para subirlas."
+        },
+        {
+          "title": "Conversión automática a PNG",
+          "description": "Después de subir, la conversión comienza automáticamente, generando imágenes PNG de alta calidad. Se admite transparencia."
+        },
+        {
+          "title": "Descarga las imágenes convertidas",
+          "description": "Una vez que se completa la conversión, haz clic en el botón 'Descargar' para guardar tus imágenes PNG."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Diseñador en Agencia de Desarrollo Web",
+          "comment": "Recibí logotipos en SVG pero los necesitaba en formato PNG. ¡Esta herramienta los convirtió instantáneamente con la transparencia intacta, listos para usar en nuestro sitio web!"
+        },
+        {
+          "name": "Personal universitario creando materiales de conferencia",
+          "comment": "PowerPoint no siempre admite archivos SVG, así que los convertí a PNG con esta herramienta. Las diapositivas ahora se ven perfectas con las imágenes convertidas."
+        },
+        {
+          "name": "Especialista en marketing de comercio electrónico",
+          "comment": "Para nuestros catálogos de productos impresos, SVG no es utilizable. Esta herramienta me ayuda a convertir a formato PNG. Tanto el texto como las imágenes se convierten maravillosamente."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Conversión a PNG con transparencia preservada",
+          "description": "Los fondos transparentes y las estructuras gráficas de SVG se conservan en los archivos PNG convertidos. Perfecto para logotipos, iconos e ilustraciones sin comprometer la flexibilidad del diseño."
+        },
+        {
+          "title": "Salida rasterizada de alta resolución",
+          "description": "Aunque SVG es un formato vectorial sin resolución fija, nuestra herramienta produce imágenes PNG nítidas de alta resolución adecuadas para impresión, creación de documentos y uso web en todos los escenarios."
+        },
+        {
+          "title": "Herramienta en línea completamente gratuita sin registro",
+          "description": "No se requiere registro de correo electrónico ni instalación de software. Convierte instantáneamente en tu navegador. Gratis para todos, lo que lo hace útil en entornos corporativos, para freelancers y en entornos educativos."
+        },
+        {
+          "title": "Compatibilidad con múltiples dispositivos",
+          "description": "Funciona sin problemas en PC, smartphone y tablet. Convierte imágenes independientemente de tu ubicación o dispositivo, mejorando la eficiencia del flujo de trabajo en cualquier momento y lugar."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Se conservará el fondo transparente de mi SVG?",
+          "answer": "R. Sí, si tu SVG original incluye transparencia, se mantendrá en la salida PNG."
+        },
+        {
+          "question": "P2. ¿Puedo establecer la resolución del PNG yo mismo?",
+          "answer": "R. Actualmente, la herramienta selecciona automáticamente la resolución óptima. Estamos considerando agregar una función de selección de resolución en el futuro."
+        },
+        {
+          "question": "P3. ¿Funciona con todos los archivos SVG?",
+          "answer": "R. Funciona con archivos SVG estándar, pero los SVG complejos que contienen JavaScript pueden no convertirse correctamente."
+        },
+        {
+          "question": "P4. ¿Puedo convertir por lotes múltiples archivos?",
+          "answer": "R. Actualmente, admitimos la conversión de un archivo a la vez. El procesamiento por lotes está planificado para una actualización futura."
+        },
+        {
+          "question": "P5. ¿Qué tan seguros están mis archivos SVG cargados?",
+          "answer": "R. Todas las imágenes cargadas se eliminan automáticamente después de la conversión. Nunca se almacenan en nuestros servidores, garantizando tu privacidad."
+        }
+      ]
+    }
   }
 }

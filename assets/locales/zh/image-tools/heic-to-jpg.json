@@ -35,5 +35,91 @@
   },
   "preview": {
     "filesSelected": "个文件已选择"
+  },
+  "seoText": {
+    "overview": {
+      "title": "概述",
+      "content": "HEIC到JPG转换器是一款免费的在线工具，可以将iPhone和iPad上拍摄的HEIC（.heic）格式图像转换为高质量的JPG格式。HEIC是为Apple设备优化的图像格式，但Windows和某些网络服务可能无法显示。使用这个工具，您可以立即将图像转换为JPG格式，便于分享和编辑。无需安装软件，完全免费，任何人都可以立即使用。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传HEIC图像",
+          "description": "拖放您在iPhone等设备上拍摄的HEIC文件，或点击\"选择文件\"按钮上传。"
+        },
+        {
+          "title": "自动开始转换为JPG",
+          "description": "上传后立即开始自动转换过程，生成最佳质量的JPG图像。"
+        },
+        {
+          "title": "下载转换后的图像",
+          "description": "转换完成后，点击\"下载\"按钮保存JPG图像。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "用户A（Windows用户，整理照片中）",
+          "comment": "当我把照片从iPhone传到电脑时，发现全是HEIC格式，很困扰。这个工具一键转换真的帮了大忙。现在整理照片也更加高效！"
+        },
+        {
+          "name": "用户B（网页设计师）",
+          "comment": "越来越多的客户以HEIC格式发送照片。使用这个工具转换为JPG后，可以在Photoshop中编辑，工作效率大大提高。"
+        },
+        {
+          "name": "用户C（向父母发送照片的大学生）",
+          "comment": "我的父母使用Android和Windows，无法查看HEIC格式的照片。现在我用这个工具转换成JPG后再发送给他们！"
+        }
+      ]
+    },
+    "features": {
+      "title": "服务特点和优势",
+      "items": [
+        {
+          "title": "轻松转换Apple的HEIC图像",
+          "description": "HEIC是iOS和macOS最新设备上采用的标准图像格式，但Windows和某些社交媒体可能无法打开。这个工具无缝解决了这个问题，只需拖放即可转换为JPG。"
+        },
+        {
+          "title": "保持图像质量转换为JPG",
+          "description": "HEIC的特点是高压缩率和高画质，我们的工具在转换为JPG格式时尽可能保留这种画质。您可以放心照片的色彩和细节。"
+        },
+        {
+          "title": "完全免费，无需注册",
+          "description": "无需电子邮件注册或订阅。随时可用，方便快捷。广告也很少，让您的转换工作顺利进行。"
+        },
+        {
+          "title": "智能手机和电脑都可即时使用",
+          "description": "在Web浏览器上运行，因此可在iPhone、Android智能手机、Windows和Mac等所有设备上舒适使用。即使在外出时也可以快速转换。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题",
+      "questions": [
+        {
+          "question": "转换后的图像大小会增加吗？",
+          "answer": "JPG格式通常比HEIC的文件大小略大，但我们已优化处理以平衡图像质量。"
+        },
+        {
+          "question": "可以直接从iPhone上传吗？",
+          "answer": "是的，您可以通过Safari或Chrome等浏览器轻松上传和转换。"
+        },
+        {
+          "question": "为什么有些HEIC文件无法转换？",
+          "answer": "如果文件损坏或使用特殊压缩格式的HEIC，可能无法转换。请尝试使用其他图像。"
+        },
+        {
+          "question": "可以批量转换多张图片吗？",
+          "answer": "目前我们支持一次转换一张图片。未来计划支持多张同时处理。"
+        },
+        {
+          "question": "转换后的文件会被保存吗？",
+          "answer": "不会，上传的文件会在一段时间后自动删除，不会存储在服务器上。您的隐私是安全的。"
+        }
+      ]
+    }
   }
-} 
+}

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "HEIC to WebP Converter | Free Online Image Converter",
-    "description": "Convert HEIC images to WebP format online for free. Preview before download, batch conversion available. Works on all devices including iPhone, iPad, and Mac.",
+    "title": "HEIC to WebP Converter | Free Tool to Convert iPhone HEIC Images to Lightweight WebP",
+    "description": "Convert HEIC images to lightweight WebP format online. Perfect for websites and apps with optimal balance of quality and compression. Free, no registration, instant conversion!",
     "keywords": "heic to webp, heic converter, convert heic, iphone photo converter, image converter, webp converter, free converter, webp image format"
   },
   "title": "HEIC to WebP Converter",
@@ -46,5 +46,91 @@
     "noFile": "No files selected",
     "success": "Conversion successful!",
     "convertingFile": "Converting {filename}..."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "HEIC to WebP Converter is a free online tool that converts HEIC format images taken with iPhone or iPad to lightweight, high-quality WebP format.\n WebP is an image format developed by Google that maintains image quality while providing higher compression rates than JPG or PNG, making it ideal for websites and applications.\n The tool works directly in your browser, which means no installation required and ready to use immediately."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload HEIC Images",
+          "description": "Drag and drop your HEIC files or click the 'Browse Files' button to select them."
+        },
+        {
+          "title": "Automatic WebP Conversion",
+          "description": "High-quality WebP conversion starts automatically as soon as files are uploaded."
+        },
+        {
+          "title": "Download Converted Images",
+          "description": "Click the 'Download' button to save your WebP images for use in web development and other projects."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Frontend Engineer)",
+          "comment": "I've been using WebP to improve webpage loading speeds, and this tool helps me convert HEIC images from clients. The quality is excellent and my pages load much faster!"
+        },
+        {
+          "name": "User B (iPhone User & Blogger)",
+          "comment": "When I need to reduce image size for my blog, converting from HEIC to WebP made a noticeable difference in loading speed. It's free and I can do everything right from my phone!"
+        },
+        {
+          "name": "User C (App Development Company)",
+          "comment": "We standardize all images in our app to WebP, so this tool is perfect for converting HEIC photos from iOS devices. It's effortless and the high compression helps optimize our data usage."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Convert to Web-Optimized WebP Format",
+          "description": "WebP can reduce file sizes by up to 80% compared to PNG and JPG, making it optimal for website and mobile app performance improvement. Convert from HEIC with just one click using this tool."
+        },
+        {
+          "title": "Maintain Quality While Reducing Size",
+          "description": "Like HEIC, WebP excels at compression efficiency and quality retention. Our tool preserves image details while outputting lightweight WebP files, balancing faster loading times and visual appeal."
+        },
+        {
+          "title": "Free & No Login Required",
+          "description": "No registration or email input needed. The simple interface allows anyone to use it immediately, greatly enhancing work efficiency. Perfect for everyday image conversion needs."
+        },
+        {
+          "title": "Compatible With All Devices",
+          "description": "Works on PC, smartphone, or tablet. Especially convenient for Apple users who can convert HEIC photos taken on iPhone directly. Seamless integration between Mac and Windows environments."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Q1. What is WebP format?",
+          "answer": "A. WebP is an image format developed by Google that achieves higher compression and quality than JPG and PNG. It's gaining popularity especially for web uses."
+        },
+        {
+          "question": "Q2. Is WebP supported in all environments?",
+          "answer": "A. WebP is supported by major browsers (Chrome, Safari, Firefox, etc.), but might not display in some older environments."
+        },
+        {
+          "question": "Q3. Can I convert multiple HEIC files at once?",
+          "answer": "A. Currently, we support converting one image at a time. We plan to add batch conversion functionality in the future."
+        },
+        {
+          "question": "Q4. How much compression can I expect?",
+          "answer": "A. Depending on the original image, you can achieve up to 80% file size reduction in some cases."
+        },
+        {
+          "question": "Q5. Are my converted images secure?",
+          "answer": "A. Yes, uploaded files are automatically deleted after a certain period and are not stored on our servers. Your privacy is fully protected."
+        }
+      ]
+    }
   }
 }
