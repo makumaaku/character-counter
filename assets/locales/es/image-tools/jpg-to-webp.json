@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Conversor de JPG a WebP - Herramienta de conversión de imágenes gratuita",
-    "description": "Convierte imágenes JPG a formato WebP en línea. Gratis, rápido y fácil de usar con opciones de vista previa y descarga instantáneas.",
+    "title": "Conversor de JPG a WebP - Herramienta gratuita para convertir imágenes JPG a WebP",
+    "description": "Convierte imágenes JPG a formato WebP para una visualización web más rápida. Reduce el tamaño del archivo manteniendo la calidad. Herramienta gratuita, sin registro, compatible con dispositivos móviles.",
     "keywords": "jpg a webp, jpeg a webp, conversor de imágenes, conversor gratuito, herramienta de imágenes en línea, optimización web"
   },
   "title": "Conversor de JPG a WebP",
@@ -33,5 +33,91 @@
   "error": {
     "fileType": "Solo se permiten archivos JPG/JPEG",
     "fileSize": "El tamaño del archivo debe ser inferior a 10MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Conversor de JPG a WebP es una herramienta gratuita en línea que convierte imágenes en formato JPG común a un formato WebP altamente comprimido y de alta calidad.\n WebP es un formato de imagen desarrollado por Google que puede reducir el tamaño del archivo hasta un 80% en comparación con JPG. Es ideal para mejorar la velocidad de carga de páginas web y optimizar el desarrollo de aplicaciones. No requiere instalación de software ni configuraciones complejas. Simplemente sube y convierte al instante."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Subir imagen JPG",
+          "description": "Arrastra y suelta tu archivo JPG o sube a través del botón 'Seleccionar archivos'."
+        },
+        {
+          "title": "Conversión automática a WebP",
+          "description": "Después de subir, el proceso de conversión comienza inmediatamente. Tu imagen se convertirá a formato WebP manteniendo alta calidad."
+        },
+        {
+          "title": "Descargar imagen convertida",
+          "description": "Una vez completada la conversión, guarda tu imagen WebP con el botón 'Descargar' y úsala en tus páginas web o aplicaciones."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Propietario de tienda e-commerce)",
+          "comment": "\"Estaba subiendo imágenes de productos en formato JPG, pero la visualización se estaba volviendo lenta. Después de convertir a WebP con esta herramienta, la velocidad de visualización mejoró significativamente, ¡y creo que el efecto SEO también aumentó!\""
+        },
+        {
+          "name": "Usuario B (Desarrollador web)",
+          "comment": "\"El soporte de WebP se volvió obligatorio para proyectos de clientes. Esta herramienta fue realmente conveniente para convertir imágenes JPG a WebP. Calidad sorprendente para un servicio gratuito.\""
+        },
+        {
+          "name": "Usuario C (Administrador de blog de fotos)",
+          "comment": "\"Tomaba fotos en formato JPG, pero mi sitio se estaba volviendo pesado. Ahora uso esta herramienta de conversión para hacerlas WebP y reducir el tamaño del archivo. ¡La calidad de la imagen se mantiene hermosa, así que puedo usarla con confianza!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Convierte a formato WebP para una visualización más rápida del sitio web",
+          "description": "WebP logra una tasa de compresión de hasta el 80% en comparación con JPG mientras mantiene la degradación de la imagen al mínimo. Al simplemente convertir imágenes JPG a WebP con esta herramienta, puedes acelerar la visualización web y reducir la transmisión de datos."
+        },
+        {
+          "title": "Reduce el tamaño del archivo manteniendo la calidad de imagen",
+          "description": "Reduce drásticamente el tamaño del archivo mientras preserva el brillo de la foto y los detalles finos. Perfecto para sitios de comercio electrónico y portafolios donde la carga rápida sin comprometer la experiencia del usuario es esencial."
+        },
+        {
+          "title": "¡No requiere registro ni software!",
+          "description": "Sin creación de cuenta ni molestias de descarga. El diseño basado en navegador significa que incluso los usuarios primerizos pueden usarlo sin confusión. ¡Acelera tu flujo de trabajo con conversiones rápidas!"
+        },
+        {
+          "title": "Compatible con PC, smartphone y tablet",
+          "description": "Convierte rápidamente en tu smartphone incluso cuando estás en movimiento. El soporte para múltiples dispositivos hace que esta utilidad sea fácil de usar no solo para diseñadores y desarrolladores, sino también para usuarios generales."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "¿Disminuye la calidad de la imagen al convertir a WebP?",
+          "answer": "No, está optimizado para preservar la calidad mientras comprime. La diferencia es apenas perceptible para el ojo humano."
+        },
+        {
+          "question": "¿Dónde se utiliza el formato WebP?",
+          "answer": "Se utiliza principalmente para acelerar y optimizar la visualización de imágenes en sitios web y aplicaciones. Es un formato de imagen de próxima generación recomendado por Google."
+        },
+        {
+          "question": "¿Puedo usar esto en mi smartphone?",
+          "answer": "Sí, puedes acceder y utilizarlo en cualquier navegador, ya sea iPhone o Android."
+        },
+        {
+          "question": "¿Admite transparencia de fondo de imagen?",
+          "answer": "Dado que el formato JPG no tiene información de transparencia para empezar, la transparencia no se añade durante la conversión a WebP. Si necesitas transparencia, intenta usar PNG como imagen de origen."
+        },
+        {
+          "question": "¿Se abordan las preocupaciones de seguridad y privacidad?",
+          "answer": "Las imágenes subidas se eliminan automáticamente después de la conversión y no se almacenan en el servidor. Somos conscientes de la protección de la información personal."
+        }
+      ]
+    }
   }
 }

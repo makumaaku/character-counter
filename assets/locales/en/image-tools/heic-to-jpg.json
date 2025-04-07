@@ -1,39 +1,125 @@
 {
   "meta": {
-    "title": "HEIC to JPG Converter - Free Online Image Conversion Tool",
-    "description": "Convert HEIC images to JPG format online. Free, fast, and easy to use with instant preview and batch conversion.",
-    "keywords": "heic to jpg, heic converter, heif to jpg, image converter, free converter, online image tool, batch conversion"
+    "title": "HEIC to JPG Converter | Free Tool to Convert iPhone HEIC Images to High-Quality JPG",
+    "description": "Easily convert HEIC images taken with iPhone or iPad to JPG format. Maintain high quality while creating a format compatible with Web and Windows. Free, no registration, online tool.",
+    "keywords": "HEIC to JPG, HEIC conversion, iPhone photo conversion, image conversion, free conversion, online image tool"
   },
   "title": "HEIC to JPG Converter",
-  "description": "Convert HEIC images to JPG format with preview",
+  "description": "Convert HEIC files to JPG format (with preview)",
   "upload": {
     "limit": "Maximum file size: 10MB per file"
   },
   "form": {
     "upload": {
-      "label": "Upload HEIC Images",
-      "button": "Select Files",
-      "dragDrop": "Drag & drop files here or click to browse"
+      "label": "Upload HEIC File",
+      "button": "Choose Files",
+      "dragDrop": "Drag & drop files here or click to select"
     },
     "convert": "Convert to JPG"
   },
   "result": {
     "download": "Download JPG",
-    "downloadAll": "Download All JPGs",
+    "downloadAll": "Download All",
     "preview": "Preview"
   },
   "status": {
-    "processing": "Converting...",
-    "noFile": "No files selected",
-    "success": "Conversion successful!",
+    "processing": "Processing...",
+    "noFile": "No file selected",
+    "success": "Conversion complete!",
     "convertingFile": "Converting {filename}..."
   },
   "error": {
-    "fileType": "Only HEIC files are allowed",
+    "fileType": "Only HEIC files are supported",
     "fileSize": "File size must be less than 10MB",
-    "conversion": "Error converting file: {error}"
+    "conversion": "File conversion error: {error}"
   },
   "preview": {
     "filesSelected": "files selected"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "HEIC to JPG Converter is a free online tool that converts 'HEIC (.heic)' image format taken with iPhone or iPad to high-quality JPG format.\n Although HEIC is an image format optimized for Apple devices, it may not be viewable on Windows or some web services. With this tool, you can immediately handle your images as JPGs after conversion, making sharing and editing smoother. No software installation required - completely free and ready to use by anyone."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload HEIC Images",
+          "description": "Drag and drop HEIC files taken with your iPhone, or upload them using the 'Choose Files' button."
+        },
+        {
+          "title": "Automatic JPG Conversion",
+          "description": "The conversion process starts automatically after upload, generating JPG images with optimal quality."
+        },
+        {
+          "title": "Download Converted Images",
+          "description": "After conversion is complete, click the 'Download' button to save your JPG images."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Windows User, Organizing Photos)",
+          "comment": "I had trouble with all the HEIC format photos I transferred from my iPhone to PC. This tool allowed me to convert them in one go, which was really helpful. It makes organizing photos much easier!"
+        },
+        {
+          "name": "User B (Web Designer)",
+          "comment": "I've been receiving more photos in HEIC format from clients lately... This tool lets me convert them to JPG before editing in Photoshop, which has improved my workflow efficiency."
+        },
+        {
+          "name": "User C (College Student Sending Photos to Parents)",
+          "comment": "My parents use Android and Windows, so they can't view photos in HEIC format... I now use this tool to convert them to JPG before sending!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Easy Conversion of Apple's HEIC Images",
+          "description": "While HEIC is the standard image format on the latest iOS and macOS devices, it can't be opened on Windows or some social media platforms. This tool seamlessly bridges that gap, allowing for JPG conversion with just a drag and drop."
+        },
+        {
+          "title": "Maintain Image Quality During Conversion",
+          "description": "HEIC is known for high compression and high quality, and this tool converts to JPG format while minimizing quality loss. You can be confident about preserving the colors and details of your photos."
+        },
+        {
+          "title": "Completely Free, No Registration Required",
+          "description": "No email registration or subscription is needed. The convenience of using it whenever you want is appealing. With minimal ads, your conversion work progresses smoothly."
+        },
+        {
+          "title": "Works on Both Smartphones and PCs",
+          "description": "Running in a web browser, it's comfortably accessible from all devices, including iPhones, Android smartphones, Windows, and Mac. You can quickly convert even when you're on the go."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Will the converted image size be larger?",
+          "answer": "JPG format tends to be slightly larger than HEIC, but we optimize the balance between file size and quality during processing."
+        },
+        {
+          "question": "Can I upload directly from an iPhone?",
+          "answer": "Yes, you can easily upload and convert from browsers like Safari or Chrome."
+        },
+        {
+          "question": "Why can't some HEIC files be converted?",
+          "answer": "Files that are corrupted or use special compression formats might not convert. Please try with another image."
+        },
+        {
+          "question": "Can I convert multiple images at once?",
+          "answer": "Currently, we support converting one image at a time. We plan to support batch processing in the future."
+        },
+        {
+          "question": "Are the files saved after conversion?",
+          "answer": "No, uploaded files are automatically deleted after a certain period and are not stored on our servers. Your privacy is assured."
+        }
+      ]
+    }
   }
 }

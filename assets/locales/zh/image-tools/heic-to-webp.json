@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "HEIC转WebP转换器 | 免费在线图像转换器",
-    "description": "免费在线将HEIC图像转换为WebP格式。下载前预览，支持批量转换。适用于所有设备，包括iPhone、iPad和Mac。",
+    "title": "HEIC转WebP转换器 | 免费工具将iPhone HEIC图像转换为轻量级WebP",
+    "description": "在线将HEIC图像转换为轻量级WebP格式。完美适用于网站和应用程序，质量和压缩的最佳平衡。免费、无需注册、即时转换！",
     "keywords": "heic转webp, heic转换器, 转换heic, iphone照片转换器, 图像转换器, webp转换器, 免费转换器, webp图像格式"
   },
   "title": "HEIC转WebP转换器",
@@ -46,5 +46,91 @@
     "noFile": "未选择文件",
     "success": "转换成功！",
     "convertingFile": "正在转换 {filename}..."
+  },
+  "seoText": {
+    "overview": {
+      "title": "概览",
+      "content": "HEIC to WebP转换器是一款免费的在线工具，可将iPhone或iPad拍摄的HEIC格式图像转换为轻量级、高质量的WebP格式。\n WebP是由Google开发的图像格式，在保持图像质量的同时提供比JPG或PNG更高的压缩率，使其成为网站和应用程序的理想选择。\n 该工具直接在您的浏览器中运行，这意味着无需安装，可立即使用。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传HEIC图像",
+          "description": "拖放HEIC文件或点击\"浏览文件\"按钮选择它们。"
+        },
+        {
+          "title": "自动WebP转换",
+          "description": "一旦文件上传，高质量的WebP转换会自动开始。"
+        },
+        {
+          "title": "下载转换后的图像",
+          "description": "点击\"下载\"按钮保存您的WebP图像，用于网页开发和其他项目。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "用户A（前端工程师）",
+          "comment": "我一直使用WebP来提高网页加载速度，这个工具帮助我转换客户的HEIC图像。质量非常好，我的页面加载速度快了很多！"
+        },
+        {
+          "name": "用户B（iPhone用户和博主）",
+          "comment": "当我需要为我的博客减小图像大小时，从HEIC转换为WebP在加载速度上产生了明显的差异。它是免费的，而且我可以直接在手机上完成所有操作！"
+        },
+        {
+          "name": "用户C（应用开发公司）",
+          "comment": "我们将应用中的所有图像标准化为WebP，因此这个工具非常适合转换来自iOS设备的HEIC照片。它很容易使用，而且高压缩率有助于优化我们的数据使用。"
+        }
+      ]
+    },
+    "features": {
+      "title": "特点和优势",
+      "items": [
+        {
+          "title": "转换为网络优化的WebP格式",
+          "description": "与PNG和JPG相比，WebP可将文件大小减少高达80%，使其成为提高网站和移动应用性能的最佳选择。使用此工具只需一键即可从HEIC转换。"
+        },
+        {
+          "title": "在减小大小的同时保持质量",
+          "description": "与HEIC一样，WebP在压缩效率和质量保持方面表现出色。我们的工具在输出轻量级WebP文件的同时保留图像细节，平衡更快的加载时间和视觉吸引力。"
+        },
+        {
+          "title": "免费且无需登录",
+          "description": "无需注册或输入电子邮件。简单的界面允许任何人立即使用它，大大提高工作效率。完美适合日常图像转换需求。"
+        },
+        {
+          "title": "兼容所有设备",
+          "description": "可在PC、智能手机或平板电脑上使用。特别方便Apple用户直接转换在iPhone上拍摄的HEIC照片。Mac和Windows环境之间的无缝集成。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题",
+      "questions": [
+        {
+          "question": "问1. 什么是WebP格式？",
+          "answer": "答：WebP是由Google开发的图像格式，比JPG和PNG实现更高的压缩率和质量。它在网络用途中特别受欢迎。"
+        },
+        {
+          "question": "问2. WebP是否在所有环境中都受支持？",
+          "answer": "答：WebP受主要浏览器（Chrome、Safari、Firefox等）支持，但在某些较旧的环境中可能无法显示。"
+        },
+        {
+          "question": "问3. 我可以一次转换多个HEIC文件吗？",
+          "answer": "答：目前，我们支持一次转换一张图像。我们计划在未来添加批量转换功能。"
+        },
+        {
+          "question": "问4. 我可以期望多少压缩率？",
+          "answer": "答：根据原始图像，在某些情况下，您可以实现高达80%的文件大小减少。"
+        },
+        {
+          "question": "问5. 我的转换图像安全吗？",
+          "answer": "答：是的，上传的文件在一定时间后会自动删除，不会存储在我们的服务器上。您的隐私得到完全保护。"
+        }
+      ]
+    }
   }
 } 

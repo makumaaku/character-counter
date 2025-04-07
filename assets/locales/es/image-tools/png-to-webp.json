@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Convertidor de PNG a WebP - Herramienta gratuita de conversión de imágenes",
-    "description": "Convierte imágenes PNG a formato WebP en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
-    "keywords": "png a webp, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea, optimización web"
+    "title": "Conversor de PNG a WebP | Herramienta gratuita para convertir PNG transparentes a formato WebP ligero",
+    "description": "Convierte imágenes PNG de alta calidad a WebP para reducir significativamente el tamaño del archivo. Mantiene la transparencia. Herramienta de conversión en línea gratuita perfecta para optimización web.",
+    "keywords": "png a webp, convertidor de imágenes, convertidor gratuito, herramienta de imagen en línea, optimización web, PNG transparente, conversión webp, compresión de imágenes"
   },
-  "title": "Convertidor de PNG a WebP",
-  "description": "Convierte imágenes PNG a formato WebP para un mejor rendimiento web y tamaños de archivo más pequeños",
+  "title": "Conversor de PNG a WebP",
+  "description": "Convierte imágenes PNG a formato WebP para mejor rendimiento web y tamaños de archivo más pequeños",
   "upload": {
     "limit": "Tamaño máximo de archivo: 10MB por archivo"
   },
@@ -22,9 +22,9 @@
     "filesSelected": "{count} archivo(s) seleccionado(s)"
   },
   "result": {
-    "title": "Resultados de conversión",
+    "title": "Resultados de la conversión",
     "download": "Descargar WebP",
-    "downloadAll": "Descargar todos los WebPs"
+    "downloadAll": "Descargar todos los WebP"
   },
   "status": {
     "processing": "Convirtiendo...",
@@ -33,5 +33,91 @@
   "error": {
     "fileType": "Solo se permiten archivos PNG",
     "fileSize": "El tamaño del archivo debe ser menor a 10MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Conversor de PNG a WebP es una herramienta gratuita en línea para convertir imágenes PNG a formato WebP ligero y de alta calidad.\n WebP reduce significativamente el tamaño del archivo en comparación con PNG tradicional mientras preserva la transparencia. Es ideal para desarrollo web, creación de aplicaciones y mejora de velocidades de carga para páginas de destino y sitios de comercio electrónico. No requiere instalación—completamente gratuito y listo para usar al instante."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Sube imágenes PNG",
+          "description": "Arrastra y suelta tus archivos PNG o haz clic en el botón \"Seleccionar archivos\" para subir."
+        },
+        {
+          "title": "Conversión automática a WebP",
+          "description": "La conversión comienza automáticamente al subir, y la transparencia se preserva completamente."
+        },
+        {
+          "title": "Descarga las imágenes convertidas",
+          "description": "Haz clic en el botón \"Descargar\" para guardar tus imágenes WebP completadas y comenzar a usarlas."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Diseñador UI)",
+          "comment": "\"Estaba creando imágenes transparentes para interfaces de aplicaciones en PNG, pero eran demasiado grandes. ¡Convertirlas a WebP con esta herramienta las hizo ligeras y mejoró dramáticamente los tiempos de carga!\""
+        },
+        {
+          "name": "Usuario B (Desarrollador de páginas de destino)",
+          "comment": "\"Al convertir activos PNG a WebP, mejoramos significativamente la velocidad de la página de destino de nuestro cliente. La transparencia preservada es una gran ventaja.\""
+        },
+        {
+          "name": "Usuario C (Propietario de sitio web aficionado)",
+          "comment": "\"Me sorprendió que esta herramienta gratuita preservara perfectamente la transparencia del PNG. La velocidad de conversión es rápida sin estrés. ¡Ya no puedo vivir sin ella!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Convierte PNG transparentes a WebP",
+          "description": "La información de transparencia de fondo se preserva completamente en el formato WebP, haciéndolo perfecto para logotipos, iconos e imágenes decorativas. Disfruta tanto del formato ligero de WebP como de la transparencia."
+        },
+        {
+          "title": "Reduce significativamente el tamaño del archivo",
+          "description": "Aunque los PNG ofrecen alta calidad, tienden a tener tamaños de archivo grandes. Esta herramienta permite hasta un 80%+ de compresión mientras mantiene la calidad de imagen, mejorando las velocidades de carga del sitio web."
+        },
+        {
+          "title": "Basado en navegador y completamente gratuito",
+          "description": "No requiere instalación ni registro. Mientras tengas un navegador, puedes usarlo en cualquier lugar, en cualquier momento. Úsalo libremente sin restricciones para tus tareas diarias."
+        },
+        {
+          "title": "Funciona en PC, smartphone y tablet",
+          "description": "Optimizado para múltiples dispositivos, permitiendo conversión conveniente incluso desde tu smartphone mientras estás en movimiento. Diseñado para ser fácil de usar para diseñadores, desarrolladores y usuarios generales por igual."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Qué pasa con las áreas transparentes en imágenes PNG?",
+          "answer": "R. Si la imagen original contiene transparencia, se preservará completamente cuando se convierta al formato WebP."
+        },
+        {
+          "question": "P2. ¿Qué navegadores soportan WebP?",
+          "answer": "R. Todos los principales navegadores modernos incluyendo Chrome, Safari y Firefox soportan WebP. Algunos entornos más antiguos pueden no soportarlo."
+        },
+        {
+          "question": "P3. ¿Cuánto tiempo toma la conversión?",
+          "answer": "R. Las imágenes PNG normales se convierten en segundos. Incluso las imágenes grandes se procesan rápidamente."
+        },
+        {
+          "question": "P4. ¿Puedo convertir múltiples archivos a la vez?",
+          "answer": "R. Actualmente soportamos convertir una imagen a la vez, pero planeamos añadir funcionalidad de procesamiento por lotes en el futuro."
+        },
+        {
+          "question": "P5. ¿Es seguro?",
+          "answer": "R. Sí. Las imágenes subidas se eliminan automáticamente después de cierto período y no se almacenan en nuestros servidores. Tu privacidad está protegida."
+        }
+      ]
+    }
   }
 }

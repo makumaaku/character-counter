@@ -1,35 +1,121 @@
 {
   "meta": {
-    "title": "Convertidor de SVG a JPG - Herramienta gratuita de conversión de imágenes",
-    "description": "Convierte imágenes vectoriales SVG a formato JPG en línea. Gratis, rápido y fácil de usar con vista previa instantánea y opciones de descarga.",
-    "keywords": "svg a jpg, convertidor svg, convertidor de imágenes, convertidor gratis, herramienta de imagen en línea, convertidor de imágenes vectoriales"
+    "title": "Convertidor de SVG a JPG - Herramienta gratuita de conversión de imágenes en línea",
+    "description": "Convierte imágenes vectoriales SVG a formato JPG en línea. Gratis, rápido y fácil de usar con opciones de vista previa y descarga instantáneas.",
+    "keywords": "SVG a JPG, conversión de SVG, conversión de imágenes, convertidor gratuito, herramienta de imágenes en línea, conversión de imágenes vectoriales"
   },
   "title": "Convertidor de SVG a JPG",
   "description": "Convierte imágenes vectoriales SVG a formato JPG",
   "form": {
     "upload": {
-      "label": "Subir imagen(es) SVG",
-      "button": "Seleccionar archivos",
-      "dragDrop": "Arrastra y suelta archivos SVG aquí o haz clic para explorar",
+      "label": "Subir imagen SVG",
+      "button": "Seleccionar archivo",
+      "dragDrop": "Arrastra y suelta el archivo SVG aquí o haz clic para seleccionar",
       "limitText": "Tamaño máximo de archivo: 20MB (hasta 100MB en total)"
     },
     "convert": "Convertir a JPG"
   },
   "result": {
     "download": "Descargar JPG",
-    "downloadAll": "Descargar todos los JPGs",
+    "downloadAll": "Descargar todos los JPG",
     "preview": "Vista previa",
     "selectedFiles": "archivos seleccionados"
   },
   "status": {
     "processing": "Convirtiendo...",
     "noFile": "Ningún archivo seleccionado",
-    "success": "¡Conversión exitosa!",
-    "browserProcessing": "El procesamiento se realiza en tu navegador, la velocidad puede variar según el dispositivo"
+    "success": "¡Conversión completa!",
+    "browserProcessing": "El procesamiento se realiza en tu navegador, por lo que la velocidad puede variar según tu dispositivo"
   },
   "error": {
-    "fileType": "Solo se permiten archivos SVG",
-    "fileSize": "El tamaño del archivo debe ser menor a 20MB",
+    "fileType": "Solo se admiten archivos SVG",
+    "fileSize": "El tamaño del archivo debe ser inferior a 20MB",
     "conversionFailed": "La conversión falló"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de SVG a JPG es una herramienta gratuita en línea que transforma imágenes vectoriales SVG en formato JPG de alta calidad. Mientras que SVG es un formato vectorial escalable ampliamente utilizado para diseño web y UI, el formato JPG suele ser más conveniente para publicaciones en redes sociales, impresión y software general de edición de imágenes. Esta herramienta preserva la calidad visual de tu SVG mientras lo convierte instantáneamente al formato JPG universalmente compatible."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Subir archivo SVG",
+          "description": "Arrastra y suelta tu archivo SVG o haz clic en el botón 'Seleccionar archivo' para subirlo."
+        },
+        {
+          "title": "Conversión automática a JPG",
+          "description": "La conversión al formato JPG comienza automáticamente después de la carga, transformando tus gráficos vectoriales en imágenes raster de alta calidad."
+        },
+        {
+          "title": "Descargar la imagen convertida",
+          "description": "Una vez completada la conversión, haz clic en el botón 'Descargar' para guardar tu imagen JPG para usar en documentos, sitios web o materiales impresos."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Diseñador gráfico)",
+          "comment": "Necesitaba usar SVG en materiales impresos, pero la imprenta solo aceptaba JPG. ¡Esta herramienta me permitió convertir y enviar mi trabajo inmediatamente con una calidad perfecta!"
+        },
+        {
+          "name": "Usuario B (Especialista en marketing)",
+          "comment": "Quería publicar nuestro logotipo en redes sociales y lo convertí de SVG a JPG. El procesamiento automático del fondo blanco es conveniente, permitiéndome usarlo de inmediato sin pasos adicionales."
+        },
+        {
+          "name": "Usuario C (Creador de material educativo)",
+          "comment": "Estaba usando imágenes SVG en mis materiales de curso pero necesitaba estandarizar todo al formato JPG. Esta herramienta me ayudó a convertir todo por lotes - es lo suficientemente simple para que cualquiera la use."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Conversión de vector a raster de alta calidad",
+          "description": "Aunque SVG es un formato vectorial que no se degrada, JPG suele ser más práctico para impresión, redes sociales y materiales de presentación. Esta herramienta convierte SVG a JPG automáticamente manteniendo una excelente resolución."
+        },
+        {
+          "title": "Procesamiento automático de fondo",
+          "description": "Incluso si tu SVG no tiene configuración de color de fondo, se procesa automáticamente con un fondo blanco, eliminando preocupaciones sobre fondos negros o problemas de transparencia. Esto asegura alta visibilidad y compatibilidad con cualquier uso."
+        },
+        {
+          "title": "Completamente gratuito y sin instalación",
+          "description": "No se necesita registro de cuenta ni instalación de aplicaciones - el atractivo es su simplicidad con solo un navegador requerido. Úsalo para necesidades comerciales o personales sin límites de uso."
+        },
+        {
+          "title": "Acceso desde PC, smartphone o tablet",
+          "description": "Diseñado como herramienta web, funciona sin problemas en Windows, Mac, smartphones y tablets. Una utilidad confiable que puedes usar con confianza incluso en PCs externos o cuando estás en movimiento."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "¿Qué pasa con la resolución de mi SVG?",
+          "answer": "SVG es un formato independiente de resolución, pero cuando se convierte, se producirá como un JPG de alta calidad con dimensiones de píxeles apropiadas."
+        },
+        {
+          "question": "¿Qué sucede con los fondos transparentes de SVG?",
+          "answer": "Como JPG no admite transparencia, los fondos se procesan automáticamente como blancos u otro color sólido."
+        },
+        {
+          "question": "¿Faltarán partes de mi SVG en la imagen convertida?",
+          "answer": "Para código SVG especializado, algunos elementos incompatibles podrían omitirse. Sin embargo, la mayoría de los SVG estándar se convierten perfectamente."
+        },
+        {
+          "question": "¿Puedo convertir varios archivos simultáneamente?",
+          "answer": "Actualmente, las conversiones son de una en una. Planeamos admitir procesamiento por lotes en el futuro."
+        },
+        {
+          "question": "¿Se almacenan mis archivos SVG cargados?",
+          "answer": "No, los archivos cargados se eliminan automáticamente después de un breve período y no se almacenan permanentemente en nuestros servidores. Puedes usar el servicio de forma segura."
+        }
+      ]
+    }
   }
 }

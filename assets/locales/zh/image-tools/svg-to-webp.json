@@ -1,17 +1,17 @@
 {
   "meta": {
-    "title": "SVG转WebP转换器 - 免费在线图像转换工具",
-    "description": "在线将SVG矢量图像转换为WebP格式。免费、快速且易于使用，提供即时预览和下载选项。",
-    "keywords": "svg转webp, svg转换器, 图像转换器, 免费转换器, 在线图像工具, 矢量图像转换器, webp转换"
+    "title": "SVG转WebP转换器 | 将SVG图像转换为WebP格式的免费在线工具",
+    "description": "将SVG文件转换为WebP格式，大幅减小文件大小同时保持高质量。支持透明度，最适合网页优化。免费且无需注册的在线工具。",
+    "keywords": "svg转webp, svg转换, 图像转换, 免费转换器, 在线图像工具, 矢量图转换, webp转换"
   },
-  "title": "SVG转WebP转换器",
-  "description": "将SVG矢量图像转换为针对Web显示优化的WebP格式",
+  "title": "SVG转WebP转换",
+  "description": "将SVG矢量图像转换为为Web优化的WebP格式",
   "form": {
     "upload": {
       "label": "上传SVG图像",
       "button": "选择文件",
-      "dragDrop": "拖放SVG文件到这里或点击浏览",
-      "limitText": "最大文件大小：20MB（总计最多100MB）"
+      "dragDrop": "将SVG文件拖放到此处或点击选择",
+      "limitText": "最大文件大小：20MB（总计不超过100MB）"
     },
     "convert": "转换为WebP"
   },
@@ -22,14 +22,100 @@
     "selectedFiles": "已选择文件"
   },
   "status": {
-    "processing": "处理中...",
+    "processing": "转换中...",
     "noFile": "未选择文件",
     "success": "转换完成！",
-    "browserProcessing": "所有处理都在您的浏览器中完成。文件从不上传到任何服务器。"
+    "browserProcessing": "处理在您的浏览器中进行，因此速度可能因设备而异"
   },
   "error": {
-    "fileType": "只允许SVG文件",
-    "fileSize": "文件大小过大",
+    "fileType": "仅允许SVG文件",
+    "fileSize": "文件大小必须小于20MB",
     "conversionFailed": "转换失败"
+  },
+  "seoText": {
+    "overview": {
+      "title": "概述",
+      "content": "SVG to WebP Converter是一款免费的在线工具，可将不会因缩放而失真的SVG矢量图形转换为高压缩、高质量的WebP格式图像。\n WebP是由Google开发的新一代图像格式，与PNG和JPG相比，可以大幅减小文件大小同时保持图像质量。它非常适合加速网页加载和优化应用程序性能。无需安装，直接在浏览器中运行，任何人都可以立即使用。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传SVG图像",
+          "description": "拖放您的SVG文件或点击\"选择文件\"上传。"
+        },
+        {
+          "title": "自动转换为WebP",
+          "description": "上传后，立即开始高质量的WebP格式转换。透明度会被保留。"
+        },
+        {
+          "title": "下载转换后的图像",
+          "description": "点击\"下载\"按钮保存您的WebP图像。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "用户A（UI/UX设计师）",
+          "comment": "我将SVG图标素材转换为WebP并应用于应用程序中。文件变得更轻，性能也得到改善。透明度也能保持不变，真是太棒了！"
+        },
+        {
+          "name": "用户B（网络营销专员）",
+          "comment": "我想将登陆页面上的所有图像转换为WebP，所以使用了这个工具。SVG的细线条完美保留，而且文件非常轻量！我肯定会再次使用。"
+        },
+        {
+          "name": "用户C（插画师）",
+          "comment": "客户要求我提供SVG素材的WebP版本...这个工具让转换变得快速而简单！"
+        }
+      ]
+    },
+    "features": {
+      "title": "特点和优势",
+      "items": [
+        {
+          "title": "为网页显示优化的WebP格式",
+          "description": "虽然SVG在可缩放矢量格式方面表现出色，但某些环境可能无法正确显示它。转换为WebP可提供兼容性高、体积轻的图像格式，可以广泛使用。"
+        },
+        {
+          "title": "支持透明度和高质量转换",
+          "description": "该工具在将SVG转换为轻量级WebP格式的同时，保留透明信息和细节设计。可以放心地使用标志、按钮和装饰图像。"
+        },
+        {
+          "title": "完全免费、无需安装、即刻可用",
+          "description": "无需登录或下载软件。任何人都可以立即使用，完全免费转换。广告最少，操作无压力。"
+        },
+        {
+          "title": "多设备支持，随时随地转换",
+          "description": "兼容PC、智能手机和平板电脑，即使在外出或移动中也能进行转换。推荐给网页开发者、应用程序开发者、设计师等各类用户。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题解答",
+      "questions": [
+        {
+          "question": "从SVG转换为WebP会降低图像质量吗？",
+          "answer": "不会，矢量格式的SVG会以高分辨率渲染，并尽可能保持图像质量转换为WebP。"
+        },
+        {
+          "question": "透明背景的SVG会怎样？",
+          "answer": "如果原始SVG有透明设置，透明信息将保留在WebP版本中。"
+        },
+        {
+          "question": "支持所有SVG吗？",
+          "answer": "支持常见的SVG，但带有动画或复杂JavaScript嵌入的SVG可能无法正确转换。"
+        },
+        {
+          "question": "WebP可以在哪些环境中使用？",
+          "answer": "WebP可以在Chrome、Edge、Safari等主要现代浏览器中显示。对于较旧环境，我们建议准备备用图像。"
+        },
+        {
+          "question": "安全性如何？",
+          "answer": "是的，上传的图像文件在转换完成后会自动删除，不会存储在服务器上。"
+        }
+      ]
+    }
   }
 } 

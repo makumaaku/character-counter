@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Convertidor de HEIC a WebP | Convertidor de imágenes gratuito en línea",
-    "description": "Convierte imágenes HEIC a formato WebP en línea gratis. Vista previa antes de descargar, conversión por lotes disponible. Funciona en todos los dispositivos, incluidos iPhone, iPad y Mac.",
+    "title": "Convertidor de HEIC a WebP | Herramienta gratuita para convertir imágenes HEIC de iPhone a WebP ligero",
+    "description": "Convierte imágenes HEIC a formato WebP ligero en línea. Perfecto para sitios web y aplicaciones con un equilibrio óptimo entre calidad y compresión. ¡Gratis, sin registro, conversión instantánea!",
     "keywords": "heic a webp, convertidor heic, convertir heic, convertidor de fotos iphone, convertidor de imágenes, convertidor webp, convertidor gratis, formato de imagen webp"
   },
   "title": "Convertidor de HEIC a WebP",
@@ -46,5 +46,91 @@
     "noFile": "No hay archivos seleccionados",
     "success": "¡Conversión exitosa!",
     "convertingFile": "Convirtiendo {filename}..."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "HEIC to WebP Converter es una herramienta en línea gratuita que convierte imágenes en formato HEIC tomadas con iPhone o iPad a formato WebP ligero y de alta calidad.\n WebP es un formato de imagen desarrollado por Google que mantiene la calidad de imagen mientras proporciona tasas de compresión más altas que JPG o PNG, lo que lo hace ideal para sitios web y aplicaciones.\n La herramienta funciona directamente en tu navegador, lo que significa que no requiere instalación y está lista para usar inmediatamente."
+    },
+    "howTo": {
+      "title": "Pasos sencillos de uso",
+      "steps": [
+        {
+          "title": "Subir imágenes HEIC",
+          "description": "Arrastra y suelta tus archivos HEIC o haz clic en el botón 'Explorar archivos' para seleccionarlos."
+        },
+        {
+          "title": "Conversión automática a WebP",
+          "description": "La conversión a WebP de alta calidad comienza automáticamente tan pronto como se suben los archivos."
+        },
+        {
+          "title": "Descargar imágenes convertidas",
+          "description": "Haz clic en el botón 'Descargar' para guardar tus imágenes WebP para usar en desarrollo web y otros proyectos."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Ingeniero Frontend)",
+          "comment": "He estado usando WebP para mejorar la velocidad de carga de páginas web, y esta herramienta me ayuda a convertir imágenes HEIC de clientes. ¡La calidad es excelente y mis páginas cargan mucho más rápido!"
+        },
+        {
+          "name": "Usuario B (Usuario de iPhone y Bloguero)",
+          "comment": "Cuando necesito reducir el tamaño de las imágenes para mi blog, convertir de HEIC a WebP marcó una diferencia notable en la velocidad de carga. ¡Es gratis y puedo hacer todo directamente desde mi teléfono!"
+        },
+        {
+          "name": "Usuario C (Empresa de desarrollo de aplicaciones)",
+          "comment": "Estandarizamos todas las imágenes en nuestra aplicación a WebP, por lo que esta herramienta es perfecta para convertir fotos HEIC de dispositivos iOS. Es fácil y la alta compresión ayuda a optimizar nuestro uso de datos."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Conversión a formato WebP optimizado para web",
+          "description": "WebP puede reducir el tamaño de los archivos hasta en un 80% en comparación con PNG y JPG, lo que lo hace óptimo para mejorar el rendimiento de sitios web y aplicaciones móviles. Convierte desde HEIC con solo un clic usando esta herramienta."
+        },
+        {
+          "title": "Mantén la calidad mientras reduces el tamaño",
+          "description": "Al igual que HEIC, WebP sobresale en eficiencia de compresión y retención de calidad. Nuestra herramienta conserva los detalles de la imagen mientras genera archivos WebP ligeros, equilibrando tiempos de carga más rápidos y atractivo visual."
+        },
+        {
+          "title": "Gratis y sin necesidad de inicio de sesión",
+          "description": "No se necesita registro ni entrada de correo electrónico. La interfaz simple permite que cualquiera la use inmediatamente, mejorando en gran medida la eficiencia del trabajo. Perfecto para necesidades diarias de conversión de imágenes."
+        },
+        {
+          "title": "Compatible con todos los dispositivos",
+          "description": "Funciona en PC, smartphone o tablet. Especialmente conveniente para usuarios de Apple que pueden convertir fotos HEIC tomadas en iPhone directamente. Integración perfecta entre entornos Mac y Windows."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Qué es el formato WebP?",
+          "answer": "R. WebP es un formato de imagen desarrollado por Google que logra mayor compresión y calidad que JPG y PNG. Está ganando popularidad especialmente para usos web."
+        },
+        {
+          "question": "P2. ¿WebP es compatible en todos los entornos?",
+          "answer": "R. WebP es compatible con los principales navegadores (Chrome, Safari, Firefox, etc.), pero podría no mostrarse en algunos entornos más antiguos."
+        },
+        {
+          "question": "P3. ¿Puedo convertir varios archivos HEIC a la vez?",
+          "answer": "R. Actualmente, admitimos la conversión de una imagen a la vez. Planeamos agregar funcionalidad de conversión por lotes en el futuro."
+        },
+        {
+          "question": "P4. ¿Cuánta compresión puedo esperar?",
+          "answer": "R. Dependiendo de la imagen original, puedes lograr hasta un 80% de reducción del tamaño del archivo en algunos casos."
+        },
+        {
+          "question": "P5. ¿Mis imágenes convertidas están seguras?",
+          "answer": "R. Sí, los archivos subidos se eliminan automáticamente después de un cierto período y no se almacenan en nuestros servidores. Tu privacidad está totalmente protegida."
+        }
+      ]
+    }
   }
 }

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Convertidor de HEIC a PNG | Convertidor de imágenes gratuito en línea",
-    "description": "Convierte imágenes HEIC a formato PNG en línea gratis. Fácil de usar, sin necesidad de registro. Funciona en todos los dispositivos, incluidos iPhone, iPad y Mac.",
+    "title": "Convertidor de HEIC a PNG | Herramienta gratuita para convertir imágenes HEIC de iPhone a PNG de alta calidad",
+    "description": "Convierte fácilmente imágenes HEIC de iPhone/iPad a formato PNG. Compatible con transparencia, perfecto para diseño web y creación de documentos. Herramienta en línea gratuita, sin registro requerido.",
     "keywords": "heic a png, convertidor heic, convertir heic, convertidor de fotos iphone, convertidor de imágenes, convertidor png, convertidor gratis"
   },
   "title": "Convertidor de HEIC a PNG",
@@ -36,5 +36,91 @@
     "tooLarge": "El archivo es demasiado grande (máximo 10MB)",
     "noFiles": "Por favor, sube al menos un archivo HEIC",
     "failed": "La conversión falló. Por favor, inténtalo de nuevo."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de HEIC a PNG es una herramienta gratuita en línea que transforma imágenes en 'formato HEIC' tomadas con dispositivos Apple a formato PNG de alta calidad con soporte para transparencia.\nAl convertir archivos HEIC (que no se pueden mostrar en Windows o algunas aplicaciones) al versátil formato PNG, puedes editarlos, compartirlos e imprimirlos fácilmente. Esta herramienta se utiliza ampliamente para edición de imágenes, desarrollo web y creación de documentos empresariales."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Sube la imagen HEIC",
+          "description": "Arrastra y suelta tu imagen en formato HEIC o haz clic en 'Explorar archivos' para subirla."
+        },
+        {
+          "title": "Conversión automática a PNG",
+          "description": "Después de subir, la imagen se convierte automáticamente a PNG de alta calidad. También se admite la transparencia."
+        },
+        {
+          "title": "Descarga la imagen convertida",
+          "description": "Descarga la imagen PNG convertida con un solo clic y guárdala en tu dispositivo."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Ilustrador freelance)",
+          "comment": "Importo imágenes HEIC de clientes a Illustrator después de convertirlas a formato PNG usando esta herramienta. La transparencia se conserva, lo que la hace muy útil como recurso."
+        },
+        {
+          "name": "Usuario B (Sector educativo, Creador de documentos)",
+          "comment": "Tenía problemas con las imágenes en formato HEIC para materiales escolares y presentaciones, pero ahora puedo usarlas sin problemas después de convertirlas a PNG con esta herramienta. La conversión es instantánea y muy conveniente."
+        },
+        {
+          "name": "Usuario C (Desarrollador de aplicaciones)",
+          "comment": "Uso esta herramienta para convertir recursos en formato HEIC ya que quiero mantener todos los activos de imagen de la interfaz de mi aplicación en formato PNG. Estoy particularmente satisfecho con cómo la calidad de imagen no se degrada."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Convierte a formato PNG con transparencia",
+          "description": "PNG admite fondos transparentes, lo que lo hace ideal para logotipos, iconos y elementos de diseño. Convertir imágenes HEIC directamente a PNG resulta extremadamente conveniente para escenarios que requieren fondos transparentes."
+        },
+        {
+          "title": "Procesamiento de conversión de alta calidad",
+          "description": "Convertimos al formato PNG preservando la hermosa reproducción de color y nitidez del HEIC tanto como sea posible. Puedes usar las imágenes convertidas con confianza para diseño web o materiales impresos."
+        },
+        {
+          "title": "Completamente gratis y sin registro requerido",
+          "description": "Esta herramienta es completamente gratuita. La comodidad de poder empezar a convertir inmediatamente sin registro de correo electrónico o inicio de sesión es atractiva. Hay pocos anuncios y la operación es simple, por lo que no hay estrés."
+        },
+        {
+          "title": "Compatible con smartphones, tablets y PC",
+          "description": "No hay problema para acceder directamente desde iPhone o iPad. La compatibilidad con múltiples dispositivos te permite convertir imágenes en cualquier lugar y momento. Ideal para diseñadores y profesionales de negocios."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Qué es una imagen HEIC?",
+          "answer": "R. HEIC es un formato de imagen de alta compresión y alta calidad utilizado en productos Apple. Como Windows y algunos servicios no lo admiten, convertirlo a PNG facilita su manejo."
+        },
+        {
+          "question": "P2. ¿Se mantiene la transparencia?",
+          "answer": "R. Si la imagen original contiene información de transparencia, se reflejará automáticamente. Sin embargo, si no hay transparencia en la imagen (como en fotos), se convertirá a PNG tal como está."
+        },
+        {
+          "question": "P3. ¿Aumentará el tamaño del archivo?",
+          "answer": "R. Como PNG es un formato sin comprimir, los tamaños de archivo pueden ser más grandes que HEIC, pero se preserva la calidad de imagen."
+        },
+        {
+          "question": "P4. ¿Puedo convertir varias imágenes simultáneamente?",
+          "answer": "R. Actualmente, admitimos convertir una imagen a la vez, pero planeamos agregar procesamiento por lotes en el futuro."
+        },
+        {
+          "question": "P5. ¿Se guardan las imágenes subidas?",
+          "answer": "R. No, las imágenes subidas se eliminan del servidor inmediatamente después de la conversión. Consideramos importante la seguridad y privacidad."
+        }
+      ]
+    }
   }
 }

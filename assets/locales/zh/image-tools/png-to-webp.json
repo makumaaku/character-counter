@@ -33,5 +33,91 @@
   "error": {
     "fileType": "只允许PNG文件",
     "fileSize": "文件大小必须小于10MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "PNG to WebP Converter is a free online tool for converting PNG images to lightweight, high-quality WebP format.\n WebP significantly reduces file size compared to traditional PNG while preserving transparency. It's ideal for web development, app creation, and improving loading speeds for landing pages and e-commerce sites. No installation required—completely free and ready to use instantly."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload PNG Images",
+          "description": "Drag and drop your PNG files or click the \"Select Files\" button to upload."
+        },
+        {
+          "title": "Automatic WebP Conversion",
+          "description": "The conversion starts automatically upon upload, and transparency is fully preserved."
+        },
+        {
+          "title": "Download Converted Images",
+          "description": "Click the \"Download\" button to save your completed WebP images and start using them."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (UI Designer)",
+          "comment": "\"I was creating transparent images for app UIs in PNG, but they were too large. Converting to WebP with this tool made them lightweight and dramatically improved loading times!\""
+        },
+        {
+          "name": "User B (Landing Page Developer)",
+          "comment": "\"By converting PNG assets to WebP, we significantly improved our client's landing page speed. The preserved transparency is a huge bonus.\""
+        },
+        {
+          "name": "User C (Hobbyist Website Owner)",
+          "comment": "\"I was amazed that this free tool preserved PNG transparency perfectly. The conversion speed is fast with zero stress. I can't live without it now!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Convert Transparent PNGs to WebP",
+          "description": "Background transparency information is fully preserved in the WebP format, making it perfect for logos, icons, and decorative images. Enjoy both WebP's lightweight format and transparency."
+        },
+        {
+          "title": "Significantly Reduce File Size",
+          "description": "While PNGs offer high quality, they tend to have large file sizes. This tool enables up to 80%+ compression while maintaining image quality, improving website loading speeds."
+        },
+        {
+          "title": "Browser-Based & Completely Free",
+          "description": "No installation or registration required. As long as you have a browser, you can use it anywhere, anytime. Use it freely with no restrictions for your daily tasks."
+        },
+        {
+          "title": "Works on PC, Smartphone & Tablet",
+          "description": "Optimized for multiple devices, allowing convenient conversion even from your smartphone while on the go. Designed to be user-friendly for designers, developers, and general users alike."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Q1. What happens to transparent areas in PNG images?",
+          "answer": "A. If the original image contains transparency, it will be fully preserved when converted to WebP format."
+        },
+        {
+          "question": "Q2. Which browsers support WebP?",
+          "answer": "A. All major modern browsers including Chrome, Safari, and Firefox support WebP. Some older environments may not support it."
+        },
+        {
+          "question": "Q3. How long does conversion take?",
+          "answer": "A. Normal PNG images are converted within seconds. Even large images are processed quickly."
+        },
+        {
+          "question": "Q4. Can I convert multiple files at once?",
+          "answer": "A. Currently we support converting one image at a time, but we plan to add batch functionality in the future."
+        },
+        {
+          "question": "Q5. Is it secure?",
+          "answer": "A. Yes. Uploaded images are automatically deleted after a certain period and are not stored on our servers. Your privacy is protected."
+        }
+      ]
+    }
   }
-} 
+}

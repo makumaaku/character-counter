@@ -2,15 +2,15 @@
   "meta": {
     "title": "SVG to JPG Converter - Free Online Image Conversion Tool",
     "description": "Convert SVG vector images to JPG format online. Free, fast, and easy to use with instant preview and download options.",
-    "keywords": "svg to jpg, svg converter, image converter, free converter, online image tool, vector image converter"
+    "keywords": "SVG to JPG, SVG conversion, image conversion, free converter, online image tool, vector image conversion"
   },
   "title": "SVG to JPG Converter",
   "description": "Convert SVG vector images to JPG format",
   "form": {
     "upload": {
-      "label": "Upload SVG Image(s)",
-      "button": "Select Files",
-      "dragDrop": "Drag & drop SVG files here or click to browse",
+      "label": "Upload SVG Image",
+      "button": "Select File",
+      "dragDrop": "Drag & drop SVG file here or click to select",
       "limitText": "Maximum file size: 20MB (up to 100MB total)"
     },
     "convert": "Convert to JPG"
@@ -24,12 +24,98 @@
   "status": {
     "processing": "Converting...",
     "noFile": "No file selected",
-    "success": "Conversion successful!",
-    "browserProcessing": "Processing is done in your browser, speed may vary by device"
+    "success": "Conversion Complete!",
+    "browserProcessing": "Processing is done in your browser, so speed may vary depending on your device"
   },
   "error": {
-    "fileType": "Only SVG files are allowed",
+    "fileType": "Only SVG files are supported",
     "fileSize": "File size must be less than 20MB",
     "conversionFailed": "Conversion failed"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "SVG to JPG Converter is a free online tool that transforms vector SVG images into high-quality JPG format. While SVG is a scalable vector format widely used for web and UI design, JPG format is often more convenient for social media posts, printing, and general image editing software. This tool preserves the visual quality of your SVG while converting it to the universally compatible JPG format instantly."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload SVG File",
+          "description": "Drag & drop your SVG file or click the 'Select File' button to upload."
+        },
+        {
+          "title": "Automatic JPG Conversion",
+          "description": "The conversion to JPG format begins automatically after upload, transforming your vector graphics into high-quality raster images."
+        },
+        {
+          "title": "Download the Converted Image",
+          "description": "Once conversion is complete, click the 'Download' button to save your JPG image for use in documents, websites, or print materials."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Graphic Designer)",
+          "comment": "I needed to use SVG in print materials, but the print shop only accepted JPG. This tool let me convert and submit my work immediately with perfect quality!"
+        },
+        {
+          "name": "User B (Marketing Specialist)",
+          "comment": "I wanted to post our logo on social media and converted it from SVG to JPG. The automatic white background processing is convenient, letting me use it right away without extra steps."
+        },
+        {
+          "name": "User C (Educational Material Creator)",
+          "comment": "I was using SVG images in my course materials but needed to standardize everything to JPG format. This tool helped me batch convert everything - it's simple enough for anyone to use."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Vector to High-Quality Raster Conversion",
+          "description": "While SVG is a non-degrading vector format, JPG is often more practical for printing, social media, and presentation materials. This tool converts SVG to JPG automatically while maintaining excellent resolution."
+        },
+        {
+          "title": "Automatic Background Processing",
+          "description": "Even if your SVG has no background color setting, it's automatically processed with a white background, eliminating concerns about black backgrounds or transparency issues. This ensures high visibility and compatibility with any usage."
+        },
+        {
+          "title": "Completely Free & No Installation Required",
+          "description": "No account registration or app installation needed - the appeal is its simplicity with just a browser required. Use it for business or personal needs with no usage limits."
+        },
+        {
+          "title": "Access from PC, Smartphone or Tablet",
+          "description": "Designed as a web-based tool, it works smoothly on Windows, Mac, smartphones, and tablets. A reliable utility you can use confidently even on external PCs or when on the go."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "What happens to the resolution of my SVG?",
+          "answer": "SVG is a resolution-independent format, but when converted, it will output as a high-quality JPG with appropriate pixel dimensions."
+        },
+        {
+          "question": "What happens to transparent SVG backgrounds?",
+          "answer": "Since JPG doesn't support transparency, backgrounds are automatically processed as white or another solid color."
+        },
+        {
+          "question": "Will parts of my SVG be missing in the converted image?",
+          "answer": "For specialized SVG code, some incompatible elements might be omitted. However, most standard SVGs convert perfectly."
+        },
+        {
+          "question": "Can I convert multiple files simultaneously?",
+          "answer": "Currently, conversions are one at a time. We plan to support batch processing in the future."
+        },
+        {
+          "question": "Are my uploaded SVG files stored?",
+          "answer": "No, uploaded files are automatically deleted after a short period and aren't permanently stored on our servers. You can use the service safely and securely."
+        }
+      ]
+    }
   }
 }
