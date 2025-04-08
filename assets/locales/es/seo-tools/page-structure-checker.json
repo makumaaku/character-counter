@@ -1,7 +1,7 @@
 {
     "meta": {
-      "title": "Verificador de Estructura de Página - Herramientas SEO",
-      "description": "Analiza la estructura de tu página web incluyendo título, descripción y jerarquía de encabezados para asegurar una optimización SEO adecuada",
+      "title": "Verificador de Estructura de Página | Herramienta Gratuita de Análisis SEO para Visualizar Estructuras Web",
+      "description": "Comprueba la estructura HTML y jerarquía de encabezados (h1-h6) para confirmar contenido optimizado para SEO. El primer paso para crear contenido estructurado.",
       "keywords": "estructura de página, estructura de encabezados, verificador seo, etiqueta h1, etiqueta de título, meta descripción"
     },
     "title": "Verificador de Estructura de Página",
@@ -59,5 +59,91 @@
     "hierarchyIssueMessage": "Problema de Jerarquía",
     "recommended": "Recomendado",
     "importantForSeo": "Importante para SEO",
-    "headings": "Encabezados"
-  } 
+    "headings": "Encabezados",
+    "seoText": {
+      "overview": {
+        "title": "Descripción General",
+        "content": "El Verificador de Estructura de Página es una herramienta gratuita en línea que examina visualmente la jerarquía de encabezados y la estructura HTML de páginas web.\nPara que los motores de búsqueda entiendan correctamente tus páginas, es esencial una estructura lógica (h1-h6) y organización de secciones. Con esta herramienta, simplemente ingresa una URL para visualizar la estructura de encabezados de toda la página en formato de árbol, obteniendo información para crear una arquitectura de contenido optimizada para SEO."
+      },
+      "howTo": {
+        "title": "Cómo Usar",
+        "steps": [
+          {
+            "title": "Ingresa la URL de la página web que deseas verificar",
+            "description": "Introduce la URL de la página que quieres analizar en el formulario."
+          },
+          {
+            "title": "Haz clic en el botón \"Analizar Estructura\"",
+            "description": "La herramienta analizará las etiquetas de encabezado y la información estructural del HTML de la página."
+          },
+          {
+            "title": "Revisa la estructura de encabezados en vista de árbol",
+            "description": "Examina visualmente la estructura de encabezados h1-h6, el orden y cualquier problema de ausencia o duplicación en formato de árbol."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Testimonios de Usuarios",
+        "users": [
+          {
+            "name": "Usuario A (Especialista SEO)",
+            "comment": "\"Lo uso cuando creo estructuras de página. Muestra inmediatamente si las jerarquías de h2 y h3 están intactas, lo que ayuda con la verificación de borradores.\""
+          },
+          {
+            "name": "Usuario B (Director Web)",
+            "comment": "\"Organizo visualmente las estructuras de páginas existentes para hacer propuestas de mejora. Ayuda no solo con modificaciones de diseño sino también con optimización SEO.\""
+          },
+          {
+            "name": "Usuario C (Escritor y Blogger)",
+            "comment": "\"Me preocupaba si mis artículos tenían una estructura lógica. Cuando revisé la secuencia de encabezados con esta herramienta, descubrí que tenía múltiples etiquetas h1.\""
+          }
+        ]
+      },
+      "features": {
+        "title": "Características y Beneficios",
+        "items": [
+          {
+            "title": "Visualiza la estructura de etiquetas h1-h6 en formato de árbol",
+            "description": "Muestra las estructuras de encabezados de páginas web en un formato de árbol fácil de entender. Identifica rápidamente errores estructurales como encabezados duplicados o niveles de jerarquía saltados."
+          },
+          {
+            "title": "Apoya el diseño de estructura lógica",
+            "description": "Una jerarquía de encabezados adecuada es crucial tanto para SEO como para accesibilidad en estructuras de página leídas por motores de búsqueda y lectores de pantalla. Da el primer paso para verificar y mejorar la organización de tu contenido."
+          },
+          {
+            "title": "Perfecto para páginas en borrador y diagnósticos previos a reescrituras",
+            "description": "Verifica la estructura tanto en páginas existentes como en borradores de artículos para prevenir errores de producción y descuidos SEO. También útil para controles de calidad antes de la entrega."
+          },
+          {
+            "title": "Gratuito, sin registro, accesible para todos",
+            "description": "El análisis se completa con solo ingresar una URL. Una herramienta de verificación de estructura fácil de usar incluso para principiantes web y escritores."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Preguntas Frecuentes",
+        "questions": [
+          {
+            "question": "P1. ¿Puedo verificar estructuras diferentes a las etiquetas de encabezado (h1-h6)?",
+            "answer": "R. Actualmente, la herramienta se centra en visualizar estructuras de etiquetas de encabezado. Planeamos soportar etiquetas de sección y otros elementos en el futuro."
+          },
+          {
+            "question": "P2. ¿Qué sucede si hay múltiples etiquetas h1?",
+            "answer": "R. Todas las etiquetas h1 serán detectadas y listadas. Si existen múltiples, se mostrará un error o advertencia."
+          },
+          {
+            "question": "P3. ¿Existe una función para corregir automáticamente problemas estructurales?",
+            "answer": "R. No, esta herramienta se especializa en visualizar la estructura e identificar problemas. Las modificaciones deben hacerse manualmente."
+          },
+          {
+            "question": "P4. ¿Puedo usarla con archivos HTML locales?",
+            "answer": "R. Actualmente, solo se admite la verificación de páginas web mediante especificación de URL. El soporte para archivos locales está en consideración para futuras actualizaciones."
+          },
+          {
+            "question": "P5. ¿Se guardan los datos de URL que ingreso?",
+            "answer": "R. No, los datos de análisis y URLs se eliminan automáticamente después de cierto período y no se guardan. Somos conscientes de tu privacidad."
+          }
+        ]
+      }
+    }
+} 
