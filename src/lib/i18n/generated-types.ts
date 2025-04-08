@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-08T17:36:36.236Z
+// Generated at: 2025-04-08T17:49:32.425Z
 
 export interface CommonMessages {
   meta: {
@@ -2189,6 +2189,40 @@ export interface PdfToolsPngToPdfMessages {
     fileType: string;
     fileSize: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface PdfToolsSvgToPdfMessages {
@@ -2358,6 +2392,51 @@ export interface SeoToolsLinkStatusCheckerMessages {
     timeout: string;
     network: string;
     invalid_url: string;
+  };
+  placeholder: string;
+  emptyState: string;
+  sidebar: {
+    function: string;
+    usecase: string;
+    faq: string;
+    aboutUs: string;
+    contact: string;
+    privacy: string;
+    plan: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 

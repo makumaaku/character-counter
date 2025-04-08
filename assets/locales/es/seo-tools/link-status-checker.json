@@ -1,32 +1,129 @@
 {
   "meta": {
-    "title": "Comprobador de Estado de Enlaces - Herramienta gratuita de validación masiva de URLs",
-    "description": "Comprueba el estado de múltiples URLs a la vez. Herramienta gratuita en línea para validación masiva de URLs, detección de códigos de estado HTTP y verificación de enlaces en tiempo real. No requiere registro.",
-    "keywords": "comprobador de enlaces, validador de URL, comprobación masiva de URL, estado HTTP, buscador de enlaces rotos, monitoreo de sitios web"
+    "title": "Verificador de Estado de Enlaces | Herramienta SEO gratuita para verificar enlaces rotos y códigos de estado",
+    "description": "Analiza todos los enlaces de una página web a la vez, comprueba instantáneamente enlaces rotos y redirecciones. Herramienta online gratuita para mejorar SEO y gestión de calidad de sitios web.",
+    "keywords": "verificador de estado de enlaces, comprobar URL, verificar enlaces, herramienta SEO, enlaces rotos, error 404, redirección, 301, 302"
   },
-  "title": "Comprobador de Estado de Enlaces SEO",
-  "description": "Introduce una URL para comprobar sus enlaces y estado.",
+  "title": "Verificador de Estado de Enlaces",
+  "description": "Comprueba si las URLs especificadas son válidas",
   "form": {
     "url": {
       "label": "URL",
       "placeholder": "Introduce la URL del sitio web"
     },
     "button": {
-      "check": "Comprobar",
-      "checking": "Comprobando..."
+      "check": "Verificar",
+      "checking": "Verificando..."
     }
   },
   "results": {
-    "title": "Enlaces",
+    "title": "Enlace",
     "status": "Estado",
-    "processing_url": "Procesando URL...",
-    "checking_links": "Comprobando enlaces...",
-    "total_links_checked": "Total de {{count}} enlaces comprobados"
+    "processing_url": "Analizando URL...",
+    "checking_links": "Verificando enlaces...",
+    "total_links_checked": "Total de {{count}} enlaces verificados"
   },
   "errors": {
-    "general": "Ha ocurrido un error",
-    "timeout": "La solicitud ha caducado. El servidor tardó demasiado en responder.",
-    "network": "Error de red. Por favor, comprueba tu conexión e inténtalo de nuevo.",
-    "invalid_url": "Formato de URL inválido. Por favor, introduce una URL válida."
+    "general": "Se produjo un error",
+    "timeout": "Tiempo de espera agotado. El servidor está tardando demasiado en responder.",
+    "network": "Se produjo un error de red. Por favor, comprueba tu conexión e inténtalo de nuevo.",
+    "invalid_url": "Formato de URL no válido. Por favor, introduce una URL válida."
+  },
+  "placeholder": "Por favor, introduce una URL",
+  "emptyState": "El estado se mostrará cuando introduzcas una URL",
+  "sidebar": {
+    "function": "Funciones",
+    "usecase": "Casos de Uso",
+    "faq": "Preguntas Frecuentes",
+    "aboutUs": "Sobre Nosotros",
+    "contact": "Contacto",
+    "privacy": "Política de Privacidad",
+    "plan": "Planes de Precios"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción General",
+      "content": "El Verificador de Estado de Enlaces es una herramienta online gratuita que te permite comprobar el estado (código de estado HTTP) de todos los enlaces contenidos en una página web a la vez.\n Identifica rápidamente enlaces rotos (404) y redirecciones innecesarias (301, 302) que pueden obstaculizar el SEO y la experiencia del usuario, ayudando a mejorar la fiabilidad y el ranking de tu sitio. Esta herramienta simple y práctica completa el análisis instantáneamente con solo introducir una URL."
+    },
+    "howTo": {
+      "title": "Cómo Utilizarlo",
+      "steps": [
+        {
+          "title": "Introduce la URL de la página que deseas verificar",
+          "description": "Copia y pega en el formulario la URL de la página cuyos enlaces quieres comprobar."
+        },
+        {
+          "title": "Haz clic en 'Iniciar Verificación'",
+          "description": "La herramienta extrae automáticamente los enlaces de la página y comprueba el código de estado para cada destino enlazado."
+        },
+        {
+          "title": "Revisa el estado de los enlaces",
+          "description": "Los códigos de estado (200, 404, 301, etc.) y las URLs de cada enlace se muestran en una lista."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de Usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Director de Empresa de Producción Web)",
+          "comment": "\"Siempre uso esto para verificar las páginas antes de publicarlas. Ayuda a mantener la calidad de entrega al no pasar por alto enlaces rotos y redirecciones.\""
+        },
+        {
+          "name": "Usuario B (Responsable de SEO de Medios Internos)",
+          "comment": "\"Con tantos artículos, la verificación manual era limitada, pero con esta herramienta, puedo verificar todo de una vez, ¡mejorando dramáticamente nuestra velocidad de mejora de SEO!\""
+        },
+        {
+          "name": "Usuario C (Operador de Medios Propios)",
+          "comment": "\"Me preocupaba si los enlaces en artículos antiguos seguían activos, así que hice una verificación masiva. Después de encontrar y reemplazar enlaces 404, ¡nuestro tráfico de búsqueda se recuperó!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y Beneficios",
+      "items": [
+        {
+          "title": "Verificación masiva del estado de todos los enlaces en una página",
+          "description": "Comprueba códigos de estado HTTP (200, 301, 404, etc.) de destinos de enlaces masivamente. Desde enlaces rotos hasta redirecciones innecesarias y monitoreo de enlaces externos, todo se completa en una sola operación."
+        },
+        {
+          "title": "Mejora directa del SEO y la experiencia del usuario",
+          "description": "Los enlaces rotos y las redirecciones pueden afectar la evaluación de Google y causar abandonos de usuarios. La detección y corrección temprana lleva a mejores rankings de búsqueda, fiabilidad y tasas de navegación."
+        },
+        {
+          "title": "Visualización en lista y capacidades de exportación (opcional)",
+          "description": "Los resultados de estado para cada URL se muestran en formato de lista, con funcionalidad opcional para descargar como CSV y otros formatos. Ideal para sitios grandes y operaciones en equipo."
+        },
+        {
+          "title": "Gratuito, sin registro, interfaz simple lista para usar",
+          "description": "No requiere inicio de sesión, análisis con un solo clic posible simplemente pegando una URL. Fácil de usar incluso para no ingenieros en tu empresa, e ideal para verificaciones regulares de enlaces."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "questions": [
+        {
+          "question": "¿Hay un límite superior al número de enlaces que se pueden verificar?",
+          "answer": "Actualmente, admitimos hasta 100 enlaces por página. Planeamos ampliar esto en el futuro."
+        },
+        {
+          "question": "¿No entiendo qué significan los códigos de estado?",
+          "answer": "Se muestran con explicaciones simples en la lista, como \"200 = Normal\", \"301 = Redirección permanente\", \"302 = Redirección temporal\", \"404 = La página no existe\", etc."
+        },
+        {
+          "question": "¿También se pueden verificar enlaces externos?",
+          "answer": "Sí, todos los enlaces externos incluidos en la página (incluyendo dominios externos) también se verifican."
+        },
+        {
+          "question": "¿Puedo verificar un sitio entero de una vez?",
+          "answer": "Actualmente, la verificación se realiza página por página, pero planeamos agregar una función para la verificación consecutiva de múltiples páginas en el futuro."
+        },
+        {
+          "question": "¿Se guardan las URLs que introduzco y los resultados?",
+          "answer": "No, todo se procesa en tiempo real y no se guarda en el servidor. Somos conscientes de la seguridad y la privacidad."
+        }
+      ]
+    }
   }
 }

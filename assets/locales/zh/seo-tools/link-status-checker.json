@@ -1,32 +1,129 @@
 {
   "meta": {
-    "title": "链接状态检查器 - 免费批量URL验证工具",
-    "description": "一次检查多个URL的状态。免费在线工具，用于批量URL验证、HTTP状态码检测和实时链接检查。无需注册。",
-    "keywords": "链接检查器, URL验证器, 批量URL检查, HTTP状态, 死链接查找器, 网站监控"
+    "title": "Link Status Checker | Free SEO Tool to Check Broken Links & Status Codes in Bulk",
+    "description": "Analyze all links in a web page at once, instantly check broken links and redirects. Free online tool for SEO improvement and website quality management.",
+    "keywords": "link status checker, URL check, link check, SEO tool, broken links, 404 error, redirect, 301, 302"
   },
-  "title": "SEO链接状态检查器",
-  "description": "输入URL以检查其链接和状态。",
+  "title": "Link Status Checker",
+  "description": "Check if specified URLs are valid",
   "form": {
     "url": {
       "label": "URL",
-      "placeholder": "输入网站URL"
+      "placeholder": "Enter website URL"
     },
     "button": {
-      "check": "检查",
-      "checking": "检查中..."
+      "check": "Check",
+      "checking": "Checking..."
     }
   },
   "results": {
-    "title": "链接",
-    "status": "状态",
-    "processing_url": "处理URL中...",
-    "checking_links": "检查链接中...",
-    "total_links_checked": "共检查了{{count}}个链接"
+    "title": "Link",
+    "status": "Status",
+    "processing_url": "Analyzing URL...",
+    "checking_links": "Checking links...",
+    "total_links_checked": "Total {{count}} links checked"
   },
   "errors": {
-    "general": "发生错误",
-    "timeout": "请求超时。服务器响应时间过长。",
-    "network": "网络错误。请检查您的连接并重试。",
-    "invalid_url": "无效的URL格式。请输入有效的URL。"
+    "general": "An error occurred",
+    "timeout": "Request timed out. Server is taking too long to respond.",
+    "network": "A network error occurred. Please check your connection and try again.",
+    "invalid_url": "Invalid URL format. Please enter a valid URL."
+  },
+  "placeholder": "Please enter a URL",
+  "emptyState": "Status will be displayed when you enter a URL",
+  "sidebar": {
+    "function": "Features",
+    "usecase": "Use Cases",
+    "faq": "FAQ",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "plan": "Pricing Plans"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "Link Status Checker is a free online tool that allows you to check the status (HTTP status code) of all links contained in a web page at once.\n It quickly identifies broken links (404) and unnecessary redirects (301, 302) that can hinder SEO and user experience, helping to improve your site's reliability and ranking. This simple and practical tool completes analysis instantly with just a URL input."
+    },
+    "howTo": {
+      "title": "How to Use",
+      "steps": [
+        {
+          "title": "Enter the URL of the page you want to check",
+          "description": "Copy and paste the URL of the page whose link status you want to confirm into the form."
+        },
+        {
+          "title": "Click 'Start Check'",
+          "description": "The tool automatically extracts links from the page and checks the status code for each linked destination."
+        },
+        {
+          "title": "Review the link status",
+          "description": "Status codes (200, 404, 301, etc.) and URLs for each link are displayed in a list."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Web Production Company Director)",
+          "comment": "\"I always use this for page checks before publishing. It helps maintain delivery quality by not overlooking broken links and redirects.\""
+        },
+        {
+          "name": "User B (In-house Media SEO Manager)",
+          "comment": "\"With so many articles, manual checking was limited, but with this tool, I can check everything at once, dramatically improving our SEO improvement speed!\""
+        },
+        {
+          "name": "User C (Owned Media Operator)",
+          "comment": "\"I was concerned about whether links in old articles were still alive, so I did a bulk check. After finding and replacing 404 links, our search traffic recovered!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Bulk status check of all links on a page",
+          "description": "Check HTTP status codes (200, 301, 404, etc.) of link destinations in bulk. From broken links to unnecessary redirects and external link monitoring, everything is completed in one operation."
+        },
+        {
+          "title": "Direct improvement of SEO and user experience",
+          "description": "Broken links and redirects can affect Google's evaluation and cause user drop-offs. Early detection and fixing leads to improved search rankings, reliability, and navigation rates."
+        },
+        {
+          "title": "List display and export capabilities (optional)",
+          "description": "Status results for each URL are displayed in list format, with optional functionality to download as CSV and other formats. Ideal for large sites and team operations."
+        },
+        {
+          "title": "Free, no registration, simple UI ready to use",
+          "description": "No login required, one-click analysis possible just by pasting a URL. Easy to use even for non-engineers in your company, and ideal for regular link checking."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Is there an upper limit to the number of links that can be checked?",
+          "answer": "Currently, we support up to 100 links per page. We plan to expand this in the future."
+        },
+        {
+          "question": "I don't understand what the status codes mean?",
+          "answer": "They are displayed with simple explanations in the list, such as \"200 = Normal\", \"301 = Permanent redirect\", \"302 = Temporary redirect\", \"404 = Page does not exist\", etc."
+        },
+        {
+          "question": "Can external links be checked too?",
+          "answer": "Yes, all external links included in the page (including external domains) are also checked."
+        },
+        {
+          "question": "Can I check an entire site at once?",
+          "answer": "Currently, checking is done page by page, but we plan to add a feature for consecutive checking of multiple pages in the future."
+        },
+        {
+          "question": "Are the URLs I enter and the results saved?",
+          "answer": "No, everything is processed in real-time and is not saved on the server. We are mindful of security and privacy."
+        }
+      ]
+    }
   }
-} 
+}
