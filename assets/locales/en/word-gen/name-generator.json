@@ -118,5 +118,83 @@
       "question": "How many names can I generate?",
       "answer": "You can generate up to 100 names at once, and there's no limit to how many times you can use the generator."
     }
+  },
+  "seoText": {
+    "overview": {
+      "title": "Random Name Generator",
+      "content": "Discover unique names! A random name generator that creates distinctive naming solutions\nThe random name generator is a tool that creates diverse names for characters, businesses, nicknames, and more. It provides a wide range of options when you're out of ideas or looking for new concepts."
+    },
+    "howTo": {
+      "title": "Features and Characteristics",
+      "steps": [
+        {
+          "title": "One-Click Name Generation",
+          "description": "With simple button operation, new names appear instantly. Try as many times as you like to find the perfect name."
+        },
+        {
+          "title": "Diverse Name Patterns",
+          "description": "Featuring a wide range of genres including fantasy, modern, and classical names. Create names that suit your specific needs."
+        },
+        {
+          "title": "Category-Based Output",
+          "description": "Filter by purpose such as character names, company names, or pet names to easily find names that match your objectives."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Use Cases and User Examples",
+      "users": [
+        {
+          "name": "Character Creation",
+          "comment": "Generate unique names for novel and game characters."
+        },
+        {
+          "name": "Brand Naming",
+          "comment": "Get innovative ideas for company and product names."
+        },
+        {
+          "name": "Personal Use",
+          "comment": "Perfect for creating unique usernames and nicknames."
+        }
+      ]
+    },
+    "features": {
+      "title": "Technical Background and Mechanism",
+      "items": [
+        {
+          "title": "Proprietary Generation Algorithm",
+          "description": "Combines random elements with database patterns to create natural and appealing names."
+        },
+        {
+          "title": "Regular Data Updates",
+          "description": "Database is continuously updated with latest trends and user feedback to provide fresh name options."
+        },
+        {
+          "title": "Multi-Device Support",
+          "description": "Responsive design ensures comfortable use from any device."
+        },
+        {
+          "title": "Versatile Applications",
+          "description": "Suitable for creative projects, business naming, and personal use across various contexts."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "questions": [
+        {
+          "question": "Can I use the generated names commercially?",
+          "answer": "Yes, commercial use is permitted under our terms of service."
+        },
+        {
+          "question": "Can I choose specific categories of names?",
+          "answer": "Yes, we provide filtering options to match your specific needs."
+        },
+        {
+          "question": "What if I don't like the suggested names?",
+          "answer": "You can click the generate button as many times as you like until you find names you love."
+        }
+      ]
+    }
   }
 }
