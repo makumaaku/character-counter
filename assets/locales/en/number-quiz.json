@@ -22,5 +22,91 @@
       "incorrect": "Incorrect. Keep trying!",
       "complete": "Congratulations! You've solved the puzzle!"
     }
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "This Sudoku app is a simple puzzle game that anyone can enjoy. Choose from three difficulty levels: 'Easy' for beginners, 'Normal' for a more engaging experience, and 'Hard' for those seeking a challenge. Starting a new puzzle is as simple as pressing the 'New Game' button, and you can check your answers with the 'Check Solution' button. With a user-friendly design that works well on smartphones and tablets, it's perfect for brain training during your free time."
+    },
+    "howTo": {
+      "title": "Simple Steps to Get Started",
+      "steps": [
+        {
+          "title": "Select a Difficulty Level",
+          "description": "When you start the app, choose from 'Easy', 'Normal', or 'Hard'. If you're a beginner, 'Easy' is the best place to start."
+        },
+        {
+          "title": "Tap the New Game Button",
+          "description": "Press the 'New Game' button to generate a new Sudoku puzzle. Each time you'll get a different puzzle, so you can play endlessly."
+        },
+        {
+          "title": "Check Your Solution",
+          "description": "Once you've filled in all the squares, tap the 'Check Solution' button. If you're correct, you'll proceed to the completion screen; if not, you can identify errors and try again."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Kai (Male, 20s)",
+          "comment": "\"This is a simple Sudoku app with an intuitive interface. I use it for brain training during my commute.\""
+        },
+        {
+          "name": "Saya (Female, 30s)",
+          "comment": "\"As a beginner, I could easily start with the Easy mode. Now I'm challenging myself with Normal mode and feeling my skills improve!\""
+        },
+        {
+          "name": "Tom (Male, 40s)",
+          "comment": "\"The Check Solution feature makes it easy to verify my answers. With Hard mode available, I never get bored.\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Simple UI",
+          "description": "With an easy-to-understand interface, anyone can start playing immediately."
+        },
+        {
+          "title": "Three Selectable Difficulty Levels",
+          "description": "Choose from Easy, Normal, or Hard to match your skill level."
+        },
+        {
+          "title": "Stay Engaged with New Game Feature",
+          "description": "Puzzles are randomly generated each time, providing a fresh experience with every game."
+        },
+        {
+          "title": "Quick Verification with Check Solution",
+          "description": "Check your answers with a single tap, improving your learning efficiency."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Q. Is this Sudoku app free to use?",
+          "answer": "A. Yes, basic gameplay is available for free."
+        },
+        {
+          "question": "Q. Can I use it offline?",
+          "answer": "A. Yes, once downloaded, you can play without an internet connection."
+        },
+        {
+          "question": "Q. Is there a hint feature?",
+          "answer": "A. The current version doesn't include hints, but this keeps the app simple and easy to use."
+        },
+        {
+          "question": "Q. Are there ads?",
+          "answer": "A. The free version may display some ads. We've designed them to be as unobtrusive as possible for your comfort."
+        },
+        {
+          "question": "Q. Can I change the difficulty level mid-game?",
+          "answer": "A. You can't change difficulty during a game, but you can select your preferred level when starting a new game."
+        }
+      ]
+    }
   }
 } 

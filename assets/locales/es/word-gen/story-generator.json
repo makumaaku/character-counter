@@ -74,5 +74,83 @@
     "conclusion": {
       "title": "Conclusión",
       "description": "El Generador de Historias Aleatorias es una poderosa herramienta que proporciona nuevas ideas cuando te enfrentas a bloqueos creativos. Prueba esta herramienta que, con su operación simple y rica base de datos, aportará un aire fresco a tu proceso creativo."
+    },
+    "seoText": {
+      "overview": {
+        "title": "Generador de Historias Aleatorias",
+        "content": "¡Tu historia comienza aquí! Encuentra inspiración con historias aleatorias\nEl Generador de Historias Aleatorias es una herramienta que genera elementos e historias aleatorias para inspirar tu creatividad. Perfecto para novelas, guiones, historias de juegos y más."
+      },
+      "howTo": {
+        "title": "Características y Funciones",
+        "steps": [
+          {
+            "title": "Generación con Un Clic",
+            "description": "Con una operación simple, se genera instantáneamente una parte o toda la trama. Obtén nuevas ideas cuando te quedes sin inspiración."
+          },
+          {
+            "title": "Diversos Patrones de Trama",
+            "description": "Incluye patrones de historia de varios géneros como aventura, romance, misterio y ciencia ficción. Crea historias que se adapten a tus preferencias y objetivos."
+          },
+          {
+            "title": "Configuración Personalizable de Escenarios",
+            "description": "Personaliza detalles como personajes, escenarios y tono de la historia para obtener ideas de creación más específicas."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Casos de Uso y Ejemplos",
+        "users": [
+          {
+            "name": "Ideas para Novelas y Guiones",
+            "comment": "Las tramas generadas aleatoriamente pueden ser el punto de partida para nuevas historias en la fase de planificación."
+          },
+          {
+            "name": "Inspiración para Historias de Juegos",
+            "comment": "Cuando te quedes atascado con la configuración de personajes y escenarios, las ideas aleatorias pueden ayudarte a encontrar nuevos desarrollos."
+          },
+          {
+            "name": "Talleres Creativos",
+            "comment": "Puede utilizarse como idea compartida en actividades creativas grupales y sesiones de lluvia de ideas."
+          }
+        ]
+      },
+      "features": {
+        "title": "Antecedentes Técnicos y Mecanismos",
+        "items": [
+          {
+            "title": "Algoritmo de Narración",
+            "description": "Nuestro algoritmo único combina múltiples elementos como temas, personajes y escenarios para generar historias naturales."
+          },
+          {
+            "title": "Extensa Base de Datos de Escenarios",
+            "description": "Basado en obras maestras del pasado y diversos géneros, nuestra base de datos contiene numerosos patrones de trama para ofrecer siempre ideas frescas."
+          },
+          {
+            "title": "Generación Rápida y Optimización",
+            "description": "Procesamiento ligero y optimizado para generar historias sin demoras ni interrupciones."
+          },
+          {
+            "title": "Sin Límites de Uso",
+            "description": "No requiere registro y ofrece uso ilimitado, lo que facilita su uso siempre que necesites inspiración. Los resultados generados pueden guardarse para revisión posterior."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Preguntas Frecuentes (FAQ)",
+        "questions": [
+          {
+            "question": "¿Las historias generadas son completamente aleatorias?",
+            "answer": "Sí, están diseñadas para mantener un cierto nivel de narrativa mientras se enfatiza la aleatoriedad."
+          },
+          {
+            "question": "¿Puedo usar las historias generadas comercialmente?",
+            "answer": "Sí, el uso comercial está permitido según los términos de servicio. Consulta la página de términos para más detalles."
+          },
+          {
+            "question": "¿Puedo ajustar la longitud y los detalles de la trama?",
+            "answer": "Algunas funciones de personalización te permiten ajustar el nivel de detalle y la dirección de la trama."
+          }
+        ]
+      }
     }
 }

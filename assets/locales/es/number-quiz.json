@@ -22,5 +22,91 @@
       "incorrect": "Incorrecto. ¡Sigue intentando!",
       "complete": "¡Felicidades! ¡Has resuelto el rompecabezas!"
     }
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción General",
+      "content": "Esta aplicación de Sudoku es un juego de rompecabezas simple que cualquiera puede disfrutar. Elija entre tres niveles de dificultad: 'Fácil' para principiantes, 'Normal' para una experiencia más atractiva y 'Difícil' para aquellos que buscan un desafío. Comenzar un nuevo rompecabezas es tan simple como presionar el botón 'Nuevo Juego', y puede verificar sus respuestas con el botón 'Verificar Solución'. Con un diseño fácil de usar que funciona bien en teléfonos inteligentes y tabletas, es perfecto para el entrenamiento cerebral durante su tiempo libre."
+    },
+    "howTo": {
+      "title": "Pasos Simples para Empezar",
+      "steps": [
+        {
+          "title": "Selecciona un Nivel de Dificultad",
+          "description": "Cuando inicies la aplicación, elige entre 'Fácil', 'Normal' o 'Difícil'. Si eres principiante, 'Fácil' es el mejor lugar para comenzar."
+        },
+        {
+          "title": "Toca el Botón Nuevo Juego",
+          "description": "Presiona el botón 'Nuevo Juego' para generar un nuevo rompecabezas de Sudoku. Cada vez obtendrás un rompecabezas diferente, por lo que puedes jugar sin fin."
+        },
+        {
+          "title": "Verifica tu Solución",
+          "description": "Una vez que hayas completado todos los cuadrados, toca el botón 'Verificar Solución'. Si es correcto, procederás a la pantalla de finalización; si no, puedes identificar errores e intentarlo de nuevo."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de Usuarios",
+      "users": [
+        {
+          "name": "Kai (Hombre, 20 años)",
+          "comment": "\"Esta es una aplicación de Sudoku simple con una interfaz intuitiva. La uso para el entrenamiento cerebral durante mi viaje diario.\""
+        },
+        {
+          "name": "Saya (Mujer, 30 años)",
+          "comment": "\"Como principiante, pude comenzar fácilmente con el modo Fácil. ¡Ahora me estoy desafiando con el modo Normal y siento que mis habilidades mejoran!\""
+        },
+        {
+          "name": "Tom (Hombre, 40 años)",
+          "comment": "\"La función de Verificar Solución facilita la verificación de mis respuestas. Con el modo Difícil disponible, nunca me aburro.\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y Beneficios",
+      "items": [
+        {
+          "title": "Interfaz Simple",
+          "description": "Con una interfaz fácil de entender, cualquiera puede comenzar a jugar inmediatamente."
+        },
+        {
+          "title": "Tres Niveles de Dificultad Seleccionables",
+          "description": "Elige entre Fácil, Normal o Difícil para que coincida con tu nivel de habilidad."
+        },
+        {
+          "title": "Mantente Interesado con la Función Nuevo Juego",
+          "description": "Los rompecabezas se generan aleatoriamente cada vez, proporcionando una experiencia fresca con cada juego."
+        },
+        {
+          "title": "Verificación Rápida con Verificar Solución",
+          "description": "Verifica tus respuestas con un solo toque, mejorando tu eficiencia de aprendizaje."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "questions": [
+        {
+          "question": "P. ¿Esta aplicación de Sudoku es gratuita?",
+          "answer": "R. Sí, el juego básico está disponible de forma gratuita."
+        },
+        {
+          "question": "P. ¿Puedo usarla sin conexión?",
+          "answer": "R. Sí, una vez descargada, puedes jugar sin conexión a Internet."
+        },
+        {
+          "question": "P. ¿Hay una función de pistas?",
+          "answer": "R. La versión actual no incluye pistas, pero esto mantiene la aplicación simple y fácil de usar."
+        },
+        {
+          "question": "P. ¿Hay anuncios?",
+          "answer": "R. La versión gratuita puede mostrar algunos anuncios. Los hemos diseñado para que sean lo menos intrusivos posible para tu comodidad."
+        },
+        {
+          "question": "P. ¿Puedo cambiar el nivel de dificultad durante el juego?",
+          "answer": "R. No puedes cambiar la dificultad durante un juego, pero puedes seleccionar tu nivel preferido al comenzar un nuevo juego."
+        }
+      ]
+    }
   }
 } 

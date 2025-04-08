@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-08T22:57:58.196Z
+// Generated at: 2025-04-08T23:11:39.512Z
 
 export interface CommonMessages {
   meta: {
@@ -165,6 +165,40 @@ export interface NumberQuizMessages {
       correct: string;
       incorrect: string;
       complete: string;
+    };
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
     };
   };
 }
@@ -2937,6 +2971,40 @@ export interface WordGenJapaneseKanjiGeneratorMessages {
   font: {
     loading: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface WordGenNameGeneratorMessages {
@@ -3422,6 +3490,40 @@ export interface WordGenStoryGeneratorMessages {
   conclusion: {
     title: string;
     description: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
