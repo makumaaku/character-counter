@@ -35,7 +35,7 @@
       "steps": [
         {
           "title": "上传SVG文件",
-          "description": "拖放您的SVG图像或点击"选择文件"进行上传。"
+          "description": "拖放您的SVG图像或点击\"选择文件\"进行上传。"
         },
         {
           "title": "自动转换为PDF",
@@ -43,7 +43,7 @@
         },
         {
           "title": "下载PDF文件",
-          "description": "点击"下载"按钮将文件保存为PDF。"
+          "description": "点击\"下载\"按钮将文件保存为PDF。"
         }
       ]
     },

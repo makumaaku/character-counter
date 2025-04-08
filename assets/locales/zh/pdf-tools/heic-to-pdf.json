@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "HEIC转PDF转换器 - 在线将HEIC图像转换为PDF",
-    "description": "免费在线工具，将HEIC图像转换为PDF文档。以高质量将iPhone照片转换为PDF格式。无需安装。",
-    "keywords": "heic转pdf, heic转换器, 转换heic, heic转pdf转换器, 在线heic转换器, 免费heic转换器"
+    "title": "HEIC转PDF转换器 | 免费在线工具将iPhone HEIC图像转换为PDF文件",
+    "description": "直接将HEIC图像转换为PDF格式。完美适用于照片提交、文档创建和存档。免费、无需注册、适用于任何设备。",
+    "keywords": "heic转pdf, heic转换器, 转换heic, heic转pdf转换, 在线heic转换器, 免费heic转换器"
   },
   "title": "HEIC转PDF转换器",
-  "description": "将HEIC图像转换为高质量的PDF文档",
+  "description": "将HEIC图像转换为高质量PDF文档",
   "form": {
     "upload": {
       "label": "上传HEIC文件",
-      "button": "拖放HEIC文件到此处或点击选择",
-      "dragDrop": "拖放文件到此处或点击浏览"
+      "button": "将HEIC文件拖放到此处或点击浏览",
+      "dragDrop": "将文件拖放到此处或点击选择"
     },
     "convert": "转换为PDF"
   },
@@ -18,15 +18,101 @@
     "download": "下载PDF"
   },
   "status": {
-    "processing": "转换中...",
+    "processing": "处理中...",
     "noFile": "未选择文件"
   },
   "error": {
     "fileSize": "文件大小超过20MB限制",
     "fileType": "仅支持HEIC文件",
-    "conversion": "转换过程中出错。请重试。"
+    "conversion": "转换过程中发生错误。请重试。"
   },
   "success": {
     "message": "转换成功完成！"
+  },
+  "seoText": {
+    "overview": {
+      "title": "概述",
+      "content": "HEIC转PDF转换器是一款免费的在线工具，可将iPhone或iPad上拍摄的HEIC图像转换为PDF格式。HEIC是苹果产品的标准图像格式，但它通常与Windows和各种网络服务缺乏兼容性。转换为PDF使打印、发送和保存变得更加简便。这款转换工具无需注册，完全免费使用，设计简洁，可从智能手机和电脑访问。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传HEIC图像",
+          "description": "拖放您的HEIC文件或点击/选择文件/上传它们。"
+        },
+        {
+          "title": "自动转换为PDF",
+          "description": "上传后自动开始转换过程。多张图像可以合并为一个PDF。"
+        },
+        {
+          "title": "下载PDF文件",
+          "description": "转换完成后，使用/下载/按钮保存您的PDF并立即使用。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "小李（求职学生）",
+          "comment": "我的手机上有HEIC格式的证书照片，需要提交给公司。转换为PDF使它在任何地方都可访问，真是太方便了！"
+        },
+        {
+          "name": "小王（远程工作文档提交人员）",
+          "comment": "HEIC文件通常无法在我们公司内部共享，所以我将它们转换为PDF。这个工具快速高效，大大提升了我的工作流程。"
+        },
+        {
+          "name": "小张（准备学校作业的家长）",
+          "comment": "我给孩子的作业拍照并以PDF格式提交给学校。不需要安装应用就能完成这项工作真是太有用了！"
+        }
+      ]
+    },
+    "features": {
+      "title": "功能与优势",
+      "items": [
+        {
+          "title": "将苹果HEIC图像转换为通用PDF格式",
+          "description": "虽然HEIC格式在某些环境中可能无法打开，但转换为PDF确保每个人都可以查看、打印和保存文件。非常适合教育环境和商业文档提交。"
+        },
+        {
+          "title": "将多张HEIC图像合并为一个PDF",
+          "description": "将单独的照片或扫描图像转换为单个PDF，非常适合报告、作业提交和文档管理。您甚至可以通过拖拽调整顺序。"
+        },
+        {
+          "title": "高质量PDF转换",
+          "description": "在保持高质量的同时将HEIC图像转换为PDF。图像保持清晰，文字和文档显示清晰无降质。"
+        },
+        {
+          "title": "免费、无需注册、适合移动设备",
+          "description": "完全免费，无需账户注册或应用安装。适用于iPhone、Android和PC - 随时随地使用。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题解答",
+      "questions": [
+        {
+          "question": "问题1：什么是HEIC格式？",
+          "answer": "答：HEIC是苹果设备拍照时使用的高压缩、高质量图像格式。它在Windows等某些环境中可能无法显示。"
+        },
+        {
+          "question": "问题2：我可以将多张图像合并为一个PDF吗？",
+          "answer": "答：是的，您可以上传多个HEIC文件并将它们转换为一个合并的PDF。"
+        },
+        {
+          "question": "问题3：我的HEIC图像会失去质量吗？",
+          "answer": "答：我们会尽可能保持原始分辨率和质量进行转换。"
+        },
+        {
+          "question": "问题4：我可以在智能手机上使用吗？",
+          "answer": "答：是的，您可以通过iPhone、Android或其他智能手机上的任何浏览器使用此服务。"
+        },
+        {
+          "question": "问题5：我上传的图像会存储在您的服务器上吗？",
+          "answer": "答：不会，所有上传的文件在转换后会自动删除，不会存储在我们的服务器上。您的隐私受到保护。"
+        }
+      ]
+    }
   }
-} 
+}

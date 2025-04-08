@@ -1,17 +1,17 @@
 {
   "meta": {
-    "title": "PDF转EPUB转换器 - 在线将PDF转换为电子书",
-    "description": "免费在线工具，将PDF文档转换为EPUB电子书格式。将您的PDF转换为电子阅读器可读的电子书。无需安装。",
-    "keywords": "pdf转epub, pdf转电子书, 转换pdf为epub, pdf转换器, 在线pdf转换器, 免费pdf转换器, 电子书转换器"
+    "title": "PDF转EPUB转换器 - 免费在线将PDF转换为电子书格式",
+    "description": "将PDF文档转换为适合智能手机和平板电脑阅读的EPUB格式。可调整文字大小和自动排版。免费、无需注册、完全在线。",
+    "keywords": "pdf转epub, pdf转电子书, 将pdf转换为epub, pdf转换器, 在线pdf转换器, 免费pdf转换器, 电子书转换器"
   },
   "title": "PDF转EPUB转换器",
-  "description": "将PDF文档转换为电子阅读器使用的EPUB电子书格式",
+  "description": "将PDF文档转换为适合电子阅读器的EPUB格式",
   "form": {
     "upload": {
       "label": "上传PDF文件",
-      "button": "拖放PDF文件到此处，或点击选择",
-      "dragDrop": "拖放文件到此处或点击浏览",
-      "dragging": "直接放在这里！",
+      "button": "将PDF文件拖放到此处，或点击选择",
+      "dragDrop": "将文件拖放到此处或点击浏览",
+      "dragging": "放在这里！",
       "instruction": "仅支持PDF文件",
       "maxSize": "最大文件大小：20MB"
     },
@@ -29,5 +29,91 @@
   "error": {
     "fileType": "请上传PDF文件",
     "fileSize": "文件大小超过20MB限制"
+  },
+  "seoText": {
+    "overview": {
+      "title": "概述",
+      "content": "PDF转EPUB转换器是一款免费的在线工具，可将固定版式的PDF文档转换为适合电子阅读器的EPUB格式。\n EPUB是一种可重排格式，非常适合在智能手机和平板电脑上阅读，允许灵活调整文字大小和栏目布局。\n 这个工具使PDF转EPUB变得简单，无需复杂操作，适用于阅读、学习、文档再利用等多种场景。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传PDF文件",
+          "description": "拖放您的PDF文件或点击上传按钮选择要转换的文件。"
+        },
+        {
+          "title": "自动转换为EPUB",
+          "description": "转换自动开始，优化页面结构和文本以适应EPUB格式。"
+        },
+        {
+          "title": "下载转换后的EPUB文件",
+          "description": "完成后，只需一键下载EPUB文件，即可在电子书阅读器上查看。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "用户A（通勤时阅读的上班族）",
+          "comment": "PDF文档因字体太小而难以阅读，但转换成EPUB后，我可以在手机上舒适地阅读。非常适合移动阅读！"
+        },
+        {
+          "name": "用户B（学习英语的大学生）",
+          "comment": "我将英语PDF教材转换成EPUB在Kindle上阅读。高亮和词典功能使我的学习效率大大提高。"
+        },
+        {
+          "name": "用户C（自行出版电子书的作者）",
+          "comment": "我用这个工具将自己的PDF书籍转换成EPUB进行电子出版。转换很简单，而且可以立即在各种平台上使用！"
+        }
+      ]
+    },
+    "features": {
+      "title": "特点和优势",
+      "items": [
+        {
+          "title": "通过EPUB格式优化智能手机和平板电脑阅读体验",
+          "description": "与固定的PDF不同，EPUB会通过可重排格式自动调整文本和布局以适应您的屏幕大小。这使得在智能手机和平板电脑上阅读变得更加舒适。"
+        },
+        {
+          "title": "支持文本搜索和高亮",
+          "description": "转换为EPUB后，您可以使用电子阅读器的搜索、高亮和书签等功能，便于学习和阅读长文本。强烈推荐给学生和书籍爱好者。"
+        },
+        {
+          "title": "完全免费、无需注册、无需安装",
+          "description": "一个简单的在线转换工具，随时可用。无需电子邮件注册，可从PC、智能手机或平板电脑随时访问。"
+        },
+        {
+          "title": "兼容多种电子书阅读器",
+          "description": "转换后的EPUB文件可用于各种兼容EPUB的阅读器，包括Kindle（带兼容应用程序）、Kobo、Google Play图书等。轻松创建您自己的数字图书馆。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题解答",
+      "questions": [
+        {
+          "question": "PDF布局会被完全保留吗？",
+          "answer": "EPUB是一种可重排格式，所以固定布局会被重新结构化。这是为了使内容通过自适应格式变得更易于阅读。"
+        },
+        {
+          "question": "可以转换带图像的PDF吗？",
+          "answer": "是的，不仅文本，还有图像和图形都会尽可能地放置在EPUB中，尽管可能需要根据原始PDF结构进行调整。"
+        },
+        {
+          "question": "哪些设备可以阅读EPUB文件？",
+          "answer": "您可以在大多数主要的电子书应用和设备上查看EPUB，包括Kindle、Kobo、Google Play图书和Apple Books。"
+        },
+        {
+          "question": "转换需要多长时间？",
+          "answer": "典型文档在几秒到一分钟内完成。更大的文件可能需要更长时间。"
+        },
+        {
+          "question": "上传的PDF会保存在您的服务器上吗？",
+          "answer": "不会，上传的文件在转换完成后会自动删除，不会存储在我们的服务器上。"
+        }
+      ]
+    }
   }
 } 

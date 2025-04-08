@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "HEIC to PDF Converter - Convert HEIC Images to PDF Online",
-    "description": "Free online tool to convert HEIC images to PDF documents. Convert your iPhone photos to PDF format with high quality. No installation required.",
-    "keywords": "heic to pdf, heic converter, convert heic, heic to pdf converter, online heic converter, free heic converter"
+    "title": "HEIC to PDF Converter | Free Online Tool to Convert iPhone HEIC Images to PDF Files",
+    "description": "Convert HEIC images directly to PDF format. Perfect for photo submission, document creation, and archiving. Free, no registration required, works on any device.",
+    "keywords": "heic to pdf, heic converter, convert heic, heic to pdf conversion, online heic converter, free heic converter"
   },
   "title": "HEIC to PDF Converter",
-  "description": "Convert HEIC images to PDF documents with high quality",
+  "description": "Convert HEIC images to high-quality PDF documents",
   "form": {
     "upload": {
-      "label": "Upload HEIC File",
-      "button": "Drag & drop HEIC file here or click to select",
-      "dragDrop": "Drag & drop file here or click to browse"
+      "label": "Upload HEIC Files",
+      "button": "Drag & drop HEIC files here or click to browse",
+      "dragDrop": "Drag and drop files here or click to select"
     },
     "convert": "Convert to PDF"
   },
@@ -18,15 +18,101 @@
     "download": "Download PDF"
   },
   "status": {
-    "processing": "Converting...",
-    "noFile": "No file selected"
+    "processing": "Processing...",
+    "noFile": "No files selected"
   },
   "error": {
     "fileSize": "File size exceeds the 20MB limit",
     "fileType": "Only HEIC files are supported",
-    "conversion": "Error during conversion. Please try again."
+    "conversion": "An error occurred during conversion. Please try again."
   },
   "success": {
     "message": "Conversion completed successfully!"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "HEIC to PDF Converter is a free online tool that converts HEIC images taken on iPhone or iPad to PDF format.\n HEIC is the standard image format for Apple products, but it often lacks compatibility with Windows and various web services. Converting to PDF makes printing, sending, and saving significantly smoother.\n This conversion tool is registration-free, completely free to use, and designed with simplicity in mind - accessible from both smartphones and PCs."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload HEIC Images",
+          "description": "Drag & drop your HEIC files or click \"Select Files\" to upload them."
+        },
+        {
+          "title": "Auto-Convert to PDF",
+          "description": "The conversion process begins automatically after upload. Multiple images can be combined into a single PDF."
+        },
+        {
+          "title": "Download PDF File",
+          "description": "Once converted, save your PDF using the \"Download\" button and use it right away."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Alex (Student job hunting)",
+          "comment": "I had certificate photos in HEIC format on my phone and needed to submit them to companies. Converting to PDF made it accessible everywhere - what a relief!"
+        },
+        {
+          "name": "Barbara (Remote worker handling document submissions)",
+          "comment": "HEIC files often can't be shared within our company, so I convert them to PDF. This tool is quick and makes my workflow much more efficient."
+        },
+        {
+          "name": "Chris (Parent preparing school submissions)",
+          "comment": "I take photos of my child's assignments and submit them to school as PDFs. Not needing an app for this is incredibly helpful!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Convert Apple HEIC Images to Universal PDF Format",
+          "description": "While HEIC format may not open in some environments, converting to PDF ensures everyone can view, print, and save the files. Perfect for educational settings and business document submissions."
+        },
+        {
+          "title": "Combine Multiple HEIC Images into One PDF",
+          "description": "Convert individual photos or scanned images into a single PDF, ideal for reports, submissions, and document management. You can even adjust the order by dragging."
+        },
+        {
+          "title": "High-Quality PDF Conversion",
+          "description": "Converts HEIC images to PDF while maintaining high quality. Images remain crisp, and text and documents display clearly without degradation."
+        },
+        {
+          "title": "Free, No Registration, Mobile-Friendly",
+          "description": "Completely free with no account registration or app installation required. Works on iPhone, Android, and PC - use it anywhere, anytime."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. What is HEIC format?",
+          "answer": "A. HEIC is a high-compression, high-quality image format used by Apple devices when taking photos. It cannot be displayed in some environments like Windows."
+        },
+        {
+          "question": "Q2. Can I combine multiple images into one PDF?",
+          "answer": "A. Yes, you can upload multiple HEIC files and convert them into a single combined PDF."
+        },
+        {
+          "question": "Q3. Will my HEIC images lose quality?",
+          "answer": "A. We convert your images while maintaining the original resolution and quality as much as possible."
+        },
+        {
+          "question": "Q4. Can I use this on my smartphone?",
+          "answer": "A. Yes, you can use this service from any browser on iPhone, Android, or other smartphones."
+        },
+        {
+          "question": "Q5. Are my uploaded images stored on your server?",
+          "answer": "A. No, all uploaded files are automatically deleted after conversion and are not stored on our servers. Your privacy is protected."
+        }
+      ]
+    }
   }
 }

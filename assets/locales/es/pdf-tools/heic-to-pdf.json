@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "Convertidor de HEIC a PDF - Convierte imágenes HEIC a PDF en línea",
-    "description": "Herramienta gratuita en línea para convertir imágenes HEIC a documentos PDF. Convierte tus fotos de iPhone a formato PDF con alta calidad. Sin necesidad de instalación.",
-    "keywords": "heic a pdf, convertidor heic, convertir heic, convertidor de heic a pdf, convertidor heic en línea, convertidor heic gratis"
+    "title": "Convertidor de HEIC a PDF | Herramienta gratuita para convertir imágenes HEIC de iPhone a PDF",
+    "description": "Convierte imágenes HEIC directamente a formato PDF. Perfecto para enviar fotos, crear documentos y archivar. Gratis, sin registro, funciona en cualquier dispositivo.",
+    "keywords": "heic a pdf, convertidor heic, convertir heic, conversión de heic a pdf, convertidor heic online, convertidor heic gratis"
   },
   "title": "Convertidor de HEIC a PDF",
-  "description": "Convierte imágenes HEIC a documentos PDF con alta calidad",
+  "description": "Convierte imágenes HEIC a documentos PDF de alta calidad",
   "form": {
     "upload": {
-      "label": "Subir archivo HEIC",
-      "button": "Arrastra y suelta archivo HEIC aquí o haz clic para seleccionar",
-      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar"
+      "label": "Subir archivos HEIC",
+      "button": "Arrastra y suelta archivos HEIC aquí o haz clic para explorar",
+      "dragDrop": "Arrastra y suelta archivos aquí o haz clic para seleccionar"
     },
     "convert": "Convertir a PDF"
   },
@@ -18,15 +18,101 @@
     "download": "Descargar PDF"
   },
   "status": {
-    "processing": "Convirtiendo...",
-    "noFile": "Ningún archivo seleccionado"
+    "processing": "Procesando...",
+    "noFile": "No hay archivos seleccionados"
   },
   "error": {
     "fileSize": "El tamaño del archivo excede el límite de 20MB",
     "fileType": "Solo se admiten archivos HEIC",
-    "conversion": "Error durante la conversión. Por favor, inténtalo de nuevo."
+    "conversion": "Se produjo un error durante la conversión. Por favor, inténtalo de nuevo."
   },
   "success": {
     "message": "¡Conversión completada con éxito!"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de HEIC a PDF es una herramienta gratuita en línea que convierte imágenes HEIC tomadas con iPhone o iPad a formato PDF.\n HEIC es el formato de imagen estándar para productos Apple, pero a menudo carece de compatibilidad con Windows y varios servicios web. Convertir a PDF hace que imprimir, enviar y guardar sea significativamente más sencillo.\n Esta herramienta de conversión no requiere registro, es completamente gratuita y está diseñada pensando en la simplicidad, accesible tanto desde smartphones como desde PC."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Sube imágenes HEIC",
+          "description": "Arrastra y suelta tus archivos HEIC o haz clic en \"Seleccionar archivos\" para subirlos."
+        },
+        {
+          "title": "Conversión automática a PDF",
+          "description": "El proceso de conversión comienza automáticamente después de la carga. Múltiples imágenes pueden combinarse en un solo PDF."
+        },
+        {
+          "title": "Descarga el archivo PDF",
+          "description": "Una vez convertido, guarda tu PDF usando el botón \"Descargar\" y úsalo de inmediato."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Alejandro (Estudiante buscando empleo)",
+          "comment": "Tenía fotos de certificados en formato HEIC en mi teléfono y necesitaba enviarlas a empresas. Convertirlas a PDF las hizo accesibles en todas partes. ¡Qué alivio!"
+        },
+        {
+          "name": "Beatriz (Trabajadora remota encargada de enviar documentos)",
+          "comment": "Los archivos HEIC a menudo no se pueden compartir dentro de nuestra empresa, así que los convierto a PDF. Esta herramienta es rápida y hace que mi flujo de trabajo sea mucho más eficiente."
+        },
+        {
+          "name": "Carlos (Padre preparando entregas escolares)",
+          "comment": "Tomo fotos de las tareas de mi hijo y las envío a la escuela como PDF. ¡No necesitar una aplicación para esto es increíblemente útil!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Convierte imágenes HEIC de Apple a formato PDF universal",
+          "description": "Mientras que el formato HEIC puede no abrirse en algunos entornos, convertir a PDF garantiza que todos puedan ver, imprimir y guardar los archivos. Perfecto para entornos educativos y presentaciones de documentos empresariales."
+        },
+        {
+          "title": "Combina múltiples imágenes HEIC en un solo PDF",
+          "description": "Convierte fotos individuales o imágenes escaneadas en un solo PDF, ideal para informes, entregas y gestión de documentos. Incluso puedes ajustar el orden arrastrando."
+        },
+        {
+          "title": "Conversión a PDF de alta calidad",
+          "description": "Convierte imágenes HEIC a PDF manteniendo alta calidad. Las imágenes permanecen nítidas, y el texto y los documentos se muestran claramente sin degradación."
+        },
+        {
+          "title": "Gratis, sin registro, compatible con móviles",
+          "description": "Completamente gratuito sin necesidad de registro de cuenta ni instalación de aplicaciones. Funciona en iPhone, Android y PC - úsalo en cualquier lugar, en cualquier momento."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Qué es el formato HEIC?",
+          "answer": "R. HEIC es un formato de imagen de alta compresión y alta calidad utilizado por los dispositivos Apple al tomar fotos. No se puede mostrar en algunos entornos como Windows."
+        },
+        {
+          "question": "P2. ¿Puedo combinar varias imágenes en un solo PDF?",
+          "answer": "R. Sí, puedes subir varios archivos HEIC y convertirlos en un único PDF combinado."
+        },
+        {
+          "question": "P3. ¿Mis imágenes HEIC perderán calidad?",
+          "answer": "R. Convertimos tus imágenes manteniendo la resolución y calidad original tanto como sea posible."
+        },
+        {
+          "question": "P4. ¿Puedo usar esto en mi smartphone?",
+          "answer": "R. Sí, puedes usar este servicio desde cualquier navegador en iPhone, Android u otros smartphones."
+        },
+        {
+          "question": "P5. ¿Se almacenan mis imágenes subidas en su servidor?",
+          "answer": "R. No, todos los archivos subidos se eliminan automáticamente después de la conversión y no se almacenan en nuestros servidores. Tu privacidad está protegida."
+        }
+      ]
+    }
   }
 }
