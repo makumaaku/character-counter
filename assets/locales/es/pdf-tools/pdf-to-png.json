@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "Convertidor de PDF a PNG - Convierte PDF a imágenes PNG transparentes",
-    "description": "Herramienta gratuita en línea para convertir documentos PDF a imágenes PNG con soporte de transparencia. Convierte cada página a una imagen PNG separada de alta calidad. Sin necesidad de instalación.",
-    "keywords": "pdf a png, pdf a imagen, convertir pdf a png, convertidor pdf, png transparente, convertidor pdf en línea, convertidor pdf gratis"
+    "title": "Convertidor de PDF a PNG | Herramienta en línea gratuita para convertir PDF a imágenes PNG de alta resolución",
+    "description": "Convierte archivos PDF a imágenes PNG de alta calidad página por página. Compatible con fondos transparentes y edición. Gratis, sin registro, funciona en móviles.",
+    "keywords": "pdf a png, conversión de imágenes pdf, convertir pdf a png, convertidor pdf, png transparente, conversión de pdf online, convertidor pdf gratis"
   },
   "title": "Convertidor de PDF a PNG",
   "description": "Convierte páginas PDF a imágenes PNG de alta calidad con soporte de transparencia",
   "form": {
     "upload": {
       "label": "Subir archivo PDF",
-      "button": "Arrastra y suelta un archivo PDF aquí, o haz clic para seleccionar",
-      "dragDrop": "Arrastra y suelta archivo aquí o haz clic para explorar"
+      "button": "Arrastra y suelta el archivo PDF aquí o haz clic para seleccionar",
+      "dragDrop": "Arrastra y suelta el archivo aquí o haz clic para seleccionar"
     },
     "quality": {
       "label": "Calidad de imagen",
@@ -30,6 +30,92 @@
   },
   "error": {
     "fileType": "Por favor, sube un archivo PDF",
-    "fileSize": "El tamaño del archivo excede el límite de 20MB"
+    "fileSize": "El tamaño del archivo excede el límite de 20 MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de PDF a PNG es una herramienta en línea gratuita que te permite convertir archivos PDF a imágenes PNG de alta resolución.\n El formato PNG tiene menos degradación de calidad que JPG y admite fondos transparentes, lo que lo hace ampliamente aplicable para diseño, edición, publicación web y materiales impresos. Como puedes extraer cada página como una imagen, también es ideal cuando deseas utilizar solo una parte de un documento. Es completamente gratuito y se puede usar inmediatamente desde PC o smartphone."
+    },
+    "howTo": {
+      "title": "Pasos sencillos para usar",
+      "steps": [
+        {
+          "title": "Sube el archivo PDF",
+          "description": "Arrastra y suelta el archivo PDF que deseas convertir, o súbelo utilizando 'Seleccionar archivo'."
+        },
+        {
+          "title": "Conversión automática a PNG",
+          "description": "Cada página se convertirá individualmente en una imagen PNG de alta calidad."
+        },
+        {
+          "title": "Descarga las imágenes PNG",
+          "description": "Descarga las imágenes PNG individualmente por página o todas juntas."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Diseñador)",
+          "comment": "\"Necesitaba editar parte de un documento PDF en Photoshop, así que poder extraerlo como formato PNG fue muy útil. ¡La calidad de imagen es excelente!\""
+        },
+        {
+          "name": "Usuario B (Gerente de Comunicaciones Internas)",
+          "comment": "\"Quería usar solo una parte del boletín de la empresa como imagen, así que lo convertí de PDF a PNG y lo pegué en mi presentación. ¡Fue fácil y mejoró mi eficiencia de trabajo!\""
+        },
+        {
+          "name": "Usuario C (Desarrollador Web Freelance)",
+          "comment": "\"Convertí solo la portada de un PDF enviado por un cliente a PNG para usarlo como miniatura del sitio web. La alta calidad de imagen aumenta el nivel de confianza.\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Conversión a PNG de alta resolución con soporte de fondo transparente",
+          "description": "Genera PDFs en formato PNG de alta definición con mínima pérdida de calidad. La alta precisión de color asegura resultados hermosos tanto para impresión como para web. Además, los gráficos y tablas se convierten con claridad."
+        },
+        {
+          "title": "Extrae cada página como una imagen",
+          "description": "Los PDFs de varias páginas se pueden guardar como archivos PNG individuales. Usa solo las páginas que necesitas o reutilízalas para diapositivas, catálogos, imágenes de comercio electrónico y más."
+        },
+        {
+          "title": "Integración perfecta con software de edición",
+          "description": "PNG funciona excelentemente con software de edición de imágenes como Photoshop y Canva. Puedes usar directamente las imágenes convertidas para edición, haciendo la reestructuración y personalización de documentos simple."
+        },
+        {
+          "title": "Gratis, sin registro requerido, compatible con móviles",
+          "description": "No se requiere instalación de software ni registro de cuenta. Diseño simple que cualquiera puede usar inmediatamente, con soporte para acceso desde smartphones y tablets."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Se convertirán todas las páginas de mi PDF?",
+          "answer": "R. Sí, todas las páginas se convertirán automáticamente como imágenes PNG. También puedes elegir guardar solo páginas específicas si es necesario."
+        },
+        {
+          "question": "P2. ¿El PNG tendrá un fondo transparente?",
+          "answer": "R. Esto solo es compatible si el PDF original contiene información de transparencia. Normalmente, la salida incluirá fondos."
+        },
+        {
+          "question": "P3. ¿Cuál es la ventaja de convertir a PNG en lugar de JPG?",
+          "answer": "R. PNG no está comprimido, tiene menos degradación de calidad y admite fondos transparentes, lo que lo hace ideal para diseños y materiales impresos."
+        },
+        {
+          "question": "P4. ¿Puedo convertir archivos grandes?",
+          "answer": "R. Sí, admitimos archivos hasta cierto tamaño, pero los archivos muy grandes pueden tardar más en convertirse."
+        },
+        {
+          "question": "P5. ¿Se guardan los PDF subidos?",
+          "answer": "R. No, los archivos subidos se eliminan automáticamente después de cierto período tras la conversión. Respetamos tu privacidad."
+        }
+      ]
+    }
   }
 }

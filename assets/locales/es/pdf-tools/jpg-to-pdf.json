@@ -35,5 +35,91 @@
     "title": "Vista previa",
     "imageSelected": "{count} imagen seleccionada",
     "imagesSelected": "{count} imágenes seleccionadas"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "Convertidor de JPG a PDF es una herramienta gratuita en línea que convierte imágenes JPG a archivos PDF manteniendo alta calidad. Puedes convertir una sola imagen o combinar múltiples imágenes en un solo documento PDF. Es perfecto para crear informes basados en imágenes, enviar documentos escaneados, hacer portfolios y muchos otros usos tanto para necesidades profesionales como personales. No requiere instalación de software - cualquiera puede usarlo fácilmente."
+    },
+    "howTo": {
+      "title": "Pasos sencillos de uso",
+      "steps": [
+        {
+          "title": "Sube imágenes JPG",
+          "description": "Arrastra y suelta, o haz clic en 'Seleccionar archivos' para subir una o múltiples imágenes JPG."
+        },
+        {
+          "title": "Ajusta el orden (si es necesario)",
+          "description": "Reorganiza las imágenes arrastrándolas para establecer el orden que deseas que aparezcan en el PDF."
+        },
+        {
+          "title": "Convierte a PDF y descarga",
+          "description": "Haz clic en el botón 'Convertir' y tu PDF se generará automáticamente y estará listo para descargar."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Estudiante buscando empleo)",
+          "comment": "Después de escanear fotos de identificación y formularios de solicitud escritos a mano como JPG, uso esta herramienta para compilarlos en un PDF para enviarlos. ¡Es gratis y fácil de usar!"
+        },
+        {
+          "name": "Usuario B (Trabajador remoto)",
+          "comment": "Tomo fotos de informes para clientes, las convierto a PDF con esta herramienta. Puedo reorganizar el orden y enviarlas inmediatamente - es realmente útil."
+        },
+        {
+          "name": "Usuario C (Fotógrafo aficionado)",
+          "comment": "Creé un álbum PDF de mis fotos de viaje y lo envié por correo electrónico a mi familia. ¡Es muy fácil hacer PDFs, y la calidad de imagen se mantiene excelente!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Combina múltiples imágenes en un solo PDF",
+          "description": "Sube múltiples JPGs y genéralas como un solo archivo PDF en el orden exacto que deseas. Perfecto para documentos escaneados, informes fotográficos o cualquier contenido que quieras gestionar y compartir como un solo archivo."
+        },
+        {
+          "title": "Diseño flexible y ajuste del orden de imágenes",
+          "description": "Cambia el orden de las imágenes con simples operaciones de arrastrar antes de la conversión, permitiéndote organizar libremente la estructura de documentos e informes. Operación sencilla con resultados profesionales."
+        },
+        {
+          "title": "Conversión suave manteniendo la calidad de imagen",
+          "description": "Convierte a PDF preservando la claridad de las imágenes JPG en alta resolución. Alta visibilidad como documento y completamente adecuado para fines de impresión."
+        },
+        {
+          "title": "Completamente gratis, sin instalación, compatible con dispositivos móviles",
+          "description": "Sin tediosos registros o descargas de software - úsalo inmediatamente desde tu navegador. Funciona también en smartphones y tablets, así que puedes convertir archivos estés donde estés."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Puedo cambiar el orden de las imágenes?",
+          "answer": "Sí, puedes reorganizar las imágenes arrastrándolas después de subirlas."
+        },
+        {
+          "question": "P2. ¿Qué pasa con el tamaño y la proporción de las fotos en el PDF?",
+          "answer": "Las imágenes se redimensionan automáticamente para ajustarse de manera óptima en las páginas PDF manteniendo la calidad de imagen."
+        },
+        {
+          "question": "P3. ¿Admite otros formatos de imagen (como PNG)?",
+          "answer": "La herramienta se especializa en formato JPG, pero puedes convertir PNG a JPG primero, y luego a PDF en un proceso de dos pasos."
+        },
+        {
+          "question": "P4. ¿Puedo usarlo en un smartphone?",
+          "answer": "Sí, es completamente compatible con iPhones, dispositivos Android y tablets."
+        },
+        {
+          "question": "P5. ¿Es seguro y privado?",
+          "answer": "Los archivos subidos se eliminan automáticamente después de la conversión dentro de un período de tiempo establecido y no se almacenan en servidores."
+        }
+      ]
+    }
   }
 }

@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "PDF to PNG Converter - Convert PDF to Transparent PNG Images",
-    "description": "Free online tool to convert PDF documents to PNG images with transparency support. Convert each page to a separate high-quality PNG image. No installation required.",
-    "keywords": "pdf to png, pdf to image, convert pdf to png, pdf converter, transparent png, online pdf converter, free pdf converter"
+    "title": "PDF to PNG Converter | Free Online Tool to Convert PDF to High-Resolution PNG Images",
+    "description": "Convert PDF files to high-quality PNG images page by page. Support for transparent backgrounds and editing. Free, no registration required, works on mobile too.",
+    "keywords": "pdf to png, pdf image conversion, convert pdf to png, pdf converter, transparent png, online pdf conversion, free pdf converter"
   },
   "title": "PDF to PNG Converter",
   "description": "Convert PDF pages to high-quality PNG images with transparency support",
   "form": {
     "upload": {
-      "label": "Upload PDF File",
-      "button": "Drag & drop a PDF file here, or click to select",
-      "dragDrop": "Drag & drop file here or click to browse"
+      "label": "Upload PDF file",
+      "button": "Drag & drop PDF file here or click to select",
+      "dragDrop": "Drag & drop file here or click to select"
     },
     "quality": {
       "label": "Image Quality",
@@ -30,6 +30,92 @@
   },
   "error": {
     "fileType": "Please upload a PDF file",
-    "fileSize": "File size exceeds 20MB limit"
+    "fileSize": "File size exceeds the limit of 20MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "PDF to PNG Converter is a free online tool that allows you to convert PDF files to high-resolution PNG images.\n PNG format has less quality degradation than JPG and supports transparent backgrounds, making it widely applicable for design, editing, web publishing, and print materials. Since you can extract each page as an image, it's also ideal when you want to use just a portion of a document. It's completely free and can be used immediately from either PC or smartphone."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload PDF File",
+          "description": "Drag & drop the PDF file you want to convert, or upload it using 'Select File'."
+        },
+        {
+          "title": "Automatic Conversion to PNG",
+          "description": "Each page will be converted into a high-quality PNG image individually."
+        },
+        {
+          "title": "Download PNG Images",
+          "description": "Download PNG images individually by page or all together."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Designer)",
+          "comment": "\"I needed to edit part of a PDF document in Photoshop, so being able to extract it as a PNG format was very helpful. The image quality is excellent!\""
+        },
+        {
+          "name": "User B (Internal Communications Manager)",
+          "comment": "\"I wanted to use only part of the company newsletter as an image, so I converted it from PDF to PNG and pasted it into my presentation. It was easy and improved my work efficiency!\""
+        },
+        {
+          "name": "User C (Freelance Web Developer)",
+          "comment": "\"I converted just the cover of a PDF sent by a client to PNG for use as a website thumbnail. The high image quality increases the level of trust.\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Conversion to High-Resolution PNG with Transparent Background Support",
+          "description": "Output PDFs in high-definition PNG format with minimal quality loss. High color accuracy ensures beautiful results for both print and web. Additionally, charts and graphics are converted with clarity."
+        },
+        {
+          "title": "Extract Each Page as an Image",
+          "description": "Multi-page PDFs can be saved as individual PNG files. Use only the pages you need or repurpose them for slides, catalogs, e-commerce images, and more."
+        },
+        {
+          "title": "Seamless Integration with Editing Software",
+          "description": "PNG works excellently with image editing software like Photoshop and Canva. You can directly use the converted images for editing, making document restructuring and customization simple."
+        },
+        {
+          "title": "Free, No Registration Required, Mobile-Friendly",
+          "description": "No software installation or account registration required. Simple design that anyone can use immediately, with support for access from smartphones and tablets."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Q1. Will all pages of my PDF be converted?",
+          "answer": "A. Yes, all pages will be automatically converted as PNG images. You can also choose to save only specific pages if needed."
+        },
+        {
+          "question": "Q2. Will the PNG have a transparent background?",
+          "answer": "A. This is only supported if the original PDF contains transparency information. Normally, output will include backgrounds."
+        },
+        {
+          "question": "Q3. What's the advantage of converting to PNG instead of JPG?",
+          "answer": "A. PNG is uncompressed with less quality degradation and supports transparent backgrounds, making it ideal for designs and printed materials."
+        },
+        {
+          "question": "Q4. Can I convert large files?",
+          "answer": "A. Yes, we support files up to a certain size, but very large files may take longer to convert."
+        },
+        {
+          "question": "Q5. Are uploaded PDFs saved?",
+          "answer": "A. No, uploaded files are automatically deleted after a certain period following conversion. We respect your privacy."
+        }
+      ]
+    }
   }
 }

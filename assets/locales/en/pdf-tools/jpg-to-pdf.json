@@ -35,5 +35,91 @@
     "title": "Preview",
     "imageSelected": "{count} Image Selected",
     "imagesSelected": "{count} Images Selected"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "JPG to PDF Converter is a free online tool that converts JPG images to PDF files while maintaining high quality. You can convert a single image or combine multiple images into one PDF document. It's perfect for creating image-based reports, submitting scanned documents, making portfolios, and many other uses for both business and personal needs. No software installation required - anyone can use it easily."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload JPG Images",
+          "description": "Drag & drop, or click 'Select Files' to upload one or multiple JPG images."
+        },
+        {
+          "title": "Adjust Order (if needed)",
+          "description": "Rearrange images by dragging to set the order you want them to appear in the PDF."
+        },
+        {
+          "title": "Convert to PDF and Download",
+          "description": "Click the 'Convert' button and your PDF will be automatically generated and ready to download."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Job-seeking student)",
+          "comment": "After scanning ID photos and handwritten application forms as JPGs, I use this tool to compile them into a PDF for submission. It's free and easy to use!"
+        },
+        {
+          "name": "User B (Remote worker)",
+          "comment": "I take photos of reports for clients, convert them to PDF with this tool. I can rearrange the order and send them immediately - it's a real lifesaver."
+        },
+        {
+          "name": "User C (Hobby photographer)",
+          "comment": "I created a PDF album of my travel photos and emailed it to my family. It's so easy to make PDFs, and the image quality remains excellent!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Combine Multiple Images into One PDF",
+          "description": "Upload multiple JPGs and output them as a single PDF file in the exact order you want. Perfect for scanned documents, photo reports, or any content you want to manage and share as one file."
+        },
+        {
+          "title": "Flexible Layout and Image Order Adjustment",
+          "description": "Change the order of images with simple drag operations before conversion, allowing you to freely arrange the structure of documents and reports. Simple operation with professional results."
+        },
+        {
+          "title": "Smooth Conversion while Maintaining Image Quality",
+          "description": "Convert to PDF while preserving the clarity of JPG images at high resolution. High visibility as a document and fully suitable for printing purposes."
+        },
+        {
+          "title": "Completely Free, No Installation, Mobile-Friendly",
+          "description": "No tedious registration or software downloads - use it right away from your browser. Works on smartphones and tablets too, so you can convert files on the go."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. Can I change the order of images?",
+          "answer": "Yes, you can rearrange images by drag & drop after uploading them."
+        },
+        {
+          "question": "Q2. What happens to the size and ratio of photos in the PDF?",
+          "answer": "Images are automatically resized to fit optimally on PDF pages while maintaining image quality."
+        },
+        {
+          "question": "Q3. Does it support other image formats (like PNG)?",
+          "answer": "The tool specializes in JPG format, but you can convert PNG to JPG first, then to PDF in a two-step process."
+        },
+        {
+          "question": "Q4. Can I use it on a smartphone?",
+          "answer": "Yes, it's fully compatible with iPhones, Android devices, and tablets."
+        },
+        {
+          "question": "Q5. Is it secure and private?",
+          "answer": "Uploaded files are automatically deleted after conversion within a set time period and are not stored on servers."
+        }
+      ]
+    }
   }
 }

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Convertidor de PDF a JPG - Convierte PDF a imágenes en línea",
-    "description": "Herramienta gratuita en línea para convertir documentos PDF a imágenes JPG. Convierte cada página a una imagen separada con calidad ajustable. Sin necesidad de instalación.",
+    "title": "Convertidor de PDF a JPG - Herramienta en línea gratuita para convertir PDF a imágenes JPG de alta calidad",
+    "description": "Convierte archivos PDF a imágenes JPG de alta calidad página por página. Perfecto para presentaciones, informes y compartir en redes sociales. Gratis, sin registro requerido y compatible con dispositivos móviles.",
     "keywords": "pdf a jpg, pdf a imagen, convertir pdf a jpg, convertidor pdf, convertidor pdf en línea, convertidor pdf gratis"
   },
   "title": "Convertidor de PDF a JPG",
@@ -31,5 +31,91 @@
   "error": {
     "fileType": "Por favor, sube un archivo PDF",
     "fileSize": "El tamaño del archivo excede el límite de 20MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "PDF to JPG Converter es una herramienta gratuita en línea que convierte archivos PDF en imágenes JPG de alta calidad. Cada página se extrae como una imagen separada, lo que la hace perfecta para usar partes de documentos como imágenes o compartir en redes sociales y aplicaciones que no admiten PDF. No requiere instalación ni registro: es una herramienta de conversión simple que cualquiera puede usar de inmediato. También es compatible con smartphones y tablets."
+    },
+    "howTo": {
+      "title": "Pasos sencillos de uso",
+      "steps": [
+        {
+          "title": "Subir archivo PDF",
+          "description": "Sube tu archivo PDF arrastrándolo y soltándolo o haciendo clic en 'Seleccionar archivo'."
+        },
+        {
+          "title": "Conversión automática a JPG",
+          "description": "Cada página se convertirá automáticamente en una imagen JPG de alta calidad."
+        },
+        {
+          "title": "Descargar imágenes",
+          "description": "Guarda las imágenes individualmente o descárgalas todas a la vez."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Gerente de Ventas)",
+          "comment": "Esta herramienta es muy conveniente cuando necesito enviar partes de presentaciones PDF como imágenes en nuestro chat de empresa. La calidad es excelente y puedo pegarlas directamente en PowerPoint."
+        },
+        {
+          "name": "Usuario B (Estudiante universitario)",
+          "comment": "Guardo los apuntes de las clases en PDF como imágenes en mi teléfono. ¡Fácil de revisar con una mano y conveniente para compartir en redes sociales!"
+        },
+        {
+          "name": "Usuario C (Propietario de pequeña empresa)",
+          "comment": "Cuando quiero publicar materiales de seminarios en Instagram, esta herramienta que convierte PDF a JPG en lote es invaluable. La operación simple ahorra mucho tiempo."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Conversión de alta calidad página por página",
+          "description": "No solo convierte PDF a imágenes, sino que las genera como JPG claros manteniendo la resolución. El texto permanece nítido incluso al ampliarlo, adecuado para presentaciones e impresión."
+        },
+        {
+          "title": "Conversión y guardado individual de páginas",
+          "description": "Convierte y guarda cada página del PDF como una imagen JPG separada, permitiéndote extraer solo las páginas que necesitas. Perfecto para publicaciones en redes sociales y compartir internamente."
+        },
+        {
+          "title": "Sin instalación ni registro requerido",
+          "description": "No es necesario instalar aplicaciones ni crear cuentas tediosas. Solo sube y convierte al instante, incluso cuando tienes poco tiempo."
+        },
+        {
+          "title": "Diseño compatible con dispositivos móviles",
+          "description": "Optimizado para dispositivos móviles, permitiendo una conversión y guardado fluidos desde iPhones, teléfonos Android y tablets. Confiable incluso cuando no hay un PC disponible."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "¿Se pueden convertir todos los PDF?",
+          "answer": "La mayoría de los PDF son compatibles, pero los archivos protegidos con contraseña pueden no ser convertibles."
+        },
+        {
+          "question": "¿Puedo ajustar la resolución de la imagen JPG?",
+          "answer": "Actualmente, las imágenes se generan con una resolución optimizada automáticamente con alta calidad como configuración predeterminada."
+        },
+        {
+          "question": "¿Cómo se procesan los PDF de varias páginas?",
+          "answer": "Cada página se convierte en una imagen JPG separada, y puedes descargarlas todas juntas."
+        },
+        {
+          "question": "¿Puedo convertir en mi smartphone?",
+          "answer": "Sí, puedes convertir y descargar en iPhones, smartphones Android y tablets."
+        },
+        {
+          "question": "¿Están seguros mis PDF subidos?",
+          "answer": "Sí, los archivos subidos se eliminan automáticamente después de un cierto período y no se almacenan en nuestros servidores. Puedes usar el servicio con tranquilidad."
+        }
+      ]
+    }
   }
 }

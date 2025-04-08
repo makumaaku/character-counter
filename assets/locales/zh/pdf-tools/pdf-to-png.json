@@ -1,16 +1,16 @@
 {
   "meta": {
-    "title": "PDF转PNG转换器 - 将PDF转换为透明PNG图像",
-    "description": "免费在线工具，将PDF文档转换为支持透明度的PNG图像。将每页转换为单独的高质量PNG图像。无需安装。",
-    "keywords": "pdf转png, pdf转图像, 转换pdf为png, pdf转换器, 透明png, 在线pdf转换器, 免费pdf转换器"
+    "title": "PDF转PNG转换器 | 免费在线工具将PDF转换为高分辨率PNG图像",
+    "description": "逐页将PDF文件转换为高质量PNG图像。支持透明背景和编辑。免费、无需注册、移动设备也可使用。",
+    "keywords": "pdf转png, pdf图像转换, 将pdf转换为png, pdf转换器, 透明png, 在线pdf转换, 免费pdf转换器"
   },
   "title": "PDF转PNG转换器",
   "description": "将PDF页面转换为支持透明度的高质量PNG图像",
   "form": {
     "upload": {
       "label": "上传PDF文件",
-      "button": "拖放PDF文件到此处，或点击选择",
-      "dragDrop": "拖放文件到此处或点击浏览"
+      "button": "将PDF文件拖放到此处或点击选择",
+      "dragDrop": "将文件拖放到此处或点击选择"
     },
     "quality": {
       "label": "图像质量",
@@ -21,15 +21,101 @@
     "convert": "转换为PNG"
   },
   "result": {
-    "downloadAll": "下载全部",
+    "downloadAll": "全部下载",
     "download": "下载"
   },
   "status": {
     "processing": "处理中...",
-    "noFile": "未选择文件"
+    "noFile": "未选择任何文件"
   },
   "error": {
     "fileType": "请上传PDF文件",
     "fileSize": "文件大小超过20MB限制"
+  },
+  "seoText": {
+    "overview": {
+      "title": "概述",
+      "content": "PDF转PNG转换器是一款免费的在线工具，允许您将PDF文件转换为高分辨率PNG图像。\n PNG格式比JPG质量降低更少，并支持透明背景，使其广泛适用于设计、编辑、网络发布和印刷材料。由于您可以将每一页提取为图像，当您只想使用文档的一部分时，它也是理想的选择。它完全免费，可以从PC或智能手机立即使用。"
+    },
+    "howTo": {
+      "title": "简单使用步骤",
+      "steps": [
+        {
+          "title": "上传PDF文件",
+          "description": "拖放您想要转换的PDF文件，或使用\"选择文件\"上传。"
+        },
+        {
+          "title": "自动转换为PNG",
+          "description": "每页将单独转换为高质量PNG图像。"
+        },
+        {
+          "title": "下载PNG图像",
+          "description": "按页单独下载PNG图像或一次性全部下载。"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "用户评价",
+      "users": [
+        {
+          "name": "用户A（设计师）",
+          "comment": "\"我需要在Photoshop中编辑PDF文档的一部分，所以能够将其提取为PNG格式非常有帮助。图像质量极佳！\""
+        },
+        {
+          "name": "用户B（内部通讯经理）",
+          "comment": "\"我想只将公司通讯的一部分作为图像使用，所以我将其从PDF转换为PNG并粘贴到我的演示文稿中。操作简单，提高了我的工作效率！\""
+        },
+        {
+          "name": "用户C（自由网页开发者）",
+          "comment": "\"我将客户发送的PDF封面转换为PNG，用作网站缩略图。高图像质量增加了信任度。\""
+        }
+      ]
+    },
+    "features": {
+      "title": "功能和优势",
+      "items": [
+        {
+          "title": "转换为支持透明背景的高分辨率PNG",
+          "description": "以高清晰度PNG格式输出PDF，质量损失最小。高色彩精度确保打印和网络都能获得美观的结果。此外，图表和图形转换清晰。"
+        },
+        {
+          "title": "将每页提取为图像",
+          "description": "多页PDF可以保存为单独的PNG文件。仅使用您需要的页面，或将它们重新用于幻灯片、目录、电子商务图像等。"
+        },
+        {
+          "title": "与编辑软件无缝集成",
+          "description": "PNG与Photoshop和Canva等图像编辑软件配合得很好。您可以直接使用转换后的图像进行编辑，使文档重组和定制变得简单。"
+        },
+        {
+          "title": "免费、无需注册、移动设备友好",
+          "description": "无需安装软件或账户注册。简单的设计使任何人都可以立即使用，支持从智能手机和平板电脑访问。"
+        }
+      ]
+    },
+    "faq": {
+      "title": "常见问题",
+      "questions": [
+        {
+          "question": "问题1. 我的PDF的所有页面都会被转换吗？",
+          "answer": "答：是的，所有页面将自动转换为PNG图像。如果需要，您也可以选择只保存特定页面。"
+        },
+        {
+          "question": "问题2. PNG会有透明背景吗？",
+          "answer": "答：只有当原始PDF包含透明度信息时才支持。通常，输出将包含背景。"
+        },
+        {
+          "question": "问题3. 将PDF转换为PNG而不是JPG有什么优势？",
+          "answer": "答：PNG是无压缩的，质量降低更少，并支持透明背景，使其成为设计和印刷材料的理想选择。"
+        },
+        {
+          "question": "问题4. 我可以转换大文件吗？",
+          "answer": "答：是的，我们支持一定大小的文件，但非常大的文件可能需要更长时间来转换。"
+        },
+        {
+          "question": "问题5. 上传的PDF会被保存吗？",
+          "answer": "答：不会，上传的文件在转换后一段时间内会自动删除。我们尊重您的隐私。"
+        }
+      ]
+    }
   }
 } 
