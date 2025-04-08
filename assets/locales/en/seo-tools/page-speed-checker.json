@@ -1,11 +1,97 @@
 {
   "meta": {
-    "title": "Page Speed Checker - Website Performance Analysis Tool",
-    "description": "Analyze your website's loading speed, resource usage, and get performance improvement suggestions with our free Page Speed Checker tool.",
+    "title": "Page Speed Checker | Free SEO Analysis Tool for Instant Website Speed Testing",
+    "description": "Measure web page loading speed with one click. Free online tool for SEO improvement and user experience enhancement. Compatible with both PC and mobile displays.",
     "keywords": "page speed checker, website performance, loading speed, performance optimization, resource analysis"
   },
   "title": "Page Speed Checker",
   "description": "Analyze website loading speed and get performance improvement suggestions",
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "Page Speed Checker is a free online tool that instantly measures page loading speed for any URL you specify.\n The 'display speed' that Google emphasizes is one of the important metrics directly linked to SEO evaluation. With this tool, you can quickly identify PC and mobile speed scores and improvement points at a glance. It features a simple, practical design that anyone can use, even without engineering knowledge."
+    },
+    "howTo": {
+      "title": "How to Use",
+      "steps": [
+        {
+          "title": "Enter URL",
+          "description": "Input the URL of the web page you want to check for speed in the form."
+        },
+        {
+          "title": "Click 'Start Check'",
+          "description": "With one click, the analysis begins and results appear in about 5-10 seconds."
+        },
+        {
+          "title": "Review Speed Scores and Improvement Advice",
+          "description": "You can see scores for both PC and mobile, along with a list of elements contributing to load times."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Person A (SEO Consultant)",
+          "comment": "\"I use this tool for client website improvement proposals. The scores and improvement areas are clearly shown, making report creation very efficient.\""
+        },
+        {
+          "name": "Person B (Corporate Site Manager)",
+          "comment": "\"I started using this after hearing that display speed affects SEO. It's convenient for internal sharing because it identifies issues for both smartphone and PC.\""
+        },
+        {
+          "name": "Person C (WordPress Blogger)",
+          "comment": "\"My blog was loading slowly, so I checked it with this tool. I was able to make improvements after understanding the need for image compression and lazy loading!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Clear Improvements with Google-Based Scoring",
+          "description": "Page Speed Checker connects with Google's PageSpeed Insights API and generates reports based on scores that actually reflect in search evaluations. You'll get effective improvement guidelines for SEO optimization."
+        },
+        {
+          "title": "Measure Speed for Both PC and Mobile Displays",
+          "description": "In the mobile-first era, being able to compare speed scores for PC and mobile separately is a major advantage. This contributes to improving user experience and page circulation rates."
+        },
+        {
+          "title": "Detailed Visualization of Display Elements",
+          "description": "Images, CSS, JavaScript, fonts - see which elements are slowing down loading. The output is in a format that's easy to understand even for those not familiar with technology, making it easier to take action."
+        },
+        {
+          "title": "No Registration, Free, and Ready to Use",
+          "description": "No membership registration or app installation required. With its speedy design that completes analysis with just one click after entering a URL, it's ideal for daily checks."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Q1. How is the score in this tool calculated?",
+          "answer": "A. It's calculated based on evaluation items including Core Web Vitals metrics like LCP, FID, and CLS, using Google's PageSpeed Insights API as a foundation."
+        },
+        {
+          "question": "Q2. Why are scores different between mobile and PC?",
+          "answer": "A. This is because performance differs by device for the same page due to differences in communication speed, rendering engines, and other factors."
+        },
+        {
+          "question": "Q3. What should I do if my score is poor?",
+          "answer": "A. We recommend addressing issues based on the improvement suggestions displayed in the tool, such as optimizing images, lightening CSS and JavaScript, and implementing lazy loading."
+        },
+        {
+          "question": "Q4. Can people other than site creators use it?",
+          "answer": "A. Yes, it's designed so anyone can use it just by entering a URL, making it easily accessible for marketers and executives too."
+        },
+        {
+          "question": "Q5. Is the analyzed data stored somewhere?",
+          "answer": "A. No, the entered URL and results are not stored at all. They are obtained and displayed in real-time each time, ensuring your privacy is protected."
+        }
+      ]
+    }
+  },
   "input": {
     "url": "Website URL",
     "analyzeButton": "Analyze",

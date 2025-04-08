@@ -45,5 +45,91 @@
         "Combine multiple schemas to provide rich information"
       ],
       "conclusion": "By implementing proper structured data, LLMs can understand your content more deeply, increasing the likelihood of being cited in search results and AI responses."
+    },
+    "seoText": {
+      "overview": {
+        "title": "Overview",
+        "content": "Meta Craft for LLM is a free tool that optimizes meta information (titles, descriptions, structures) from SEO and information architecture for Large Language Models (LLMs).\nIt extracts titles, descriptions, and section structures from web pages or content and automatically converts them into formats useful for prompt design and structured output. This AI-powered structuring tool accelerates LLM utilization in SEO contexts."
+      },
+      "howTo": {
+        "title": "How to Use",
+        "steps": [
+          {
+            "title": "Enter URL or Text",
+            "description": "Input the target webpage URL or paste text content directly."
+          },
+          {
+            "title": "Auto-generate Structured & Meta Information",
+            "description": "AI generates titles, descriptions, heading structures, and tag candidates."
+          },
+          {
+            "title": "Get LLM-optimized Output Format",
+            "description": "The generated structure is output in a format that can be directly copied and pasted as a prompt."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "User Testimonials",
+        "users": [
+          {
+            "name": "User A (SEO Director actively using AI)",
+            "comment": "\"I was struggling with prompt design when using ChatGPT for SEO articles. With this tool automatically generating the structure, I don't have to start from scratch.\""
+          },
+          {
+            "name": "User B (Editor collaborating with AI for writing tasks)",
+            "comment": "\"It's incredibly convenient that it only outputs structure and meta information. It's more organized than what humans create, and stabilizes the accuracy of AI writing.\""
+          },
+          {
+            "name": "User C (LLM App Developer)",
+            "comment": "\"I'm applying this to extract structures from user-submitted data to pass to LLMs. It's at a level where I'd want to integrate it into our own service.\""
+          }
+        ]
+      },
+      "features": {
+        "title": "Features & Benefits",
+        "items": [
+          {
+            "title": "Automatically Generate Optimal Prompt Structures for LLMs",
+            "description": "Meta Craft uses a structuring model strong in SEO contexts to extract and convert titles, descriptions, and heading structures all at once. Since it outputs in a format that can be directly passed to LLMs, it significantly reduces the workload of prompt design."
+          },
+          {
+            "title": "Format Web Page Structures into \"Machine-Readable Form\"",
+            "description": "Rather than just extracting text, it analyzes h2/h3 headings and keyword weights to format into a structured form, making it readable for both humans and machines."
+          },
+          {
+            "title": "Specialized in Bridging SEO & AI Writing",
+            "description": "A tool that addresses the challenge of wanting to generate SEO structures with LLMs but struggling to provide effective instructions. It complements human design while automatically converting to formats easily understood by LLMs."
+          },
+          {
+            "title": "Completely Free & No-Code Ready to Use",
+            "description": "No registration required, just input URLs or text. A no-code AI support tool usable by web managers, editors, and marketers."
+          }
+        ]
+      },
+      "faq": {
+        "title": "FAQ - Frequently Asked Questions",
+        "questions": [
+          {
+            "question": "Q1. What does Meta information refer to?",
+            "answer": "A. It refers to information that conveys the key points and meaning of a page, such as \"title tags,\" \"meta descriptions,\" \"heading structures,\" and \"tag candidates\" in web content."
+          },
+          {
+            "question": "Q2. What kind of content is included in the prompt format output?",
+            "answer": "A. It automatically generates title, description, h2/h3 structure, summary tags, target audience, and more in an LLM-friendly structure."
+          },
+          {
+            "question": "Q3. Can I use it with just a webpage URL?",
+            "answer": "A. Yes, you can extract and structure information from that page by entering a URL. You can also input text via copy & paste."
+          },
+          {
+            "question": "Q4. Can it be used as an SEO writing tool?",
+            "answer": "A. Yes, you can use it flexibly, such as using only the automatic generation of structure and headings, then having a human write the rest."
+          },
+          {
+            "question": "Q5. Is the input content saved?",
+            "answer": "A. No, URLs, text, and output results are not saved and are automatically deleted after a certain period."
+          }
+        ]
+      }
     }
   }
