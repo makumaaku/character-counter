@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-09T01:18:20.113Z
+// Generated at: 2025-04-09T15:17:42.453Z
 
 export interface CommonMessages {
   meta: {
@@ -3198,64 +3198,6 @@ export interface WordGenStoryGeneratorMessages {
     copyTitle: string;
     copyAlt: string;
     copied: string;
-  };
-  features: {
-    title: string;
-    oneClick: {
-      title: string;
-      description: string;
-    };
-    patterns: {
-      title: string;
-      description: string;
-    };
-    customization: {
-      title: string;
-      description: string;
-    };
-  };
-  useCases: {
-    title: string;
-    novel: {
-      title: string;
-      description: string;
-    };
-    game: {
-      title: string;
-      description: string;
-    };
-    workshop: {
-      title: string;
-      description: string;
-    };
-  };
-  technical: {
-    title: string;
-    algorithm: {
-      title: string;
-      description: string;
-    };
-    database: {
-      title: string;
-      description: string;
-    };
-    performance: {
-      title: string;
-      description: string;
-    };
-  };
-  faq: {
-    title: string;
-    q1: string;
-    a1: string;
-    q2: string;
-    a2: string;
-    q3: string;
-    a3: string;
-  };
-  conclusion: {
-    title: string;
-    description: string;
   };
   seoText: {
     overview: {

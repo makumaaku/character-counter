@@ -52,11 +52,11 @@ export default function StoryGeneratorClient({ messages, lang }: StoryGeneratorC
   };
 
   // messagesから値を取得
-  const { title, description, catchphrase, intro, form, result, features, useCases, technical, faq, conclusion } = messages;
+  const { title, description, form, result } = messages;
 
   return (
     <div className="bg-gray-800 text-gray-100 font-sans">
-      <main className="max-w-4xl mx-auto px-4 pb-24">
+      <main className="max-w-4xl mx-auto px-4 pb-4 pt-12">
         <div className="bg-gray-700 p-6 rounded-lg text-center">
           <h1 className="text-4xl font-bold mb-4">{title}</h1>
           <p className="text-xl text-gray-300 mb-6">
@@ -95,97 +95,6 @@ export default function StoryGeneratorClient({ messages, lang }: StoryGeneratorC
               />
             </div>
           )}
-        </div>
-
-        {/* About Section */}
-        <div className="mt-16 space-y-12">
-          {/* Introduction */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4">{catchphrase}</h2>
-            <p className="text-lg text-start text-gray-300">{intro}</p>
-          </div>
-
-          {/* Features */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{features.title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{features.oneClick.title}</h3>
-                <p className="text-gray-300">{features.oneClick.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{features.patterns.title}</h3>
-                <p className="text-gray-300">{features.patterns.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{features.customization.title}</h3>
-                <p className="text-gray-300">{features.customization.description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Use Cases */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{useCases.title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-600 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">{useCases.novel.title}</h3>
-                <p className="text-gray-300">{useCases.novel.description}</p>
-              </div>
-              <div className="bg-gray-600 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">{useCases.game.title}</h3>
-                <p className="text-gray-300">{useCases.game.description}</p>
-              </div>
-              <div className="bg-gray-600 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">{useCases.workshop.title}</h3>
-                <p className="text-gray-300">{useCases.workshop.description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Technical Background */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{technical.title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{technical.algorithm.title}</h3>
-                <p className="text-gray-300">{technical.algorithm.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{technical.database.title}</h3>
-                <p className="text-gray-300">{technical.database.description}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-3">{technical.performance.title}</h3>
-                <p className="text-gray-300">{technical.performance.description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* FAQ */}
-          <div className="bg-gray-700 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">{faq.title}</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{faq.q1}</h3>
-                <p className="text-gray-300">{faq.a1}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{faq.q2}</h3>
-                <p className="text-gray-300">{faq.a2}</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">{faq.q3}</h3>
-                <p className="text-gray-300">{faq.a3}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Conclusion */}
-          <div className="bg-gray-700 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">{conclusion.title}</h2>
-            <p className="text-lg text-start text-gray-300">{conclusion.description}</p>
-          </div>
         </div>
       </main>
     </div>

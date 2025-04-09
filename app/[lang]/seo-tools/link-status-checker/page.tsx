@@ -278,17 +278,13 @@ export default async function LinkStatusChecker({ params }: Props) {
 
   return (
     <PageContainer>
-      <div className="text-center mb-10">
+      <div className="text-center my-10">
         <h1 className="text-4xl font-bold mb-4">{title}</h1>
         <p className="text-xl text-gray-300">
           {description}
         </p>
       </div>
-      
-      <div className="bg-gray-700 rounded-lg p-6 mb-10">
-        <LinkStatusCheckerClient messages={messages} lang={lang} />
-      </div>
-
+       <LinkStatusCheckerClient messages={messages} lang={lang} />
       <SeoText content={seoTextContent} />
     </PageContainer>
   );
