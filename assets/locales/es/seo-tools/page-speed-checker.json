@@ -1,11 +1,97 @@
 {
   "meta": {
-    "title": "Comprobador de Velocidad de Página - Herramienta de análisis de rendimiento web",
-    "description": "Analiza la velocidad de carga de tu sitio web, el uso de recursos y obtén sugerencias de mejora de rendimiento con nuestra herramienta gratuita Comprobador de Velocidad de Página.",
+    "title": "Page Speed Checker | Herramienta gratuita de análisis SEO para comprobar la velocidad de carga",
+    "description": "Mide la velocidad de carga de páginas web con un solo clic. Herramienta online gratuita para mejorar SEO y experiencia de usuario. Compatible con PC y móvil.",
     "keywords": "comprobador de velocidad de página, rendimiento del sitio web, velocidad de carga, optimización de rendimiento, análisis de recursos"
   },
   "title": "Comprobador de Velocidad de Página",
   "description": "Analiza la velocidad de carga del sitio web y obtén sugerencias de mejora de rendimiento",
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "Page Speed Checker es una herramienta online gratuita que mide instantáneamente la velocidad de carga de la página para cualquier URL que especifiques.\n La 'velocidad de visualización' que Google enfatiza es una de las métricas importantes directamente vinculadas a la evaluación SEO. Con esta herramienta, puedes identificar rápidamente las puntuaciones de velocidad de PC y móvil, así como los puntos de mejora de un vistazo. Presenta un diseño simple y práctico que cualquiera puede usar, incluso sin conocimientos de ingeniería."
+    },
+    "howTo": {
+      "title": "Cómo usar",
+      "steps": [
+        {
+          "title": "Introduce la URL",
+          "description": "Ingresa la URL de la página web cuya velocidad quieres comprobar en el formulario."
+        },
+        {
+          "title": "Haz clic en 'Iniciar comprobación'",
+          "description": "Con un solo clic, comienza el análisis y los resultados aparecen en aproximadamente 5-10 segundos."
+        },
+        {
+          "title": "Revisa las puntuaciones de velocidad y consejos de mejora",
+          "description": "Puedes ver puntuaciones tanto para PC como para móvil, junto con una lista de elementos que contribuyen a los tiempos de carga."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Persona A (Consultor SEO)",
+          "comment": "\"Uso esta herramienta para propuestas de mejora de sitios web de clientes. Las puntuaciones y áreas de mejora se muestran claramente, lo que hace que la creación de informes sea muy eficiente.\""
+        },
+        {
+          "name": "Persona B (Gestor de sitio corporativo)",
+          "comment": "\"Comencé a usarla después de escuchar que la velocidad de visualización afecta al SEO. Es conveniente para compartir internamente porque identifica problemas tanto para smartphone como para PC.\""
+        },
+        {
+          "name": "Persona C (Blogger de WordPress)",
+          "comment": "\"Mi blog se cargaba lentamente, así que lo comprobé con esta herramienta. ¡Pude hacer mejoras después de entender la necesidad de compresión de imágenes y carga diferida!\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Mejoras claras con puntuación basada en Google",
+          "description": "Page Speed Checker se conecta con la API de Google PageSpeed Insights y genera informes basados en puntuaciones que realmente se reflejan en las evaluaciones de búsqueda. Obtendrás directrices de mejora efectivas para la optimización SEO."
+        },
+        {
+          "title": "Mide la velocidad tanto para pantallas PC como móviles",
+          "description": "En la era mobile-first, poder comparar puntuaciones de velocidad para PC y móvil por separado es una gran ventaja. Esto contribuye a mejorar la experiencia del usuario y las tasas de circulación de páginas."
+        },
+        {
+          "title": "Visualización detallada de elementos de pantalla",
+          "description": "Imágenes, CSS, JavaScript, fuentes - ve qué elementos están ralentizando la carga. El resultado está en un formato fácil de entender incluso para aquellos no familiarizados con la tecnología, facilitando la toma de acciones."
+        },
+        {
+          "title": "Sin registro, gratuito y listo para usar",
+          "description": "No se requiere registro de membresía ni instalación de aplicaciones. Con su diseño rápido que completa el análisis con solo un clic después de ingresar una URL, es ideal para comprobaciones diarias."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Cómo se calcula la puntuación en esta herramienta?",
+          "answer": "R. Se calcula en base a elementos de evaluación que incluyen métricas de Core Web Vitals como LCP, FID y CLS, utilizando la API de Google PageSpeed Insights como base."
+        },
+        {
+          "question": "P2. ¿Por qué son diferentes las puntuaciones entre móvil y PC?",
+          "answer": "R. Esto se debe a que el rendimiento difiere según el dispositivo para la misma página debido a diferencias en la velocidad de comunicación, motores de renderizado y otros factores."
+        },
+        {
+          "question": "P3. ¿Qué debo hacer si mi puntuación es baja?",
+          "answer": "R. Recomendamos abordar los problemas basándote en las sugerencias de mejora mostradas en la herramienta, como optimizar imágenes, aligerar CSS y JavaScript, e implementar carga diferida."
+        },
+        {
+          "question": "P4. ¿Pueden usarla personas que no sean creadores de sitios?",
+          "answer": "R. Sí, está diseñada para que cualquiera pueda usarla simplemente ingresando una URL, haciéndola fácilmente accesible para marketers y ejecutivos también."
+        },
+        {
+          "question": "P5. ¿Se almacenan los datos analizados en algún lugar?",
+          "answer": "R. No, la URL ingresada y los resultados no se almacenan en absoluto. Se obtienen y muestran en tiempo real cada vez, asegurando que tu privacidad esté protegida."
+        }
+      ]
+    }
+  },
   "input": {
     "url": "URL del sitio web",
     "analyzeButton": "Analizar",

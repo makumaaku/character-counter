@@ -27,7 +27,7 @@ export default function WordGeneratorClient({ messages }: WordGeneratorClientPro
   const [maxLength, setMaxLength] = useState(10) 
   
   // propsからメッセージを取得
-  const { title, description, form, result, about } = messages;
+  const { title, description, form, result } = messages;
 
   const generateWords = () => {
     let filteredWords = words.words.filter(word => 
@@ -48,7 +48,7 @@ export default function WordGeneratorClient({ messages }: WordGeneratorClientPro
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 text-white py-12">
+    <div className="bg-gray-700 text-white py-12 mt-10">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4">{title}</h1>
@@ -178,114 +178,6 @@ export default function WordGeneratorClient({ messages }: WordGeneratorClientPro
           ) : (
             <p className="text-gray-400">{result.empty}</p>
           )}
-        </div>
-        
-        {/* About Section */}
-        <div className="mt-12 bg-gray-700 p-8 rounded-lg">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">{about.catchphrase}</h2>
-            <p className="text-lg text-gray-300">{about.introduction}</p>
-          </div>
-          
-          {/* Features */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">{about.features.title}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h4 className="text-xl font-bold mb-3">{about.features.oneClick.title}</h4>
-                <p className="text-gray-300">{about.features.oneClick.description}</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h4 className="text-xl font-bold mb-3">{about.features.database.title}</h4>
-                <p className="text-gray-300">{about.features.database.description}</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h4 className="text-xl font-bold mb-3">{about.features.design.title}</h4>
-                <p className="text-gray-300">{about.features.design.description}</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Use Cases */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">{about.useCases.title}</h3>
-            <div className="mb-8">
-              <h4 className="text-xl font-bold mb-4">{about.useCases.scenes.title}</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gray-800 p-6 rounded-lg">
-                  <p className="text-gray-300">{about.useCases.scenes.writer}</p>
-                </div>
-                <div className="bg-gray-800 p-6 rounded-lg">
-                  <p className="text-gray-300">{about.useCases.scenes.designer}</p>
-                </div>
-                <div className="bg-gray-800 p-6 rounded-lg">
-                  <p className="text-gray-300">{about.useCases.scenes.brainstorming}</p>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-xl font-bold mb-4">{about.useCases.testimonials.title}</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-800 p-6 rounded-lg">
-                  <blockquote className="italic text-gray-300 mb-4">&ldquo;{about.useCases.testimonials.writer.quote}&rdquo;</blockquote>
-                  <p className="text-right">— {about.useCases.testimonials.writer.name}</p>
-                </div>
-                <div className="bg-gray-800 p-6 rounded-lg">
-                  <blockquote className="italic text-gray-300 mb-4">&ldquo;{about.useCases.testimonials.designer.quote}&rdquo;</blockquote>
-                  <p className="text-right">— {about.useCases.testimonials.designer.name}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Technical Details */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">{about.technical.title}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h4 className="text-xl font-bold mb-3">{about.technical.algorithm.title}</h4>
-                <p className="text-gray-300">{about.technical.algorithm.description}</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h4 className="text-xl font-bold mb-3">{about.technical.database.title}</h4>
-                <p className="text-gray-300">{about.technical.database.description}</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h4 className="text-xl font-bold mb-3">{about.technical.performance.title}</h4>
-                <p className="text-gray-300">{about.technical.performance.description}</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* FAQ */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">{about.faq.title}</h3>
-            <div className="divide-y divide-gray-600">
-              <div className="py-4">
-                <h4 className="text-xl font-bold mb-2">{about.faq.questions.free.question}</h4>
-                <p className="text-gray-300">{about.faq.questions.free.answer}</p>
-              </div>
-              <div className="py-4">
-                <h4 className="text-xl font-bold mb-2">{about.faq.questions.words.question}</h4>
-                <p className="text-gray-300">{about.faq.questions.words.answer}</p>
-              </div>
-              <div className="py-4">
-                <h4 className="text-xl font-bold mb-2">{about.faq.questions.commercial.question}</h4>
-                <p className="text-gray-300">{about.faq.questions.commercial.answer}</p>
-              </div>
-              <div className="py-4">
-                <h4 className="text-xl font-bold mb-2">{about.faq.questions.mobile.question}</h4>
-                <p className="text-gray-300">{about.faq.questions.mobile.answer}</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Conclusion */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">{about.conclusion.title}</h3>
-            <p className="text-lg text-gray-300">{about.conclusion.description}</p>
-          </div>
         </div>
       </div>
     </div>

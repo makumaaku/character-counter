@@ -24,5 +24,91 @@
   "error": {
     "fileType": "Por favor, sube un archivo SVG",
     "fileSize": "El tamaño del archivo excede el límite de 10MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de SVG a PDF es una herramienta gratuita en línea que transforma imágenes vectoriales SVG utilizadas en web y diseño en archivos PDF de alta calidad.\nMientras que SVG es adecuado para visualización en pantalla, el formato PDF es ideal para impresión, documentación, distribución y almacenamiento. Con esta herramienta, puedes convertir a PDF sin preocuparte por la resolución, preservando fielmente los datos originales. No requiere registro, lo que la hace accesible para cualquier persona de inmediato."
+    },
+    "howTo": {
+      "title": "Pasos simples de uso",
+      "steps": [
+        {
+          "title": "Subir archivo SVG",
+          "description": "Arrastra y suelta tu imagen SVG o haz clic en 'Seleccionar archivo' para subir."
+        },
+        {
+          "title": "Conversión automática a PDF",
+          "description": "Los datos de imagen se convierten automáticamente al formato PDF. También es posible el soporte de múltiples páginas."
+        },
+        {
+          "title": "Descargar archivo PDF",
+          "description": "Haz clic en el botón 'Descargar' para guardar como archivo PDF."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Diseñador de logotipos)",
+          "comment": "A menudo necesito presentar logotipos creados en SVG a clientes en formato PDF, por lo que esta herramienta es indispensable."
+        },
+        {
+          "name": "Usuario B (Especialista en documentación y presentaciones)",
+          "comment": "Convierto diagramas SVG a PDF y los inserto en PowerPoint. Es realmente valioso que la calidad de imagen no se degrade."
+        },
+        {
+          "name": "Usuario C (Editor independiente y creador de ZINES)",
+          "comment": "Uso imágenes SVG para portadas y páginas interiores, pero la imprenta solo acepta envíos en PDF, ¡así que pude convertirlas con esta herramienta sin ningún problema!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios del servicio",
+      "items": [
+        {
+          "title": "Conversión a PDF manteniendo la escalabilidad SVG",
+          "description": "SVG es un formato vectorial, por lo que no pierde calidad sin importar cuánto lo amplíes. Esta herramienta convierte a PDF de alta calidad mientras preserva esta característica. Seguro para materiales comerciales, carteles y materiales impresos."
+        },
+        {
+          "title": "Conversión a un formato óptimo para impresión y presentación de documentos",
+          "description": "SVG es un formato difícil de imprimir directamente, pero al convertirlo a PDF, queda inmediatamente listo para impresión, compartir y envío. Ideal para distribuir y almacenar logotipos e ilustraciones."
+        },
+        {
+          "title": "Herramienta completamente gratuita y basada en navegador sin instalación requerida",
+          "description": "No se necesita registro de membresía ni instalación de aplicaciones. Todo sucede en tu navegador, por lo que incluso los usuarios primerizos pueden usarla sin confusión. Diseño simple que puede usarse rápidamente para tareas diarias."
+        },
+        {
+          "title": "Accesible desde PC, smartphone y tablet",
+          "description": "Utilizable desde cualquier dispositivo, por lo que puedes completar la conversión a PDF y el envío por correo electrónico desde tu smartphone mientras estás en movimiento. Recomendado para diseñadores, impresores y creadores."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Se conserva la información de transparencia del SVG?",
+          "answer": "R. Sí, la información de fondo transparente se conserva en formato PDF (visible con visores compatibles)."
+        },
+        {
+          "question": "P2. ¿Qué sucede con el tamaño y la resolución de la imagen?",
+          "answer": "R. Como SVG es un formato vectorial, el PDF convertido se generará con alta calidad, independientemente de la resolución."
+        },
+        {
+          "question": "P3. ¿Puedo convertir por lotes múltiples SVG en un solo PDF?",
+          "answer": "R. Actualmente, la conversión se realiza de un archivo a la vez, pero estamos considerando soporte para múltiples archivos en futuras actualizaciones."
+        },
+        {
+          "question": "P4. ¿Puedo convertir desde un smartphone?",
+          "answer": "R. Sí, puedes usarla fácilmente desde el navegador de tu smartphone, ya sea iOS o Android."
+        },
+        {
+          "question": "P5. ¿Se guardan los archivos cargados?",
+          "answer": "R. No, los SVG cargados se eliminan automáticamente después de la conversión y no se almacenan en el servidor en absoluto. Tu privacidad está asegurada."
+        }
+      ]
+    }
   }
 }

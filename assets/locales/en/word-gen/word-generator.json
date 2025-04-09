@@ -27,83 +27,82 @@
     "download": "Download",
     "downloaded": "Downloaded!"
   },
-  "about": {
-    "catchphrase": "Discover Your Next Great Idea with Random Words!",
-    "introduction": "Our Random Word Generator is designed to stimulate your creativity and support your daily ideation needs. With just one click, it provides diverse words useful for blog titles, catchphrases, social media posts, and brainstorming sessions. The intuitive and user-friendly design makes it accessible for everyone, even first-time users.",
-    "features": {
+  "seoText": {
+    "overview": {
+      "title": "Random Word Generator",
+      "content": "\"Spark your inspiration! Discover new ideas with randomly generated words\"\nThis Random Word Generator is designed to stimulate your creativity and support your daily ideation needs. With just one click, it instantly provides a diverse range of words useful for various situations like blog post titles, catchy phrases, social media posts, and even brainstorming sessions. Thanks to its intuitive and user-friendly design, even first-time users can start using it right away."
+    },
+    "howTo": {
       "title": "Features and Characteristics",
-      "oneClick": {
-        "title": "Instant Word Generation with One Click",
-        "description": "This tool features a simple interface where new words appear instantly with just a button click. The intuitive operation requires no special knowledge or setup, making it readily available whenever inspiration strikes."
-      },
-      "database": {
-        "title": "Rich Word Database",
-        "description": "Our database covers numerous genres and categories. From everyday words to technical terms, and even unexpected words that spark creative thinking, we offer a wide range of options. This diversity makes the tool valuable for writers, designers, marketers, and professionals across various fields."
-      },
-      "design": {
-        "title": "Intuitive and User-Friendly Design",
-        "description": "The simple yet sophisticated design allows users to focus immediately on their intended operations. With responsive design optimized for smartphones and tablets, you can comfortably use the tool from any device."
-      }
-    },
-    "useCases": {
-      "title": "Use Cases and User Stories",
-      "scenes": {
-        "title": "Diverse Applications",
-        "writer": "Writer's Ideation: When stuck while writing, use it as a keyword source for new inspiration. It's helpful in various situations, from blog titles and catchphrases to story concept development.",
-        "designer": "Designer's Creative Thinking: Use it as a starting point to find fresh perspectives and new themes in logo design and project concept development.",
-        "brainstorming": "Brainstorming: In team ideation meetings, randomly generated words can spark discussions and promote unexpected idea combinations and innovations."
-      },
-      "testimonials": {
-        "title": "User Testimonials",
-        "writer": {
-          "name": "Blog Writer A",
-          "quote": "I use it whenever I need fresh ideas. The simple operation produces diverse words, often leading to unexpected insights."
+      "steps": [
+        {
+          "title": "Instant Word Generation with One Click",
+          "description": "This tool employs a simple interface that displays new words instantly with just a button click. The operation is intuitive, requiring no special knowledge or settings. The ability to use it immediately whenever inspiration strikes is a significant advantage."
         },
-        "designer": {
-          "name": "Graphic Designer B",
-          "quote": "Using this tool in the initial design phase helps me gain perspectives I might otherwise miss. It's brought fresh energy to my projects!"
+        {
+          "title": "Rich Word Database",
+          "description": "It comes equipped with a word database covering numerous genres and categories. From everyday language to specialized terminology, and even unexpected words that spark creative thinking, it offers a wide range of options. This diversity makes it useful for writers, designers, marketers, and professionals across various fields."
+        },
+        {
+          "title": "Intuitive and User-Friendly Design",
+          "description": "The simple yet sophisticated design allows users to focus immediately on their intended operations. With responsive design optimized for smartphones and tablets, it can be comfortably used from any device."
         }
-      }
+      ]
     },
-    "technical": {
+    "testimonials": {
+      "title": "Usage Scenarios and User Cases",
+      "users": [
+        {
+          "name": "Various Application Scenarios",
+          "comment": "Writer's Ideation: When stuck while writing, it can be used as a keyword to gain new inspiration. It's useful in various situations such as blog post titles, catchphrases, and story concept development."
+        },
+        {
+          "name": "Blog Writer A",
+          "comment": "I use it whenever I want new ideas. The simple operation produces a variety of words, often leading to unexpected inspirations."
+        },
+        {
+          "name": "Graphic Designer B",
+          "comment": "When I use this tool in the early stages of design, it helps me gain perspectives I might otherwise overlook. It has brought fresh air to my projects!"
+        }
+      ]
+    },
+    "features": {
       "title": "Technical Background and Mechanism",
-      "algorithm": {
-        "title": "Unique Algorithm",
-        "description": "The tool incorporates a random number generation algorithm that displays different words with each button press. This algorithm efficiently generates diverse word combinations to help users gain new inspiration."
-      },
-      "database": {
-        "title": "Extensive Word Database",
-        "description": "The database includes words from literature, daily conversation, business terminology, and creative keywords across various fields. Regular updates add new words based on current trends and user needs, continuously expanding the tool's capabilities."
-      },
-      "performance": {
-        "title": "Performance and Security",
-        "description": "The design is lightweight and fast, optimized for instant word generation. User input data and usage patterns are never stored, ensuring safe usage. Privacy and security considerations support reliable service operation."
-      }
+      "items": [
+        {
+          "title": "Unique Algorithm",
+          "description": "The tool incorporates a random number generation algorithm that displays different words every time you press the button. This algorithm efficiently generates diverse combinations of words to help users gain new inspiration."
+        },
+        {
+          "title": "Extensive Word Database",
+          "description": "The database contains words from various fields, including literature, daily conversation, business terminology, and creative keywords. Regular updates continuously add words based on the latest trends and user needs, expanding the tool's range."
+        },
+        {
+          "title": "Performance and Security",
+          "description": "The design is lightweight and fast, optimized for instant word generation. Additionally, user input data and usage status are not stored at all, ensuring peace of mind. The privacy and security-conscious mechanism supports reliable service operations."
+        }
+      ]
     },
     "faq": {
       "title": "Frequently Asked Questions (FAQ)",
-      "questions": {
-        "free": {
-          "question": "Is this tool free to use?",
-          "answer": "Yes, it's basically free to use. All features are available without restrictions, though we plan to announce future database expansions and premium features separately."
+      "questions": [
+        {
+          "question": "Can I use this tool for free?",
+          "answer": "Yes, you can use it for free. All features are available without restrictions, though we plan to announce separately any future expansions of the database or premium features."
         },
-        "words": {
+        {
           "question": "What kinds of words are generated?",
-          "answer": "We randomly generate words from a wide range of categories, from everyday terms to technical vocabulary and unique words that promote creative thinking. Diverse words are provided each time to meet user needs."
+          "answer": "It randomly generates words from a wide range of categories, from everyday words to specialized terminology and unique words that encourage creative thinking. A diverse array of words tailored to user needs is provided each time."
         },
-        "commercial": {
+        {
           "question": "Can I use it for commercial purposes?",
-          "answer": "Yes, commercial use is permitted. However, you must comply with our terms of use. Please check the terms of use page for specific conditions and restrictions."
+          "answer": "Yes, commercial use is possible. However, you need to adhere to the terms of service when using it. Please check the terms of service page for specific usage conditions and restrictions."
         },
-        "mobile": {
-          "question": "Can I use it from mobile devices?",
-          "answer": "Yes, we've adopted responsive design, so you can comfortably use it from smartphones and tablets. Word generation works smoothly on any device."
+        {
+          "question": "Can I use it on mobile devices?",
+          "answer": "Yes, as it adopts a responsive design, you can comfortably use it from smartphones and tablets. Words can be generated smoothly on any device."
         }
-      }
-    },
-    "conclusion": {
-      "title": "Conclusion",
-      "description": "This Random Word Generator is the perfect tool for drawing out creative ideas and supporting daily ideation and brainstorming. With its simple operation, rich word database, and advanced algorithm, it powerfully supports your creativity. We invite all creators seeking new perspectives and ideas to try this tool and capture inspiration for their next steps."
+      ]
     }
   }
 } 

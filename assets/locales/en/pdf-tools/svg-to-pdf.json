@@ -24,5 +24,91 @@
   "error": {
     "fileType": "Please upload an SVG file",
     "fileSize": "File size exceeds 10MB limit"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "SVG to PDF Converter is a free online tool that transforms vector SVG images used in web and design into high-quality PDF files.\nWhile SVG is suitable for on-screen display, PDF format is ideal for printing, documentation, distribution, and storage. With this tool, you can convert to PDF without worrying about resolution, faithfully preserving the original data. No registration required, making it accessible to anyone immediately."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload SVG File",
+          "description": "Drag & drop your SVG image or click 'Select File' to upload."
+        },
+        {
+          "title": "Automatic PDF Conversion",
+          "description": "The image data is automatically converted to PDF format. Multiple page support is also possible."
+        },
+        {
+          "title": "Download PDF File",
+          "description": "Click the 'Download' button to save as a PDF file."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Logo Designer)",
+          "comment": "I often need to submit logos created in SVG to clients in PDF format, so this tool is indispensable."
+        },
+        {
+          "name": "User B (Documentation & Presentation Specialist)",
+          "comment": "I convert SVG diagrams to PDF and insert them into PowerPoint. It's truly valuable that the image quality doesn't degrade."
+        },
+        {
+          "name": "User C (Indie Publisher & ZINE Creator)",
+          "comment": "I use SVG images for covers and inside pages, but the printer only accepts PDF submissions, so I was able to convert them with this tool without any issues!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Service Features & Benefits",
+      "items": [
+        {
+          "title": "PDF Conversion While Maintaining SVG Scalability",
+          "description": "SVG is a vector format, so it doesn't lose quality no matter how much you enlarge it. This tool converts to high-quality PDF while preserving this characteristic. Safe for commercial materials, posters, and printed materials."
+        },
+        {
+          "title": "Conversion to a Format Optimal for Printing & Document Submission",
+          "description": "SVG is a format that's difficult to print directly, but by converting to PDF, it becomes immediately ready for printing, sharing, and submission. Ideal for distributing and storing logos and illustrations."
+        },
+        {
+          "title": "Completely Free & Browser-Based Tool with No Installation Required",
+          "description": "No membership registration or app installation needed. Everything happens in your browser, so even first-time users can use it without confusion. Simple design that can be quickly used for daily tasks."
+        },
+        {
+          "title": "Accessible from PC, Smartphone & Tablet",
+          "description": "Usable from any device, so you can complete PDF conversion and email sending from your smartphone while on the go. Recommended for designers, printers, and creators."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. Is the SVG transparency information preserved?",
+          "answer": "A. Yes, the transparent background information is preserved in PDF format (viewable with compatible viewers)."
+        },
+        {
+          "question": "Q2. What happens to image size and resolution?",
+          "answer": "A. Since SVG is a vector format, the converted PDF will be output in high quality, independent of resolution."
+        },
+        {
+          "question": "Q3. Can I batch convert multiple SVGs into one PDF?",
+          "answer": "A. Currently, conversion is done one file at a time, but we're considering multi-file support in future updates."
+        },
+        {
+          "question": "Q4. Can I convert from a smartphone?",
+          "answer": "A. Yes, you can easily use it from your smartphone browser, whether iOS or Android."
+        },
+        {
+          "question": "Q5. Are uploaded files saved?",
+          "answer": "A. No, uploaded SVGs are automatically deleted after conversion and are not stored on the server at all. Your privacy is assured."
+        }
+      ]
+    }
   }
 }

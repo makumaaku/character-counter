@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "PDF to EPUB Converter - Convert PDF to eBook Online",
-    "description": "Free online tool to convert PDF documents to EPUB eBook format. Convert your PDFs to readable eBooks for your e-reader. No installation required.",
+    "title": "PDF to EPUB Converter - Convert PDF to eBook Online for Free",
+    "description": "Convert PDF documents to EPUB format optimized for smartphones and tablets. Adjustable text size and reflow support. Free, no registration, online.",
     "keywords": "pdf to epub, pdf to ebook, convert pdf to epub, pdf converter, online pdf converter, free pdf converter, ebook converter"
   },
   "title": "PDF to EPUB Converter",
@@ -29,5 +29,91 @@
   "error": {
     "fileType": "Please upload a PDF file",
     "fileSize": "File size exceeds 20MB limit"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "PDF to EPUB Converter is a free online tool that converts fixed-layout PDF documents to EPUB format, which is ideal for e-readers.\n EPUB is a reflowable format suitable for reading on smartphones and tablets, allowing flexible text size adjustment and column layout.\n This tool makes it easy to convert PDFs to EPUB without complicated operations, making it useful for reading, studying, document repurposing, and many other scenarios."
+    },
+    "howTo": {
+      "title": "Easy Steps to Use",
+      "steps": [
+        {
+          "title": "Upload PDF File",
+          "description": "Drag & drop your PDF file or click the upload button to select the file you want to convert."
+        },
+        {
+          "title": "Automatic EPUB Conversion",
+          "description": "The conversion starts automatically, optimizing page structure and text for EPUB format."
+        },
+        {
+          "title": "Download the Converted EPUB File",
+          "description": "Once complete, download your EPUB file with a single click, ready to view on e-book readers."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Office worker who reads during commutes)",
+          "comment": "PDF documents used to be hard to read with small text, but after converting to EPUB, I can read comfortably on my phone. Perfect for reading on the go!"
+        },
+        {
+          "name": "User B (University student learning English)",
+          "comment": "I convert my English PDF textbooks to EPUB and read them on Kindle. The highlight and dictionary features make my studies much more efficient."
+        },
+        {
+          "name": "User C (Author self-publishing e-books)",
+          "comment": "I used this to convert my PDF book to EPUB for e-book publishing. It was easy to convert and I could immediately use it on various platforms!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Optimized for Smartphones and Tablets with EPUB Format",
+          "description": "Unlike fixed PDFs, EPUB automatically adjusts text and layout to your screen size with reflowable format. This makes reading on smartphones and tablets significantly more comfortable."
+        },
+        {
+          "title": "Enables Text Search and Highlighting",
+          "description": "After converting to EPUB, you can use e-reader features like search, highlighting, and bookmarks, making it convenient for studying and reading long texts. Highly recommended for students and book lovers."
+        },
+        {
+          "title": "Completely Free, No Registration, No Installation",
+          "description": "A simple online conversion tool ready whenever you need it. No email registration required, accessible anytime from PC, smartphone, or tablet."
+        },
+        {
+          "title": "Compatible with Many E-book Readers",
+          "description": "Converted EPUB files can be used with a wide range of EPUB-compatible readers including Kindle (with compatible apps), Kobo, Google Play Books, and more. Easily create your own digital library."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Will PDF layouts be preserved exactly?",
+          "answer": "EPUB is a reflowable format, so fixed layouts will be restructured. This is designed to make content more readable with adaptive formatting."
+        },
+        {
+          "question": "Can PDFs with images be converted?",
+          "answer": "Yes, not only text but also images and figures will be placed in the EPUB as much as possible, though adjustments may be needed depending on the original PDF structure."
+        },
+        {
+          "question": "Which devices can read EPUB files?",
+          "answer": "You can view EPUBs on most major e-book apps and devices including Kindle, Kobo, Google Play Books, and Apple Books."
+        },
+        {
+          "question": "How long does conversion take?",
+          "answer": "Typical documents complete in seconds to under a minute. Larger files may take a bit longer."
+        },
+        {
+          "question": "Are uploaded PDFs saved on your servers?",
+          "answer": "No, uploaded files are automatically deleted after conversion is complete and are not stored on our servers."
+        }
+      ]
+    }
   }
 }

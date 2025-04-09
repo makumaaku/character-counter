@@ -1,11 +1,11 @@
 {
     "meta": {
-      "title": "LLM元标签生成器 - 用于LLM的SEO代码生成器",
-      "description": "通过简单输入URL自动生成LLM的SEO代码。轻松创建标题、元描述、OGP和JSON-LD。",
-      "keywords": "元标签生成器, SEO, LLM, OpenGraph, JSON-LD, Twitter卡片, 结构化数据"
+      "title": "Meta Craft for LLM - 为LLM生成SEO代码的工具",
+      "description": "只需输入URL，即可自动生成适用于LLM的SEO代码。轻松创建标题、元描述、OGP和JSON-LD。",
+      "keywords": "元标签生成器, SEO, LLM, OpenGraph, JSON-LD, Twitter Card, 结构化数据"
     },
-    "title": "LLM元标签生成器",
-    "description": "通过输入网站URL生成和显示用于LLM的SEO代码",
+    "title": "Meta Craft for LLM",
+    "description": "输入网站URL，生成并显示适用于LLM的SEO代码",
     "url": {
       "label": "要分析的URL",
       "placeholder": "https://example.com",
@@ -26,8 +26,8 @@
       "button": "复制"
     },
     "error": {
-      "fetch": "获取URL时出错",
-      "parsing": "解析HTML时出错",
+      "fetch": "获取URL时发生错误",
+      "parsing": "解析HTML时发生错误",
       "urlRequired": "需要URL",
       "invalidUrl": "无效的URL",
       "fetchFailed": "获取URL失败",
@@ -36,14 +36,100 @@
     "loading": "处理中...",
     "seoInfo": {
       "title": "JSON-LD结构化数据和LLM的SEO",
-      "description": "JSON-LD是符合Schema.org的结构化数据，是搜索引擎和AI理解您内容的关键组件。为确保大型语言模型正确识别，请考虑以下几点：",
+      "description": "JSON-LD是符合Schema.org的结构化数据，作为搜索引擎和AI理解您内容的关键组件。为确保大型语言模型正确识别，请考虑以下几点：",
       "points": [
         "选择适当的@type值，如WebPage或WebApplication",
         "准确描述基本属性，如name、description和url",
-        "利用FAQPage架构来构建问题和答案",
-        "清晰定义发布者和组织信息",
-        "组合多个架构以提供丰富信息"
+        "利用FAQPage架构来结构化问题和答案",
+        "明确定义发布者和组织信息",
+        "组合多个架构提供丰富信息"
       ],
-      "conclusion": "通过实施适当的结构化数据，LLM可以更深入地理解您的内容，增加在搜索结果和AI回应中被引用的可能性。"
+      "conclusion": "通过实施适当的结构化数据，LLM可以更深入地理解您的内容，提高在搜索结果和AI回应中被引用的可能性。"
+    },
+    "seoText": {
+      "overview": {
+        "title": "概述",
+        "content": "Meta Craft for LLM是一款免费工具，可以优化SEO和信息架构中的元信息（标题、描述、结构）以适用于大型语言模型（LLM）。\n它从网页或内容中提取标题、描述和章节结构，并自动转换为有助于提示设计和结构化输出的格式。这个AI驱动的结构化工具加速了SEO环境中LLM的应用。"
+      },
+      "howTo": {
+        "title": "使用方法",
+        "steps": [
+          {
+            "title": "输入URL或文本",
+            "description": "输入目标网页URL或直接粘贴文本内容。"
+          },
+          {
+            "title": "自动生成结构化和元信息",
+            "description": "AI生成标题、描述、标题结构和标签候选。"
+          },
+          {
+            "title": "获取针对LLM优化的输出格式",
+            "description": "生成的结构以可直接复制粘贴作为提示的格式输出。"
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "用户评价",
+        "users": [
+          {
+            "name": "用户A（积极使用AI的SEO主管）",
+            "comment": "\"使用ChatGPT撰写SEO文章时，我在提示设计上遇到困难。有了这个工具自动生成结构，我不必从零开始。\""
+          },
+          {
+            "name": "用户B（与AI合作处理写作任务的编辑）",
+            "comment": "\"它只输出结构和元信息，这非常方便。比人类创建的更有条理，稳定了AI写作的准确性。\""
+          },
+          {
+            "name": "用户C（LLM应用开发者）",
+            "comment": "\"我正在应用这个工具从用户提交的数据中提取结构并传递给LLM。它达到了我想整合到我们自己服务中的水平。\""
+          }
+        ]
+      },
+      "features": {
+        "title": "功能和优势",
+        "items": [
+          {
+            "title": "自动生成针对LLM的最佳提示结构",
+            "description": "Meta Craft使用在SEO环境中强大的结构化模型，一次性提取和转换标题、描述和标题结构。由于它以可直接传递给LLM的格式输出，大大减少了提示设计的工作量。"
+          },
+          {
+            "title": "将网页结构格式化为\"机器可读形式\"",
+            "description": "不仅仅是提取文本，它还分析h2/h3标题和关键词权重，格式化为结构化形式，使其对人类和机器都可读。"
+          },
+          {
+            "title": "专注于连接SEO和AI写作",
+            "description": "这是一个解决想用LLM生成SEO结构但难以提供有效指令的挑战的工具。它补充人类设计，同时自动转换为LLM容易理解的格式。"
+          },
+          {
+            "title": "完全免费且无需编码即可使用",
+            "description": "无需注册，只需输入URL或文本。这是一个网站管理员、编辑和营销人员都可以使用的无代码AI支持工具。"
+          }
+        ]
+      },
+      "faq": {
+        "title": "常见问题解答",
+        "questions": [
+          {
+            "question": "问1. 元信息指的是什么？",
+            "answer": "答：它指的是传达页面关键点和意义的信息，如网页内容中的\"标题标签\"、\"元描述\"、\"标题结构\"和\"标签候选\"。"
+          },
+          {
+            "question": "问2. 提示格式输出包括什么内容？",
+            "answer": "答：它会自动生成标题、描述、h2/h3结构、摘要标签、目标受众等，采用适合LLM的结构。"
+          },
+          {
+            "question": "问3. 我可以只用网页URL使用吗？",
+            "answer": "答：是的，您可以通过输入URL提取和结构化该页面的信息。您也可以通过复制和粘贴输入文本。"
+          },
+          {
+            "question": "问4. 它可以用作SEO写作工具吗？",
+            "answer": "答：是的，您可以灵活使用它，例如仅使用自动生成的结构和标题，然后让人类撰写其余部分。"
+          },
+          {
+            "question": "问5. 输入的内容会被保存吗？",
+            "answer": "答：不会，URL、文本和输出结果都不会被保存，并会在一定时间后自动删除。"
+          }
+        ]
+      }
     }
 } 

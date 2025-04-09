@@ -24,5 +24,91 @@
   "error": {
     "fileType": "Por favor, sube solo archivos PNG",
     "fileSize": "El tamaño total de archivos excede el límite de 20MB"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Convertidor de PNG a PDF es una herramienta gratuita en línea que convierte imágenes PNG en archivos PDF de alta calidad.\n Puedes convertir una sola imagen a PDF o combinar múltiples imágenes PNG en un solo documento PDF. Es perfecto para presentaciones, informes fotográficos, presentación de documentos, capturas web y muchos otros usos.\n La herramienta también es compatible con imágenes con transparencia y las convierte a un formato adecuado para imprimir mientras mantiene la calidad de la imagen."
+    },
+    "howTo": {
+      "title": "Pasos sencillos de uso",
+      "steps": [
+        {
+          "title": "Sube imágenes PNG",
+          "description": "Arrastra y suelta tus archivos PNG (uno o varios) o haz clic en 'Seleccionar archivos' para subirlos."
+        },
+        {
+          "title": "Ajusta el orden de las imágenes (si es necesario)",
+          "description": "Si has subido varias imágenes, puedes reorganizarlas arrastrándolas."
+        },
+        {
+          "title": "Convierte y descarga el PDF",
+          "description": "Haz clic en 'Convertir a PDF' y tu archivo PDF estará listo para guardar inmediatamente."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Usuario A (Ilustrador)",
+          "comment": "Usé esta herramienta para convertir mis imágenes PNG de portfolio a formato PDF para entregas a clientes. Incluso las imágenes con fondos transparentes se convirtieron perfectamente. ¡Estoy muy satisfecho!"
+        },
+        {
+          "name": "Usuario B (Administrador de oficina)",
+          "comment": "Tomar capturas de pantalla en PNG y compilarlas en un PDF ha hecho que crear informes de negocio sea mucho más fluido. Esta herramienta ahorra mucho tiempo."
+        },
+        {
+          "name": "Usuario C (Estudiante en búsqueda de empleo)",
+          "comment": "Creé muestras de trabajos en formato PNG para mi currículum, pero necesitaba convertirlas a PDF para la presentación. ¡Esta herramienta fue increíblemente útil!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Combina múltiples imágenes PNG en un solo PDF",
+          "description": "Convierte múltiples imágenes en un solo PDF en cualquier orden que elijas. Ideal para álbumes de fotos, portfolios e informes de negocio. Cada imagen se presenta ordenadamente en su propia página."
+        },
+        {
+          "title": "Conversión de alta resolución con preservación de calidad",
+          "description": "Tus imágenes PNG se convierten a PDF en alta resolución, manteniendo sus hermosos colores y claridad. La calidad es perfecta para materiales impresos y documentos de presentación."
+        },
+        {
+          "title": "Soporte para PNG transparentes",
+          "description": "La herramienta es compatible con PNG con fondos transparentes, manejando automáticamente fondos blancos o transparencia en el PDF. Perfecto para materiales de diseño y presentación de logotipos."
+        },
+        {
+          "title": "Completamente gratuito y sin instalación requerida",
+          "description": "No se necesita registro ni descargas, con un diseño simple que funciona directamente en tu navegador. Compatible con smartphones y tablets, para que puedas usarlo en cualquier entorno."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "Q1. ¿Puedo combinar múltiples imágenes PNG en un solo PDF?",
+          "answer": "A. Sí, puedes convertir múltiples archivos PNG en un solo documento PDF."
+        },
+        {
+          "question": "Q2. ¿Qué sucede con los PNG transparentes?",
+          "answer": "A. Durante la conversión, las áreas transparentes se reemplazan automáticamente con un fondo blanco o se mantiene la transparencia según sea necesario."
+        },
+        {
+          "question": "Q3. ¿Puedo ajustar el tamaño o diseño del PDF?",
+          "answer": "A. Actualmente, la herramienta utiliza ajuste automático, pero planeamos agregar funciones de personalización en el futuro."
+        },
+        {
+          "question": "Q4. ¿Puedo usar esto en mi smartphone o tablet?",
+          "answer": "A. Sí, puedes usarlo desde navegadores en dispositivos iOS y Android sin problemas."
+        },
+        {
+          "question": "Q5. ¿Se guardan mis archivos subidos?",
+          "answer": "A. No, los archivos subidos se eliminan automáticamente después de cierto período y nunca se almacenan en nuestros servidores. Puedes usar el servicio con tranquilidad."
+        }
+      ]
+    }
   }
 }

@@ -24,5 +24,91 @@
   "error": {
     "fileType": "Please upload PNG files only",
     "fileSize": "Total file size exceeds 20MB limit"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "PNG to PDF Converter is a free online tool that converts PNG images into high-quality PDF files.\n You can convert a single image to PDF or combine multiple PNG images into one PDF document. It's perfect for presentations, photo reports, document submissions, web captures, and many other uses.\n The tool also supports images with transparency and converts them to a print-friendly format while maintaining image quality."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload PNG Images",
+          "description": "Drag and drop your PNG files (one or multiple) or click 'Select Files' to upload them."
+        },
+        {
+          "title": "Adjust Image Order (if needed)",
+          "description": "If you've uploaded multiple images, you can rearrange their order by dragging them."
+        },
+        {
+          "title": "Convert and Download PDF",
+          "description": "Click 'Convert to PDF' and your PDF file will be ready to save immediately."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Illustrator)",
+          "comment": "I used this tool to convert my PNG portfolio images to PDF format for client submissions. Even images with transparent backgrounds were perfectly converted. I'm very satisfied!"
+        },
+        {
+          "name": "User B (Office Administrator)",
+          "comment": "Taking screenshots in PNG and compiling them into a PDF has made creating business reports much smoother. This tool is a real time-saver."
+        },
+        {
+          "name": "User C (Job-seeking Student)",
+          "comment": "I created sample works in PNG format for my resume, but needed to convert them to PDF for submission. This tool was incredibly helpful!"
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Combine Multiple PNG Images into One PDF",
+          "description": "Convert multiple images into a single PDF in any order you choose. Ideal for photo albums, portfolios, and business reports. Each image is neatly laid out on its own page."
+        },
+        {
+          "title": "High-Resolution Conversion with Quality Preservation",
+          "description": "Your PNG images are converted to PDF at high resolution, maintaining their beautiful colors and clarity. The quality is perfect for printed materials and presentation handouts."
+        },
+        {
+          "title": "Support for Transparent PNGs",
+          "description": "The tool supports PNGs with transparent backgrounds, automatically handling white backgrounds or transparency in the PDF. Perfect for design materials and logo submissions."
+        },
+        {
+          "title": "Completely Free & No Installation Required",
+          "description": "No registration or downloads needed, with a simple design that works right in your browser. Compatible with smartphones and tablets, so you can use it in any environment."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. Can I combine multiple PNG images into one PDF?",
+          "answer": "A. Yes, you can convert multiple PNG files into a single PDF document."
+        },
+        {
+          "question": "Q2. What happens to transparent PNGs?",
+          "answer": "A. During conversion, transparent areas are either automatically replaced with a white background or transparency is maintained as needed."
+        },
+        {
+          "question": "Q3. Can I adjust the PDF size or layout?",
+          "answer": "A. Currently, the tool uses automatic adjustment, but we plan to add customization features in the future."
+        },
+        {
+          "question": "Q4. Can I use this on my smartphone or tablet?",
+          "answer": "A. Yes, you can use it from browsers on both iOS and Android devices without any issues."
+        },
+        {
+          "question": "Q5. Are my uploaded files saved?",
+          "answer": "A. No, uploaded files are automatically deleted after a certain period and are never stored on our servers. You can use the service with peace of mind."
+        }
+      ]
+    }
   }
 }

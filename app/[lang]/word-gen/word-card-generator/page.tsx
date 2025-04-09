@@ -1,6 +1,8 @@
 import { getLanguageFromParams, translate, loadToolMessages } from '@/lib/i18n/server'
 import WordCardGeneratorClient from './components/WordCardGeneratorClient'
 import { Language, WordGenWordCardGeneratorMessages } from '@/lib/i18n/types'
+import SeoText, { SeoTextContent } from '@/components/SeoText'
+import PageContainer from '@/components/PageContainer'
 
 type Props = {
   params: Promise<{ lang: string }>
@@ -33,43 +35,6 @@ export default async function WordCardGenerator({ params }: Props) {
     // カード情報
     cardLength,
     cardCategory,
-    // About section
-    aboutCatchphrase,
-    aboutIntroduction,
-    aboutFeaturesTitle,
-    aboutFeaturesOneClickTitle,
-    aboutFeaturesOneClickDesc,
-    aboutFeaturesDatabaseTitle,
-    aboutFeaturesDatabaseDesc,
-    aboutFeaturesDesignTitle,
-    aboutFeaturesDesignDesc,
-    // Use cases
-    aboutUseCasesTitle,
-    aboutUseCasesVocabularyTitle,
-    aboutUseCasesVocabularyDesc,
-    aboutUseCasesBrainstormingTitle,
-    aboutUseCasesBrainstormingDesc,
-    aboutUseCasesGamesTitle,
-    aboutUseCasesGamesDesc,
-    // Technical
-    aboutTechnicalTitle,
-    aboutTechnicalAlgorithmTitle,
-    aboutTechnicalAlgorithmDesc,
-    aboutTechnicalDatabaseTitle,
-    aboutTechnicalDatabaseDesc,
-    aboutTechnicalResponsiveTitle,
-    aboutTechnicalResponsiveDesc,
-    // FAQ
-    aboutFaqTitle,
-    aboutFaqFreeQuestion,
-    aboutFaqFreeAnswer,
-    aboutFaqCustomizeQuestion,
-    aboutFaqCustomizeAnswer,
-    aboutFaqPrintQuestion,
-    aboutFaqPrintAnswer,
-    // Conclusion
-    aboutConclusionTitle,
-    aboutConclusionDesc,
     // How To
     howToTitle,
     howToDesc,
@@ -79,7 +44,40 @@ export default async function WordCardGenerator({ params }: Props) {
     useCasesTeaching,
     useCasesGames,
     useCasesWriting,
-    useCasesEsl
+    useCasesEsl,
+    // SEOテキスト
+    seoOverviewTitle,
+    seoOverviewContent,
+    seoHowToTitle,
+    seoHowToStep1Title,
+    seoHowToStep1Desc,
+    seoHowToStep2Title,
+    seoHowToStep2Desc,
+    seoHowToStep3Title,
+    seoHowToStep3Desc,
+    seoTestimonialsTitle,
+    seoTestimonialsUser1Name,
+    seoTestimonialsUser1Comment,
+    seoTestimonialsUser2Name,
+    seoTestimonialsUser2Comment,
+    seoTestimonialsUser3Name,
+    seoTestimonialsUser3Comment,
+    seoFeaturesTitle,
+    seoFeaturesItem1Title,
+    seoFeaturesItem1Desc,
+    seoFeaturesItem2Title,
+    seoFeaturesItem2Desc,
+    seoFeaturesItem3Title,
+    seoFeaturesItem3Desc,
+    seoFeaturesItem4Title,
+    seoFeaturesItem4Desc,
+    seoFaqTitle,
+    seoFaqQ1,
+    seoFaqA1,
+    seoFaqQ2,
+    seoFaqA2,
+    seoFaqQ3,
+    seoFaqA3
   ] = await Promise.all([
     // メタ情報
     translate(lang, 'wordGen.wordCardGenerator.meta.title'),
@@ -99,43 +97,6 @@ export default async function WordCardGenerator({ params }: Props) {
     // カード情報
     translate(lang, 'wordGen.wordCardGenerator.card.length'),
     translate(lang, 'wordGen.wordCardGenerator.card.category'),
-    // About section
-    translate(lang, 'wordGen.wordCardGenerator.about.catchphrase'),
-    translate(lang, 'wordGen.wordCardGenerator.about.introduction'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.oneClick.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.oneClick.description'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.database.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.database.description'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.design.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.features.design.description'),
-    // Use cases
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.vocabulary.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.vocabulary.description'),
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.brainstorming.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.brainstorming.description'),
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.games.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.useCases.games.description'),
-    // Technical
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.algorithm.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.algorithm.description'),
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.database.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.database.description'),
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.responsive.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.technical.responsive.description'),
-    // FAQ
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.questions.free.question'),
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.questions.free.answer'),
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.questions.customize.question'),
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.questions.customize.answer'),
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.questions.print.question'),
-    translate(lang, 'wordGen.wordCardGenerator.about.faq.questions.print.answer'),
-    // Conclusion
-    translate(lang, 'wordGen.wordCardGenerator.about.conclusion.title'),
-    translate(lang, 'wordGen.wordCardGenerator.about.conclusion.description'),
     // How To
     translate(lang, 'wordGen.wordCardGenerator.howTo.title'),
     translate(lang, 'wordGen.wordCardGenerator.howTo.description'),
@@ -145,7 +106,40 @@ export default async function WordCardGenerator({ params }: Props) {
     translate(lang, 'wordGen.wordCardGenerator.useCases.teaching'),
     translate(lang, 'wordGen.wordCardGenerator.useCases.games'),
     translate(lang, 'wordGen.wordCardGenerator.useCases.writing'),
-    translate(lang, 'wordGen.wordCardGenerator.useCases.esl')
+    translate(lang, 'wordGen.wordCardGenerator.useCases.esl'),
+    // SEOテキスト
+    translate(lang, 'wordGen.wordCardGenerator.seoText.overview.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.overview.content'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.steps.0.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.steps.0.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.steps.1.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.steps.1.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.steps.2.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.howTo.steps.2.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.users.0.name'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.users.0.comment'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.users.1.name'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.users.1.comment'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.users.2.name'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.testimonials.users.2.comment'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.0.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.0.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.1.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.1.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.2.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.2.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.3.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.features.items.3.description'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.title'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.questions.0.question'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.questions.0.answer'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.questions.1.question'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.questions.1.answer'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.questions.2.question'),
+    translate(lang, 'wordGen.wordCardGenerator.seoText.faq.questions.2.answer')
   ]);
 
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
@@ -173,76 +167,6 @@ export default async function WordCardGenerator({ params }: Props) {
       length: cardLength,
       category: cardCategory
     },
-    about: {
-      catchphrase: aboutCatchphrase,
-      introduction: aboutIntroduction,
-      features: {
-        title: aboutFeaturesTitle,
-        oneClick: {
-          title: aboutFeaturesOneClickTitle,
-          description: aboutFeaturesOneClickDesc
-        },
-        database: {
-          title: aboutFeaturesDatabaseTitle,
-          description: aboutFeaturesDatabaseDesc
-        },
-        design: {
-          title: aboutFeaturesDesignTitle,
-          description: aboutFeaturesDesignDesc
-        }
-      },
-      useCases: {
-        title: aboutUseCasesTitle,
-        vocabulary: {
-          title: aboutUseCasesVocabularyTitle,
-          description: aboutUseCasesVocabularyDesc
-        },
-        brainstorming: {
-          title: aboutUseCasesBrainstormingTitle,
-          description: aboutUseCasesBrainstormingDesc
-        },
-        games: {
-          title: aboutUseCasesGamesTitle,
-          description: aboutUseCasesGamesDesc
-        }
-      },
-      technical: {
-        title: aboutTechnicalTitle,
-        algorithm: {
-          title: aboutTechnicalAlgorithmTitle,
-          description: aboutTechnicalAlgorithmDesc
-        },
-        database: {
-          title: aboutTechnicalDatabaseTitle,
-          description: aboutTechnicalDatabaseDesc
-        },
-        responsive: {
-          title: aboutTechnicalResponsiveTitle,
-          description: aboutTechnicalResponsiveDesc
-        }
-      },
-      faq: {
-        title: aboutFaqTitle,
-        questions: {
-          free: {
-            question: aboutFaqFreeQuestion,
-            answer: aboutFaqFreeAnswer
-          },
-          customize: {
-            question: aboutFaqCustomizeQuestion,
-            answer: aboutFaqCustomizeAnswer
-          },
-          print: {
-            question: aboutFaqPrintQuestion,
-            answer: aboutFaqPrintAnswer
-          }
-        }
-      },
-      conclusion: {
-        title: aboutConclusionTitle,
-        description: aboutConclusionDesc
-      }
-    },
     howTo: {
       title: howToTitle,
       description: howToDesc
@@ -254,12 +178,93 @@ export default async function WordCardGenerator({ params }: Props) {
       games: useCasesGames,
       writing: useCasesWriting,
       esl: useCasesEsl
+    },
+    seoText: {
+      overview: {
+        title: seoOverviewTitle,
+        content: seoOverviewContent
+      },
+      howTo: {
+        title: seoHowToTitle,
+        steps: [
+          {
+            title: seoHowToStep1Title,
+            description: seoHowToStep1Desc
+          },
+          {
+            title: seoHowToStep2Title,
+            description: seoHowToStep2Desc
+          },
+          {
+            title: seoHowToStep3Title,
+            description: seoHowToStep3Desc
+          }
+        ]
+      },
+      testimonials: {
+        title: seoTestimonialsTitle,
+        users: [
+          {
+            name: seoTestimonialsUser1Name,
+            comment: seoTestimonialsUser1Comment
+          },
+          {
+            name: seoTestimonialsUser2Name,
+            comment: seoTestimonialsUser2Comment
+          },
+          {
+            name: seoTestimonialsUser3Name,
+            comment: seoTestimonialsUser3Comment
+          }
+        ]
+      },
+      features: {
+        title: seoFeaturesTitle,
+        items: [
+          {
+            title: seoFeaturesItem1Title,
+            description: seoFeaturesItem1Desc
+          },
+          {
+            title: seoFeaturesItem2Title,
+            description: seoFeaturesItem2Desc
+          },
+          {
+            title: seoFeaturesItem3Title,
+            description: seoFeaturesItem3Desc
+          },
+          {
+            title: seoFeaturesItem4Title,
+            description: seoFeaturesItem4Desc
+          }
+        ]
+      },
+      faq: {
+        title: seoFaqTitle,
+        questions: [
+          {
+            question: seoFaqQ1,
+            answer: seoFaqA1
+          },
+          {
+            question: seoFaqQ2,
+            answer: seoFaqA2
+          },
+          {
+            question: seoFaqQ3,
+            answer: seoFaqA3
+          }
+        ]
+      }
     }
   };
 
+  // SEOテキスト用のデータを作成
+  const seoTextContent: SeoTextContent = messages.seoText;
   return (
-    <div className="text-gray-100 font-sans max-w-4xl mx-auto px-4 pt-10">
+    <PageContainer>
       <WordCardGeneratorClient messages={messages} />
-    </div>
+      <SeoText content={seoTextContent} />
+    </PageContainer>
   );
 } 

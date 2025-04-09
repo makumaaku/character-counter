@@ -30,5 +30,91 @@
     "invalidDomain": "Please enter a valid domain",
     "emptyKeyword": "Please enter a keyword",
     "generic": "An error occurred. Please try again."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "SEO Cannibalization Checker is a free tool to check if multiple pages on your website are competing for the same or similar keywords (cannibalization). It visualizes internal competition at the URL level to help identify if SEO issues like poor rankings or low CTR are caused by internal competition. With a simple design requiring only keywords and domain input, it provides clear guidance for site improvement."
+    },
+    "howTo": {
+      "title": "How to Use",
+      "steps": [
+        {
+          "title": "Enter the keyword you want to check",
+          "description": "Enter the keyword you're targeting for SEO in the form."
+        },
+        {
+          "title": "Enter your domain or URL",
+          "description": "Enter your website's domain or the specific URL you want to investigate."
+        },
+        {
+          "title": "Check for cannibalization",
+          "description": "The tool will visualize if multiple pages from your domain appear in search results for the same keyword."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Person A (Content SEO Specialist)",
+          "comment": "I had an article that wasn't ranking well despite my efforts. Using this tool, I discovered another similar article was cannibalizing it. This tool really helped me identify the problem."
+        },
+        {
+          "name": "Person B (Small Business Web Manager)",
+          "comment": "We had written several similar blog posts over time, which was causing the problem. After consolidating them into one comprehensive article, our rankings have started to stabilize."
+        },
+        {
+          "name": "Person C (SEO Consultant)",
+          "comment": "I use this when diagnosing existing content for clients. The competition is clear at a glance, making it easy to use in proposal materials."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Automatically list cannibalized pages",
+          "description": "When multiple pages from the same domain appear in search results, they are automatically detected and listed, allowing you to quickly identify pages that need attention."
+        },
+        {
+          "title": "Visualize cannibalization by keyword",
+          "description": "Display which pages are competing for which keywords. Analyze with reference to page rankings and meta information."
+        },
+        {
+          "title": "Get insights for improvement strategies",
+          "description": "When cannibalization is found, use the results as material for developing improvement strategies like consolidation, deletion, or rewriting. Useful for organizing your SEO strategy."
+        },
+        {
+          "title": "Free & no-code tool for everyone",
+          "description": "Simply enter URL and keywords to use. This SEO analysis tool requires no programming knowledge and is free, making it accessible to professionals across various fields."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. What is cannibalization?",
+          "answer": "Cannibalization occurs when multiple pages on your site compete for the same keyword in search results, dispersing search rankings and CTR, thereby weakening your SEO effectiveness."
+        },
+        {
+          "question": "Q2. Does this only check pages within the same domain?",
+          "answer": "Yes, this tool is designed to detect cannibalization between pages within your own domain."
+        },
+        {
+          "question": "Q3. How many pages can be checked?",
+          "answer": "The tool can check up to approximately the top 100 results that appear in Google search results (with plans for expansion in the future)."
+        },
+        {
+          "question": "Q4. Does it suggest solutions?",
+          "answer": "While there is no automatic solution suggestion feature, the detection results make it easier to decide on strategies like rewriting or consolidation."
+        },
+        {
+          "question": "Q5. Is the information I enter saved?",
+          "answer": "No, your keywords and domain data are not stored and are discarded immediately after conversion. You can use the tool with confidence."
+        }
+      ]
+    }
   }
 }

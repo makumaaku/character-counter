@@ -1,19 +1,19 @@
 {
   "meta": {
     "title": "Comprobador de Canibalización SEO | Boring Tools",
-    "description": "Comprueba si palabras clave específicas están compitiendo en múltiples páginas de tu sitio. Identifica fácilmente problemas de canibalización SEO.",
-    "keywords": "SEO,canibalización,competencia de palabras clave,herramientas SEO,optimización para motores de búsqueda"
+    "description": "Verifica si hay múltiples páginas compitiendo por las mismas palabras clave en tu sitio. Detecta problemas de canibalización SEO fácilmente.",
+    "keywords": "SEO,canibalización,competencia de palabras clave,herramientas SEO,optimización de motores de búsqueda"
   },
   "title": "Comprobador de Canibalización SEO",
-  "description": "Introduce un dominio y una palabra clave para comprobar la canibalización de palabras clave (competencia) dentro de tu sitio.",
+  "description": "Ingresa un dominio y una palabra clave para verificar la canibalización de palabras clave (competencia) dentro de tu sitio.",
   "domain": {
     "label": "Dominio",
-    "placeholder": "ej. ejemplo.com",
+    "placeholder": "ej: ejemplo.com",
     "help": "El protocolo (http:// o https://) es opcional"
   },
   "keyword": {
     "label": "Palabra clave",
-    "placeholder": "Introduce la palabra clave a comprobar",
+    "placeholder": "Ingresa la palabra clave a verificar",
     "help": "Puedes buscar múltiples palabras"
   },
   "button": {
@@ -26,9 +26,95 @@
     "openButton": "Abrir resultados de búsqueda de Google"
   },
   "error": {
-    "emptyDomain": "Por favor, introduce un dominio",
-    "invalidDomain": "Por favor, introduce un dominio válido",
-    "emptyKeyword": "Por favor, introduce una palabra clave",
-    "generic": "Ha ocurrido un error. Por favor, inténtalo de nuevo."
+    "emptyDomain": "Por favor, ingresa un dominio",
+    "invalidDomain": "Por favor, ingresa un dominio válido",
+    "emptyKeyword": "Por favor, ingresa una palabra clave",
+    "generic": "Ocurrió un error. Por favor, inténtalo de nuevo."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Descripción general",
+      "content": "El Comprobador de Canibalización SEO es una herramienta gratuita para verificar si múltiples páginas de tu sitio web están compitiendo por las mismas o similares palabras clave (canibalización). Visualiza la competencia interna a nivel de URL para ayudar a identificar si problemas SEO como rankings pobres o bajo CTR son causados por competencia interna. Con un diseño simple que requiere solo palabras clave y dominio, proporciona una guía clara para mejorar el sitio."
+    },
+    "howTo": {
+      "title": "Cómo usar",
+      "steps": [
+        {
+          "title": "Ingresa la palabra clave que deseas verificar",
+          "description": "Ingresa la palabra clave que estás utilizando para SEO en el formulario."
+        },
+        {
+          "title": "Ingresa tu dominio o URL",
+          "description": "Ingresa el dominio de tu sitio web o la URL específica que deseas investigar."
+        },
+        {
+          "title": "Verifica la canibalización",
+          "description": "La herramienta visualizará si múltiples páginas de tu dominio aparecen en los resultados de búsqueda para la misma palabra clave."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Testimonios de usuarios",
+      "users": [
+        {
+          "name": "Persona A (Especialista en contenido SEO)",
+          "comment": "Tenía un artículo que no se posicionaba bien a pesar de mis esfuerzos. Usando esta herramienta, descubrí que otro artículo similar lo estaba canibalizando. Esta herramienta realmente me ayudó a identificar el problema."
+        },
+        {
+          "name": "Persona B (Gerente web de pequeña empresa)",
+          "comment": "Habíamos escrito varias publicaciones de blog similares a lo largo del tiempo, lo que estaba causando el problema. Después de consolidarlas en un artículo completo, nuestros rankings han comenzado a estabilizarse."
+        },
+        {
+          "name": "Persona C (Consultor SEO)",
+          "comment": "La uso cuando diagnostico contenido existente para clientes. La competencia es clara de un vistazo, lo que facilita su uso en materiales de propuesta."
+        }
+      ]
+    },
+    "features": {
+      "title": "Características y beneficios",
+      "items": [
+        {
+          "title": "Lista automáticamente las páginas canibalizadas",
+          "description": "Cuando múltiples páginas del mismo dominio aparecen en los resultados de búsqueda, se detectan automáticamente y se listan, permitiéndote identificar rápidamente las páginas que necesitan atención."
+        },
+        {
+          "title": "Visualiza la canibalización por palabra clave",
+          "description": "Muestra qué páginas están compitiendo por cuáles palabras clave. Analiza con referencia a los rankings de página e información meta."
+        },
+        {
+          "title": "Obtén información para estrategias de mejora",
+          "description": "Cuando se encuentra canibalización, usa los resultados como material para desarrollar estrategias de mejora como consolidación, eliminación o reescritura. Útil para organizar tu estrategia SEO."
+        },
+        {
+          "title": "Herramienta gratuita y sin código para todos",
+          "description": "Simplemente ingresa URL y palabras clave para usar. Esta herramienta de análisis SEO no requiere conocimientos de programación y es gratuita, haciéndola accesible a profesionales de diversos campos."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": [
+        {
+          "question": "P1. ¿Qué es la canibalización?",
+          "answer": "La canibalización ocurre cuando múltiples páginas de tu sitio compiten por la misma palabra clave en los resultados de búsqueda, dispersando los rankings de búsqueda y CTR, debilitando así la efectividad de tu SEO."
+        },
+        {
+          "question": "P2. ¿Esto solo verifica páginas dentro del mismo dominio?",
+          "answer": "Sí, esta herramienta está diseñada para detectar canibalización entre páginas dentro de tu propio dominio."
+        },
+        {
+          "question": "P3. ¿Cuántas páginas se pueden verificar?",
+          "answer": "La herramienta puede verificar hasta aproximadamente los 100 primeros resultados que aparecen en los resultados de búsqueda de Google (con planes de expansión en el futuro)."
+        },
+        {
+          "question": "P4. ¿Sugiere soluciones?",
+          "answer": "Si bien no hay una función de sugerencia de solución automática, los resultados de detección facilitan decidir estrategias como reescritura o consolidación."
+        },
+        {
+          "question": "P5. ¿Se guarda la información que ingreso?",
+          "answer": "No, tus palabras clave y datos de dominio no se almacenan y se descartan inmediatamente después de la conversión. Puedes usar la herramienta con confianza."
+        }
+      ]
+    }
   }
 }

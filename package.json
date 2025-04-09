@@ -12,7 +12,8 @@
     "i18n-validate": "node --loader ts-node/esm src/scripts/validate-i18n.ts",
     "i18n-report": "node --loader ts-node/esm src/scripts/i18n-report.ts",
     "i18n-fix": "node --loader ts-node/esm src/scripts/i18n-fix-helper.ts",
-    "i18n": "npm run i18n-validate && npm run i18n-fix ja && npm run i18n-fix es && npm run i18n-fix ru && npm run i18n-fix zh && npm run i18n-report",
+    "i18n-check": "node --loader ts-node/esm src/scripts/check-i18n-keys.ts",
+    "i18n": "npm run i18n-validate && npm run i18n-fix ja && npm run i18n-fix es && npm run i18n-fix ru && npm run i18n-fix zh && npm run i18n-report && npm run i18n-check",
     "precommit": "npm run i18n",
     "prepare": "husky"
   },
@@ -29,6 +30,7 @@
     "@types/mdx": "^2.0.13",
     "@types/three": "^0.173.0",
     "axios": "^1.7.9",
+    "chalk": "^5.4.1",
     "cheerio": "^1.0.0",
     "cookies-next": "^5.1.0",
     "file-saver": "^2.0.5",

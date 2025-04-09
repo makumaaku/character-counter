@@ -28,5 +28,91 @@
   },
   "font": {
     "loading": "Now loading..."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "The Japanese Kanji Generator is a simple and convenient tool that allows you to randomly generate Japanese kanji characters with just one click and download them as images. The generated kanji are provided in high resolution at 512×512 pixels and can be used for a wide range of purposes including personal use, learning, and design materials."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Click the 'Generate' Button",
+          "description": "A random kanji is generated with just one click."
+        },
+        {
+          "title": "Check the Displayed Kanji",
+          "description": "The generated kanji is displayed large on an intuitive interface."
+        },
+        {
+          "title": "Choose Format and Download",
+          "description": "Save in JPG or PNG format. Ready to use immediately."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "Person A (Graphic Designer)",
+          "comment": "The kanji shapes look great in designs, so I use them for inspiration for logos and posters. It's great that you can use it intuitively even if you don't understand Japanese."
+        },
+        {
+          "name": "Person B (Japanese Learner)",
+          "comment": "It motivates me to study kanji! I encounter characters I don't know, so there are new discoveries every day."
+        },
+        {
+          "name": "Person C (Game Developer)",
+          "comment": "It helps me get random inspiration when using kanji for character names and item names in games."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Completely Free to Use",
+          "description": "No registration required, simple design ready to use immediately."
+        },
+        {
+          "title": "High-Quality Image Downloads",
+          "description": "512×512px resolution suitable for web and print."
+        },
+        {
+          "title": "Versatile Applications",
+          "description": "For learning, creative work, design, social media posts, and more."
+        },
+        {
+          "title": "Simple Operation",
+          "description": "Intuitive UI that anyone can use right away."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Does it display the meaning or pronunciation of the generated kanji?",
+          "answer": "This tool specializes in random generation and does not display meanings or readings. Please use a dictionary as needed."
+        },
+        {
+          "question": "Can I use it commercially?",
+          "answer": "Yes, the images themselves can be used commercially, but please be aware of kanji copyright and context. Please check for yourself before use."
+        },
+        {
+          "question": "Can I download with a transparent background?",
+          "answer": "If you download in PNG format, the background will be transparent."
+        },
+        {
+          "question": "How are the generated kanji selected?",
+          "answer": "They are randomly extracted from commonly used kanji."
+        },
+        {
+          "question": "Can I use it from a smartphone?",
+          "answer": "Yes, you can use it from any browser on PC or smartphone."
+        }
+      ]
+    }
   }
 }

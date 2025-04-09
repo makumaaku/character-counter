@@ -34,74 +34,82 @@
       "writing": "Práctica de Escritura",
       "esl": "Aprendizaje de Inglés"
     },
-    "about": {
-      "catchphrase": "¡Captura inspiración de un vistazo! Genera tus propias tarjetas de palabras aleatorias",
-      "introduction": "El Generador de Tarjetas de Palabras Aleatorias es una herramienta que muestra palabras seleccionadas al azar en formato de tarjeta. Útil para aprendizaje, lluvia de ideas, mejora de vocabulario y más. Con una operación simple e intuitiva, cada nueva tarjeta que aparece en la pantalla trae un nuevo descubrimiento.",
-      "features": {
+    "seoText": {
+      "overview": {
+        "title": "Generador de Tarjetas de Palabras Aleatorias",
+        "content": "¡Captura inspiración de un vistazo! Genera tus propias tarjetas de palabras aleatorias\nEl Generador de Tarjetas de Palabras Aleatorias es una herramienta que muestra palabras seleccionadas al azar en formato de tarjeta. Útil para aprendizaje, lluvia de ideas, mejora de vocabulario y más. Con una operación simple e intuitiva, cada nueva tarjeta que aparece en la pantalla trae un nuevo descubrimiento."
+      },
+      "howTo": {
         "title": "Características y Funciones",
-        "oneClick": {
-          "title": "Generación con Un Clic",
-          "description": "Las nuevas tarjetas de palabras aparecen instantáneamente con solo hacer clic en un botón. Puedes generar nuevas tarjetas tantas veces como quieras sin aburrirte."
-        },
-        "database": {
-          "title": "Rica Base de Datos de Vocabulario",
-          "description": "Incluye palabras de diversas categorías como conversación diaria, términos académicos y vocabulario especializado. Permite mejorar el vocabulario según tus objetivos."
-        },
-        "design": {
-          "title": "Personalización del Diseño de Tarjetas",
-          "description": "Con un diseño simple pero sofisticado, los usuarios pueden disfrutar del aspecto visual de las tarjetas, incluyendo colores de fondo y fuentes."
-        }
+        "steps": [
+          {
+            "title": "Generación con Un Clic",
+            "description": "Las nuevas tarjetas de palabras aparecen instantáneamente con solo hacer clic en un botón. Puedes generar nuevas tarjetas tantas veces como quieras sin aburrirte."
+          },
+          {
+            "title": "Rica Base de Datos de Vocabulario",
+            "description": "Incluye palabras de diversas categorías como conversación diaria, términos académicos y vocabulario especializado. Permite mejorar el vocabulario según tus objetivos."
+          },
+          {
+            "title": "Personalización del Diseño de Tarjetas",
+            "description": "Con un diseño simple pero sofisticado, los usuarios pueden disfrutar del aspecto visual de las tarjetas, incluyendo colores de fondo y fuentes."
+          }
+        ]
       },
-      "useCases": {
+      "testimonials": {
         "title": "Casos de Uso y Ejemplos de Usuario",
-        "vocabulary": {
-          "title": "Aprendizaje de Vocabulario",
-          "description": "Ideal para aprender nuevas palabras. Los estudiantes mejoran la retención de memoria a través del formato visual de tarjetas."
-        },
-        "brainstorming": {
-          "title": "Lluvia de Ideas",
-          "description": "Las tarjetas de palabras aleatorias pueden inspirar nuevas ideas durante las sesiones de lluvia de ideas."
-        },
-        "games": {
-          "title": "Juegos y Talleres",
-          "description": "Puede usarse como herramienta de comunicación grupal, para juegos improvisados o temas de discusión."
-        }
+        "users": [
+          {
+            "name": "Aprendizaje de Vocabulario",
+            "comment": "Ideal para aprender nuevas palabras. Los estudiantes mejoran la retención de memoria a través del formato visual de tarjetas."
+          },
+          {
+            "name": "Lluvia de Ideas",
+            "comment": "Las tarjetas de palabras aleatorias pueden inspirar nuevas ideas durante las sesiones de lluvia de ideas."
+          },
+          {
+            "name": "Juegos y Talleres",
+            "comment": "Puede usarse como herramienta de comunicación grupal, para juegos improvisados o temas de discusión."
+          }
+        ]
       },
-      "technical": {
+      "features": {
         "title": "Antecedentes Técnicos y Mecanismos",
-        "algorithm": {
-          "title": "Algoritmo Único de Generación Aleatoria",
-          "description": "Las palabras aleatorias se extraen y formatean automáticamente en tarjetas con cada clic."
-        },
-        "database": {
-          "title": "Datos de Vocabulario Actualizados Periódicamente",
-          "description": "La base de datos se expande continuamente con retroalimentación de usuarios, proporcionando un entorno donde siempre encuentras nuevas palabras."
-        },
-        "responsive": {
-          "title": "Diseño Responsivo",
-          "description": "Optimizado para smartphones y tablets, permitiendo disfrutar de las tarjetas cómodamente desde cualquier dispositivo."
-        }
+        "items": [
+          {
+            "title": "Algoritmo Único de Generación Aleatoria",
+            "description": "Las palabras aleatorias se extraen y formatean automáticamente en tarjetas con cada clic."
+          },
+          {
+            "title": "Datos de Vocabulario Actualizados Periódicamente",
+            "description": "La base de datos se expande continuamente con retroalimentación de usuarios, proporcionando un entorno donde siempre encuentras nuevas palabras."
+          },
+          {
+            "title": "Diseño Responsivo",
+            "description": "Optimizado para smartphones y tablets, permitiendo disfrutar de las tarjetas cómodamente desde cualquier dispositivo."
+          },
+          {
+            "title": "Conclusión",
+            "description": "El Generador de Tarjetas de Palabras Aleatorias es una herramienta ideal para el aprendizaje de vocabulario y lluvia de ideas. Con su operación simple y rica base de datos, ofrece una nueva perspectiva a tu rutina diaria. Disfruta descubriendo algo nuevo cada vez que uses esta herramienta."
+          }
+        ]
       },
       "faq": {
         "title": "Preguntas Frecuentes (FAQ)",
-        "questions": {
-          "free": {
+        "questions": [
+          {
             "question": "¿Esta herramienta es gratuita?",
             "answer": "Sí, las funciones básicas están disponibles de forma gratuita."
           },
-          "customize": {
+          {
             "question": "¿Puedo personalizar el diseño de las tarjetas?",
             "answer": "Actualmente el diseño es simple, pero estamos considerando agregar funciones de personalización en futuras actualizaciones."
           },
-          "print": {
+          {
             "question": "¿Puedo imprimir las tarjetas?",
             "answer": "Sí, puedes tomar capturas de pantalla o imprimir las tarjetas mostradas."
           }
-        }
-      },
-      "conclusion": {
-        "title": "Conclusión",
-        "description": "El Generador de Tarjetas de Palabras Aleatorias es una herramienta ideal para el aprendizaje de vocabulario y lluvia de ideas. Con su operación simple y rica base de datos, ofrece una nueva perspectiva a tu rutina diaria. Disfruta descubriendo algo nuevo cada vez que uses esta herramienta."
+        ]
       }
     }
 }

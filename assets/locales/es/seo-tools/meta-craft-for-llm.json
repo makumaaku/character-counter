@@ -1,11 +1,11 @@
 {
     "meta": {
       "title": "Meta Craft para LLM - Generador de Código SEO para LLMs",
-      "description": "Genera automáticamente código SEO para LLMs simplemente ingresando una URL. Crea fácilmente títulos, meta descripciones, OGP y JSON-LD.",
+      "description": "Genera automáticamente código SEO para LLMs simplemente introduciendo una URL. Crea fácilmente títulos, metadescripciones, OGP y JSON-LD.",
       "keywords": "generador de meta etiquetas, SEO, LLM, OpenGraph, JSON-LD, Twitter Card, datos estructurados"
     },
     "title": "Meta Craft para LLM",
-    "description": "Genera y muestra código SEO para LLMs ingresando la URL de un sitio web",
+    "description": "Genera y muestra código SEO para LLMs introduciendo la URL de un sitio web",
     "url": {
       "label": "URL para Analizar",
       "placeholder": "https://example.com",
@@ -18,8 +18,8 @@
       "ogTags": "Etiquetas OGP",
       "twitterTags": "Twitter Card",
       "jsonLd": "JSON-LD",
-      "jsonLdImportance": "Elemento Crítico para SEO de LLM",
-      "jsonLdDescription": "JSON-LD proporciona datos estructurados que ayudan a los motores de búsqueda y LLMs a entender tu contenido. Es el elemento SEO más importante para LLMs, comunicando claramente el contexto y las relaciones en tu contenido.",
+      "jsonLdImportance": "Elemento Crítico para SEO en LLM",
+      "jsonLdDescription": "JSON-LD proporciona datos estructurados que ayudan a los motores de búsqueda y LLMs a entender tu contenido. Es el elemento SEO más importante para los LLMs, comunicando claramente el contexto y las relaciones en tu contenido.",
       "otherElements": "Otros Elementos SEO"
     },
     "copy": {
@@ -28,15 +28,15 @@
     "error": {
       "fetch": "Ocurrió un error al obtener la URL",
       "parsing": "Ocurrió un error al analizar el HTML",
-      "urlRequired": "Se requiere una URL",
+      "urlRequired": "Se requiere URL",
       "invalidUrl": "URL inválida",
-      "fetchFailed": "Error al obtener la URL",
-      "fetchWithStatus": "Error al obtener la URL: {status} {statusText}"
+      "fetchFailed": "Error al obtener URL",
+      "fetchWithStatus": "Error al obtener URL: {status} {statusText}"
     },
     "loading": "Procesando...",
     "seoInfo": {
       "title": "Datos Estructurados JSON-LD y SEO para LLMs",
-      "description": "JSON-LD son datos estructurados compatibles con Schema.org, sirviendo como un componente crítico para que los motores de búsqueda y la IA entiendan tu contenido. Para asegurar un reconocimiento adecuado por los Modelos de Lenguaje Grande, considera los siguientes puntos:",
+      "description": "JSON-LD son datos estructurados compatibles con Schema.org, que sirven como componente crítico para que los motores de búsqueda y la IA entiendan tu contenido. Para asegurar un reconocimiento adecuado por los Modelos de Lenguaje de Gran Escala, considera los siguientes puntos:",
       "points": [
         "Elige valores @type apropiados como WebPage o WebApplication",
         "Describe con precisión propiedades básicas como nombre, descripción y url",
@@ -45,5 +45,91 @@
         "Combina múltiples esquemas para proporcionar información rica"
       ],
       "conclusion": "Al implementar datos estructurados adecuados, los LLMs pueden entender tu contenido más profundamente, aumentando la probabilidad de ser citado en resultados de búsqueda y respuestas de IA."
+    },
+    "seoText": {
+      "overview": {
+        "title": "Descripción General",
+        "content": "Meta Craft para LLM es una herramienta gratuita que optimiza la metainformación (títulos, descripciones, estructuras) del SEO y la arquitectura de información para Modelos de Lenguaje de Gran Escala (LLMs).\nExtrae títulos, descripciones y estructuras de secciones de páginas web o contenido y los convierte automáticamente en formatos útiles para el diseño de prompts y salidas estructuradas. Esta herramienta de estructuración potenciada por IA acelera la utilización de LLM en contextos SEO."
+      },
+      "howTo": {
+        "title": "Cómo Usar",
+        "steps": [
+          {
+            "title": "Introduce URL o Texto",
+            "description": "Ingresa la URL de la página web objetivo o pega directamente el contenido de texto."
+          },
+          {
+            "title": "Genera Automáticamente Información Estructurada y Meta",
+            "description": "La IA genera títulos, descripciones, estructuras de encabezados y candidatos de etiquetas."
+          },
+          {
+            "title": "Obtén Formato de Salida Optimizado para LLM",
+            "description": "La estructura generada se muestra en un formato que puede copiarse y pegarse directamente como prompt."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "Testimonios de Usuarios",
+        "users": [
+          {
+            "name": "Usuario A (Director SEO que usa activamente IA)",
+            "comment": "\"Estaba luchando con el diseño de prompts al usar ChatGPT para artículos SEO. Con esta herramienta generando automáticamente la estructura, no tengo que empezar desde cero.\""
+          },
+          {
+            "name": "Usuario B (Editor colaborando con IA para tareas de escritura)",
+            "comment": "\"Es increíblemente conveniente que solo genere estructura e información meta. Está más organizado que lo que crean los humanos, y estabiliza la precisión de la escritura con IA.\""
+          },
+          {
+            "name": "Usuario C (Desarrollador de Aplicaciones LLM)",
+            "comment": "\"Estoy aplicando esto para extraer estructuras de datos enviados por usuarios para pasarlos a LLMs. Está a un nivel que me gustaría integrarlo en nuestro propio servicio.\""
+          }
+        ]
+      },
+      "features": {
+        "title": "Características y Beneficios",
+        "items": [
+          {
+            "title": "Genera Automáticamente Estructuras de Prompts Óptimas para LLMs",
+            "description": "Meta Craft utiliza un modelo de estructuración potente en contextos SEO para extraer y convertir títulos, descripciones y estructuras de encabezados de una sola vez. Como genera en un formato que puede pasarse directamente a los LLMs, reduce significativamente la carga de trabajo del diseño de prompts."
+          },
+          {
+            "title": "Formatea Estructuras de Páginas Web en \"Forma Legible por Máquinas\"",
+            "description": "En lugar de simplemente extraer texto, analiza encabezados h2/h3 y pesos de palabras clave para formatear en una forma estructurada, haciéndola legible tanto para humanos como para máquinas."
+          },
+          {
+            "title": "Especializado en Conectar SEO y Escritura con IA",
+            "description": "Una herramienta que aborda el desafío de querer generar estructuras SEO con LLMs pero tener dificultades para proporcionar instrucciones efectivas. Complementa el diseño humano mientras convierte automáticamente a formatos fácilmente entendidos por LLMs."
+          },
+          {
+            "title": "Completamente Gratuita y Sin Código Lista para Usar",
+            "description": "No requiere registro, solo introduce URLs o texto. Una herramienta de soporte de IA sin código utilizable por gestores web, editores y especialistas en marketing."
+          }
+        ]
+      },
+      "faq": {
+        "title": "FAQ - Preguntas Frecuentes",
+        "questions": [
+          {
+            "question": "P1. ¿A qué se refiere la Metainformación?",
+            "answer": "R. Se refiere a información que transmite los puntos clave y el significado de una página, como \"etiquetas de título\", \"metadescripciones\", \"estructuras de encabezados\" y \"candidatos de etiquetas\" en contenido web."
+          },
+          {
+            "question": "P2. ¿Qué tipo de contenido se incluye en la salida de formato de prompt?",
+            "answer": "R. Genera automáticamente título, descripción, estructura h2/h3, etiquetas de resumen, audiencia objetivo y más en una estructura amigable para LLM."
+          },
+          {
+            "question": "P3. ¿Puedo usarlo solo con la URL de una página web?",
+            "answer": "R. Sí, puedes extraer y estructurar información de esa página introduciendo una URL. También puedes introducir texto mediante copiar y pegar."
+          },
+          {
+            "question": "P4. ¿Puede usarse como herramienta de escritura SEO?",
+            "answer": "R. Sí, puedes usarla de manera flexible, como usar solo la generación automática de estructura y encabezados, y luego hacer que un humano escriba el resto."
+          },
+          {
+            "question": "P5. ¿Se guarda el contenido introducido?",
+            "answer": "R. No, las URLs, el texto y los resultados de salida no se guardan y se eliminan automáticamente después de un cierto período."
+          }
+        ]
+      }
     }
   } 

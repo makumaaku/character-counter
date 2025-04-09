@@ -1,35 +1,121 @@
 {
   "meta": {
-    "title": "PDF转JPG转换器 - 在线将PDF转换为图像",
-    "description": "免费在线工具，将PDF文档转换为JPG图像。将每页转换为具有可调整质量的单独图像。无需安装。",
-    "keywords": "pdf转jpg, pdf转图像, 转换pdf为jpg, pdf转换器, 在线pdf转换器, 免费pdf转换器"
+    "title": "PDF to JPG Converter - Free Online Tool to Convert PDF to High-Quality JPG Images",
+    "description": "Convert PDF files to high-quality JPG images page by page. Perfect for presentations, reports, and social media sharing. Free, no registration required, and mobile-friendly.",
+    "keywords": "pdf to jpg, pdf to image, convert pdf to jpg, pdf converter, online pdf converter, free pdf converter"
   },
-  "title": "PDF转JPG转换器",
-  "description": "将PDF页面转换为可调整质量的JPG图像",
+  "title": "PDF to JPG Converter",
+  "description": "Convert PDF pages to JPG images with adjustable quality",
   "form": {
     "upload": {
-      "label": "上传PDF文件",
-      "button": "拖放PDF文件到此处，或点击选择",
-      "dragDrop": "拖放文件到此处或点击浏览"
+      "label": "Upload PDF File",
+      "button": "Drag & drop a PDF file here, or click to select",
+      "dragDrop": "Drag & drop file here or click to browse"
     },
     "quality": {
-      "label": "图像质量",
-      "low": "低",
-      "medium": "中",
-      "high": "高"
+      "label": "Image Quality",
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
     },
-    "convert": "转换为JPG"
+    "convert": "Convert to JPG"
   },
   "result": {
-    "downloadAll": "下载全部",
-    "download": "下载"
+    "downloadAll": "Download All",
+    "download": "Download"
   },
   "status": {
-    "processing": "处理中...",
-    "noFile": "未选择文件"
+    "processing": "Processing...",
+    "noFile": "No file selected"
   },
   "error": {
-    "fileType": "请上传PDF文件",
-    "fileSize": "文件大小超过20MB限制"
+    "fileType": "Please upload a PDF file",
+    "fileSize": "File size exceeds 20MB limit"
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "PDF to JPG Converter is a free online tool that converts PDF files into high-quality JPG images. Each page is extracted as a separate image, making it perfect for using portions of documents as images or sharing on social media and apps that don't support PDFs. No installation or registration required - it's a simple conversion tool anyone can use immediately. Compatible with smartphones and tablets too."
+    },
+    "howTo": {
+      "title": "Simple Steps to Use",
+      "steps": [
+        {
+          "title": "Upload PDF File",
+          "description": "Upload your PDF file by dragging & dropping it or clicking 'Select File'."
+        },
+        {
+          "title": "Automatic JPG Conversion",
+          "description": "Each page will be automatically converted into a high-quality JPG image."
+        },
+        {
+          "title": "Download Images",
+          "description": "Save images individually or download all at once."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Sales Manager)",
+          "comment": "This tool is so convenient when I need to send parts of PDF presentations as images in our company chat. The quality is great and I can paste directly into PowerPoint."
+        },
+        {
+          "name": "User B (University Student)",
+          "comment": "I save PDF lecture notes as images on my phone. Easy to review with one hand and convenient to share on social media!"
+        },
+        {
+          "name": "User C (Small Business Owner)",
+          "comment": "When I want to post seminar materials on Instagram, this tool that converts PDF to JPG in bulk is invaluable. The simple operation is a real time-saver."
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "High-Quality Page-by-Page Conversion",
+          "description": "Not only converts PDFs to images but outputs them as clear JPGs while maintaining resolution. Text remains sharp even when enlarged, suitable for presentations and printing."
+        },
+        {
+          "title": "Individual Page Conversion & Saving",
+          "description": "Convert and save each PDF page as a separate JPG image, allowing you to extract only the pages you need. Perfect for social media posts and internal sharing."
+        },
+        {
+          "title": "No Installation or Registration Required",
+          "description": "No app installation or tedious account creation necessary. Just upload and convert instantly, even when you're short on time."
+        },
+        {
+          "title": "Mobile-Friendly Design",
+          "description": "Optimized for mobile devices, enabling smooth conversion and saving from iPhones, Android phones, and tablets. Reliable even when a PC isn't available."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Can all PDFs be converted?",
+          "answer": "Most PDFs are supported, but password-protected files may not be convertible."
+        },
+        {
+          "question": "Can I adjust the JPG image resolution?",
+          "answer": "Currently, images are output at automatically optimized resolution with high quality as the default setting."
+        },
+        {
+          "question": "How are multi-page PDFs processed?",
+          "answer": "Each page is converted to a separate JPG image, and you can download them all together."
+        },
+        {
+          "question": "Can I convert on my smartphone?",
+          "answer": "Yes, you can convert and download on iPhones, Android smartphones, and tablets."
+        },
+        {
+          "question": "Are my uploaded PDFs secure?",
+          "answer": "Yes, uploaded files are automatically deleted after a certain period and are not stored on our servers. You can use the service with peace of mind."
+        }
+      ]
+    }
   }
-} 
+}

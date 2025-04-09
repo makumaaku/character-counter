@@ -18,72 +18,82 @@
       "copyTitle": "Copiar al portapapeles",
       "copied": "¡Copiado!"
     },
-    "detailedContent": {
-      "catchphrase": "¿Necesitas inspiración para tus frases? ¡Abre nuevas puertas a tus historias con frases generadas aleatoriamente!",
-      "introduction": "El Generador de Frases Aleatorias es una herramienta que proporciona inspiración para la escritura y actividades creativas generando frases aleatorias. Útil para blogs, historias, discursos y más.",
-      "features": {
+    "seoText": {
+      "overview": {
+        "title": "Generador de Frases Aleatorias",
+        "content": "¿Necesitas inspiración para tus frases? ¡Abre nuevas puertas a tus historias con frases generadas aleatoriamente!\nEl Generador de Frases Aleatorias es una herramienta que proporciona inspiración para la escritura y actividades creativas generando frases aleatorias. Útil para blogs, historias, discursos y más."
+      },
+      "howTo": {
         "title": "Características y Funciones",
-        "easyOperation": {
-          "title": "Generación Simple de Frases",
-          "description": "Nuevas frases se generan y muestran instantáneamente con un solo toque. Las ideas para frases surgen fácilmente una tras otra."
-        },
-        "patterns": {
-          "title": "Diversos Patrones de Frases",
-          "description": "Preparamos varios estilos de frases, desde conversación diaria hasta narrativa y formal. Obtén fácilmente frases que se ajusten a tu propósito."
-        },
-        "customization": {
-          "title": "Salida Personalizable",
-          "description": "Puedes seleccionar la longitud y el estilo de las frases generadas, permitiendo la personalización según las necesidades del usuario."
-        }
+        "steps": [
+          {
+            "title": "Generación Simple de Frases",
+            "description": "Nuevas frases se generan y muestran instantáneamente con un solo toque. Las ideas para frases surgen fácilmente una tras otra."
+          },
+          {
+            "title": "Diversos Patrones de Frases",
+            "description": "Preparamos varios estilos de frases, desde conversación diaria hasta narrativa y formal. Obtén fácilmente frases que se ajusten a tu propósito."
+          },
+          {
+            "title": "Salida Personalizable",
+            "description": "Puedes seleccionar la longitud y el estilo de las frases generadas, permitiendo la personalización según las necesidades del usuario."
+          }
+        ]
       },
-      "useCases": {
+      "testimonials": {
         "title": "Casos de Uso y Ejemplos",
-        "writer": {
-          "title": "Inspiración para Escritores",
-          "description": "Cuando te atascas en medio de la escritura, nuevas frases pueden ayudarte a que la historia vuelva a fluir."
-        },
-        "creative": {
-          "title": "Ayuda Creativa",
-          "description": "Proporciona frases únicas como semillas de ideas para actividades creativas como novelas y poesía."
-        },
-        "education": {
-          "title": "Uso en Educación",
-          "description": "También puede utilizarse para practicar la composición de frases y como ayuda para la redacción."
-        }
+        "users": [
+          {
+            "name": "Inspiración para Escritores",
+            "comment": "Cuando te atascas en medio de la escritura, nuevas frases pueden ayudarte a que la historia vuelva a fluir."
+          },
+          {
+            "name": "Ayuda Creativa",
+            "comment": "Proporciona frases únicas como semillas de ideas para actividades creativas como novelas y poesía."
+          },
+          {
+            "name": "Uso en Educación",
+            "comment": "También puede utilizarse para practicar la composición de frases y como ayuda para la redacción."
+          }
+        ]
       },
-      "technical": {
+      "features": {
         "title": "Antecedentes Técnicos y Mecanismos",
-        "nlp": {
-          "title": "Uso de Tecnología de Procesamiento de Lenguaje Natural",
-          "description": "Genera frases gramaticalmente naturales utilizando los últimos algoritmos de procesamiento de lenguaje natural. También considera la coherencia del contenido."
-        },
-        "database": {
-          "title": "Extensa Base de Datos de Estilos",
-          "description": "Logramos diversos patrones de frases incluyendo varios estilos y géneros en nuestra base de datos."
-        },
-        "performance": {
-          "title": "Diseño de Respuesta Rápida",
-          "description": "Implementamos procesamiento rápido y optimización para que los usuarios puedan utilizar la herramienta sin estrés."
-        }
+        "items": [
+          {
+            "title": "Uso de Tecnología de Procesamiento de Lenguaje Natural",
+            "description": "Genera frases gramaticalmente naturales utilizando los últimos algoritmos de procesamiento de lenguaje natural. También considera la coherencia del contenido."
+          },
+          {
+            "title": "Extensa Base de Datos de Estilos",
+            "description": "Logramos diversos patrones de frases incluyendo varios estilos y géneros en nuestra base de datos."
+          },
+          {
+            "title": "Diseño de Respuesta Rápida",
+            "description": "Implementamos procesamiento rápido y optimización para que los usuarios puedan utilizar la herramienta sin estrés."
+          },
+          {
+            "title": "Conclusión",
+            "description": "El Generador de Frases Aleatorias es la herramienta perfecta para todos los creadores que necesitan inspiración para escribir. Con operación simple y diversos estilos, aporta un aire fresco a tus actividades de escritura. Úsalo para expandir tus horizontes en la escritura."
+          }
+        ]
       },
       "faq": {
         "title": "Preguntas Frecuentes (FAQ)",
-        "quality": {
-          "question": "¿Qué calidad tienen las frases generadas?",
-          "answer": "Nos esforzamos por generar frases gramaticalmente correctas utilizando tecnología de procesamiento de lenguaje natural."
-        },
-        "commercial": {
-          "question": "¿Es posible el uso comercial?",
-          "answer": "Sí, el uso comercial está permitido según los términos de servicio. Por favor, consulta la página de términos para más detalles."
-        },
-        "style": {
-          "question": "¿Puedo cambiar el estilo de las frases?",
-          "answer": "Sí, puedes ajustar el estilo y la longitud usando las funciones de personalización."
-        }
-      },
-      "conclusion": {
-        "title": "Conclusión",
-        "description": "El Generador de Frases Aleatorias es la herramienta perfecta para todos los creadores que necesitan inspiración para escribir. Con operación simple y diversos estilos, aporta un aire fresco a tus actividades de escritura. Úsalo para expandir tus horizontes en la escritura."
+        "questions": [
+          {
+            "question": "¿Qué calidad tienen las frases generadas?",
+            "answer": "Nos esforzamos por generar frases gramaticalmente correctas utilizando tecnología de procesamiento de lenguaje natural."
+          },
+          {
+            "question": "¿Es posible el uso comercial?",
+            "answer": "Sí, el uso comercial está permitido según los términos de servicio. Por favor, consulta la página de términos para más detalles."
+          },
+          {
+            "question": "¿Puedo cambiar el estilo de las frases?",
+            "answer": "Sí, puedes ajustar el estilo y la longitud usando las funciones de personalización."
+          }
+        ]
       }
     }
 }

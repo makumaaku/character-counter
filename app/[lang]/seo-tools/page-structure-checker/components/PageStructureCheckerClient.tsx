@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { SeoToolsPageStructureCheckerMessages } from '@/lib/i18n/types'
 
 type PageStructureResult = {
   title: string | null
@@ -20,44 +21,7 @@ type PageStructureResult = {
 
 interface PageStructureCheckerClientProps {
   lang: string
-  messages: {
-    title: string
-    description: string
-    form: {
-      urlLabel: string
-      urlPlaceholder: string
-      analyzing: string
-      analyze: string
-      example: string
-    }
-    error: {
-      title: string
-      urlRequired: string
-      invalidUrl: string
-      fetchFailed: string
-      networkError: string
-      serverError: string
-      timeoutError: string
-      parsingError: string
-    }
-    issues: string
-    metaTitle: string
-    analysis: string
-    good: string
-    missing: string
-    issueFound: string
-    recommended: string
-    importantForSeo: string
-    noTitle: string
-    headingsStructure: string
-    headingsExplanation: string
-    headingsMissing: string
-    headingsLevelsTitle: string
-    contentStructureTitle: string
-    contentStructureExplanation: string
-    viewHeadings: string
-    headingIssue: string
-  }
+  messages: SeoToolsPageStructureCheckerMessages
 }
 
 export default function PageStructureCheckerClient({ lang, messages }: PageStructureCheckerClientProps) {
@@ -359,7 +323,7 @@ export default function PageStructureCheckerClient({ lang, messages }: PageStruc
               </div>
             ) : (
               <div className="p-3 bg-gray-700 rounded-lg">
-                <p className="text-yellow-300">{messages.headingsMissing}</p>
+                <p className="text-yellow-300">{messages.noHeadings}</p>
               </div>
             )}
           </div>

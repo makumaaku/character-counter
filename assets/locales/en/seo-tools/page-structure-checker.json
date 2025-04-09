@@ -1,7 +1,7 @@
 {
     "meta": {
-      "title": "Page Structure Checker - SEO Tools",
-      "description": "Analyze your webpage's structure including title, description, and heading hierarchy to ensure proper SEO optimization",
+      "title": "Page Structure Checker | Free SEO Analysis Tool to Visualize Web Page Structure & Heading Hierarchy",
+      "description": "Check HTML structure and heading tags (h1-h6) hierarchy to confirm SEO-friendly content structure. The first step to structured content creation.",
       "keywords": "page structure, heading structure, seo checker, h1 tag, title tag, meta description"
     },
     "title": "Page Structure Checker",
@@ -59,5 +59,91 @@
     "hierarchyIssueMessage": "Hierarchy Issue",
     "recommended": "Recommended",
     "importantForSeo": "Important for SEO",
-    "headings": "Headings"
-  }
+    "headings": "Headings",
+    "seoText": {
+      "overview": {
+        "title": "Overview",
+        "content": "Page Structure Checker is a free online tool that visually examines heading hierarchy and HTML structure of web pages.\nFor search engines to properly understand your pages, logical structure (h1-h6) and section organization are essential. With this tool, simply enter a URL to visualize the entire page's heading structure in a tree format, gaining insights to create SEO-friendly content architecture."
+      },
+      "howTo": {
+        "title": "How to Use",
+        "steps": [
+          {
+            "title": "Enter the URL of the webpage you want to check",
+            "description": "Input the URL of the page you want to analyze in the form."
+          },
+          {
+            "title": "Click the \"Analyze Structure\" button",
+            "description": "The tool will analyze the heading tags and structure information from the page's HTML."
+          },
+          {
+            "title": "Review the heading structure in tree view",
+            "description": "Visually examine the h1-h6 heading structure, order, and any missing or duplicate issues in a tree format."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "User Testimonials",
+        "users": [
+          {
+            "name": "User A (SEO Specialist)",
+            "comment": "\"I use this when creating page structures. It immediately shows if h2 and h3 hierarchies are intact, which helps with draft checking.\""
+          },
+          {
+            "name": "User B (Web Director)",
+            "comment": "\"I visually organize existing page structures to make improvement proposals. It helps not just with layout modifications but also SEO optimization.\""
+          },
+          {
+            "name": "User C (Writer & Blogger)",
+            "comment": "\"I was worried if my articles had a logical structure. When I checked the heading sequence with this tool, I discovered I had multiple h1 tags.\""
+          }
+        ]
+      },
+      "features": {
+        "title": "Features & Benefits",
+        "items": [
+          {
+            "title": "Visualize h1-h6 tag structure in tree format",
+            "description": "Display webpage heading structures in an easy-to-understand tree format. Quickly identify structural mistakes like duplicate headings or skipped hierarchy levels."
+          },
+          {
+            "title": "Support logical structure design",
+            "description": "Proper heading hierarchy is crucial for both SEO and accessibility in page structures read by search engines and screen readers. Take the first step in checking and improving your content organization."
+          },
+          {
+            "title": "Perfect for draft pages and pre-rewrite diagnostics",
+            "description": "Check structure in both existing pages and article drafts to prevent production mistakes and SEO oversights. Also useful for quality checks before delivery."
+          },
+          {
+            "title": "Free, no registration, accessible to everyone",
+            "description": "Analysis is complete with just a URL input. A structure checking tool that's easy to use even for web beginners and writers."
+          }
+        ]
+      },
+      "faq": {
+        "title": "FAQ - Frequently Asked Questions",
+        "questions": [
+          {
+            "question": "Q1. Can I check structures other than heading tags (h1-h6)?",
+            "answer": "A. Currently, the tool focuses on visualizing heading tag structures. We plan to support section tags and other elements in the future."
+          },
+          {
+            "question": "Q2. What happens if there are multiple h1 tags?",
+            "answer": "A. All h1 tags will be detected and listed. If multiple exist, an error or warning will be displayed."
+          },
+          {
+            "question": "Q3. Is there a feature to automatically fix structural issues?",
+            "answer": "A. No, this tool specializes in visualizing structure and identifying problems. Modifications must be made manually."
+          },
+          {
+            "question": "Q4. Can I use it with local HTML files?",
+            "answer": "A. Currently, only webpage checking through URL specification is supported. Local file support is under consideration for future updates."
+          },
+          {
+            "question": "Q5. Is the URL data I enter saved?",
+            "answer": "A. No, analysis data and URLs are automatically deleted after a certain period and are not saved. We are mindful of your privacy."
+          }
+        ]
+      }
+    }
+}

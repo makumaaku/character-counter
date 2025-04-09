@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "SEO Volume Prediction Tool | Easily Estimate Keyword Search Volume",
-    "description": "A free tool that collects keyword suggestions and scores the estimated search volume.",
-    "keywords": "SEO,search volume,keyword analysis,suggestions"
+    "title": "SEO Volume Prediction Tool | Free SEO Analysis Tool to Forecast Keyword Search Volume",
+    "description": "Predict future search volume based on historical trends. Optimize content publishing and marketing timing with this free tool. Visualize seasonal fluctuations and demand changes.",
+    "keywords": "SEO,search volume,keyword analysis,suggestions,search demand prediction,seasonal trends"
   },
   "title": "SEO Volume Prediction Tool",
   "description": "Just enter a keyword, and we'll predict SEO volume from Google suggestions.",
@@ -43,5 +43,91 @@
     "title": "Usage Notes",
     "language": "When searching Japanese keywords in other countries, they are automatically translated to that country's language (e.g., 'パン' → 'bread'). This works for a limited set of common keywords.",
     "location": "Results may be influenced by your geographic location. For example, if you're accessing from Japan, you might still see Japanese-oriented results regardless of the country setting."
+  },
+  "seoText": {
+    "overview": {
+      "title": "Overview",
+      "content": "SEO Volume Prediction Tool is a free SEO tool that analyzes keyword search volume as time-series data and predicts future trends.\nBased on Google Trends and search history, it forecasts the rise and fall of demand over the coming months. This helps optimize the timing of article publishing, ad placements, and promotions. It's widely used by SEO specialists, editors, and advertising planners."
+    },
+    "howTo": {
+      "title": "How to Use",
+      "steps": [
+        {
+          "title": "Enter a Keyword",
+          "description": "Input the keyword you want to research and predict in the form."
+        },
+        {
+          "title": "Click 'Analyze'",
+          "description": "The tool will automatically generate graphs showing past-to-present search trends and future predictions."
+        },
+        {
+          "title": "Check Volume Trends and Peak Predictions",
+          "description": "View monthly and weekly volume changes with graphs and numbers showing when search volume is expected to increase."
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "User Testimonials",
+      "users": [
+        {
+          "name": "User A (Content Marketer)",
+          "comment": "\"I discovered that the search timing for my target keywords would come earlier than expected, allowing me to publish content ahead of schedule. This resulted in a significant increase in traffic!\""
+        },
+        {
+          "name": "User B (Ad Campaign Manager)",
+          "comment": "\"For seasonal products, I'm using this tool to understand search demand peaks and adjust ad scheduling. The CTR has improved exactly as predicted, and I'm very satisfied.\""
+        },
+        {
+          "name": "User C (Media Editor-in-Chief)",
+          "comment": "\"I share predictions from this tool at our monthly editorial meetings. We're now able to make decisions based on data rather than just intuition.\""
+        }
+      ]
+    },
+    "features": {
+      "title": "Features & Benefits",
+      "items": [
+        {
+          "title": "Strategic Planning with Future Search Demand Predictions",
+          "description": "SEO Volume Prediction Tool uses AI to analyze past search trends and predict future demand changes. Its greatest strength is helping you decide not just which keywords to target, but also when to implement your strategies."
+        },
+        {
+          "title": "Visualize Seasonal Trends and Sudden Surges",
+          "description": "Identify peak periods for keywords with seasonal patterns like 'keywords that grow every spring' or 'terms that trend before specific events.' This enables proactive content planning ahead of demand spikes."
+        },
+        {
+          "title": "Intuitive Visualization with Graphs & Numbers",
+          "description": "Search volume predictions are displayed as monthly and weekly graphs alongside numerical data. The visual design makes it easy to share within marketing teams and to use in internal reports."
+        },
+        {
+          "title": "No Registration Required - Free Instant Predictions",
+          "description": "No Google account or API connections needed. It's completely free and requires just a simple click operation to predict future demand for your keywords."
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ - Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "Q1. How accurate are this tool's predictions?",
+          "answer": "A. The AI analyzes past search data patterns and achieves strong predictive accuracy for seasonal trends and upward trajectories. However, these are not guaranteed future values."
+        },
+        {
+          "question": "Q2. How far into the future can predictions go?",
+          "answer": "A. Depending on the keyword, the tool can predict search volume trends 1-6 months into the future."
+        },
+        {
+          "question": "Q3. Can it predict for trademark keywords or niche terms?",
+          "answer": "A. Keywords with extremely low volume may be difficult to predict accurately, but the tool is still effective for getting a general sense of trends."
+        },
+        {
+          "question": "Q4. How reliable are the search volume numbers?",
+          "answer": "A. They are relative values and scores based on public data like Google Trends. We recommend using them as guidelines rather than absolute values."
+        },
+        {
+          "question": "Q5. Are the keywords I enter saved?",
+          "answer": "A. No, the keywords you enter and the prediction results are not stored on the tool at all. The design prioritizes privacy."
+        }
+      ]
+    }
   }
 }

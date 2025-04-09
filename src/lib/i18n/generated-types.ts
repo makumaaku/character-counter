@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-07T01:44:24.488Z
+// Generated at: 2025-04-09T15:17:42.453Z
 
 export interface CommonMessages {
   meta: {
@@ -165,6 +165,40 @@ export interface NumberQuizMessages {
       correct: string;
       incorrect: string;
       complete: string;
+    };
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
     };
   };
 }
@@ -1806,6 +1840,40 @@ export interface PdfToolsHeicToPdfMessages {
   success: {
     message: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface PdfToolsJpgToPdfMessages {
@@ -1846,6 +1914,40 @@ export interface PdfToolsJpgToPdfMessages {
     imageSelected: string;
     imagesSelected: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface PdfToolsPdfToEpubMessages {
@@ -1879,6 +1981,40 @@ export interface PdfToolsPdfToEpubMessages {
   error: {
     fileType: string;
     fileSize: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
@@ -1916,6 +2052,40 @@ export interface PdfToolsPdfToJpgMessages {
     fileType: string;
     fileSize: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface PdfToolsPdfToPngMessages {
@@ -1951,6 +2121,40 @@ export interface PdfToolsPdfToPngMessages {
   error: {
     fileType: string;
     fileSize: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
@@ -2019,6 +2223,40 @@ export interface PdfToolsPngToPdfMessages {
     fileType: string;
     fileSize: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface PdfToolsSvgToPdfMessages {
@@ -2047,6 +2285,40 @@ export interface PdfToolsSvgToPdfMessages {
   error: {
     fileType: string;
     fileSize: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
@@ -2155,6 +2427,51 @@ export interface SeoToolsLinkStatusCheckerMessages {
     network: string;
     invalid_url: string;
   };
+  placeholder: string;
+  emptyState: string;
+  sidebar: {
+    function: string;
+    usecase: string;
+    faq: string;
+    aboutUs: string;
+    contact: string;
+    privacy: string;
+    plan: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface SeoToolsMetaCraftForLlmMessages {
@@ -2199,6 +2516,40 @@ export interface SeoToolsMetaCraftForLlmMessages {
     points: string[];
     conclusion: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface SeoToolsPageSpeedCheckerMessages {
@@ -2209,6 +2560,40 @@ export interface SeoToolsPageSpeedCheckerMessages {
   };
   title: string;
   description: string;
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
   input: {
     url: string;
     analyzeButton: string;
@@ -2315,6 +2700,40 @@ export interface SeoToolsPageStructureCheckerMessages {
   recommended: string;
   importantForSeo: string;
   headings: string;
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface SeoToolsSeoCannibalizationCheckerMessages {
@@ -2349,6 +2768,40 @@ export interface SeoToolsSeoCannibalizationCheckerMessages {
     invalidDomain: string;
     emptyKeyword: string;
     generic: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
@@ -2397,6 +2850,40 @@ export interface SeoToolsSeoVolumeGuessMessages {
     title: string;
     language: string;
     location: string;
+  };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
   };
 }
 
@@ -2484,6 +2971,40 @@ export interface WordGenJapaneseKanjiGeneratorMessages {
   font: {
     loading: string;
   };
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
+    features: {
+      title: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
+    };
+    faq: {
+      title: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  };
 }
 
 export interface WordGenNameGeneratorMessages {
@@ -2509,102 +3030,38 @@ export interface WordGenNameGeneratorMessages {
     download: string;
     downloaded: string;
   };
-  about: {
-    catchphrase: string;
-    introduction: string;
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
     features: {
       title: string;
-      oneClick: {
+      items: {
         title: string;
         description: string;
-      };
-      patterns: {
-        title: string;
-        description: string;
-      };
-      categories: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      character: {
-        title: string;
-        description: string;
-      };
-      branding: {
-        title: string;
-        description: string;
-      };
-      personal: {
-        title: string;
-        description: string;
-      };
-    };
-    technical: {
-      title: string;
-      algorithm: {
-        title: string;
-        description: string;
-      };
-      updates: {
-        title: string;
-        description: string;
-      };
-      responsive: {
-        title: string;
-        description: string;
-      };
+      }[];
     };
     faq: {
       title: string;
-      commercial: {
+      questions: {
         question: string;
         answer: string;
-      };
-      categories: {
-        question: string;
-        answer: string;
-      };
-      retry: {
-        question: string;
-        answer: string;
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
-    };
-  };
-  useCases: {
-    title: string;
-    creative: {
-      title: string;
-      description: string;
-    };
-    gaming: {
-      title: string;
-      description: string;
-    };
-    testing: {
-      title: string;
-      description: string;
-    };
-  };
-  faq: {
-    title: string;
-    q1: {
-      question: string;
-      answer: string;
-    };
-    q2: {
-      question: string;
-      answer: string;
-    };
-    q3: {
-      question: string;
-      answer: string;
+      }[];
     };
   };
 }
@@ -2616,8 +3073,6 @@ export interface WordGenPasswordGeneratorMessages {
     keywords: string;
   };
   title: string;
-  catchphrase: string;
-  intro: string;
   generatedPassword: string;
   copyButton: string;
   copied: string;
@@ -2633,71 +3088,39 @@ export interface WordGenPasswordGeneratorMessages {
     title: string;
     intro: string;
   };
-  features: {
-    title: string;
-    easyOperation: {
+  seoText: {
+    overview: {
       title: string;
-      description: string;
+      content: string;
     };
-    customization: {
+    howTo: {
       title: string;
-      description: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
     };
-    security: {
+    testimonials: {
       title: string;
-      description: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
     };
-  };
-  useCases: {
-    title: string;
-    onlineAccounts: {
+    features: {
       title: string;
-      description: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
     };
-    corporate: {
+    faq: {
       title: string;
-      description: string;
-    };
-    privacy: {
-      title: string;
-      description: string;
-    };
-  };
-  technical: {
-    title: string;
-    algorithm: {
-      title: string;
-      description: string;
-    };
-    performance: {
-      title: string;
-      description: string;
-    };
-    privacy: {
-      title: string;
-      description: string;
-    };
-  };
-  faq: {
-    title: string;
-    questions: {
-      security: {
+      questions: {
         question: string;
         answer: string;
-      };
-      customization: {
-        question: string;
-        answer: string;
-      };
-      commercial: {
-        question: string;
-        answer: string;
-      };
+      }[];
     };
-  };
-  conclusion: {
-    title: string;
-    description: string;
   };
 }
 
@@ -2721,72 +3144,38 @@ export interface WordGenSentenceGeneratorMessages {
     copyTitle: string;
     copied: string;
   };
-  detailedContent: {
-    catchphrase: string;
-    introduction: string;
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
     features: {
       title: string;
-      easyOperation: {
+      items: {
         title: string;
         description: string;
-      };
-      patterns: {
-        title: string;
-        description: string;
-      };
-      customization: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      writer: {
-        title: string;
-        description: string;
-      };
-      creative: {
-        title: string;
-        description: string;
-      };
-      education: {
-        title: string;
-        description: string;
-      };
-    };
-    technical: {
-      title: string;
-      nlp: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      performance: {
-        title: string;
-        description: string;
-      };
+      }[];
     };
     faq: {
       title: string;
-      quality: {
+      questions: {
         question: string;
         answer: string;
-      };
-      commercial: {
-        question: string;
-        answer: string;
-      };
-      style: {
-        question: string;
-        answer: string;
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
+      }[];
     };
   };
 }
@@ -2810,63 +3199,39 @@ export interface WordGenStoryGeneratorMessages {
     copyAlt: string;
     copied: string;
   };
-  features: {
-    title: string;
-    oneClick: {
+  seoText: {
+    overview: {
       title: string;
-      description: string;
+      content: string;
     };
-    patterns: {
+    howTo: {
       title: string;
-      description: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
     };
-    customization: {
+    testimonials: {
       title: string;
-      description: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
     };
-  };
-  useCases: {
-    title: string;
-    novel: {
+    features: {
       title: string;
-      description: string;
+      items: {
+        title: string;
+        description: string;
+      }[];
     };
-    game: {
+    faq: {
       title: string;
-      description: string;
+      questions: {
+        question: string;
+        answer: string;
+      }[];
     };
-    workshop: {
-      title: string;
-      description: string;
-    };
-  };
-  technical: {
-    title: string;
-    algorithm: {
-      title: string;
-      description: string;
-    };
-    database: {
-      title: string;
-      description: string;
-    };
-    performance: {
-      title: string;
-      description: string;
-    };
-  };
-  faq: {
-    title: string;
-    q1: string;
-    a1: string;
-    q2: string;
-    a2: string;
-    q3: string;
-    a3: string;
-  };
-  conclusion: {
-    title: string;
-    description: string;
   };
 }
 
@@ -2906,74 +3271,38 @@ export interface WordGenWordCardGeneratorMessages {
     writing: string;
     esl: string;
   };
-  about: {
-    catchphrase: string;
-    introduction: string;
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
     features: {
       title: string;
-      oneClick: {
+      items: {
         title: string;
         description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      design: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      vocabulary: {
-        title: string;
-        description: string;
-      };
-      brainstorming: {
-        title: string;
-        description: string;
-      };
-      games: {
-        title: string;
-        description: string;
-      };
-    };
-    technical: {
-      title: string;
-      algorithm: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      responsive: {
-        title: string;
-        description: string;
-      };
+      }[];
     };
     faq: {
       title: string;
       questions: {
-        free: {
-          question: string;
-          answer: string;
-        };
-        customize: {
-          question: string;
-          answer: string;
-        };
-        print: {
-          question: string;
-          answer: string;
-        };
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
+        question: string;
+        answer: string;
+      }[];
     };
   };
 }
@@ -3007,83 +3336,38 @@ export interface WordGenWordGeneratorMessages {
     download: string;
     downloaded: string;
   };
-  about: {
-    catchphrase: string;
-    introduction: string;
+  seoText: {
+    overview: {
+      title: string;
+      content: string;
+    };
+    howTo: {
+      title: string;
+      steps: {
+        title: string;
+        description: string;
+      }[];
+    };
+    testimonials: {
+      title: string;
+      users: {
+        name: string;
+        comment: string;
+      }[];
+    };
     features: {
       title: string;
-      oneClick: {
+      items: {
         title: string;
         description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      design: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      scenes: {
-        title: string;
-        writer: string;
-        designer: string;
-        brainstorming: string;
-      };
-      testimonials: {
-        title: string;
-        writer: {
-          name: string;
-          quote: string;
-        };
-        designer: {
-          name: string;
-          quote: string;
-        };
-      };
-    };
-    technical: {
-      title: string;
-      algorithm: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      performance: {
-        title: string;
-        description: string;
-      };
+      }[];
     };
     faq: {
       title: string;
       questions: {
-        free: {
-          question: string;
-          answer: string;
-        };
-        words: {
-          question: string;
-          answer: string;
-        };
-        commercial: {
-          question: string;
-          answer: string;
-        };
-        mobile: {
-          question: string;
-          answer: string;
-        };
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
+        question: string;
+        answer: string;
+      }[];
     };
   };
 }

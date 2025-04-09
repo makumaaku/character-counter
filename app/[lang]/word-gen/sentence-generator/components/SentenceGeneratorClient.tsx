@@ -22,7 +22,7 @@ export default function SentenceGeneratorClient({ messages, lang }: Props) {
   const [error, setError] = useState<string | null>(null);
 
   // messagesからテキストを取得
-  const { title, form, result, detailedContent } = messages;
+  const { form, result } = messages;
 
   useEffect(() => {
     const fetchSentences = async () => {
@@ -145,95 +145,6 @@ export default function SentenceGeneratorClient({ messages, lang }: Props) {
             />
           </div>
         )}
-      </div>
-
-      {/* Detailed Content Section */}
-      <div className="bg-gray-800 p-8 rounded-lg mt-8 space-y-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-purple-400 mb-4">{title}</h2>
-          <p className="text-xl text-gray-300">{detailedContent.catchphrase}</p>
-        </div>
-
-        <div className="mb-8">
-          <p className="text-gray-300">{detailedContent.introduction}</p>
-        </div>
-
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-purple-400">{detailedContent.features.title}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.features.easyOperation.title}</h4>
-              <p>{detailedContent.features.easyOperation.description}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.features.patterns.title}</h4>
-              <p>{detailedContent.features.patterns.description}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.features.customization.title}</h4>
-              <p>{detailedContent.features.customization.description}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-purple-400">{detailedContent.useCases.title}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.useCases.writer.title}</h4>
-              <p>{detailedContent.useCases.writer.description}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.useCases.creative.title}</h4>
-              <p>{detailedContent.useCases.creative.description}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.useCases.education.title}</h4>
-              <p>{detailedContent.useCases.education.description}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-purple-400">{detailedContent.technical.title}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.technical.nlp.title}</h4>
-              <p>{detailedContent.technical.nlp.description}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.technical.database.title}</h4>
-              <p>{detailedContent.technical.database.description}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-3">{detailedContent.technical.performance.title}</h4>
-              <p>{detailedContent.technical.performance.description}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-purple-400">{detailedContent.faq.title}</h3>
-          <div className="space-y-4">
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{detailedContent.faq.quality.question}</h4>
-              <p>{detailedContent.faq.quality.answer}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{detailedContent.faq.commercial.question}</h4>
-              <p>{detailedContent.faq.commercial.answer}</p>
-            </div>
-            <div className="bg-gray-700 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{detailedContent.faq.style.question}</h4>
-              <p>{detailedContent.faq.style.answer}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gray-700 p-6 rounded-lg">
-          <h3 className="text-2xl font-bold text-purple-400 mb-4">{detailedContent.conclusion.title}</h3>
-          <p>{detailedContent.conclusion.description}</p>
-        </div>
       </div>
     </>
   );

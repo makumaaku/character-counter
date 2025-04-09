@@ -27,10 +27,7 @@
       "invalidFormat": "HEICファイルのみ対応しています",
       "tooLarge": "ファイルが大きすぎます（最大10MB）",
       "noFiles": "少なくとも1つのHEICファイルをアップロードしてください",
-      "failed": "変換に失敗しました。もう一度お試しください。",
-      "fileType": "HEICファイルのみ対応しています",
-      "fileSize": "ファイルサイズは10MB以下にしてください",
-      "conversion": "ファイル変換エラー: {error}"
+      "failed": "変換に失敗しました。もう一度お試しください。"
     },
     "form": {
       "upload": {
