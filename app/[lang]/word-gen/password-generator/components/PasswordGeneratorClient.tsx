@@ -44,7 +44,7 @@ export default function PasswordGeneratorClient({ messages }: { messages: WordGe
   return (
     <>
       <div className="bg-gray-800 text-gray-100 font-sans">
-        <main className="max-w-4xl mx-auto px-4 pb-24">
+        <main className="max-w-4xl mx-auto px-4 pb-4">
           <h1 className="text-3xl font-bold text-center py-8">{messages.title}</h1>
           
           {/* Password Generator Section */}
@@ -136,97 +136,6 @@ export default function PasswordGeneratorClient({ messages }: { messages: WordGe
             >
               {messages.generateButton}
             </Button>
-          </div>
-
-          {/* About Section */}
-          <div className="mt-16 space-y-12">
-            {/* Introduction */}
-            <div className="text-center">
-              <h2 className="text-3xl font-bold mb-4">{messages.catchphrase}</h2>
-              <p className="text-lg text-gray-300">{messages.intro}</p>
-            </div>
-
-            {/* Features */}
-            <div className="bg-gray-700 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-6">{messages.features.title}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.features.easyOperation.title}</h3>
-                  <p className="text-gray-300">{messages.features.easyOperation.description}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.features.customization.title}</h3>
-                  <p className="text-gray-300">{messages.features.customization.description}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.features.security.title}</h3>
-                  <p className="text-gray-300">{messages.features.security.description}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Use Cases */}
-            <div className="bg-gray-700 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-6">{messages.useCases.title}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.useCases.onlineAccounts.title}</h3>
-                  <p className="text-gray-300">{messages.useCases.onlineAccounts.description}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.useCases.corporate.title}</h3>
-                  <p className="text-gray-300">{messages.useCases.corporate.description}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.useCases.privacy.title}</h3>
-                  <p className="text-gray-300">{messages.useCases.privacy.description}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Technical Details */}
-            <div className="bg-gray-700 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-6">{messages.technical.title}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.technical.algorithm.title}</h3>
-                  <p className="text-gray-300">{messages.technical.algorithm.description}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.technical.performance.title}</h3>
-                  <p className="text-gray-300">{messages.technical.performance.description}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-3">{messages.technical.privacy.title}</h3>
-                  <p className="text-gray-300">{messages.technical.privacy.description}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ */}
-            <div className="bg-gray-700 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-6">{messages.faq.title}</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{messages.faq.questions.security.question}</h3>
-                  <p className="text-gray-300">{messages.faq.questions.security.answer}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{messages.faq.questions.customization.question}</h3>
-                  <p className="text-gray-300">{messages.faq.questions.customization.answer}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{messages.faq.questions.commercial.question}</h3>
-                  <p className="text-gray-300">{messages.faq.questions.commercial.answer}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Conclusion */}
-            <div className="bg-gray-700 rounded-lg p-8">
-              <h2 className="text-2xl font-bold mb-4">{messages.conclusion.title}</h2>
-              <p className="text-gray-300">{messages.conclusion.description}</p>
-            </div>
           </div>
         </main>
       </div>

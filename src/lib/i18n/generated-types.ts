@@ -1,5 +1,5 @@
 // このファイルは自動生成されています。手動で変更しないでください。
-// Generated at: 2025-04-08T23:11:39.512Z
+// Generated at: 2025-04-09T01:18:20.113Z
 
 export interface CommonMessages {
   meta: {
@@ -3030,104 +3030,6 @@ export interface WordGenNameGeneratorMessages {
     download: string;
     downloaded: string;
   };
-  about: {
-    catchphrase: string;
-    introduction: string;
-    features: {
-      title: string;
-      oneClick: {
-        title: string;
-        description: string;
-      };
-      patterns: {
-        title: string;
-        description: string;
-      };
-      categories: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      character: {
-        title: string;
-        description: string;
-      };
-      branding: {
-        title: string;
-        description: string;
-      };
-      personal: {
-        title: string;
-        description: string;
-      };
-    };
-    technical: {
-      title: string;
-      algorithm: {
-        title: string;
-        description: string;
-      };
-      updates: {
-        title: string;
-        description: string;
-      };
-      responsive: {
-        title: string;
-        description: string;
-      };
-    };
-    faq: {
-      title: string;
-      commercial: {
-        question: string;
-        answer: string;
-      };
-      categories: {
-        question: string;
-        answer: string;
-      };
-      retry: {
-        question: string;
-        answer: string;
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
-    };
-  };
-  useCases: {
-    title: string;
-    creative: {
-      title: string;
-      description: string;
-    };
-    gaming: {
-      title: string;
-      description: string;
-    };
-    testing: {
-      title: string;
-      description: string;
-    };
-  };
-  faq: {
-    title: string;
-    q1: {
-      question: string;
-      answer: string;
-    };
-    q2: {
-      question: string;
-      answer: string;
-    };
-    q3: {
-      question: string;
-      answer: string;
-    };
-  };
   seoText: {
     overview: {
       title: string;
@@ -3171,8 +3073,6 @@ export interface WordGenPasswordGeneratorMessages {
     keywords: string;
   };
   title: string;
-  catchphrase: string;
-  intro: string;
   generatedPassword: string;
   copyButton: string;
   copied: string;
@@ -3187,72 +3087,6 @@ export interface WordGenPasswordGeneratorMessages {
   description: {
     title: string;
     intro: string;
-  };
-  features: {
-    title: string;
-    easyOperation: {
-      title: string;
-      description: string;
-    };
-    customization: {
-      title: string;
-      description: string;
-    };
-    security: {
-      title: string;
-      description: string;
-    };
-  };
-  useCases: {
-    title: string;
-    onlineAccounts: {
-      title: string;
-      description: string;
-    };
-    corporate: {
-      title: string;
-      description: string;
-    };
-    privacy: {
-      title: string;
-      description: string;
-    };
-  };
-  technical: {
-    title: string;
-    algorithm: {
-      title: string;
-      description: string;
-    };
-    performance: {
-      title: string;
-      description: string;
-    };
-    privacy: {
-      title: string;
-      description: string;
-    };
-  };
-  faq: {
-    title: string;
-    questions: {
-      security: {
-        question: string;
-        answer: string;
-      };
-      customization: {
-        question: string;
-        answer: string;
-      };
-      commercial: {
-        question: string;
-        answer: string;
-      };
-    };
-  };
-  conclusion: {
-    title: string;
-    description: string;
   };
   seoText: {
     overview: {
@@ -3309,74 +3143,6 @@ export interface WordGenSentenceGeneratorMessages {
     empty: string;
     copyTitle: string;
     copied: string;
-  };
-  detailedContent: {
-    catchphrase: string;
-    introduction: string;
-    features: {
-      title: string;
-      easyOperation: {
-        title: string;
-        description: string;
-      };
-      patterns: {
-        title: string;
-        description: string;
-      };
-      customization: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      writer: {
-        title: string;
-        description: string;
-      };
-      creative: {
-        title: string;
-        description: string;
-      };
-      education: {
-        title: string;
-        description: string;
-      };
-    };
-    technical: {
-      title: string;
-      nlp: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      performance: {
-        title: string;
-        description: string;
-      };
-    };
-    faq: {
-      title: string;
-      quality: {
-        question: string;
-        answer: string;
-      };
-      commercial: {
-        question: string;
-        answer: string;
-      };
-      style: {
-        question: string;
-        answer: string;
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
-    };
   };
   seoText: {
     overview: {
@@ -3563,76 +3329,6 @@ export interface WordGenWordCardGeneratorMessages {
     writing: string;
     esl: string;
   };
-  about: {
-    catchphrase: string;
-    introduction: string;
-    features: {
-      title: string;
-      oneClick: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      design: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      vocabulary: {
-        title: string;
-        description: string;
-      };
-      brainstorming: {
-        title: string;
-        description: string;
-      };
-      games: {
-        title: string;
-        description: string;
-      };
-    };
-    technical: {
-      title: string;
-      algorithm: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      responsive: {
-        title: string;
-        description: string;
-      };
-    };
-    faq: {
-      title: string;
-      questions: {
-        free: {
-          question: string;
-          answer: string;
-        };
-        customize: {
-          question: string;
-          answer: string;
-        };
-        print: {
-          question: string;
-          answer: string;
-        };
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
-    };
-  };
   seoText: {
     overview: {
       title: string;
@@ -3697,85 +3393,6 @@ export interface WordGenWordGeneratorMessages {
     copied: string;
     download: string;
     downloaded: string;
-  };
-  about: {
-    catchphrase: string;
-    introduction: string;
-    features: {
-      title: string;
-      oneClick: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      design: {
-        title: string;
-        description: string;
-      };
-    };
-    useCases: {
-      title: string;
-      scenes: {
-        title: string;
-        writer: string;
-        designer: string;
-        brainstorming: string;
-      };
-      testimonials: {
-        title: string;
-        writer: {
-          name: string;
-          quote: string;
-        };
-        designer: {
-          name: string;
-          quote: string;
-        };
-      };
-    };
-    technical: {
-      title: string;
-      algorithm: {
-        title: string;
-        description: string;
-      };
-      database: {
-        title: string;
-        description: string;
-      };
-      performance: {
-        title: string;
-        description: string;
-      };
-    };
-    faq: {
-      title: string;
-      questions: {
-        free: {
-          question: string;
-          answer: string;
-        };
-        words: {
-          question: string;
-          answer: string;
-        };
-        commercial: {
-          question: string;
-          answer: string;
-        };
-        mobile: {
-          question: string;
-          answer: string;
-        };
-      };
-    };
-    conclusion: {
-      title: string;
-      description: string;
-    };
   };
   seoText: {
     overview: {

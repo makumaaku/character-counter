@@ -1,130 +1,51 @@
 {
   "meta": {
-    "title": "Generador de Palabras - Crea Palabras Aleatorias al Instante",
-    "description": "Genera palabras aleatorias con longitud y patrones personalizables. Perfecto para escritura creativa, lluvia de ideas y proyectos de naming.",
-    "keywords": "generador de palabras,generador de palabras aleatorias,herramienta de creación de palabras,escritura creativa,generador de nombres,herramienta de vocabulario"
+    "title": "Generador de Palabras Aleatorias - ¡Despierta tu creatividad!",
+    "description": "Nuestro Generador de Palabras Aleatorias está diseñado para estimular tu creatividad y apoyar tus necesidades diarias de ideación. Con solo un clic, proporciona diversas palabras útiles para títulos de blogs, frases pegadizas, publicaciones en redes sociales y sesiones de lluvia de ideas. El diseño intuitivo y fácil de usar lo hace accesible para todos, incluso para usuarios primerizos.",
+    "keywords": "generación de palabras, palabras aleatorias, creación de palabras, generador de texto"
   },
   "title": "Generador de Palabras",
-  "description": "Genera palabras aleatorias con configuración personalizable",
+  "description": "Genera palabras aleatorias basadas en varios criterios y patrones",
   "form": {
     "length": {
-      "label": "Longitud de Palabra",
-      "min": "Longitud Mínima",
-      "max": "Longitud Máxima"
+      "label": "Longitud de palabra",
+      "min": "Mínimo",
+      "max": "Máximo"
     },
     "count": {
-      "label": "Número de Palabras",
-      "placeholder": "Ingrese número de palabras a generar"
+      "label": "Cantidad",
+      "placeholder": "Ingresa el número de palabras a generar"
     },
-    "generate": "Generar Palabras",
-    "clear": "Limpiar Todo"
+    "generate": "Generar",
+    "clear": "Limpiar"
   },
   "result": {
     "title": "Palabras Generadas",
-    "empty": "Aún no se han generado palabras",
-    "copy": "Copiar Palabras",
-    "copied": "¡Palabras copiadas al portapapeles!",
-    "download": "Descargar Palabras",
-    "downloaded": "¡Palabras descargadas exitosamente!"
-  },
-  "about": {
-    "catchphrase": "Crea palabras únicas en segundos",
-    "introduction": "Nuestra herramienta Generador de Palabras te ayuda a crear palabras aleatorias para cualquier propósito. Ya sea que estés escribiendo una historia, haciendo lluvia de ideas para nombres o simplemente divirtiéndote, te tenemos cubierto.",
-    "features": {
-      "title": "Características",
-      "oneClick": {
-        "title": "Generación con Un Clic",
-        "description": "Genera palabras instantáneamente con un solo clic. No requiere configuración compleja."
-      },
-      "database": {
-        "title": "Base de Datos Extensa",
-        "description": "Accede a miles de palabras reales y generadas desde nuestra base de datos integral."
-      },
-      "design": {
-        "title": "Diseño Amigable",
-        "description": "Interfaz limpia e intuitiva que hace que la generación de palabras sea muy fácil."
-      }
-    },
-    "useCases": {
-      "title": "Casos de Uso",
-      "scenes": {
-        "title": "Perfecto para",
-        "writer": "Escritores Creativos",
-        "designer": "Diseñadores de Marca",
-        "brainstorming": "Sesiones de Lluvia de Ideas"
-      },
-      "testimonials": {
-        "title": "Lo que Dicen los Usuarios",
-        "writer": {
-          "name": "María García, Autora",
-          "quote": "Esta herramienta ha sido invaluable para crear nombres únicos de personajes en mis novelas."
-        },
-        "designer": {
-          "name": "Carlos Rodríguez, Diseñador de Marca",
-          "quote": "Uso este generador diariamente para encontrar inspiración en proyectos de naming de marca."
-        }
-      }
-    },
-    "technical": {
-      "title": "Detalles Técnicos",
-      "algorithm": {
-        "title": "Algoritmo Inteligente",
-        "description": "Nuestro algoritmo avanzado asegura la generación de palabras aleatorias pero pronunciables."
-      },
-      "database": {
-        "title": "Base de Datos Rica",
-        "description": "Acceso a más de 100,000 patrones y combinaciones de palabras."
-      },
-      "performance": {
-        "title": "Rendimiento Rápido",
-        "description": "Genera cientos de palabras en milisegundos."
-      }
-    },
-    "faq": {
-      "title": "Preguntas Frecuentes",
-      "questions": {
-        "free": {
-          "question": "¿Es gratuita esta herramienta?",
-          "answer": "Sí, el Generador de Palabras es completamente gratuito sin limitaciones."
-        },
-        "words": {
-          "question": "¿Cuántas palabras puedo generar?",
-          "answer": "Puedes generar hasta 1000 palabras a la vez."
-        },
-        "commercial": {
-          "question": "¿Puedo usar las palabras generadas comercialmente?",
-          "answer": "Sí, todas las palabras generadas son libres de usar para cualquier propósito, incluyendo uso comercial."
-        },
-        "mobile": {
-          "question": "¿Funciona en dispositivos móviles?",
-          "answer": "Sí, nuestro Generador de Palabras es totalmente responsive y funciona en todos los dispositivos."
-        }
-      }
-    },
-    "conclusion": {
-      "title": "Comienza a Generar Palabras Ahora",
-      "description": "Prueba nuestra herramienta Generador de Palabras hoy y descubre posibilidades infinitas para la creación de palabras."
-    }
+    "empty": "Completa el formulario de arriba para generar palabras",
+    "copy": "Copiar Resultados",
+    "copied": "¡Copiado!",
+    "download": "Descargar",
+    "downloaded": "¡Descargado!"
   },
   "seoText": {
     "overview": {
       "title": "Generador de Palabras Aleatorias",
-      "content": "\"¡Descubre momentos de inspiración con palabras aleatorias!\"\nEste Generador de Palabras Aleatorias está diseñado para estimular tu creatividad y apoyar tus necesidades diarias de generación de ideas. Con solo un clic, proporciona instantáneamente una amplia gama de palabras útiles para diversas situaciones como títulos de entradas de blog, frases pegadizas, publicaciones en redes sociales e incluso sesiones de lluvia de ideas. Gracias a su diseño intuitivo y fácil de usar, incluso los usuarios principiantes pueden comenzar a utilizarlo de inmediato."
+      "content": "\"¡Despierta tu inspiración! Descubre nuevas ideas con palabras generadas aleatoriamente\"\nEste Generador de Palabras Aleatorias está diseñado para estimular tu creatividad y apoyar tus necesidades diarias de ideación. Con solo un clic, proporciona instantáneamente una amplia variedad de palabras útiles para diversas situaciones como títulos de publicaciones de blog, frases pegadizas, publicaciones en redes sociales e incluso sesiones de lluvia de ideas. Gracias a su diseño intuitivo y fácil de usar, incluso los usuarios primerizos pueden comenzar a usarlo de inmediato."
     },
     "howTo": {
       "title": "Características y Funcionalidades",
       "steps": [
         {
           "title": "Generación Instantánea de Palabras con Un Clic",
-          "description": "Esta herramienta emplea una interfaz simple que muestra nuevas palabras instantáneamente con solo un clic en el botón. La operación es intuitiva, sin requerir conocimientos o configuraciones especiales. La capacidad de usarla inmediatamente cuando surge la inspiración es una ventaja significativa."
+          "description": "Esta herramienta emplea una interfaz simple que muestra nuevas palabras instantáneamente con solo hacer clic en un botón. La operación es intuitiva, sin requerir conocimientos especiales ni configuraciones. La capacidad de usarla inmediatamente cuando surge la inspiración es una ventaja significativa."
         },
         {
           "title": "Rica Base de Datos de Palabras",
-          "description": "Viene equipada con una base de datos de palabras que cubre numerosos géneros y categorías. Desde el lenguaje cotidiano hasta terminología especializada, e incluso palabras inesperadas que despiertan el pensamiento creativo, ofrece una amplia gama de opciones. Esta diversidad la hace útil para escritores, diseñadores, especialistas en marketing y profesionales de diversos campos."
+          "description": "Viene equipada con una base de datos de palabras que abarca numerosos géneros y categorías. Desde lenguaje cotidiano hasta terminología especializada, e incluso palabras inesperadas que despiertan el pensamiento creativo, ofrece una amplia gama de opciones. Esta diversidad la hace útil para escritores, diseñadores, profesionales de marketing y profesionales de diversos campos."
         },
         {
           "title": "Diseño Intuitivo y Fácil de Usar",
-          "description": "El diseño simple pero sofisticado permite a los usuarios concentrarse inmediatamente en sus operaciones previstas. Con un diseño responsivo optimizado para smartphones y tablets, puede ser usado cómodamente desde cualquier dispositivo."
+          "description": "El diseño simple pero sofisticado permite a los usuarios centrarse inmediatamente en las operaciones previstas. Con un diseño responsive optimizado para smartphones y tablets, se puede usar cómodamente desde cualquier dispositivo."
         }
       ]
     },
@@ -132,16 +53,16 @@
       "title": "Escenarios de Uso y Casos de Usuario",
       "users": [
         {
-          "name": "Variados Escenarios de Aplicación",
-          "comment": "Ideación para Escritores: Cuando te atascas mientras escribes, puede usarse como una palabra clave para obtener nueva inspiración. Es útil en diversas situaciones como títulos de blogs, frases pegadizas y desarrollo de conceptos para historias."
+          "name": "Diversos Escenarios de Aplicación",
+          "comment": "Ideación para Escritores: Cuando te quedas estancado mientras escribes, puede usarse como una palabra clave para ganar nueva inspiración. Es útil en varias situaciones como títulos de publicaciones de blog, frases pegadizas y desarrollo de conceptos de historias."
         },
         {
-          "name": "Bloguero A",
-          "comment": "Lo uso siempre que necesito nuevas ideas. La operación simple produce una variedad de palabras, lo que a menudo conduce a inspiraciones inesperadas."
+          "name": "Escritor de Blog A",
+          "comment": "Lo uso siempre que quiero nuevas ideas. La operación simple produce una variedad de palabras, a menudo conduciendo a inspiraciones inesperadas."
         },
         {
           "name": "Diseñador Gráfico B",
-          "comment": "Cuando uso esta herramienta en las primeras etapas del diseño, me ayuda a obtener perspectivas que de otro modo podría pasar por alto. ¡Ha traído aire fresco a mis proyectos!"
+          "comment": "Cuando uso esta herramienta en las primeras etapas del diseño, me ayuda a ganar perspectivas que de otro modo podría pasar por alto. ¡Ha traído aire fresco a mis proyectos!"
         }
       ]
     },
@@ -150,15 +71,15 @@
       "items": [
         {
           "title": "Algoritmo Único",
-          "description": "La herramienta incorpora un algoritmo de generación de números aleatorios que muestra diferentes palabras cada vez que presionas el botón. Este algoritmo genera eficientemente diversas combinaciones de palabras para ayudar a los usuarios a obtener nueva inspiración."
+          "description": "La herramienta incorpora un algoritmo de generación de números aleatorios que muestra diferentes palabras cada vez que presionas el botón. Este algoritmo genera eficientemente diversas combinaciones de palabras para ayudar a los usuarios a ganar nueva inspiración."
         },
         {
           "title": "Extensa Base de Datos de Palabras",
-          "description": "La base de datos contiene palabras de varios campos, incluyendo literatura, conversación diaria, terminología empresarial y palabras creativas. Las actualizaciones regulares añaden continuamente palabras basadas en las últimas tendencias y necesidades de los usuarios, expandiendo el alcance de la herramienta."
+          "description": "La base de datos contiene palabras de varios campos, incluyendo literatura, conversación diaria, terminología empresarial y palabras creativas. Las actualizaciones regulares continuamente añaden palabras basadas en las últimas tendencias y necesidades de usuarios, expandiendo el rango de la herramienta."
         },
         {
           "title": "Rendimiento y Seguridad",
-          "description": "El diseño es ligero y rápido, optimizado para la generación instantánea de palabras. Además, los datos de entrada del usuario y el estado de uso no se almacenan en absoluto, garantizando tranquilidad. El mecanismo consciente de la privacidad y la seguridad respalda operaciones de servicio fiables."
+          "description": "El diseño es ligero y rápido, optimizado para la generación instantánea de palabras. Además, los datos de entrada del usuario y el estado de uso no se almacenan en absoluto, garantizando la tranquilidad. El mecanismo consciente de la privacidad y seguridad apoya operaciones de servicio confiables."
         }
       ]
     },
@@ -166,20 +87,20 @@
       "title": "Preguntas Frecuentes (FAQ)",
       "questions": [
         {
-          "question": "¿Puedo usar esta herramienta de forma gratuita?",
-          "answer": "Sí, puedes usarla gratis. Todas las funciones están disponibles sin restricciones, aunque planeamos anunciar por separado cualquier expansión futura de la base de datos o funciones premium."
+          "question": "¿Puedo usar esta herramienta gratis?",
+          "answer": "Sí, puedes usarla gratis. Todas las funciones están disponibles sin restricciones, aunque planeamos anunciar por separado cualquier expansión futura de la base de datos o características premium."
         },
         {
           "question": "¿Qué tipos de palabras se generan?",
-          "answer": "Genera aleatoriamente palabras de una amplia gama de categorías, desde palabras cotidianas hasta terminología especializada y palabras únicas que fomentan el pensamiento creativo. Se proporciona cada vez un diverso conjunto de palabras adaptadas a las necesidades del usuario."
+          "answer": "Genera aleatoriamente palabras de una amplia gama de categorías, desde palabras cotidianas hasta terminología especializada y palabras únicas que fomentan el pensamiento creativo. Se proporciona cada vez una diversa gama de palabras adaptadas a las necesidades del usuario."
         },
         {
-          "question": "¿Puedo usarla con fines comerciales?",
-          "answer": "Sí, el uso comercial es posible. Sin embargo, debes adherirte a los términos de servicio al usarla. Por favor, consulta la página de términos de servicio para conocer las condiciones específicas de uso y restricciones."
+          "question": "¿Puedo usarla para fines comerciales?",
+          "answer": "Sí, el uso comercial es posible. Sin embargo, debes cumplir con los términos de servicio al usarla. Por favor, revisa la página de términos de servicio para conocer las condiciones específicas de uso y restricciones."
         },
         {
           "question": "¿Puedo usarla en dispositivos móviles?",
-          "answer": "Sí, como adopta un diseño responsivo, puedes usarla cómodamente desde smartphones y tablets. Las palabras pueden generarse sin problemas en cualquier dispositivo."
+          "answer": "Sí, como adopta un diseño responsive, puedes usarla cómodamente desde smartphones y tablets. Las palabras se pueden generar sin problemas en cualquier dispositivo."
         }
       ]
     }

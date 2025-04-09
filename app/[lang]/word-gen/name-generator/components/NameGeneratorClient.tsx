@@ -90,7 +90,7 @@ export default function NameGeneratorClient({ messages, lang }: Props) {
   };
 
   // messagesから各セクションの翻訳を取得
-  const { title, form, result, about } = messages;
+  const {  form, result } = messages;
 
   return (
     <div>
@@ -160,97 +160,6 @@ export default function NameGeneratorClient({ messages, lang }: Props) {
         ) : (
           <p className="text-gray-400">{result.empty}</p>
         )}
-      </div>
-
-      {/* About Section */}
-      <div className="mt-12 space-y-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">{title}</h2>
-          <p className="text-xl text-gray-300 mb-6">{about.catchphrase}</p>
-          <p className="text-gray-400">{about.introduction}</p>
-        </div>
-
-        {/* Features Section */}
-        <div>
-          <h3 className="text-2xl font-bold mb-4">{about.features.title}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.features.oneClick.title}</h4>
-              <p className="text-gray-400">{about.features.oneClick.description}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.features.patterns.title}</h4>
-              <p className="text-gray-400">{about.features.patterns.description}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.features.categories.title}</h4>
-              <p className="text-gray-400">{about.features.categories.description}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Use Cases Section */}
-        <div>
-          <h3 className="text-2xl font-bold mb-4">{about.useCases.title}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.useCases.character.title}</h4>
-              <p className="text-gray-400">{about.useCases.character.description}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.useCases.branding.title}</h4>
-              <p className="text-gray-400">{about.useCases.branding.description}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.useCases.personal.title}</h4>
-              <p className="text-gray-400">{about.useCases.personal.description}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Technical Section */}
-        <div>
-          <h3 className="text-2xl font-bold mb-4">{about.technical.title}</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.technical.algorithm.title}</h4>
-              <p className="text-gray-400">{about.technical.algorithm.description}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.technical.updates.title}</h4>
-              <p className="text-gray-400">{about.technical.updates.description}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.technical.responsive.title}</h4>
-              <p className="text-gray-400">{about.technical.responsive.description}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ Section */}
-        <div>
-          <h3 className="text-2xl font-bold mb-4">{about.faq.title}</h3>
-          <div className="space-y-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.faq.commercial.question}</h4>
-              <p className="text-gray-400">{about.faq.commercial.answer}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.faq.categories.question}</h4>
-              <p className="text-gray-400">{about.faq.categories.answer}</p>
-            </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold mb-2">{about.faq.retry.question}</h4>
-              <p className="text-gray-400">{about.faq.retry.answer}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Conclusion Section */}
-        <div className="bg-gray-800 p-6 rounded-lg">
-          <h3 className="text-2xl font-bold mb-4">{about.conclusion.title}</h3>
-          <p className="text-gray-400">{about.conclusion.description}</p>
-        </div>
       </div>
     </div>
   );

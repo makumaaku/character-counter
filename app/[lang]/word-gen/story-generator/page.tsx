@@ -17,6 +17,10 @@ export default async function StoryGenerator({ params }: Props) {
   
   // サーバーコンポーネントで翻訳を並列取得
   const [
+    // メタ情報
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     // タイトルと説明
     title,
     description,
@@ -97,6 +101,10 @@ export default async function StoryGenerator({ params }: Props) {
     seoFaqQ3,
     seoFaqA3
   ] = await Promise.all([
+    // メタ情報
+    translate(lang, 'wordGen.storyGenerator.meta.title'),
+    translate(lang, 'wordGen.storyGenerator.meta.description'),
+    translate(lang, 'wordGen.storyGenerator.meta.keywords'),
     // タイトルと説明
     translate(lang, 'wordGen.storyGenerator.title'),
     translate(lang, 'wordGen.storyGenerator.description'),
@@ -181,9 +189,9 @@ export default async function StoryGenerator({ params }: Props) {
   // クライアントコンポーネントに渡す翻訳オブジェクトを作成
   const messages: WordGenStoryGeneratorMessages = {
     meta: {
-      title: "",
-      description: "",
-      keywords: ""
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords
     },
     title,
     description,

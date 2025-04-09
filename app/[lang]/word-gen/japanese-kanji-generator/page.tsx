@@ -245,7 +245,7 @@ export default async function JapaneseKanjiGenerator({ params }: Props) {
 
   return (
     <PageContainer>
-      <div className="text-center mb-10">
+      <div className="text-center mb-10 mt-10">
         <h1 className="text-4xl font-bold mb-4">
           {title}
         </h1>
