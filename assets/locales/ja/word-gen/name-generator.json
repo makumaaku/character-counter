@@ -10,8 +10,7 @@
     "count": {
       "label": "生成する名前の数"
     },
-    "generate": "名前を生成",
-    "copy": "コピー"
+    "generate": "名前を生成"
   },
   "result": {
     "title": "生成された名前",

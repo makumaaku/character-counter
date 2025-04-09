@@ -21,8 +21,7 @@
       "convert": "PDFに変換"
     },
     "result": {
-      "download": "PDFをダウンロード",
-      "preview": "PDFをプレビュー"
+      "download": "PDFをダウンロード"
     },
     "status": {
       "processing": "処理中...",
