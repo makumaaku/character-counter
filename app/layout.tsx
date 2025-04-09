@@ -132,6 +132,8 @@ export default async function RootLayout({
   return (
     <html lang={resolvedParams.lang} className="dark">
       <head>
+        {/* Yandex(ロシア)用 Verification */}
+        <meta name="yandex-verification" content="d2017601d308d749" />
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
