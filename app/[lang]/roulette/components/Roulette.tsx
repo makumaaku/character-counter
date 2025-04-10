@@ -1,7 +1,6 @@
-import { useRef, useEffect, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Mesh, DoubleSide, MathUtils, Group } from 'three';
-import { Text } from '@react-three/drei';
+'use client';
+
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { VIBRANT_COLORS } from '../constants';
 
 export interface RouletteProps {
@@ -12,49 +11,88 @@ export interface RouletteProps {
 }
 
 export default function Roulette({ items, isSpinning, onSpinComplete, onRotationUpdate }: RouletteProps) {
-  const wheelRef = useRef<Mesh>(null);
-  const groupRef = useRef<Group>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const requestRef = useRef<number | undefined>(undefined);
+  const previousTimeRef = useRef<number | undefined>(undefined);
+  
+  // アニメーションとスピンの状態
   const spinSpeed = useRef(0);
   const targetRotation = useRef(0);
   const currentRotation = useRef(0);
   const isSpinningRef = useRef(isSpinning);
-  const lastSegmentIndex = useRef(0); // 最後に通過したセグメントのインデックス
-  const startTime = useRef(0); // 回転開始時刻
-  const speedVariationFactor = useRef(1); // 回転速度の変動係数
-  const targetSegmentIndex = useRef(0); // 目標となるセグメントのインデックス
-  const TOTAL_DURATION = 8; // 合計回転時間（秒）- 8秒に変更
-  const ACCELERATION_DURATION = 2; // 加速時間（秒）- 2秒に変更
-  const CONSTANT_SPEED_DURATION = 2; // 最高速度維持時間（秒）- 2秒に変更
+  const lastSegmentIndex = useRef(0);
+  const startTime = useRef(0);
+  const speedVariationFactor = useRef(1);
+  const targetSegmentIndex = useRef(0);
+  
+  // スピンのタイミング設定
+  const TOTAL_DURATION = 8; // 合計回転時間（秒）
+  const ACCELERATION_DURATION = 2; // 加速時間（秒）
+  const CONSTANT_SPEED_DURATION = 2; // 最高速度維持時間（秒）
   const DECELERATION_START = ACCELERATION_DURATION + CONSTANT_SPEED_DURATION; // 減速開始時間（秒）
-  // 減速時間は TOTAL_DURATION - DECELERATION_START = 4秒
-  const MAX_SPEED = Math.PI * 6; // 最高速度 - 3回転/秒に増加（より速く回転）
-  const MAX_ROTATION_ANGLE = Math.PI / 9; // 3Dでの最大傾き角度 - 20度（π/9ラジアン）
-
-  // 初回レンダリング時のアニメーション用の状態
-  const [isFirstRender, setIsFirstRender] = useState(true);
-  const initialAnimationRef = useRef({ time: 0, duration: 2.1 }); // 持続時間を0.7倍に短縮（3 * 0.7 = 2.1）
-
-  // ルーレットのサイズ設定
-  const WHEEL_RADIUS = 3;
-  const TEXT_RADIUS = WHEEL_RADIUS * 0.6;
-  const CENTER_RADIUS = WHEEL_RADIUS * 0.15;
-  const ARROW_POSITION = WHEEL_RADIUS + 0.3;
-
-  // 初回レンダリング時のアニメーション
-  useEffect(() => {
-    if (isFirstRender) {
-      // アニメーション終了後に初回レンダリングフラグをfalseに設定
-      const timer = setTimeout(() => {
-        setIsFirstRender(false);
-      }, initialAnimationRef.current.duration * 1000);
-      return () => clearTimeout(timer);
+  const MAX_SPEED = Math.PI * 6; // 最高速度 - 3回転/秒
+  
+  // ルーレットのサイズとスタイル設定
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+  
+  // キャンバスサイズの更新関数
+  const updateCanvasSize = useCallback(() => {
+    if (!canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const parent = canvas.parentElement;
+    
+    if (parent) {
+      // 親要素のサイズに合わせる
+      const newWidth = parent.clientWidth;
+      const newHeight = parent.clientHeight;
+      
+      // キャンバスの表示サイズを設定
+      canvas.style.width = `${newWidth}px`;
+      canvas.style.height = `${newHeight}px`;
+      
+      // キャンバスの実際の描画サイズを設定（高解像度ディスプレイ対応）
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = newWidth * dpr;
+      canvas.height = newHeight * dpr;
+      
+      setCanvasSize({ width: newWidth, height: newHeight });
     }
-  }, [isFirstRender]);
-
+  }, []);
+  
+  // リサイズ対応
+  useEffect(() => {
+    updateCanvasSize();
+    
+    const handleResize = () => {
+      updateCanvasSize();
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [updateCanvasSize]);
+  
+  // スピニング状態の変更を監視
+  useEffect(() => {
+    isSpinningRef.current = isSpinning;
+    
+    if (isSpinning) {
+      startTime.current = performance.now() / 1000; // 秒単位で保存
+      spinSpeed.current = 0; // 初期速度は0
+      speedVariationFactor.current = 0.9 + Math.random() * 0.2; // 0.9 ~ 1.1の範囲でランダムな係数
+      
+      // ランダムに目標セグメントを選択
+      targetSegmentIndex.current = Math.floor(Math.random() * items.length);
+      const segmentAngle = (Math.PI * 2) / items.length;
+      const targetAngle = segmentAngle * targetSegmentIndex.current;
+      
+      targetRotation.current = targetAngle;
+    }
+  }, [isSpinning, items.length]);
+  
   // visibilitychangeイベントの監視
   useEffect(() => {
     const handleVisibilityChange = () => {
-      // タブがバックグラウンドになった時の処理
       if (document.hidden && isSpinningRef.current) {
         return;
       }
@@ -65,189 +103,202 @@ export default function Roulette({ items, isSpinning, onSpinComplete, onRotation
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
-
-  useEffect(() => {
-    isSpinningRef.current = isSpinning;
-    if (isSpinning) {
-      startTime.current = performance.now() / 1000; // 秒単位で保存
-      spinSpeed.current = 0; // 初期速度は0
-      speedVariationFactor.current = 0.9 + Math.random() * 0.2; // 0.9 ~ 1.1の範囲でランダムな係数を設定
-      
-      // ランダムに目標セグメントを選択
-      targetSegmentIndex.current = Math.floor(Math.random() * items.length);
-      const segmentAngle = (Math.PI * 2) / items.length;
-      const targetAngle = segmentAngle * targetSegmentIndex.current;
-      
-      // Z軸の回転は制限なし
-      targetRotation.current = targetAngle;
-    }
-  }, [isSpinning, items.length]);
-
-  useFrame((_, delta) => {
-    if (!wheelRef.current || !groupRef.current) return;
-
-    // グループの回転を制限（毎フレーム適用）- X軸とY軸のみ制限
-    if (groupRef.current) {
-      // X軸とY軸の回転を最大20度（±0.35ラジアン）に制限
-      groupRef.current.rotation.x = Math.max(-MAX_ROTATION_ANGLE, Math.min(MAX_ROTATION_ANGLE, groupRef.current.rotation.x));
-      groupRef.current.rotation.y = Math.max(-MAX_ROTATION_ANGLE, Math.min(MAX_ROTATION_ANGLE, groupRef.current.rotation.y));
-      // Z軸は制限しない
-    }
-
-    // 初回レンダリング時のアニメーション
-    if (isFirstRender) {
-      initialAnimationRef.current.time += delta;
-      const t = initialAnimationRef.current.time;
-      const duration = initialAnimationRef.current.duration;
-      
-      // 揺れるアニメーション - より大きな揺れに
-      if (t < duration) {
-        // より大きな振幅で揺らす
-        const swayX = Math.sin(t * 2.5) * 0.15 * Math.max(0, 1 - t / duration);
-        const swayY = Math.cos(t * 2) * 0.12 * Math.max(0, 1 - t / duration);
-        const swayZ = Math.sin(t * 1.5) * 0.08 * Math.max(0, 1 - t / duration);
-        
-        // グループ全体を揺らす
-        groupRef.current.rotation.x = swayX;
-        groupRef.current.rotation.y = swayY;
-        
-        // ホイールを少し回転させる
-        wheelRef.current.rotation.z = swayZ;
-      } else {
-        // アニメーション終了時に位置をリセット
-        groupRef.current.rotation.x = 0;
-        groupRef.current.rotation.y = 0;
-        wheelRef.current.rotation.z = 0;
-      }
-      return;
-    }
-
-    if (!isSpinningRef.current) return;
-
-    const currentTime = performance.now() / 1000;
-    const elapsedTime = currentTime - startTime.current;
-
-    // 回転時間が経過したら停止
-    if (elapsedTime >= TOTAL_DURATION) {
-      isSpinningRef.current = false;
-      
-      // 最終的な回転位置を目標位置に調整
-      const segmentAngle = (Math.PI * 2) / items.length;
-      const targetAngle = segmentAngle * targetSegmentIndex.current;
-      currentRotation.current = targetAngle;
-      wheelRef.current.rotation.z = currentRotation.current;
-      
-      onRotationUpdate(-currentRotation.current);
-      onSpinComplete();
-      return;
-    }
-
-    // 速度パターンの計算
-    if (elapsedTime <= ACCELERATION_DURATION) {
-      // 加速フェーズ (0-2秒)
-      spinSpeed.current = MathUtils.lerp(0, MAX_SPEED, elapsedTime / ACCELERATION_DURATION) * speedVariationFactor.current;
-    } else if (elapsedTime >= DECELERATION_START) {
-      // 減速フェーズ (4-8秒)
-      const decelerationProgress = (elapsedTime - DECELERATION_START) / (TOTAL_DURATION - DECELERATION_START);
-      // イージング関数を使用してより自然な減速を実現
-      const easeOutProgress = 1 - Math.pow(1 - decelerationProgress, 3); // cubic ease-out
-      spinSpeed.current = MathUtils.lerp(MAX_SPEED, 0, easeOutProgress) * speedVariationFactor.current;
-    } else {
-      // 最高速度維持フェーズ (2-4秒)
-      spinSpeed.current = MAX_SPEED * speedVariationFactor.current;
-    }
-
-    // 回転の更新（Z軸は制限なし）
-    const rotation = spinSpeed.current * delta;
-    currentRotation.current += rotation;
-    wheelRef.current.rotation.z = currentRotation.current;
-    onRotationUpdate(-currentRotation.current);
-
-    // セグメントの切り替わりを検出
+  
+  // ルーレットの描画
+  const drawRoulette = useCallback((ctx: CanvasRenderingContext2D, width: number, height: number, rotation: number) => {
+    // キャンバスをクリア
+    ctx.clearRect(0, 0, width, height);
+    
+    const dpr = window.devicePixelRatio || 1;
+    ctx.save(); // 現在の状態を保存
+    ctx.scale(dpr, dpr);
+    
+    const size = Math.min(width / dpr, height / dpr);
+    const centerX = (width / dpr) / 2;
+    const centerY = (height / dpr) / 2;
+    const radius = size * 0.45; // ルーレットの半径
+    const textRadius = radius * 0.7; // テキストの配置半径
+    const centerRadius = radius * 0.15; // 中心円の半径
+    const arrowSize = radius * 0.1; // 矢印のサイズ
+    
+    // セグメントの角度
     const segmentAngle = (Math.PI * 2) / items.length;
-    const currentAngle = -currentRotation.current % (Math.PI * 2);
-    const currentSegmentIndex = Math.floor(currentAngle / segmentAngle);
-
-    if (currentSegmentIndex !== lastSegmentIndex.current) {
-      lastSegmentIndex.current = currentSegmentIndex;
+    
+    // ルーレットを描画
+    items.forEach((item, index) => {
+      const startAngle = segmentAngle * index + rotation;
+      const endAngle = startAngle + segmentAngle;
+      const color = VIBRANT_COLORS[index % VIBRANT_COLORS.length];
+      
+      // セグメントを描画
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      
+      // セグメントの境界線
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      
+      // テキストを描画
+      const textAngle = startAngle + segmentAngle / 2;
+      const textX = centerX + textRadius * Math.cos(textAngle);
+      const textY = centerY + textRadius * Math.sin(textAngle);
+      
+      ctx.save();
+      ctx.translate(textX, textY);
+      ctx.rotate(textAngle + Math.PI / 2);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = 'black';
+      ctx.font = `bold ${radius * 0.1}px Arial`;
+      
+      // テキストの長さに応じて調整
+      const maxTextWidth = radius * 0.5;
+      if (ctx.measureText(item).width > maxTextWidth) {
+        const words = item.split(' ');
+        let line = '';
+        let y = 0;
+        const lineHeight = radius * 0.12;
+        
+        words.forEach(word => {
+          const testLine = line + word + ' ';
+          const metrics = ctx.measureText(testLine);
+          
+          if (metrics.width > maxTextWidth && line !== '') {
+            ctx.fillText(line, 0, y);
+            line = word + ' ';
+            y += lineHeight;
+          } else {
+            line = testLine;
+          }
+        });
+        
+        ctx.fillText(line, 0, y);
+      } else {
+        ctx.fillText(item, 0, 0);
+      }
+      
+      ctx.restore();
+    });
+    
+    // 中心の円を描画
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, centerRadius, 0, Math.PI * 2);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fill();
+    
+    // 矢印を描画（向きを修正）
+    ctx.beginPath();
+    ctx.moveTo(centerX + radius, centerY);
+    ctx.lineTo(centerX + radius + arrowSize, centerY - arrowSize);
+    ctx.lineTo(centerX + radius + arrowSize, centerY + arrowSize);
+    ctx.closePath();
+    ctx.fillStyle = '#FF0000';
+    ctx.fill();
+    
+    ctx.restore(); // 保存した状態に戻す
+  }, [items]);
+  
+  // アニメーションループ
+  const animate = useCallback((time: number) => {
+    if (!canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    // 前回のフレームからの経過時間を計算
+    if (previousTimeRef.current === undefined) {
+      previousTimeRef.current = time;
     }
-
-    // 完全に停止した場合
-    if (elapsedTime >= TOTAL_DURATION - 0.1) {
-      if (isSpinningRef.current) {
+    const delta = (time - previousTimeRef.current) / 1000; // 秒単位
+    previousTimeRef.current = time;
+    
+    // スピンアニメーション
+    if (isSpinningRef.current) {
+      const currentTime = performance.now() / 1000;
+      const elapsedTime = currentTime - startTime.current;
+      
+      // 回転時間が経過したら停止
+      if (elapsedTime >= TOTAL_DURATION) {
         isSpinningRef.current = false;
+        
+        // 最終的な回転位置を維持
+        drawRoulette(ctx, canvas.width, canvas.height, currentRotation.current);
         onRotationUpdate(-currentRotation.current);
         onSpinComplete();
+      } else {
+        // 速度パターンの計算
+        if (elapsedTime <= ACCELERATION_DURATION) {
+          // 加速フェーズ
+          spinSpeed.current = (MAX_SPEED * elapsedTime / ACCELERATION_DURATION) * speedVariationFactor.current;
+        } else if (elapsedTime >= DECELERATION_START) {
+          // 減速フェーズ
+          const decelerationProgress = (elapsedTime - DECELERATION_START) / (TOTAL_DURATION - DECELERATION_START);
+          const easeOutProgress = 1 - Math.pow(1 - decelerationProgress, 3); // cubic ease-out
+          spinSpeed.current = MAX_SPEED * (1 - easeOutProgress) * speedVariationFactor.current;
+        } else {
+          // 最高速度維持フェーズ
+          spinSpeed.current = MAX_SPEED * speedVariationFactor.current;
+        }
+        
+        // 回転の更新
+        const rotation = spinSpeed.current * delta;
+        currentRotation.current += rotation;
+        
+        // セグメントの切り替わりを検出
+        const segmentAngle = (Math.PI * 2) / items.length;
+        const currentAngle = -currentRotation.current % (Math.PI * 2);
+        const currentSegmentIndex = Math.floor(currentAngle / segmentAngle);
+        
+        if (currentSegmentIndex !== lastSegmentIndex.current) {
+          lastSegmentIndex.current = currentSegmentIndex;
+        }
+        
+        drawRoulette(ctx, canvas.width, canvas.height, currentRotation.current);
+        onRotationUpdate(-currentRotation.current);
       }
+    } else {
+      // 回転していない時は通常描画
+      drawRoulette(ctx, canvas.width, canvas.height, currentRotation.current);
     }
-  });
-
-  const segmentAngle = (Math.PI * 2) / items.length;
-
+    
+    requestRef.current = requestAnimationFrame(animate);
+  }, [canvasSize, drawRoulette, items.length, onRotationUpdate, onSpinComplete]);
+  
+  // アニメーションの開始と停止
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, [animate]);
+  
+  // コンポーネントがアンマウントされる前にアニメーションをクリーンアップ
+  useEffect(() => {
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+        requestRef.current = undefined;
+      }
+    };
+  }, []);
+  
   return (
-    <group ref={groupRef}>
-      {/* 基本的な環境光のみ維持 */}
-      <ambientLight intensity={1.0} />
-
-      <mesh ref={wheelRef} rotation={[0, 0, 0]}>
-        {items.map((item, index) => {
-          const angle = segmentAngle * index;
-          const color = VIBRANT_COLORS[index % VIBRANT_COLORS.length];
-
-          return (
-            <group key={index}>
-              {/* セグメント */}
-              <mesh rotation={[0, 0, angle]}>
-                <circleGeometry args={[WHEEL_RADIUS, 32, 0, segmentAngle]} />
-                <meshStandardMaterial 
-                  color={color} 
-                  side={DoubleSide}
-                  roughness={0.3}
-                  metalness={0.0}
-                />
-              </mesh>
-              
-              {/* テキスト */}
-              <Text
-                position={[
-                  TEXT_RADIUS * Math.cos(angle + segmentAngle / 2),
-                  TEXT_RADIUS * Math.sin(angle + segmentAngle / 2),
-                  0.01
-                ]}
-                rotation={[0, 0, angle + segmentAngle / 2]}
-                fontSize={0.3}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-                maxWidth={WHEEL_RADIUS * 0.8}
-                font={undefined}
-              >
-                {item}
-              </Text>
-            </group>
-          );
-        })}
-
-        {/* 中心の円 */}
-        <mesh position={[0, 0, 0.02]}>
-          <circleGeometry args={[CENTER_RADIUS, 32]} />
-          <meshStandardMaterial 
-            color="#1a1a1a"
-            roughness={0.3}
-            metalness={0.0}
-          />
-        </mesh>
-      </mesh>
-      
-      {/* 矢印 */}
-      <mesh position={[ARROW_POSITION, 0, 0.1]} rotation={[0, 0, Math.PI / 2]}>
-        <coneGeometry args={[0.3, 0.6, 32]} />
-        <meshStandardMaterial 
-          color="#FF0000"
-          roughness={0.3}
-          metalness={0.0}
-        />
-      </mesh>
-    </group>
+    <canvas
+      ref={canvasRef}
+      className="w-full h-full rounded-full"
+      style={{ touchAction: 'none', maxHeight: '100%', objectFit: 'contain' }}
+    />
   );
 } 

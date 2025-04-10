@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
 import { VIBRANT_COLORS } from '../constants';
 import Button from '@/components/ui/button';
 import { RouletteMessages } from '@/lib/i18n/generated-types';
@@ -11,7 +9,7 @@ import { RouletteMessages } from '@/lib/i18n/generated-types';
 const STORAGE_KEY = 'roulette-items';
 const DEFAULT_ITEMS = ['Item 1', 'Item 2', 'Item 3'];
 
-// Three.jsコンポーネントは動的importが必要
+// 2Dルーレットコンポーネントは動的importが必要
 const Roulette = dynamic(() => import('./Roulette'), { ssr: false });
 
 
@@ -119,9 +117,9 @@ export default function RouletteClient({ translations }: { translations: Roulett
   return (
     <div className="min-h-screen p-4">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-6">
+        <div className="mb-3 sm:mb-4 md:mb-6">
           <h1 className="text-3xl font-bold mb-4 text-white">{translations.title}</h1>
-          <div className="flex flex-wrap gap-4 mb-4">
+          <div className="flex flex-wrap gap-4 mb-2 sm:mb-3 md:mb-4">
             <Button
               onClick={handleSpin}
               disabled={isSpinning || items.length < 2}
@@ -139,11 +137,11 @@ export default function RouletteClient({ translations }: { translations: Roulett
         </div>
         {result && (
           <div 
-            className="text-center p-6 rounded-xl shadow-lg border animate-fade-in mb-6"
+            className="text-center p-4 sm:p-5 md:p-6 rounded-xl shadow-lg border animate-fade-in mb-3 sm:mb-4 md:mb-6"
             style={{
               background: selectedColor,
               borderColor: selectedColor,
-              opacity: 0.8
+              opacity: 1
             }}
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-2">
@@ -190,18 +188,13 @@ export default function RouletteClient({ translations }: { translations: Roulett
           
           {/* ルーレットを常に表示 - はみ出し防止のためにコンテナを調整 */}
           <div className={`w-full ${isEditing ? 'lg:w-2/3' : 'lg:w-full'} mx-auto overflow-hidden`}>
-            <div className="aspect-square w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto">
-              <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} />
-                <Roulette
-                  items={items}
-                  isSpinning={isSpinning}
-                  onSpinComplete={handleSpinComplete}
-                  onRotationUpdate={setCurrentRotation}
-                />
-                <OrbitControls enableZoom={false} enablePan={false} />
-              </Canvas>
+            <div className="aspect-square w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto py-2 sm:py-3 md:py-4">
+              <Roulette
+                items={items}
+                isSpinning={isSpinning}
+                onSpinComplete={handleSpinComplete}
+                onRotationUpdate={setCurrentRotation}
+              />
             </div>
           </div>
         </div>
